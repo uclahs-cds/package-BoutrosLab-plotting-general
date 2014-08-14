@@ -1,0 +1,274 @@
+\name{create.stripplot}
+\alias{create.stripplot}
+\title{Make a strip-plot}
+\description{Takes a formula and a data.frame and creates a strip-plot}
+\usage{
+create.stripplot(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, 
+jitter.factor = 1, jitter.amount = NULL, main = NULL, xlab.label = NULL, 
+ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', 
+yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', 
+colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, 
+ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3,
+xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', 
+yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, 
+bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, 
+layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, strip.col = "white", 
+strip.cex = 1, strip.fontface = 'bold', width = 7, height = 7, size.units = 'in',
+resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,
+add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
+xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
+alpha.rectangle = 1)
+}
+\arguments{
+    \item{formula}{The formula to be plotted}
+    \item{data}{The data-frame to plot}
+    \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
+    \item{groups}{The grouping variable in the data-frame}
+    \item{jitter.data}{Allow data to be staggered, default is FALSE}
+    \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
+    \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{xlab.label}{X-axis label}
+    \item{ylab.label}{Y-axis label}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.fontface}{Fontface for the x-axis scales}
+    \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{lwd}{Line width, defaults to 1}
+    \item{pch}{The plotting character (defaults to filled circles)}
+    \item{col}{Colour of the plotting character (defaults to black)}
+    \item{fill}{Fill colour of the plotting character if pch set to 21:25 (defaults to transparent)}
+    \item{colour.alpha}{Bias to be added to colour selection (defaults to 1)}
+    \item{cex}{The size of the plotting character}
+    \item{xaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
+    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
+    \item{xlimits}{Two-element vector giving the x-axis limits, default is automatic}
+    \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
+    \item{xat}{Vector listing where the x-axis labels should be drawn, default is automatic}
+    \item{yat}{Vector listing where the y-axis labels should be drawn, default is automatic}
+    \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
+    \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
+    \item{main.cex}{Size of text for main plot title}
+    \item{xlab.cex}{Size of x-axis labels, defaults to 3}
+    \item{ylab.cex}{Size of y-axis labels, defaults to 3}
+    \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
+    \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
+    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
+    \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 0}
+    \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
+    \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.1}
+    \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
+    \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.3}
+    \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
+    \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Strip title character expansion}
+    \item{strip.fontface}{Strip text fontface, defaults to bold}
+    \item{as.table}{Specifies panel drawing order, default is TRUE to draw from top left corner, moving right then down. Set to FALSE to draw panels from bottom left corner, moving right then up}
+    \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
+    \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
+    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
+    \item{key}{A list giving the key (legend). The default suppresses drawing}
+    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
+    \item{description}{Short description of image/plot; default NULL}
+    \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
+    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
+    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
+    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
+    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
+    \item{col.rectangle}{Specifies the colour of the rectangle}
+    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+}
+\value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
+\author{Paul C. Boutros}
+\section{Warning}{
+If this function is called without capturing the return value, or specifying a filename, it may crash while trying to draw the histogram. In particular, if a script that uses such a call of create histogram is called by reading the script in from the command line, it will fail badly, with an error message about unavailable fonts:\cr
+    \preformatted{
+    Error in grid.Call.graphics("L_text", as.graphicsAnnot(x$label), x$x,  )
+        Invalid font type
+    Calls: print ... drawDetails.text -> grid.Call.graphics -> .Call.graphics
+    }
+}
+\seealso{\code{\link[lattice]{stripplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
+\examples{
+set.seed(12345);
+
+simple.data <- data.frame(
+    x = c(rep(rnorm(50),5)),
+    y = as.factor(sample(LETTERS[1:5],250,TRUE))
+    );
+
+create.stripplot(
+    filename = 'Stripplot_simple.tiff',
+    formula = x ~ y,
+    data = simple.data
+    );
+
+# load real datasets
+stripplot.data <- data.frame(
+    values = c(t(microarray[1:10, 1:58])),
+    genes = rep(rownames(microarray)[1:10], each = 58),
+    sex = patient$sex 
+    );
+
+# Minimal Input using real data
+create.stripplot(
+    filename = 'Stripplot_Minimal_Input.tiff',
+    formula = genes ~ values,
+    data = stripplot.data,
+    main = 'Minimal input',
+    description = 'Stripplot created by BoutrosLab.plotting.general'
+    );
+
+# Axes & Labels
+create.stripplot(
+    filename = 'Stripplot_Axes_Labels.tiff',
+    formula = genes ~ values,
+    data = stripplot.data,
+    main = 'Axes & labels',
+    # formatting axes
+    xlab.label = 'Change in gene expression',
+    ylab.label = 'Gene',
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    description = 'Stripplot created by BoutrosLab.plotting.general'
+    );
+
+# Colour & Legend
+create.stripplot(
+    filename = 'Stripplot_Colour_Legend.tiff',
+    formula = genes ~ values,
+    data = stripplot.data,
+    main = 'Colour & legend',
+    xlab.label = 'Change in gene expression',
+    ylab.label = 'Gene',
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    # Colour & points adjustment
+    groups = stripplot.data$sex,
+    col = c('pink', 'skyblue'),
+    pch = 19,
+    colour.alpha = 0.5,
+    cex = 1,
+    # Legend
+    key = list(
+        space = 'right',
+        text = list(
+            lab = levels(stripplot.data$sex),
+            cex = 1,
+            col = 'black'
+            ),
+        points = list(
+            pch = 19,
+            col = c('pink','skyblue'),
+            alpha = 0.5,
+            cex = 1
+            ),
+        padding.text = 3
+        ),
+    description = 'Stripplot created by BoutrosLab.plotting.general'
+    );
+
+# Jitter
+create.stripplot(
+    filename = 'Stripplot_Jitter.tiff',
+    formula = genes ~ values,
+    data = stripplot.data,
+    main = 'Low Jitter',
+    xlab.label = 'Change in gene expression',
+    ylab.label = 'Gene',
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    groups = stripplot.data$sex,
+    col = c('pink', 'skyblue'),
+    pch = 19,
+    colour.alpha = 0.5,
+    cex = 1,
+    key = list(
+        space = 'right',
+        text = list(
+            lab = levels(stripplot.data$sex),
+            cex = 1,
+            col = 'black'
+            ),
+        points = list(
+            pch = 19,
+            col = c('pink','skyblue'),
+            alpha = 0.4,
+            cex = 1
+            ),
+        padding.text = 3
+        ),
+    # Custom jitter
+    jitter.data = TRUE,
+    description = 'Stripplot created by BoutrosLab.plotting.general'
+    );
+
+# Jitter
+create.stripplot(
+    filename = 'Stripplot_High_Jitter.tiff',
+    formula = genes ~ values,
+    data = stripplot.data,
+    main = 'High Jitter',
+    xlab.label = 'Change in gene expression',
+    ylab.label = 'Gene',
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    groups = stripplot.data$sex,
+    col = c('pink', 'skyblue'),
+    pch = 19,
+    colour.alpha = 0.5,
+    cex = 1,
+    key = list(
+        space = 'right',
+        text = list(
+            lab = levels(stripplot.data$sex),
+            cex = 1,
+            col = 'black'
+            ),
+        points = list(
+            pch = 19,
+            col = c('pink','skyblue'),
+            alpha = 0.4,
+            cex = 1
+            ),
+        padding.text = 3
+        ),
+    # Custom jitter
+    jitter.data = TRUE,
+    jitter.factor = 0.5,
+    jitter.amount = 0.33,
+    description = 'Stripplot created by BoutrosLab.plotting.general'
+    );
+}
+\keyword{hplot}

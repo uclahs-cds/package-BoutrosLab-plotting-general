@@ -1,0 +1,400 @@
+# The BoutrosLab.plotting.general package is copyright (c) 2013 Ontario Institute for Cancer Research (OICR)
+# This package and its accompanying libraries is free software; you can redistribute it and/or modify it under the terms of the GPL
+# (either version 1, or at your option, any later version) or the Artistic License 2.0.  Refer to LICENSE for the full license text.
+# OICR makes no representations whatsoever as to the SOFTWARE contained herein.  It is experimental in nature and is provided WITHOUT
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTY, EXPRESS OR IMPLIED. OICR MAKES NO REPRESENTATION
+# OR WARRANTY THAT THE USE OF THIS SOFTWARE WILL NOT INFRINGE ANY PATENT OR OTHER PROPRIETARY RIGHT.
+# By downloading this SOFTWARE, your Institution hereby indemnifies OICR against any loss, claim, damage or liability, of whatsoever kind or
+# nature, which may arise from your Institution's respective use, handling or storage of the SOFTWARE.
+# If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
+# credit be given to OICR scientists, as scientifically appropriate.
+
+### FUNCTION TO CREATE DOTMAPS #####################################################################
+create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xaxis.cex = 2.5, yaxis.cex = 2.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, grid.col.lwd = 1.5, grid.row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, grid.colour = NULL, colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white', key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, col.colour = 'black', row.colour = 'black', description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL) {
+
+	x <- as.data.frame(x);
+
+	# determine size/colour functions
+	if (class(spot.size.function) == 'character' && spot.size.function == 'default') {
+		spot.size.function <- function(x) { 0.1 + (2 * abs(x)); }
+		}
+	else if (class(spot.size.function) == 'numeric') {
+		returnval <- spot.size.function;
+		spot.size.function <- function(x) { returnval; }
+		}
+
+	if (class(spot.colour.function) == 'character' && spot.colour.function == 'default') {
+		spot.colour.function <- function(x) {
+			colours <- rep('white', length(x));
+			colours[sign(x) == -1] <- BoutrosLab.plotting.general::default.colours(2, palette.type = 'dotmap')[1];
+			colours[sign(x) ==  1] <- BoutrosLab.plotting.general::default.colours(2, palette.type = 'dotmap')[2];
+			return(colours);
+			}
+		}
+	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'discrete') {
+		if(length(unique(x)) > length(dot.colour.scheme)){
+			stop(paste("Not enough colours specified to use discrete function: need at least", length(unique(x)), "colours"));
+			}
+		spot.colour.function <- function(x) {
+			unique.values = unique(x);
+			colours <- rep('white', length(x));
+			for(i in c(1:length(unique.values))){
+				colours[x == unique.values[i]] <- dot.colour.scheme[i];
+				}
+			return(colours);
+			}
+		}
+
+	# set spot size/colour
+	spot.sizes <- spot.size.function(stack(x)$values);
+	spot.colours <- spot.colour.function(stack(x)$values);
+	spot.border <- pch.border.col;
+
+	# Ensure a bg.data value is provided
+	if (!is.null(bg.data)) {
+		if (length(colour.scheme) == 1 && colour.scheme == 'white') {
+			warning ("bg.data is set, but colour.scheme is set to default 'white'. No background colours will be displayed. Changing bg.data to NULL");
+			bg.data <- NULL;
+			}
+		}
+
+	if (is.null(bg.data)) {
+
+		# Set bg.data to x: Ensures a default value of the correct size
+		bg.data <- x;
+
+		# Ensure 'fake' bg.data values are never displayed
+		if (colourkey) {
+			warning ('No bg.data set, but colourkey is set to TRUE. Changing colourkey to FALSE');
+			colourkey <- FALSE;
+			}
+		if (length(colour.scheme) != 1 || colour.scheme != 'white') {
+			warning ("No bg.data set, but colour.scheme is set to non-default value. Changing colour.scheme to 'white'.");
+			colour.scheme <- 'white';
+			}
+		}
+
+	if (is.null(at)) {
+		min.value <- min(bg.data - colour.centering.value, na.rm = TRUE);
+		max.value <- max (bg.data - colour.centering.value, na.rm = TRUE);
+		at <- seq (from = min.value, to = max.value, length.out = total.colours);
+		}
+	else {
+		min.value <- min((at) - colour.centering.value, na.rm = TRUE);
+		max.value <- max((at) - colour.centering.value, na.rm = TRUE);
+		min.at <- min(at);
+		max.at <- max(at);
+		if (min(bg.data, na.rm = TRUE) < min.at) {
+			warning(
+				paste(
+					'min(bg.data) = ',
+					min(bg.data, na.rm = TRUE),
+					'is smaller than min(at) = ',
+					min.at,
+					'Clipped data will be plotted'
+					)
+				);
+			bg.data[bg.data < min.at] <- min(at);
+			}
+		if (max(bg.data, na.rm = TRUE) > max.at) {
+			warning(
+				paste(
+					'max(bg.data) = ',
+					max(bg.data, na.rm = TRUE),
+					'is greater than max(at) = ',
+					max.at,
+					'Clipped data will be plotted'
+					)
+				);
+			bg.data[bg.data > max.at] <- max(at);
+			}
+		total.colours <- max(length(at), total.colours);
+		}
+
+	# change alpha value to work for rgb function
+	if (bg.alpha <= 1 && bg.alpha >= 0) {
+		bg.alpha <- bg.alpha * 255;
+		}
+
+	# colour-handling: first handle legacy cases
+	if (1 == length(colour.scheme)) {
+		if      (colour.scheme == 'RedWhiteBlue')    { colour.scheme <- c('red', 'white', 'blue'); }
+		else if (colour.scheme == 'WhiteBlack')      { colour.scheme <- c('white', 'black'); }
+		else if (colour.scheme == 'BlueWhiteYellow') { colour.scheme <- c('blue', 'white', 'yellow'); }
+		else if (colour.scheme == 'white')           { colour.scheme <- c('white', 'white'); }
+		else {
+			warning(paste('Unknown colour scheme:', colour.scheme));
+			return(0);
+			}
+		}
+
+	# one-sided colour schemes
+	if (2 == length(colour.scheme)) {
+		ColourFunction <- colorRamp(colour.scheme, space = 'Lab');
+		my.palette <- rgb(ColourFunction(seq(0,1,1/total.colours)^colour.alpha), alpha = bg.alpha, maxColorValue = 255);
+		}
+
+	# two-sided colour schemes
+	else if (3 == length(colour.scheme)) {
+		
+		# warn user if they use three-colour scheme with one-sided data
+		is.twosided <- sign(min.value) != sign(max.value);
+		if (!is.twosided) {
+			warning('Using a three-colour scheme with one-sided data is not advised!');
+			}
+
+		# create colour scheme
+		ColourFunctionLow <- colorRamp(colour.scheme[1:2], space = 'Lab');
+		ColourFunctionHigh <- colorRamp(colour.scheme[2:3], space = 'Lab');
+
+		# The number of negative colours is based on the fraction of the range that's below the center value
+		# The number of positive colours is based on the number of negatives
+		# Leave one colour free for the center value
+		neg.colours <- min.value/(max.value - min.value) * (total.colours - 1);
+		neg.colours <- ceiling(abs(neg.colours));
+		pos.colours <- total.colours - neg.colours - 1;
+
+		# There is potential for colour allocation to go wrong when:
+		#	1) There is one-sided data
+		#	2) The colour-centering is at zero
+		#	3) A three-colour scheme is requested
+		# Try to automatically detect this case and provide a fix
+		if (neg.colours < 1 | pos.colours < 1) {
+			warning('Colour allocation scheme failed, moving to a default method');
+			neg.colours <- round(total.colours / 2);
+			pos.colours <- round(total.colours / 2);
+			}
+		
+		# create colour palette
+		my.palette <- c(
+			rgb(ColourFunctionLow(seq(0, 1, 1/neg.colours)^colour.alpha), alpha = bg.alpha, maxColorValue = 255),
+			colour.scheme[2],
+			rgb(ColourFunctionHigh(seq(0, 1, 1/pos.colours)^(1/colour.alpha)), alpha = bg.alpha, maxColorValue = 255)
+			);
+		}
+
+	else {
+		my.palette <- c();
+		for (n in 1:length(colour.scheme)) {
+			ColourFunction <- colorRamp(c('white', colour.scheme[n]), space = 'Lab');
+			my.palette <- c(my.palette, rgb(ColourFunction(1^colour.alpha), alpha = bg.alpha, maxColorValue = 255));
+			}
+		}
+
+	# format bg.data
+	bg.size <- dim(x);
+	bg.data <- as.data.frame(bg.data);
+
+	# constructing coordinate system
+	# note that we're forcing the 'natural' ordering of rows here
+	y.coords <- rep(nrow(x):1, ncol(x)); 
+	x.coords <- c();
+
+	for (i in 1:ncol(x)) { x.coords <- c(x.coords, rep(i, nrow(x))); }
+
+	bg.data <- data.frame(
+		x = x.coords,
+		y = y.coords,
+		freq = stack(bg.data)$values
+		);
+
+	if (colourkey) {
+		colourkey <- list(
+			size = 1,
+			space = 'bottom',
+			width = 1.25,
+			height = 1.0,
+			labels = list(
+				cex = colourkey.cex,
+				at = colourkey.labels.at,
+				labels = colourkey.labels
+				),
+			tick.number = 3
+			);
+		}
+
+	if (!is.null(grid.colour)) {
+		row.colour <- grid.colour;
+		col.colour <- grid.colour;
+		cat(paste0("CAUTION: grid.colour is DEPRECATED!  Use row.colour/col.colour. Using: ",grid.colour,"\n"));
+		}
+	
+	if (any(is.na(x))) {
+		tmp.pch <- pch;
+		pch[is.na(x)] <- NA.pch;
+		pch[!is.na(x)] <- tmp.pch;
+		spot.colours[is.na(x)] <- 'black';
+		spot.sizes[is.na(x)] <- NA.spot.size;
+		rm(tmp.pch);
+		}
+
+	trellis.object <- lattice::levelplot(
+		freq ~ x * y,
+		bg.data,
+		panel = function(...) {
+
+						panel.fill(col = fill.colour);
+			panel.levelplot(...);
+			
+			# add rectangle if requested
+			if (add.rectangle) {
+				panel.rect(
+					xleft = xleft.rectangle,
+					ybottom = ybottom.rectangle,
+					xright = xright.rectangle,
+					ytop = ytop.rectangle,
+					col = col.rectangle,
+					alpha = alpha.rectangle,
+					border = NA
+					);
+				}
+			
+			# add grid if requested
+			if (add.grid) {
+				panel.abline(
+					h = min(bg.data$y):max(bg.data$y) + 0.5,
+					v = 0,
+					col.line = row.colour,
+					lwd = grid.row.lwd
+					);
+				panel.abline(
+					v = min(bg.data$x):max(bg.data$x) + 0.5,
+					h = 0,
+					col.line = col.colour,
+					lwd = grid.col.lwd
+					);
+				}
+			
+			# NOTE: different ways to handle border and fill for pch < 21 and pch >= 21
+			panel.xyplot(
+				type = 'p', 
+				cex = spot.sizes, 
+				pch = pch,
+				col = mapply(
+					function(pch, spot.colours, spot.border){
+						if(pch %in% 0:20) { return(spot.colours); } else 
+						if (pch %in% 21:25) { return(spot.border); }
+						},
+					pch, spot.colours = spot.colours, spot.border = spot.border
+					),
+				fill = mapply(
+					function(pch, spot.colours){
+						if(pch %in% 0:20) { NA; } else 
+						if (pch %in% 21:25) { return(spot.colours); }
+						},
+					pch, spot.colours = spot.colours
+					),
+				key = key,
+				legend = legend,
+				...
+				);
+			},
+		at = at,
+		key = key,
+		legend = legend,
+		col.regions = my.palette,
+		colorkey = colourkey,
+		main = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily', 
+			add.to.list = list(
+				label = main,
+				fontface = 'bold',
+				cex = main.cex
+				)
+			),
+		xlab = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily', 
+			add.to.list = list(
+				label = xlab.label,
+				fontface = 'bold',
+				cex = xlab.cex,
+				col = xlab.col
+				)
+			),
+		ylab = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily', 
+			add.to.list = list(
+				label = ylab.label,
+				fontface = 'bold',
+				cex = ylab.cex,
+				col = ylab.col
+				)
+			),
+		scales = list(
+			x = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily', 
+				add.to.list = list(
+					labels = xaxis.lab,
+					cex = xaxis.cex,
+					rot = xaxis.rot,
+					col = xaxis.col,
+					tck = xaxis.tck,
+					limits = c( min(bg.data$x, na.rm = TRUE) - 0.5, max(bg.data$x, na.rm = TRUE) + 0.5 ), 
+					at = min(bg.data$x, na.rm = TRUE):max(bg.data$x, na.rm = TRUE),
+										fontface = xaxis.fontface
+					)
+				),
+			y = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily', 
+				add.to.list = list(
+					labels = rev(yaxis.lab),
+					cex = yaxis.cex, # necessary because we forcing the 'natural' ordering of rows when making bg.data
+					rot = yaxis.rot,
+					col = yaxis.col,
+					tck = yaxis.tck,
+					limits = c( min(bg.data$y, na.rm = TRUE) - 0.5, max(bg.data$y, na.rm = TRUE) + 0.5 ), 
+					at = min(bg.data$y, na.rm = TRUE):max(bg.data$y, na.rm = TRUE),
+					fontface = yaxis.fontface
+					)
+				)
+			),
+		par.settings = list(
+			axis.line = list(
+				lwd = 2
+				),
+			layout.heights = list(
+				top.padding = top.padding,
+				main = if (is.null(main)) { 0.3} else { 1 },
+				main.key.padding = 0.1,
+				key.top = key.top,
+				key.axis.padding = 0.1,
+				axis.top = axis.top,
+				axis.bottom = axis.bottom,
+				axis.xlab.padding = 1,
+				xlab = if (is.null(xaxis.lab)) {0.1} else {1},
+				xlab.key.padding = 0.5,
+				key.bottom = 1,
+				key.sub.padding = 0.1,
+				sub = 0.1,
+				bottom.padding = bottom.padding
+				),
+			layout.widths = list(
+				left.padding = left.padding,
+				key.left = 1,
+				key.ylab.padding = 0.1,
+				ylab = if (is.null(yaxis.lab)) {0.1} else {1},
+				ylab.axis.padding = 1,
+				axis.left = axis.left,
+				axis.right = axis.right,
+				axis.key.padding = 0.1,
+				key.right = 1,
+				right.padding = right.padding
+				)
+			)
+		);
+
+	# output the object
+	return(
+		BoutrosLab.plotting.general::write.plot(
+			trellis.object = trellis.object,
+			filename = filename,
+			height = height,
+			width = width,
+			size.units = size.units,
+			resolution = resolution,
+			enable.warnings = enable.warnings,
+			description = description
+			)
+		);
+	}
+

@@ -1,0 +1,5 @@
+"FileExt"	"Function"	"Args"
+"tiff"	"tiff"	"filename=filename;height=height;width=width;units=size.units;res=resolution;compression=$lzw"
+"pdf"	"cairo_pdf"	"filename=filename;height=height;width=width"
+"png"	"png"	"filename=filename;height=height;width=width;units=size.units;res=resolution"
+"svg"	"svg"	"filename=filename;height=height;width=width"

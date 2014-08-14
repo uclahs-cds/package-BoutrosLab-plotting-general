@@ -1,0 +1,379 @@
+# The BoutrosLab.plotting.general package is copyright (c) 2013 Ontario Institute for Cancer Research (OICR)
+# This package and its accompanying libraries is free software; you can redistribute it and/or modify it under the terms of the GPL
+# (either version 1, or at your option, any later version) or the Artistic License 2.0.  Refer to LICENSE for the full license text.
+# OICR makes no representations whatsoever as to the SOFTWARE contained herein.  It is experimental in nature and is provided WITHOUT
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTY, EXPRESS OR IMPLIED. OICR MAKES NO REPRESENTATION
+# OR WARRANTY THAT THE USE OF THIS SOFTWARE WILL NOT INFRINGE ANY PATENT OR OTHER PROPRIETARY RIGHT.
+# By downloading this SOFTWARE, your Institution hereby indemnifies OICR against any loss, claim, damage or liability, of whatsoever kind or
+# nature, which may arise from your Institution's respective use, handling or storage of the SOFTWARE.
+# If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
+# credit be given to OICR scientists, as scientifically appropriate.
+
+### FUNCTION TO CREATE POLYGONPLOT ################################################################
+create.polygonplot <- function(formula, data, filename = NULL, main = NULL, groups = NULL, max, min, col = 'white', border.col = 'black', xy.col = 'black', strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axis.lwd = 1, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, xaxis.cex = 2, yaxis.rot = 0, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, add.median = FALSE, median.lty = 3, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL) {
+
+	groups.new <- eval(substitute(groups), data, parent.frame());
+
+	trellis.object <- lattice::xyplot(
+		formula,
+		data,
+		max = max,
+		min = min,
+		median = median,
+		panel = function(x, y, col = col, border = border.col, groups = groups.new, subscripts, ...) {
+			if (is.null(groups.new)) {
+
+				# draw polygon
+				panel.polygon(
+					x = c(x, rev(x)), 
+					y = if (use.loess.border) { c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else { c(max[subscripts], rev(min[subscripts])) } ,  
+					col = col, 
+					...
+					);
+
+				# draw xy points along border of polygon
+				if (add.xy.border) {
+					panel.xyplot( 
+						x = c(x, rev(x)), 
+						y = c(max[subscripts], rev(min[subscripts])),
+						type = 'p',
+						col = xy.col
+						);
+					}
+				
+				# draw median line
+				if (add.median & !is.null(median)) {
+					panel.xyplot(
+						x = x, 
+						y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
+						type = 'l',
+						lwd = 1.5,
+						col = median.col,
+						lty = median.lty
+						);
+					}
+
+				# draw extra points
+				if (!is.null(extra.points)) {
+					panel.xyplot(
+						x = extra.points$x,
+						y = extra.points$y,
+						groups = groups,
+						subscripts = subscripts,
+						type = extra.points.type,
+						pch = extra.points.pch,
+						col = extra.points.col,
+						cex = extra.points.cex,
+						fill = extra.points.fill
+						);
+					}
+
+				# add background grid
+				if (!is.null(xgrid.at) || !is.null(ygrid.at)) {
+					panel.abline(
+						v = xgrid.at,
+						h = ygrid.at,
+						lty = grid.lty,
+						col = grid.col,
+						lwd = grid.lwd,
+						alpha = 0.5
+						)
+					}
+
+				# if requested, add y=x line
+				if (add.xyline) {
+					panel.abline(
+						a = 0, 
+						b = 1, 
+						lwd = xyline.lwd,
+						lty = xyline.lty,
+						col = xyline.col
+						);
+					}
+				
+				# if requested, add user-defined horizontal line
+				if (!is.null(abline.h)) {
+					panel.abline(
+						h   = abline.h,
+						lty = abline.lty,
+						lwd = abline.lwd,
+						col = abline.col
+						);
+					}
+				
+				# if requested, add user-defined vertical line
+				if (!is.null(abline.v)) {
+					panel.abline(
+						v   = abline.v,
+						lty = abline.lty,
+						lwd = abline.lwd,
+						col = abline.col
+						);
+					}
+						
+				}
+				
+			else {
+				# can't use ternary operator because need to return vectors
+				border.col <- if (length(border.col) == 1) {
+					rep(border.col, length(subscripts));
+					} 
+				else {
+					as.character(factor(x = groups, labels = border.col));
+					}
+				median.col <- if (length(median.col) == 1) {
+					rep(median.col, length(subscripts));
+					}	
+				else {
+					as.character(factor(x = groups, labels = median.col));
+					}
+				median.lty <- if (length(median.lty) == 1) {
+					rep(median.lty, length(subscripts));
+					}
+				else {
+					as.character(factor(x = groups, labels = median.lty));
+					}
+				extra.points.col <- if (length(extra.points.col) == 1) {
+					rep(extra.points.col, length(subscripts));
+					} 
+				else {
+					as.character(factor(x = groups, labels = extra.points.col));
+					}
+				# need to cast twice to retrieve integer pch values
+				extra.points.pch <- if (length(extra.points.pch) == 1) {
+					rep(extra.points.pch, length(subscripts));
+					} 
+				else {
+					as.integer(as.character(factor(x = groups, labels = extra.points.pch)));
+					}
+
+				panel.superpose(
+					x, 
+					y, 
+					groups = groups.new, 
+					subscripts,
+					panel.groups = function(x, y, max, min, groups = groups.new, subscripts, type, ..., font, fontface) {
+
+						# draw polygon
+						panel.polygon(
+							x = c(x, rev(x)), 
+							y = if (use.loess.border) {c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else { c(max[subscripts], rev(min[subscripts])) } , 
+							type, 
+							...
+							);
+
+						# draw polygon borders
+						panel.xyplot(
+							x = c(x, rev(x), x[1]),
+							y = c(max[subscripts], rev(min[subscripts]), max[subscripts][1]),
+							type = 'l',
+							col = border.col[subscripts],
+							lwd = lwd
+							);
+
+						# draw median line
+						if (add.median & !is.null(median)) {
+							panel.xyplot( 
+								x = x,
+								y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
+								type = 'l',
+								col = median.col[subscripts],
+								lty = median.lty[subscripts]
+								);
+							}
+
+						# add extra points, assuming same grouping as original data
+						if (!is.null(extra.points)) {
+							panel.xyplot(
+							x = x,
+							y = extra.points$y[subscripts],
+							groups = groups,
+							subscripts = subscripts,
+							type = extra.points.type,
+							pch = extra.points.pch[subscripts],
+							col = extra.points.col[subscripts],
+							cex = extra.points.cex,
+							fill = extra.points.fill
+							);
+						}
+
+						# add background grid
+						if (!is.null(xgrid.at) || !is.null(ygrid.at)) {
+							panel.abline(
+								v = xgrid.at,
+								h = ygrid.at,
+								lty = grid.lty,
+								col = grid.col,
+								lwd = grid.lwd,
+								alpha = 0.5
+								);
+							}
+
+						# if requested, add y=x line
+						if (add.xyline) {
+							panel.abline(
+								a = 0, 
+								b = 1, 
+								lwd = xyline.lwd,
+								lty = xyline.lty,
+								col = xyline.col
+								);
+							}
+
+						# if requested, add user-defined horizontal line
+						if (!is.null(abline.h)) {
+							panel.abline(
+								h   = abline.h,
+								lty = abline.lty,
+								lwd = abline.lwd,
+								col = abline.col
+								);
+							}
+						
+						# if requested, add user-defined vertical line
+						if (!is.null(abline.v)) {
+							panel.abline(
+								v   = abline.v,
+								lty = abline.lty,
+								lwd = abline.lwd,
+								col = abline.col
+								);
+							}
+
+						},
+					alpha = 0.5, 
+					col = col,
+					border = "white",
+					...
+					);				
+				}
+			},
+		type = type,
+		cex = cex,
+		pch = pch,
+		col = col,
+		lwd = lwd,
+		lty = lty,
+		main = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily', 
+			add.to.list = list(
+				label = main,
+				fontface = 'bold',
+				cex = main.cex
+				)
+			),
+		xlab = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily', 
+			add.to.list = list(
+				label = xlab.label,
+				cex = xlab.cex,
+				col = xlab.col,
+				fontface = 'bold'
+				)
+			),
+		ylab = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily', 
+			add.to.list = list(
+				label = ylab.label,
+				cex = ylab.cex,
+				col = ylab.col,
+				fontface = 'bold'
+				)
+			),			
+		between = list(
+			x = x.spacing, 
+			y = y.spacing
+			),	
+		scales = list(
+			x = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily', 
+				add.to.list = list(
+					labels = xaxis.lab,
+					log = xaxis.log,
+					fontface = xaxis.fontface,
+					rot = xaxis.rot,
+					limits = xlimits,
+					cex = xaxis.cex,
+					col = xaxis.col,
+					at = xat,
+					relation = x.relation,
+					alternating = FALSE,
+					tck = xaxis.tck
+					)
+				),
+			y = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily', 
+				add.to.list = list(
+					labels = yaxis.lab,
+					fontface = yaxis.fontface,
+					limits = ylimits,
+					cex = yaxis.cex,
+					col = yaxis.col,
+					rot = yaxis.rot,
+					tck = yaxis.tck,
+					at = yat,
+					log = yaxis.log,
+					relation = y.relation
+					)
+				)
+			),
+		par.settings = list(
+			axis.line = list(
+				lwd = axis.lwd
+				),
+			layout.heights = list(
+				top.padding = top.padding,
+				main = if (is.null(main)) { 0.3 } else { 3 },
+				main.key.padding = 0.1,
+				key.top = 0.1,
+				key.axis.padding = 0.1,
+				axis.top = 1,
+				axis.bottom = 1,
+				axis.xlab.padding = 1,
+				xlab = 1,
+				xlab.key.padding = 0.5,
+				key.bottom = 0.1,
+				key.sub.padding = 0.1,
+				sub = 0.1,
+				bottom.padding = bottom.padding
+				),
+			layout.widths = list(
+				left.padding = left.padding,
+				key.left = 0.1,
+				key.ylab.padding = 0.1,
+				ylab = 1,
+				ylab.axis.padding = 1,
+				axis.left = 1,
+				axis.right = 1,
+				axis.key.padding = 1,
+				key.right = 1,
+				right.padding = right.padding
+				),
+			strip.background = list(
+				col = strip.col
+				)
+			),
+		par.strip.text = list(
+			cex = strip.cex
+			),
+		layout = layout,
+		as.table = as.table,
+		pretty = TRUE,
+		key = key,
+		legend = legend
+		);
+
+	# output the object
+	return(
+		BoutrosLab.plotting.general::write.plot(
+			trellis.object = trellis.object,
+			filename = filename,
+			height = height,
+			width = width,
+			size.units = size.units,
+			resolution = resolution,
+			enable.warnings = enable.warnings,
+			description = description
+			)
+		);
+	}

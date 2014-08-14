@@ -1,0 +1,13 @@
+Known Bugs:
+* create.multiplot: sometimes automatically reverse plot label ordering without through warning. Occurance of bug may depend on plot type.
+* create.multiplot: simetimes covariates are ordered alphabetically, instead of user-specified ordering. Potentially related to lattice defaults.
+* create.hexbinplot: unexpected white bins appear when reverse colour scheme is low (low values -> black; high valuse -> white)
+
+Improvements to make:
+* Set smart default fonts - both size and font face should be standardized to be visually apppealing and consistent
+* Make default parameters consistent among all plotting functions
+* create.barplot: add option of plotting stacked bars, sorted by frequencing of group rather than alphabetical or fixed group order for each bar
+* Create 3D plotting functions
+* Change axes defaults to have a minimum and intersection at zero
+* Adjust incrementation of axes to auto-adjust spacing of tick marks depending on range of axes.
+* colour.gradient could slow down the value change for darker colours - visually the value drop is very sharp, even though it is mathematically even

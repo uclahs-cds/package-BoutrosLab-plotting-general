@@ -1,0 +1,23 @@
+# The BoutrosLab.plotting.general package is copyright (c) 2014 Ontario Institute for Cancer Research (OICR)
+# This package and its accompanying libraries is free software; you can redistribute it and/or modify it under the terms of the GPL
+# (either version 1, or at your option, any later version) or the Artistic License 2.0.  Refer to LICENSE for the full license text.
+# OICR makes no representations whatsoever as to the SOFTWARE contained herein.  It is experimental in nature and is provided WITHOUT
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTY, EXPRESS OR IMPLIED. OICR MAKES NO REPRESENTATION
+# OR WARRANTY THAT THE USE OF THIS SOFTWARE WILL NOT INFRINGE ANY PATENT OR OTHER PROPRIETARY RIGHT.
+# By downloading this SOFTWARE, your Institution hereby indemnifies OICR against any loss, claim, damage or liability, of whatsoever kind or
+# nature, which may arise from your Institution's respective use, handling or storage of the SOFTWARE.
+# If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
+# credit be given to OICR scientists, as scientifically appropriate.
+
+### FUNCTION TO GENERATE GRADIENT COLOUR PALETTES #################################################
+colour.gradient <- function(colour, length){
+
+	# create the range of colours, such that the colours range from white to black (this creates a greater value range)
+	palette.ramp <- colorRampPalette(c('white', colour, 'black'));
+	
+	# creating the palette.ramp to have two extra colours serves to account for the added white and black
+	# Setting the range to be from [2:length + 1] serves to ignore the white and black
+	colour.palette <- palette.ramp(length + 2)[2:(length + 1)];
+	
+	return(colour.palette);
+	}
