@@ -113,6 +113,8 @@ create.scatterplot
 
 The scatterplot compares two variables on a Cartesian coordinate grid by plotting individual data points. It can be used to investigate correlation between variables, and lines can join the points to emphasize trends. Error bars may be added to each point, and the create.scatterplot function can also determine optimal label positions for points. This versatile function is used to create other plot types, including receiver operating characteristic (ROC) curves.
 
+An interesting note is that scatterplots appear more correlated when scales are increased. This means that when the points in a scatterplot use less of the total plotting space available, a stronger association is perceived compared to when the plotting space is filled \cite{cleveland-scatter}.
+
 \subsubsection{Simple scatterplot}
 The scatterplot function accepts data in the form of an R  data frame. Here is an example of a data frame created using the \verb|microarray| dataset provided with BL.plotting.general.
 \begin{verbatim}
@@ -916,7 +918,7 @@ create.dotmap(
 \end{figure}
 
 \subsubsection{Dotmap with background}
-The background of each cell can also have a colour. 
+The background of each cell can also have a colour. Colours do not appear the same with and without borders \cite{brewer-colour}. Therefore it is advisable to keep the surrounding colours of points consistent between the legend and the plotting space.
 
 \begin{verbatim}
 # Generating background data
@@ -1819,6 +1821,8 @@ display.colours(force.colour.scheme(biomolecule_names, "biomolecule"), biomolecu
 
 The full range of colour schemes available is described in the documentation of the \verb|default.colours| and \verb|force.colour.scheme| functions.
 
+The spiral.sunrise, spiral.dusk, etc colour schemes were created by ``spiralling'' through the colour wheel, varying the hue, saturation, and value of the colours to achieve a greater perceptual difference \cite{rainbow} \cite{wong2}. 
+
 \subsection{Legends}
 \begin{itemize}
 \item \texttt{legend.grob} and \texttt{covariates.grob} create grob objects for legends and covariates respectively
@@ -1879,8 +1883,6 @@ When designing a layout, it is important to understand which elements of the com
 \subsection{Understanding colour}
 Colour is a highly relative medium. Someone might say that red is an `angry' colour. Another person seeing the same colour may believe instead that red is associated with being `lucky'. There is no consensus on what a colour means. 
 
-The perception of colour also varies based on its surroundings \cite{albers}. A blue colour surrounded by a darker shade will appear relatively lighter. Conversely, the same blue surrounded by a lighter tint will appear relatively darker. There may be no absolute interpretation of colour.
-
 \subsubsection{Colour theory}
 Colour can be described in three ways:
 \begin{itemize}
@@ -1898,14 +1900,18 @@ Colour can be described in three ways:
 
 The colour wheel is a way of arranging colours such that primary colours are equidistant, and the result of their mixing fills in the in-between segments (which are called the secondary and tertiary colours). This colour wheel shown is the one commonly used by artists, where the primary colours are red, yellow, and blue. 
 
-Red, orange, and yellow are considered the `warm' colours, while green, blue, and purple are the `cool' colours. The warm colours are thought to attract more attention (with red being the most attention-grabbing colour), while the cool colours tend to visually recede. This means that if equal amounts of warm and cool colours are in a design, the warm colours will dominate. 
+Red, orange, and yellow are considered the `warm' colours, while green, blue, and purple are the `cool' colours. The warm colours are thought to attract more attention (with red being the most attention-grabbing colour), while the cool colours tend to visually recede. This means that if equal amounts of warm and cool colours are in a design, the warm colours will dominate. This applies to data visualization because of two equal areas of a plot are coloured red and green, the red areas will appear larger \cite{tedford} - although this only appears to be the case for high-saturation colours \cite{cleveland-colour-illusion}
 
-Complementary colours are colours which are placed at opposite ends of the colour wheel (for example: red and green). These colour combinations achieve the highest hue-based contrast. A triad of colours is made up of three colours which are equidistant on the colour wheel. A double complement is composed of two sets of complementary colours. Analogous colours neighbour each other on the colour wheel. One option for choosing colour schemes is to use one of these colour combinations.
+Complementary colours are colours which are placed at opposite ends of the colour wheel (for example: red and green). These colour combinations achieve the highest hue-based contrast. A triad of colours is made up of three colours which are equidistant on the colour wheel. A double complement is composed of two sets of complementary colours. Analogous colours neighbour each other on the colour wheel. 
 
 \subsubsection{Colour models}
-There are different ways of generating colour. Computer monitors generate colours using the RGB colour model, which is based on light (primary colours are red, green, and blue). In contrast, printers generate colours using the CMYK colour model, which is made with ink (primary colours are cyan, magenta, and yellow). The important thing to note is that the colours made in RGB and the colours made in CMYK may not appear the same. RGB creates a more vibrant spectrum of colours than CMYK: this is why printed material often appears duller than on a computer monitor. Therefore, if you expect your figure to be reproduced in print, use the CMYK colour model to have a more accurate idea of what the final image will look like.
+There are different ways of generating colour, and consequently colours displayed on different mediums often do not appear the same. For example, a colour scheme might be easily distinguishable on a computer screen, but not when printed. 
 
-\subsubsection{Colour blindness and greyscale}
+Computer monitors generate colours using the RGB colour model, which is based on light (primary colours are red, green, and blue). In contrast, printers generate colours using the CMYK colour model, which is made with ink (primary colours are cyan, magenta, and yellow) \cite{silva}. The important thing to note is that the colours made in RGB and the colours made in CMYK may not appear the same. RGB creates a more vibrant spectrum of colours than CMYK: this is why printed material often appears duller than on a computer monitor. Therefore, if you expect your figure to be reproduced in print, use the CMYK colour model to have a more accurate idea of what the final image will look like.
+
+CMYK and RGB are device-dependent colour models. This means that a colour specified using these colour models may appear different when created using different devices \cite{silva}. Some software can convert CMYK colours to RGB and vice versa, however different software use different algorithms to do this conversion \cite{brewer-colour}. The result is that a single colour, converted to a different colour model using two different software will produce two different colours. The same problem can be found when using different printers and even across operating systems with different monitor calibration \cite{brewer-colour}. 
+
+\subsubsection{Colour blindness}
 Colour blindness is a decreased ability to distinguish colours, which affects a significant percentage of the population. The most common forms affect a person's ability to distinguish red and green.
 
 When choosing colours, it is good practice to accommodate colour blind individuals. There are a number of ways to do this: one method is by not relying on colour hue alone, but also colour value and other elements. For example, a scatter plot might use different plotting characters in addition to different coloured dots. 
@@ -1916,10 +1922,21 @@ Using software to simulate colour blindness can be a good test of whether or not
 
 Choosing colour schemes which are greyscale-compatible is desirable both for people with colourblindness and for when figures are reproduced in black and white. There are two main ways to ensure a figure is decipherable in greyscale and it is advisable to use both. The first method is by choosing colours with large differences in value (lightness and darkness). This with create a variety of greys, whereas if all colours have the same value, they will appear to be the same grey. The second method is by varying the plotting characters or line types. For example, a scatterplot might use circles and triangles to divide different groups in addition to differently coloured points. 
 
-\subsubsection{Data-appropriate}
-Use appropriate colours for the data at hand. For example, if the data progresses from low to high values, it may be intuitively visualized using a sequential colour scheme, which uses value differences. If the data increases in two directions (such as in the positive and negative directions), use a diverging colour scheme. If there is no intuitive magnitude differences in the data, as is the case with nominal and categorial data, use a qualitative scheme, which relies primarily on differences in hue \cite{colorbrewer}.
+\subsubsection{Simultaneous contrast}
+The perception of colour varies based on its surroundings. If a person stares intently at a red square for a time, then suddenly shifts his gaze to a white square, he will for a moment perceive green instead of red. This is called simultaneous contrast: the phenomenon when colours influence the perception of other colours to have greater contrast \cite{albers}. 
 
-Sometimes the data suggests which colour should be used. For example, if a figure compared blue eyes and green eyes, it makes sense to colour the data points blue and green.
+This affects both value and hue. A blue surrounded by grey will cause the grey to appear more like a yellowish grey. The consequence is that there is some danger with using complementary colours: for example, if a figure contains a mix of blues and yellow of varying values, a light yellow surrounding a blue may cause it to appear darker and more saturated, such that it may be confused with the next darkest blue in the colour scheme \cite{brewers-sim}. 
+
+Therefore, when selecting colour schemes which are used in mixed arrangements, avoid complementary colours. This also avoids a perceptual ``vibration'' which occurs when complementary colours of similar values are neighbours \cite{brewers-sim}.
+
+\subsubsection{Data-appropriate}
+Use appropriate colours for the data at hand. For example, if the data progresses from low to high values, it may be intuitively visualized using a sequential colour scheme, which uses value differences. If the data increases in two directions (such as in the positive and negative directions), use a diverging colour scheme. If there is no intuitive magnitude differences in the data, as is the case with nominal and categorial data, use a qualitative scheme, which relies primarily on differences in hue \cite{brewer-colour}.
+
+The rainbow colour map is often used in visualizations for sequential data, however it is not a good choice \cite{rainbow}. Although the colours in a rainbow \textit{are} ordered based on wavelength of light, this ordering is not perceptual (unlike value-based ordering). In addition, this colour scheme progresses with uneven perceptual steps, as each hue change is a sharp change, while the progression within a hue is comparatively slow. This colour scheme should be avoided.
+
+Sometimes the data suggests which colour should be used. For example, if a figure compared blue eyes and green eyes, the data points might be coloured blue and green. 
+
+In some fields of study, colour conventions are in place. These convention can be used to help make data quickly recognizable to viewers \cite{rheingans}, and at the very least, colour schemes should not reverse conventions, as this would likely lead to confusion. 
 
 Whether colour is even necessary at all should be considered \cite{wong-avoid-colour}. Colour is a relative medium, difficult to interpret accurately, poses problems to people with colour blindness and may result in loss of clarity when images are reproduced in greyscale. It is easy to default to using colour in figures because of its aesthetic value, but it important to consider whether or not colour is the most effective method of communicating data.
 
@@ -1987,34 +2004,70 @@ Further information on the BL.plotting.general package can be found at  http://l
 \begin{thebibliography}{1}
 \bibitem{Anscombe}
 F.J. Anscombe, Graphics in Statistical Analysis. The American Statistician 27, 17-21 (1973).
+
 \bibitem{wong-dataexploration}
 Noam Shoresh \& Bang Wong, Data exploration. Nature Methods 9, 5 (2012).
+
 \bibitem{wong1}
 Bang Wong, Design of data figures. Nature Methods 7, 665 (2010).
+
 \bibitem{cleveland}
 William S. Cleveland \& Robert McGill, Graphical Perception and Graphical Methods for Analyzing Scientific Data. Science 229, 828-833 (1985).
+
 \bibitem{tufte}
 Edward R. Tufte, The Visual Display of Quantitative Information. Graphics Press, Cheshire, Connecticut (2001).
+
 \bibitem{lattice}
 Sarkar, Deepayan (2008) Lattice: Multivariate Data Visualization with R, Springer.  ISBN: 978-0-387-75968-5 URL: http://lmdvr.r-forge.r-project.org/
+
+\bibitem{cleveland-scatter}
+William S. Cleveland, Persi Diaconis \& Robert McGill, Variables on Scatterplots Look More Highly Correlated When the Scales Are Increased. Science 216, 1138-1141 (1982).
+
 \bibitem{streit}
 Marc Streit \& Nils Gehlenborg, Bar charts and box plots. Nature Methods 11, 117 (2014).
+
+\bibitem{brewer-colour}
+Mark Harrower \& Cynthia A. Brewer, ColorBrewer.org: An Online Tool for Selecting Colour Schemes for Maps. The Cartographic Journal 40, 27-37 (2003).
+
+\bibitem{rheingans}
+Penny Rheingans, Task-based Color Scale Design. In: Proceedings of the SPIE--28th AIPR Workshop: 3D Visualization for Data Exploration and Decision Making. 3905, 35-43 (2000).
+
+\bibitem{rainbow}
+David Borland \& Russell M. Taylor II, Rainbow Color Map (Still) Considered Harmful. IEEE Computer Graphics and Applications 27, 14-17 (2007).
+
 \bibitem{Krzywinski}
 Martin Krzywinski \& Naomi Altman, Visualizing samples with box plots. Nature Methods 11, 119-120 (2014).
+
 \bibitem{wong2}
 Bang Wong, Color coding. Nature Methods 7, 573 (2010).
+
 \bibitem{wong-type}
 Bang Wong, Typography. Nature Methods 8, 277 (2011).
+
 \bibitem{williams}
 Robin Williams, The Non-Designer's Design Book, 3rd ed. Peachpit Press, Berkeley, California (2008).
+
 \bibitem{wong3}
 Bang Wong, Layout. Nature Methods 8, 783 (2011).
+
+\bibitem{tedford}
+W. H. Tedford Jr., S. L. Bergquist \& W. E. Flynn, The Size-Color Illusion. The Journal of General Psychology 97, 145-149 (1977).
+
+\bibitem{cleveland-colour-illusion}
+William S. Cleveland \& Robert McGill, A Color-Caused Optical Illusion on a Statistical Graph. The American Statistician. 37, 101-105 (1983).
+
+\bibitem{silva}
+Samuel Silva, Beatriz Sousa Santos \& Joaquim Madeira, Using color in visualization: A survey. Computers \& Graphics 35, 320-333 (2011).
+
 \bibitem{albers}
 Josef Albers, Interaction of Color. Yale University Press, New Haven \& London (1963).
+
+\bibitem{brewers-sim}
+Cynthia A. Brewer, Guidelines for Selecting Colors for Diverging Schemes on Maps. The Cartographic Journal 22, 79-86 (1996).
+
 \bibitem{wong4}
 Bang Wong, Color blindness. Nature Methods 8, 441 (2011).
-\bibitem{colorbrewer}
-Cynthia A. Brewer, 200x. http://www.ColorBrewer.org, accessed August 7, 2014.
+
 \bibitem{wong-avoid-colour}
 Bang Wong, Avoiding color. Nature Methods 8, 525 (2011).
 
