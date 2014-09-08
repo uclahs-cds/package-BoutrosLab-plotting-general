@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.1.4 2014-09-08
+
+MINOR UPDATE
+* create.scatterplot: changed argument name - add.lines > add.line.segments
+* create.scatterplot: updated to accept lists of line segments to add
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.3 2014-08-22
 
 MINOR UPDATE

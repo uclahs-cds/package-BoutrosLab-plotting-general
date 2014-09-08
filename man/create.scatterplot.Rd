@@ -27,9 +27,9 @@ curves.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL,
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, 
 points.y = NULL, points.pch = 19, points.col = 'black', points.cex = 1, 
-add.lines = FALSE, line.start = NULL, line.end = NULL, line.col = 'black',
-add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', 
-text.cex = 1, text.fontface = 'bold', text.guess.labels = FALSE, 
+add.line.segments = FALSE, line.start = NULL, line.end = NULL, line.col = 'black', 
+line.lwd = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, 
+text.col = 'black', text.cex = 1, text.fontface = 'bold', text.guess.labels = FALSE, 
 text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, 
 text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, 
 text.guess.buffer.factor = 1, text.guess.label.position = NULL, key.left.padding = 0, 
@@ -140,10 +140,11 @@ horizontal = FALSE, description = NULL, ...);
     \item{points.pch}{The plotting character for additional points}
     \item{points.col}{The colour of additional points}
     \item{points.cex}{The size of additional points}
-    \item{add.lines}{Allow additional lines to be drawn, default is FALSE}
-    \item{line.start}{The y co-ordinates where additional lines should start}
-    \item{line.end}{The y co-ordinates where additional lines should end}
-    \item{line.col}{The colour of additional lines}
+    \item{add.line.segments}{Allow additional line segments to be drawn, default is FALSE}
+    \item{line.start}{The y co-ordinates where additional line segments should start}
+    \item{line.end}{The y co-ordinates where additional line segments should end}
+    \item{line.col}{The colour of additional line segments, default is black}
+    \item{line.lwd}{The line width of additional line segments, default is 1}
     \item{add.text}{Allow additional text to be drawn, default is FALSE}
     \item{text.labels}{Labels for additional text}
     \item{text.x}{The x co-ordinates where additional text should be placed}
