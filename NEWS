@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.1.5 2014-09-19
+
+MINOR UPDATE
+* show.available.palettes: added new function to show schemes available in default.colours and 
+force.colour.scheme
+* default.colours: refactored, changed greyscale warning to auto-calculate
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.4 2014-09-08
 
 MINOR UPDATE

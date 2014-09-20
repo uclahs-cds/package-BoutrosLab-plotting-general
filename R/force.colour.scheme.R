@@ -145,7 +145,20 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 
 
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
+	# Scheme are pseudo-sorted by length for the sake of the show.available.palettes function
 	avail.schemes <- list(
+		tissue = list(
+			levels = c('cartilage', 'bone', 'adipose', 'bladder', 'kidney', 'blood', 'heart', 'muscle', 'hypothalamus', 'pituitary', 'thyroid', 'parathyroid', 'skin', 'salivarygland', 'esophagus', 'stomach', 'liver', 'gallbladder', 'pancreas', 'intestine', 'colon', 'pharynx', 'larynx', 'trachea', 'diaphragm', 'lung', 'nerve', 'spine', 'brain', 'eye', 'breast', 'ovary', 'uterus', 'prostate', 'testes', 'lymph', 'leukocyte', 'spleen'),
+			colours = c(cartilage, 	 bone,   adipose,   bladder,   kidney,   blood,   heart,   muscle,   hypothalamus,   pituitary,   thyroid,   parathyroid,   skin,   salivarygland,   esophagus,   stomach,   liver,   gallbladder,   pancreas,   intestine,   colon,   pharynx,   larynx,   trachea,   diaphragm,   lung,   nerve,   spine,   brain,   eye,   breast,   ovary,   uterus,   prostate,   testes,   lymph,   leukocyte,   spleen)
+			),
+		chromosome = list(
+			levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,'x','y'),
+			colours = c(chr.1, chr.2, chr.3, chr.4, chr.5, chr.6, chr.7, chr.8, chr.9, chr.10, chr.11, chr.12, chr.13, chr.14, chr.15, chr.16, chr.17, chr.18, chr.19, chr.20, chr.21, chr.22, chr.x, chr.y)
+			),
+		annovar.annotation.collapsed2 = list( 
+			levels  = c('nonsynonymous', 'stopgain-stoploss', 'splicing',      'frameshift indel',     'synonymous', 'utr5-utr3', 'nonframeshift indel', 'intronic', 'intergenic', 'other' ),
+			colours = c('darkseagreen4', 'orchid4',           'darkturquoise', 'darkorange',           'gold1',      'grey30',    'grey50',              'grey70',   'grey90',     'white' )
+			),
 		annovar.annotation = list( 
 			levels  = c('nonsynonymous SNV', 'stopgain SNV', 'stoploss SNV', 'frameshift deletion', 'frameshift substitution', 'splicing', 'synonymous SNV'),
 			colours = c('darkseagreen4',     'orchid4',      'darkturquoise','darkorange',          'darkorange4',             'gold1',    'darkgrey')
@@ -154,13 +167,9 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 			levels  = c('nonsynonymous SNV', 'stopgain SNV', 'stoploss SNV', 'frameshift indel', 'splicing'),
 			colours = c('darkseagreen4',     'orchid4',      'darkturquoise','darkorange',       'gold1'   )
 			),
-		annovar.annotation.collapsed2 = list( 
-			levels  = c('nonsynonymous', 'stopgain-stoploss', 'splicing',      'frameshift indel',     'synonymous', 'utr5-utr3', 'nonframeshift indel', 'intronic', 'intergenic', 'other' ),
-			colours = c('darkseagreen4', 'orchid4',           'darkturquoise', 'darkorange',           'gold1',      'grey30',    'grey50',              'grey70',   'grey90',     'white' )
-			),
-		tissue = list(
-			levels = c('cartilage', 'bone', 'adipose', 'bladder', 'kidney', 'blood', 'heart', 'muscle', 'hypothalamus', 'pituitary', 'thyroid', 'parathyroid', 'skin', 'salivarygland', 'esophagus', 'stomach', 'liver', 'gallbladder', 'pancreas', 'intestine', 'colon', 'pharynx', 'larynx', 'trachea', 'diaphragm', 'lung', 'nerve', 'spine', 'brain', 'eye', 'breast', 'ovary', 'uterus', 'prostate', 'testes', 'lymph', 'leukocyte', 'spleen'),
-			colours = c(cartilage, 	 bone,   adipose,   bladder,   kidney,   blood,   heart,   muscle,   hypothalamus,   pituitary,   thyroid,   parathyroid,   skin,   salivarygland,   esophagus,   stomach,   liver,   gallbladder,   pancreas,   intestine,   colon,   pharynx,   larynx,   trachea,   diaphragm,   lung,   nerve,   spine,   brain,   eye,   breast,   ovary,   uterus,   prostate,   testes,   lymph,   leukocyte,   spleen)
+		biomolecule = list(
+			levels = c('dna', 'rna', 'protein', 'carbohydrate', 'lipid'),
+			colours = c(DNA,   RNA,   Protein,   Carbohydrate,   Lipid)
 			),
 		sex = list(
 			levels = c('male', 'female'),
@@ -189,20 +198,19 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 		organism = list(
 			levels = c('human', 'rat', 'mouse'),
 			colours = c(Human,   Rat,   Mouse)
-			),
-		chromosome = list(
-			levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,'x','y'),
-			colours = c(chr.1, chr.2, chr.3, chr.4, chr.5, chr.6, chr.7, chr.8, chr.9, chr.10, chr.11, chr.12, chr.13, chr.14, chr.15, chr.16, chr.17, chr.18, chr.19, chr.20, chr.21, chr.22, chr.x, chr.y)
-			),
-		biomolecule = list(
-			levels = c('dna', 'rna', 'protein', 'carbohydrate', 'lipid'),
-			colours = c(DNA,   RNA,   Protein,   Carbohydrate,   Lipid)
-			)
+			)		
 		);
 
-	if(is.null(avail.schemes[[scheme]])){ stop('Scheme not found!');}
+	if(is.null(avail.schemes[[scheme]]) && scheme != 'all'){ stop('Scheme not found!');}
 
-	if(return.scheme) return (avail.schemes[[scheme]]);
+	if(return.scheme){
+		if ('all' == scheme) {
+			return (avail.schemes)
+			}
+		else {
+			return (avail.schemes[[scheme]])
+			}
+		}
 
 	# check to see if more than 1 type unknown. 1 is expected for 'none' or similar, but 2+ likely to be error.
 	if(1 < sum(!unique(x) %in% avail.schemes[[scheme]]$levels)) { 
