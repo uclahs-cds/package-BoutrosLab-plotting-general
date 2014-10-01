@@ -47,6 +47,11 @@ write.plot <- function(trellis.object, filename = NULL, height = 6, width = 6, s
 			extension = 'tiff';
 			}
 
+		# set ps.options for eps
+		if (extension == 'eps') {
+			setEPS();
+			}
+
 		# grab the mapping object
 		if (! extension %in% rownames(mapping.object)) {
 			stop(paste('Unknown extension:', extension));
@@ -68,12 +73,18 @@ write.plot <- function(trellis.object, filename = NULL, height = 6, width = 6, s
 				call.args[[arg]] <- get(val);
 				}
 			}
+
 		do.call(call.param$Function, call.args);
 
 		# plot the object to the file
 		plot(trellis.object);
 		dev.off();
 		options(bitmapType = old.type);
+
+		if (extension == 'eps') {
+			# revert back to standard configuration
+			ps.options(reset=TRUE);
+			}
 	
 		# write image metadata
 		BoutrosLab.plotting.general::write.metadata(

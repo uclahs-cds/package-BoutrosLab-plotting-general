@@ -3,3 +3,4 @@
 "pdf"	"cairo_pdf"	"filename=filename;height=height;width=width"
 "png"	"png"	"filename=filename;height=height;width=width;units=size.units;res=resolution"
 "svg"	"svg"	"filename=filename;height=height;width=width"
+"eps"	"postscript"	"file=filename;height=height;width=width"
