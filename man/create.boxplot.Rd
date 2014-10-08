@@ -3,23 +3,22 @@
 \title{Make a boxplot}
 \description{Takes a data.frame and creates a boxplot}
 \usage{
-create.boxplot(formula, data, filename = NULL, main = NULL, abline.h = NULL, 
-abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", 
-add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
+create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, 
+jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', 
+points.cex = 0.5, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, 
+abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
 xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
-alpha.rectangle = 1, fill = 'white', box.colour = 'black', 
-symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = NULL, ylab.label = NULL, 
-main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', 
-xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, 
-yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, 
-ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, 
-top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
-ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, 
-yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, 
-height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
-key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, 
-line.col = 'transparent', line.infront = TRUE, sample.order = 'none');
+alpha.rectangle = 1, fill = 'transparent', box.colour = 'black', symbol.cex = 0.8, lwd = 1, 
+outliers = TRUE, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, 
+ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, 
+xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', 
+yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, 
+y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
+ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, 
+strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, 
+size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, 
+description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, 
+line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none');
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -42,7 +41,13 @@ line.col = 'transparent', line.infront = TRUE, sample.order = 'none');
     \item{box.colour}{Colour of the boxplot, defaults to black}
     \item{symbol.cex}{Size of the boxplot outlier-symbol}
     \item{lwd}{Line width, defaults to 1}
-    \item{outliers}{logical whether to plot outliers, defaults to TRUE} 
+    \item{outliers}{logical whether to plot outliers, defaults to TRUE}
+    \item{add.stripplot}{logical whether to plot all points, defaults to FALSE}
+    \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
+    \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
+    \item{points.pch}{pch value to use for stripplot}
+    \item{points.col}{colour to use for stripplot}
+    \item{points.cex}{cex value to use for stripplot}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{main.cex}{Size of text for main plot title, defaults to 3}
@@ -118,6 +123,16 @@ create.boxplot(
     formula = y ~ x, 
     data = simple.data,
     main = 'Simple',
+    description = 'Boxplot created by BoutrosLab.plotting.general'
+    );
+
+# add stripplot behind boxplot
+create.boxplot(
+    filename = 'Boxplot_with_Stripplot.tiff',
+    formula = y ~ x, 
+    data = simple.data,
+    main = 'With Stripplot',
+    add.stripplot = TRUE,
     description = 'Boxplot created by BoutrosLab.plotting.general'
     );
 

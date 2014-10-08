@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.1.6 2014-10-08
+
+MINOR UPDATE
+* create.boxplot: added arguments to allow for addition of stripplot in background
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.5 2014-09-19
 
 MINOR UPDATE

@@ -10,18 +10,38 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE BOXPLOTS ###################################################################
-create.boxplot <- function(formula, data, filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, fill = 'white', box.colour = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none') {
+create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', points.cex = 0.5, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, fill = 'transparent', box.colour = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none') {
+
+	# add stripplot if requested
+	if (add.stripplot & outliers) {
+		outliers <- FALSE;
+		}
 
 	trellis.object <- lattice::bwplot(
 		x = formula,
 		data,
 		panel = function(...) {
+
+			if (add.stripplot) {
+
+				panel.stripplot(
+					jitter.data = TRUE,
+					factor = jitter.factor,
+					amount = jitter.amount,
+					pch = points.pch,
+					col = points.col,
+					cex = points.cex,
+					...
+					);
+				}
+
+			panel.bwplot(pch = "|", col = 'black', ...);
+
 			# add line if requested
 			if (length(line.func) > 0 && line.infront == FALSE) {
 				panel.curve(expr = line.func, from = line.from, to = line.to,col = line.col);
 				}
 
-			panel.bwplot(...);
 			panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
 			panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
 
@@ -42,9 +62,7 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, abline.h
 					);
 				}
 			},
-		col = "black",
 		fill = fill,
-		lwd = 1,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = "fontfamily", 
 			add.to.list = list(
@@ -171,7 +189,6 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, abline.h
 		par.strip.text = list(
 			cex = strip.cex
 			),
-		pch = "|",
 		do.out = outliers,	
 		layout = layout,
 		as.table = as.table,	
