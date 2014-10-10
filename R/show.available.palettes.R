@@ -69,7 +69,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 			print.colour.key = FALSE,
 			# Reverse order of names to match reversed data frame
 			yaxis.lab = rev(names(general)),
-			yaxis.cex = 2,
+			yaxis.cex = 1,
 			yaxis.fontface = 1,
 			height = height,
 			width = width,
@@ -130,7 +130,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 			}
 		
 		# The number of rows in the final layout
-		layout.multiple <- 3;
+		layout.multiple <- 4;
 	
 		legend.half <- legend.grob(
 			legends = intermediate,
@@ -199,8 +199,8 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 				),
 			print.new.legend = TRUE,
 			resolution = resolution,
-			height = 8,
-			width = 12
+			height = height,
+			width = width
 			)
 		}
 

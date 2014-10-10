@@ -112,16 +112,15 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 	spiral.noon_fou <- rgb(230, 226, 92, maxColorValue = 255);
 	spiral.noon_fiv <- rgb(255, 193, 206, maxColorValue = 255);
 
-	spiral.night_one <- rgb(70, 22, 72, maxColorValue = 255); 
-	spiral.night_two <- rgb(36, 49, 148, maxColorValue = 255);
-	spiral.night_thr <- rgb(74, 173, 163, maxColorValue = 255);
-	spiral.night_fou <- rgb(153, 210, 160, maxColorValue = 255);
-	spiral.night_fiv <- rgb(245, 222, 158, maxColorValue = 255);
+	spiral.night_one <- rgb(67, 26, 44, maxColorValue = 255); 
+	spiral.night_two <- rgb(43, 35, 120, maxColorValue = 255);
+	spiral.night_thr <- rgb(21, 67, 137, maxColorValue = 255);
+	spiral.night_fou <- rgb(43, 185, 197, maxColorValue = 255);
+	spiral.night_fiv <- rgb(205, 231, 64, maxColorValue = 255);
 
 	### ORGANIZE PALETTES ##########################################################################
-	# Add new schemes to these lists
-
-	current.schemes <- list(
+	# Add new schemes to this list
+	schemes <- list(
 		dotmap = c("darkorange1", "dodgerblue2"),
 		seq = BoutrosLab.plotting.general::colour.gradient('chartreuse4', 5),
 		div = c(div_one, div_two, div_thr, div_fou, div_fiv, div_six, div_sev, div_eig),
@@ -134,20 +133,12 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 		spiral.noon = c(spiral.noon_one, spiral.noon_two, spiral.noon_thr, spiral.noon_fou, spiral.noon_fiv),
 		spiral.afternoon = c(spiral.afternoon_one, spiral.afternoon_two, spiral.afternoon_thr, spiral.afternoon_fou, spiral.afternoon_fiv),
 		spiral.dusk = c(spiral.dusk_one, spiral.dusk_two, spiral.dusk_thr, spiral.dusk_fou, spiral.dusk_fiv),
-		spiral.night = c(spiral.night_one, spiral.night_two, spiral.night_thr, spiral.night_fou, spiral.night_fiv)
-		);
-
-	deprecated.schemes <- list(
+		spiral.night = c(spiral.night_one, spiral.night_two, spiral.night_thr, spiral.night_fou, spiral.night_fiv),
 		old.seq = c("darkolivegreen3", "darkolivegreen4", "darkolivegreen", "darkgreen", "black"),
 		old.div = c("darkorange","darkolivegreen4", "goldenrod1", "darkgreen", "darkolivegreen3", "orange", "darkolivegreen", "darkorange3"),
 		old.qual1 = c("orange","chartreuse4","darkorchid4", "firebrick3", "lightgrey", "tan4", "dodgerblue", "orchid", "black"),
 		old.qual2 = c("orange", "chartreuse4", "darkorchid4", "firebrick3", "gold", "dodgerblue", "yellowgreen", "darkorange1", "slateblue4", "seagreen3", "violetred3", "turquoise3"),
-		chromosomes = c("darkred", "firebrick1", "pink1","darkorange3","darkorange","tan1","goldenrod3","gold","khaki","darkgreen","forestgreen","greenyellow", "darkblue","dodgerblue","skyblue","darkslateblue","slateblue3","mediumpurple1","darkorchid4","orchid3","plum","violetred","grey31","grey0")
-		);
-
-	# additional sequential colour schemes for cases when multiple sequential or binary schemes are requested
-	# these schemes cannot be directly requested - they are only returned when multiple sequential or binary schemes are requested
-	sequential.schemes <- list(
+		chromosomes = c("darkred", "firebrick1", "pink1","darkorange3","darkorange","tan1","goldenrod3","gold","khaki","darkgreen","forestgreen","greenyellow", "darkblue","dodgerblue","skyblue","darkslateblue","slateblue3","mediumpurple1","darkorchid4","orchid3","plum","violetred","grey31","grey0"),
 		seq.yellowgreen = c("lightyellow","darkolivegreen1","lawngreen","chartreuse3","green4","darkgreen"),
 		seq.green = c("mintcream","darkseagreen1","lightgreen","springgreen3","springgreen4","darkgreen"),
 		seq.greenblue = c("lightcyan","paleturquoise","turquoise1","darkturquoise","darkcyan","darkslategray"),
@@ -157,6 +148,20 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 		seq.purplered = c("lavenderblush","pink","palevioletred1","violetred1","maroon","violetred4"),
 		seq.redorange = c("peachpuff","lightsalmon","coral","orangered","orangered3","orangered4"),
 		seq.orange = c("papayawhip","navajowhite","darkgoldenrod1","darkorange","darkorange3","darkorange4")
+		)
+
+	# additional sequential colour schemes for cases when multiple sequential or binary schemes are requested
+	# this list specifies the order in which they are returned
+	sequential.schemes <- list(
+		seq.yellowgreen = schemes$seq.yellowgreen,
+		seq.green = schemes$seq.green,
+		seq.greenblue = schemes$seq.greenblue,
+		seq.blue = schemes$seq.blue,
+		seq.bluepurple = schemes$seq.bluepurple,
+		seq.purple = schemes$seq.purple,
+		seq.purplered = schemes$seq.purplered,
+		seq.redorange = schemes$seq.redorange,
+		seq.orange = schemes$seq.orange
 		);
 
 	### CREATE PALETTE #############################################################################
@@ -173,7 +178,7 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 	else { palette <- c(); }
 
 	# Return all the palettes for display
-	if (1 == length(palette.type) && palette.type == 'all') { return (current.schemes) }
+	if (1 == length(palette.type) && palette.type == 'all') { return (schemes) }
 
 	# Keep track of used schemes
 	used.schemes <- c();
@@ -181,8 +186,8 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 	for (i in 1:length(number.of.colours)){
 
 		# Checking if palette.types are available
-		if (length(current.schemes[[palette.type[i]]]) < 1 && length(deprecated.schemes[[palette.type[i]]]) < 1 && palette.type != 'binary') {
-			stop("Invalid palette type is specified");
+		if (length(schemes[[palette.type[i]]]) < 1 && 'binary' != palette.type[i]) {
+			stop(paste("Invalid palette type", palette.type[i], "is specified"));
 			}
 
 		# check that the scheme has not been repeated
@@ -221,25 +226,17 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 			}
 
 		# check that the reqested number of colours exists for the palette
-		if (length(current.schemes[[palette.type[i]]]) > 1 && number.of.colours[i] > length(current.schemes[[palette.type[i]]])){
-			stop(paste("The requested", palette.type[i], "colour scheme has a length of", length(current.schemes[[palette.type[i]]]), "colours. You requested", number.of.colours[i]))
-			}
-		else if (length(deprecated.schemes[[palette.type[i]]]) > 1 && number.of.colours[i] > length(deprecated.schemes[[palette.type[i]]])){
-			stop(paste("The requested", palette.type[i], "colour scheme has a length of", length(deprecated.schemes[[palette.type[i]]]), "colours. You requested", number.of.colours[i]))
+		if (length(schemes[[palette.type[i]]]) > 1 && number.of.colours[i] > length(schemes[[palette.type[i]]])){
+			stop(paste("The requested", palette.type[i], "colour scheme has a length of", length(schemes[[palette.type[i]]]), "colours. You requested", number.of.colours[i]))
 			}
 		else if (length(sequential.schemes[[palette.type[i]]]) > 1 && number.of.colours[i] > length(sequential.schemes[[palette.type[i]]])){
 			stop(paste("The requested", palette.type[i], "colour scheme has a length of", length(sequential.schemes[[palette.type[i]]]), "colours. You requested", number.of.colours[i]))
 			}
 
 		# Add to the final palette 
-		if (length(current.schemes[[palette.type[i]]]) > 1) {
-			if (1 == length(number.of.colours)) { palette <- current.schemes[[palette.type[i]]][1:number.of.colours[i]]	}	
-			else { palette[[i]] <- current.schemes[[palette.type[i]]][1:number.of.colours[i]] }
-			}
-
-		else if (length(deprecated.schemes[[palette.type[i]]]) > 1) {
-			if (1 == length(number.of.colours)) { palette <- deprecated.schemes[[palette.type[i]]][1:number.of.colours[i]] }	
-			else { palette[[i]] <- deprecated.schemes[[palette.type[i]]][1:number.of.colours[i]] }
+		if (length(schemes[[palette.type[i]]]) > 1) {
+			if (1 == length(number.of.colours)) { palette <- schemes[[palette.type[i]]][1:number.of.colours[i]]	}	
+			else { palette[[i]] <- schemes[[palette.type[i]]][1:number.of.colours[i]] }
 			}
 
 		else if (length(sequential.schemes[[palette.type[i]]]) > 1) {

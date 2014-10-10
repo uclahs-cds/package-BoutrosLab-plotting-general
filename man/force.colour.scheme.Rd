@@ -135,6 +135,7 @@ return.factor = FALSE, return.scheme = FALSE)
         \item{Amplification}
         \item{Deletion}
         \item{LOH}
+        \item{Neutral}
         }
     
     organism

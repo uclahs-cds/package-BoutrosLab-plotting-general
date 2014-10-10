@@ -88,23 +88,31 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 	IV = rgb(119/255, 70/255, 7/255);
 
 	# load risk colours
-	High = rgb(252/255, 87/255, 75/255);
-	Low = rgb(112/255, 221/255, 240/255);
-
+	High = rgb(155/255, 19/255, 19/255);
+	Low = rgb(234/255, 196/255, 120/255);
+	old_High = rgb(252/255, 87/255, 75/255);
+    old_Low = rgb(112/255, 221/255, 240/255);
+	
 	# load MSI colours
-	MSI_High = rgb(147/255, 183/255, 235/255);
-	MSI_Low = rgb(50/255, 119/255, 216/255);
-	MSS = rgb(42/255, 82/255, 138/255);
+	old_MSI_High = rgb(147/255, 183/255, 235/255);
+	old_MSI_Low = rgb(50/255, 119/255, 216/255);
+	old_MSS = rgb(42/255, 82/255, 138/255);
+
+	# new scheme is based on old CNV colours (green-yellow)
+	MSI_High = rgb(84/255, 161/255, 76/255);
+	MSI_Low = rgb(186/255, 219/255, 96/255);
+	MSS = rgb(243/255, 239/255, 82/255);
 
 	# load tumour sample type colours
 	Primary = rgb(181/255, 127/255, 212/255);
 	Metastatic = rgb(114/255, 23/255, 165/255);
 
 	# load CNV colours
-	Amplification = rgb(84/255, 161/255, 76/255);
-	Deletion = rgb(186/255, 219/255, 96/255);
-	LOH = rgb(243/255, 239/255, 82/255);
-
+	Amplification = rgb(252/255, 87/255, 75/255);
+	Deletion = rgb(112/255, 221/255, 240/255);
+	LOH = rgb(53/255, 158/255, 87/255);
+	Neutral = "white";
+	
 	# organism
 	Human = rgb(158, 82, 53, maxColorValue = 255);
 	Rat = rgb(191, 136, 116, maxColorValue = 255);
@@ -145,7 +153,6 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 
 
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
-	# Scheme are pseudo-sorted by length for the sake of the show.available.palettes function
 	avail.schemes <- list(
 		tissue = list(
 			levels = c('cartilage', 'bone', 'adipose', 'bladder', 'kidney', 'blood', 'heart', 'muscle', 'hypothalamus', 'pituitary', 'thyroid', 'parathyroid', 'skin', 'salivarygland', 'esophagus', 'stomach', 'liver', 'gallbladder', 'pancreas', 'intestine', 'colon', 'pharynx', 'larynx', 'trachea', 'diaphragm', 'lung', 'nerve', 'spine', 'brain', 'eye', 'breast', 'ovary', 'uterus', 'prostate', 'testes', 'lymph', 'leukocyte', 'spleen'),
@@ -154,6 +161,10 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 		chromosome = list(
 			levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,'x','y'),
 			colours = c(chr.1, chr.2, chr.3, chr.4, chr.5, chr.6, chr.7, chr.8, chr.9, chr.10, chr.11, chr.12, chr.13, chr.14, chr.15, chr.16, chr.17, chr.18, chr.19, chr.20, chr.21, chr.22, chr.x, chr.y)
+			),
+		old.chromosome = list(
+			levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,'x','y'),
+			colours = c("darkred", "firebrick1", "pink1","darkorange3","darkorange","tan1","goldenrod3","gold","khaki","darkgreen","forestgreen","greenyellow", "darkblue","dodgerblue","skyblue","darkslateblue","slateblue3","mediumpurple1","darkorchid4","orchid3","plum","violetred","grey31","grey0")
 			),
 		annovar.annotation.collapsed2 = list( 
 			levels  = c('nonsynonymous', 'stopgain-stoploss', 'splicing',      'frameshift indel',     'synonymous', 'utr5-utr3', 'nonframeshift indel', 'intronic', 'intergenic', 'other' ),
@@ -183,17 +194,29 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 			levels = c('high', 'low'),
 			colours = c(High,   Low)
 			),
+		old.risk = list(
+			levels = c('high', 'low'),
+			colours = c(old_High, old_Low)
+			),
 		msi = list(
 			levels = c('msi-high', 'msi-low', 'mss'),
 			colours = c(MSI_High,   MSI_Low,   MSS)
+			),
+		old.msi = list(
+			levels = c('msi-high', 'msi-low', 'mss'),
+			colours = c(old_MSI_High, old_MSI_Low, old_MSS)
 			),
 		tumour = list(
 			levels = c('primary', 'metastatic'),
 			colours = c(Primary,   Metastatic)
 			),
 		cnv = list(
-			levels = c('amplification', 'deletion', 'loh'),
-			colours = c(Amplification,   Deletion,   LOH)
+			levels = c('amplification', 'deletion', 'loh', 'neutral'),
+			colours = c(Amplification,   Deletion,   LOH,   Neutral)
+			),
+		old.cnv = list(
+			levels = c('amplification', 'deletion', 'loh', 'neutral'),
+			colours = c(MSI_High,   MSI_Low,   MSS,   Neutral)
 			),
 		organism = list(
 			levels = c('human', 'rat', 'mouse'),
