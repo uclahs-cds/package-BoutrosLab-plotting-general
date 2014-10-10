@@ -3,7 +3,7 @@
 \title{Make a boxplot}
 \description{Takes a data.frame and creates a boxplot}
 \usage{
-create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, 
+create.boxplot(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, 
 jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', 
 points.cex = 0.5, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, 
 abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 

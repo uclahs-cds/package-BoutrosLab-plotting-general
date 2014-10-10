@@ -106,6 +106,18 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 	spiral.dawn_fou <- rgb(232, 190, 162, maxColorValue = 255);
 	spiral.dawn_fiv <- rgb(241, 235, 148, maxColorValue = 255);
 
+	spiral.noon_one <- rgb(19, 10, 102, maxColorValue = 255); 
+	spiral.noon_two <- rgb(13, 80, 140, maxColorValue = 255);
+	spiral.noon_thr <- rgb(90, 191, 87, maxColorValue = 255);
+	spiral.noon_fou <- rgb(230, 226, 92, maxColorValue = 255);
+	spiral.noon_fiv <- rgb(255, 193, 206, maxColorValue = 255);
+
+	spiral.night_one <- rgb(70, 22, 72, maxColorValue = 255); 
+	spiral.night_two <- rgb(36, 49, 148, maxColorValue = 255);
+	spiral.night_thr <- rgb(74, 173, 163, maxColorValue = 255);
+	spiral.night_fou <- rgb(153, 210, 160, maxColorValue = 255);
+	spiral.night_fiv <- rgb(245, 222, 158, maxColorValue = 255);
+
 	### ORGANIZE PALETTES ##########################################################################
 	# Add new schemes to these lists
 
@@ -114,19 +126,22 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 		seq = BoutrosLab.plotting.general::colour.gradient('chartreuse4', 5),
 		div = c(div_one, div_two, div_thr, div_fou, div_fiv, div_six, div_sev, div_eig),
 		survival = c("royalblue2","firebrick","chartreuse3","purple4","plum1", "orange","maroon3","turquoise3","chocolate4","lightcoral"),
-		qual = c("orange", "chartreuse4", "darkorchid4", "firebrick3", "gold", "dodgerblue", "yellowgreen", "darkorange1", "slateblue4", "seagreen3", "violetred3", "turquoise3"),
+		qual = c("orange", "chartreuse4", "darkorchid4", "gold", "dodgerblue", "firebrick3", "yellowgreen", "darkorange1", "slateblue4", "seagreen3", "violetred3", "turquoise3"),
 		pastel = c(pastel_one, pastel_two, pastel_thr, pastel_fou, pastel_fiv, pastel_six, pastel_sev, pastel_eig, pastel_nin, pastel_ten, pastel_ele, pastel_twe),
 		spiral.dawn =  c(spiral.dawn_one, spiral.dawn_two, spiral.dawn_thr, spiral.dawn_fou, spiral.dawn_fiv),
 		spiral.sunrise = c(col_one, col_two, col_thr, col_fou, col_fiv),
 		spiral.morning = c(spiral.morning_one, spiral.morning_two, spiral.morning_thr, spiral.morning_fou, spiral.morning_fiv, spiral.morning_six),
+		spiral.noon = c(spiral.noon_one, spiral.noon_two, spiral.noon_thr, spiral.noon_fou, spiral.noon_fiv),
 		spiral.afternoon = c(spiral.afternoon_one, spiral.afternoon_two, spiral.afternoon_thr, spiral.afternoon_fou, spiral.afternoon_fiv),
-		spiral.dusk = c(spiral.dusk_one, spiral.dusk_two, spiral.dusk_thr, spiral.dusk_fou, spiral.dusk_fiv)
+		spiral.dusk = c(spiral.dusk_one, spiral.dusk_two, spiral.dusk_thr, spiral.dusk_fou, spiral.dusk_fiv),
+		spiral.night = c(spiral.night_one, spiral.night_two, spiral.night_thr, spiral.night_fou, spiral.night_fiv)
 		);
 
 	deprecated.schemes <- list(
 		old.seq = c("darkolivegreen3", "darkolivegreen4", "darkolivegreen", "darkgreen", "black"),
 		old.div = c("darkorange","darkolivegreen4", "goldenrod1", "darkgreen", "darkolivegreen3", "orange", "darkolivegreen", "darkorange3"),
-		old.qual = c("orange","chartreuse4","darkorchid4", "firebrick3", "lightgrey", "tan4", "dodgerblue", "orchid", "black"),
+		old.qual1 = c("orange","chartreuse4","darkorchid4", "firebrick3", "lightgrey", "tan4", "dodgerblue", "orchid", "black"),
+		old.qual2 = c("orange", "chartreuse4", "darkorchid4", "firebrick3", "gold", "dodgerblue", "yellowgreen", "darkorange1", "slateblue4", "seagreen3", "violetred3", "turquoise3"),
 		chromosomes = c("darkred", "firebrick1", "pink1","darkorange3","darkorange","tan1","goldenrod3","gold","khaki","darkgreen","forestgreen","greenyellow", "darkblue","dodgerblue","skyblue","darkslateblue","slateblue3","mediumpurple1","darkorchid4","orchid3","plum","violetred","grey31","grey0")
 		);
 

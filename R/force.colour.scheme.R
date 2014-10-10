@@ -121,7 +121,7 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 	chr.8 = rgb(150, 213, 61, maxColorValue = 255);
 	chr.9 = rgb(220, 133, 238, maxColorValue = 255);
 	chr.10 = rgb(125, 50, 179, maxColorValue = 255);
-	chr.11 = rgb(208, 238, 199, maxColorValue = 255);
+	chr.11 = rgb(136, 219, 104, maxColorValue = 255);
 	chr.12 = rgb(120, 170, 241, maxColorValue = 255);
 	chr.13 = rgb(217, 198, 202, maxColorValue = 255);
 	chr.14 = rgb(51, 108, 128, maxColorValue = 255);

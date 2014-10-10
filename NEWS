@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.1.7 2014-10-10
+
+MINOR UPDATE
+* default.colours: added new schemes spiral.noon and spiral.night
+* default.colours: rearranged order of qual scheme to decrease red-green combinations
+* force.colour.scheme: changed CNV colours to red/blue/green/white, MSI to green/yellow, risk to red/yellow
+* reorganized default.colours and force.colour.scheme to return deprecated schemes 
+* show.available.palettes: reorganized layout of 'specific' scheme output
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.6 2014-10-08
 
 MINOR UPDATE

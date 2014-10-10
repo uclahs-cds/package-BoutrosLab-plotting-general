@@ -176,7 +176,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 		# blank plot
 		blank.data <- data.frame(
 			a = c(0,0),
-			b = c(1,2))
+			b = c(0,0))
 		filler <- BoutrosLab.plotting.general::create.barplot(
 			formula = a ~ b,
 			data = blank.data,
