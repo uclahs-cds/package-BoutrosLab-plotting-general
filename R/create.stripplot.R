@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE STRIPPLOTS #################################################################
-create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1) {
+create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1) {
 
 	groups.new <- eval(substitute(groups), data, parent.frame());
 
@@ -39,6 +39,26 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 				subscripts = subscripts,
 				...
 				);
+
+			# if requested, add lines indicating the group median
+			if (add.median && is.null(median.values)) {
+				meds <- tapply(x, y, median);
+				xlocs <- seq_along(meds);
+				panel.segments(
+					xlocs - 1/4, meds, xlocs + 1/4, meds,
+					lwd = 2, 
+					col = "red"
+					);
+				}
+			if (add.median && !is.null(median.values)) {
+				meds <- median.values;
+				xlocs <- seq_along(meds);
+				panel.segments(
+					xlocs - 1/4, meds, xlocs + 1/4, meds,
+					lwd = 2, 
+					col = "red"
+					);
+				}
 			},
 		type = "p",
 		cex = cex,

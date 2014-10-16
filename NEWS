@@ -1,8 +1,9 @@
 ---------------------------------------------------------------------------
-BoutrosLab.plotting.general 5.1.8 2014-10-16
+BoutrosLab.plotting.general 5.1.9 2014-10-16
 
 MINOR UPDATE
 * create.scatterplot: for add.line.segments, changed line-end style to 'butt'
+* create.stripplot: NEW ARGUMENTS to allow for addition of lines showing group medians
 ---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.7 2014-10-10
 

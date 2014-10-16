@@ -12,12 +12,12 @@ ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex =
 xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', 
 yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, 
 bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, 
-layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, strip.col = "white", 
-strip.cex = 1, strip.fontface = 'bold', width = 7, height = 7, size.units = 'in',
-resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,
-add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
-xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
-alpha.rectangle = 1)
+layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, 
+median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', 
+width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+key = NULL, legend = NULL, description = NULL, add.rectangle = FALSE, 
+xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, 
+ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1)
 }
 \arguments{
     \item{formula}{The formula to be plotted}
@@ -69,6 +69,8 @@ alpha.rectangle = 1)
     \item{as.table}{Specifies panel drawing order, default is TRUE to draw from top left corner, moving right then down. Set to FALSE to draw panels from bottom left corner, moving right then up}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{add.median}{TRUE/FALSE indicating whether lines should be drawn at the group medians, default is FALSE}
+    \item{median.values}{A vector of values representing the median of each group, default is NULL}
     \item{width}{Figure width, defaults to 6 inches}
     \item{height}{Figure height, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
