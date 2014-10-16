@@ -1028,7 +1028,8 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 						expr = panel.segments(
 							x, line.start[[i]][subscripts], x, line.end[[i]][subscripts],
 							col = line.col[[i]],
-							lwd = line.lwd[[i]]
+							lwd = line.lwd[[i]],
+							lineend = 1
 							)
 						);
 					}

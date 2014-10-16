@@ -768,6 +768,32 @@ create.scatterplot(
     text.guess.labels = TRUE
     );
 
+# With line segments
+line.data <- data.frame(
+    group = c('A','B','C'),
+    x = sample(1:10,3),
+    y = sample(1:10,3),
+    z = sample(1:10,3)
+    );
 
+create.scatterplot(
+    (x+y+z) ~ group,
+    line.data,
+    filename = 'Scatterplot_with_LineSegments.tiff',
+    cex = 0,
+    add.line.segments = TRUE,
+    line.start = list(
+	rep(0,nrow(line.data)), 
+	line.data$x,
+	c(line.data$x + line.data$y)
+	),
+    line.end = list(
+	line.data$x, 
+	c(line.data$x + line.data$y),
+	c(line.data$x + line.data$y + line.data$z)
+	),
+    line.col = list('red','blue','green'),
+    line.lwd = list(3,3,3)
+    );
 }
 \keyword{hplot}

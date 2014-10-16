@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.1.8 2014-10-16
+
+MINOR UPDATE
+* create.scatterplot: for add.line.segments, changed line-end style to 'butt'
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.7 2014-10-10
 
 MINOR UPDATE
