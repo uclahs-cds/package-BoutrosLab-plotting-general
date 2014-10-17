@@ -22,7 +22,7 @@ grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE,
 xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, 
 abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, 
 width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, 
-legend = NULL, description = NULL);
+legend = NULL, description = NULL, style = 'BoutrosLab');
 }
 \arguments{
     \item{formula}{The formula used to extract the boxplot components from the data-frame}
@@ -114,6 +114,7 @@ legend = NULL, description = NULL);
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{description}{Short description of image/plot; default NULL.}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Denise Mak}
@@ -437,5 +438,56 @@ create.polygonplot(
     description = 'Polygon created by BoutrosLab.plotting.general'
     );
 
+# Nature style
+create.polygonplot(
+    filename = 'Polygon_Nature_style.tiff',
+    formula = NA ~ x,
+    groups = set,
+    data = polygon.data.two.genes,
+    max = polygon.data.two.genes$max,
+    min = polygon.data.two.genes$min,
+    main = 'Nature style',
+    median = polygon.data.two.genes$median,
+    add.median = TRUE,
+    xlimits = c(0,58),
+    ylimits = c (0,15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xat = seq(0, 58, 5),
+    yat = seq(0, 14, 2),
+    col = default.colours(2),
+    # Adding legend
+    key = list(
+        text = list(
+            lab = rownames(microarray[1:2,]),
+            cex = 0.8,
+            col = 'black'
+            ),
+        points = list(
+            pch = 15,
+            col = default.colours(2),
+            cex = 2
+            ),
+        x = 0.04,
+        y = 0.93,
+        padding.text = 3,
+        columns = 1
+        ),
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    description = 'Polygon created by BoutrosLab.plotting.general'
+    );
 }
 \keyword{hplot}

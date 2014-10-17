@@ -17,7 +17,8 @@ median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold
 width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
 key = NULL, legend = NULL, description = NULL, add.rectangle = FALSE, 
 xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, 
-ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1)
+ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
+style = 'BoutrosLab')
 }
 \arguments{
     \item{formula}{The formula to be plotted}
@@ -86,6 +87,7 @@ ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1)
     \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
     \item{col.rectangle}{Specifies the colour of the rectangle}
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -272,5 +274,56 @@ create.stripplot(
     jitter.amount = 0.33,
     description = 'Stripplot created by BoutrosLab.plotting.general'
     );
+
+# Nature style
+create.stripplot(
+    filename = 'Stripplot_Nature_style.tiff',
+    formula = genes ~ values,
+    data = stripplot.data,
+    main = 'Nature style',
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    groups = stripplot.data$sex,
+    col = c('pink', 'skyblue'),
+    pch = 19,
+    colour.alpha = 0.5,
+    cex = 1,
+    key = list(
+        space = 'right',
+        text = list(
+            lab = levels(stripplot.data$sex),
+            cex = 1,
+            col = 'black'
+            ),
+        points = list(
+            pch = 19,
+            col = c('pink','skyblue'),
+            alpha = 0.4,
+            cex = 1
+            ),
+        padding.text = 3
+        ),
+    jitter.data = TRUE,
+    jitter.factor = 0.5,
+    jitter.amount = 0.33,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    description = 'Stripplot created by BoutrosLab.plotting.general'
+    );
+
 }
 \keyword{hplot}

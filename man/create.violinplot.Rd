@@ -16,7 +16,7 @@ resolution = 1500, size.units = 'in', enable.warnings = FALSE, key = NULL, legen
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold');
+yaxis.fontface = 'bold', style = 'BoutrosLab');
 }
 \arguments{
     \item{formula}{The formula used to extract the violin components from the data-frame}
@@ -75,6 +75,7 @@ yaxis.fontface = 'bold');
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -332,6 +333,41 @@ create.violinplot(
     description = 'Violinplot created by BoutrosLab.plotting.general'
     );
 
+# Nature style
+create.violinplot(
+    filename = 'Violinplot_Nature_style.tiff',
+    formula = values ~ genes,
+    data = violin.data,
+    main = 'Nature style',
+    xaxis.rot = 90,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    ylimits = c(0, 13),
+    yat = seq(0, 12, 2),
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    fill.colour = 'dodgerblue',
+    add.rectangle = TRUE,
+    xleft.rectangle = seq(0.5, 8.5, 2),
+    ybottom.rectangle = 0,
+    xright.rectangle = seq(1.5, 9.5, 2),
+    ytop.rectangle = 13,
+    col.rectangle = 'grey',
+    alpha.rectangle = 0.5,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.lab = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    description = 'Violinplot created by BoutrosLab.plotting.general'
+    );
 
 }
 \keyword{hplot}

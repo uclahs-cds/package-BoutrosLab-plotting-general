@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE QQPLOT COMPARISON ###########################################################
-create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = 'fill', prepanel = NULL, grid = FALSE, groups = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, main.cex = 3, xlab.cex = 2.5, xaxis.fontface = 'bold', xlab.col = 'black', yaxis.fontface = 'bold', ylab.cex = 2.5, ylab.col = 'black', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', type = 'p', cex = 0.75, pch = 19, col = 'black', lwd = 1, lty = 1, axis.lwd = 2.25, xaxis.tck = 1, yaxis.tck = 1, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1) {
+create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = 'fill', prepanel = NULL, grid = FALSE, groups = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, main.cex = 3, xlab.cex = 2.5, xaxis.fontface = 'bold', xlab.col = 'black', yaxis.fontface = 'bold', ylab.cex = 2.5, ylab.col = 'black', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', type = 'p', cex = 0.75, pch = 19, col = 'black', lwd = 1, lty = 1, axis.lwd = 2.25, xaxis.tck = 1, yaxis.tck = 1, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
 
 	# x should be a formula or a list of data whose length is 2
 	if (class(x) == 'list') {
@@ -135,7 +135,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 			property = "fontfamily", 
 			add.to.list = list(
 				label = main,
-				fontface = "bold",
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -145,7 +145,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = "bold"
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
@@ -154,7 +154,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = "bold"
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		scales = list(
@@ -165,7 +165,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 					rot = xaxis.rot,
 					col = xaxis.col,
 					limits = xlimits,
-					fontface = xaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 					at = xat,
 					labels = xaxis.lab,
 					log = xaxis.log,
@@ -180,7 +180,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 					rot = yaxis.rot,
 					col = yaxis.col,
 					limits = ylimits,
-					fontface = yaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 					at = yat,
 					labels = yaxis.lab,
 					log = yaxis.log,
@@ -193,7 +193,8 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 		legend = legend,
 		par.settings = list(
 			axis.line = list(
-				lwd = 2.25
+				lwd = 2.25,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -225,6 +226,40 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 				)
 			)
 		);
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
+
 
 	# output the object
 	return(

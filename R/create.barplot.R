@@ -10,14 +10,14 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE BARPLOTS ###################################################################
-create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', draw.grid = FALSE, xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', yaxis.col = 'black', xaxis.cex = 1.2, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, main.cex = 2.5, xlab.cex = 2, ylab.cex = 2, ylimits = NULL, yat = TRUE, xlimits = NULL, xat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 1, right.padding = 1, left.padding = 1, key.bottom = 0.1, ylab.axis.padding = 0, axis.xlab.padding = 0.5, x.relation = 'same', y.relation = 'same', layout = NULL, as.table = FALSE, col = 'black', strip.col = 'white', strip.cex = 1, background.col = 'transparent', border.col = 'black', y.error.up = NULL, y.error.down = y.error.up, y.error.bar.col = 'black', error.whisker.width = width/(nrow(data)*4), error.bar.lwd = 1, error.whisker.angle = 90, add.background.shading = FALSE, background.shading.xpos = NULL, background.shading.ypos = NULL, background.shading.colour = 'grey85', raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2/37, 'npc'), key = list(text = list(lab = c(''))), legend = NULL, lwd = 1, plot.horizontal = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, origin = 0, reference = TRUE, sample.order = 'none', group.labels = FALSE, line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0)) {
+create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', draw.grid = FALSE, xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', yaxis.col = 'black', xaxis.cex = 1.2, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, main.cex = 2.5, xlab.cex = 2, ylab.cex = 2, ylimits = NULL, yat = TRUE, xlimits = NULL, xat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 1, right.padding = 1, left.padding = 1, key.bottom = 0.1, ylab.axis.padding = 0, axis.xlab.padding = 0.5, x.relation = 'same', y.relation = 'same', layout = NULL, as.table = FALSE, col = 'black', strip.col = 'white', strip.cex = 1, background.col = 'transparent', border.col = 'black', y.error.up = NULL, y.error.down = y.error.up, y.error.bar.col = 'black', error.whisker.width = width/(nrow(data)*4), error.bar.lwd = 1, error.whisker.angle = 90, add.background.shading = FALSE, background.shading.xpos = NULL, background.shading.ypos = NULL, background.shading.colour = 'grey85', raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2/37, 'npc'), key = list(text = list(lab = c(''))), legend = NULL, lwd = 1, plot.horizontal = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, origin = 0, reference = TRUE, sample.order = 'none', group.labels = FALSE, line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0), style = 'BoutrosLab') {
 
 	# allow a gray spectrum if groups is specified and only a single colour is given
 	groups.new <- eval(substitute(groups), data, parent.frame());
 	if (!is.null(groups.new) && 1 == length(col) && col == 'grey') {
 		col <- grey(1:nlevels(as.factor(groups.new)) / nlevels(as.factor(groups.new)));
 		}
-		
+
 	trellis.object <- lattice::barchart(
 		formula,
 		data,
@@ -177,7 +177,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -185,7 +185,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = xlab.label,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = xlab.cex,
 				col = xlab.col
 				)
@@ -194,7 +194,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = ylab.label,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = ylab.cex,
 				col = ylab.col
 				)
@@ -211,7 +211,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 					at = xat,
 					tck = xaxis.tck,
 					relation = x.relation,
-					fontface = xaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 					alternating = FALSE
 					)
 				),
@@ -226,7 +226,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 					at = yat,
 					tck = yaxis.tck,
 					relation = y.relation,
-					fontface = yaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 					alternating = FALSE
 					)
 				)
@@ -237,7 +237,8 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 			),
 		par.settings = list(
 			axis.line = list(
-				lwd = lwd
+				lwd = lwd,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -390,6 +391,40 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 			}
 			y.error.up <- y.error.up[rev(ordering)]
 			y.error.down <- y.error.down[rev(ordering)]
+		}
+
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
 
 	# output the object

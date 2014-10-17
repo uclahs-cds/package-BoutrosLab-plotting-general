@@ -18,7 +18,8 @@ top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1,
 height = 6, width = 6, size.units = 'in', resolution = 1600, 
 enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, 
 xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, 
-ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1);
+ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
+style = 'BoutrosLab');
 }
 \arguments{
     \item{x}{A formula or a numeric vector}
@@ -88,6 +89,7 @@ ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1);
     \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
     \item{col.rectangle}{Specifies the colour of the rectangle}
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ying Wu}
@@ -289,6 +291,35 @@ create.qqplot.fit(
         ),
     description = 'QQplot fit created by BoutrosLab.plotting.general'
     );
+
+# Nature style
+create.qqplot.fit(
+    filename = 'QQfit_Nature_style.tiff',
+    x = microarray[1:500,1],
+    distribution = qunif,
+    main = 'Nature style',
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    grid = TRUE,
+    confidence.bands = TRUE,
+    confidence.method = 'both',
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    );
+
 
 }
 \keyword{hplot}

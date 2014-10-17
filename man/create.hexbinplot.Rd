@@ -16,7 +16,8 @@ height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = F
 key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, 
 xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, 
 ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
-background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold');
+background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold',
+style = 'BoutrosLab');
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -79,6 +80,7 @@ background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold')
     \item{background.col}{Specifies the colour for the background of the plot}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \details{\bold{WARNING:} this function uses highly unusual semantics, different from the rest of the \code{BoutrosLab.plotting.general} library.  The underlying hexbinplot function uses an argument called maxcnt to specify the maximum number of counts per cell.  The default behaviour is not sensibly encoded via a \code{NULL} or an \code{NA}, but instead by using the \code{\link{missing}} function.  As a result, we need to use \code{\link{do.call}} semantics to handle this function. This \bold{can mess up anything using \code{\link{substitute}} }including things that generate p-values!}
@@ -369,6 +371,42 @@ create.hexbinplot(
     # Change the colour scheme
     colours = function(n){BTC(n, beg=1, end=256)},
     background.col = 'grey',
+    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    );
+
+# Nature style
+create.hexbinplot(
+    filename = 'Hexbinplot_Nature_style.tiff',
+    formula = y ~ x,
+    data = hexbin.data,
+    main = 'Nature style',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xlimits = c(0,16),
+    ylimits = c(0,16),
+    xat = seq(0,16,2),
+    yat = seq(0,16,2),
+    aspect = 1,
+    colourcut = seq(0, 1, length = 11),
+    maxcnt = 50,
+    # Grid & diagonal
+    grid = TRUE,
+    abline = c(0,1),
+    abline.front = TRUE,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.lab = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
     description = 'Hexbinplot created by BoutrosLab.plotting.general'
     );
 

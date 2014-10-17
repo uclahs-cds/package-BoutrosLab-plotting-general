@@ -18,7 +18,7 @@ layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in',
 resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, 
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
-col.rectangle = 'transparent', alpha.rectangle = 1)
+col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab')
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -90,6 +90,7 @@ col.rectangle = 'transparent', alpha.rectangle = 1)
     \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
     \item{col.rectangle}{Specifies the colour of the rectangle}
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -338,5 +339,64 @@ create.segplot(
     alpha.rectangle = 0.5,
     description = 'Segplot created by BoutrosLab.plotting.general'
     );
+
+# Nature style
+create.segplot(
+    filename = 'Segplot_Nature_style.tiff',
+    formula = reorder(gene, median) ~ min + max,
+    data = segplot.data,
+    main = 'Nature style',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xlimits = c(0,13),
+    xat = seq(0, 12, 2),
+    draw.bands = FALSE,
+    centers = segplot.data$median,
+    level = segplot.data$length,
+    col.regions = default.colours(3),
+    legend = list(
+        inside = list(
+            fun = draw.key,
+            args = list(
+                key = list(
+                    points = list(
+                        col = default.colours(3),
+                        pch = 19,
+                        cex = 1
+                        ),
+                    text = list(
+                        lab = c("1-20000 bp", "20001-40000 bp","40001-60000 bp")
+                        ),
+                    padding.text = 1,
+                    cex = 1
+                    )
+                ),
+            x = 0.50,
+            y = 0.15,
+            corner = c(0,1)
+            )
+        ),
+    add.rectangle = TRUE,
+    xleft.rectangle = 0,
+    ybottom.rectangle = seq(0.5, 8.5, 2),
+    xright.rectangle = 13,
+    ytop.rectangle = seq(1.5, 9.5, 2),
+    col.rectangle = 'grey',
+    alpha.rectangle = 0.5,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    description = 'Segplot created by BoutrosLab.plotting.general'
+    );
+
 }
 \keyword{hplot}

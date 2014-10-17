@@ -37,7 +37,7 @@ size.units = 'in', resolution = 1000, enable.warnings = FALSE, xaxis.covariates 
 yaxis.covariates = NULL, description = NULL, xaxis.fontface = 'bold', 
 yaxis.fontface = 'bold', symbols = list(borders = NULL, squares = NULL, circles = NULL),  
 same.as.matrix = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, 
-stratified.clusters.cols = NULL);
+stratified.clusters.cols = NULL, style = 'BoutrosLab');
 }
 \arguments{
     \item{x}{Either a data-frame or a matrix from which the heatmap is to created}
@@ -155,6 +155,8 @@ stratified.clusters.cols = NULL);
     \item{axis.xlab.padding}{Padding between axis of plot and x label}
     \item{stratified.clusters.rows}{the row locations of the rows to be combined into a strata}
     \item{stratified.clusters.cols}{the column locations of the columns to be combined into a strata}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
+
  }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -963,6 +965,39 @@ create.heatmap(
     colour.scheme = default.colours(10),
     description = 'Heatmap created using BoutrosLab.plotting.general'
     );    
+
+# Nature style
+create.heatmap(
+    filename = 'Heatmap_Nature_style.tiff',
+    x = microarray[1:20, 1:20],
+    main = 'Nature style',
+    xaxis.lab = NA,
+    yaxis.lab = 1:20,
+    xaxis.cex = 0.75,
+    yaxis.cex = 0.75,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    colourkey.cex = 1,
+    # Adjusting total colours plotted
+    colourkey.labels.at = seq(2,12,1),
+    colourkey.labels = seq(2,12,1),
+    at = seq(2,12,1),
+    # Add one to account for a 'null' colour
+    total.colours = 11,
+    colour.scheme = default.colours(10),
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    description = 'Heatmap created using BoutrosLab.plotting.general'
+    );    
+
 }
 \keyword{hplot}
 \keyword{cluster}

@@ -34,7 +34,7 @@ text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE,
 text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, 
 text.guess.buffer.factor = 1, text.guess.label.position = NULL, key.left.padding = 0, 
 height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-horizontal = FALSE, description = NULL, ...);
+horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -162,6 +162,7 @@ horizontal = FALSE, description = NULL, ...);
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{horizontal}{xyplot-specific function that allows you to change if type="h" draws lines to the vertical or horizontal axis}
     \item{description}{Short description of image/plot; default NULL}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

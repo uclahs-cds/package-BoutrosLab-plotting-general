@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.2.0 2014-10-17
+
+MINOR UPDATE
+* Added `Nature' style option to all plotting functions
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.9 2014-10-16
 
 MINOR UPDATE

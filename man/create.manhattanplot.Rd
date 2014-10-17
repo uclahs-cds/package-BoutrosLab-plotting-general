@@ -23,7 +23,7 @@ points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE,
 text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', 
 text.cex = 1, text.fontface = 'bold', key.left.padding = 0, height = 6, 
 width = 10, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-horizontal = FALSE, description = NULL, ...);
+horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -113,6 +113,7 @@ horizontal = FALSE, description = NULL, ...);
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{horizontal}{xyplot-specific function that allows you to change if type="h" draws lines to the vertical or horizontal axis}
     \item{description}{Short description of image/plot; default NULL}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
@@ -322,6 +323,53 @@ create.manhattanplot(
     ytop.rectangle = 4.5,
     col.rectangle = 'grey',
     alpha.rectangle = 0.5,
+    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    );
+
+# Nature style
+create.manhattanplot(
+    filename = 'Manhattan_Nature_style.tiff',
+    formula = -log10(pval) ~ ind,
+    data = microarray,
+    main = 'Nature style',
+    xat = chr.tck,
+    xaxis.lab = c(1:22, 'X', 'Y'),
+    xaxis.tck = 0,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    yat = seq(0,5,1),
+    yaxis.lab = c(
+        1,
+        expression(10^-1),
+        expression(10^-2),
+        expression(10^-3),
+        expression(10^-4)
+        ),
+    col = chr.colours,
+    pch = 18,
+    cex = 0.75,
+    abline.h = 2,
+    abline.lty = 2,
+    abline.lwd = 1,
+    abline.col = 'black',
+    # Adding rectangles
+    add.rectangle = TRUE,
+    xleft.rectangle = chr.break[seq(1, length(chr.break) - 1, 2)],
+    ybottom.rectangle = 0,
+    xright.rectangle = chr.break[seq(2, length(chr.break) - 1, 2)],
+    ytop.rectangle = 4.5,
+    col.rectangle = 'grey',
+    alpha.rectangle = 0.5,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
     description = 'Manhattan plot created using BoutrosLab.plotting.general'
     );
 

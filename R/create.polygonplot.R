@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE POLYGONPLOT ################################################################
-create.polygonplot <- function(formula, data, filename = NULL, main = NULL, groups = NULL, max, min, col = 'white', border.col = 'black', xy.col = 'black', strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axis.lwd = 1, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, xaxis.cex = 2, yaxis.rot = 0, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, add.median = FALSE, median.lty = 3, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL) {
+create.polygonplot <- function(formula, data, filename = NULL, main = NULL, groups = NULL, max, min, col = 'white', border.col = 'black', xy.col = 'black', strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axis.lwd = 1, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, xaxis.cex = 2, yaxis.rot = 0, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, add.median = FALSE, median.lty = 3, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, style = 'BoutrosLab') {
 
 	groups.new <- eval(substitute(groups), data, parent.frame());
 
@@ -258,7 +258,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -268,7 +268,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = 'bold'
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
@@ -277,7 +277,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = 'bold'
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),			
 		between = list(
@@ -290,7 +290,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 				add.to.list = list(
 					labels = xaxis.lab,
 					log = xaxis.log,
-					fontface = xaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 					rot = xaxis.rot,
 					limits = xlimits,
 					cex = xaxis.cex,
@@ -305,7 +305,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 				property = 'fontfamily', 
 				add.to.list = list(
 					labels = yaxis.lab,
-					fontface = yaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 					limits = ylimits,
 					cex = yaxis.cex,
 					col = yaxis.col,
@@ -319,7 +319,8 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 			),
 		par.settings = list(
 			axis.line = list(
-				lwd = axis.lwd
+				lwd = axis.lwd,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -362,6 +363,39 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 		key = key,
 		legend = legend
 		);
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
 
 	# output the object
 	return(

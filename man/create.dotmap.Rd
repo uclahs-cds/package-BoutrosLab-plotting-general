@@ -22,7 +22,7 @@ enable.warnings = FALSE, col.colour = 'black', row.colour = 'black',
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold', dot.colour.scheme = NULL);
+yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab');
 }
 \arguments{
     \item{x}{An unstacked data.frame to plot the dotmap}
@@ -95,7 +95,8 @@ yaxis.fontface = 'bold', dot.colour.scheme = NULL);
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
-    \item{ dot.colour.scheme}{Colour Scheme for the dots}
+    \item{dot.colour.scheme}{Colour Scheme for the dots}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     }
 \details{It would be nice to have a library of suitable spot.size and spot.colour functions. 
     \preformatted{
@@ -587,6 +588,58 @@ draw.key(
     vp = viewport(x = 0.86, y = 0.155, height = 1, width = 0.5, angle = 90),
     draw = TRUE
     )
+
+# Nature style
+create.dotmap(
+    filename = 'Dotmap_Nature_style.tiff',
+    x = CNA[1:15,1:15],
+    bg.data = microarray[1:15,1:15],
+    main = 'Nature style',
+    spot.size.function = 1,
+    spot.colour.function = CNA.colour.function,
+    xaxis.cex = 0.8,
+    yaxis.cex = 0.8,
+    xaxis.lab = 1:15,
+    xlab.cex = 1,
+    ylab.cex = 1,
+    key = list(
+        space = 'right',
+        points = list(
+            cex = 1,
+            col = 'black',
+            # Remember to also change the pch in the legend
+            pch = 21,
+            fill = CNA.colour.function(key.sizes)
+            ),
+        text = list(
+            lab = c('Gain', 'Loss'),
+            cex = 1,
+            adj = 1
+            ),
+        title = 'CNA',
+        padding.text = 2,
+        background = 'white'
+        ),
+    colourkey = TRUE,
+    key.top = 1,
+    colour.scheme = c('lightyellow','gold','darkorange', 'darkorange3'),
+    at = seq(0,12,3),
+    colourkey.labels = seq(0,12,3),
+    colourkey.labels.at = seq(0,12,3),
+    bg.alpha = 0.65,
+    # Change the plotting character to one which has an outline
+    pch = 21,
+    pch.border.col = border.colours(CNA[1:15,1:15]),
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.lab = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
+    );
 
 }
 \keyword{hplot}

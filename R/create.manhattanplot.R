@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE MANHATTANPLOTS ##############################################################
-create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = c(1,1), type = 'p', cex = 2, pch = '.', col = 'black', strip.col = "white", strip.cex = 1, lwd = 1, lty = 1, alpha = 1, axis.lwd = 1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0, bottom.padding = 0, right.padding = 0, left.padding = 0, key.top = 0, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, axes.lty = 'dashed', abline.h = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', key.left.padding = 0, height = 6, width = 10, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = NULL, ...) {
+create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = c(1,1), type = 'p', cex = 2, pch = '.', col = 'black', strip.col = "white", strip.cex = 1, lwd = 1, lty = 1, alpha = 1, axis.lwd = 1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0, bottom.padding = 0, right.padding = 0, left.padding = 0, key.top = 0, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, axes.lty = 'dashed', abline.h = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', key.left.padding = 0, height = 6, width = 10, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...) {
 
 	trellis.object <- lattice::xyplot(
 		formula,
@@ -59,7 +59,7 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -69,7 +69,7 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = 'bold'
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
@@ -78,7 +78,7 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = 'bold'
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		scales = list(
@@ -88,7 +88,7 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 					cex = xaxis.cex,
 					rot = xaxis.rot,
 					limits = xlimits,
-					fontface = xaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 					col = xaxis.col,
 					at = xat,
 					labels = xaxis.lab,
@@ -104,7 +104,7 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 					cex = yaxis.cex,
 					rot = yaxis.rot,
 					limits = ylimits,
-					fontface = yaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 					col = yaxis.col,
 					at = yat,
 					labels = yaxis.lab,
@@ -123,7 +123,8 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 		as.table = as.table,
 		par.settings = list(
 			axis.line = list(
-				lwd = axis.lwd
+				lwd = axis.lwd,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -167,6 +168,39 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, xl
 		key = key,
 		legend = legend
 		);
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
 
 	# output the object
 	return(

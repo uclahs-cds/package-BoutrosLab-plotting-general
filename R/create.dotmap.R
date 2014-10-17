@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DOTMAPS #####################################################################
-create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xaxis.cex = 2.5, yaxis.cex = 2.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, grid.col.lwd = 1.5, grid.row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, grid.colour = NULL, colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white', key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, col.colour = 'black', row.colour = 'black', description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL) {
+create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xaxis.cex = 2.5, yaxis.cex = 2.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, grid.col.lwd = 1.5, grid.row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, grid.colour = NULL, colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white', key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, col.colour = 'black', row.colour = 'black', description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab') {
 
 	x <- as.data.frame(x);
 
@@ -298,7 +298,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch =
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -306,7 +306,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch =
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = xlab.label,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = xlab.cex,
 				col = xlab.col
 				)
@@ -315,7 +315,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch =
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = ylab.label,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = ylab.cex,
 				col = ylab.col
 				)
@@ -331,7 +331,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch =
 					tck = xaxis.tck,
 					limits = c( min(bg.data$x, na.rm = TRUE) - 0.5, max(bg.data$x, na.rm = TRUE) + 0.5 ), 
 					at = min(bg.data$x, na.rm = TRUE):max(bg.data$x, na.rm = TRUE),
-										fontface = xaxis.fontface
+										fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
@@ -344,7 +344,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch =
 					tck = yaxis.tck,
 					limits = c( min(bg.data$y, na.rm = TRUE) - 0.5, max(bg.data$y, na.rm = TRUE) + 0.5 ), 
 					at = min(bg.data$y, na.rm = TRUE):max(bg.data$y, na.rm = TRUE),
-					fontface = yaxis.fontface
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
 					)
 				)
 			),
@@ -382,6 +382,30 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, pch =
 				)
 			)
 		);
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
+
 
 	# output the object
 	return(

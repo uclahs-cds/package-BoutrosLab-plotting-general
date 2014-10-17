@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DENSITYPLOTS ################################################################
-create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline = NULL, height = 6, width = 6, size.units = 'in', resolution = 1500, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold') {
+create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline = NULL, height = 6, width = 6, size.units = 'in', resolution = 1500, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
 
 	# create an object to store all the data
 	data.to.plot <- data.frame(
@@ -154,7 +154,7 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 			property = "fontfamily", 
 			add.to.list = list(
 				label = main,
-				fontface = "bold",
+				fontface = if ('Nature' == style){'plain'} else("bold"),
 				cex = main.cex
 				)
 			),
@@ -162,7 +162,7 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 			property = "fontfamily", 
 			add.to.list = list(
 				label = xlab.label,
-				fontface = "bold",
+				fontface = if ('Nature' == style){'plain'} else("bold"),
 				cex = xlab.cex,
 				col = xlab.col
 				)
@@ -171,7 +171,7 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 			property = "fontfamily", 
 			add.to.list = list(
 				label = ylab.label,
-				fontface = "bold",
+				fontface = if ('Nature' == style){'plain'} else("bold"),
 				cex = ylab.cex,
 				col = ylab.col
 				)
@@ -183,7 +183,7 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 					cex = xaxis.cex,
 					rot = xaxis.rot,
 					col = xaxis.col,
-					fontface = xaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 					limits = xlimits,
 					axs = "r",
 					at = xat,
@@ -197,7 +197,7 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 					cex = yaxis.cex,
 					rot = yaxis.rot,
 					col = yaxis.col,
-					fontface = yaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 					limits = ylimits,
 					at = yat,
 					tck = xaxis.tck,
@@ -209,7 +209,8 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 		legend = legend,
 		par.settings = list(
 			axis.line = list(
-				lwd = 2.25
+				lwd = 2.25,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -241,6 +242,30 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 				)
 			)
 		);
+
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
 
 	# output the object
 	return(

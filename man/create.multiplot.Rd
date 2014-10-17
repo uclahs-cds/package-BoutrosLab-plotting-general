@@ -18,7 +18,7 @@ width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE,
 key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, 
 merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), 
 layout.skip=rep(FALSE,length(plot.objects)), description = NULL, 
-retrieve.plot.labels = FALSE);
+retrieve.plot.labels = FALSE, style = 'BoutrosLab');
 }
 \arguments{
     \item{plot.objects}{A list of plot objects. Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right}
@@ -75,6 +75,7 @@ retrieve.plot.labels = FALSE);
     \item{layout.skip}{A vector specifying which positions in the layout grid to leave blank/skip, defaults to not skipping any spots in the layout / rep(FALSE,length(plot.objects)). Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right }
     \item{description}{Short description of image/plot; default NULL.}
     \item{retrieve.plot.labels}{Should the plot retrieve the limits, labels and label locations from the the individual plots}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ken Chu and Denise Mak}
@@ -752,6 +753,26 @@ create.multiplot(
             )
         ),
     print.new.legend = TRUE
+    );
+
+# Nature style
+create.multiplot(
+    filename = 'Multiplot_Nature_style.tiff',
+    plot.objects = list(simple.heatmap, simple.boxplot),
+    main = "Nature style",
+    ylab.padding = 7,
+    xaxis.cex = 0.7,
+    yaxis.cex = 0.7,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = c(expression(paste('italicized ', italic('a'))), 
+    expression(paste('italicized ', italic('b')))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = c(expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)))
     );
 }
 

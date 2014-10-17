@@ -5,20 +5,23 @@
 \usage{
 create.boxplot(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, 
 jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', 
-points.cex = 0.5, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, 
-abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
-xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
-alpha.rectangle = 1, fill = 'transparent', box.colour = 'black', symbol.cex = 0.8, lwd = 1, 
-outliers = TRUE, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, 
-ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, 
-xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', 
-yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, 
-y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
-ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, 
-strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, 
-size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, 
-description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, 
-line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none');
+points.cex = 0.5, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL,
+abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, 
+ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
+col.rectangle = 'transparent', alpha.rectangle = 1, fill = 'transparent', 
+box.colour = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = NULL, 
+ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', 
+ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, 
+xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', 
+xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, 
+top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
+ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, 
+yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, 
+height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', 
+yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, 
+line.col = 'transparent', line.infront = TRUE, sample.order = 'none', 
+style = 'BoutrosLab');
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -98,6 +101,7 @@ line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sampl
     \item{line.col}{Colour of the line on the plot}
     \item{line.infront}{Should the line appear in front of the plot or not}
     \item{sample.order}{Should the sample be reordered}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Maud H.W. Starmans}
@@ -384,6 +388,25 @@ create.boxplot(
     x.relation = 'free',
     x.spacing = 1,
     description = 'Boxplot created by BoutrosLab.plotting.general'
+    );
+
+# Nature format
+create.boxplot(
+    filename = 'Boxplot_Nature_style.tiff',
+    formula = y ~ x,
+    data = reformatted.data,
+    main = 'Nature style',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.lab = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
     );
 
 }

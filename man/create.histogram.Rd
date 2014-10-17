@@ -17,7 +17,7 @@ size.units = 'in', resolution = 1500, enable.warnings = FALSE, key = NULL,
 legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold');
+yaxis.fontface = 'bold', style = 'BoutrosLab');
 }
 \arguments{
     \item{x}{A formula or a numeric vector (not frequencies!)}
@@ -84,6 +84,7 @@ yaxis.fontface = 'bold');
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -171,6 +172,28 @@ create.histogram(
     col = 'lightgrey',
     # Changing the line type
     lty = 2,
+    description = 'Histogram created by BoutrosLab.plotting.general'
+    );
+
+# Nature style
+create.histogram(
+    filename = 'Histogram_Nature_style.tiff',
+    x = microarray[,1],
+    main = 'Nature style',
+    xlimits = c(0, 16),
+    xat = seq(0,15,5),
+    breaks = seq(floor(min(microarray[,1])), ceiling(max(microarray[,1])), 1),
+    col = 'lightgrey',
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.label = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
     description = 'Histogram created by BoutrosLab.plotting.general'
     );
 

@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE HEXBINPLOTS #################################################################
-create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspect = 'xy', trans = NULL, inv = NULL, colours = NULL, colourkey = TRUE, colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5, xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, grid = FALSE, abline = NULL, abline.front = FALSE, add.axes = FALSE, xbins = 30, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold') {
+create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspect = 'xy', trans = NULL, inv = NULL, colours = NULL, colourkey = TRUE, colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5, xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, grid = FALSE, abline = NULL, abline.front = FALSE, add.axes = FALSE, xbins = 30, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
 
 	# IMPORTANT NOTE:
 	# - the implementation of this function is different from any other functions in the library
@@ -86,7 +86,7 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 			property = "fontfamily", 
 			add.to.list = list(
 				label = main,
-				fontface = "bold",
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -96,7 +96,7 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = "bold"
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
@@ -105,7 +105,7 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = "bold"
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		scales = list(
@@ -120,7 +120,7 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 					tck = xaxis.tck,
 					limits = xlimits,
 					at = xat,
-					fontface = xaxis.fontface
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
@@ -133,7 +133,7 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 					tck = yaxis.tck,
 					limits = ylimits,
 					at = yat,
-					fontface = yaxis.fontface
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
 					)
 				)
 			),
@@ -188,6 +188,30 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 		what = 'hexbinplot',
 		args = parameter.list
 		);
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
+
 
 	# output the object
 	return(

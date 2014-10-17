@@ -30,7 +30,8 @@ xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',
 alpha.rectangle = 1, origin = 0, reference = TRUE, sample.order = 'none', 
 group.labels = FALSE, line.func = NULL, line.from = 0, line.to = 0, 
 line.col = 'transparent', line.infront = TRUE,
-text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0)
+text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
+style = 'BoutrosLab'
 );
 }
 \arguments{
@@ -131,6 +132,7 @@ text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rota
     \item{line.col}{Colour of the line on the plot}
     \item{line.infront}{Should the line appear in front of the plot or not}
     \item{text.above.bars}{Should some form of text appear above the bars}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Mehrdad Shamsi}
@@ -878,6 +880,24 @@ create.barplot(
     raster = 1:10/10,
     raster.just = 'bottom',
     description = 'Description of image here'
+    );
+
+# Nature format
+create.barplot(
+    filename = 'Barplot_Nature_style.tiff',
+    formula = x ~ y,
+    data = simple.data,
+    yat = seq(0,16,2),
+    main = 'Nature style',
+
+    # set style to Nature 
+    style = 'Nature',
+    
+    # demonstrating how to italicize character variables
+    ylab.lab = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
     );
 
 }

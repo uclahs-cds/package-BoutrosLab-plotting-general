@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE STRIPPLOTS #################################################################
-create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1) {
+create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
 
 	groups.new <- eval(substitute(groups), data, parent.frame());
 
@@ -42,13 +42,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 
 			# if requested, add lines indicating the group median
 			if (add.median && is.null(median.values)) {
-				meds <- tapply(x, y, median);
-				xlocs <- seq_along(meds);
-				panel.segments(
-					xlocs - 1/4, meds, xlocs + 1/4, meds,
-					lwd = 2, 
-					col = "red"
-					);
+				warning("median.values must be specified to median to be added.");
 				}
 			if (add.median && !is.null(median.values)) {
 				meds <- median.values;
@@ -70,7 +64,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 			property = "fontfamily", 
 			add.to.list = list(
 				label = main,
-				fontface = "bold",
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -80,7 +74,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = "bold"
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
@@ -89,7 +83,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = "bold"
+				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
 		scales = list(
@@ -102,7 +96,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 					col = xaxis.col,
 					limits = xlimits,
 					at = xat,
-					fontface = xaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 					alternating = FALSE,
 					tck = xaxis.tck
 					)
@@ -116,7 +110,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 					limits = ylimits,
 					at = yat,
 					tck = yaxis.tck,
-					fontface = yaxis.fontface,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 					alternating = FALSE,
 					rot = yaxis.rot
 					)
@@ -128,7 +122,8 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 			),	
 		par.settings = list(
 			axis.line = list(
-				lwd = lwd
+				lwd = lwd,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -171,6 +166,39 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 		key = key,
 		legend = legend
 		);
+
+	# If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
 
 	# output the object
 	return(

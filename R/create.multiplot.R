@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE MULTIPLOT ###################################################################
-create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.cex = 2, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, xaxis.cex = 2, yaxis.cex = 2, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xspacing = 1, yspacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = NULL, retrieve.plot.labels = FALSE) {
+create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.cex = 2, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, xaxis.cex = 2, yaxis.cex = 2, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xspacing = 1, yspacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = NULL, retrieve.plot.labels = FALSE, style = 'BoutrosLab') {
 
 	# check that plots are trellis objects
 	for (i in 1:length(plot.objects)) {
@@ -84,7 +84,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			cex = yaxis.cex,
 			at = yat,
 			limits = ylimits,
-			fontface = yaxis.fontface
+			fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
 			);
 
 		y.same <- TRUE;
@@ -101,7 +101,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			at = xat,
 			limits = xlimits,
 			rot = xaxis.rot,
-			fontface = xaxis.fontface
+			fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
 			);
 		}
 
@@ -124,7 +124,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = main.cex
 				)
 			),
@@ -132,7 +132,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = xlab.label,
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = xlab.cex
 				)
 			),
@@ -140,13 +140,14 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = rev(ylab.label),
-				fontface = 'bold',
+				fontface = if ('Nature' == style){'plain'} else('bold'),
 				cex = ylab.cex
 				)
 			),
 		par.settings = list(
 			axis.line = list(
-				lwd = axes.lwd
+				lwd = axes.lwd,
+				col = if ('Nature' == style){'transparent'} else('black')
 				),
 			layout.heights = list(
 				panel = rev(panel.heights),
@@ -226,7 +227,40 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
     if (sum(names(legend) == "inside", na.rm = TRUE) > 1) {
         trellis.object$legend = legend;
         }
-        
+   
+    # If Nature style requested, change figure accordingly
+	if ('Nature' == style) {
+
+		# Re-add bottom and left axes
+		trellis.object$axis = function(side, line.col = "black", ...) {
+			# Only draw axes on the left and bottom
+			if(side %in% c("bottom","left")) {
+				axis.default(side = side, line.col = "black", ...);
+				lims <- current.panel.limits();
+				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+				}
+			}
+
+		# Ensure sufficient resolution for graphs
+		if (resolution < 1200) {
+			resolution <- 1200;
+			warning("Setting resolution to 1200 dpi.");
+			}
+
+		# Other required changes which are not accomplished here
+		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		} 
+
+	else if ('BoutrosLab' == style) {
+		# Nothing happens
+		}
+
+	else {
+		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+		}
+
 	return(
 		BoutrosLab.plotting.general::write.plot(
 			trellis.object = trellis.object,

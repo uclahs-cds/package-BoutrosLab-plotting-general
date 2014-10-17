@@ -16,7 +16,7 @@ width = 6, size.units = 'in', resolution = 1500, enable.warnings = FALSE,
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold');
+yaxis.fontface = 'bold', style = 'BoutrosLab');
 }
 \arguments{
     \item{x}{A list of vectors, each of which will be plotted as a separate curve in the final plot}
@@ -74,6 +74,8 @@ yaxis.fontface = 'bold');
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
+
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -298,6 +300,49 @@ create.densityplot(
     xgrid.at = seq(0,14,1),
     ygrid.at = seq(0,2.5,0.25),
     description = 'Barplot created by BoutrosLab.plotting.general'
+    );
+
+# Nature style
+create.densityplot(
+    filename = 'Densityplot_Nature_style.tiff',
+    x = format.data,
+    main = 'Nature style',
+    lty = c('solid','dashed','dotted'),
+    ylimits = c(-0.1, 2.5),
+    ylab.cex = 1.5,
+    xlab.cex = 1.5,
+    col = default.colours(3),
+    legend = list(
+        inside = list(
+            fun = draw.key,
+            args = list(
+                key = list(
+                    points = list(
+                        col = default.colours(3),
+                        pch = 21,
+                        cex = 1.5,
+                        fill = default.colours(3)
+                        ),
+                    text = list(
+                        lab = colnames(format.data)
+                        ),
+                    padding.text = c(0,5,0),
+                    cex = 1
+                    )
+                ),
+            x = 0.65,
+            y = 0.97,
+            draw = FALSE
+            )
+        ),
+    # Grid lines
+    style = 'Nature',
+
+    # demonstrating how to italicize character variables
+    ylab.lab = expression(paste('italicized ', italic('a'))),
+  
+    # demonstrating how to create en-dashes
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
     );
 
 }
