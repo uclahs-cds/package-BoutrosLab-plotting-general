@@ -185,5 +185,5 @@ default.colours(c(4,4), palette.type = c('seq','div'));
 # display.colours(default.colours(3));
 # display.colours(grey(0.5));
 
-force.colour.scheme(c('stopgain SNV', 'splicing'), 'annovar.annotation');
+force.colour.scheme(c('stopgain snv', 'splicing'), 'annovar.annotation');
 

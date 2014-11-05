@@ -23,19 +23,19 @@ return.factor = FALSE, return.scheme = FALSE)
     The input character options for each colour scheme are as follows:
     annovar.annotation
     \itemize{
-        \item{nonsynonymous SNV}
-        \item{stopgain SNV}
-        \item{stoploss SNV}
+        \item{nonsynonymous snv}
+        \item{stopgain snv}
+        \item{stoploss snv}
         \item{frameshift deletion}
         \item{frameshift substitution}
         \item{splicing}
-        \item{synonymous SNV}
+        \item{synonymous snv}
         }
 
     annovar.annotation.collapsed
     \itemize{
-        \item{nonsynonymous SNV}
-        \item{stopgain SNV}
+        \item{nonsynonymous snv}
+        \item{stopgain snv}
         \item{stoploss SNV}
         \item{frameshift indel}
         \item{splicing}
@@ -165,7 +165,7 @@ return.factor = FALSE, return.scheme = FALSE)
 
 \author{Nicholas Harding}
 \examples{
-annovar.output <- c('nonsynonymous SNV', 'stopgain SNV', 'none', 'stoploss SNV', 
+annovar.output <- c('nonsynonymous snv', 'stopgain snv', 'none', 'stoploss snv', 
 'frameshift deletion', 'frameshift substitution', 'splicing', 'none');
 force.colour.scheme(annovar.output,'annovar.annotation');
 force.colour.scheme(annovar.output,'annovar.annotation', 'white');

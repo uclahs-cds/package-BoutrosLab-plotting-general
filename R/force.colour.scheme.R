@@ -171,11 +171,11 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 			colours = c('darkseagreen4', 'orchid4',           'darkturquoise', 'darkorange',           'gold1',      'grey30',    'grey50',              'grey70',   'grey90',     'white' )
 			),
 		annovar.annotation = list( 
-			levels  = c('nonsynonymous SNV', 'stopgain SNV', 'stoploss SNV', 'frameshift deletion', 'frameshift substitution', 'splicing', 'synonymous SNV'),
+			levels  = c('nonsynonymous snv', 'stopgain snv', 'stoploss snv', 'frameshift deletion', 'frameshift substitution', 'splicing', 'synonymous snv'),
 			colours = c('darkseagreen4',     'orchid4',      'darkturquoise','darkorange',          'darkorange4',             'gold1',    'darkgrey')
 				),
 		annovar.annotation.collapsed = list( 
-			levels  = c('nonsynonymous SNV', 'stopgain SNV', 'stoploss SNV', 'frameshift indel', 'splicing'),
+			levels  = c('nonsynonymous snv', 'stopgain snv', 'stoploss snv', 'frameshift indel', 'splicing'),
 			colours = c('darkseagreen4',     'orchid4',      'darkturquoise','darkorange',       'gold1'   )
 			),
 		biomolecule = list(
