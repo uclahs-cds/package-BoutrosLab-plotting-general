@@ -1,5 +1,4 @@
 append.footnote <- function(text = Sys.Date(), size = 0.5, colour = 'black', position = "bottomright") {
-
 	if (!is.null(text)) {
 		pushViewport(viewport());
 		if (position == "middle") {
