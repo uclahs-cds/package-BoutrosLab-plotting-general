@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.2.2 2014-12-08
+
+MINOR UPDATE
+* write.plot: Added embed.plot functionality (depreciating said function)
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.1 2014-11-05
 
 MINOR UPDATE
