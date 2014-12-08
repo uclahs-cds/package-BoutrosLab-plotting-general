@@ -48,7 +48,7 @@ write.plot <- function(trellis.object, filename = NULL, height = 6, width = 6, s
 			}
 
 		# set ps.options for eps
-		if (extension == 'eps') {
+		if ('eps' == extension) {
 			setEPS();
 			}
 
@@ -81,9 +81,9 @@ write.plot <- function(trellis.object, filename = NULL, height = 6, width = 6, s
 		dev.off();
 		options(bitmapType = old.type);
 
-		if (extension == 'eps') {
+		if ('eps' == extension) {
 			# revert back to standard configuration
-			ps.options(reset=TRUE);
+			ps.options(reset = TRUE);
 			}
 	
 		# write image metadata

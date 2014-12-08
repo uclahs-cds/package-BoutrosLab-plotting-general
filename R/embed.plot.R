@@ -10,31 +10,35 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO EMBED PLOTS #######################################################################
-embed.plot <- function(filename = NULL,height = 8, width = 8, resolution = 1600, main.plot = NULL, embedded.plot = NULL, xleft = 0, ybottom = 0, xright = 1, ytop = 1){
+embed.plot <- function(filename = NULL, height = 8, width = 8, resolution = 1600, main.plot = NULL, embedded.plot = NULL, xleft = 0, ybottom = 0, xright = 1, ytop = 1) {
 	
 	if (!is.null(filename)) {
+
 		extension <- sub('(.+)\\.', '', filename, perl = TRUE);
 
-		args <- as.list(c(
-			filename = filename,
-			height = height, 
-			width = width,
-			units = 'in',
-			res = resolution
-			));
+		args <- as.list(
+			c(
+				filename = filename,
+				height = height, 
+				width = width,
+				units = 'in',
+				res = resolution
+				)
+			);
 		
 		args$res = as.numeric(args$res);
 		args$width = as.numeric(args$width);
 		args$height = as.numeric(args$height);
 		
 		do.call(extension, args);
-	}
+		}
 	
 	# plot first plot
 	plot(main.plot);
 	
 	# add second plot to first plot
-	print(x = embedded.plot,
+	print(
+		x = embedded.plot,
 		position = c(xleft, ybottom, xright, ytop),
 		newpage = FALSE
 		);
