@@ -42,7 +42,6 @@ export(
 	"get.defaults",
 	"get.line.breaks",
 	"legend.grob",
-	"embed.plot",
 	"scientific.notation",
 	"show.available.palettes",
 	"write.metadata",

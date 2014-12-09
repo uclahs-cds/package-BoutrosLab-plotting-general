@@ -9,8 +9,8 @@
 \tabular{ll}{
 Package: \tab BoutrosLab.plotting.general\cr
 Type: \tab Package\cr
-Version: \tab 5.2.0\cr
-Date: \tab 2014-10-17\cr
+Version: \tab 5.2.2\cr
+Date: \tab 2014-12-09\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -45,7 +45,6 @@ get.corr.key();
 get.defaults();
 get.line.breaks();
 legend.grob();
-embed.plot();
 scientific.notation();
 show.available.palettes();
 write.metadata();
