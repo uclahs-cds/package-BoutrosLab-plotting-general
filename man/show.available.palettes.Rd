@@ -4,7 +4,7 @@
 \description{Displays the available colour palettes}
 \usage{
 show.available.palettes(type = 'general', filename = NULL, height = 8, width = 12, 
-	resolution = 300);
+resolution = 300);
 }
 \arguments{
     \item{type}{Either \dQuote{general}, \dQuote{specific}, or \dQuote{both} (default)}
@@ -19,7 +19,7 @@ show.available.palettes(type = 'general', filename = NULL, height = 8, width = 1
 
 show.available.palettes(type = 'specific', filename = 'show_case_specific_schemes.tiff');
 
-show.available.palettes(type = 'general', filename = 'default_schemes.tiff', height = 6, width = 8)
+show.available.palettes(type = 'general', filename = 'default_schemes.tiff', height = 6, width = 8);
 }
 \keyword{colour}
 \keyword{scheme}
