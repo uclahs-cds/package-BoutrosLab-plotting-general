@@ -17,9 +17,16 @@ resolution = 300);
 \author{Christine P'ng}
 \examples{
 
-show.available.palettes(type = 'specific', filename = 'show_case_specific_schemes.tiff');
+show.available.palettes(
+	filename = 'show_case_specific_schemes.tiff',
+	type = 'specific'
+	);
 
-show.available.palettes(type = 'general', filename = 'default_schemes.tiff', height = 6, width = 8);
+show.available.palettes(
+	filename = 'default_schemes.tiff',
+	type = 'general',
+	height = 6, width = 8
+	);
 }
 \keyword{colour}
 \keyword{scheme}
