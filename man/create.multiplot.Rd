@@ -776,5 +776,158 @@ create.multiplot(
     );
 }
 
+# Create a multiplot with a heatmap, key like legend and barplot
+
+# First create a heatmap object
+simple.heatmap <- create.heatmap(patient[, 4:6],
+    clustering.method = 'none',
+    print.colour.key = FALSE,
+    scale=TRUE,
+    same.as.matrix = FALSE,
+    colour.scheme = c('gray0','grey100'),
+    fill.colour = 'grey95'
+);
+ 
+# and a simple bar plot
+pvals <- data.frame(
+        order = c(1:3),
+        pvalue = -log10(c(0.0004, 0.045, 0.0001)),
+        stringsAsFactors = FALSE
+        )
+
+simple.bar <- create.barplot(
+        formula = order ~ rev(pvalue),
+        data = pvals,
+        xlimits = c(0,5),
+        plot.horizontal=TRUE
+        );
+
+# then the covariates heatmap
+cov.colours <- c(
+    c('dodgerblue','pink'),
+    c('grey','darkseagreen1','seagreen2','springgreen3','springgreen4'),
+    c('peachpuff','tan4')
+    );
+
+# the heatmap expects numeric data
+cov.data <- patient[-c(4:9)];
+cov.data[cov.data == 'male'] <- 1;
+cov.data[cov.data == 'female'] <- 2;
+cov.data[is.na(cov.data)] <- 3;
+cov.data[cov.data == 'I'] <- 4;
+cov.data[cov.data == 'II'] <- 5;
+cov.data[cov.data == 'III'] <- 6;
+cov.data[cov.data == 'IV'] <- 7;
+cov.data[cov.data == 'MSS'] <- 8;
+cov.data[cov.data == 'MSI-High'] <- 9;
+cov.data$sex <- as.numeric(cov.data$sex);
+cov.data$stage <- as.numeric(cov.data$stage);
+cov.data$msi <- as.numeric(cov.data$msi);
+
+covariates <- create.heatmap(
+    x = cov.data,
+    clustering.method = 'none',
+    colour.scheme = as.vector(cov.colours),
+    total.colours = 10,
+    row.colour = 'white',
+    col.colour = 'white',
+    grid.row = TRUE,
+    grid.col = TRUE,
+    yaxis.tck = 0,
+    print.colour.key = FALSE
+    );
+
+cov_legends <- list(
+    legend = list(
+        colours = c("white", "black"),
+        labels = c('Fancy','Legend'),
+        border = 'grey',
+        title = 'One'
+        ),
+    legend = list(
+        colours = c("white", "black"),
+        labels = c('Fancy','Legend'),
+        border = 'grey',
+        title = 'Two'
+        ),
+    legend = list(
+        colours = c("white", "black"),
+        labels = c('Fancy','Legend'),
+        border = 'grey',
+        title = 'Three'
+        ),
+    legend = list(
+        colours = cov.colours[8:9],
+        labels = c('MSS','MSI-High'),
+        border = 'white',
+        title = 'MSI'
+        ),
+    legend = list(
+        colours = cov.colours[3:7],
+        labels = c('NA', 'I','II','III','IV'),
+        border = 'white',
+        title = 'Stage'
+        ),
+    legend = list(
+        colours = cov.colours[1:2],
+        labels = c('Male','Female'),
+        border = 'white',
+        title = 'Sex'
+        )
+    );
+
+cov_legend.grob <- legend.grob(
+    legends = cov_legends,
+    title.just = 'left',
+    label.cex = 0.7,
+    title.cex = 0.7
+    );
+
+# Now bring it was together using multiplot
+create.multiplot(
+    main = 'multiplot with colour key legend',
+    main.cex = 1,
+    plot.objects = list(covariates, simple.heatmap, simple.bar),
+    panel.heights = c(1,0.35),
+    panel.widths = c(1,0.25),
+    plot.layout = c(2,2),
+    layout.skip = c(FALSE, TRUE, FALSE, FALSE),
+    xaxis.alternating = 1,
+    # Set some of the yat to NULL to let R figure it out
+    yaxis.lab = list(
+        c('Sex','Stage','MSI'),
+        c('one','two','three'),
+        NULL
+        ),
+    xaxis.lab = list(
+        NULL,
+        NULL,
+        seq(0,5,1)
+    ),
+    xat = list(
+        NULL,
+        NULL,
+        seq(0,5,1)
+    ),
+    xlab.to.xaxis.padding = 0,
+    yaxis.cex = 0.5,
+    xaxis.cex = 0.5,
+    xlab.cex = 0.75,
+    ylab.cex = 0.75,
+    xlab.label = c('\t', 'samples', '\t', '    -log10 pval'),
+    ylab.label = c("", "scaled data", "",  "covariates"),
+    yspacing = 0,
+    xspacing = 0,
+    legend = list(
+        left = list(
+            x = 0.10,
+            y = 0.50,
+            fun = cov_legend.grob
+            )
+        ),
+    # This parameter must be set for the legend to appear
+    print.new.legend = TRUE,
+    );
+
 \keyword{hplot}
 

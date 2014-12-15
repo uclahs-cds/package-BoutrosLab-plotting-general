@@ -999,5 +999,89 @@ create.heatmap(
     );    
 
 }
+
+# create heatmap with key like legend - used to show range of continuous variables
+
+# First create legend with discrete colours 
+sex.colour <- recode.vector(
+    patient$sex,
+    list(
+        dodgerblue = 'male',
+        pink = 'female'
+        )
+    );
+
+stage.colour <- recode.vector(
+    patient$stage,
+    list(
+        plum1 = 'I',
+        orchid1 = 'II',
+        orchid3 = 'III',
+        orchid4 = 'IV'
+        )
+    );
+
+msi.colour <- recode.vector(
+    patient$msi,
+    list(
+        chartreuse4 = 'MSS',
+        chartreuse2 = 'MSI-High'
+        )
+    );
+
+discrete.covariate.legend <- list(
+    legend = list(
+        colours = c('dodgerblue', 'pink'),
+        labels = c('male','female'),
+        title = expression(underline('Sex'))
+        ),
+    legend = list(
+        colours = c('plum1', 'orchid1', 'orchid3', 'orchid4'),
+        labels = c('I','II', 'III', 'IV'),
+        title = expression(underline('Stage'))
+        ),
+    legend = list(
+        colours = c('chartreuse4', 'chartreuse2'),
+        labels = c('MSS','MSI-High'),
+        title = expression(underline('MSI'))
+        ),
+    legend = list(
+        colours = c('grey0', 'grey100'),
+        labels = c('want key like','legend here'),
+        title = expression(underline('one'))
+        ),
+    legend = list(
+        colours = c('grey0', 'grey100'),
+        labels = c('want key like','legend here'),
+        title = expression(underline('two'))
+        ),
+    legend = list(
+        colours = c('grey0', 'grey100'),
+        labels = c('want key like','legend here'),
+        title = expression(underline('three'))
+        )
+   );
+
+create.heatmap(patient[1:20, 4:6],
+    xlab.label = 'Samples',
+    ylab.label = 'Scaled Data',
+    xaxis.cex = 0.75,
+    yaxis.cex = 0.75,
+    clustering.method = 'none',
+    print.colour.key = FALSE,
+    scale=TRUE,
+    same.as.matrix = FALSE,
+    covariates.top = discrete.covariate,
+    covariates.top.grid.row = list(lwd = 1),
+    covariate.legend = discrete.covariate.legend,
+    legend.title.just = 'left',
+    colour.scheme = c('gray0','grey100'),
+    fill.colour = 'grey95',
+    axis.xlab.padding = 1.5
+);
+
+
+
+
 \keyword{hplot}
 \keyword{cluster}
