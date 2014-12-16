@@ -74,7 +74,7 @@ secondary.plot <- create.densityplot(
     );
 
 write.plot(
-    filename = "write_plot_example.tiff",
+    filename = 'write_plot_example.tiff',
     trellis.object = main.plot,
     additional.trellis.objects = list(secondary.plot),
     additional.trellis.locations = list(

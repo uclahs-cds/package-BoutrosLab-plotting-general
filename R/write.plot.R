@@ -158,17 +158,22 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		# return a success marker
 		return(1);
 		}
+	
+	else {
 
-	# check if graphics device is postscript
-	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
-		ps.options(family = 'sans');
+		# check if graphics device is postscript
+		if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
+			ps.options(family = 'sans');
+			}
+	
+		# check if graphics device is not set i-e "null device"
+		if (enable.warnings && 1 == dev.cur()) {
+			warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
+			}
+	
+		# if no plot requested, return the trellis object itself
+		return(trellis.object);
+		
 		}
 	
-	# check if graphics device is not set i-e "null device"
-	if (enable.warnings && 1 == dev.cur()) {
-		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
-		}
-	
-	# if no plot requested, return the trellis object itself
-	return(trellis.object);
 	}
