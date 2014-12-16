@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.2.4 2014-12-16
+
+MINOR UPDATE
+* create.barplot: ablines now appear in the background of the plot instead of the foreground
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.2 2014-12-09
 
 MINOR UPDATE

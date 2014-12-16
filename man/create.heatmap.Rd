@@ -998,8 +998,6 @@ create.heatmap(
     description = 'Heatmap created using BoutrosLab.plotting.general'
     );    
 
-}
-
 # create heatmap with key like legend - used to show range of continuous variables
 
 # First create legend with discrete colours 
@@ -1062,7 +1060,9 @@ discrete.covariate.legend <- list(
         )
    );
 
-create.heatmap(patient[1:20, 4:6],
+create.heatmap(
+    filename = 'Heatmap_ContinuousVariablesKey.tiff',
+    x = patient[1:20, 4:6],
     xlab.label = 'Samples',
     ylab.label = 'Scaled Data',
     xaxis.cex = 0.75,
@@ -1078,8 +1078,8 @@ create.heatmap(patient[1:20, 4:6],
     colour.scheme = c('gray0','grey100'),
     fill.colour = 'grey95',
     axis.xlab.padding = 1.5
-);
-
+    );
+}
 
 
 

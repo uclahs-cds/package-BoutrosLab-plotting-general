@@ -114,9 +114,12 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 			if (length(line.func) > 0 && !line.infront) {
 				panel.curve(expr = line.func, from = line.from, to = line.to,col = line.col);
 				}
-			panel.barchart(x, y, subscripts = subscripts, groups = groups.new, border = border.col, lwd = lwd, ..., origin = 0);
+
 			panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
 			panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
+
+			panel.barchart(x, y, subscripts = subscripts, groups = groups.new, border = border.col, lwd = lwd, ..., origin = 0);
+
 			if (length(line.func) > 0 && line.infront) {
 				panel.curve(expr = line.func, from = line.from, to = line.to,col = line.col);
 				}

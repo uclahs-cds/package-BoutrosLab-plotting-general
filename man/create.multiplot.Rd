@@ -774,7 +774,7 @@ create.multiplot(
     # demonstrating how to create en-dashes
     xlab.label = c(expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)))
     );
-}
+
 
 # Create a multiplot with a heatmap, key like legend and barplot
 
@@ -885,7 +885,8 @@ cov_legend.grob <- legend.grob(
 
 # Now bring it was together using multiplot
 create.multiplot(
-    main = 'multiplot with colour key legend',
+    filename = "Multiplot_with_colourkey_legend.tiff",
+    main = 'Multiplot with colour key legend',
     main.cex = 1,
     plot.objects = list(covariates, simple.heatmap, simple.bar),
     panel.heights = c(1,0.35),
@@ -928,6 +929,6 @@ create.multiplot(
     # This parameter must be set for the legend to appear
     print.new.legend = TRUE,
     );
-
+}
 \keyword{hplot}
 
