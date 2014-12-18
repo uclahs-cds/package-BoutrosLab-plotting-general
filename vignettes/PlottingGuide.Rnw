@@ -246,6 +246,13 @@ Once a figure is made, it should be reproduced in its expected display format. F
 \section{Plotting Functions}
 The following  chart-types available in BL.plotting.general:
 
+\begin{figure}[!ht]
+  \begin{center}
+     \includegraphics[width=160mm]{Figures/available_chart_types.png}
+     \caption{Available chart-types}
+  \end{center}
+\end{figure}
+
 \begin{center}
 \begin{tabular}{l  l  l}
 \hline

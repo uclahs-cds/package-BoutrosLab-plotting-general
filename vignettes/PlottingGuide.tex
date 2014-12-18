@@ -1,7 +1,7 @@
 %\VignetteEngine{knitr::knitr_notangle}
 % \VignetteIndexEntry{Plotting guide using BL.plotting.general}
 
-\documentclass[letterpaper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+\documentclass[letterpaper]{report}\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
 %% otherwise use linewidth (to make sure the graphics do not exceed the margin)
 \makeatletter
@@ -67,17 +67,25 @@
 \makeatletter
 \renewcommand{\@oddfoot}{\hfil Page \thepage\ of \pageref{LastPage} \hfil}
 \makeatother
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\title{A guide to data visualization using BL.plotting.general}
+\author{Christine P'ng \& Jeff Green}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
-\begin{center}
-	\LARGE{A guide to data visualization using BL.plotting.general}\\~\\
-	\large{Christine P'ng \& Jeff Green}\\~\\
-	\large{\today}
-\end{center}
+\maketitle
+
 \tableofcontents
 
-\newpage
 \section{Introduction}
 Why does data visualization matter? After all, data visualization takes work. Datasets are often complex, having millions of data points and many dimensions. Decisions have to be made regarding the best way of highlighting the main message. Aesthetic considerations require knowledge of colour theory, typography, composition, and more. Why do people go through all the trouble?
 
@@ -96,12 +104,12 @@ Understanding a dataset is especially important when a dataset is large and not 
 
 \begin{figure}[!ht]
   \begin{center}
-     \includegraphics[width=80mm]{Figures/pie_vs_bar_chart.png}
-     \caption{Pie chart and barplot displaying identical data}
+     \includegraphics[width=160mm]{Figures/intro_plotting_ex.png}
+     \caption{Different charts displaying identical data}
   \end{center}
 \end{figure}
 
-Different chart-types are suited for different data-types, and emphasize different kinds of relationships. Using the correct chart-type will improve the readability of the data. It is important to note that some methods of visually encoding data are easier to interpret than others (Table 1). For example, pie charts are difficult to interpret because people struggle to translate angles and areas into exact numerical values. The difference between a 25\% slice and a 20\% slice is not easy to distinguish. Instead, a barchart which compares lengths on a common scale would be easier to read. Display methods which are more accurately interpreted should be selected over methods which are relatively difficult to accurately interpret \cite{wong1, cleveland}. 
+Different chart-types are suited for different data-types, and emphasize different kinds of relationships. Using the correct chart-type will improve the readability of the data. It is important to note that some methods of visually encoding data are easier to interpret than others (Table 1). For example, pie charts are difficult to interpret because people struggle to translate angles and areas into exact numerical values. Instead, a barchart which compares lengths on a common scale would be easier to read. Display methods which are more accurately interpreted should be selected over methods which are relatively difficult to accurately interpret \cite{wong1, cleveland}. 
 
 \begin{table}
 \begin{center}
@@ -123,12 +131,12 @@ Rank & Aspect judged\\
 
 Figures should be designed to enhance a viewer's ability to compare data and draw appropriate conclusions \cite{tufte}. This can be done through careful arrangement of a figure, such as placing related elements near each other, highlighting important items, selecting appropriate colours and fonts, and more. Poorly-designed figures can distort the truth and lead viewers to draw inaccurate conclusions \cite{tufte}. 
 
-To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This test (often conducted multiple times) can reveal how clear a figure is.
+To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This ``test'' (which may be conducted multiple times) can reveal how clear a figure is.
 
 \subsection{What is BL.plotting.general?}
 BL.plotting.general is a software package for generating publication-quality, customizable plots. It produces a variety of chart-types, ranging from common charts for simple datasets to novel charts for displaying highly-dimensional datasets.
 
-This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. 
+This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics\cite{trellis} for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. 
 
 \section{Designing figures}
 Before creating figures, it is important to know something about design. Terrible design will miscommunicate data, whereas excellent design will guide viewers to understand the data\cite{tufte}. 
@@ -269,7 +277,7 @@ Therefore, the image resolution is related to (but not the same as) the image si
 
 Different use-cases require different resolutions. Digital displays require lower resolutions than print displays. Most computer monitors are able to display a maximum of 72 dpi, which means that even if an image has a higher resolution, the display will only display a maximum of 72 dpi. 
 
-Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. Bl.plotting.general defaults to producing high resolution images of 1000 dpi or greater.
+Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. BL.plotting.general defaults to producing high resolution images of 1000 dpi or greater.
 
 \section{Figure creation reviewed}
 Figure creation begins with understanding the data. The second step is designing the figure. Then the figure is created. Finally, the figure is assessed and improved.
@@ -286,6 +294,13 @@ Once a figure is made, it should be reproduced in its expected display format. F
 
 \section{Plotting Functions}
 The following  chart-types available in BL.plotting.general:
+
+\begin{figure}[!ht]
+  \begin{center}
+     \includegraphics[width=160mm]{Figures/available_chart_types.png}
+     \caption{Available chart-types}
+  \end{center}
+\end{figure}
 
 \begin{center}
 \begin{tabular}{l  l  l}
@@ -404,6 +419,56 @@ The scatterplot can be customized very easily by specifying the appropriate para
 
 \end{knitrout}
 
+\subsubsection{Scatterplot with log-scale axes}
+The plot can be changed to use a log-scale. 
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{create.scatterplot}\hlstd{(}
+    \hlkwc{formula} \hlstd{= sample.two} \hlopt{~} \hlstd{sample.one,}
+    \hlkwc{data} \hlstd{= scatter.data,}
+    \hlkwc{main} \hlstd{=} \hlstr{"Log-scale Axis"}\hlstd{,}
+    \hlkwc{xlab.label} \hlstd{=} \hlstr{"Sample 1"}\hlstd{,}
+    \hlkwc{ylab.label} \hlstd{=} \hlstr{"Sample 2"}\hlstd{,}
+    \hlkwc{yat} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{16}\hlstd{,} \hlnum{2}\hlstd{),}
+    \hlkwc{ylimits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlnum{15}\hlstd{),}
+    \hlkwc{xaxis.cex} \hlstd{=} \hlnum{1}\hlstd{,}
+    \hlkwc{yaxis.cex} \hlstd{=} \hlnum{1}\hlstd{,}
+    \hlkwc{xlab.cex} \hlstd{=} \hlnum{1.5}\hlstd{,}
+    \hlkwc{ylab.cex} \hlstd{=} \hlnum{1.5}\hlstd{,}
+    \hlkwc{main.cex} \hlstd{=} \hlnum{1.5}\hlstd{,}
+
+    \hlcom{# change axes accordingly }
+    \hlkwc{xat} \hlstd{=} \hlnum{2} \hlopt{**} \hlstd{(}\hlnum{0}\hlopt{:}\hlnum{4}\hlstd{),}
+
+    \hlcom{# change axes range accordingly}
+    \hlkwc{xlimits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{2} \hlopt{**} \hlnum{0}\hlstd{,}\hlnum{16}\hlstd{),}
+
+    \hlcom{# format labels}
+    \hlkwc{xaxis.lab} \hlstd{=} \hlkwd{c}\hlstd{(}
+        \hlkwd{expression}\hlstd{(}\hlstr{'2'}\hlopt{^}\hlstr{'0'}\hlstd{),}
+        \hlkwd{expression}\hlstd{(}\hlstr{'2'}\hlopt{^}\hlstr{'1'}\hlstd{),}
+        \hlkwd{expression}\hlstd{(}\hlstr{'2'}\hlopt{^}\hlstr{'2'}\hlstd{),}
+        \hlkwd{expression}\hlstd{(}\hlstr{'2'}\hlopt{^}\hlstr{'3'}\hlstd{),}
+        \hlkwd{expression}\hlstd{(}\hlstr{'2'}\hlopt{^}\hlstr{'4'}\hlstd{)}
+        \hlstd{),}
+
+    \hlcom{# transform x-axis into log-2 space}
+    \hlkwc{xaxis.log} \hlstd{=} \hlnum{2}
+    \hlstd{);}
+\end{alltt}
+\end{kframe}\begin{figure}
+
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter3-1} } 
+
+}
+
+\caption[Scatterplot with log-scale axis]{Scatterplot with log-scale axis\label{fig:scatter3}}
+\end{figure}
+
+
+\end{knitrout}
+
 \subsubsection{Scatterplot with gridlines}
 Additional parameter changes will continue to customize the plot.
 \begin{knitrout}
@@ -439,11 +504,11 @@ Additional parameter changes will continue to customize the plot.
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter3-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter4-1} } 
 
 }
 
-\caption[Scatterplot with grid lines]{Scatterplot with grid lines\label{fig:scatter3}}
+\caption[Scatterplot with grid lines]{Scatterplot with grid lines\label{fig:scatter4}}
 \end{figure}
 
 
@@ -513,11 +578,11 @@ The scatterplot function is able to calculate optimal label positions for labell
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter4-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter5-1} } 
 
 }
 
-\caption[Scatterplot with point labelling]{Scatterplot with point labelling\label{fig:scatter4}}
+\caption[Scatterplot with point labelling]{Scatterplot with point labelling\label{fig:scatter5}}
 \end{figure}
 
 
@@ -592,11 +657,11 @@ A correlation key legend can be added.
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter5-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter6-1} } 
 
 }
 
-\caption[Scatterplot with correlation key]{Scatterplot with correlation key\label{fig:scatter5}}
+\caption[Scatterplot with correlation key]{Scatterplot with correlation key\label{fig:scatter6}}
 \end{figure}
 
 
@@ -666,11 +731,11 @@ Adding lines can be done in multiple ways.
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter6-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/scatter7-1} } 
 
 }
 
-\caption[Scatterplot with lines]{Scatterplot with lines\label{fig:scatter6}}
+\caption[Scatterplot with lines]{Scatterplot with lines\label{fig:scatter7}}
 \end{figure}
 
 
@@ -764,7 +829,7 @@ Coloured rectangles can be drawn in plots.
     \hlcom{# set rectangle colour}
     \hlkwc{col.rectangle} \hlstd{=} \hlstr{"grey"}\hlstd{,}
 
-    \hlcom{# set rectangle alpha}
+    \hlcom{# set rectangle alpha (transparency)}
     \hlkwc{alpha.rectangle} \hlstd{=} \hlnum{0.25}
     \hlstd{);}
 \end{alltt}
@@ -800,7 +865,7 @@ To make comparisons clearer, the boxplots can be sorted by median value.
     \hlkwc{col.rectangle} \hlstd{=} \hlstr{"grey"}\hlstd{,}
     \hlkwc{alpha.rectangle} \hlstd{=} \hlnum{0.25}\hlstd{,}
 
-    \hlcom{# sort in either increasing or decreasing order}
+    \hlcom{# sort median values in either increasing or decreasing order}
     \hlkwc{sample.order} \hlstd{=} \hlstr{"increasing"}
     \hlstd{);}
 \end{alltt}
@@ -811,6 +876,44 @@ To make comparisons clearer, the boxplots can be sorted by median value.
 }
 
 \caption[Sorted boxplot]{Sorted boxplot\label{fig:boxplot4}}
+\end{figure}
+
+
+\end{knitrout}
+
+\subsubsection{Boxplot with stripplot}
+The individual points can be plotted on the boxplot.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{create.boxplot}\hlstd{(}
+    \hlkwc{formula} \hlstd{= y} \hlopt{~} \hlstd{x,}
+    \hlkwc{data} \hlstd{= boxplot.data,}
+    \hlkwc{fill} \hlstd{=} \hlkwd{default.colours}\hlstd{(}\hlnum{1}\hlstd{),}
+    \hlkwc{xaxis.cex} \hlstd{=} \hlnum{1.2}\hlstd{,}
+    \hlkwc{yaxis.cex} \hlstd{=} \hlnum{1.2}\hlstd{,}
+    \hlkwc{add.rectangle} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+    \hlkwc{xleft.rectangle} \hlstd{=} \hlnum{0}\hlstd{,}
+    \hlkwc{xright.rectangle} \hlstd{=} \hlnum{13}\hlstd{,}
+    \hlkwc{ybottom.rectangle} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{0.5}\hlstd{,} \hlnum{8.5}\hlstd{,} \hlnum{2}\hlstd{),}
+    \hlkwc{ytop.rectangle} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{1.5}\hlstd{,} \hlnum{9.5}\hlstd{,} \hlnum{2}\hlstd{),}
+    \hlkwc{col.rectangle} \hlstd{=} \hlstr{"grey"}\hlstd{,}
+    \hlkwc{alpha.rectangle} \hlstd{=} \hlnum{0.25}\hlstd{,}
+    \hlkwc{sample.order} \hlstd{=} \hlstr{"increasing"}\hlstd{,}
+
+    \hlcom{# add points}
+    \hlkwc{add.stripplot} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+    \hlkwc{points.pch} \hlstd{=} \hlnum{1}
+    \hlstd{);}
+\end{alltt}
+\end{kframe}\begin{figure}
+
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/boxplot5-1} } 
+
+}
+
+\caption[Boxplot with stripplot]{Boxplot with stripplot\label{fig:boxplot5}}
 \end{figure}
 
 
@@ -883,6 +986,38 @@ Axes formatting can help the appearance of the plot. The heatmap function estima
 
 \end{knitrout}
 
+
+\subsubsection{Changing axes labels}
+The axes labels can be customized.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{create.heatmap}\hlstd{(}
+    \hlkwc{x} \hlstd{= microarray[}\hlnum{1}\hlopt{:}\hlnum{20}\hlstd{,} \hlnum{1}\hlopt{:}\hlnum{20}\hlstd{],}
+    \hlkwc{colourkey.cex} \hlstd{=} \hlnum{1}\hlstd{,}
+    \hlkwc{colourkey.labels.at} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{,} \hlnum{12}\hlstd{,} \hlnum{1}\hlstd{),}
+    \hlkwc{xaxis.lab} \hlstd{=} \hlnum{NA}\hlstd{,}
+    \hlkwc{xaxis.cex} \hlstd{=} \hlnum{0.8}\hlstd{,}
+    \hlkwc{yaxis.cex} \hlstd{=} \hlnum{0.6}\hlstd{,}
+    \hlkwc{xaxis.fontface} \hlstd{=} \hlnum{1}\hlstd{,}
+    \hlkwc{yaxis.fontface} \hlstd{=} \hlnum{1}\hlstd{,}
+
+    \hlcom{# set custom labels}
+    \hlkwc{yaxis.lab} \hlstd{= letters[}\hlnum{1}\hlopt{:}\hlnum{20}\hlstd{]}
+    \hlstd{);}
+\end{alltt}
+\end{kframe}\begin{figure}
+
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap3-1} } 
+
+}
+
+\caption[Heatmap with custom axes]{Heatmap with custom axes\label{fig:heatmap3}}
+\end{figure}
+
+
+\end{knitrout}
+
 \subsubsection{Changing the clustering method}
 The heatmap defaults to clustering using the``diana" method (divisive analysis clustering). Other clustering options include all agglomerative clustering methods available in hclust.
 
@@ -911,11 +1046,11 @@ The heatmap defaults to clustering using the``diana" method (divisive analysis c
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap3-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap4-1} } 
 
 }
 
-\caption[Heatmap with different clustering]{Heatmap with different clustering\label{fig:heatmap3}}
+\caption[Heatmap with different clustering]{Heatmap with different clustering\label{fig:heatmap4}}
 \end{figure}
 
 
@@ -953,11 +1088,11 @@ Heatmap clustering can be stratified so that segments of the data can be cluster
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap4-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap5-1} } 
 
 }
 
-\caption[Heatmap with stratified clustering]{Heatmap with stratified clustering\label{fig:heatmap4}}
+\caption[Heatmap with stratified clustering]{Heatmap with stratified clustering\label{fig:heatmap5}}
 \end{figure}
 
 
@@ -1014,11 +1149,11 @@ Covariate bars are often added to heatmaps to add additional information. In thi
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap5-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap6-1} } 
 
 }
 
-\caption[Heatmap with covariates]{Heatmap with covariates\label{fig:heatmap5}}
+\caption[Heatmap with covariates]{Heatmap with covariates\label{fig:heatmap6}}
 \end{figure}
 
 
@@ -1056,11 +1191,11 @@ Using grid lines can help to more accurately perceive the differences between co
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap6-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap7-1} } 
 
 }
 
-\caption[Heatmap with grid lines]{Heatmap with grid lines\label{fig:heatmap6}}
+\caption[Heatmap with grid lines]{Heatmap with grid lines\label{fig:heatmap7}}
 \end{figure}
 
 
@@ -1101,11 +1236,11 @@ Sometimes heatmaps are used to display data with can be divided into discrete bi
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap7-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap8-1} } 
 
 }
 
-\caption[Heatmap with discrete colours]{Heatmap with discrete colours\label{fig:heatmap7}}
+\caption[Heatmap with discrete colours]{Heatmap with discrete colours\label{fig:heatmap8}}
 \end{figure}
 
 
@@ -1147,11 +1282,11 @@ Symbols can be added over the cells.
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap8-1} } 
+{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/heatmap9-1} } 
 
 }
 
-\caption[Heatmap with symbols]{Heatmap with symbols\label{fig:heatmap8}}
+\caption[Heatmap with symbols]{Heatmap with symbols\label{fig:heatmap9}}
 \end{figure}
 
 
@@ -1500,7 +1635,7 @@ A basic dotmap takes a data frame as input.
 \end{alltt}
 \end{kframe}\begin{figure}
 
-{\centering \resizebox{70mm}{70mm}{\includegraphics[width=\maxwidth]{Examples/dotmap1-1} } 
+{\centering \resizebox{60mm}{80mm}{\includegraphics[width=\maxwidth]{Examples/dotmap1-1} } 
 
 }
 
@@ -1729,7 +1864,7 @@ The minimal input for the histogram is either a numeric vector, or a formula and
 create.manhattanplot
 \end{verbatim}
 
-The Manhattan plot is a type of scatterplot used to display chromosomal locations along the x-axis, and the negative logarithm of p-values of mutations along the y-axis. This means that the points which are higher on the plot are highly significant, while the points near the 0 axis are less significant.
+The Manhattan plot is a type of scatterplot for displaying large datasets. It is often used to visualize or locate particularly significant or interesting data values. For example, it may be used to show chromosomal locations along the x-axis, and the negative logarithm of p-values of mutations along the y-axis. This means that the points which are higher on the plot are highly significant, while the points near the 0 axis are less significant.
 
 \subsubsection{Simple Manhattan plot}
 This plot accepts a data frame together with a formula for the x and y components. Manhattan plots usually display a large number of data points.
@@ -1802,7 +1937,7 @@ Adding a line can be used to easily view data points above a particular p-value.
 create.polygonplot
 \end{verbatim}
 
-The polygon plot draws a polygon. There are many options for how to use this function. It takes as input the maximum and minimum values and optional median values, and fills in the difference to be the polygon `shape'. This chart is often used for repeated, iterative data, such as time-series data.
+The polygon plot draws a shape which can represent a data-range. There are many options for how to use this function. It takes as input the maximum and minimum values and optional median values, and fills in the difference to be the polygon `shape'. This chart is often used for repeated, iterative data, such as time-series data.
 
 \subsubsection{Simple polygon plot}
 The minimum input for a polygon plot is data frame and formula to extract the components. Additional input is needed to determine the maximum and minimum values of the polygon, as well as the optional median values.
@@ -2081,7 +2216,7 @@ The minimal input for a violin plot is a data frame and formula.
         \hlkwc{xaxis.cex} \hlstd{=} \hlnum{1}\hlstd{,}
         \hlkwc{yaxis.cex} \hlstd{=} \hlnum{1}\hlstd{,}
 
-    \hlcom{# Rotate axes labels to be clearer}
+    \hlcom{# rotate axes labels}
     \hlkwc{xaxis.rot} \hlstd{=} \hlnum{90}
     \hlstd{);}
 \end{alltt}
@@ -2134,9 +2269,11 @@ The code below creates a bar plot showing the number of males and females with a
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# create barplot for frequency of each type of person}
+\hlcom{# formatting at this stage is unimportant because the create.multiplot function call will override and standardize the formatting}
 \hlstd{hair.eye.colour.barplot} \hlkwb{<-} \hlkwd{create.barplot}\hlstd{(}
         \hlkwc{formula} \hlstd{= Freq} \hlopt{~} \hlkwd{c}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{32}\hlstd{),}
         \hlkwc{data} \hlstd{= haireye,}
+                \hlkwc{xaxis.cex} \hlstd{=} \hlnum{0.5}\hlstd{,}
 
         \hlcom{# set plot limits from 0 and 80 }
         \hlkwc{ylimits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.00}\hlstd{,} \hlnum{80}\hlstd{)}
@@ -2309,8 +2446,8 @@ After all the plots and legends are created, they are combined using the create.
          \hlcom{# four plots are listed from bottom to top }
          \hlkwc{plot.objects} \hlstd{=} \hlkwd{list}\hlstd{(sex.heatmap, eye.heatmap, hair.heatmap, hair.eye.colour.barplot),}
 
-         \hlcom{# labels are placed on the side of the multiplot }
-         \hlcom{# (tabs are needed for labels to be in proper location)}
+         \hlcom{# labels are placed on y-axis side of the multiplot }
+         \hlcom{# (tabs/spaces are used to properly place labels -- the default placement is centred on the entire plot)}
          \hlkwc{ylab.label} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"\textbackslash{}t"}\hlstd{,} \hlstr{"Number of people"}\hlstd{,} \hlstr{"\textbackslash{}t"}\hlstd{,} \hlstr{"\textbackslash{}t"}\hlstd{),}
          \hlkwc{main.key.padding} \hlstd{=} \hlnum{2}\hlstd{,}
          \hlkwc{ylab.cex} \hlstd{=} \hlnum{1.25}\hlstd{,}
@@ -2606,7 +2743,7 @@ This example focuses on the addition and customization of legends.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlnum{3}\hlstd{)\{}
-   \hlcom{# Generate data}
+   \hlcom{# generate data}
         \hlstd{scatter.data} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}
                 \hlkwc{x} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{1}\hlstd{),}
                 \hlkwc{y} \hlstd{=} \hlkwd{rnorm}\hlstd{(}\hlnum{20}\hlstd{,} \hlnum{0.5}\hlstd{,} \hlnum{0.1}\hlstd{)}
@@ -2621,7 +2758,7 @@ This example focuses on the addition and customization of legends.
                 \hlkwc{xlimits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.5}\hlstd{,} \hlnum{20.5}\hlstd{),}
                 \hlkwc{ylimits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{),}
 
-                \hlcom{# Add background rectangles}
+                \hlcom{# add background rectangles}
                 \hlkwc{add.rectangle} \hlstd{=} \hlnum{TRUE}\hlstd{,}
                 \hlkwc{xleft.rectangle} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{0.5}\hlstd{,} \hlnum{18.5}\hlstd{,} \hlnum{2}\hlstd{),}
                 \hlkwc{ybottom.rectangle} \hlstd{=} \hlnum{0}\hlstd{,}
@@ -2866,7 +3003,8 @@ There are number of functions to help choose colours for plotting:
 \item \texttt{display.colours} gives a preview of a colour scheme along with grey scale values and colour names
 \end{itemize}
 
-The available generic colour schemes can be previewed simply using the \verb|display.colours| function:
+The available colour schemes can be previewed simply using the \verb|display.colours| and \verb|show.available.palettes| functions:
+
 \begin{verbatim}
 # displays the pastel colour scheme
 display.colours(default.colours(12, palette.type = "pastel"));
@@ -2878,6 +3016,46 @@ display.colours(default.colours(5, palette.type = "spiral.dusk"));
 biomolecule_names <- c("DNA", "RNA", "Protein", "Carbohydrate", "Lipid");
 display.colours(force.colour.scheme(biomolecule_names, "biomolecule"), biomolecule_names);
 \end{verbatim}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# display general schemes}
+\hlkwd{show.available.palettes}\hlstd{(}
+    \hlkwc{type} \hlstd{=} \hlstr{'general'}
+    \hlstd{);}
+\end{alltt}
+\end{kframe}\begin{figure}
+
+{\centering \resizebox{80mm}{80mm}{\includegraphics[width=\maxwidth]{Examples/colour_scheme_general-1} } 
+
+}
+
+\caption[General colour schemes]{General colour schemes\label{fig:colour_scheme_general}}
+\end{figure}
+
+
+\end{knitrout}
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# display specific schemes}
+\hlkwd{show.available.palettes}\hlstd{(}
+    \hlkwc{type} \hlstd{=} \hlstr{'specific'}
+    \hlstd{);}
+\end{alltt}
+\end{kframe}\begin{figure}
+
+{\centering \resizebox{144mm}{96mm}{\includegraphics[width=\maxwidth]{Examples/colour_scheme_specific-1} } 
+
+}
+
+\caption[Specific colour schemes]{Specific colour schemes\label{fig:colour_scheme_specific}}
+\end{figure}
+
+
+\end{knitrout}
 
 The full range of colour schemes available is described in the documentation of the \verb|default.colours| and \verb|force.colour.scheme| functions.
 
@@ -2929,7 +3107,7 @@ generate.at.final, get.defaults, write.metadata, write.plot
 ## [8] base     
 ## 
 ## other attached packages:
-##  [1] BoutrosLab.plotting.general_5.2.3  
+##  [1] BoutrosLab.plotting.general_5.2.4  
 ##  [2] BoutrosLab.dist.overload_1.0.1     
 ##  [3] MASS_7.3-35                        
 ##  [4] BoutrosLab.statistics.general_2.1.2
@@ -2969,6 +3147,9 @@ Edward R. Tufte, The Visual Display of Quantitative Information. Graphics Press,
 
 \bibitem{lattice}
 Sarkar, Deepayan (2008) Lattice: Multivariate Data Visualization with R, Springer.  ISBN: 978-0-387-75968-5 URL: http://lmdvr.r-forge.r-project.org/
+
+\bibitem{trellis}
+Becker, R. A. and Cleveland, W. S., S-PLUS Trellis Graphics User’s Manual, Seattle: MathSoft, Inc., Murray Hill: Bell Labs, 1996.
 
 \bibitem{cleveland-scatter}
 William S. Cleveland, Persi Diaconis \& Robert McGill, Variables on Scatterplots Look More Highly Correlated When the Scales Are Increased. Science 216, 1138-1141 (1982).
