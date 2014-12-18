@@ -9,8 +9,8 @@
 \tabular{ll}{
 Package: \tab BoutrosLab.plotting.general\cr
 Type: \tab Package\cr
-Version: \tab 5.2.4\cr
-Date: \tab 2014-12-16\cr
+Version: \tab 5.2.5\cr
+Date: \tab 2014-12-18\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr

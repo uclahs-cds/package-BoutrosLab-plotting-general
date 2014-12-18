@@ -964,7 +964,7 @@ create.heatmap(
     total.colours = 11,
     colour.scheme = default.colours(10),
     description = 'Heatmap created using BoutrosLab.plotting.general'
-    );    
+    );
 
 # Nature style
 create.heatmap(

@@ -1,7 +1,7 @@
 %\VignetteEngine{knitr::knitr_notangle}
 % \VignetteIndexEntry{Plotting guide using BL.plotting.general}
 
-\documentclass[letterpaper]{article}
+\documentclass[letterpaper]{report}
 
 \usepackage[parfill]{parskip}
 \usepackage[margin=1in]{geometry}
@@ -19,20 +19,28 @@
 \renewcommand{\@oddfoot}{\hfil Page \thepage\ of \pageref{LastPage} \hfil}
 \makeatother
 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\title{A guide to data visualization using BL.plotting.general}
+\author{Christine P'ng \& Jeff Green}
+
 \begin{document}
 
-\begin{center}
-	\LARGE{A guide to data visualization using BL.plotting.general}\\~\\
-	\large{Christine P'ng \& Jeff Green}\\~\\
-	\large{\today}
-\end{center}
+\maketitle
+
 \tableofcontents
 
-\newpage
 \section{Introduction}
-Why does data visualization even matter? After all, data visualization takes work. Datasets are often complex, having millions of data points and many dimensions. Decisions have to be made regarding the best way of highlighting the main message. Aesthetic considerations require knowledge of colour theory, typography, composition, and more. Why do people go through all the trouble?
+Why does data visualization matter? After all, data visualization takes work. Datasets are often complex, having millions of data points and many dimensions. Decisions have to be made regarding the best way of highlighting the main message. Aesthetic considerations require knowledge of colour theory, typography, composition, and more. Why do people go through all the trouble?
 
-The reason is that it is often faster and easier for a person to process data visually. Noticing relationships between data points in a spreadsheet requires much more careful attention compared to viewing the same data points in a chart. Graphs can be used to first find trends in the data, and later to illustrate and highlight messages in data for communication to others \cite{Anscombe}\cite{wong-dataexploration}.
+The reason is that it is often faster and easier for a person to process data visually. Noticing relationships between data points in a spreadsheet requires much more careful attention compared to viewing the same data points in a chart. Graphs can be used to first find trends in the data, and later to illustrate and highlight messages in data for communication to others \cite{Anscombe, wong-dataexploration}.
 
 \subsection{Stages of figure creation}
 When it comes to making figures, there are four main steps:
@@ -47,12 +55,12 @@ Understanding a dataset is especially important when a dataset is large and not 
 
 \begin{figure}[!ht]
   \begin{center}
-     \includegraphics[width=80mm]{Figures/pie_vs_bar_chart.png}
-     \caption{Pie chart and barplot displaying identical data}
+     \includegraphics[width=160mm]{Figures/intro_plotting_ex.png}
+     \caption{Different charts displaying identical data}
   \end{center}
 \end{figure}
 
-Different chart-types are suited for different data-types, and emphasize different kinds of relationships. Using the correct chart-type will improve the readability of the data. It is important to note that some methods of visually encoding data are easier to interpret than others (Table 1). For example, pie charts are difficult to interpret because people struggle to translate angles and areas into exact numerical values. The difference between a 25\% slice and a 20\% slice is not easy to distinguish. Instead, a barchart which compares lengths on a common scale would be easier to read. Display methods which are more accurately interpreted should be selected over methods which are relatively difficult to accurately interpret \cite{wong1}\cite{cleveland}. 
+Different chart-types are suited for different data-types, and emphasize different kinds of relationships. Using the correct chart-type will improve the readability of the data. It is important to note that some methods of visually encoding data are easier to interpret than others (Table 1). For example, pie charts are difficult to interpret because people struggle to translate angles and areas into exact numerical values. Instead, a barchart which compares lengths on a common scale would be easier to read. Display methods which are more accurately interpreted should be selected over methods which are relatively difficult to accurately interpret \cite{wong1, cleveland}. 
 
 \begin{table}
 \begin{center}
@@ -74,1906 +82,12 @@ Rank & Aspect judged\\
 
 Figures should be designed to enhance a viewer's ability to compare data and draw appropriate conclusions \cite{tufte}. This can be done through careful arrangement of a figure, such as placing related elements near each other, highlighting important items, selecting appropriate colours and fonts, and more. Poorly-designed figures can distort the truth and lead viewers to draw inaccurate conclusions \cite{tufte}. 
 
-To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This test (often conducted multiple times) can reveal how clear a figure is.
+To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This ``test'' (which may be conducted multiple times) can reveal how clear a figure is.
 
 \subsection{What is BL.plotting.general?}
 BL.plotting.general is a software package for generating publication-quality, customizable plots. It produces a variety of chart-types, ranging from common charts for simple datasets to novel charts for displaying highly-dimensional datasets.
 
-This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. 
-
-\section{Plotting Functions}
-The following  chart-types available in BL.plotting.general:
-
-\begin{center}
-\begin{tabular}{l  l  l}
-\hline
-Chart-type & Data displayed & Encoding method\\
-\hline
-Barplot & Counts or proportions & Length\\
-Boxplot & Distributions (summary statistics) & Length, Position\\
-Dendrogram & Clustering arrangement & Length, Position \\
-Density plot & Distributions & Area \\
-Dotmap & Matrix of data points & Area, Colour saturation, Colour hue \\
-Heatmap & Matrix of data points (ex. gene expression) & Colour saturation, Colour hue \\
-Hexbinplot & Comparison of two variables & Colour saturation, Colour hue \\
-Histogram & Distribution (binned into ranges) & Area, Length \\
-Manhattan plot & Significance of SNPs at genome locations & Position \\
-Multiplot & (variety) & (variety) \\
-Polygon plot & Time-series or iterative data & Area \\
-Quantile-quantile plot & Comparison of distributions & Position \\
-Scatterplot & Comparison of two variables & Position \\
-Segplot & Distributions (summary statistics) & Position \\
-Strip plot & Distributions & Position \\
-Violin plot & Distributions (optional summary statistics) & Area, Length, Position \\
-\end{tabular}
-\end{center}
-\bigskip
-Each plotting function is designed to display different kinds of data, and to highlight different relationships in the data. 
-
-\subsection{Scatterplot}
-\begin{verbatim}
-create.scatterplot
-\end{verbatim}
-
-The scatterplot compares two variables on a Cartesian coordinate grid by plotting individual data points. It can be used to investigate correlation between variables, and lines can join the points to emphasize trends. Error bars may be added to each point, and the create.scatterplot function can also determine optimal label positions for points. This versatile function is used to create other plot types, including receiver operating characteristic (ROC) curves.
-
-An interesting note is that scatterplots appear more correlated when scales are increased. This means that when the points in a scatterplot use less of the total plotting space available, a stronger association is perceived compared to when the plotting space is filled \cite{cleveland-scatter}.
-
-\subsubsection{Simple scatterplot}
-The scatterplot function accepts data in the form of an R  data frame. Here is an example of a data frame created using the \verb|microarray| dataset provided with BL.plotting.general.
-
-A simple scatterplot has two requirements: the data frame, and a formula to indicate the x and y components of the data frame.
-
-% Here is the formatting for all the plot generation
-<<"figuresetup", cache=FALSE, include=FALSE>>=
-require("knitr")
-opts_chunk$set(fig.path='Examples/', dev='png', warning=FALSE, dpi=100, fig.height=4, fig.width=4, fig.align='center', resize.width='70mm', resize.height='70mm')
-@
-
-<<scatter1, include=TRUE, fig.cap='Simple scatterplot'>>=
-library(BoutrosLab.plotting.general);
-
-scatter.data <- data.frame(
-    sample.one = microarray[1:800,1],
-    sample.two = microarray[1:800,2]
-    );
-    
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data
-    );
-@
-
-\subsubsection{Scatterplot with formatted axes}
-The scatterplot can be customized very easily by specifying the appropriate parameters. 
-<<scatter2, include=TRUE, fig.cap='Scatterplot with formatted axes'>>=
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-
-    # This specifies the plot title
-    main = "Axes & labels",
-    
-    # These specify the axes titles
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-
-    # These specify where axes tick marks appear
-    xat = seq(0, 16, 2),
-    yat = seq(0, 16, 2),
-    
-    # These specify the axes ranges
-    xlimits = c(0, 15),
-    ylimits = c(0, 15),
-    
-    # These specify the font sizes of the axes titles and tick mark labels
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    main.cex = 1.5
-    );
-@
-
-\subsubsection{Scatterplot with gridlines}
-Additional parameter changes will continue to customize the plot.
-<<scatter3, include=TRUE, fig.cap='Scatterplot with grid lines'>>=
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = "Gridlines",
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-    xat = seq(0, 16, 2),
-    yat = seq(0, 16, 2),
-    xlimits = c(0, 15),
-    ylimits = c(0, 15),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    main.cex = 1.5,
-    
-    # The type of plotting character used is changed using the "pch" parameter
-    # Plotting characters with borders may accept both border colour and fill colour
-    # The available options are found in the help files for "pch"
-    pch = 21,
-    col = "black",
-    
-    # Gridlines are created using the "type" parameter
-    # Here, the "p" indicates points, and the "g" indicates grid
-    # Other options for the "type" parameter are found in the "xyplot" documentation
-    type = c("p", "g")
-    );
-@
-
-\subsubsection{Scatterplot with labelled points}
-The scatterplot function is able to calculate optimal label positions for labelling individual points. 
-<<scatter4, include=TRUE, fig.cap='Scatterplot with point labelling'>>=
-# Determine which point(s) should get labels
-points.x <- c();
-points.y <- c();
-point.labels <- c();
-
-for (i in 1:800){
-	if(scatter.data$sample.one[i] > (scatter.data$sample.two[i] + 3.5) ||
-	 scatter.data$sample.one[i] < (scatter.data$sample.two[i] - 3.5)){
-		point.labels <- c(point.labels, rownames(microarray)[i])
-		points.x <- c(points.x, scatter.data$sample.one[i])
-		points.y <- c(points.y, scatter.data$sample.two[i])
-	}
-}
-
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = "Point labels",
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-    xat = seq(0, 16, 2),
-    yat = seq(0, 16, 2),
-    xlimits = c(0, 15),
-    ylimits = c(0, 15),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    main.cex = 1.5,
-    pch = 21,
-    col = "black",
-    type = c("p", "g"),
-    
-    # This allows for auto-placement of labels based on point locations
-    # (otherwise given coordinates will be used)
-    text.guess.labels = TRUE,
-    text.guess.skip.labels = FALSE,
-    
-    # Here the labels and corresponding points are specified
-    add.text = TRUE,
-    text.x = points.x,
-    text.y = points.y,
-    text.cex = 0.8,
-    text.col = "red",
-    text.labels = point.labels,
-    
-    # Here the special points are given custom pch and colour    
-    # These are created by drawing extra points over top the existing points
-    # Another option is to provide a vector to the "pch" and "col" parameters
-    add.points = TRUE,
-    points.x = points.x,
-    points.y = points.y,
-    points.col = "red",
-    points.pch = 17,
-    points.cex = 1.5
-    );
-@
-
-\subsubsection{Scatterplot with correlation key}
-A correlation key legend can be added.
-
-<<scatter5, include=TRUE, fig.cap='Scatterplot with correlation key'>>=
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = "Correlation key",
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-    xat = seq(0, 16, 2),
-    yat = seq(0, 16, 2),
-    xlimits = c(0, 15),
-    ylimits = c(0, 15),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    main.cex = 1.5,
-    pch = 21,
-    col = "black",
-    type = c("p", "g"),
-    text.guess.labels = TRUE,
-    text.guess.skip.labels = FALSE,
-    add.text = TRUE,
-    text.x = points.x,
-    text.y = points.y,
-    text.cex = 0.8,
-    text.col = "red",
-    text.labels = point.labels,
-    add.points = TRUE,
-    points.x = points.x,
-    points.y = points.y,
-    points.col = "red",
-    points.pch = 17,
-    points.cex = 1.5,
-    
-    # Adding a correlation key using the get.corr.key function
-    legend = list(
-        inside = list(
-            fun = draw.key,
-            args = list(
-                key = get.corr.key(
-
-                    # These are the two vectors of the same length
-                    x = scatter.data$sample.one,
-                    y = scatter.data$sample.two,
-                    
-                    # This specifies what to include in the key
-                    label.items = c('spearman','kendall','beta1'),
-                    
-                    # Formatting for the key
-                    alpha.background = 0,
-                    key.cex = 1
-                    )
-                ),
-                
-            # Here are the coordinates for where the place the key
-            x = 0.03,
-            y = 0.95,
-            corner = c(0,1)
-            )
-        )
-    );
-@
-
-\subsubsection{Scatterplot with lines}
-Adding lines can be done in multiple ways.
-<<scatter6, include=TRUE, fig.cap='Scatterplot with lines'>>=
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = "Added lines",
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-    xat = seq(0, 16, 2),
-    yat = seq(0, 16, 2),
-    xlimits = c(0, 15),
-    ylimits = c(0, 15),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    main.cex = 1.5,
-    pch = 21,
-    col = "black",
-    
-    # The "r" indicates the addition of a linear regression line
-    type = c("p", "g", "r"),
-    text.guess.labels = TRUE,
-    text.guess.skip.labels = FALSE,
-    add.text = TRUE,
-    text.x = points.x,
-    text.y = points.y,
-    text.cex = 0.8,
-    text.col = "red",
-    text.labels = point.labels,
-    add.points = TRUE,
-    points.x = points.x,
-    points.y = points.y,
-    points.col = "red",
-    points.pch = 17,
-    points.cex = 1.5,
-    legend = list(
-        inside = list(
-            fun = draw.key,
-            args = list(
-                key = get.corr.key(
-                    x = scatter.data$sample.one,
-                    y = scatter.data$sample.two,
-                    label.items = c('spearman','kendall','beta1'),
-                    alpha.background = 0,
-                    key.cex = 1
-                    )
-                ),
-            x = 0.03,
-            y = 0.95,
-            corner = c(0,1)
-            )
-        ),
-        
-        # This draws a y = x line
-        add.xyline = TRUE,
-        xyline.col = "red"
-    );
-@
-
-\subsection{Boxplot}
-\begin{verbatim}
-create.boxplot
-\end{verbatim}
-
-The boxplot is used to display distributions of data. It is also known as the box-and-whisker plot. The `box' ranges from the first to the third quartile, showing the interquartile range. The line within the box indicates the median (not the mean), and whiskers have variable meaning, such as the maximum and minimum of the data (but they are not error bars; they are not the s.d. or s.e.m). The meaning of whiskers should be indicated, and outliers may be plotted as points \cite{Krzywinski}. BL.plotting.general defaults to setting the whiskers to the most extreme data point within 1.5 $\times$ IQR of the edge of the box.
-
-\subsubsection{Simple boxplot}
-The boxplot also requires a data frame and a corresponding formula.
-<<boxplot1, include=TRUE, fig.cap='Simple boxplot'>>=
-boxplot.data <- data.frame(
-    x <- as.vector(t(microarray[1:10,1:58])),
-    y <- as.factor(rep(rownames(microarray[1:10,1:58]), each = 58))
-    );
-    
-create.boxplot(
-    formula = y ~ x, 
-    data = boxplot.data,
-    xaxis.cex = 1.2,
-    yaxis.cex = 1.2
-    );
-@
-
-\subsubsection{Boxplot with colour}
-Customization of boxplot parameters is done by specifying the appropriate parameters.
-<<boxplot2, include=TRUE, fig.cap='Boxplot with colour'>>=
-create.boxplot(
-    formula = y ~ x, 
-    data = boxplot.data,
-    xaxis.cex = 1.2,
-    yaxis.cex = 1.2,
-    
-    # The colour of the boxes is specified by this parameter
-    fill = default.colours(1)
-    );
-@
-
-\subsubsection{Boxplot with background shading}
-Coloured rectangles can be drawn in plots.
-
-<<boxplot3, include=TRUE, fig.cap='Boxplot with background shading'>>=
-create.boxplot(
-    formula = y ~ x, 
-    data = boxplot.data,
-    fill = default.colours(1),
-    xaxis.cex = 1.2,
-    yaxis.cex = 1.2,
-    
-    # This parameter must be specified for rectangles to be drawn
-    add.rectangle = TRUE,
-	
-    # The coordinates of the rectangles are given by four parameters
-    xleft.rectangle = 0,
-    xright.rectangle = 13,
-    ybottom.rectangle = seq(0.5, 8.5, 2),
-    ytop.rectangle = seq(1.5, 9.5, 2),
-	
-    # The colour of the rectangles are given by this parameter
-    col.rectangle = "grey",
-	
-    # The alpha of the rectangle is specified here
-    alpha.rectangle = 0.25
-    );
-@
-
-\subsubsection{Sorted boxplot}
-To make comparisons clearer, the boxplots can be sorted by median value.
-
-<<boxplot4, include=TRUE, fig.cap='Sorted boxplot'>>=
-create.boxplot(
-    formula = y ~ x, 
-    data = boxplot.data,
-    fill = default.colours(1),
-    xaxis.cex = 1.2,
-    yaxis.cex = 1.2,
-    add.rectangle = TRUE,
-    xleft.rectangle = 0,
-    xright.rectangle = 13,
-    ybottom.rectangle = seq(0.5, 8.5, 2),
-    ytop.rectangle = seq(1.5, 9.5, 2),
-    col.rectangle = "grey",
-    alpha.rectangle = 0.25,
-    
-    # this parameter can sort in either increasing or decreasing order
-    sample.order = "increasing"
-    );
-@
-
-\subsection{Heatmap}
-\begin{verbatim}
-create.heatmap
-\end{verbatim}
-
-The heatmap is a matrix with values represented by colour value and hue. It is often used to display gene expression levels compared against samples. One strength of the heatmap is that it is able to display many data points with more dimensions: it displays a matrix of values where each cell encodes a value through colour, and is associated with both an x-axis and y-axis value. 
-
-However, colour is a subjective method of conveying data. It is useful for displaying general trends and comparing values, but is not accurate for conveying exact values. Neighbouring colours change the perception of a colour such that a particular colour surrounded by lighter colours will appear darker, and vice versa. This means that two cells in a heatmap which are the same colour can appear to be different colours because of the cells surrounding them \cite{wong2}. One option for minimizing this bias is by clustering the heatmap so that similar colours will neighbour each other. Another option is to add grid lines to help distinguish the neighbouring colours. 
-
-\subsubsection{Simple heatmap}
-The minimal input for a heatmap is either a data frame or matrix. 
-
-<<heatmap1, include=TRUE, fig.cap='Simple heatmap'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20]
-    );
-@
-
-\subsubsection{Heatmap with formatted axes}
-Axes formatting can help the appearance of the plot. The heatmap function estimates an appropriate font size based on the size of the data set.
-<<heatmap2, include=TRUE, fig.cap='Heatmap with formatted axes'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    
-    # Formatting the colour key
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    
-    # Setting the labels to NA results in default labels
-    xaxis.lab = NA,
-    yaxis.lab = NA,
-    
-    xaxis.cex = 0.8,
-    yaxis.cex = 0.6,    
-    
-    # Setting the font style (default is bold, 1 is roman)
-    xaxis.fontface = 1,
-    yaxis.fontface = 1
-    );
-@
-
-\subsubsection{Heatmap with different clustering}
-The heatmap defaults to clustering using the``diana" method (divisive analysis clustering). Other clustering options include all agglomerative clustering methods available in hclust.
-
-<<heatmap3, include=TRUE, fig.cap='Heatmap with different clustering'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    xaxis.lab = NA,
-    yaxis.lab = NA,
-    xaxis.fontface = 1,
-    yaxis.fontface = 1,
-    xaxis.cex = 0.8,
-    yaxis.cex = 0.6,  
-    
-    # The clustering method used is specified here
-    # If no clustering is desired, set this to "none"
-    clustering.method = "complete",
-    
-    # The distance measure used can also be selected
-    rows.distance.method = "euclidean",
-    cols.distance.method = "manhattan"
-    );
-@
-
-\subsubsection{Heatmap with stratified clustering}
-Heatmap clustering can be stratified so that segments of the data can be clustered separately.
-
-<<heatmap4, include=TRUE, fig.cap='Heatmap with stratified clustering'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    xaxis.lab = NA,
-    yaxis.lab = NA,
-    xaxis.fontface = 1,
-    yaxis.fontface = 1,
-     xaxis.cex = 0.8,
-    yaxis.cex = 0.6,  
-    clustering.method = "complete",
-    rows.distance.method = "euclidean",
-    cols.distance.method = "manhattan",
- 
-    # Specify the groups. In this example clustering is done by columns
-    stratified.clusters.cols = list(c(1:10), c(11:20)),
-    
-    # Adding line to show division between two strata
-    grid.col = TRUE,
-    col.lines = 10.5,
-    col.lwd = 5,
-    col.colour = "red"
-    );
-@
-
-\subsubsection{Heatmap with covariates}
-Covariate bars are often added to heatmaps to add additional information. In this example, the sex of each sample is indicated using a covariate bar.
-
-<<heatmap5, include=TRUE, fig.cap='Heatmap with covariates'>>=
-# Creating a covariate bar to indicate sex
-sample.covariate <- list(
-    rect = list(
-        col = "black",
-        fill = force.colour.scheme(patient$sex[1:20], scheme = "sex"),
-        lwd = 1.5
-        )
-    );
-
-# Creating legend to match covariate bar
-sample.cov.legend <- list(
-    legend = list(
-        colours =  force.colour.scheme(c("male",  "female"), scheme = "sex"),
-        labels = c("male", "female"),
-        title = "Sex"
-        )
-    );
-    
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    xaxis.lab = NA,
-    xaxis.fontface = 1,
-    xaxis.cex = 0.6,
-    clustering.method = "complete",
-    rows.distance.method = "euclidean",
-    cols.distance.method = "manhattan",
-    stratified.clusters.cols = list(c(1:10), c(11:20)),
-    grid.col = TRUE,
-    col.lines = 10.5,
-    col.lwd = 5,
-    col.colour = "red",
-    
-    # Adding covariates and corresponding legend
-    covariates = sample.covariate,
-    covariate.legend = sample.cov.legend,
-    legend.side = "right",
-    
-    # Customizing covariate bar
-    covariates.grid.border = list(col = "red", lwd = 3)
-    );
-@
-
-\subsubsection{Heatmap with grid lines}
-Using grid lines can help to more accurately perceive the differences between colours.
-<<heatmap6, include=TRUE, fig.cap='Heatmap with grid lines'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    xaxis.lab = NA,
-    xaxis.fontface = 1,
-    xaxis.cex = 0.8,
-    clustering.method = "complete",
-    rows.distance.method = "euclidean",
-    cols.distance.method = "manhattan",
-    stratified.clusters.cols = list(c(1:10), c(11:20)),
-    
-    # Turning grid lines on
-    grid.row = TRUE,
-    grid.col = TRUE,
-    
-    # Setting the colour of the grid lines 
-    row.colour = "white",
-    col.colour = c(rep("white", 10), "red", rep("white",10)),
-    
-    # Setting the width of the grid lines
-    row.lwd = 1,
-    col.lwd = c(rep(1, 10), 5, rep(1,10))
-    );
-@
-
-\subsubsection{Heatmap with discrete colours}
-Sometimes heatmaps are used to display data with can be divided into discrete bins. In these cases, it is appropriate to use discrete colour schemes. The example below illustrates how a discrete colour scheme is created.
-
-<<heatmap7, include=TRUE, fig.cap='Heatmap with discrete colours'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    xaxis.lab = NA,
-    xaxis.fontface = 1,
-    xaxis.cex = 0.8,
-    clustering.method = "complete",
-    rows.distance.method = "euclidean",
-    cols.distance.method = "manhattan",
-    stratified.clusters.cols = list(c(1:10), c(11:20)),
-    grid.row = TRUE,
-    grid.col = TRUE,
-    row.colour = "white",
-    col.colour = c(rep("white", 10), "red", rep("white",10)),
-    row.lwd = 0.75,
-    col.lwd = c(rep(0.75, 10), 3, rep(0.75,10)),
-
-   # Set the colour scheme
-   # Setting more "total.colours" than colours  in "colour.scheme" creates a discretized gradient
-   colour.scheme = default.colours(5, palette.type = "spiral.sunrise"),
-   
-   # Specify how many total colours (add one for a null colour)
-   # In this example, 5 colours will be displayed
-   total.colours = 6
-   );
-@
-
-\subsubsection{Heatmap with symbols}
-Symbols can be added over the cells.
-
-<<heatmap8, include=TRUE, fig.cap='Heatmap with symbols'>>=
-create.heatmap(
-    x = microarray[1:20, 1:20],
-    colourkey.cex = 1,
-    colourkey.labels.at = seq(2, 12, 1),    
-    xaxis.lab = NA,
-    xaxis.fontface = 1,
-    xaxis.cex = 0.8,
-    clustering.method = "complete",
-    rows.distance.method = "euclidean",
-    cols.distance.method = "manhattan",
-    stratified.clusters.cols = list(c(1:10), c(11:20)),
-    grid.row = TRUE,
-    grid.col = TRUE,
-    row.colour = "white",
-    col.colour = c(rep("white", 10), "red", rep("white",10)),
-    row.lwd = 0.75,
-    col.lwd = c(rep(0.75, 10), 3, rep(0.75,10)),
-   colour.scheme = default.colours(5, palette.type = "spiral.sunrise"),
-   total.colours = 6,
-   
-   # Adding symbols using one method
-   row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
-   col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
-   cell.text = rep("x", times = sum(microarray[1:20, 1:20] > 11)),
-   text.col = "red",
-   text.cex = 0.9
-   );
-@
-
-\subsection{Barplot}
-\begin{verbatim}
-create.barplot
-\end{verbatim}
-
-The barplot is designed to display counts of categorical data. This means data which is divided into discrete bins. 
-
-When displaying data with uncertainty, therefore suggesting the addition of error bars, barplots are not an optimal choice (although, it \textit{is} possible to add error bars to barplots using BL.plotting.general). Barplots are not designed for displaying distributions, and error bars might cover ranges never observed in the data: it is advised that using a boxplot  or a strip plot might be more appropriate \cite{streit}. 
-
-\subsubsection{Simple barplot}
-A minimal barplot requires a data frame and corresponding formula.
-
-<<barplot1, include=TRUE, fig.cap='Simple barplot'>>=
-# Set up the data
-total.counts <- apply(SNV[1:15], 2, function(x){ mutation.count <- (30 - sum(is.na(x)))});
-count.nonsyn <- function(x){ mutation.count <- length(which(x == 1)); }
-nonsynonymous.SNV <- apply(SNV[1:15], 2, count.nonsyn);
-other.mutations <- total.counts - nonsynonymous.SNV;
-
-# Create a data frame 
-barplot.data <- data.frame(
-    samples = rep(1:15, 2),
-    mutation = c(rep("nonsynonymous", 15), rep("other",15)),
-    values = c(nonsynonymous.SNV, other.mutations)
-    );
-    
-# Create the simple plot
-create.barplot(
-    formula = values ~ samples,
-    data = barplot.data[barplot.data$mutation == "nonsynonymous",]
-    );
-@
-
-\subsubsection{Barplot with colours and line}
-Select bars colours can be changed.
-
-<<barplot2, include=TRUE, fig.cap='Barplot with colours and line'>>=
-# Select which bars
-tall.bars <- which(barplot.data[barplot.data$mutation == "nonsynonymous",]$values > 5);
-colour.scheme <- rep("grey", 15);
-colour.scheme[tall.bars] <- "red";
-
-create.barplot(
-    formula = values ~ samples,
-    data = barplot.data[barplot.data$mutation == "nonsynonymous",],
-    
-    # Line added 
-    abline.h = 5,
-    abline.col = "red",
-    abline.type = "dotted",
-    abline.lwd = 2,
-    
-    # Colours changed
-    col = colour.scheme
-    );
-@
-
-\subsubsection{Stacked barplot with legend}
-Stacked barplots compare overall quantities across items, and also indicate the contribution of sub-categories to the total count \cite{streit}.
-
-<<barplot3, include=TRUE, fig.cap='Stacked barplot'>>=
-create.barplot(
-    formula = values ~ samples,
-    data = barplot.data,
-    
-    # Declaring that the plot will be stacked, not grouped
-    stack = TRUE,
-    
-    # Specify how the data should be divided
-    groups = mutation,
-    
-    # Setting different colours for the groups
-    col = default.colours(2, palette.type = "pastel"),
-    
-    # Creating a legend 
-    legend = list(
-        inside = list(
-            fun = draw.key,
-            args = list(
-                key = list(
-                	
-                    # Here the points in the legends are drawn
-                    points = list(
-                        col = "black",
-                        pch = 22,
-                        cex = 2,
-                        # reverse order to match stacked bar order
-                        fill = rev(default.colours(2, palette.type = "pastel"))
-                        ),
-
-                    # Here the text in the legend is drawn
-                    text = list(
-                        # reverse order to match stacked bar order
-                        lab = rev(c("Nonsynonymous SNV", "Other SNV"))
-                        ),
-                    padding.text = 3,
-                    cex = 1
-                    )
-                ),
-            # Where the legend should be placed
-            x = 0.25,
-            y = 0.95
-            )
-        )
-    );
-@
-
-\subsubsection{Grouped barplot with legend}
-Grouped barplots focus on comparing values across sub-categories, and allow  for comparison across items \cite{streit}.
-
-<<barplot4, include=TRUE, fig.cap='Grouped barplot'>>=
-create.barplot(
-    formula = values ~ samples,
-    data = barplot.data,
-    
-    # Specifying how the data will be divided
-    # Defaults to creating grouped bar plots when this is set
-    groups = mutation,
-    
-    # Setting colours for the groups
-    col = default.colours(2, palette.type = "pastel"),
-    
-    # Creating a legend 
-    legend = list(
-        inside = list(
-            fun = draw.key,
-            args = list(
-                key = list(
-                	
-                    # Here the points in the legends are drawn
-                    points = list(
-                        col = "black",
-                        pch = 22,
-                        cex = 2,
-                        fill = default.colours(2, palette.type = "pastel")
-                        ),
-
-                    # Here the text in the legend is drawn
-                    text = list(
-                        lab = c("Nonsynonymous SNV", "Other SNV")
-                        ),
-
-                    # Spacing between items
-                    padding.text = 3,
-                    cex = 1
-                    )
-                ),
-            # Where on the plotting space the legend should be placed
-            x = 0.25,
-            y = 0.95
-            )
-        )
-    );
-@
-
-
-\subsection{Density plot}
-\begin{verbatim}
-create.densityplot
-\end{verbatim}
-
-The density plot also shows data distributions. It is an empirical estimate of the probability density function, and the area under the curve is the cumulative distribution function. It can be thought of as a smoothed version of the histogram.
-
-In comparison to the boxplot, the density plot can compare fewer distributions because after a certain point the lines will interfere with one another. Additionally, summary statistics are not directly provided by the density plot. However, the density plot reveals more subtleties in the ``shape" of the data, which may be hidden in the boxplot.
-
-\subsubsection{Simple density plot}
-The minimal input required by a density plot is a list of vectors.
-
-<<densityplot1, include=TRUE, fig.cap='Simple density plot'>>=
-create.densityplot(
-    x = as.data.frame(t(microarray[1:3,1:58]))
-    );
-@
-
-\subsubsection{Density plot with line type}
-Different colours and line types can be used to better distinguish between the lines
-
-<<densityplot2, include=TRUE, fig.cap='Density plot with colour and line type'>>=
-create.densityplot(
-    x = as.data.frame(t(microarray[1:3,1:58])),
-    
-    # Line type
-    lty = c("solid", "dashed", "dotted"),
-    
-    # Colours
-    col = default.colours(3)
-    );
-@
-
-\subsection{Dendrogram}
-\begin{verbatim}
-create.dendrogram
-\end{verbatim}
-
-The dendrogram is a tree diagram used to display the clustering arrangement determined by hierarchical clustering. It is often used in conjunction with heatmaps to indicate the clustering of genes or samples. In BL.plotting.general, this function is called by the \verb|create.heatmap| function when cells are clustered.
-
-The distance from a leaf node to a node indicates the correlation to other leaf nodes, where further distances indicate less correlation. Closely clustered leaf nodes (located at the bottom of the dendrogram) are highly correlated.
-
-\subsubsection{Simple dendrogram}
-This function is not structured the same way as other plotting functions. It does not create Trellis objects, and is not usually plotted alone.
-
-<<dendrogram, include=TRUE, fig.cap='Simple dendrogram'>>=
-dendrogram <- create.dendrogram(x = microarray[1:20, 1:20]);
-plot(x = dendrogram);
-@
-
-\subsection{Dotmap}
-\begin{verbatim}
-create.dotmap
-\end{verbatim}
-
-The dotmap is a novel chart-type found in BL.plotting.general. It is a matrix of dots, where the dot sizes and dot colours are used to encode information. The matrix can also be filled with a background colour, similar to heatmaps. This plot is very useful for displaying high-dimensional data because it is able to display two dimensions more than a heatmap through dot size and dot colour.
-
-One example of how to use this plot is to use the dot size to indicate magnitude of fold change, dot colour to show the direction of change, and the background colour to indicate p-values.
-
-\subsubsection{Simple dotmap}
-A basic dotmap takes a data frame as input.
-<<dotmap1, include=TRUE, fig.cap='Simple dotmap'>>=
-# Generating fake data
-set.seed(12345);
-
-dotmap.data <- data.frame(
-    "A" = runif(n = 10, min = -1, max = 1),
-    "B" = runif(n = 10, min = -1, max = 1),
-    "C" = runif(n = 10, min = -1, max = 1)
-    );
-
-# Functions to decide the spot size and colour can be included
-# If not, default functions will be used
-spot.size.function <- function(x) { 0.1 + (2 * abs(x)); }
-
-spot.colour.function <- function(x) {
-    colours <- rep("white", length(x));
-    colours[sign(x) == -1] <- default.colours(2, palette.type = "dotmap")[1];
-    colours[sign(x) ==  1] <- default.colours(2, palette.type = "dotmap")[2];
-    return(colours);
-    }
-
-create.dotmap(
-    x = dotmap.data,
-    yaxis.cex = 1.5,
-    xaxis.cex = 1.5
-    );
-@
-
-\subsubsection{Dotmap with legend}
-A legend can be added to indicate the meaning of the dot colours and sizes.
-
-<<dotmap2, include=TRUE, fig.cap='Dotmap with legend'>>=
-create.dotmap(
-    x = dotmap.data,
-    yaxis.cex = 1.5,
-    xaxis.cex = 1.5,
-    
-    # Using the specified spot size and colour functions
-    spot.size.function = spot.size.function,
-    spot.colour.function = spot.colour.function,    
-    
-    # Create a legend matching the dot sizes
-    key = list(
-    
-        # This indicates which side of the plot the legend will appear
-        space = "right",
-        
-        # Here the points are created using the spot size and colour functions
-        # This ensures that they match the spots found in the plot
-        points = list(
-            cex = spot.size.function(seq(-1, 1, 0.2)),
-            col = spot.colour.function(seq(-1, 1, 0.2)),
-            pch = 19
-            ),
-        
-        # These are the labels which will match the dots
-        text = list(
-            lab = c("-1.0", "-0.8", "-0.6", "-0.4", "-0.2", " 0.0", "+0.2",
-                 "+0.4", "+0.6", "+0.8", "+1.0"),
-            cex = 1.5,
-            adj = 1.0,
-            fontface = "bold"
-            )
-        )
-    );
-@
-
-\subsubsection{Dotmap with background}
-The background of each cell can also have a colour. Colours do not appear the same with and without borders \cite{brewer-colour}. Therefore it is advisable to keep the surrounding colours of points consistent between the legend and the plotting space.
-
-<<dotmap3, include=TRUE, fig.cap='Dotmap with background'>>=
-# Generating background data
-bg.data <- data.frame(
-    "A" = runif(n = 10, min = -1, max = 1),
-    "B" = runif(n = 10, min = -1, max = 1),
-    "C" = runif(n = 10, min = -1, max = 1)
-    );
-
-create.dotmap(
-    x = dotmap.data,
-    yaxis.cex = 1.5,
-    xaxis.cex = 1.5,
-    spot.size.function = spot.size.function,
-    spot.colour.function = spot.colour.function,    
-    key = list(
-        space = "right",
-        points = list(
-            cex = spot.size.function(seq(-1, 1, 0.2)),
-            col = spot.colour.function(seq(-1, 1, 0.2)),
-            pch = 19
-            ),
-        text = list(
-            lab = c("-1.0", "-0.8", "-0.6", "-0.4", "-0.2", " 0.0", "+0.2", 
-                "+0.4", "+0.6", "+0.8", "+1.0"),
-            cex = 1.5,
-            adj = 1.0,
-            fontface = "bold"
-            )
-        ),
-    
-    # Control spacing at top of key
-    key.top = 1,
-
-    # Adding border to points to stand out more from background
-    pch = 21,
-    pch.border.col = "white",
-    
-    # Adding the background
-    bg.data = bg.data,
-
-    # Adding a colourkey
-    colourkey = TRUE,
-    
-    # Setting colour scheme for background data
-    colour.scheme = c("white", "black"),
-    
-    # Making bg colour scheme a discrete colour scheme, with breaks at these places
-    at = seq(-1, 1, 0.5)
-    );
-@
-
-\subsection{Hexbinplot}
-\begin{verbatim}
-create.hexbinplot
-\end{verbatim}
-
-The hexbinplot is a hexagonally binned plot which uses colour (usually colour value) to plot points. It uses a coordinate grid similar to scatterplots, but while scatterplots display individual data points, the hexbinplot displays the density of data points in a given space on the plot. It might be thought of as similar to a two-dimensional histogram. One use-case for this plot is in circumstances where data points are too densely packed to be distinguishable on a scatterplot.
-
-\subsubsection{Simple hexbinplot}
-The minimum input for a hexbinplot is data frame and formula.
-<<hexbin1, include=TRUE, fig.cap='Simple hexbinplot'>>=
-hexbin.data <- data.frame(
-    x = microarray[,1],
-    y = microarray[,2]
-    );
-    
-create.hexbinplot(
-    data = hexbin.data,
-    formula = x ~ y
-    );
-@
-
-\subsubsection{Hexbinplot with custom bins}
-The bin sizes can be customized to use more standard increments.
-<<hexbin2, include=TRUE, fig.cap='Hexbinplot with custom bins'>>=
-create.hexbinplot(
-    data = hexbin.data,
-    formula = x ~ y, 
-
-    # Setting the number of bins
-    xbins = 15,
-    colourcut = seq(0, 1, length = 9),
-    maxcnt = 160
-    );
-@
-
-\subsection{Histogram}
-\begin{verbatim}
-create.histogram
-\end{verbatim}
-
-The histogram represents the distribution of data. It is an estimation of the probability distribution of a continuous variable. If a histogram had an infinite number of bars, it would have the same shape as a density plot. 
-
-Although its appearance is similar to a barplot, the main difference is that a barplot uses discrete data, while a histogram uses continuous data. This means that the `bins' of a histogram are data-ranges. This points to why the bars in a barplot are often separated by a space, while the bars in a histogram are usually directly next to one another.
-
-\subsubsection{Simple histogram}
-The minimal input for the histogram is either a numeric vector, or a formula and data frame.
-<<histogram1, include=TRUE, fig.cap='Simple histogram'>>=
-create.histogram(
-    x = microarray[,1]
-    );
-@
-
-\subsection{Manhattan plot}
-\begin{verbatim}
-create.manhattanplot
-\end{verbatim}
-
-The Manhattan plot is a type of scatterplot used to display chromosomal locations along the x-axis, and the negative logarithm of p-values of mutations along the y-axis. This means that the points which are higher on the plot are highly significant, while the points near the 0 axis are less significant.
-
-\subsubsection{Simple Manhattan plot}
-This plot accepts a data frame together with a formula for the x and y components. Manhattan plots usually display a large number of data points.
-
-<<manhattan1, include=TRUE, fig.cap='Simple Manhattan plot'>>=
-# Generating some fake example data
-manhattan.data <- data.frame(
-    x = runif(20000, 0, 1),
-    y = 1:20000
-    );
-
-create.manhattanplot(
-    formula = -log10(x) ~ y,
-    data = manhattan.data,
-    xaxis.cex = 1.5,
-    yaxis.cex = 1.5	,
-    xaxis.tck = 1
-    );
-@
-
-\subsubsection{Manhattan plot with line}
-Adding a line can be used to easily view data points above a particular p-value.
-
-<<manhattan2, include=TRUE, fig.cap='Manhattan plot with line'>>=
-create.manhattanplot(
-    formula = -log10(x) ~ y,
-    data = manhattan.data,
-    xaxis.cex = 1.5,
-    yaxis.cex = 1.5	,
-    xaxis.tck = 1,
-    
-    # Adding a horizontal line
-    abline.h = 2,
-    
-    # Changing the line type and style
-    abline.col = "red",
-    abline.lwd = 3,
-    abline.lty = "solid"
-    );
-@
-
-\subsection{Polygon plot}
-\begin{verbatim}
-create.polygonplot
-\end{verbatim}
-
-The polygon plot draws a polygon. There are many options for how to use this function. It takes as input the maximum and minimum values and optional median values, and fills in the difference to be the polygon `shape'. This chart is often used for repeated, iterative data, such as time-series data.
-
-\subsubsection{Simple polygon plot}
-The minimum input for a polygon plot is data frame and formula to extract the components. Additional input is needed to determine the maximum and minimum values of the polygon, as well as the optional median values.
-
-<<polygon1, include=TRUE, fig.cap='Simple polygon plot'>>=
-# Generating fake data
-set.seed(12345);
-temp  <- matrix(runif(1010), ncol = 10) + sort(runif(101));
-
-polygon.data <- data.frame(
-    x = 0:100,
-    max = apply(temp, 1, max),
-    min = apply(temp, 1, min),
-    median = apply(temp, 1, median)
-    );
-
-# Creating the simple plot
-create.polygonplot(
-    formula = NA ~ x,
-    data = polygon.data,
-    max = polygon.data$max,
-    min = polygon.data$min,
-
-    # Adjusting the axes limits
-    xlimits = c(0,100),
-    ylimits = c (0,2),
-    
-    # Adding fill colour
-    col = default.colours(1, palette.type = "pastel"),
-    
-    # Adding middle line
-    add.median = TRUE,
-    median = polygon.data$median
-    );
-@
-
-\subsection{Quantile-quantile plot}
-A quantile-quantile plot compares distributions by plotting them in a scatterplot fashion, where one distribution provides the x-axis values, and the other distribution provides the y-axis values. The closer in appearance the plot is to an y = x line indicates how similar the two distributions are.
-
-\begin{verbatim}
-create.qqplot.comparison
-\end{verbatim}
-This quantile-quantile plot compares two distributions.
-\begin{verbatim}
-create.qqplot.fit
-\end{verbatim}
-This quantile-quantile plot compares a distribution against a theoretical distribution.
-
-\subsubsection{Simple QQ plot comparison}
-The minimum input for the QQ plot comparison is either a list of numeric vectors or a data source and formula.
-<<qqcomparison, include=TRUE, fig.cap='Simple QQ plot comparison'>>=
-create.qqplot.comparison(
-    x = list(rnorm(100), rnorm(100))
-    );
-@
-
-\subsubsection{Simple QQ plot fit}
-The minimum input for the QQ plot fit is either a list of numeric vectors or a data source and formula.
-
-<<qqfit, include=TRUE, fig.cap='Simple QQ plot fit'>>=
-create.qqplot.fit(
-    x = rnorm(300),
-    
-    # choosing to compare against a uniform distribution
-    distribution = qunif
-    );
-@
-
-\subsection{Segplot}
-\begin{verbatim}
-create.segplot
-\end{verbatim}
-
-The segplot is also known as a forest plot, and is often used to compare the effectiveness of treatments suggested by different studies, but can be applied to a variety of other datasets. The middle value can be used to indicate a point, while the bar may show the surrounding range of values. This kind of plot can be used to compare distributions, where summary statistics are displayed.
-
-\subsubsection{Simple segplot}
-The minimum input to a segplot is a data frame and corresponding formula.
-
-<<segplot1, include=TRUE, fig.cap='Simple segplot'>>=
-# Generating fake data
-set.seed(12345);
-
-segplot.data <- data.frame(
-    min = runif(10,5,10),
-    max = runif(10,20,25),
-    median = runif(10, 10, 20),
-    labels = as.factor(LETTERS[1:10])
-    );
-
-create.segplot(
-    formula = labels ~ min + max,
-    data = segplot.data,
-    
-    # Adding middle dots
-    centers = segplot.data$median
-    );
-@
-
-\subsubsection{Segplot with bands}
-Segplots can be displayed using thick bands.
-
-<<segplot2, include=TRUE, fig.cap='Segplot with bands'>>=
-create.segplot(
-    formula = labels ~ min + max,
-    data = segplot.data,
-    
-    # Using bands instead of lines
-    draw.bands = TRUE
-    );
-@
-
-\subsection{Strip plot}
-\begin{verbatim}
-create.stripplot
-\end{verbatim}
-
-The strip plot is a type of scatterplot where one axis is discrete, meaning that the points are divided into discrete bins. If points are densely packed, they can be more easily distinguished by applying a jitter. This kind of plot can be used to display distributions, where each data point is shown.
-
-\subsubsection{Simple strip plot}
-The minimum input for a strip plot is a data frame and formula indicating x and y components.
-<<stripplot1, include=TRUE, fig.cap='Simple strip plot'>>=
-stripplot.data <- data.frame(
-    values = c(t(microarray[1:10, 1:58])),
-    genes = rep(rownames(microarray)[1:10], each = 58)
-    );
-
-create.stripplot(
-    formula = genes ~ values,
-    data = stripplot.data,
-    xaxis.cex = 1,
-    yaxis.cex = 1
-    );
-@
-
-\subsubsection{Strip plot with jitter and shading}
-Adding jitter to the points can make it easier to distinguish the values in a strip plot.
-<<stripplot2, include=TRUE, fig.cap='Strip plot with jitter and shading'>>=
-create.stripplot(
-    formula = genes ~ values,
-    data = stripplot.data,
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    
-    # Adding jitter
-    # The amount of jitter used can be controlled using jitter.factor and jitter.amount
-    jitter.data = TRUE,
-    
-    # This parameter must be specified for rectangles to be drawn
-    add.rectangle = TRUE,
-	
-    # The coordinates of the rectangles are given by four parameters
-    xleft.rectangle = 0,
-    xright.rectangle = 13,
-    ybottom.rectangle = seq(0.5, 8.5, 2),
-    ytop.rectangle = seq(1.5, 9.5, 2),
-	
-    # The colour of the rectangles are given by this parameter
-    col.rectangle = "grey",
-	
-    # The alpha of the rectangle is specified here
-    alpha.rectangle = 0.25
-    );
-@
-
-\subsection{Violin plot}
-\begin{verbatim}
-create.violinplot
-\end{verbatim}
-
-The violin plot is a combination of a boxplot and a kernel density plot. The shape of the violin plot shows the density, where wider sections of the plot indicate regions of higher density. Additional optional points within the violins can be used to encode the median and interquartile range. This is a method of comparing distributions where both summary statistics and a visualization of the data is provided. One difference with this method compared to the density plot is that the violin plot does not indicate what the actual density values are: the height or width of bulges in the violin plots is relative, not absolute.
-
-\subsubsection{Simple violin plot}
-The minimal input for a violin plot is a data frame and formula.
-<<violinplot, include=TRUE, fig.cap='Simple violinplot'>>=
-violin.data <- data.frame(
-    values = c(t(microarray[1:10, 1:58])),
-    genes = rep(rownames(microarray)[1:10], each = 58)
-    );
-
-create.violinplot(
-    formula = values ~ genes,
-    data = violin.data,
-	xaxis.cex = 1,
-	yaxis.cex = 1,
-
-    # Rotating the axes labels to be clearer
-    xaxis.rot = 90
-    );
-@
-
-\section{Multiplot}
-\begin{verbatim}
-create.multiplot
-\end{verbatim}
-
-The muliplot is not a chart-type in itself: rather, it is a function to combine multiple plots into a single plot. It enables the creation of complex figures in a programmable way and encourages good design by standardizing elements such as line widths and font size. 
-
-\subsection{Example 1: Simple multiplot}
-This example creates a figure out of a single bar plot and three heatmaps using the HairEyeColor data set supplied by the R datasets package.
-
-\subsubsection{Setting up the data}
-The first step is to format the data. 
-
-<<>>=
-# Put the array into a data frame that will be used in the barplot
-haireye <- as.data.frame(HairEyeColor);
-
-# Sort the data
-haireye <- haireye[order(-haireye[,4]),];
-
-# Put each column of the dataframe into a matrix for the heatmap
-Hair <- as.matrix(as.numeric(haireye[,1]));
-Eye <- as.matrix(as.numeric(haireye[,2]));
-Sex <- as.matrix(as.numeric(haireye[,3]));
-@
-
-\subsubsection{Creating the bar plot}
-The code below creates a bar plot showing the number of males and females with a particular hair and eye colour. Proper labels and titles will be added at the end using the create.multiplot function. The plot is not printed to file -- instead, it is saved in the \verb|hair.eye.colour.barplot| variable for later use by the multiplot function.
-
-<<multiplotex1_barplot, include=TRUE, fig.cap='Hair and eye colour barplot'>>=
-# create the barplot used for the frequency of each type of person
-hair.eye.colour.barplot <- create.barplot(
-        formula = Freq ~ c(1:32),
-        data = haireye,
-
-        # Set the limits that the plot will display to 0 and 80 to make it look nicer
-        ylimits = c(0.00, 80)
-        );
-
-# Printing the barplot to show what it looks like
-hair.eye.colour.barplot
-@
-
-\subsubsection{Creating the covariate bars}
-The covariate bars in this example are created using the create.heatmap function.  Discrete colour schemes are used in these covariate bars, and each colour used in specified in the colour.scheme parameter. The total number of colours used is specified in the total.col parameter, plus one to account for the white which is displayed in the case of missing values.
-
-<<multiplotex1_cov1, include=TRUE, fig.cap='Hair colour covariate'>>=
-hair.heatmap <- create.heatmap(
-        x = Hair,
-        clustering.method = "none",
-        scale.data = FALSE,
-        colour.scheme = c("black", "chocolate4", "orange", "yellow"),
-    
-        # Show each of those colours once (i.e, four values, four colours)
-        total.col = 5,
-        grid.col = TRUE,
-        print.colour.key = FALSE,
-
-        # Remove y-axis ticks
-        yaxis.tck = 0,
-        height = 1
-        );
-        
-hair.heatmap
-@
-
-The same process is followed for the remaining covariate bars.
-
-<<multiplotex1_cov2, include=TRUE, fig.cap='Eye colour covariate'>>=
-eye.heatmap <- create.heatmap(
-        x = Eye,
-        clustering.method = "none",
-        scale.data = FALSE, 
-        colour.scheme = c("lightsalmon4", "lightskyblue1", "lightsalmon2", "green4"),
-        total.col = 5,
-        grid.col = TRUE,
-        print.colour.key = FALSE,
-        yaxis.tck = 0,
-        height = 1
-        );
-
-eye.heatmap
-@
-
-<<multiplotex1_cov3, include=TRUE, fig.cap='Sex covariate'>>=
-sex.heatmap <- create.heatmap(
-        x = Sex,
-        clustering.method = "none",
-        scale.data = FALSE,
-        colour.scheme = force.colour.scheme(c("Male","Female"),scheme = "sex"),
-        total.col = 3,
-        grid.col = TRUE,
-        print.colour.key = FALSE,
-        yaxis.tck = 0,
-        height = 1
-        );
-
-sex.heatmap
-@
-
-\subsubsection {Creating the legend}
-A legend is created to differentiate the meaning of the heatmaps. This legend has three sections: one for hair colour, eye colour and sex.
-
-<<>>=
-# create the legend that will be used to show the values of the covariates
-legends <- legend.grob( list(
-
-       # create the legend for the hair colour
-       legend = list(
-               colours = c("black", "chocolate4", "orange", "yellow"),
-               title = expression(underline("Hair Colour")),
-               labels = c("Black", "Brown", "Red", "Blonde"),
-               size = 3,
-               title.cex = 2,
-               label.cex = 2
-               ),
-
-       # create the legend for the eye colour
-       legend = list(
-               colours = c("lightsalmon4", "lightskyblue1", "lightsalmon2", "green4"),
-               title = expression(underline("Eye Colour")),
-               labels = c("Brown", "Blue", "Hazel", "Green"),
-               size = 3,
-               title.cex = 2,
-               label.cex = 2
-               ),
-
-       # create the legend for the sex
-       legend = list(
-               colours = force.colour.scheme(c("Male", "Female"),scheme = "sex"),
-               title = expression(underline("Sex")),
-               labels = c("Male", "Female"),
-               size = 3,
-               title.cex = 2,
-               label.cex = 2
-               )
-       ), 
-       title.just = "left", 
-       title.fontface = "plain")
-@
-
-\subsubsection{Creating the final figure}
-After all the plots and legends are created, they are combined using the create.multiplot function. This figure is arranged so the bar plot is the largest and at the top, and the three heatmaps appear underneath to explain what each of the covariate bars represent. The order is achieved through listing the plots in the order in which they should appear (from bottom to top) in the plot.objects parameter. Furthermore, axis labels are only on the barplot, leaving others without labels and tick marks.
-
-<<multiplotex1_final, include=TRUE, fig.cap='Example 1 multiplot', fig.height = 6, fig.width = 6, resize.height ='80mm', resize.width ='80mm'>>=
- create.multiplot(
-    
-         # The four plots are listed from bottom to top 
-         plot.objects = list(sex.heatmap, eye.heatmap, hair.heatmap, hair.eye.colour.barplot),
-
-         # The labels are placed on the side of the multiplot 
-         # (tabs are needed for labels to be in proper location)
-         ylab.label = c("\t", "Number of people", "\t", "\t"),
-         main.key.padding = 2,
-         ylab.cex = 1.25,
-         main.cex = 1.25,
-         yaxis.cex = 1,
-         panel.heights = c(1, 0.1, 0.1, 0.1),
-
-         # The spacing between the plots is set
-         yspacing = c(-1, -1, -1),
-         xaxis.lab = NULL,
-
-         # Remove axes tick marks
-         xaxis.alternating = 0,
-         yaxis.alternating = 0,
-
-         # Set the yaxis labels (only needed on the bar plot)
-         yaxis.lab = list(NULL, NULL, NULL, seq(0, 100, 20)),
-
-         # Put the legend on the right side of the multiplot
-         legend = list(right = list(fun = legends)),
-         print.new.legend = TRUE
-         );
-@
-
-\subsection{Example 2: Complex layout}
-
-In this example we make a plot to convey gene expression using a more complex layout. This plot consists of two bar plots and two heatmaps. The heatmap takes up most of the figure and represents gene expression level changes in different samples. The top bar plot will represent the amount of sample used, and the side bar plot represents the importance of the gene. (Note that this example is not based upon real data.)
-
-\subsubsection{Setting up the data}
-
-Data is generated for this example: 
-
-<<>>=
-set.seed(12345);
-
-# main heatmap data
-heatmap.data <- data.frame(
-    a = rnorm(n = 25, mean = 0, sd = 0.75),
-    b = rnorm(n = 25, mean = 0, sd = 0.75),
-    c = rnorm(n = 25, mean = 0, sd = 0.75),
-    d = rnorm(n = 25, mean = 0, sd = 0.75),
-    e = rnorm(n = 25, mean = 0, sd = 0.75),
-    f = rnorm(n = 25, mean = 0, sd = 0.75),
-    g = rnorm(n = 25, mean = 0, sd = 0.75),
-    h = rnorm(n = 25, mean = 0, sd = 0.75)
-    );
-
-# colourkey data
-colorkey.data <- data.frame(
-    x <- seq(-50,50,1)
-    );
-
-# top barplot data
-top.barplot.data <- data.frame(
-    x = rnorm(n = 25, mean = 2, sd = 0.75),
-    y = seq(1,25,1)
-    );
- 
- # side barplot data
-side.barplot.data <- data.frame(
-    x = rnorm(n = 8, mean = 0, sd = 0.75),
-    y = seq(1,8,1)
-    );
-@
-\subsubsection{Creating the main heatmap}
-
-Here the heatmap used to display the expression level for each sample and gene is created. 
-
-<<multiplotex2_heatmap, include=TRUE, fig.cap='Main heatmap'>>=
-gene.expression.heatmap <- create.heatmap(
-     x = heatmap.data,
-     xaxis.tck = 0,
-     yaxis.tck = 0,
-     colourkey.cex = 1,
-     
-     # Don't want to cluster this heatmap
-     clustering.method = "none",
-     axes.lwd = 1,
-     ylab.label = "y",
-     xlab.label = "x",
-     yaxis.fontface = 1,
-     xaxis.fontface = 1,
-     xlab.cex = 1,
-     ylab.cex = 1,
-     main.cex = 1,
-     colour.scheme = c("red", "white", "turquoise")
-     );
-     
-gene.expression.heatmap
-@
-
-\subsubsection{Creating the colourkey}
-
-Here the colourkey for the main heatmap is created. It displays the same colours as the heatmap, as well as indicate what the colours represent.
-
-<<multiplotex2_colourkey, include=TRUE, fig.cap='Main heatmap colourkey'>>=
-key <- create.heatmap(
-   x = colorkey.data,
-   clustering.method = "none",
-   scale.data = FALSE,
-   # set the same colours as are in the heatmap
-   colour.scheme = c("turquoise", "white", "red"),
-   print.colour.key = FALSE,
-   yaxis.tck = 0,
-   xat = c(10, 90),
-   xaxis.lab = c("low", "high"),
-   xaxis.rot = 0,
-   xaxis.cex = 2,
-   height = 1
-   );
-
-key
-@
-
-\subsubsection{Creating the top bar plot}
-The bar plot at the top of the plot representing the amount of sample is created. The bar plot will look very simple, but details will be added later when the create.multiplot function is called.
-
-<<multiplotex2_topbarplot, include=TRUE, fig.cap='Top bar plot'>>=
-sample.barplot <- create.barplot(
-     formula = x~y,
-     data = top.barplot.data,
-     col = "grey",
-     
-     # This will remove lines
-     lwd = 0
-     );
-
-sample.barplot
-@
-
-\subsubsection{Creating the side bar plot}
-
-Here the side bar plot representing the importance of the gene is created. The bar plot will look very simple, but details will be added later when the create.multiplot function is called.
-
-<<multiplotex2_sidebarplot, include=TRUE, fig.cap='Importance bar plot'>>=
-importance.barplot <- create.barplot(
-     formula = x~y,
-     data = side.barplot.data,
-     lwd = 0,
-     col = "grey",
-     
-     # The data here is sorted. 
-     # Note that if real data was used, we would have to ensure that the corresponding 
-     # heatmap rows were similarly sorted to match
-     sample.order = "decreasing",
-     plot.horizontal = TRUE
-     );
-
-importance.barplot
-@
-
-\subsubsection{Creating the final figure}
-
-The create.multiplot function is used to combine the plots. First consider the layout: this plot uses 3 rows of 2 columns and skips the bottom right plotting space. The bottom row contains just the colourkey, the middle row contains the main heatmap and the side bar plot, and the top row contains the top barplot. Below is a figure describing the layout; blue represents an area that a plot will appear there, red represents an area that is skipped, and yellow represents an unused area.
-
-\begin{figure}[!ht]
-  \begin{center}
-     \includegraphics[width=25mm]{Figures/ex2_schematic.pdf}
-     \caption{Plot layout}
-     \label{fig:picture}
-  \end{center}
-\end{figure}
-
-<<multiplotex2_final, include=TRUE, fig.cap='Example 2 multiplot', fig.height = 6, fig.width = 6, resize.height ='80mm', resize.width ='80mm'>>=
-create.multiplot(
-    # use the four plots we created earlier as the objects for the multiplot
-    plot.objects = list(key, gene.expression.heatmap, importance.barplot, sample.barplot),
-    panel.heights = c(0.25, 1, 0.05),
-    panel.widths = c(1, 0.25),
-   
-    # this is where we will specify how the plots layout will look
-    # plot.layout specifies the number of rows and columns (3 rows, 2 columns)
-    # layout.skip specifies which of the plots in the specification will be skipped
-    # the skip specification starts at the bottom left, moves to the right and then up
-    plot.layout = c(2, 3),
-    layout.skip = c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE),
-    xaxis.alternating = 0,
-    yaxis.alternating = 0,
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1,
-    ylab.cex = 1,
-
-    # format labels (tabs are needed for proper spacing between labels)
-    xlab.label = c("\t", "Samples", "\t", "    Importance"),
-    ylab.label = c( "Amount (g)", "\t", "\t", "Genes", "\t", "\t"),
-    ylab.padding = 6,
-    xlab.to.xaxis.padding = 0,
-    xaxis.lab = list(
-        c("","low","", "","high", ""),
-        LETTERS[1:25],
-        seq(0,5,1),
-        NULL
-        ),
-    yaxis.lab = list(
-        NULL,
-        replicate(8, paste(sample(LETTERS, 4, replace = TRUE), collapse = "")),
-        NULL,
-        seq(0,4,0.05)
-        ),
-    xspacing = -0.5,
-    yspacing = c(0, -1),
-    xaxis.fontface = 1,
-    yaxis.fontface = 1
-    );
-@
-
-\subsection{Example 3: Legends}
-This example focuses on the addition and customization of legends.
-
-\subsubsection{Create the three scatterplots}
-<<multiplotex3_scatter, include=TRUE, fig.cap='Example 3 scatterplot'>>=
-for(i in 1:3){
-   # Generate data
-	scatter.data <- data.frame(
-		x = seq(1, 20, 1),
-		y = rnorm(20, 0.5, 0.1)
-		);
-
-	tmp.plot <- create.scatterplot(
-		formula = y ~ x,
-		data = scatter.data,
-		type = c("p", "h"),
-
-		# Set axes limits
-		xlimits = c(0.5, 20.5),
-		ylimits = c(0,1),
-
-		# Add background rectangles
-		add.rectangle = TRUE,
-		xleft.rectangle = seq(0.5, 18.5, 2),
-		ybottom.rectangle = 0,
-		xright.rectangle = seq(1.5, 19.5, 2),
-		ytop.rectangle = 10,
-		col.rectangle = c(rep("grey", 6), "indianred1", rep("grey", 2), "skyblue")
-		);
-
-	if (1 == i) { scatter.one <- tmp.plot; }
-	else if (2 == i) { scatter.two <- tmp.plot; }
-	else if (3 == i) { scatter.three <- tmp.plot; }
-}
-
-# Display one of the three plots
-scatter.one
-@
-
-\subsubsection{Create covariate bar}
-<<multiplotex3_covariate, include=TRUE, fig.cap='Example 3 covariate bar'>>=
-# Make covariate bars
-covariate.data <- data.frame(
-	license = sample( c("GPL", "AFL", "EULA"), 20, replace = TRUE),
-	runningtime = sample( c("Seconds", "Minutes", "Days", "Weeks", "Months"), 20, replace = TRUE),
-	underdevelopment = sample(c("Yes", "No"), 20, replace = TRUE),
-	language = sample(c("R", "C", "Perl", "Other"), 20, replace = TRUE)
-	);
-
-# Change covariate data to numeric
-covariate.numeric <- data.frame(lapply(covariate.data, as.character), stringsAsFactors = FALSE);
-covariate.numeric$license[covariate.numeric$license == "GPL"] <- 1;
-covariate.numeric$license[covariate.numeric$license == "AFL"] <- 2;
-covariate.numeric$license[covariate.numeric$license == "EULA"] <- 3;
-
-covariate.numeric$runningtime[covariate.numeric$runningtime == "Seconds"] <- 4;
-covariate.numeric$runningtime[covariate.numeric$runningtime == "Minutes"] <- 5;
-covariate.numeric$runningtime[covariate.numeric$runningtime == "Days"] <- 6;
-covariate.numeric$runningtime[covariate.numeric$runningtime == "Weeks"] <- 7;
-covariate.numeric$runningtime[covariate.numeric$runningtime == "Months"] <- 8;
-
-covariate.numeric$underdevelopment[covariate.numeric$underdevelopment == "Yes"] <- 9;
-covariate.numeric$underdevelopment[covariate.numeric$underdevelopment == "No"] <- 10;
-
-covariate.numeric$language[covariate.numeric$language == "R"] <- 11;
-covariate.numeric$language[covariate.numeric$language == "C"] <- 12;
-covariate.numeric$language[covariate.numeric$language == "Perl"] <- 13;
-covariate.numeric$language[covariate.numeric$language == "Other"] <- 14;
-
-# Set colour scheme
-license.colour <- default.colours(4, "spiral.sunrise")[-3];
-runningtime.colour <- default.colours(5, "spiral.dawn");
-underdevelopment.colour <- c("white", "darkgrey");
-language.colour <- default.colours(4, "spiral.afternoon");
-
-covariate.bar <- create.heatmap(
-	x = data.matrix(covariate.numeric),
-	clustering.method = "none",
-	print.colour.key = FALSE,
-
-	# Setting the colour scheme
-	total.colours = 15,
-	colour.scheme = c(license.colour, runningtime.colour, underdevelopment.colour, language.colour),
-
-	# Adding row lines
-	grid.row = TRUE,
-	grid.col = TRUE,
-	row.colour = "black",
-	col.colour = "black"
-	);
-
-covariate.bar
-@
-
-\subsubsection{Create legends}
-<<>>=
-# Create covariate legend
-covariate.legends <- list(
-    legend = list(
-        colours = license.colour,
-        labels  = c('GPL', 'AFL', 'EULA'),
-        title   = expression(bold('License'))
-        ),
-    legend = list(
-        colours = runningtime.colour,
-        labels  = c("Seconds", "Minutes", "Days", "Weeks", "Months"),
-        title   = expression(bold('Running Time'))
-        ),
-    legend = list(
-        colours = underdevelopment.colour,
-        labels  = c("Yes", "No"),
-        title   = expression(bold('Dev'))
-        ),
-    legend = list(
-        colours = language.colour,
-        labels  = c("R", "C", "Perl", "Other"),
-        title   = expression(bold('Language'))
-        )
-    );
-
-# create legend grob
-legend1 <- legend.grob(
-    covariate.legends, 
-    size = 1.25, 
-    label.cex = 0.75, 
-    title.cex = 0.75,
-    layout = c(length(covariate.legends), 1),
-
-    # This adds a black box around the legend
-    border = list(col = "black", lwd = 3, lty = 1),
-    border.padding = 1.5,
-    between.col = c(1.6, 1.6, 1, 1.6)
-    );
-
-
-# create side legend
-side.legend <- list(
-    legend = list(
-        colours = c("indianred1", "skyblue"),
-        labels  = c("Proposed", "Standard")
-        )
-    )
-
-legend2 <- legend.grob(
-    side.legend, 
-    size = 1.25, 
-    label.cex = 0.75
-    );
-@
-
-\subsubsection{Create final multiplot}
-<<multiplotex3_final, include=TRUE, fig.cap='Example 3 multiplot', fig.height = 10, fig.width = 8, resize.height ='100mm', resize.width ='80mm'>>=
-create.multiplot(
-    plot.objects = list(covariate.bar, scatter.three, scatter.two, scatter.one),
-    plot.layout = c(1,4),
-    xaxis.cex = 1.3,
-    
-    xaxis.alternating = 0,
-    yaxis.alternating = 0,
-    ylab.label = c('Version 3', 'Version 2', 'Version 1'),
-    yaxis.cex = 1.3,
-    ylab.cex = 1.6,
-    ylab.padding = 5,
-    x.relation = 'free',
-    y.relation = 'free',
-    yat = list(1:4, seq(0, 0.6, 0.2), seq(0, 0.6, 0.2), seq(0, 0.6, 0.2)),
-    yaxis.labels = list(NULL, seq(0, 0.6, 0.2), seq(0, 0.6, 0.2), seq(0, 0.6, 0.2)),
-    xat = seq(1, 20, 1),
-    xaxis.labels = NULL,
-    panel.heights = c(1, 1, 1, 0.2),
-    yspacing = c(0.5, 0.5, 0.5),
-
-    # Providing space for the legend
-    bottom.padding = 15,
-
-    # Adding legends
-    print.new.legend = TRUE,
-    legend = list(
-
-    	# Placing legend inside plotting space
-        inside = list(
-            fun = legend1,
-            x = 0.5,
-            y = -0.1,
-            corner = c(0.5, 0.5)
-            ),
-
-        # Placing legend to the right-hand side
-        right = list(
-        	fun = legend2
-        	)
-        )
-    );
-@
-
-\subsection{Troubleshooting}
-This section briefly outlines some issues that beginners may have with the multiplot function. 
-\newline
-\newline
-1. The way that the plots are displayed according to the layout you specify may be confusing. The first plot you specify in plot.objects is going to be drawn at the bottom left most area for a plot and the ordering will then fill the plots to the right. After reaching the rightmost plot, the plots in the row above will begin to be drawn. 
-\newline
-\newline
-2. A common mistake is that the amount of panel widths/heights must be a multiple of the number of plots. The warning will look like:
-
-\begin{verbatim}
-        1: In widths.x[pos.widths[[nm]]] <- widths.settings[[nm]] * widths.defaults[[nm]]$x : 
-        number of items to replace is not a multiple of replacement length
-        2: In widths.x[pos.widths[["panel"]]] <- widths.settings[["panel"]] *  :
-        number of items to replace is not a multiple of replacement length
-\end{verbatim}
-
-This may cause the plots to not look as you intend, but is easily fixed by ensuring that your panel.widths and panel.heights parameters are multiples of the number of plots that can be plotted. For example, if your layout has 2 rows and 3 columns, the panel.heights parameter can have 2 inputs, and the panel.widths parameter can have 3 inputs.
-
-\section{Other Functions}
-The BL.plotting.general package contains a number of non-plotting functions which are included to assist in the plot-generation process. 
-
-\subsection{Colours}
-There are number of functions to help choose colours for plotting:
-\begin{itemize}
-\item \texttt{default.colours} provides a number of pre-made colour palettes to use
-\item \texttt{force.colour.scheme} similarly provides colour palettes, but for specific use-cases
-\item \texttt{colour.gradient} generates sequential colour schemes
-\item \texttt{display.colours} gives a preview of a colour scheme along with grey scale values and colour names
-\end{itemize}
-
-The available generic colour schemes can be previewed simply using the \verb|display.colours| function:
-\begin{verbatim}
-# displays the pastel colour scheme
-display.colours(default.colours(12, palette.type = "pastel"));
-
-# displays the spiral.dusk colour scheme
-display.colours(default.colours(5, palette.type = "spiral.dusk"));
-
-# displays the case-specific biomolecule colour scheme
-biomolecule_names <- c("DNA", "RNA", "Protein", "Carbohydrate", "Lipid");
-display.colours(force.colour.scheme(biomolecule_names, "biomolecule"), biomolecule_names);
-\end{verbatim}
-
-The full range of colour schemes available is described in the documentation of the \verb|default.colours| and \verb|force.colour.scheme| functions.
-
-The spiral.sunrise, spiral.dusk, etc colour schemes were created by ``spiralling'' through the colour wheel, varying the hue, saturation, and value of the colours to achieve a greater perceptual difference \cite{rainbow} \cite{wong2}. 
-
-\subsection{Legends}
-\begin{itemize}
-\item \texttt{legend.grob} and \texttt{covariates.grob} create grob objects for legends and covariates respectively
-\item \texttt{create.colourkey} is useful for adding colourkeys to multiplots
-\item \texttt{get.corr.key} creates correlation key legends to be added to plots
-\end{itemize}
-
-\subsection{Text}
-\begin{itemize}
-\item \texttt{append.footnote} adds text to plots
-\item \texttt{scientific.notation} function formats numbers into scientific notation
-\item \texttt{display.statistical.result} function uses this to display statistical results in plots
-\item \texttt{get.line.breaks} is used in the specific case of placing indices in heatmaps
-\end{itemize}
-
-\subsection{Private}
-Other functions are called by plotting functions but are not intended for use by end-users: 
-\begin{verbatim}
-generate.at.final, get.defaults, write.metadata, write.plot
-\end{verbatim}
+This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics\cite{trellis} for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. 
 
 \section{Designing figures}
 Before creating figures, it is important to know something about design. Terrible design will miscommunicate data, whereas excellent design will guide viewers to understand the data\cite{tufte}. 
@@ -2074,7 +188,7 @@ Whether colour is even necessary at all should be considered \cite{wong-avoid-co
 \subsection{File type}
 There are multiple ways of classifying file types. Understanding the distinctions will help with selecting the appropriate file type.
 
-\subsubsection{Raster vs. vector}
+\subsubsection{Raster \textit{vs}. vector}
 Images can either be raster (also known as bitmap) or vector. Raster images are encoded as pixels, which is why they appear pixelated when zoomed in. On the other hand, vector images are represented by mathematical expressions, which means that they can be infinitely scaled without losing resolution. 
 
 Photographs are raster images. In order to print a large raster image, the image must have a high resolution (which increases the file size). 
@@ -2114,7 +228,7 @@ Therefore, the image resolution is related to (but not the same as) the image si
 
 Different use-cases require different resolutions. Digital displays require lower resolutions than print displays. Most computer monitors are able to display a maximum of 72 dpi, which means that even if an image has a higher resolution, the display will only display a maximum of 72 dpi. 
 
-Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. Bl.plotting.general defaults to producing high resolution images of 1000 dpi or greater.
+Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. BL.plotting.general defaults to producing high resolution images of 1000 dpi or greater.
 
 \section{Figure creation reviewed}
 Figure creation begins with understanding the data. The second step is designing the figure. Then the figure is created. Finally, the figure is assessed and improved.
@@ -2128,6 +242,2008 @@ Plots in BL.plotting.general are created using a single function call. Depending
 Additional parameters may be used to adjust font sizes, add background shading, change colour schemes, and more. These parameters are optional and used for customization. The full range of parameters available is conveniently viewable on the BL.plotting.general API, together with extended example code of parameter usage.
 
 Once a figure is made, it should be reproduced in its expected display format. For example, if a figure is expected to be printed in a journal, it should be assessed in a print format, and at the expected size. This allows viewers to check font legibility, colour differences, and other subtleties that may otherwise go unnoticed on screens.
+
+\section{Plotting Functions}
+The following  chart-types available in BL.plotting.general:
+
+\begin{center}
+\begin{tabular}{l  l  l}
+\hline
+Chart-type & Data displayed & Encoding method\\
+\hline
+Barplot & Counts or proportions & Length\\
+Boxplot & Distributions (summary statistics) & Length, Position\\
+Dendrogram & Clustering arrangement & Length, Position \\
+Density plot & Distributions & Area \\
+Dotmap & Matrix of data points & Area, Colour saturation, Colour hue \\
+Heatmap & Matrix of data points (ex. gene expression) & Colour saturation, Colour hue \\
+Hexbinplot & Comparison of two variables & Colour saturation, Colour hue \\
+Histogram & Distribution (binned into ranges) & Area, Length \\
+Manhattan plot & Significance of SNPs at genome locations & Position \\
+Multiplot & (variety) & (variety) \\
+Polygon plot & Time-series or iterative data & Area \\
+Quantile-quantile plot & Comparison of distributions & Position \\
+Scatterplot & Comparison of two variables & Position \\
+Segplot & Distributions (summary statistics) & Position \\
+Strip plot & Distributions & Position \\
+Violin plot & Distributions (optional summary statistics) & Area, Length, Position \\
+\end{tabular}
+\end{center}
+\bigskip
+Each plotting function is designed to display different kinds of data, and to highlight different relationships in the data. 
+
+\subsection{Scatterplot}
+\begin{verbatim}
+create.scatterplot
+\end{verbatim}
+
+The scatterplot compares two variables on a Cartesian coordinate grid by plotting individual data points. It can be used to investigate correlation between variables, and lines can join the points to emphasize trends. Error bars may be added to each point, and the create.scatterplot function can also determine optimal label positions for points. This versatile function is used to create other plot types, including receiver operating characteristic (ROC) curves.
+
+An interesting note is that scatterplots appear more correlated when scales are increased. This means that when the points in a scatterplot use less of the total plotting space available, a stronger association is perceived compared to when the plotting space is filled \cite{cleveland-scatter}.
+
+\subsubsection{Simple scatterplot}
+The scatterplot function accepts data in the form of an R  data frame. Here is an example of a data frame created using the \verb|microarray| dataset provided with BL.plotting.general.
+
+A simple scatterplot has two requirements: the data frame, and a formula to indicate the x and y components of the data frame.
+
+% Here is the formatting for all the plot generation
+<<"figuresetup", cache=FALSE, include=FALSE>>=
+require("knitr")
+opts_chunk$set(fig.path='Examples/', dev='png', warning=FALSE, dpi=120, fig.height=4, fig.width=4, fig.align='center', resize.width='70mm', resize.height='70mm')
+@
+
+<<scatter1, include=TRUE, fig.cap='Simple scatterplot'>>=
+library(BoutrosLab.plotting.general);
+
+scatter.data <- data.frame(
+    sample.one = microarray[1:800,1],
+    sample.two = microarray[1:800,2]
+    );
+    
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data
+    );
+@
+
+\subsubsection{Scatterplot with formatted axes}
+The scatterplot can be customized very easily by specifying the appropriate parameters. 
+<<scatter2, include=TRUE, fig.cap='Scatterplot with formatted axes'>>=
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data,
+
+    # specify plot title
+    main = "Axes & labels",
+    
+    # specify axes titles
+    xlab.label = "Sample 1",
+    ylab.label = "Sample 2",
+
+    # specify appearance of axes tick marks
+    xat = seq(0, 16, 2),
+    yat = seq(0, 16, 2),
+    
+    # specify axes ranges
+    xlimits = c(0, 15),
+    ylimits = c(0, 15),
+    
+    # specify font sizes of axes titles and tick mark labels
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    main.cex = 1.5
+    );
+@
+
+\subsubsection{Scatterplot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<scatter3, include=TRUE, fig.cap='Scatterplot with log-scale axis'>>=
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data,
+    main = "Log-scale Axis",
+    xlab.label = "Sample 1",
+    ylab.label = "Sample 2",
+    yat = seq(0, 16, 2),
+    ylimits = c(0, 15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    main.cex = 1.5,
+    
+    # change axes accordingly 
+    xat = 2 ** (0:4),    
+
+    # change axes range accordingly
+    xlimits = c(2 ** 0,16),
+    
+    # format labels
+    xaxis.lab = c(
+        expression('2'^'0'),
+        expression('2'^'1'),
+        expression('2'^'2'),
+        expression('2'^'3'),
+        expression('2'^'4')
+        ),
+        
+    # transform x-axis into log-2 space
+    xaxis.log = 2
+    );
+@
+
+\subsubsection{Scatterplot with gridlines}
+Additional parameter changes will continue to customize the plot.
+<<scatter4, include=TRUE, fig.cap='Scatterplot with grid lines'>>=
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data,
+    main = "Gridlines",
+    xlab.label = "Sample 1",
+    ylab.label = "Sample 2",
+    xat = seq(0, 16, 2),
+    yat = seq(0, 16, 2),
+    xlimits = c(0, 15),
+    ylimits = c(0, 15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    main.cex = 1.5,
+    
+    # plotting character is changed using the "pch" parameter
+    # plotting characters with borders accepts both border colour and fill colour
+    # options are in help files for "pch"
+    pch = 21,
+    col = "black",
+    
+    # create gridlines using the "type" parameter
+    # "p" indicates points, and "g" indicates grid
+    # other options for the "type" parameter found in "xyplot" documentation
+    type = c("p", "g")
+    );
+@
+
+\subsubsection{Scatterplot with labelled points}
+The scatterplot function is able to calculate optimal label positions for labelling individual points. 
+<<scatter5, include=TRUE, fig.cap='Scatterplot with point labelling'>>=
+# determine which point(s) should get labels
+points.x <- c();
+points.y <- c();
+point.labels <- c();
+
+for (i in 1:800){
+	if(scatter.data$sample.one[i] > (scatter.data$sample.two[i] + 3.5) ||
+	 scatter.data$sample.one[i] < (scatter.data$sample.two[i] - 3.5)){
+		point.labels <- c(point.labels, rownames(microarray)[i])
+		points.x <- c(points.x, scatter.data$sample.one[i])
+		points.y <- c(points.y, scatter.data$sample.two[i])
+	}
+}
+
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data,
+    main = "Point labels",
+    xlab.label = "Sample 1",
+    ylab.label = "Sample 2",
+    xat = seq(0, 16, 2),
+    yat = seq(0, 16, 2),
+    xlimits = c(0, 15),
+    ylimits = c(0, 15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    main.cex = 1.5,
+    pch = 21,
+    col = "black",
+    type = c("p", "g"),
+    
+    # allow for auto-placement of labels based on point locations
+    # (otherwise given coordinates will be used)
+    text.guess.labels = TRUE,
+    text.guess.skip.labels = FALSE,
+    
+    # specify labels and corresponding points 
+    add.text = TRUE,
+    text.x = points.x,
+    text.y = points.y,
+    text.cex = 0.8,
+    text.col = "red",
+    text.labels = point.labels,
+    
+    # give special points custom pch and colour    
+    # these are created by drawing extra points over top the existing points
+    # another option is to provide a vector to the "pch" and "col" parameters
+    add.points = TRUE,
+    points.x = points.x,
+    points.y = points.y,
+    points.col = "red",
+    points.pch = 17,
+    points.cex = 1.5
+    );
+@
+
+\subsubsection{Scatterplot with correlation key}
+A correlation key legend can be added.
+
+<<scatter6, include=TRUE, fig.cap='Scatterplot with correlation key'>>=
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data,
+    main = "Correlation key",
+    xlab.label = "Sample 1",
+    ylab.label = "Sample 2",
+    xat = seq(0, 16, 2),
+    yat = seq(0, 16, 2),
+    xlimits = c(0, 15),
+    ylimits = c(0, 15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    main.cex = 1.5,
+    pch = 21,
+    col = "black",
+    type = c("p", "g"),
+    text.guess.labels = TRUE,
+    text.guess.skip.labels = FALSE,
+    add.text = TRUE,
+    text.x = points.x,
+    text.y = points.y,
+    text.cex = 0.8,
+    text.col = "red",
+    text.labels = point.labels,
+    add.points = TRUE,
+    points.x = points.x,
+    points.y = points.y,
+    points.col = "red",
+    points.pch = 17,
+    points.cex = 1.5,
+    
+    # add correlation key using get.corr.key function
+    legend = list(
+        inside = list(
+            fun = draw.key,
+            args = list(
+                key = get.corr.key(
+
+                    # two vectors of the same length
+                    x = scatter.data$sample.one,
+                    y = scatter.data$sample.two,
+                    
+                    # specify what to include in the key
+                    label.items = c('spearman','kendall','beta1'),
+                    
+                    # format key
+                    alpha.background = 0,
+                    key.cex = 1
+                    )
+                ),
+                
+            # place key
+            x = 0.03,
+            y = 0.95,
+            corner = c(0,1)
+            )
+        )
+    );
+@
+
+\subsubsection{Scatterplot with lines}
+Adding lines can be done in multiple ways.
+<<scatter7, include=TRUE, fig.cap='Scatterplot with lines'>>=
+create.scatterplot(
+    formula = sample.two ~ sample.one,
+    data = scatter.data,
+    main = "Added lines",
+    xlab.label = "Sample 1",
+    ylab.label = "Sample 2",
+    xat = seq(0, 16, 2),
+    yat = seq(0, 16, 2),
+    xlimits = c(0, 15),
+    ylimits = c(0, 15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    main.cex = 1.5,
+    pch = 21,
+    col = "black",
+    
+    # "r" indicates the addition of a linear regression line
+    type = c("p", "g", "r"),
+    text.guess.labels = TRUE,
+    text.guess.skip.labels = FALSE,
+    add.text = TRUE,
+    text.x = points.x,
+    text.y = points.y,
+    text.cex = 0.8,
+    text.col = "red",
+    text.labels = point.labels,
+    add.points = TRUE,
+    points.x = points.x,
+    points.y = points.y,
+    points.col = "red",
+    points.pch = 17,
+    points.cex = 1.5,
+    legend = list(
+        inside = list(
+            fun = draw.key,
+            args = list(
+                key = get.corr.key(
+                    x = scatter.data$sample.one,
+                    y = scatter.data$sample.two,
+                    label.items = c('spearman','kendall','beta1'),
+                    alpha.background = 0,
+                    key.cex = 1
+                    )
+                ),
+            x = 0.03,
+            y = 0.95,
+            corner = c(0,1)
+            )
+        ),
+        
+        # draw y = x line
+        add.xyline = TRUE,
+        xyline.col = "red"
+    );
+@
+
+\subsection{Boxplot}
+\begin{verbatim}
+create.boxplot
+\end{verbatim}
+
+The boxplot is used to display distributions of data. It is also known as the box-and-whisker plot. The `box' ranges from the first to the third quartile, showing the interquartile range. The line within the box indicates the median (not the mean), and whiskers have variable meaning, such as the maximum and minimum of the data (but they are not error bars; they are not the s.d. or s.e.m). The meaning of whiskers should be indicated, and outliers may be plotted as points \cite{Krzywinski}. BL.plotting.general defaults to setting the whiskers to the most extreme data point within 1.5 $\times$ IQR of the edge of the box.
+
+\subsubsection{Simple boxplot}
+The boxplot also requires a data frame and a corresponding formula.
+<<boxplot1, include=TRUE, fig.cap='Simple boxplot'>>=
+boxplot.data <- data.frame(
+    x <- as.vector(t(microarray[1:10,1:58])),
+    y <- as.factor(rep(rownames(microarray[1:10,1:58]), each = 58))
+    );
+    
+create.boxplot(
+    formula = y ~ x, 
+    data = boxplot.data,
+    xaxis.cex = 1.2,
+    yaxis.cex = 1.2
+    );
+@
+
+\subsubsection{Boxplot with colour}
+Customization of boxplot parameters is done by specifying the appropriate parameters.
+<<boxplot2, include=TRUE, fig.cap='Boxplot with colour'>>=
+create.boxplot(
+    formula = y ~ x, 
+    data = boxplot.data,
+    xaxis.cex = 1.2,
+    yaxis.cex = 1.2,
+    
+    # specify box colour
+    fill = default.colours(1)
+    );
+@
+
+\subsubsection{Boxplot with background shading}
+Coloured rectangles can be drawn in plots.
+
+<<boxplot3, include=TRUE, fig.cap='Boxplot with background shading'>>=
+create.boxplot(
+    formula = y ~ x, 
+    data = boxplot.data,
+    fill = default.colours(1),
+    xaxis.cex = 1.2,
+    yaxis.cex = 1.2,
+    
+    # draw rectangles
+    add.rectangle = TRUE,
+	
+    # coordinates of rectangles given by four parameters
+    xleft.rectangle = 0,
+    xright.rectangle = 13,
+    ybottom.rectangle = seq(0.5, 8.5, 2),
+    ytop.rectangle = seq(1.5, 9.5, 2),
+	
+    # set rectangle colour
+    col.rectangle = "grey",
+	
+    # set rectangle alpha (transparency)
+    alpha.rectangle = 0.25
+    );
+@
+
+\subsubsection{Sorted boxplot}
+To make comparisons clearer, the boxplots can be sorted by median value.
+
+<<boxplot4, include=TRUE, fig.cap='Sorted boxplot'>>=
+create.boxplot(
+    formula = y ~ x, 
+    data = boxplot.data,
+    fill = default.colours(1),
+    xaxis.cex = 1.2,
+    yaxis.cex = 1.2,
+    add.rectangle = TRUE,
+    xleft.rectangle = 0,
+    xright.rectangle = 13,
+    ybottom.rectangle = seq(0.5, 8.5, 2),
+    ytop.rectangle = seq(1.5, 9.5, 2),
+    col.rectangle = "grey",
+    alpha.rectangle = 0.25,
+    
+    # sort median values in either increasing or decreasing order
+    sample.order = "increasing"
+    );
+@
+
+\subsubsection{Boxplot with stripplot}
+The individual points can be plotted on the boxplot.
+
+<<boxplot5, include=TRUE, fig.cap='Boxplot with stripplot'>>=
+create.boxplot(
+    formula = y ~ x, 
+    data = boxplot.data,
+    fill = default.colours(1),
+    xaxis.cex = 1.2,
+    yaxis.cex = 1.2,
+    add.rectangle = TRUE,
+    xleft.rectangle = 0,
+    xright.rectangle = 13,
+    ybottom.rectangle = seq(0.5, 8.5, 2),
+    ytop.rectangle = seq(1.5, 9.5, 2),
+    col.rectangle = "grey",
+    alpha.rectangle = 0.25,
+    sample.order = "increasing",
+    
+    # add points
+    add.stripplot = TRUE,
+    points.pch = 1
+    );
+@
+
+\subsection{Heatmap}
+\begin{verbatim}
+create.heatmap
+\end{verbatim}
+
+The heatmap is a matrix with values represented by colour value and hue. It is often used to display gene expression levels compared against samples. One strength of the heatmap is that it is able to display many data points with more dimensions: it displays a matrix of values where each cell encodes a value through colour, and is associated with both an x-axis and y-axis value. 
+
+However, colour is a subjective method of conveying data. It is useful for displaying general trends and comparing values, but is not accurate for conveying exact values. Neighbouring colours change the perception of a colour such that a particular colour surrounded by lighter colours will appear darker, and vice versa. This means that two cells in a heatmap which are the same colour can appear to be different colours because of the cells surrounding them \cite{wong2}. One option for minimizing this bias is by clustering the heatmap so that similar colours will neighbour each other. Another option is to add grid lines to help distinguish the neighbouring colours. 
+
+\subsubsection{Simple heatmap}
+The minimal input for a heatmap is either a data frame or matrix. 
+
+<<heatmap1, include=TRUE, fig.cap='Simple heatmap'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20]
+    );
+@
+
+\subsubsection{Adding formatted axes}
+Axes formatting can help the appearance of the plot. The heatmap function estimates an appropriate font size based on the size of the data set.
+<<heatmap2, include=TRUE, fig.cap='Heatmap with formatted axes'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    
+    # format the colour key
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    
+    # set labels to NA -- results in default labels
+    xaxis.lab = NA,
+    yaxis.lab = NA,
+    
+    xaxis.cex = 0.8,
+    yaxis.cex = 0.6,    
+    
+    # set font style (default is bold, 1 is roman)
+    xaxis.fontface = 1,
+    yaxis.fontface = 1
+    );
+@
+
+
+\subsubsection{Changing axes labels}
+The axes labels can be customized.
+<<heatmap3, include=TRUE, fig.cap='Heatmap with custom axes'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,    
+    xaxis.cex = 0.8,
+    yaxis.cex = 0.6,    
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    
+    # set custom labels
+    yaxis.lab = letters[1:20]
+    );
+@
+
+\subsubsection{Changing the clustering method}
+The heatmap defaults to clustering using the``diana" method (divisive analysis clustering). Other clustering options include all agglomerative clustering methods available in hclust.
+
+<<heatmap4, include=TRUE, fig.cap='Heatmap with different clustering'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,
+    yaxis.lab = NA,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xaxis.cex = 0.8,
+    yaxis.cex = 0.6,  
+    
+    # specify clustering method
+    # if no clustering is desired, set this to "none"
+    clustering.method = "complete",
+    
+    # select distance measure
+    rows.distance.method = "euclidean",
+    cols.distance.method = "manhattan"
+    );
+@
+
+\subsubsection{Heatmap with stratified clustering}
+Heatmap clustering can be stratified so that segments of the data can be clustered separately.
+
+<<heatmap5, include=TRUE, fig.cap='Heatmap with stratified clustering'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,
+    yaxis.lab = NA,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+     xaxis.cex = 0.8,
+    yaxis.cex = 0.6,  
+    clustering.method = "complete",
+    rows.distance.method = "euclidean",
+    cols.distance.method = "manhattan",
+ 
+    # specify groups. In this example clustering is done by columns
+    stratified.clusters.cols = list(c(1:10), c(11:20)),
+    
+    # add line to show division between two strata
+    grid.col = TRUE,
+    col.lines = 10.5,
+    col.lwd = 5,
+    col.colour = "red"
+    );
+@
+
+\subsubsection{Heatmap with covariates}
+Covariate bars are often added to heatmaps to add additional information. In this example, the sex of each sample is indicated using a covariate bar.
+
+<<heatmap6, include=TRUE, fig.cap='Heatmap with covariates'>>=
+# create covariate bar to indicate sex
+sample.covariate <- list(
+    rect = list(
+        col = "black",
+        fill = force.colour.scheme(patient$sex[1:20], scheme = "sex"),
+        lwd = 1.5
+        )
+    );
+
+# create legend to match covariate bar
+sample.cov.legend <- list(
+    legend = list(
+        colours =  force.colour.scheme(c("male",  "female"), scheme = "sex"),
+        labels = c("male", "female"),
+        title = "Sex"
+        )
+    );
+    
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,
+    xaxis.fontface = 1,
+    xaxis.cex = 0.6,
+    clustering.method = "complete",
+    rows.distance.method = "euclidean",
+    cols.distance.method = "manhattan",
+    stratified.clusters.cols = list(c(1:10), c(11:20)),
+    grid.col = TRUE,
+    col.lines = 10.5,
+    col.lwd = 5,
+    col.colour = "red",
+    
+    # add covariates and corresponding legend
+    covariates = sample.covariate,
+    covariate.legend = sample.cov.legend,
+    legend.side = "right",
+    
+    # customize covariate bar
+    covariates.grid.border = list(col = "red", lwd = 3)
+    );
+@
+
+\subsubsection{Heatmap with grid lines}
+Using grid lines can help to more accurately perceive the differences between colours.
+<<heatmap7, include=TRUE, fig.cap='Heatmap with grid lines'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,
+    xaxis.fontface = 1,
+    xaxis.cex = 0.8,
+    clustering.method = "complete",
+    rows.distance.method = "euclidean",
+    cols.distance.method = "manhattan",
+    stratified.clusters.cols = list(c(1:10), c(11:20)),
+    
+    # turn grid lines on
+    grid.row = TRUE,
+    grid.col = TRUE,
+    
+    # set grid line colour 
+    row.colour = "white",
+    col.colour = c(rep("white", 10), "red", rep("white",10)),
+    
+    # set grid line width
+    row.lwd = 1,
+    col.lwd = c(rep(1, 10), 5, rep(1,10))
+    );
+@
+
+\subsubsection{Heatmap with discrete colours}
+Sometimes heatmaps are used to display data with can be divided into discrete bins. In these cases, it is appropriate to use discrete colour schemes. The example below illustrates how a discrete colour scheme is created.
+
+<<heatmap8, include=TRUE, fig.cap='Heatmap with discrete colours'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,
+    xaxis.fontface = 1,
+    xaxis.cex = 0.8,
+    clustering.method = "complete",
+    rows.distance.method = "euclidean",
+    cols.distance.method = "manhattan",
+    stratified.clusters.cols = list(c(1:10), c(11:20)),
+    grid.row = TRUE,
+    grid.col = TRUE,
+    row.colour = "white",
+    col.colour = c(rep("white", 10), "red", rep("white",10)),
+    row.lwd = 0.75,
+    col.lwd = c(rep(0.75, 10), 3, rep(0.75,10)),
+
+   # set colour scheme
+   # set more "total.colours" than colours in "colour.scheme" to create discretized gradient
+   colour.scheme = default.colours(5, palette.type = "spiral.sunrise"),
+   
+   # specify how many total colours (add one for a null colour)
+   # in this example, 5 colours will be displayed
+   total.colours = 6
+   );
+@
+
+\subsubsection{Heatmap with symbols}
+Symbols can be added over the cells.
+
+<<heatmap9, include=TRUE, fig.cap='Heatmap with symbols'>>=
+create.heatmap(
+    x = microarray[1:20, 1:20],
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2, 12, 1),    
+    xaxis.lab = NA,
+    xaxis.fontface = 1,
+    xaxis.cex = 0.8,
+    clustering.method = "complete",
+    rows.distance.method = "euclidean",
+    cols.distance.method = "manhattan",
+    stratified.clusters.cols = list(c(1:10), c(11:20)),
+    grid.row = TRUE,
+    grid.col = TRUE,
+    row.colour = "white",
+    col.colour = c(rep("white", 10), "red", rep("white",10)),
+    row.lwd = 0.75,
+    col.lwd = c(rep(0.75, 10), 3, rep(0.75,10)),
+   colour.scheme = default.colours(5, palette.type = "spiral.sunrise"),
+   total.colours = 6,
+   
+   # add symbols using one method
+   row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
+   col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
+   cell.text = rep("x", times = sum(microarray[1:20, 1:20] > 11)),
+   text.col = "red",
+   text.cex = 0.9
+   );
+@
+
+\subsection{Barplot}
+\begin{verbatim}
+create.barplot
+\end{verbatim}
+
+The barplot is designed to display counts of categorical data. This means data which is divided into discrete bins. 
+
+When displaying data with uncertainty, therefore suggesting the addition of error bars, barplots are not an optimal choice (although, it \textit{is} possible to add error bars to barplots using BL.plotting.general). Barplots are not designed for displaying distributions, and error bars might cover ranges never observed in the data: it is advised that using a boxplot  or a strip plot might be more appropriate \cite{streit}. 
+
+\subsubsection{Simple barplot}
+A minimal barplot requires a data frame and corresponding formula.
+
+<<barplot1, include=TRUE, fig.cap='Simple barplot'>>=
+# set up data
+total.counts <- apply(SNV[1:15], 2, function(x){ mutation.count <- (30 - sum(is.na(x)))});
+count.nonsyn <- function(x){ mutation.count <- length(which(x == 1)); }
+nonsynonymous.SNV <- apply(SNV[1:15], 2, count.nonsyn);
+other.mutations <- total.counts - nonsynonymous.SNV;
+
+# create data frame 
+barplot.data <- data.frame(
+    samples = rep(1:15, 2),
+    mutation = c(rep("nonsynonymous", 15), rep("other",15)),
+    values = c(nonsynonymous.SNV, other.mutations)
+    );
+    
+# create simple plot
+create.barplot(
+    formula = values ~ samples,
+    data = barplot.data[barplot.data$mutation == "nonsynonymous",],
+    xaxis.lab = LETTERS[1:15]
+    );
+@
+
+\subsubsection{Barplot with colours and line}
+Select bar colours can be changed.
+
+<<barplot2, include=TRUE, fig.cap='Barplot with colours and line'>>=
+# select bars
+tall.bars <- which(barplot.data[barplot.data$mutation == "nonsynonymous",]$values > 5);
+colour.scheme <- rep("grey", 15);
+colour.scheme[tall.bars] <- "red";
+
+create.barplot(
+    formula = values ~ samples,
+    data = barplot.data[barplot.data$mutation == "nonsynonymous",],
+    xaxis.lab = LETTERS[1:15],
+        
+    # add line  
+    abline.h = 5,
+    abline.col = "red",
+    abline.type = "dotted",
+    abline.lwd = 2,
+    
+    # change colours
+    col = colour.scheme
+    );
+@
+
+\subsubsection{Stacked barplot with legend}
+Stacked barplots compare overall quantities across items, and also indicate the contribution of sub-categories to the total count \cite{streit}.
+
+<<barplot3, include=TRUE, fig.cap='Stacked barplot'>>=
+create.barplot(
+    formula = values ~ samples,
+    data = barplot.data,
+    xaxis.lab = LETTERS[1:15],
+    
+    # declare that the plot will be stacked, not grouped
+    stack = TRUE,
+    
+    # specify data division
+    groups = mutation,
+    
+    # set different colours for the groups
+    col = default.colours(2, palette.type = "pastel"),
+    
+    # create a legend 
+    legend = list(
+        inside = list(
+            fun = draw.key,
+            args = list(
+                key = list(
+                	
+                    # draw legend points
+                    points = list(
+                        col = "black",
+                        pch = 22,
+                        cex = 2,
+                        # reverse order to match stacked bar order
+                        fill = rev(default.colours(2, palette.type = "pastel"))
+                        ),
+
+                    # draw legend text
+                    text = list(
+                        # reverse order to match stacked bar order
+                        lab = rev(c("Nonsynonymous SNV", "Other SNV"))
+                        ),
+                    padding.text = 3,
+                    cex = 1
+                    )
+                ),
+            # place legend
+            x = 0.25,
+            y = 0.95
+            )
+        )
+    );
+@
+
+\subsubsection{Grouped barplot with legend}
+Grouped barplots focus on comparing values across sub-categories, and allow  for comparison across items \cite{streit}.
+
+<<barplot4, include=TRUE, fig.cap='Grouped barplot'>>=
+create.barplot(
+    formula = values ~ samples,
+    data = barplot.data,
+    xaxis.lab = LETTERS[1:15],
+    
+    # specify data division
+    # defaults to creating grouped bar plots when this is set
+    groups = mutation,
+    
+    # set group colours
+    col = default.colours(2, palette.type = "pastel"),
+    
+    # create legend 
+    legend = list(
+        inside = list(
+            fun = draw.key,
+            args = list(
+                key = list(
+                	
+                    # Draw legend points
+                    points = list(
+                        col = "black",
+                        pch = 22,
+                        cex = 2,
+                        fill = default.colours(2, palette.type = "pastel")
+                        ),
+
+                    # draw legend text
+                    text = list(
+                        lab = c("Nonsynonymous SNV", "Other SNV")
+                        ),
+
+                    # space items
+                    padding.text = 3,
+                    cex = 1
+                    )
+                ),
+            # place legend
+            x = 0.25,
+            y = 0.95
+            )
+        )
+    );
+@
+
+
+\subsection{Density plot}
+\begin{verbatim}
+create.densityplot
+\end{verbatim}
+
+The density plot also shows data distributions. It is an empirical estimate of the probability density function, and the area under the curve is the cumulative distribution function. It can be thought of as a smoothed version of the histogram.
+
+In comparison to the boxplot, the density plot can compare fewer distributions because after a certain point the lines will interfere with one another. Additionally, summary statistics are not directly provided by the density plot. However, the density plot reveals more subtleties in the ``shape" of the data, which may be hidden in the boxplot.
+
+\subsubsection{Simple density plot}
+The minimal input required by a density plot is a list of vectors.
+
+<<densityplot1, include=TRUE, fig.cap='Simple density plot'>>=
+create.densityplot(
+    x = as.data.frame(t(microarray[1:3,1:58]))
+    );
+@
+
+\subsubsection{Density plot with line type}
+Different colours and line types can be used to better distinguish between the lines
+
+<<densityplot2, include=TRUE, fig.cap='Density plot with colour and line type'>>=
+create.densityplot(
+    x = as.data.frame(t(microarray[1:3,1:58])),
+    
+    # line type
+    lty = c("solid", "dashed", "dotted"),
+    
+    # colours
+    col = default.colours(3)
+    );
+@
+
+\subsection{Dendrogram}
+\begin{verbatim}
+create.dendrogram
+\end{verbatim}
+
+The dendrogram is a tree diagram used to display the clustering arrangement determined by hierarchical clustering. It is often used in conjunction with heatmaps to indicate the clustering of genes or samples. In BL.plotting.general, this function is called by the \verb|create.heatmap| function when cells are clustered.
+
+The distance from a leaf node to a node indicates the correlation to other leaf nodes, where further distances indicate less correlation. Closely clustered leaf nodes (located at the bottom of the dendrogram) are highly correlated.
+
+\subsubsection{Simple dendrogram}
+This function is not structured the same way as other plotting functions. It does not create Trellis objects, and is not usually plotted alone.
+
+<<dendrogram, include=TRUE, fig.cap='Simple dendrogram'>>=
+dendrogram <- create.dendrogram(x = microarray[1:20, 1:20]);
+plot(x = dendrogram);
+@
+
+\subsection{Dotmap}
+\begin{verbatim}
+create.dotmap
+\end{verbatim}
+
+The dotmap is a novel chart-type found in BL.plotting.general. It is a matrix of dots, where the dot sizes and dot colours are used to encode information. The matrix can also be filled with a background colour, similar to heatmaps. This plot is very useful for displaying high-dimensional data because it is able to display two dimensions more than a heatmap through dot size and dot colour.
+
+One example of how to use this plot is to use the dot size to indicate magnitude of fold change, dot colour to show the direction of change, and the background colour to indicate p-values.
+
+\subsubsection{Simple dotmap}
+A basic dotmap takes a data frame as input.
+<<dotmap1, include=TRUE, fig.cap='Simple dotmap', fig.height = 4, fig.width = 3, resize.height ='80mm', resize.width ='60mm'>>=
+# Generate data
+set.seed(12345);
+
+dotmap.data <- data.frame(
+    "A" = runif(n = 10, min = -1, max = 1),
+    "B" = runif(n = 10, min = -1, max = 1),
+    "C" = runif(n = 10, min = -1, max = 1)
+    );
+
+# functions to decide the spot size and colour can be included
+# if not, default functions will be used
+spot.size.function <- function(x) { 0.1 + (2 * abs(x)); }
+
+spot.colour.function <- function(x) {
+    colours <- rep("white", length(x));
+    colours[sign(x) == -1] <- default.colours(2, palette.type = "dotmap")[1];
+    colours[sign(x) ==  1] <- default.colours(2, palette.type = "dotmap")[2];
+    return(colours);
+    }
+
+create.dotmap(
+    x = dotmap.data,
+    yaxis.cex = 1.5,
+    xaxis.cex = 1.5
+    );
+@
+
+\subsubsection{Dotmap with legend}
+A legend can be added to indicate the meaning of the dot colours and sizes.
+
+<<dotmap2, include=TRUE, fig.cap='Dotmap with legend'>>=
+create.dotmap(
+    x = dotmap.data,
+    yaxis.cex = 1.5,
+    xaxis.cex = 1.5,
+    
+    # use specified spot size and colour functions
+    spot.size.function = spot.size.function,
+    spot.colour.function = spot.colour.function,    
+    
+    # create a legend matching the dot sizes
+    key = list(
+    
+        # indicate which side of the plot the legend will appear
+        space = "right",
+        
+        # create points using the spot size and colour functions
+        # this ensures that they match the spots found in the plot
+        points = list(
+            cex = spot.size.function(seq(-1, 1, 0.2)),
+            col = spot.colour.function(seq(-1, 1, 0.2)),
+            pch = 19
+            ),
+        
+        # dot labels
+        text = list(
+            lab = c("-1.0", "-0.8", "-0.6", "-0.4", "-0.2", " 0.0", "+0.2",
+                 "+0.4", "+0.6", "+0.8", "+1.0"),
+            cex = 1.5,
+            adj = 1.0,
+            fontface = "bold"
+            )
+        )
+    );
+@
+
+\subsubsection{Dotmap with background}
+The background of each cell can also have a colour. Colours do not appear the same with and without borders \cite{brewer-colour}. Therefore it is advisable to keep the surrounding colours of points consistent between the legend and the plotting space.
+
+<<dotmap3, include=TRUE, fig.cap='Dotmap with background'>>=
+# generate background data
+bg.data <- data.frame(
+    "A" = runif(n = 10, min = -1, max = 1),
+    "B" = runif(n = 10, min = -1, max = 1),
+    "C" = runif(n = 10, min = -1, max = 1)
+    );
+
+create.dotmap(
+    x = dotmap.data,
+    yaxis.cex = 1.5,
+    xaxis.cex = 1.5,
+    spot.size.function = spot.size.function,
+    spot.colour.function = spot.colour.function,    
+    key = list(
+        space = "right",
+        points = list(
+            cex = spot.size.function(seq(-1, 1, 0.2)),
+            col = spot.colour.function(seq(-1, 1, 0.2)),
+            pch = 19
+            ),
+        text = list(
+            lab = c("-1.0", "-0.8", "-0.6", "-0.4", "-0.2", " 0.0", "+0.2", 
+                "+0.4", "+0.6", "+0.8", "+1.0"),
+            cex = 1.5,
+            adj = 1.0,
+            fontface = "bold"
+            )
+        ),
+    
+    # control spacing at top of key
+    key.top = 1,
+
+    # add borders to points
+    pch = 21,
+    pch.border.col = "white",
+    
+    # add the background
+    bg.data = bg.data,
+
+    # add a colourkey
+    colourkey = TRUE,
+    
+    # set colour scheme for background data
+    colour.scheme = c("white", "black"),
+    
+    # make bg colour scheme a discrete colour scheme, with breaks at these places
+    at = seq(-1, 1, 0.5)
+    );
+@
+
+\subsection{Hexbinplot}
+\begin{verbatim}
+create.hexbinplot
+\end{verbatim}
+
+The hexbinplot is a hexagonally binned plot which uses colour (usually colour value) to plot points. It uses a coordinate grid similar to scatterplots, but while scatterplots display individual data points, the hexbinplot displays the density of data points in a given space on the plot. It might be thought of as similar to a two-dimensional histogram. One use-case for this plot is in circumstances where data points are too densely packed to be distinguishable on a scatterplot.
+
+\subsubsection{Simple hexbinplot}
+The minimum input for a hexbinplot is data frame and formula.
+<<hexbin1, include=TRUE, fig.cap='Simple hexbinplot'>>=
+hexbin.data <- data.frame(
+    x = microarray[,1],
+    y = microarray[,2]
+    );
+    
+create.hexbinplot(
+    data = hexbin.data,
+    formula = x ~ y,
+    xaxis.cex = 1,
+    yaxis.cex = 1
+    );
+@
+
+\subsubsection{Hexbinplot with custom bins}
+The bin sizes can be customized to use more standard increments.
+<<hexbin2, include=TRUE, fig.cap='Hexbinplot with custom bins'>>=
+create.hexbinplot(
+    data = hexbin.data,
+    formula = x ~ y,
+    xaxis.cex = 1,
+    yaxis.cex = 1, 
+
+    # set the number of bins
+    xbins = 15,
+    colourcut = seq(0, 1, length = 9),
+    maxcnt = 160
+    );
+@
+
+\subsection{Histogram}
+\begin{verbatim}
+create.histogram
+\end{verbatim}
+
+The histogram represents the distribution of data. It is an estimation of the probability distribution of a continuous variable. If a histogram had an infinite number of bars, it would have the same shape as a density plot. 
+
+Although its appearance is similar to a barplot, the main difference is that a barplot uses discrete data, while a histogram uses continuous data. This means that the `bins' of a histogram are data-ranges. This points to why the bars in a barplot are often separated by a space, while the bars in a histogram are usually directly next to one another.
+
+\subsubsection{Simple histogram}
+The minimal input for the histogram is either a numeric vector, or a formula and data frame.
+<<histogram1, include=TRUE, fig.cap='Simple histogram'>>=
+create.histogram(
+    x = microarray[,1]
+    );
+@
+
+\subsection{Manhattan plot}
+\begin{verbatim}
+create.manhattanplot
+\end{verbatim}
+
+The Manhattan plot is a type of scatterplot for displaying large datasets. It is often used to visualize or locate particularly significant or interesting data values. For example, it may be used to show chromosomal locations along the x-axis, and the negative logarithm of p-values of mutations along the y-axis. This means that the points which are higher on the plot are highly significant, while the points near the 0 axis are less significant.
+
+\subsubsection{Simple Manhattan plot}
+This plot accepts a data frame together with a formula for the x and y components. Manhattan plots usually display a large number of data points.
+
+<<manhattan1, include=TRUE, fig.cap='Simple Manhattan plot'>>=
+# generate data
+manhattan.data <- data.frame(
+    x = runif(20000, 0, 1),
+    y = 1:20000
+    );
+
+create.manhattanplot(
+    formula = -log10(x) ~ y,
+    data = manhattan.data,
+    xaxis.cex = 1.5,
+    yaxis.cex = 1.5	,
+    xaxis.tck = 1
+    );
+@
+
+\subsubsection{Manhattan plot with line}
+Adding a line can be used to easily view data points above a particular p-value.
+
+<<manhattan2, include=TRUE, fig.cap='Manhattan plot with line'>>=
+create.manhattanplot(
+    formula = -log10(x) ~ y,
+    data = manhattan.data,
+    xaxis.cex = 1.5,
+    yaxis.cex = 1.5	,
+    xaxis.tck = 1,
+    
+    # add horizontal line
+    abline.h = 2,
+    
+    # change line type and style
+    abline.col = "red",
+    abline.lwd = 3,
+    abline.lty = "solid"
+    );
+@
+
+\subsection{Polygon plot}
+\begin{verbatim}
+create.polygonplot
+\end{verbatim}
+
+The polygon plot draws a shape which can represent a data-range. There are many options for how to use this function. It takes as input the maximum and minimum values and optional median values, and fills in the difference to be the polygon `shape'. This chart is often used for repeated, iterative data, such as time-series data.
+
+\subsubsection{Simple polygon plot}
+The minimum input for a polygon plot is data frame and formula to extract the components. Additional input is needed to determine the maximum and minimum values of the polygon, as well as the optional median values.
+
+<<polygon1, include=TRUE, fig.cap='Simple polygon plot'>>=
+# generate fake data
+set.seed(12345);
+temp  <- matrix(runif(1010), ncol = 10) + sort(runif(101));
+
+polygon.data <- data.frame(
+    x = 0:100,
+    max = apply(temp, 1, max),
+    min = apply(temp, 1, min),
+    median = apply(temp, 1, median)
+    );
+
+# create the simple plot
+create.polygonplot(
+    formula = NA ~ x,
+    data = polygon.data,
+    max = polygon.data$max,
+    min = polygon.data$min,
+
+    # adjust axes limits
+    xlimits = c(0,100),
+    ylimits = c (0,2),
+    
+    # add fill colour
+    col = default.colours(1, palette.type = "pastel"),
+    
+    # add middle line
+    add.median = TRUE,
+    median = polygon.data$median
+    );
+@
+
+\subsection{Quantile-quantile plot}
+A quantile-quantile plot compares distributions by plotting them in a scatterplot fashion, where one distribution provides the x-axis values, and the other distribution provides the y-axis values. The closer in appearance the plot is to an y = x line indicates how similar the two distributions are.
+
+\begin{verbatim}
+create.qqplot.comparison
+\end{verbatim}
+This quantile-quantile plot compares two distributions.
+\begin{verbatim}
+create.qqplot.fit
+\end{verbatim}
+This quantile-quantile plot compares a distribution against a theoretical distribution.
+
+\subsubsection{Simple QQ plot comparison}
+The minimum input for the QQ plot comparison is either a list of numeric vectors or a data source and formula.
+<<qqcomparison, include=TRUE, fig.cap='Simple QQ plot comparison'>>=
+create.qqplot.comparison(
+    x = list(rnorm(100), rnorm(100))
+    );
+@
+
+\subsubsection{Simple QQ plot fit}
+The minimum input for the QQ plot fit is either a list of numeric vectors or a data source and formula.
+
+<<qqfit, include=TRUE, fig.cap='Simple QQ plot fit'>>=
+create.qqplot.fit(
+    x = rnorm(300),
+    
+    # compare against a uniform distribution
+    distribution = qunif
+    );
+@
+
+\subsection{Segplot}
+\begin{verbatim}
+create.segplot
+\end{verbatim}
+
+The segplot is also known as a forest plot, and is often used to compare the effectiveness of treatments suggested by different studies, but can be applied to a variety of other datasets. The middle value can be used to indicate a point, while the bar may show the surrounding range of values. This kind of plot can be used to compare distributions, where summary statistics are displayed.
+
+\subsubsection{Simple segplot}
+The minimum input to a segplot is a data frame and corresponding formula.
+
+<<segplot1, include=TRUE, fig.cap='Simple segplot'>>=
+# generate data
+set.seed(12345);
+
+segplot.data <- data.frame(
+    min = runif(10,5,10),
+    max = runif(10,20,25),
+    median = runif(10, 10, 20),
+    labels = as.factor(LETTERS[1:10])
+    );
+
+create.segplot(
+    formula = labels ~ min + max,
+    data = segplot.data,
+    
+    # add middle dots
+    centers = segplot.data$median
+    );
+@
+
+\subsubsection{Segplot with bands}
+Segplots can be displayed using thick bands.
+
+<<segplot2, include=TRUE, fig.cap='Segplot with bands'>>=
+create.segplot(
+    formula = labels ~ min + max,
+    data = segplot.data,
+    
+    # use bands instead of lines
+    draw.bands = TRUE
+    );
+@
+
+\subsection{Strip plot}
+\begin{verbatim}
+create.stripplot
+\end{verbatim}
+
+The strip plot is a type of scatterplot where one axis is discrete, meaning that the points are divided into discrete bins. If points are densely packed, they can be more easily distinguished by applying a jitter. This kind of plot can be used to display distributions, where each data point is shown.
+
+\subsubsection{Simple strip plot}
+The minimum input for a strip plot is a data frame and formula indicating x and y components.
+<<stripplot1, include=TRUE, fig.cap='Simple strip plot'>>=
+stripplot.data <- data.frame(
+    values = c(t(microarray[1:10, 1:58])),
+    genes = rep(rownames(microarray)[1:10], each = 58)
+    );
+
+create.stripplot(
+    formula = genes ~ values,
+    data = stripplot.data,
+    xaxis.cex = 1,
+    yaxis.cex = 1
+    );
+@
+
+\subsubsection{Strip plot with jitter and shading}
+Adding jitter to the points can make it easier to distinguish the values in a strip plot.
+<<stripplot2, include=TRUE, fig.cap='Strip plot with jitter and shading'>>=
+create.stripplot(
+    formula = genes ~ values,
+    data = stripplot.data,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    
+    # add jitter
+    # amount of jitter is controlled using jitter.factor and jitter.amount
+    jitter.data = TRUE,
+    
+    # draw rectangle
+    add.rectangle = TRUE,
+	
+    # coordinates of the rectangles given by four parameters
+    xleft.rectangle = 0,
+    xright.rectangle = 13,
+    ybottom.rectangle = seq(0.5, 8.5, 2),
+    ytop.rectangle = seq(1.5, 9.5, 2),
+	
+    # colour rectangles
+    col.rectangle = "grey",
+	
+    # set alpha of the rectangle 
+    alpha.rectangle = 0.25
+    );
+@
+
+\subsection{Violin plot}
+\begin{verbatim}
+create.violinplot
+\end{verbatim}
+
+The violin plot is a combination of a boxplot and a kernel density plot. The shape of the violin plot shows the density, where wider sections of the plot indicate regions of higher density. Additional optional points within the violins can be used to encode the median and interquartile range. This is a method of comparing distributions where both summary statistics and a visualization of the data is provided. One difference with this method compared to the density plot is that the violin plot does not indicate what the actual density values are: the height or width of bulges in the violin plots is relative, not absolute.
+
+\subsubsection{Simple violin plot}
+The minimal input for a violin plot is a data frame and formula.
+<<violinplot, include=TRUE, fig.cap='Simple violinplot'>>=
+violin.data <- data.frame(
+    values = c(t(microarray[1:10, 1:58])),
+    genes = rep(rownames(microarray)[1:10], each = 58)
+    );
+
+create.violinplot(
+    formula = values ~ genes,
+    data = violin.data,
+	xaxis.cex = 1,
+	yaxis.cex = 1,
+
+    # rotate axes labels
+    xaxis.rot = 90
+    );
+@
+
+\section{Multiplot}
+\begin{verbatim}
+create.multiplot
+\end{verbatim}
+
+The muliplot is not a chart-type in itself: rather, it is a function to combine multiple plots into a single plot. It enables the creation of complex figures in a programmable way and encourages good design by standardizing elements such as line widths and font size. 
+
+\subsection{Example 1: Simple multiplot}
+This example creates a figure out of a single bar plot and three heatmaps using the HairEyeColor data set supplied by the R datasets package.
+
+\subsubsection{Setting up the data}
+The first step is to format the data. 
+
+<<>>=
+# put array into a data frame 
+haireye <- as.data.frame(HairEyeColor);
+
+# sort data
+haireye <- haireye[order(-haireye[,4]),];
+
+# put columns of data frame into matrices for the heatmap
+Hair <- as.matrix(as.numeric(haireye[,1]));
+Eye <- as.matrix(as.numeric(haireye[,2]));
+Sex <- as.matrix(as.numeric(haireye[,3]));
+@
+
+\subsubsection{Creating the bar plot}
+The code below creates a bar plot showing the number of males and females with a particular hair and eye colour. Proper labels and titles will be added at the end using the create.multiplot function. The plot is not printed to file -- instead, it is saved in the \verb|hair.eye.colour.barplot| variable for later use by the multiplot function.
+
+<<multiplotex1_barplot, include=TRUE, fig.cap='Hair and eye colour barplot'>>=
+# create barplot for frequency of each type of person
+# formatting at this stage is unimportant because the create.multiplot function call will override and standardize the formatting
+hair.eye.colour.barplot <- create.barplot(
+        formula = Freq ~ c(1:32),
+        data = haireye,
+		xaxis.cex = 0.5,
+				
+        # set plot limits from 0 and 80 
+        ylimits = c(0.00, 80)
+        );
+
+# show barplot
+hair.eye.colour.barplot
+@
+
+\subsubsection{Creating the covariate bars}
+The covariate bars in this example are created using the create.heatmap function.  Discrete colour schemes are used in these covariate bars, and each colour used in specified in the colour.scheme parameter. The total number of colours used is specified in the total.col parameter, plus one to account for the white which is displayed in the case of missing values.
+
+<<multiplotex1_cov1, include=TRUE, fig.cap='Hair colour covariate'>>=
+hair.heatmap <- create.heatmap(
+        x = Hair,
+        clustering.method = "none",
+        scale.data = FALSE,
+        colour.scheme = c("black", "chocolate4", "orange", "yellow"),
+    
+        # show each colour once (i.e, four values, four colours)
+        total.col = 5,
+        grid.col = TRUE,
+        print.colour.key = FALSE,
+
+        # remove y-axis ticks
+        yaxis.tck = 0,
+        height = 1
+        );
+        
+hair.heatmap
+@
+
+The same process is followed for the remaining covariate bars.
+
+<<multiplotex1_cov2, include=TRUE, fig.cap='Eye colour covariate'>>=
+eye.heatmap <- create.heatmap(
+        x = Eye,
+        clustering.method = "none",
+        scale.data = FALSE, 
+        colour.scheme = c("lightsalmon4", "lightskyblue1", "lightsalmon2", "green4"),
+        total.col = 5,
+        grid.col = TRUE,
+        print.colour.key = FALSE,
+        yaxis.tck = 0,
+        height = 1
+        );
+
+eye.heatmap
+@
+
+<<multiplotex1_cov3, include=TRUE, fig.cap='Sex covariate'>>=
+sex.heatmap <- create.heatmap(
+        x = Sex,
+        clustering.method = "none",
+        scale.data = FALSE,
+        colour.scheme = force.colour.scheme(c("Male","Female"),scheme = "sex"),
+        total.col = 3,
+        grid.col = TRUE,
+        print.colour.key = FALSE,
+        yaxis.tck = 0,
+        height = 1
+        );
+
+sex.heatmap
+@
+
+\subsubsection {Creating the legend}
+A legend is created to differentiate the meaning of the heatmaps. This legend has three sections: one for hair colour, eye colour and sex.
+
+<<>>=
+# create legend for covariates
+legends <- legend.grob( list(
+
+       # create legend for hair colour
+       legend = list(
+               colours = c("black", "chocolate4", "orange", "yellow"),
+               title = expression(underline("Hair Colour")),
+               labels = c("Black", "Brown", "Red", "Blonde"),
+               size = 3,
+               title.cex = 2,
+               label.cex = 2
+               ),
+
+       # create legend for eye colour
+       legend = list(
+               colours = c("lightsalmon4", "lightskyblue1", "lightsalmon2", "green4"),
+               title = expression(underline("Eye Colour")),
+               labels = c("Brown", "Blue", "Hazel", "Green"),
+               size = 3,
+               title.cex = 2,
+               label.cex = 2
+               ),
+
+       # create legend for sex
+       legend = list(
+               colours = force.colour.scheme(c("Male", "Female"),scheme = "sex"),
+               title = expression(underline("Sex")),
+               labels = c("Male", "Female"),
+               size = 3,
+               title.cex = 2,
+               label.cex = 2
+               )
+       ), 
+       title.just = "left", 
+       title.fontface = "plain")
+@
+
+\subsubsection{Creating the final figure}
+After all the plots and legends are created, they are combined using the create.multiplot function. This figure is arranged so the bar plot is the largest and at the top, and the three heatmaps appear underneath to explain what each of the covariate bars represent. The order is achieved through listing the plots in the order in which they should appear (from bottom to top) in the plot.objects parameter. Furthermore, axis labels are only on the barplot, leaving others without labels and tick marks.
+
+<<multiplotex1_final, include=TRUE, fig.cap='Example 1 multiplot', fig.height = 6, fig.width = 6, resize.height ='80mm', resize.width ='80mm'>>=
+ create.multiplot(
+    
+         # four plots are listed from bottom to top 
+         plot.objects = list(sex.heatmap, eye.heatmap, hair.heatmap, hair.eye.colour.barplot),
+
+         # labels are placed on y-axis side of the multiplot 
+         # (tabs/spaces are used to properly place labels -- the default placement is centred on the entire plot)
+         ylab.label = c("\t", "Number of people", "\t", "\t"),
+         main.key.padding = 2,
+         ylab.cex = 1.25,
+         main.cex = 1.25,
+         yaxis.cex = 1,
+         panel.heights = c(1, 0.1, 0.1, 0.1),
+
+         # set spacing between the plots
+         yspacing = c(-1, -1, -1),
+         xaxis.lab = NULL,
+
+         # remove axes tick marks
+         xaxis.alternating = 0,
+         yaxis.alternating = 0,
+
+         # set the yaxis labels (only needed on the bar plot)
+         yaxis.lab = list(NULL, NULL, NULL, seq(0, 100, 20)),
+
+         # put the legend on the right side of the multiplot
+         legend = list(right = list(fun = legends)),
+         print.new.legend = TRUE
+         );
+@
+
+\subsection{Example 2: Complex layout}
+
+In this example we make a plot to convey gene expression using a more complex layout. This plot consists of two bar plots and two heatmaps. The heatmap takes up most of the figure and represents gene expression level changes in different samples. The top bar plot will represent the amount of sample used, and the side bar plot represents the importance of the gene. (Note that this example is not based upon real data.)
+
+\subsubsection{Setting up the data}
+
+Data is generated for this example: 
+
+<<>>=
+set.seed(12345);
+
+# main heatmap data
+heatmap.data <- data.frame(
+    a = rnorm(n = 25, mean = 0, sd = 0.75),
+    b = rnorm(n = 25, mean = 0, sd = 0.75),
+    c = rnorm(n = 25, mean = 0, sd = 0.75),
+    d = rnorm(n = 25, mean = 0, sd = 0.75),
+    e = rnorm(n = 25, mean = 0, sd = 0.75),
+    f = rnorm(n = 25, mean = 0, sd = 0.75),
+    g = rnorm(n = 25, mean = 0, sd = 0.75),
+    h = rnorm(n = 25, mean = 0, sd = 0.75)
+    );
+
+# colourkey data
+colorkey.data <- data.frame(
+    x <- seq(-50,50,1)
+    );
+
+# top barplot data
+top.barplot.data <- data.frame(
+    x = rnorm(n = 25, mean = 2, sd = 0.75),
+    y = seq(1,25,1)
+    );
+ 
+ # side barplot data
+side.barplot.data <- data.frame(
+    x = rnorm(n = 8, mean = 0, sd = 0.75),
+    y = seq(1,8,1)
+    );
+@
+\subsubsection{Creating the main heatmap}
+
+Here the heatmap used to display the expression level for each sample and gene is created. 
+
+<<multiplotex2_heatmap, include=TRUE, fig.cap='Main heatmap'>>=
+gene.expression.heatmap <- create.heatmap(
+     x = heatmap.data,
+     xaxis.tck = 0,
+     yaxis.tck = 0,
+     colourkey.cex = 1,
+     
+     # don't want to cluster this heatmap
+     clustering.method = "none",
+     axes.lwd = 1,
+     ylab.label = "y",
+     xlab.label = "x",
+     yaxis.fontface = 1,
+     xaxis.fontface = 1,
+     xlab.cex = 1,
+     ylab.cex = 1,
+     main.cex = 1,
+     colour.scheme = c("red", "white", "turquoise")
+     );
+     
+gene.expression.heatmap
+@
+
+\subsubsection{Creating the colourkey}
+
+Here the colourkey for the main heatmap is created. It displays the same colours as the heatmap, as well as indicate what the colours represent.
+
+<<multiplotex2_colourkey, include=TRUE, fig.cap='Main heatmap colourkey'>>=
+key <- create.heatmap(
+   x = colorkey.data,
+   clustering.method = "none",
+   scale.data = FALSE,
+   # set same colours as are in the heatmap
+   colour.scheme = c("turquoise", "white", "red"),
+   print.colour.key = FALSE,
+   yaxis.tck = 0,
+   xat = c(10, 90),
+   xaxis.lab = c("low", "high"),
+   xaxis.rot = 0,
+   xaxis.cex = 2,
+   height = 1
+   );
+
+key
+@
+
+\subsubsection{Creating the top bar plot}
+The bar plot at the top of the plot representing the amount of sample is created. The bar plot will look very simple, but details will be added later when the create.multiplot function is called.
+
+<<multiplotex2_topbarplot, include=TRUE, fig.cap='Top bar plot'>>=
+sample.barplot <- create.barplot(
+     formula = x~y,
+     data = top.barplot.data,
+     col = "grey",
+     
+     # remove lines
+     lwd = 0
+     );
+
+sample.barplot
+@
+
+\subsubsection{Creating the side bar plot}
+
+Here the side bar plot representing the importance of the gene is created. The bar plot will look very simple, but details will be added later when the create.multiplot function is called.
+
+<<multiplotex2_sidebarplot, include=TRUE, fig.cap='Importance bar plot'>>=
+importance.barplot <- create.barplot(
+     formula = x~y,
+     data = side.barplot.data,
+     lwd = 0,
+     col = "grey",
+     
+     # The data here is sorted. 
+     # if real data was used, would have to ensure that the corresponding 
+     # heatmap rows were similarly sorted to match
+     sample.order = "decreasing",
+     plot.horizontal = TRUE
+     );
+
+importance.barplot
+@
+
+\subsubsection{Creating the final figure}
+
+The create.multiplot function is used to combine the plots. First consider the layout: this plot uses 3 rows of 2 columns and skips the bottom right plotting space. The bottom row contains just the colourkey, the middle row contains the main heatmap and the side bar plot, and the top row contains the top barplot. Below is a figure describing the layout; blue represents an area that a plot will appear there, red represents an area that is skipped, and yellow represents an unused area.
+
+\begin{figure}[!ht]
+  \begin{center}
+     \includegraphics[width=25mm]{Figures/ex2_schematic.pdf}
+     \caption{Plot layout}
+     \label{fig:picture}
+  \end{center}
+\end{figure}
+
+<<multiplotex2_final, include=TRUE, fig.cap='Example 2 multiplot', fig.height = 6, fig.width = 6, resize.height ='80mm', resize.width ='80mm'>>=
+create.multiplot(
+    # use four plots we created earlier as the objects for the multiplot
+    plot.objects = list(key, gene.expression.heatmap, importance.barplot, sample.barplot),
+    panel.heights = c(0.25, 1, 0.05),
+    panel.widths = c(1, 0.25),
+   
+    # specify the plot layout 
+    # plot.layout specifies the number of rows and columns (3 rows, 2 columns)
+    # layout.skip specifies which of the plots in the specification will be skipped
+    # the skip specification starts at the bottom left, moves to the right and then up
+    plot.layout = c(2, 3),
+    layout.skip = c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE),
+    xaxis.alternating = 0,
+    yaxis.alternating = 0,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1,
+    ylab.cex = 1,
+
+    # format labels (tabs are needed for proper spacing between labels)
+    xlab.label = c("\t", "Samples", "\t", "    Importance"),
+    ylab.label = c( "Amount (g)", "\t", "\t", "Genes", "\t", "\t"),
+    ylab.padding = 6,
+    xlab.to.xaxis.padding = 0,
+    xaxis.lab = list(
+        c("","low","", "","high", ""),
+        LETTERS[1:25],
+        seq(0,5,1),
+        NULL
+        ),
+    yaxis.lab = list(
+        NULL,
+        replicate(8, paste(sample(LETTERS, 4, replace = TRUE), collapse = "")),
+        NULL,
+        seq(0,4,0.05)
+        ),
+    xspacing = -0.5,
+    yspacing = c(0, -1),
+    xaxis.fontface = 1,
+    yaxis.fontface = 1
+    );
+@
+
+\subsection{Example 3: Legends}
+This example focuses on the addition and customization of legends.
+
+\subsubsection{Create the three scatterplots}
+<<multiplotex3_scatter, include=TRUE, fig.cap='Example 3 scatterplot'>>=
+for(i in 1:3){
+   # generate data
+	scatter.data <- data.frame(
+		x = seq(1, 20, 1),
+		y = rnorm(20, 0.5, 0.1)
+		);
+
+	tmp.plot <- create.scatterplot(
+		formula = y ~ x,
+		data = scatter.data,
+		type = c("p", "h"),
+
+		# Set axes limits
+		xlimits = c(0.5, 20.5),
+		ylimits = c(0,1),
+
+		# add background rectangles
+		add.rectangle = TRUE,
+		xleft.rectangle = seq(0.5, 18.5, 2),
+		ybottom.rectangle = 0,
+		xright.rectangle = seq(1.5, 19.5, 2),
+		ytop.rectangle = 10,
+		col.rectangle = c(rep("grey", 6), "indianred1", rep("grey", 2), "skyblue")
+		);
+
+	if (1 == i) { scatter.one <- tmp.plot; }
+	else if (2 == i) { scatter.two <- tmp.plot; }
+	else if (3 == i) { scatter.three <- tmp.plot; }
+}
+
+# display one of the three plots
+scatter.one
+@
+
+\subsubsection{Create covariate bar}
+<<multiplotex3_covariate, include=TRUE, fig.cap='Example 3 covariate bar'>>=
+# make covariate bars
+covariate.data <- data.frame(
+	license = sample( c("GPL", "AFL", "EULA"), 20, replace = TRUE),
+	runningtime = sample( c("Seconds", "Minutes", "Days", "Weeks", "Months"), 20, replace = TRUE),
+	underdevelopment = sample(c("Yes", "No"), 20, replace = TRUE),
+	language = sample(c("R", "C", "Perl", "Other"), 20, replace = TRUE)
+	);
+
+# change covariate data to numeric
+covariate.numeric <- data.frame(lapply(covariate.data, as.character), stringsAsFactors = FALSE);
+covariate.numeric$license[covariate.numeric$license == "GPL"] <- 1;
+covariate.numeric$license[covariate.numeric$license == "AFL"] <- 2;
+covariate.numeric$license[covariate.numeric$license == "EULA"] <- 3;
+
+covariate.numeric$runningtime[covariate.numeric$runningtime == "Seconds"] <- 4;
+covariate.numeric$runningtime[covariate.numeric$runningtime == "Minutes"] <- 5;
+covariate.numeric$runningtime[covariate.numeric$runningtime == "Days"] <- 6;
+covariate.numeric$runningtime[covariate.numeric$runningtime == "Weeks"] <- 7;
+covariate.numeric$runningtime[covariate.numeric$runningtime == "Months"] <- 8;
+
+covariate.numeric$underdevelopment[covariate.numeric$underdevelopment == "Yes"] <- 9;
+covariate.numeric$underdevelopment[covariate.numeric$underdevelopment == "No"] <- 10;
+
+covariate.numeric$language[covariate.numeric$language == "R"] <- 11;
+covariate.numeric$language[covariate.numeric$language == "C"] <- 12;
+covariate.numeric$language[covariate.numeric$language == "Perl"] <- 13;
+covariate.numeric$language[covariate.numeric$language == "Other"] <- 14;
+
+# set colour scheme
+license.colour <- default.colours(4, "spiral.sunrise")[-3];
+runningtime.colour <- default.colours(5, "spiral.dawn");
+underdevelopment.colour <- c("white", "darkgrey");
+language.colour <- default.colours(4, "spiral.afternoon");
+
+covariate.bar <- create.heatmap(
+	x = data.matrix(covariate.numeric),
+	clustering.method = "none",
+	print.colour.key = FALSE,
+
+	# set colour scheme
+	total.colours = 15,
+	colour.scheme = c(license.colour, runningtime.colour, underdevelopment.colour, language.colour),
+
+	# add row lines
+	grid.row = TRUE,
+	grid.col = TRUE,
+	row.colour = "black",
+	col.colour = "black"
+	);
+
+covariate.bar
+@
+
+\subsubsection{Create legends}
+<<>>=
+# create covariate legend
+covariate.legends <- list(
+    legend = list(
+        colours = license.colour,
+        labels  = c('GPL', 'AFL', 'EULA'),
+        title   = expression(bold('License'))
+        ),
+    legend = list(
+        colours = runningtime.colour,
+        labels  = c("Seconds", "Minutes", "Days", "Weeks", "Months"),
+        title   = expression(bold('Running Time'))
+        ),
+    legend = list(
+        colours = underdevelopment.colour,
+        labels  = c("Yes", "No"),
+        title   = expression(bold('Dev'))
+        ),
+    legend = list(
+        colours = language.colour,
+        labels  = c("R", "C", "Perl", "Other"),
+        title   = expression(bold('Language'))
+        )
+    );
+
+# create legend grob
+legend1 <- legend.grob(
+    covariate.legends, 
+    size = 1.25, 
+    label.cex = 0.75, 
+    title.cex = 0.75,
+    layout = c(length(covariate.legends), 1),
+
+    # add black box around legend
+    border = list(col = "black", lwd = 3, lty = 1),
+    border.padding = 1.5,
+    between.col = c(1.6, 1.6, 1, 1.6)
+    );
+
+
+# create side legend
+side.legend <- list(
+    legend = list(
+        colours = c("indianred1", "skyblue"),
+        labels  = c("Proposed", "Standard")
+        )
+    )
+
+legend2 <- legend.grob(
+    side.legend, 
+    size = 1.25, 
+    label.cex = 0.75
+    );
+@
+
+\subsubsection{Create final multiplot}
+<<multiplotex3_final, include=TRUE, fig.cap='Example 3 multiplot', fig.height = 10, fig.width = 8, resize.height ='100mm', resize.width ='80mm'>>=
+create.multiplot(
+    plot.objects = list(covariate.bar, scatter.three, scatter.two, scatter.one),
+    plot.layout = c(1,4),
+    xaxis.cex = 1.3,
+    
+    xaxis.alternating = 0,
+    yaxis.alternating = 0,
+    ylab.label = c('Version 3', 'Version 2', 'Version 1'),
+    yaxis.cex = 1.3,
+    ylab.cex = 1.6,
+    ylab.padding = 5,
+    x.relation = 'free',
+    y.relation = 'free',
+    yat = list(1:4, seq(0, 0.6, 0.2), seq(0, 0.6, 0.2), seq(0, 0.6, 0.2)),
+    yaxis.labels = list(NULL, seq(0, 0.6, 0.2), seq(0, 0.6, 0.2), seq(0, 0.6, 0.2)),
+    xat = seq(1, 20, 1),
+    xaxis.labels = NULL,
+    panel.heights = c(1, 1, 1, 0.2),
+    yspacing = c(0.5, 0.5, 0.5),
+
+    # provide space for the legend
+    bottom.padding = 15,
+
+    # add legends
+    print.new.legend = TRUE,
+    legend = list(
+
+    	# place legend inside plotting space
+        inside = list(
+            fun = legend1,
+            x = 0.5,
+            y = -0.1,
+            corner = c(0.5, 0.5)
+            ),
+
+        # place legend to the right-hand side
+        right = list(
+        	fun = legend2
+        	)
+        )
+    );
+@
+
+\subsection{Troubleshooting}
+This section briefly outlines some issues that beginners may have with the multiplot function. 
+\newline
+\newline
+1. The way that the plots are displayed according to the layout you specify may be confusing. The first plot you specify in plot.objects is going to be drawn at the bottom left most area for a plot and the ordering will then fill the plots to the right. After reaching the rightmost plot, the plots in the row above will begin to be drawn. 
+\newline
+\newline
+2. A common mistake is that the amount of panel widths/heights must be a multiple of the number of plots. The warning will look like:
+
+\begin{verbatim}
+        1: In widths.x[pos.widths[[nm]]] <- widths.settings[[nm]] * widths.defaults[[nm]]$x : 
+        number of items to replace is not a multiple of replacement length
+        2: In widths.x[pos.widths[["panel"]]] <- widths.settings[["panel"]] *  :
+        number of items to replace is not a multiple of replacement length
+\end{verbatim}
+
+This may cause the plots to not look as you intend, but is easily fixed by ensuring that your panel.widths and panel.heights parameters are multiples of the number of plots that can be plotted. For example, if your layout has 2 rows and 3 columns, the panel.heights parameter can have 2 inputs, and the panel.widths parameter can have 3 inputs.
+
+\section{Other functions}
+The BL.plotting.general package contains a number of non-plotting functions which are included to assist in the plot-generation process. 
+
+\subsection{Colours}
+There are number of functions to help choose colours for plotting:
+\begin{itemize}
+\item \texttt{default.colours} provides a number of pre-made colour palettes to use
+\item \texttt{force.colour.scheme} similarly provides colour palettes, but for specific use-cases
+\item \texttt{colour.gradient} generates sequential colour schemes
+\item \texttt{display.colours} gives a preview of a colour scheme along with grey scale values and colour names
+\end{itemize}
+
+The available colour schemes can be previewed simply using the \verb|display.colours| and \verb|show.available.palettes| functions:
+
+\begin{verbatim}
+# displays the pastel colour scheme
+display.colours(default.colours(12, palette.type = "pastel"));
+
+# displays the spiral.dusk colour scheme
+display.colours(default.colours(5, palette.type = "spiral.dusk"));
+
+# displays the case-specific biomolecule colour scheme
+biomolecule_names <- c("DNA", "RNA", "Protein", "Carbohydrate", "Lipid");
+display.colours(force.colour.scheme(biomolecule_names, "biomolecule"), biomolecule_names);
+\end{verbatim}
+
+<<colour_scheme_general, include=TRUE, fig.cap='General colour schemes', fig.height = 6, fig.width = 6, resize.height ='80mm', resize.width ='80mm'>>=
+# display general schemes
+show.available.palettes(
+    type = 'general'
+    );
+@
+
+<<colour_scheme_specific, include=TRUE, fig.cap='Specific colour schemes', fig.height = 8, fig.width = 12, resize.height ='96mm', resize.width ='144mm'>>=
+# display specific schemes
+show.available.palettes(
+    type = 'specific'
+    );
+@
+
+The full range of colour schemes available is described in the documentation of the \verb|default.colours| and \verb|force.colour.scheme| functions.
+
+The spiral.sunrise, spiral.dusk, etc colour schemes were created by ``spiralling'' through the colour wheel, varying the hue, saturation, and value of the colours to achieve a greater perceptual difference \cite{rainbow, wong2}. 
+
+\subsection{Legends}
+\begin{itemize}
+\item \texttt{legend.grob} and \texttt{covariates.grob} create grob objects for legends and covariates respectively
+\item \texttt{create.colourkey} is useful for adding colourkeys to multiplots
+\item \texttt{get.corr.key} creates correlation key legends to be added to plots
+\end{itemize}
+
+\subsection{Text}
+\begin{itemize}
+\item \texttt{append.footnote} adds text to plots
+\item \texttt{scientific.notation} function formats numbers into scientific notation
+\item \texttt{display.statistical.result} function uses this to display statistical results in plots
+\item \texttt{get.line.breaks} is used in the specific case of placing indices in heatmaps
+\end{itemize}
+
+\subsection{Private}
+Other functions are called by plotting functions but are not intended for use by end-users: 
+\begin{verbatim}
+generate.at.final, get.defaults, write.metadata, write.plot
+\end{verbatim}
+
+
 
 \section{Session Info}
 <<>>=
@@ -2155,6 +2271,9 @@ Edward R. Tufte, The Visual Display of Quantitative Information. Graphics Press,
 
 \bibitem{lattice}
 Sarkar, Deepayan (2008) Lattice: Multivariate Data Visualization with R, Springer.  ISBN: 978-0-387-75968-5 URL: http://lmdvr.r-forge.r-project.org/
+
+\bibitem{trellis}
+Becker, R. A. and Cleveland, W. S., S-PLUS Trellis Graphics User’s Manual, Seattle: MathSoft, Inc., Murray Hill: Bell Labs, 1996.
 
 \bibitem{cleveland-scatter}
 William S. Cleveland, Persi Diaconis \& Robert McGill, Variables on Scatterplots Look More Highly Correlated When the Scales Are Increased. Science 216, 1138-1141 (1982).
