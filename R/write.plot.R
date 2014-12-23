@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO WRITE PLOT  #######################################################################
-write.plot <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
+write.plot.dev <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
 
 	# if requested create the image file
 	if (!is.null(filename)) {
@@ -88,19 +88,19 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 				# checks if trellis objects and locations are provided in a list
 				stop('Additional trellis objects and their locations must be provided in a list'); 
 				
-			} else if (
-				(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
-				(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
-				) {
-				
+		} else if (
+			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
+			(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
+			) {
+			
 				# checks if coordinates are specified in a list if trellis objects are provided	
 				stop('If trellis objects are specified, their coordinates must be provided in a list');
 				
-			} else if (
-				(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
-				(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) == 'list')
-				) {
-				
+		} else if (
+			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
+			(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) == 'list')
+			) {
+			
 				# checks if elements denoting coordinates for trellis objects are appropriately named
 				# once the type of the parameters are deemed correct
 				# trellis locations object should have the following elements: xleft, ybottom, xright, ytop
@@ -124,8 +124,11 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 				
 				# only proceed if inputs are equal
 				if (length(unique(input.lengths)) != 1) {
+					
 					stop('Lists of trellis objects and coordinates provided not equal in length'); 
-					} else if (length(unique(input.lengths)) == 1) {
+				
+				} else if (length(unique(input.lengths)) == 1) {
+					
 					for (i in 1:length(additional.trellis.objects)) {
 						print(
 							x = additional.trellis.objects[[i]],
@@ -138,8 +141,9 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 							newpage = FALSE
 							);
 						}
-					} else { stop('Incompatible inputs'); }
-				} else { plot(trellis.object); }
+						
+				} else { stop('Incompatible inputs'); }
+			}
 	
 		dev.off();
 		options(bitmapType = old.type);
@@ -159,21 +163,19 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		return(1);
 		}
 	
-	else {
-
-		# check if graphics device is postscript
-		if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
-			ps.options(family = 'sans');
-			}
-	
-		# check if graphics device is not set i-e "null device"
-		if (enable.warnings && 1 == dev.cur()) {
-			warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
-			}
-	
+	else if (is.null(filename)) {
 		# if no plot requested, return the trellis object itself
 		return(trellis.object);
-		
+		}
+	
+	# check if graphics device is postscript
+	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
+		ps.options(family = 'sans');
+		}
+
+	# check if graphics device is not set i-e "null device"
+	if (enable.warnings && 1 == dev.cur()) {
+		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
 		}
 	
 	}
