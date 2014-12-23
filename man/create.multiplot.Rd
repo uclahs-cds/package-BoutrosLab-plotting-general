@@ -787,6 +787,7 @@ simple.heatmap <- create.heatmap(patient[, 4:6],
     colour.scheme = c('gray0','grey100'),
     fill.colour = 'grey95'
 );
+
  
 # and a simple bar plot
 pvals <- data.frame(
@@ -794,7 +795,7 @@ pvals <- data.frame(
         pvalue = -log10(c(0.0004, 0.045, 0.0001)),
         stringsAsFactors = FALSE
         )
-
+#create bar plot
 simple.bar <- create.barplot(
         formula = order ~ rev(pvalue),
         data = pvals,
@@ -836,25 +837,27 @@ covariates <- create.heatmap(
     yaxis.tck = 0,
     print.colour.key = FALSE
     );
+covariates2 <- create.heatmap(
+    x = patient[4],
+    clustering.method = 'none',
+    colour.scheme = c("#00007F", "#007FFF"),
+    row.colour = 'white',
+    col.colour = 'white',
+    grid.row = TRUE,
+    grid.col = TRUE,
+    yaxis.tck = 0,
+    print.colour.key = FALSE
+    );
 
 cov_legends <- list(
     legend = list(
         colours = c("white", "black"),
-        labels = c('Fancy','Legend'),
+        labels = c('0','2'),
         border = 'grey',
-        title = 'One'
-        ),
-    legend = list(
-        colours = c("white", "black"),
-        labels = c('Fancy','Legend'),
-        border = 'grey',
-        title = 'Two'
-        ),
-    legend = list(
-        colours = c("white", "black"),
-        labels = c('Fancy','Legend'),
-        border = 'grey',
-        title = 'Three'
+        title = 'Tumour Mass (kg)',
+  continous = TRUE,
+	height = 3,
+	pos.x = 0.23
         ),
     legend = list(
         colours = cov.colours[8:9],
@@ -873,6 +876,20 @@ cov_legends <- list(
         labels = c('Male','Female'),
         border = 'white',
         title = 'Sex'
+        ),
+    legend = list(
+        colours = c("#00007F", "#007FFF"),
+        labels = c('0.09','0.72'),
+        border = 'grey',
+        title = 'CAGT',
+	continous = TRUE,
+	height = 3,
+	pos.x = 0.3,
+	pos.y = 0.55,
+	angle = -90,
+	tck = 1,
+	tck.number = 2,
+	at = c(0,100)
         )
     );
 
@@ -885,38 +902,42 @@ cov_legend.grob <- legend.grob(
 
 # Now bring it was together using multiplot
 create.multiplot(
-    filename = "Multiplot_with_colourkey_legend.tiff",
-    main = 'Multiplot with colour key legend',
+    main = 'multiplot with colour key legend',
     main.cex = 1,
-    plot.objects = list(covariates, simple.heatmap, simple.bar),
-    panel.heights = c(1,0.35),
+    filename = "MultiPlot_With_ColorKey_Legend.tiff",
+    plot.objects = list(covariates, covariates2, simple.heatmap, simple.bar),
+    panel.heights = c(1,0.1,0.35),
     panel.widths = c(1,0.25),
-    plot.layout = c(2,2),
-    layout.skip = c(FALSE, TRUE, FALSE, FALSE),
+    plot.layout = c(2,3),
+    layout.skip = c(FALSE, TRUE, FALSE, TRUE,FALSE,FALSE),
     xaxis.alternating = 1,
     # Set some of the yat to NULL to let R figure it out
     yaxis.lab = list(
         c('Sex','Stage','MSI'),
-        c('one','two','three'),
+        c('CAGT'),
+	c('one','two','three'),
         NULL
         ),
     xaxis.lab = list(
         NULL,
         NULL,
+	NULL,
         seq(0,5,1)
     ),
     xat = list(
         NULL,
         NULL,
+	NULL,
         seq(0,5,1)
     ),
+    yaxis.tck = 0,
     xlab.to.xaxis.padding = 0,
     yaxis.cex = 0.5,
     xaxis.cex = 0.5,
     xlab.cex = 0.75,
     ylab.cex = 0.75,
     xlab.label = c('\t', 'samples', '\t', '    -log10 pval'),
-    ylab.label = c("", "scaled data", "",  "covariates"),
+    ylab.label = c("", "Test", "",  "covariates"),
     yspacing = 0,
     xspacing = 0,
     legend = list(

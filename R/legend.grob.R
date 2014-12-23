@@ -61,6 +61,9 @@ legend.grob <- function(legends, label.cex = 1, title.cex = 1, title.just = 'cen
 		for (i in 1:num.legends) {
 			legendi <- legends[[i]];
 			typei <- names(legends)[i];
+      if(is.null(legendi[['continous.amount']])){
+        legendi[['continous.amount']] = 100;
+      }
 			switch(typei, legend = {
 
 				# Figure out where this legend should go in the layout (ordered row-wise)
@@ -115,30 +118,63 @@ legend.grob <- function(legends, label.cex = 1, title.cex = 1, title.just = 'cen
 				# Create a key describing the content of the legend
 				# The first column is the coloured rectangles and
 				# the second column is the corresponding text labels
+        if(!is.null(legendi[['continous']]) && legendi[['continous']] == TRUE){
+				colorRamp <- colorRampPalette(legendi[['colours']]);
 				legend.key <- list(
-					just = c("left", "top"),
+					space = c("right", "top"),
 					between = 0.5,
-					rep = FALSE,
-					rectangles = list(
-						col = legendi[['colours']],
-						size = if (is.null(legendi[['size']])) { size } else { legendi[['size']] },
-						height = 1,
-						border = legendi[['border']]
-						),
-					text = list(
-						legendi[['labels']],
-						cex = label.cex,
-						fontfamily = font.family
-						)
-					);
+					rep = TRUE,
+					tick.number = if(is.null(legendi[['tck.number']])){0}else{legendi[['tck.number']]},
+          tck = if(is.null(legendi[['tck']])){0}else{legendi[['tck']]},
+          at = do.breaks(c(0,legendi[['continous.amount']]),legendi[['continous.amount']]),
+          col = colorRamp,
+          width = if(is.null(legendi[['width']])){2}else{legendi[['width']]},
+          labels = list(
+              labels = if(is.null(legendi[['labels']])){c("")}else{legendi[['labels']]} , 
+              at = if(is.null(legendi[['at']])){NULL}else{legendi[['at']]},
+              cex = if(is.null(legendi[['cex']])){0.8}else{legendi[['cex']]},
+              rot =  if(is.null(legendi[['labels.rot']])){0}else{legendi[['labels.rot']]}
+              )
+				);
 
 				# Add the legend to the frame
 				legend.grob.final <- packGrob(
 					frame = legend.grob.final,
-					grob = draw.key(key = legend.key, draw = FALSE),
+					grob = draw.colorkey(key = legend.key, draw = FALSE, vp = viewport(
+                                x = if(is.null(legendi[['pos.x']])){0.5}else{legendi[['pos.x']]},
+                                y = if(is.null(legendi[['pos.y']])){0.5}else{legendi[['pos.y']]}, 
+                                angle = if(is.null(legendi[['angle']])){0}else{legendi[['angle']]})),
 					row = 3 * (legend.row - 1) + 2,
-					col = 2 * (legend.col - 1) + 1
+					col = 2 * (legend.col - 1) + 1,
+					height = if(is.null(legendi[['height']])){unit(1, "lines") }else{unit(legendi[['height']],"lines")},
 					);
+        }
+        else{
+          legend.key <- list(
+            just = c("left", "top"),
+            between = 0.5,
+            rep = FALSE,
+            rectangles = list(
+              col = legendi[['colours']],
+              size = if (is.null(legendi[['size']])) { size } else { legendi[['size']] },
+              height = 1,
+              border = legendi[['border']]
+            ),
+            text = list(
+              legendi[['labels']],
+              cex = label.cex,
+              fontfamily = font.family
+            )
+          );
+          
+          # Add the legend to the frame
+          legend.grob.final <- packGrob(
+            frame = legend.grob.final,
+            grob = draw.key(key = legend.key, draw = FALSE),
+            row = 3 * (legend.row - 1) + 2,
+            col = 2 * (legend.col - 1) + 1
+          );
+        }
 				});
 			}
 
