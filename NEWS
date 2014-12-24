@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 5.2.6 2014-12-24
+
+MINOR UPDATE
+* write.plot: fixed bug
+* added new colourkey legend and interface
 ---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.5 2014-12-18
 
