@@ -889,7 +889,8 @@ cov_legends <- list(
 	angle = -90,
 	tck = 1,
 	tck.number = 2,
-	at = c(0,100)
+	at = c(0,100),
+  labels.rot = 90
         )
     );
 
@@ -914,7 +915,7 @@ create.multiplot(
     # Set some of the yat to NULL to let R figure it out
     yaxis.lab = list(
         c('Sex','Stage','MSI'),
-        c('CAGT'),
+        NULL,
 	c('one','two','three'),
         NULL
         ),
@@ -937,7 +938,7 @@ create.multiplot(
     xlab.cex = 0.75,
     ylab.cex = 0.75,
     xlab.label = c('\t', 'samples', '\t', '    -log10 pval'),
-    ylab.label = c("", "Test", "",  "covariates"),
+    ylab.label = c("", "Test", "","CAGT",  "covariates"),
     yspacing = 0,
     xspacing = 0,
     legend = list(
