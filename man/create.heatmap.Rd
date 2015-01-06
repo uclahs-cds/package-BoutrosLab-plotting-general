@@ -1027,6 +1027,24 @@ msi.colour <- recode.vector(
         )
     );
 
+discrete.covariate <- list(
+    rect = list(
+        col = 'transparent',
+        fill = sex.colour,
+        lwd = 1.5
+        ),
+    rect = list(
+        col = 'transparent',
+        fill = stage.colour,
+        lwd = 1.5
+        ),
+    rect = list(
+        col = 'transparent',
+        fill = msi.colour,
+        lwd = 1.5
+        )
+    );
+
 discrete.covariate.legend <- list(
     legend = list(
         colours = c('dodgerblue', 'pink'),
@@ -1046,7 +1064,10 @@ discrete.covariate.legend <- list(
     legend = list(
         colours = c('grey0', 'grey100'),
         labels = c('want key like','legend here'),
-        title = expression(underline('one'))
+        title = expression(underline('one')),
+	continuous = TRUE,
+	height=3,
+	pos.x = 0.40
         ),
     legend = list(
         colours = c('grey0', 'grey100'),
@@ -1055,8 +1076,17 @@ discrete.covariate.legend <- list(
         ),
     legend = list(
         colours = c('grey0', 'grey100'),
-        labels = c('want key like','legend here'),
-        title = expression(underline('three'))
+        labels = c(0,10),
+        title = expression(underline('three')),
+	continuous = TRUE,
+        height = 3,
+        pos.x = 0.3,
+        pos.y = 0.55,
+        angle = -90,
+        tck = 1,
+        tck.number = 3,
+        at = c(0,100),
+        labels.rot = 90
         )
    );
 
@@ -1073,7 +1103,7 @@ create.heatmap(
     same.as.matrix = FALSE,
     covariates.top = discrete.covariate,
     covariates.top.grid.row = list(lwd = 1),
-    covariate.legend = discrete.covariate.legend,
+    covariate.legends = discrete.covariate.legend,
     legend.title.just = 'left',
     colour.scheme = c('gray0','grey100'),
     fill.colour = 'grey95',
