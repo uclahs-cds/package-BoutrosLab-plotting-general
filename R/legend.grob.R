@@ -61,8 +61,8 @@ legend.grob <- function(legends, label.cex = 1, title.cex = 1, title.just = 'cen
 		for (i in 1:num.legends) {
 			legendi <- legends[[i]];
 			typei <- names(legends)[i];
-      if(is.null(legendi[['continous.amount']])){
-        legendi[['continous.amount']] = 100;
+      if(is.null(legendi[['continuous.amount']])){
+        legendi[['continuous.amount']] = 100;
       }
 			switch(typei, legend = {
 
@@ -118,7 +118,7 @@ legend.grob <- function(legends, label.cex = 1, title.cex = 1, title.just = 'cen
 				# Create a key describing the content of the legend
 				# The first column is the coloured rectangles and
 				# the second column is the corresponding text labels
-        if(!is.null(legendi[['continous']]) && legendi[['continous']] == TRUE){
+        if(!is.null(legendi[['continuous']]) && legendi[['continuous']] == TRUE){
 				colorRamp <- colorRampPalette(legendi[['colours']]);
 				legend.key <- list(
 					space = c("right", "top"),
@@ -126,7 +126,7 @@ legend.grob <- function(legends, label.cex = 1, title.cex = 1, title.just = 'cen
 					rep = TRUE,
 					tick.number = if(is.null(legendi[['tck.number']])){0}else{legendi[['tck.number']]},
           tck = if(is.null(legendi[['tck']])){0}else{legendi[['tck']]},
-          at = do.breaks(c(0,legendi[['continous.amount']]),legendi[['continous.amount']]),
+          at = do.breaks(c(0,legendi[['continuous.amount']]),legendi[['continuous.amount']]),
           col = colorRamp,
           width = if(is.null(legendi[['width']])){2}else{legendi[['width']]},
           labels = list(

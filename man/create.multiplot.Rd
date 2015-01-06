@@ -855,7 +855,7 @@ cov_legends <- list(
         labels = c('0','2'),
         border = 'grey',
         title = 'Tumour Mass (kg)',
-  continous = TRUE,
+        continuous = TRUE,
 	height = 3,
 	pos.x = 0.23
         ),
@@ -882,7 +882,7 @@ cov_legends <- list(
         labels = c('0.09','0.72'),
         border = 'grey',
         title = 'CAGT',
-	continous = TRUE,
+	continuous = TRUE,
 	height = 3,
 	pos.x = 0.3,
 	pos.y = 0.55,
