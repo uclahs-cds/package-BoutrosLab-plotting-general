@@ -75,76 +75,80 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			}
 
 		do.call(call.param$Function, call.args);
-
-		# plot the object to the file
-		plot(trellis.object);
 		
-		# MANY checks for correctness of additional plots to embedded and parameters
-		if (
-			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
-			(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) != 'list')
-			) { 
-				
-				# checks if trellis objects and locations are provided in a list
-				stop('Additional trellis objects and their locations must be provided in a list'); 
-				
-		} else if (
-			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
-			(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
-			) {
-			
-				# checks if coordinates are specified in a list if trellis objects are provided	
-				stop('If trellis objects are specified, their coordinates must be provided in a list');
-				
-		} else if (
-			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
-			(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) == 'list')
-			) {
-			
-				# checks if elements denoting coordinates for trellis objects are appropriately named
-				# once the type of the parameters are deemed correct
-				# trellis locations object should have the following elements: xleft, ybottom, xright, ytop
-				if(
-					!exists('xleft', where = additional.trellis.locations) ||
-					!exists('ybottom', where = additional.trellis.locations) ||
-					!exists('xright', where = additional.trellis.locations) || 
-					!exists('ytop', where = additional.trellis.locations)
-					) {
-						stop('Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop');
-					} 
-					
-				# checking lengths of inputs
-				input.lengths <- list(
-					length(additional.trellis.objects),
-					length(additional.trellis.locations$xleft),
-					length(additional.trellis.locations$ybottom),
-					length(additional.trellis.locations$xright),
-					length(additional.trellis.locations$ytop)
-					);
-				
-				# only proceed if inputs are equal
-				if (length(unique(input.lengths)) != 1) {
-					
-					stop('Lists of trellis objects and coordinates provided not equal in length'); 
-				
-				} else if (length(unique(input.lengths)) == 1) {
-					
-					for (i in 1:length(additional.trellis.objects)) {
-						print(
-							x = additional.trellis.objects[[i]],
-							position = c(
-								additional.trellis.locations$xleft[i],
-								additional.trellis.locations$ybottom[i],
-								additional.trellis.locations$xright[i],
-								additional.trellis.locations$ytop[i]
-								),
-							newpage = FALSE
-							);
-						}
-						
-				} else { stop('Incompatible inputs'); }
-			}
+		}
+		
+	# plot the object to the file
+	plot(trellis.object);
 	
+	# MANY checks for correctness of additional plots to embedded and parameters
+	if (
+		(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
+		(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) != 'list')
+		) { 
+			
+			# checks if trellis objects and locations are provided in a list
+			stop('Additional trellis objects and their locations must be provided in a list'); 
+			
+	} else if (
+		(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
+		(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
+		) {
+		
+			# checks if coordinates are specified in a list if trellis objects are provided	
+			stop('If trellis objects are specified, their coordinates must be provided in a list');
+			
+	} else if (
+		(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
+		(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) == 'list')
+		) {
+		
+			# checks if elements denoting coordinates for trellis objects are appropriately named
+			# once the type of the parameters are deemed correct
+			# trellis locations object should have the following elements: xleft, ybottom, xright, ytop
+			if(
+				!exists('xleft', where = additional.trellis.locations) ||
+				!exists('ybottom', where = additional.trellis.locations) ||
+				!exists('xright', where = additional.trellis.locations) || 
+				!exists('ytop', where = additional.trellis.locations)
+				) {
+					stop('Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop');
+				} 
+				
+			# checking lengths of inputs
+			input.lengths <- list(
+				length(additional.trellis.objects),
+				length(additional.trellis.locations$xleft),
+				length(additional.trellis.locations$ybottom),
+				length(additional.trellis.locations$xright),
+				length(additional.trellis.locations$ytop)
+				);
+			
+			# only proceed if inputs are equal
+			if (length(unique(input.lengths)) != 1) {
+				
+				stop('Lists of trellis objects and coordinates provided not equal in length'); 
+			
+			} else if (length(unique(input.lengths)) == 1) {
+				
+				for (i in 1:length(additional.trellis.objects)) {
+					print(
+						x = additional.trellis.objects[[i]],
+						position = c(
+							additional.trellis.locations$xleft[i],
+							additional.trellis.locations$ybottom[i],
+							additional.trellis.locations$xright[i],
+							additional.trellis.locations$ytop[i]
+							),
+						newpage = FALSE
+						);
+					}
+					
+			} else { stop('Incompatible inputs'); }
+		}
+		
+	if (!is.null(filename)) {
+		
 		dev.off();
 		options(bitmapType = old.type);
 		
@@ -158,14 +162,7 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			filename = filename, 
 			description = description
 			);
-
-		# return a success marker
-		return(1);
-		}
-	
-	else if (is.null(filename)) {
-		# if no plot requested, return the trellis object itself
-		return(trellis.object);
+			
 		}
 	
 	# check if graphics device is postscript
