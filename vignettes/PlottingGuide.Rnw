@@ -2280,7 +2280,7 @@ Edward R. Tufte, The Visual Display of Quantitative Information. Graphics Press,
 Sarkar, Deepayan (2008) Lattice: Multivariate Data Visualization with R, Springer.  ISBN: 978-0-387-75968-5 URL: http://lmdvr.r-forge.r-project.org/
 
 \bibitem{trellis}
-Becker, R. A. and Cleveland, W. S., S-PLUS Trellis Graphics User’s Manual, Seattle: MathSoft, Inc., Murray Hill: Bell Labs, 1996.
+Becker, R. A. and Cleveland, W. S., S-PLUS Trellis Graphics User's Manual, Seattle: MathSoft, Inc., Murray Hill: Bell Labs, 1996.
 
 \bibitem{cleveland-scatter}
 William S. Cleveland, Persi Diaconis \& Robert McGill, Variables on Scatterplots Look More Highly Correlated When the Scales Are Increased. Science 216, 1138-1141 (1982).
