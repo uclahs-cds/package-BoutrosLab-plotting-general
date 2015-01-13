@@ -10,7 +10,11 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO WRITE PLOT  #######################################################################
-write.plot <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
+write.plot.dev <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
+
+	# set the graphics driver
+	old.type <- getOption('bitmapType');
+	options(bitmapType = 'cairo');
 
 	# if requested create the image file
 	if (!is.null(filename)) {
@@ -34,10 +38,6 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			as.is = TRUE
 			);
 		rownames(mapping.object) <- mapping.object$FileExt;
-
-		# set the graphics driver
-		old.type <- getOption('bitmapType');
-		options(bitmapType = 'cairo');
 
 		# determine which function to use
 		extension <- sub('(.+)\\.', '', filename, perl = TRUE);
@@ -79,7 +79,7 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		}
 		
 	# plot the object to the file
-	plot(trellis.object);
+	plot(trellis.object,newpage = FALSE);
 	
 	# MANY checks for correctness of additional plots to embedded and parameters
 	if (
@@ -131,7 +131,7 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			
 			} else if (length(unique(input.lengths)) == 1) {
 				
-				for (i in 1:length(additional.trellis.objects)) {
+					trellis.focus("toplevel", highlight = FALSE);
 					print(
 						x = additional.trellis.objects[[i]],
 						position = c(
@@ -142,11 +142,24 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 							),
 						newpage = FALSE
 						);
+					trellis.unfocus();
 					}
-					
 			} else { stop('Incompatible inputs'); }
-		}
 		
+	# check if graphics device is postscript
+	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
+		ps.options(family = 'sans');
+		}
+	
+	if ('pdf' %in% rownames(as.matrix(dev.cur()))) {
+		ps.options(family = 'sans');
+		}
+
+	# check if graphics device is not set i-e "null device"
+	if (enable.warnings && 1 == dev.cur()) {
+		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
+		}
+	
 	if (!is.null(filename)) {
 		
 		dev.off();
@@ -163,16 +176,9 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			description = description
 			);
 			
-		}
-	
-	# check if graphics device is postscript
-	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
-		ps.options(family = 'sans');
-		}
+		} else { 
+			options(bitmapType = old.type);
+			return(trellis.object);
+			}
 
-	# check if graphics device is not set i-e "null device"
-	if (enable.warnings && 1 == dev.cur()) {
-		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
-		}
-	
 	}
