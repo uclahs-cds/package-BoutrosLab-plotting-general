@@ -12,10 +12,6 @@
 ### FUNCTION TO WRITE PLOT  #######################################################################
 write.plot <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
 
-	# set the graphics driver
-	old.type <- getOption('bitmapType');
-	options(bitmapType = 'cairo');
-
 	# if requested create the image file
 	if (!is.null(filename)) {
 
@@ -23,6 +19,10 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		data.directories <- file.path(.libPaths(), 'BoutrosLab.plotting.general');
 		file.checks <- file.exists(file.path(data.directories, 'ext2function.txt'));
 
+		# set the graphics driver
+		old.type <- getOption('bitmapType');
+		options(bitmapType = 'cairo');
+		
 		if (any(file.checks)) {
 			data.directory <- data.directories[ order(file.checks, decreasing = TRUE)[1] ];
 			}
@@ -76,91 +76,73 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 
 		do.call(call.param$Function, call.args);
 		
-		}
-		
-	# plot the object to the file
-	plot(trellis.object,newpage = FALSE);
+		# plot the object to the file
+		plot(trellis.object,newpage = FALSE);
 	
-	# MANY checks for correctness of additional plots to embedded and parameters
-	if (
-		(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
-		(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) != 'list')
-		) { 
+		# MANY checks for correctness of additional plots to embedded and parameters
+		if (
+			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
+			(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) != 'list')
+			) { 
 			
-			# checks if trellis objects and locations are provided in a list
-			stop('Additional trellis objects and their locations must be provided in a list'); 
+				# checks if trellis objects and locations are provided in a list
+				stop('Additional trellis objects and their locations must be provided in a list'); 
 			
-	} else if (
-		(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
-		(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
-		) {
+		} else if (
+			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
+			(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
+			) {
 		
-			# checks if coordinates are specified in a list if trellis objects are provided	
-			stop('If trellis objects are specified, their coordinates must be provided in a list');
+				# checks if coordinates are specified in a list if trellis objects are provided	
+				stop('If trellis objects are specified, their coordinates must be provided in a list');
 			
-	} else if (
-		(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
-		(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) == 'list')
-		) {
+		} else if (
+			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
+			(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) == 'list')
+			) {
 		
-			# checks if elements denoting coordinates for trellis objects are appropriately named
-			# once the type of the parameters are deemed correct
-			# trellis locations object should have the following elements: xleft, ybottom, xright, ytop
-			if(
-				!exists('xleft', where = additional.trellis.locations) ||
-				!exists('ybottom', where = additional.trellis.locations) ||
-				!exists('xright', where = additional.trellis.locations) || 
-				!exists('ytop', where = additional.trellis.locations)
-				) {
-					stop('Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop');
-				} 
+				# checks if elements denoting coordinates for trellis objects are appropriately named
+				# once the type of the parameters are deemed correct
+				# trellis locations object should have the following elements: xleft, ybottom, xright, ytop
+				if(
+					!exists('xleft', where = additional.trellis.locations) ||
+					!exists('ybottom', where = additional.trellis.locations) ||
+					!exists('xright', where = additional.trellis.locations) || 
+					!exists('ytop', where = additional.trellis.locations)
+					) {
+						stop('Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop');
+					} 
 				
-			# checking lengths of inputs
-			input.lengths <- list(
-				length(additional.trellis.objects),
-				length(additional.trellis.locations$xleft),
-				length(additional.trellis.locations$ybottom),
-				length(additional.trellis.locations$xright),
-				length(additional.trellis.locations$ytop)
-				);
+				# checking lengths of inputs
+				input.lengths <- list(
+					length(additional.trellis.objects),
+					length(additional.trellis.locations$xleft),
+					length(additional.trellis.locations$ybottom),
+					length(additional.trellis.locations$xright),
+					length(additional.trellis.locations$ytop)
+					);
 			
-			# only proceed if inputs are equal
-			if (length(unique(input.lengths)) != 1) {
+				# only proceed if inputs are equal
+				if (length(unique(input.lengths)) != 1) {
 				
-				stop('Lists of trellis objects and coordinates provided not equal in length'); 
+					stop('Lists of trellis objects and coordinates provided not equal in length'); 
 			
-			} else if (length(unique(input.lengths)) == 1) {
+				} else if (length(unique(input.lengths)) == 1) {
 				
-					trellis.focus("toplevel", highlight = FALSE);
-					print(
-						x = additional.trellis.objects[[i]],
-						position = c(
-							additional.trellis.locations$xleft[i],
-							additional.trellis.locations$ybottom[i],
-							additional.trellis.locations$xright[i],
-							additional.trellis.locations$ytop[i]
-							),
-						newpage = FALSE
-						);
-					trellis.unfocus();
-					}
-			} else { stop('Incompatible inputs'); }
-		
-	# check if graphics device is postscript
-	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
-		ps.options(family = 'sans');
-		}
-	
-	if ('pdf' %in% rownames(as.matrix(dev.cur()))) {
-		ps.options(family = 'sans');
-		}
-
-	# check if graphics device is not set i-e "null device"
-	if (enable.warnings && 1 == dev.cur()) {
-		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
-		}
-	
-	if (!is.null(filename)) {
+						trellis.focus("toplevel", highlight = FALSE);
+						print(
+							x = additional.trellis.objects[[i]],
+							position = c(
+								additional.trellis.locations$xleft[i],
+								additional.trellis.locations$ybottom[i],
+								additional.trellis.locations$xright[i],
+								additional.trellis.locations$ytop[i]
+								),
+							newpage = FALSE
+							);
+						trellis.unfocus();
+						}
+				} else { stop('Incompatible inputs'); }
 		
 		dev.off();
 		options(bitmapType = old.type);
@@ -176,7 +158,23 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			description = description
 			);
 			
-		} else { 
+		}
+		
+	# check if graphics device is postscript
+	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
+		ps.options(family = 'sans');
+		}
+	
+	if ('pdf' %in% rownames(as.matrix(dev.cur()))) {
+		ps.options(family = 'sans');
+		}
+
+	# check if graphics device is not set i-e "null device"
+	if (enable.warnings && 1 == dev.cur()) {
+		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
+		}
+	
+	if (is.null(filename)) {
 			options(bitmapType = old.type);
 			return(trellis.object);
 			}
