@@ -18,10 +18,6 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		# check all potential locations for the extension->functionname mapping file
 		data.directories <- file.path(.libPaths(), 'BoutrosLab.plotting.general');
 		file.checks <- file.exists(file.path(data.directories, 'ext2function.txt'));
-
-		# set the graphics driver
-		old.type <- getOption('bitmapType');
-		options(bitmapType = 'cairo');
 		
 		if (any(file.checks)) {
 			data.directory <- data.directories[ order(file.checks, decreasing = TRUE)[1] ];
@@ -38,6 +34,10 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			as.is = TRUE
 			);
 		rownames(mapping.object) <- mapping.object$FileExt;
+
+		# set the graphics driver
+		old.type <- getOption('bitmapType');
+		options(bitmapType = 'cairo');
 
 		# determine which function to use
 		extension <- sub('(.+)\\.', '', filename, perl = TRUE);
@@ -128,8 +128,6 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 					stop('Lists of trellis objects and coordinates provided not equal in length'); 
 			
 				} else if (length(unique(input.lengths)) == 1) {
-				
-						trellis.focus("toplevel", highlight = FALSE);
 						print(
 							x = additional.trellis.objects[[i]],
 							position = c(
@@ -140,7 +138,6 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 								),
 							newpage = FALSE
 							);
-						trellis.unfocus();
 						}
 				} else { stop('Incompatible inputs'); }
 		
@@ -159,23 +156,20 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			);
 			
 		}
-		
+	
+	else if (is.null(filename)) {
+		return(trellis.object);
+		}
+	
 	# check if graphics device is postscript
 	if ('postscript' %in% rownames(as.matrix(dev.cur()))) {
 		ps.options(family = 'sans');
 		}
 	
-	if ('pdf' %in% rownames(as.matrix(dev.cur()))) {
-		ps.options(family = 'sans');
-		}
-
 	# check if graphics device is not set i-e "null device"
 	if (enable.warnings && 1 == dev.cur()) {
 		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\")\n");
 		}
-	
-	if (is.null(filename)) {
-			return(trellis.object);
-			}
+		
 
 	}
