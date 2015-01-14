@@ -128,7 +128,9 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 					stop('Lists of trellis objects and coordinates provided not equal in length'); 
 			
 				} else if (length(unique(input.lengths)) == 1) {
-						print(
+						 
+					for (i in 1:length(additional.trellis.objects)) {	 
+						 print(
 							x = additional.trellis.objects[[i]],
 							position = c(
 								additional.trellis.locations$xleft[i],
@@ -139,6 +141,7 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 							newpage = FALSE
 							);
 						}
+					}
 				}
 		
 		dev.off();
