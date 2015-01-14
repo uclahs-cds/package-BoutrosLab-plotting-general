@@ -175,7 +175,6 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		}
 	
 	if (is.null(filename)) {
-			options(bitmapType = old.type);
 			return(trellis.object);
 			}
 
