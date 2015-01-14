@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO WRITE PLOT  #######################################################################
-write.plot.dev <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
+write.plot <- function(trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL) {
 
 	# set the graphics driver
 	old.type <- getOption('bitmapType');
