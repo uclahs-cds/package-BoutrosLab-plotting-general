@@ -139,7 +139,7 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 							newpage = FALSE
 							);
 						}
-				} else { stop('Incompatible inputs'); }
+				}
 		
 		dev.off();
 		options(bitmapType = old.type);
