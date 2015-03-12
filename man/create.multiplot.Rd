@@ -18,7 +18,7 @@ width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE,
 key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, 
 merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), 
 layout.skip=rep(FALSE,length(plot.objects)), description = NULL, 
-retrieve.plot.labels = FALSE, style = 'BoutrosLab');
+retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FALSE);
 }
 \arguments{
     \item{plot.objects}{A list of plot objects. Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right}
@@ -76,6 +76,7 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab');
     \item{description}{Short description of image/plot; default NULL.}
     \item{retrieve.plot.labels}{Should the plot retrieve the limits, labels and label locations from the the individual plots}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
+    \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ken Chu and Denise Mak}

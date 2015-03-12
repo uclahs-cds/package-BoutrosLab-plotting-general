@@ -1,4 +1,3 @@
-\name{create.barplot}
 \alias{create.barplot}
 \title{Make a barplot}
 \description{Takes a data.frame and creates a barplot}
@@ -124,7 +123,7 @@ style = 'BoutrosLab'
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
     \item{origin}{The origin, generally 0}
     \item{reference}{Should the reference line be printed at the origin}
-    \item{sample.order}{Should the bars be reordered, accepts values \dQuote{increasing} and \dQuote{decreasing}, labels will also be reordered}
+    \item{sample.order}{Should the bars be reordered, accepts values \dQuote{increasing}, \dQuote{decreasing}, or a vector of sample names. Labels will also be reordered}
     \item{group.labels}{Should the labels be grouped to the same amount of bars per column}
     \item{line.func}{Function for the line that should be drawn on top of plot}
     \item{line.from}{The starting point of the line on the plot}

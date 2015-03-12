@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 5.2.8 2015-03-12
+
+MINOR UPDATE
+* create.barplot: allow vector of custom sorting order for samples
+* create.multiplot: has flag to remove all border lines from plots
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.6 2014-12-24
 
 MINOR UPDATE

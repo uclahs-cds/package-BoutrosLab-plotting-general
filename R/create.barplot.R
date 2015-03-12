@@ -291,7 +291,8 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 		key = key,
 		legend = legend,
 		pretty = TRUE,
-		stack = stack
+		stack = stack,
+		reference = reference
 		);
 
 	# add grouped labels
@@ -313,19 +314,36 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 		
 		trellis.object$x.scales$at = newxat;
 		}
-
+	
 	# reorder the bars in decreasing or increasing order if specified
-	if (sample.order == 'increasing' | sample.order == 'decreasing') {
-		for( i in 1: length(trellis.object$panel.args)) {
+	if (is.null(sample.order) || is.na(sample.order)) { sample.order <- 'none'; }
+	
+	if (sample.order[1] != 'none') {
+		for( i in 1:length(trellis.object$panel.args)) {
 			# will need two separate ways for horizontal and non - horizontal
 			if (!plot.horizontal) {
 				num.bars <- length(unique(trellis.object$panel.args[[1]]$x));
+
+				if (length(unique(sample.order)) == num.bars) {
+					if (length(xaxis.lab) == 1 && xaxis.lab) {
+						ordering <- match(sample.order, trellis.object$panel.args[[i]]$x);
+						}
+					else { 
+						ordering <- match(sample.order, trellis.object$x.scales$labels);
+						}
+					}
 				
-				# order is the new order the bars will appear in
-				ordering <- order(trellis.object$panel.args[[1]]$y[c(1:num.bars)]);
+				if (length(sample.order) == 1) {
+					if(sample.order == 'decreasing') {
+						# order is the new order the bars will appear in
+						ordering <- order(trellis.object$panel.args[[1]]$y[c(1:num.bars)]);
+						}
 				
-				# reverse order if increasing
-				if (sample.order == 'increasing') { ordering = rev(ordering) }
+					# reverse order if increasing
+					if (sample.order == 'increasing') { 
+						ordering <- rev(order(trellis.object$panel.args[[1]]$y[c(1:num.bars)])) 
+						}
+					}
 				
 				# if label locations are specified, change them
 				if (xat != TRUE) {
@@ -355,14 +373,26 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 					# reorder values of x to order in logical order
 					trellis.object$panel.args[[i]]$x = rep(1:length(ordering),length(trellis.object$panel.args[[1]]$x)/num.bars)
 					}
+				
 				}
 			else {		
 
 				num.bars <- length(unique(trellis.object$panel.args[[1]]$y));
-				ordering <- order(trellis.object$panel.args[[1]]$x[c(1:num.bars)]);
+				if (length(unique(sample.order)) == num.bars) {
+					if (length(yaxis.lab) == 1 && yaxis.lab) {
+						ordering <- match(sample.order, trellis.object$panel.args[[i]]$y);
+						}
+					else { 
+						ordering <- match(sample.order, trellis.object$y.scales$labels);
+						}
+					}
 				
-				if (sample.order == 'increasing') { 
-					ordering = rev(ordering);
+				if (length(sample.order) == 1 && sample.order == 'decreasing') {
+					ordering <- order(trellis.object$panel.args[[1]]$x[c(1:num.bars)]);
+					}	
+				
+				if (length(sample.order) == 1 && sample.order == 'increasing') { 
+					ordering <- rev(order(trellis.object$panel.args[[1]]$x[c(1:num.bars)]));
 					}
 
 				if (yat != TRUE) {
