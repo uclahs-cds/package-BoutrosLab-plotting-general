@@ -125,6 +125,7 @@ create.hexbinplot(
     main = 'Minimal input',
     # formatting bins
     colourcut = seq(0, 1, length = 11),
+    # this sets the maximum value plotted -- values greater than this will not appear
     maxcnt = 50,
     description = 'Hexbinplot created by BoutrosLab.plotting.general'
     );
