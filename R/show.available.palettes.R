@@ -44,7 +44,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 		for (i in 1:length(general)){
 
 			if (length(general[[i]]) < max.length){
-				general[[i]] <- c(general[[i]], rep("NA", max.length - length(general[[i]])));
+				length(general[[i]]) <- max.length;				
 				}
 			}
 

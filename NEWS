@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 5.2.10 2015-04-22
+
+BUG FIXES
+* show.available.palettes: fixed 'general' program to no longer introduces NAs by coersion
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.9 2015-04-21
 
 MINOR UPDATE
