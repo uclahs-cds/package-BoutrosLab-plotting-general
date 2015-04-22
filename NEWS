@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 5.2.11 2015-04-22
+
+BUG FIXES
+* panel.BL.bwplot: removed function -- accidentally missed in v5.0.0
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.10 2015-04-22
 
 BUG FIXES
