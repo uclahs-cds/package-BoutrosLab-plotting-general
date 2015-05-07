@@ -24,20 +24,20 @@ yaxis.lab = NULL, xaxis.lab = NULL, xaxis.lab.top = NULL, xaxis.cex = NA, yaxis.
 xlab.cex = 1, ylab.cex = 1, xat = TRUE, xat.top = NULL, yat = TRUE, xaxis.tck = NULL, 
 yaxis.tck = NULL, xaxis.col = 'black', yaxis.col = 'black', col.pos = NULL, 
 row.pos = NULL, cell.text = '', text.font = 1, text.cex = 1, text.col = 'black', 
-colourkey.cex = 3.6, xaxis.rot = 90, yaxis.rot = 0, xlab.label = '' , ylab.label = '', 
-xlab.col = 'black', ylab.col = 'black', axes.lwd = 2, gridline.order = 'h', 
-grid.row = FALSE, grid.col = FALSE, row.lines = seq(0, ncol(x), 1) + 0.5, 
-col.lines = seq(0, nrow(x), 1) + 0.5, colour.scheme = c(), total.colours = 99, 
-colour.centering.value = 0, colour.alpha = 1, fill.colour = 'darkgray', at = NULL, 
-print.colour.key = TRUE, colourkey.labels.at = NULL, colourkey.labels = NULL, 
-top.padding = 0.1, bottom.padding = 0.5, right.padding = 0.5, left.padding = 0.5, 
-x.alternating = 1, shrink = 1, row.colour = 'black', col.colour = 'black', row.lwd = 1, 
-col.lwd = 1, grid.colour = NULL, grid.lwd = NULL, width = 7, height = 7, 
-size.units = 'in', resolution = 1000, enable.warnings = FALSE, xaxis.covariates = NULL, 
-yaxis.covariates = NULL, description = NULL, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold', symbols = list(borders = NULL, squares = NULL, circles = NULL),  
-same.as.matrix = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, 
-stratified.clusters.cols = NULL, style = 'BoutrosLab');
+text.position = NULL, text.offset = 0, colourkey.cex = 3.6, xaxis.rot = 90, yaxis.rot = 0, 
+xlab.label = '' , ylab.label = '', xlab.col = 'black', ylab.col = 'black', axes.lwd = 2, 
+gridline.order = 'h', grid.row = FALSE, grid.col = FALSE, 
+row.lines = seq(0, ncol(x), 1) + 0.5, col.lines = seq(0, nrow(x), 1) + 0.5, 
+colour.scheme = c(), total.colours = 99, colour.centering.value = 0, colour.alpha = 1, 
+fill.colour = 'darkgray', at = NULL, print.colour.key = TRUE, colourkey.labels.at = NULL, 
+colourkey.labels = NULL, top.padding = 0.1, bottom.padding = 0.5, right.padding = 0.5, 
+left.padding = 0.5, x.alternating = 1, shrink = 1, row.colour = 'black', 
+col.colour = 'black', row.lwd = 1, col.lwd = 1, grid.colour = NULL, grid.lwd = NULL, 
+width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+xaxis.covariates = NULL, yaxis.covariates = NULL, description = NULL, 
+xaxis.fontface = 'bold', yaxis.fontface = 'bold', symbols = list(borders = NULL, 
+squares = NULL, circles = NULL), same.as.matrix = FALSE, axis.xlab.padding = 0.1, 
+stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'BoutrosLab');
 }
 \arguments{
     \item{x}{Either a data-frame or a matrix from which the heatmap is to created}
@@ -112,6 +112,8 @@ stratified.clusters.cols = NULL, style = 'BoutrosLab');
     \item{text.font}{1 = Plain, 2 = Bold, 3 = Italic, default is 1}
     \item{text.cex}{Text size, default is 1}
     \item{text.col}{Text colour, default is black.}
+    \item{text.position}{The position of the text, defaults to center.}
+    \item{text.offset}{The offset of the position, defaults to 0.}
     \item{colourkey.cex}{Size of colourkey label text}
     \item{axes.lwd}{Width of heatmap border. Note it also changes the colourkey border and ticks}
     \item{gridline.order}{Character specifying order in which to draw interior grid-lines ('h' or 'v'). Defaults to 'h' for horizontal first.}

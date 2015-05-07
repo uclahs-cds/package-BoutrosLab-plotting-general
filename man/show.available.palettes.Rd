@@ -3,7 +3,7 @@
 \title{Display the available colour palettes}
 \description{Displays the available colour palettes}
 \usage{
-show.available.palettes(type = 'general', filename = NULL, height = 8, width = 12, 
+show.available.palettes(type = 'general', filename = NULL, height = 5, width = 8, 
 resolution = 300);
 }
 \arguments{

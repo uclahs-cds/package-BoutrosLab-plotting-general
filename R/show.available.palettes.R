@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO DISPLAY AVAILABLE COLOUR SCHEMES ##################################################
-show.available.palettes <- function(type = 'general', filename = NULL, height = 8, width = 12, resolution = 300){
+show.available.palettes <- function(type = 'general', filename = NULL, height = 5, width = 8, resolution = 300){
 
 	type <- tolower(type);
 
@@ -83,12 +83,12 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 
 		specific <- force.colour.scheme(x = '', scheme = 'all', return.scheme = TRUE); 
 
-		# sort specific by length
+		# sort by length, longest first
 		swapped = TRUE;
 		while (TRUE == swapped) {
 			swapped = FALSE;
 			for (i in 2:length(specific)) {
-				if (length(specific[[i-1]]$colours) > length(specific[[i]]$colours)) {
+				if (length(specific[[i-1]]$colours) < length(specific[[i]]$colours)) {
 					temp <- specific[i];
 					temp.name <- names(specific)[i];
 					specific[i] <- specific[i - 1];
@@ -100,112 +100,158 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 				}
 			}
 
-		# this layout makes certain assumptions:
-			# 1. one scheme is significantly longer than the others (ex. tissue) and should be on its own
-			# 2. other schemes lain out in order will approximately add to equal the length of the longest scheme -- this determines the number of columns
-		# Therefore, with the addition of more schemes, this layout may not look very good, and may need tweaking.
+		number.of.colours <- 0;
+		for (i in 1:length(specific)){
+			number.of.colours <- number.of.colours + length(specific[[i]]$levels);
+			}
 
-		# separate the longest legend to be on its own
-		longest.legend <- list(
-			legend = list(
-				colours = specific[[length(specific)]]$colours,
-				labels = specific[[length(specific)]]$levels,
-				border = "white",
-				title = names(specific)[length(specific)]
-				)
-			);
+		# calculate layout: (assumption: longest palette is much longer than others -- therefore sets height of plot)
+		# adding one spacer for the header text
+		display.height <- length(specific[[1]]$colours) + 1;
 
-		intermediate <- list();
+		formatted.data <- data.frame();
 
-		for (i in 1:(length(specific) - 1)) {
-			intermediate <- append(intermediate, list(
-				legend = list(
-					colours = specific[[i]]$colours,
-					labels = specific[[i]]$levels,
-					border = "white",
-					title = names(specific)[i]
-					)
-				)
-				)
+		# initate with first row
+		temp.col <- c(0, specific[[1]]$colours);
+		
+		for (i in 2:length(specific)){
+
+			potential.length <- length(temp.col) + length(specific[[i-1]]$colours) + 2;
+
+			if (potential.length <= display.height && i < length(specific)){
+				temp.col <- c(temp.col, NA, 0, specific[[i]]$colours);
+			} else {
+
+				# special case for the last row
+				if (length(specific) == i){
+					temp.col <- c(temp.col, NA, 0, specific[[i]]$colours);
+					}
+
+				# add previous col to data frame
+				length(temp.col) <- display.height;
+
+				# check if inital row has been added
+				if(0 == ncol(formatted.data)){
+					formatted.data <- temp.col;
+				} else {
+					formatted.data <- cbind(formatted.data, temp.col);
+					} 
+				
+				# add spacers for labels
+				spacer.col <- NA;
+				length(spacer.col) <- display.height;
+
+				spacing.for.labels <- 0;
+				for (word in 1:length(temp.col)){
+					if (nchar(temp.col[2]) > spacing.for.labels){
+						spacing.for.labels <- nchar(temp.col[2]);
+						}
+					}	
+
+				for(k in 1:spacing.for.labels){
+					formatted.data <- cbind(formatted.data, spacer.col);
+					}
+
+				# make a new row and add 0 for header
+				# using 0 instead of NA to mark headers in order to locate them later
+				temp.col <- c(0, specific[[i]]$colours);
+				}
+			}
+
+		# save the matrix with colour codes to find white swatches later
+		colour.coded.data <- formatted.data;
+
+		# map colours to numbers
+		all.colours <- character();
+		for (i in 1:length(specific)){
+			all.colours <- c(all.colours, specific[[i]]$colours);
+			}
+
+		colour.number <- 1;
+		for (i in 1:length(formatted.data)){
+			if (!is.na(formatted.data[i]) && 0 != formatted.data[i]){
+				formatted.data[i] <- colour.number;
+				colour.number <- colour.number + 1;
+				}
 			}
 		
-		# The number of rows in the final layout
-		layout.multiple <- 4;
-	
-		legend.half <- legend.grob(
-			legends = intermediate,
-			title.just = "left",
-			layout = c(ceiling(length(intermediate)/layout.multiple),layout.multiple)
+		enumerated.data <- as.data.frame(apply(formatted.data, c(1,2), as.numeric));
+
+		# get labels
+		labels <- character();
+		bold.text <- numeric();
+		offset <- numeric();
+		for (i in 1:length(specific)){
+			labels <- c(labels, names(specific)[i], specific[[i]]$levels);
+			bold.text <- c(bold.text, 2, rep(1, length(specific[[i]]$levels)));
+			offset <- c(offset, -0.5, rep(1, length(specific[[i]]$levels)));
+			}
+
+		label.col.positions <- which(!is.na(enumerated.data), arr.ind = TRUE)[,2];
+		label.row.positions <- which(!is.na(enumerated.data), arr.ind = TRUE)[,1];
+
+		# adding border around white swatches
+		border.matrix <- matrix(
+			nrow = nrow(colour.coded.data),
+			ncol = ncol(colour.coded.data),
+			data = FALSE
 			);
 
-		long.legend.grob <- legend.grob(
-			legends = longest.legend,
-			title.just = "left"
+		border.colour.matrix <- matrix(
+			nrow = nrow(colour.coded.data),
+			ncol = ncol(colour.coded.data),
+			data = "grey"
 			);
 
-		legend.layout <- grid.layout(
-			nrow = 1,
-			ncol = 3,
-			widths = unit(
-				x = c(0, 0.5, 0), 
-				units = "lines"),
-			heights = unit(
-				x = 1,
-				units = "npc"
-				),
-			just = "top"
+		border.size.matrix <- matrix(
+			nrow = nrow(colour.coded.data),
+			ncol = ncol(colour.coded.data),
+			data = 0.25
 			);
 
-		final.grob <- frameGrob(layout = legend.layout);
-
-		final.grob <- packGrob(
-			frame = final.grob,
-			grob = long.legend.grob,
-			row = 1,
-			col = 1
-			);
-
-		final.grob <- packGrob(
-			frame = final.grob,
-			grob = legend.half,
-			row = 1,
-			col = 3
-			);
-	
-		# create empty plotting space
-		# blank plot
-		blank.data <- data.frame(
-			a = c(0,0),
-			b = c(0,0))
-		filler <- BoutrosLab.plotting.general::create.barplot(
-			formula = a ~ b,
-			data = blank.data,
-			col = "white",
-			lwd = 0,
-			xaxis.lab = "",
-			yaxis.lab = ""
-			)
-
-		BoutrosLab.plotting.general::create.multiplot(
-			plot.objects = list(filler, filler),
-			axes.lwd = 0,
-			xaxis.lab = NULL,
-			yaxis.lab = NULL,
-			filename = filename,
-			legend = list(
-				inside = list(
-					fun = final.grob
+		symbol.locations <- list(
+			borders = list(
+				list(
+					x = border.matrix,
+					col = border.colour.matrix,
+					size = border.size.matrix
 					)
-				),
-			print.new.legend = TRUE,
-			resolution = resolution,
+				)
+			);
+
+		symbol.locations$borders[[1]]$x[which("white" == colour.coded.data, arr.ind = TRUE)] <- TRUE;
+
+		# display the colours using the heatmap function
+		create.heatmap(
+			filename = filename,
+			x = enumerated.data,
+			same.as.matrix = TRUE,
+			# adding white for the header spaces, which are labelled 0
+			colour.scheme = c("white", all.colours),
+			total.colours = (length(all.colours) + 2),
+			fill.colour = "white",
+			clustering.method = 'none',
+			axes.lwd = 0,
+			print.colour.key = FALSE,
+			# adding headers and labels
+			col.pos = label.col.positions,
+			# flipping the rows to match the colour layout
+			row.pos = (display.height + 1 - label.row.positions),
+			cell.text = labels,
+			text.position = 4,
+			text.offset = offset,
+			text.col = 'black',
+			text.cex = 0.75,
+			text.font = bold.text,
+			# adding borders around white swatches
+			symbols = symbol.locations,
 			height = height,
-			width = width
-			)
+			width = width,
+			resolution = resolution	
+			);
 		}
 
 	else (
 		stop("Invalid value supplied to type parameter")
 		)
-
 	}
