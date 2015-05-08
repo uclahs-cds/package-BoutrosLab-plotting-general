@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 5.2.13 2015-05-08
+
+MINOR UPDATE
+* create.multiplot: added example showing how to save parameter options from individual plots
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.12 2015-05-07
 
 MINOR UPDATE

@@ -185,6 +185,113 @@ create.multiplot(
         )
     );
 
+# Example of how to take parameter values from individual plots
+# This programming structure allows for including the individual customization of plots to the final multiplot
+all_data <- data.frame(
+    a = rnorm(n = 25, mean = 0, sd = 0.75),
+    b = rnorm(n = 25, mean = 0, sd = 0.75),
+    c = rnorm(n = 25, mean = 0, sd = 0.75),
+    d = rnorm(n = 25, mean = 0, sd = 0.75),
+    e = rnorm(n = 25, mean = 0, sd = 0.75),
+    f = rnorm(n = 25, mean = 0, sd = 0.75),
+    x = rnorm(n = 25, mean = 5),
+    y = seq(1, 25, 1)
+    );
+
+plot.heatmap <- function(all_data){
+    # save the parameter values that will be reused in the multiplot
+    multiplot_visuals <- list(
+        xlab.label = '',
+        xaxis.labels = NULL,
+        xat = NULL,
+        ylab.label = 'Genes of Interest',
+        yaxis.labels = c("BRCA1", "BRCA2", "APC", "TIN", "ARG", "FOO"),
+        yat = c(1,2,3,4,5,6)
+        );
+
+    # create the plot -- this allows for previewing of the individual plot
+    heatmap.formatted <- create.heatmap(
+        x = all_data[,1:6],
+        clustering.method = 'none',
+        colour.scheme = c('magenta','white','green'),
+        print.colour.key = FALSE,
+        xlab.label = multiplot_visuals$xlab.label,
+        xaxis.lab = multiplot_visuals$xaxis.labels,
+        xat = multiplot_visuals$xat,
+        ylab.label = multiplot_visuals$ylab.label,
+        yaxis.lab = multiplot_visuals$yaxis.labels,
+        yat = multiplot_visuals$yat 
+        ); 
+
+    # return both the plot and the relevant parameter values
+    return(
+        list(
+            the_plot = heatmap.formatted,
+            visuals = multiplot_visuals
+            )
+        )
+}
+
+plot.barplot <- function(all_data){
+
+    # save the parameter values that will be reused in the multiplot
+    multiplot_visuals <- list(
+        xlab.label = '',
+        xaxis.labels = NULL,
+        xat = NULL,
+        ylab.label = 'Importance',
+        yaxis.labels = seq(1, ceiling(max(all_data$x)), 1),
+        yat = seq(1, ceiling(max(all_data$x)), 1)
+        );
+
+    # create the plot -- this allows for previewing of the individual plot
+    barplot.formatted <- create.barplot(
+        formula = x ~ y,
+        data = all_data[,7:8],
+        lwd = 0,
+        col = 'grey',
+        xlab.label = multiplot_visuals$xlab.label,
+        xaxis.lab = multiplot_visuals$xaxis.labels,
+        xat = multiplot_visuals$xat,
+        ylab.label = multiplot_visuals$ylab.label,
+        yaxis.lab = multiplot_visuals$yaxis.labels,
+        yat = multiplot_visuals$yat
+        );
+
+    # return both the plot and the relevant parameter values
+    return(
+        list(
+            the_plot = barplot.formatted,
+            visuals = multiplot_visuals
+            )
+        )
+    }
+
+plot_functions <- c('plot.heatmap', 'plot.barplot');
+
+# run the functions
+all_plots <- lapply(
+    plot_functions, 
+    function(funName){
+        eval(parse(text = paste0(funName, '(all_data)')))
+        }
+    );
+
+create.multiplot(
+    filename = "Multiplot_Formatting",
+    main = "Formatting",
+    plot.objects = lapply(all_plots, function(aPlot) aPlot$the_plot),
+    panel.heights = c(1,3),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    ylab.padding = 8,
+    yat = lapply(all_plots,function(aPlot) aPlot$visuals$yat),
+    xlab.label = lapply(all_plots,function(aPlot) aPlot$visuals$xlab.label),
+    ylab.label = rev(lapply(all_plots,function(aPlot) aPlot$visuals$ylab.label)),
+    yaxis.labels = lapply(all_plots,function(aPlot) aPlot$visuals$yaxis.labels)
+    );
+
+
 data_bars <- data.frame(
     x = sample(x = 5:35, size = 10),
     y = seq(1,10,1)
