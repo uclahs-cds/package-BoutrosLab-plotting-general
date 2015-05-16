@@ -326,10 +326,10 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 
 				if (length(unique(sample.order)) == num.bars) {
 					if (length(xaxis.lab) == 1 && xaxis.lab) {
-						ordering <- match(sample.order, trellis.object$panel.args[[i]]$x);
+						ordering <- rev(match(sample.order, trellis.object$panel.args[[i]]$x));
 						}
 					else { 
-						ordering <- match(sample.order, trellis.object$x.scales$labels);
+						ordering <- rev(match(sample.order, trellis.object$x.scales$labels));
 						}
 					}
 				
@@ -363,7 +363,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 					}
 				# if labels are specified reorder the specified ones
 				else {
-					trellis.object$x.scales$labels = rev(trellis.object$x.scales$labels[ordering])
+					trellis.object$x.scales$labels = rev(trellis.object$x.scales$labels[rev(ordering)])
 					warning("WARNING: the label order you specified has been reordered") 
 					}
 
@@ -380,10 +380,10 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 				num.bars <- length(unique(trellis.object$panel.args[[1]]$y));
 				if (length(unique(sample.order)) == num.bars) {
 					if (length(yaxis.lab) == 1 && yaxis.lab) {
-						ordering <- match(sample.order, trellis.object$panel.args[[i]]$y);
+						ordering <- match(sample.order, sort(sample.order)[trellis.object$panel.args[[i]]$y]);
 						}
 					else { 
-						ordering <- match(sample.order, trellis.object$y.scales$labels);
+						ordering <- match(sample.order, sort(sample.order)[trellis.object$y.scales$labels]);
 						}
 					}
 				
@@ -409,7 +409,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 					}
 
 				if (length(yaxis.lab) == 1 && yaxis.lab) {
-						trellis.object$y.scales$labels = rep(trellis.object$panel.args[[i]]$y[rev(ordering)],length(trellis.object$panel.args[[1]]$y)/num.bars)
+						trellis.object$y.scales$labels = rep(trellis.object$panel.args[[i]]$y[ordering],length(trellis.object$panel.args[[1]]$y)/num.bars)
 					}
 				else {
 					trellis.object$y.scales$labels = rev(trellis.object$y.scales$labels[ordering])
