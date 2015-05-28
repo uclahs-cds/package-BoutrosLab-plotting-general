@@ -186,7 +186,8 @@ create.multiplot(
     );
 
 # Example of how to take parameter values from individual plots
-# This programming structure allows for including the individual customization of plots to the final multiplot
+# This programming structure allows for including the individual customization 
+# of plots to the final multiplot
 all_data <- data.frame(
     a = rnorm(n = 25, mean = 0, sd = 0.75),
     b = rnorm(n = 25, mean = 0, sd = 0.75),
