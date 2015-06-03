@@ -3,10 +3,10 @@
 \title{Make a boxplot}
 \description{Takes a data.frame and creates a boxplot}
 \usage{
-create.boxplot(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, 
-jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', 
-points.cex = 0.5, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL,
-abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, 
+create.boxplot(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE,
+jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey',
+points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL,
+abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL,
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, fill = 'transparent', 
 box.colour = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = NULL, 
@@ -51,6 +51,7 @@ style = 'BoutrosLab');
     \item{points.pch}{pch value to use for stripplot}
     \item{points.col}{colour to use for stripplot}
     \item{points.cex}{cex value to use for stripplot}
+    \item{points.alpha}{alpha value to use for stripplot}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{main.cex}{Size of text for main plot title, defaults to 3}
