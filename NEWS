@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 5.2.18 2015-07-03
+
+MINOR UPDATE:
+* Standardized all plotting functions to have resolution set to 1600 dpi
+* force.colour.scheme: Added spaces in appropriate tissue names
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.17 2015-06-16
 
 MINOR UPDATE:

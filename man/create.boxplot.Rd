@@ -17,7 +17,7 @@ xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing
 top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
 ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, 
 yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, 
-height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
 key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', 
 yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, 
 line.col = 'transparent', line.infront = TRUE, sample.order = 'none', 
@@ -89,7 +89,7 @@ style = 'BoutrosLab');
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1000}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}

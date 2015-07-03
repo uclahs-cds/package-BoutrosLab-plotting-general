@@ -24,7 +24,7 @@ background.shading.ypos = NULL, background.shading.colour = 'grey85',
 raster = NULL, raster.vert = TRUE, raster.just = 'center', 
 raster.width.dim = unit(2/37, 'npc'), key = list(text = list(lab = c(''))),
 legend = NULL, lwd = 1, plot.horizontal = FALSE, height = 6, width = 6, 
-size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL,
+size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,
 add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
 xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
 alpha.rectangle = 1, origin = 0, reference = TRUE, sample.order = 'none', 
@@ -112,7 +112,7 @@ style = 'BoutrosLab'
     \item{height}{Figure height, defaults to 6 in}
     \item{width}{Figure width, defaults to 6 in}
     \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution, defaults to 1000}
+    \item{resolution}{Figure resolution, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{description}{Description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}

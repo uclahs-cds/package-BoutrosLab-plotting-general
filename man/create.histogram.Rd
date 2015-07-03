@@ -13,7 +13,7 @@ top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5
 ylab.axis.padding = 0, x.relation = "same", y.relation = "same", layout = NULL, 
 strip.col = "white", strip.cex = 1, lwd = 2, lty = 1, abline.h = NULL, abline.v = NULL, 
 abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, 
-size.units = 'in', resolution = 1500, enable.warnings = FALSE, key = NULL, 
+size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, 
 legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', 
@@ -70,7 +70,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1500}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}

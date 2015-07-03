@@ -155,7 +155,7 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
 	avail.schemes <- list(
 		tissue = list(
-			levels = c('cartilage', 'bone', 'adipose', 'bladder', 'kidney', 'blood', 'heart', 'muscle', 'hypothalamus', 'pituitary', 'thyroid', 'parathyroid', 'skin', 'salivarygland', 'esophagus', 'stomach', 'liver', 'gallbladder', 'pancreas', 'intestine', 'colon', 'pharynx', 'larynx', 'trachea', 'diaphragm', 'lung', 'nerve', 'spine', 'brain', 'eye', 'breast', 'ovary', 'uterus', 'prostate', 'testes', 'lymph', 'leukocyte', 'spleen'),
+			levels = c('cartilage', 'bone', 'adipose', 'bladder', 'kidney', 'blood', 'heart', 'muscle', 'hypothalamus', 'pituitary', 'thyroid', 'parathyroid', 'skin', 'salivary gland', 'esophagus', 'stomach', 'liver', 'gall bladder', 'pancreas', 'intestine', 'colon', 'pharynx', 'larynx', 'trachea', 'diaphragm', 'lung', 'nerve', 'spine', 'brain', 'eye', 'breast', 'ovary', 'uterus', 'prostate', 'testes', 'lymph', 'leukocyte', 'spleen'),
 			colours = c(cartilage, 	 bone,   adipose,   bladder,   kidney,   blood,   heart,   muscle,   hypothalamus,   pituitary,   thyroid,   parathyroid,   skin,   salivarygland,   esophagus,   stomach,   liver,   gallbladder,   pancreas,   intestine,   colon,   pharynx,   larynx,   trachea,   diaphragm,   lung,   nerve,   spine,   brain,   eye,   breast,   ovary,   uterus,   prostate,   testes,   lymph,   leukocyte,   spleen)
 			),
 		chromosome = list(

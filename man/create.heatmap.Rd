@@ -33,7 +33,7 @@ fill.colour = 'darkgray', at = NULL, print.colour.key = TRUE, colourkey.labels.a
 colourkey.labels = NULL, top.padding = 0.1, bottom.padding = 0.5, right.padding = 0.5, 
 left.padding = 0.5, x.alternating = 1, shrink = 1, row.colour = 'black', 
 col.colour = 'black', row.lwd = 1, col.lwd = 1, grid.colour = NULL, grid.lwd = NULL, 
-width = 7, height = 7, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+width = 7, height = 7, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
 xaxis.covariates = NULL, yaxis.covariates = NULL, description = NULL, 
 xaxis.fontface = 'bold', yaxis.fontface = 'bold', symbols = list(borders = NULL, 
 squares = NULL, circles = NULL), same.as.matrix = FALSE, axis.xlab.padding = 0.1, 

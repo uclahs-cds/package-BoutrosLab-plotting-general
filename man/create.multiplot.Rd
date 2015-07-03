@@ -14,7 +14,7 @@ xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xspacing = 1,
 yspacing = 1, x.relation = 'same', y.relation = 'same', 
 xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, 
 key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, 
-width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
 key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, 
 merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), 
 layout.skip=rep(FALSE,length(plot.objects)), description = NULL, 
@@ -65,7 +65,7 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FA
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1000}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot: see xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See ?xyplot.}

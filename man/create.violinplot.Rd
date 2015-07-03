@@ -12,7 +12,7 @@ fill.colour = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 2
 extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, 
 start = NULL, end = NULL, scale = FALSE, horizontal = FALSE, top.padding = 0.1, 
 bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.3, width = 6, height = 6, 
-resolution = 1500, size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL,
+resolution = 1600, size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL,
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', 
@@ -60,7 +60,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{right.padding}{A number giving the right padding in multiples of the lattice default}
     \item{width}{Figure width, defaults to 6 inches}
     \item{height}{Figure height, defaults to 6 inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1500}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{size.units}{Figure units, defaults to inches}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot. See xyplot.}

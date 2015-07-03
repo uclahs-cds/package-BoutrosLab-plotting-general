@@ -15,7 +15,7 @@ left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same
 xaxis.tck = 1, yaxis.tck = 1, level = NULL, col.regions = NULL, centers = NULL, 
 horizontal = TRUE, draw.bands =  FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1, 
 layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', 
-resolution = 1000, enable.warnings = FALSE, key = NULL, legend = NULL, 
+resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
 col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab')
@@ -75,7 +75,7 @@ col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab')
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1000}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{abline.h}{Allow horizontal line to be drawn, default to NULL}
     \item{abline.v}{Allow vertical line to be drawn, default to NULL}
     \item{abline.col}{Horizontal line colour, defaults to black}

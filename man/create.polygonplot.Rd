@@ -21,7 +21,7 @@ extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = ya
 grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, 
 xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, 
 abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, 
-width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, key = NULL, 
+width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, 
 legend = NULL, description = NULL, style = 'BoutrosLab');
 }
 \arguments{
@@ -109,7 +109,7 @@ legend = NULL, description = NULL, style = 'BoutrosLab');
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1000}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
