@@ -151,7 +151,11 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 	Carbohydrate = rgb(202, 113, 145, maxColorValue = 255);
 	Lipid = rgb(231, 221, 54, maxColorValue = 255);
 
-
+	# snv 
+	nonsynonymous = rgb(177/255, 213/255, 181/255);
+	stopgain = rgb(249/255, 179/255, 142/255);
+	frameshiftdeletion = rgb(154/255, 163/255, 242/255);
+	
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
 	avail.schemes <- list(
 		tissue = list(
@@ -177,6 +181,10 @@ force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FAL
 		annovar.annotation.collapsed = list( 
 			levels  = c('nonsynonymous snv', 'stopgain snv', 'stoploss snv', 'frameshift indel', 'splicing'),
 			colours = c('darkseagreen4',     'orchid4',      'darkturquoise','darkorange',       'gold1'   )
+			),
+		snv = list(
+			levels = c('nonsynonymous', 'stop gain', 'frameshift deletion', 'nonframeshift deletion', 'splicing', 'unknown'),
+			colours = c(nonsynonymous, 	 stopgain,    frameshiftdeletion, 	'gold', 				  'skyblue',  'plum')
 			),
 		biomolecule = list(
 			levels = c('dna', 'rna', 'protein', 'carbohydrate', 'lipid'),
