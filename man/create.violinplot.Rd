@@ -3,8 +3,10 @@
 \title{Make a violin plot}
 \description{This function takes a dataframe and writes a pretty TIFF violin plot}
 \usage{
-create.violinplot(formula, data, filename = NULL, main = NULL, xlab.label = NULL, 
-ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, lwd = 1, xaxis.rot = 0, 
+create.violinplot(formula, data, filename = NULL, main = NULL, 
+xlab.label = tail(sub('~','',formula[-2]),1), 
+ylab.label = tail(sub('~','',formula[-3]),1), 
+xaxis.lab = TRUE, yaxis.lab = TRUE, lwd = 1, xaxis.rot = 0, 
 yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, 
 main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', 
 xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0), yaxis.tck = c(1,1), 

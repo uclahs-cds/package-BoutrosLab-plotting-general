@@ -4,8 +4,10 @@
 \description{Takes a formula and a data.frame and creates a strip-plot}
 \usage{
 create.stripplot(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, 
-jitter.factor = 1, jitter.amount = NULL, main = NULL, xlab.label = NULL, 
-ylab.label = NULL, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', 
+jitter.factor = 1, jitter.amount = NULL, main = NULL, 
+xlab.label = tail(sub('~','',formula[-2]),1), 
+ylab.label = tail(sub('~','',formula[-3]),1), 
+xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', 
 yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', 
 colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, 
 ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3,

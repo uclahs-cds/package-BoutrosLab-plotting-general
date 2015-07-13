@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 5.2.20 2015-07-13
+
+MINOR UPDATE:
+* create.barplot, create.boxplot, create.hexbinplot, create.manhattanplot, create.polygonplot, create.scatterplot, create.segplot, create.stripplot, create.violinplot: Set xlab.label and ylab.label to default to formula components
+* default.colours: greyscale check no longer runs if only one colour is requested
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.19 2015-07-03
 
 MINOR UPDATE:

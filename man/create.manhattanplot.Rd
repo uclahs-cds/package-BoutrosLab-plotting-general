@@ -3,8 +3,10 @@
 \title{Make a Manhattan plot}
 \description{Takes a data.frame and creates a Manhattan plot}
 \usage{
-create.manhattanplot(formula, data, filename = NULL, main = NULL, xlab.label = NULL, 
-ylab.label = NULL, main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', 
+create.manhattanplot(formula, data, filename = NULL, main = NULL, 
+xlab.label = tail(sub('~','',formula[-2]),1), 
+ylab.label = tail(sub('~','',formula[-3]),1), 
+main.cex = 2, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', 
 ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, 
 xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1, 
 yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'plain', 

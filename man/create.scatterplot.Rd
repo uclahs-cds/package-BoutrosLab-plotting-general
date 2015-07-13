@@ -4,8 +4,10 @@
 \description{Takes a data.frame and creates a scatterplot}
 \usage{
 create.scatterplot(formula, data, filename = NULL, groups = NULL, main = NULL, 
-xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 3, ylab.cex = 3, 
-xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, 
+xlab.label = tail(sub('~','',formula[-2]),1), 
+ylab.label = tail(sub('~','',formula[-3]),1), 
+main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', 
+xlimits = NULL, ylimits = NULL, xat = TRUE, 
 yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, 
 xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, 
 yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', 

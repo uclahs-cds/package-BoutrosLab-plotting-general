@@ -3,8 +3,10 @@
 \title{Make a segplot}
 \description{Takes a data.frame and creates a segplot}
 \usage{
-create.segplot(formula, data, filename = NULL, main = NULL, lwd = 1, xlab.label = NULL, 
-ylab.label = NULL, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', 
+create.segplot(formula, data, filename = NULL, main = NULL, lwd = 1, 
+xlab.label = tail(sub('~','',formula[-2]),1), 
+ylab.label = tail(sub('~','',formula[-3]),1), 
+main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', 
 ylab.col = 'black', xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.rot = 0, 
 yaxis.rot = 0, xaxis.cex = 1.5, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, 
 xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, 

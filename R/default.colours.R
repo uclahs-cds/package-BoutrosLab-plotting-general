@@ -274,9 +274,10 @@ default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.gre
 				}
 			}
 		
-		# run greyscale check
+		# run greyscale check (only if there is more than one colour selected)
 		if (is.greyscale && palette.type[i] != 'binary') {
-			if (1 == length(number.of.colours)) { check.greyscale(palette) }
+			if (1 == number.of.colours){}
+			else if(1 == length(number.of.colours)) { check.greyscale(palette) }
 			else {check.greyscale(palette[[i]])}
 			}
 
