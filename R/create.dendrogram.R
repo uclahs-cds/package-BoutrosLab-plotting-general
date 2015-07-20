@@ -76,7 +76,7 @@ create.dendrogram <- function(x, clustering.method = 'diana', cluster.dimension 
 	if ('diana' == clustering.method) {
 		dd <- as.dendrogram(as.hclust(diana(x = distance.matrix)));
 		}
-	else if (clustering.method %in% c('ward', 'single', 'complete', 'average', 'mcquitty', 'median', 'centroid')) {
+	else if (clustering.method %in% c('ward', 'ward.D', 'ward.D2', 'single', 'complete', 'average', 'mcquitty', 'median', 'centroid')) {
 		dd <- as.dendrogram(hclust(d = distance.matrix, method = clustering.method));
 		}
 	else {
