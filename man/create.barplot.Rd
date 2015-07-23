@@ -5,7 +5,7 @@
 \usage{
 create.barplot(formula, data, groups = NULL, stack = FALSE, 
 filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, 
-abline.type = NULL, abline.lwd = NULL, abline.col = 'black', draw.grid = FALSE, 
+abline.type = NULL, abline.lwd = NULL, abline.col = 'black', add.grid = FALSE, 
 xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, 
 xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), 
 xlab.col = 'black', ylab.col = 'black', xaxis.lab = TRUE, yaxis.lab = TRUE, 
@@ -41,13 +41,13 @@ style = 'BoutrosLab'
     \item{groups}{Optional grouping variable.  Expression or variable.}
     \item{stack}{Logical, relevant when groups is non-null. If FALSE (the default), bars for different values of the grouping variable are drawn side by side, otherwise they are stacked}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{abline.h}{Specify the superimposed horizontal line(s)}
     \item{abline.v}{Specify the superimposed vertical line(s)}
     \item{abline.type}{Specify the superimposed line type}
     \item{abline.lwd}{Specify the superimposed line width}
     \item{abline.col}{Specify the superimposed line colour (defaults to black)}
-    \item{draw.grid}{Specify whether to draw grid or not (defaults to FALSE)}
+    \item{add.grid}{Specify whether to draw grid or not (defaults to FALSE)}
     \item{xgrid.at}{Specify where to draw x-axis grid lines (defaults to xat)}
     \item{ygrid.at}{Specify where to draw y-axis grid lines (defaults to yat)}
     \item{grid.lwd}{Specify width of grid line (defaults to 5)}
@@ -70,10 +70,10 @@ style = 'BoutrosLab'
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
-    \item{ylimits}{A list of vectors listing what the y-axis limits should be for each subplot. Defaults to NULL to let R figure out the limits}  
-    \item{yat}{A list of vectors listing where the y-axis labels should be drawn for each subplot. Defaults to TRUE to let R decide where to draw the labels}
-    \item{xlimits}{A list of vectors listing what the x-axis limits should be for each subplot. Defaults to NULL to let R figure out the limits. Useful when plot.horizontal = TRUE}  
-    \item{xat}{A list of vectors listing where the x-axis labels should be drawn for each subplot. Defaults to TRUE to let R decide where to draw the labels. Useful when plot.horizontal = TRUE}
+    \item{ylimits}{Two-element vector giving the y-axis limits}  
+    \item{yat}{Vector listing where the y-axis labels should be drawn}
+    \item{xlimits}{Two-element vector giving the x-axis limits. Useful when plot.horizontal = TRUE}  
+    \item{xat}{Vector listing where the x-axis labels should be drawn. Useful when plot.horizontal = TRUE}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.5}
@@ -635,7 +635,7 @@ create.barplot(
     xaxis.fontface = 1,
     yaxis.fontface = 1,
     # Grid lines
-    draw.grid = TRUE,
+    add.grid = TRUE,
     xgrid.at = seq(0,15,2),
 	col = sex.colours,
     legend = list(
@@ -682,7 +682,7 @@ create.barplot(
     yaxis.fontface = 1,
     # Grid lines
     background.col = 'grey85',
-    draw.grid = TRUE,
+    add.grid = TRUE,
     xgrid.at = seq(0,15,2),
     col = sex.colours,
     legend = list(

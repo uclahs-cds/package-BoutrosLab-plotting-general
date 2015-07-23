@@ -5,7 +5,7 @@
 \usage{
 create.qqplot.fit(x, data = NULL, confidence.bands = FALSE, conf = 0.95, 
 confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, 
-distribution = qnorm, aspect = 'fill', prepanel = NULL, grid = FALSE, groups = NULL, 
+distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, 
 main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, 
 ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, 
 ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, 
@@ -13,7 +13,7 @@ xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'b
 yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, 
 yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, 
 type = 'p', cex = 0.75, pch = 19, col = 'black', col.line = 'grey', lwd = 2, lty = 1, 
-axis.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, 
+axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, 
 top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, 
 height = 6, width = 6, size.units = 'in', resolution = 1600, 
 enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, 
@@ -32,14 +32,14 @@ style = 'BoutrosLab');
     \item{distribution}{A quantile function that takes a vector of probabilities as argument and produces the corresponding quantiles from a theoretical distribution, defaults to \dQuote{qnorm}, that is normal distribution.}
     \item{aspect}{This argument controls the physical aspect ratio of the panels, defaults to \dQuote{fill}}
     \item{prepanel}{A function that takes the same arguments as the \dQuote{panel}}
-    \item{grid}{Default manner of drawing grid lines}
+    \item{add.grid}{Default manner of drawing grid lines}
     \item{groups}{The grouping variable in the data-frame}
     \item{main}{The main plot title}
     \item{xlab.label}{x-axis title}
     \item{ylab.label}{y-axis title}
     \item{main.cex}{Size of the overall plot title, defaults to 3}
-    \item{xlab.cex}{Size of x-axis labels, defaults to 2.5}
-    \item{ylab.cex}{Size of y-axis labels, defaults to 2.5}
+    \item{xlab.cex}{Size of x-axis label, defaults to 2.5}
+    \item{ylab.cex}{Size of y-axis label, defaults to 2.5}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
@@ -69,7 +69,7 @@ style = 'BoutrosLab');
     \item{col.line}{QQ line colour, defaults to grey}
     \item{lwd}{Specifies line width, defaults to 2}
     \item{lty}{Specifies line style, defaults to 1 (solid)}
-    \item{axis.lwd}{Thickness of width of axis lines}
+    \item{axes.lwd}{Thickness of width of axes lines}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{top.padding}{A number giving the top padding in multiples of the lattice default}
@@ -131,7 +131,7 @@ create.qqplot.fit(
     yaxis.fontface = 1,
     xaxis.cex = 1,
     yaxis.cex = 1,
-    grid = TRUE,
+    add.grid = TRUE,
     description = 'QQplot fit created by BoutrosLab.plotting.general'
     );
 
@@ -149,7 +149,7 @@ create.qqplot.fit(
     yaxis.fontface = 1,
     xaxis.cex = 1,
     yaxis.cex = 1,
-    grid = TRUE,
+    add.grid = TRUE,
     # Adding confidence bands (auto-generates legend)
     confidence.bands = TRUE,
     confidence.method = 'both',
@@ -181,7 +181,7 @@ create.qqplot.fit(
     yaxis.fontface = 1,
     xaxis.cex = 1,
     yaxis.cex = 1,
-    grid = TRUE,
+    add.grid = TRUE,
     confidence.bands = TRUE,
     confidence.method = 'simultaneous',
     description = 'QQplot fit created by BoutrosLab.plotting.general'
@@ -208,7 +208,7 @@ create.qqplot.fit(
     yaxis.fontface = 1,
     xaxis.cex = 1,
     yaxis.cex = 1,
-    grid = TRUE,
+    add.grid = TRUE,
     confidence.bands = TRUE,
     confidence.method = 'simultaneous',
     # Adding legend for groups
@@ -248,7 +248,7 @@ create.qqplot.fit(
     yaxis.fontface = 1,
     xaxis.cex = 1,
     yaxis.cex = 1,
-    grid = TRUE,
+    add.grid = TRUE,
     confidence.bands = TRUE,
     confidence.method = 'simultaneous',
     # Adjusting legend to contain multiple keys
@@ -304,7 +304,7 @@ create.qqplot.fit(
     yaxis.fontface = 1,
     xaxis.cex = 1,
     yaxis.cex = 1,
-    grid = TRUE,
+    add.grid = TRUE,
     confidence.bands = TRUE,
     confidence.method = 'both',
 

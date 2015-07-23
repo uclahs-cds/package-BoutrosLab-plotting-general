@@ -8,8 +8,8 @@ jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey
 points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL,
 abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL,
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
-col.rectangle = 'transparent', alpha.rectangle = 1, fill = 'transparent', 
-box.colour = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, 
+col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent', 
+border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, 
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), 
 main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', 
@@ -29,7 +29,7 @@ style = 'BoutrosLab');
     \item{formula}{The formula used to extract the x & y components from the data-frame}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{abline.h}{Specify the horizontal superimpose line}
     \item{abline.v}{Specify the vertical superimpose line}
     \item{abline.type}{Specify the superimpose line type}
@@ -42,8 +42,8 @@ style = 'BoutrosLab');
     \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
     \item{col.rectangle}{Specifies the colour of the rectangle}
     \item{alpha.rectangle}{Specifies the alpha of the rectangle}
-    \item{fill}{The colour to fill the interior of the boxplot, defaults to white}
-    \item{box.colour}{Colour of the boxplot, defaults to black}
+    \item{col}{The colour to fill the interior of the boxplot, defaults to white}
+    \item{border.col}{Colour of the boxplot, defaults to black}
     \item{symbol.cex}{Size of the boxplot outlier-symbol}
     \item{lwd}{Line width, defaults to 1}
     \item{outliers}{logical whether to plot outliers, defaults to TRUE}
@@ -217,7 +217,7 @@ create.boxplot(
     xlimits = c(0,13),
     xat = seq(0,12,2),
     # Colour change
-    fill = sex.colour,
+    col = sex.colour,
     description = 'Boxplot created by BoutrosLab.plotting.general'
     );
 
@@ -234,7 +234,7 @@ create.boxplot(
     ylab.label = 'Gene',
     xlimits = c(0,13),
     xat = seq(0,12,2),
-    fill = sex.colour,
+    col = sex.colour,
     # legend
     legend = list(
         inside = list(
@@ -278,7 +278,7 @@ create.boxplot(
     xaxis.rot = 90,
     xlab.label = 'Gene',
     xlab.cex = 1.5,
-    fill = sex.colour,
+    col = sex.colour,
     # legend
     legend = list(
         inside = list(
@@ -327,7 +327,7 @@ create.boxplot(
     ytop.rectangle = seq(1.5, 9.5, 2),
     col.rectangle = 'grey',
     alpha.rectangle = 0.5,
-    fill = sex.colour,
+    col = sex.colour,
     # legend
     legend = list(
         inside = list(

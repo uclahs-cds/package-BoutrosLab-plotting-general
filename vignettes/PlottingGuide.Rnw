@@ -634,7 +634,7 @@ create.boxplot(
     yaxis.cex = 1.2,
     
     # specify box colour
-    fill = default.colours(1)
+    col = default.colours(1)
     );
 @
 
@@ -645,7 +645,7 @@ Coloured rectangles can be drawn in plots.
 create.boxplot(
     formula = y ~ x, 
     data = boxplot.data,
-    fill = default.colours(1),
+    col = default.colours(1),
     xaxis.cex = 1.2,
     yaxis.cex = 1.2,
     
@@ -673,7 +673,7 @@ To make comparisons clearer, the boxplots can be sorted by median value.
 create.boxplot(
     formula = y ~ x, 
     data = boxplot.data,
-    fill = default.colours(1),
+    col = default.colours(1),
     xaxis.cex = 1.2,
     yaxis.cex = 1.2,
     add.rectangle = TRUE,
@@ -696,7 +696,7 @@ The individual points can be plotted on the boxplot.
 create.boxplot(
     formula = y ~ x, 
     data = boxplot.data,
-    fill = default.colours(1),
+    col = default.colours(1),
     xaxis.cex = 1.2,
     yaxis.cex = 1.2,
     add.rectangle = TRUE,
@@ -1773,7 +1773,7 @@ After all the plots and legends are created, they are combined using the create.
          panel.heights = c(1, 0.1, 0.1, 0.1),
 
          # set spacing between the plots
-         yspacing = c(-1, -1, -1),
+         y.spacing = c(-1, -1, -1),
          xaxis.lab = NULL,
 
          # remove axes tick marks
@@ -1965,8 +1965,8 @@ create.multiplot(
         NULL,
         seq(0,4,0.05)
         ),
-    xspacing = -0.5,
-    yspacing = c(0, -1),
+    x.spacing = -0.5,
+    y.spacing = c(0, -1),
     xaxis.fontface = 1,
     yaxis.fontface = 1
     );
@@ -2142,7 +2142,7 @@ create.multiplot(
     xat = seq(1, 20, 1),
     xaxis.labels = NULL,
     panel.heights = c(1, 1, 1, 0.2),
-    yspacing = c(0.5, 0.5, 0.5),
+    y.spacing = c(0.5, 0.5, 0.5),
 
     # provide space for the legend
     bottom.padding = 15,

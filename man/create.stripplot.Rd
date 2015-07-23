@@ -23,7 +23,7 @@ ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
 style = 'BoutrosLab')
 }
 \arguments{
-    \item{formula}{The formula to be plotted}
+    \item{formula}{The formula used to extract the x & y components from the data-frame}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{groups}{The grouping variable in the data-frame}
@@ -52,8 +52,8 @@ style = 'BoutrosLab')
     \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
     \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
     \item{main.cex}{Size of text for main plot title}
-    \item{xlab.cex}{Size of x-axis labels, defaults to 3}
-    \item{ylab.cex}{Size of y-axis labels, defaults to 3}
+    \item{xlab.cex}{Size of x-axis label, defaults to 3}
+    \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}

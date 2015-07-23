@@ -13,7 +13,7 @@ xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 
 yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', 
 yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, 
 pch = 19, col = 'black', strip.col = "white", strip.cex = 1, strip.fontface = 'bold', 
-lwd = 1, lty = 1, alpha = 1, axis.lwd = 1, y.error.up = NULL, y.error.down = y.error.up, 
+lwd = 1, lty = 1, alpha = 1, axes.lwd = 1, y.error.up = NULL, y.error.down = y.error.up, 
 x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black', 
 x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, 
 error.bar.length = 0.1, key = list(text = list(lab = c(''))), legend = NULL, 
@@ -47,8 +47,8 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
     \item{main.cex}{Size of text for main plot title}
-    \item{xlab.cex}{Size of x-axis labels, defaults to 3}
-    \item{ylab.cex}{Size of y-axis labels, defaults to 3}
+    \item{xlab.cex}{Size of x-axis label, defaults to 3}
+    \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
@@ -96,7 +96,7 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{lwd}{Specifies line width, defaults to 1}
     \item{lty}{Specifies line style, defaults to 1 (solid)}
     \item{alpha}{Specifies line transparency, defaults to 1 (opaque)}
-    \item{axis.lwd}{Thickness of width of axis lines}
+    \item{axes.lwd}{Thickness of width of axes lines}
     \item{y.error.up}{upward error vector. Defaults to NULL. When y.error.up is NULL, vertical error bar is not drawn}
     \item{y.error.down}{Downward error vector. Defaults to y.error.down to show symmetric error bars}
     \item{x.error.right}{Rightward error vector. Defaults to NULL. When x.error.right is NULL, horizontal error bar is not drawn}

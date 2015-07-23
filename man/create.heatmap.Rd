@@ -23,7 +23,7 @@ right.dendrogram.size = 2.5, top.dendrogram.size = 2.5, scale.data = FALSE,
 yaxis.lab = NULL, xaxis.lab = NULL, xaxis.lab.top = NULL, xaxis.cex = NA, yaxis.cex = NA,
 xlab.cex = 1, ylab.cex = 1, xat = TRUE, xat.top = NULL, yat = TRUE, xaxis.tck = NULL, 
 yaxis.tck = NULL, xaxis.col = 'black', yaxis.col = 'black', col.pos = NULL, 
-row.pos = NULL, cell.text = '', text.font = 1, text.cex = 1, text.col = 'black', 
+row.pos = NULL, cell.text = '', text.fontface = 1, text.cex = 1, text.col = 'black', 
 text.position = NULL, text.offset = 0, colourkey.cex = 3.6, xaxis.rot = 90, 
 yaxis.rot = 0, xlab.label = '' , ylab.label = '', xlab.col = 'black', ylab.col = 'black',
 axes.lwd = 2, gridline.order = 'h', grid.row = FALSE, grid.col = FALSE, 
@@ -79,7 +79,7 @@ stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'Boutr
     \item{legend.between.col}{Amount of space to add between columns in the layout, in \dQuote{lines} units}
     \item{legend.between.row}{Amount of space to add between rows in the layout, in \dQuote{lines} units}
     \item{legend.side}{Side of the plot where the legends should be drawn -- \dQuote{left}, \dQuote{right}, or \dQuote{top}}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{main.cex}{Size of text for main plot title, defaults to 2.5}
     \item{right.size.add}{The size of each extra covariate row in the right dendrogram in units of \dQuote{lines}}
     \item{top.size.add}{The size of each extra covariate row in the top dendrogram in units of \dQuote{lines}}
@@ -109,7 +109,7 @@ stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'Boutr
     \item{col.pos}{Vector of column positions for adding text to cell, defaults to NULL}
     \item{row.pos}{Vector of row positions for adding text to cell, defaults to NULL} 
     \item{cell.text}{Text to add to cell, defaults to an empty string}
-    \item{text.font}{1 = Plain, 2 = Bold, 3 = Italic, default is 1}
+    \item{text.fontface}{1 = Plain, 2 = Bold, 3 = Italic, default is 1}
     \item{text.cex}{Text size, default is 1}
     \item{text.col}{Text colour, default is black.}
     \item{text.position}{The position of the text, defaults to center.}
@@ -909,7 +909,7 @@ create.heatmap(
     cor.method = 'pearson',
     col.pos = which(y != '1', arr.ind = TRUE)[,1],
     row.pos = which(y != '1', arr.ind = TRUE)[,2],
-    text.font = 2,
+    text.fontface = 2,
     text.col = 'white',
     text.cex = 0.70,
     colourkey.cex = 1,

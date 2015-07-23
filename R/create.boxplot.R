@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE BOXPLOTS ###################################################################
-create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, fill = 'transparent', box.colour = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none', style = 'BoutrosLab') {
+create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent', border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none', style = 'BoutrosLab') {
 
 	# add stripplot if requested
 	if (add.stripplot & outliers) {
@@ -63,7 +63,7 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 					);
 				}
 			},
-		fill = fill,
+		fill = col,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = "fontfamily", 
 			add.to.list = list(
@@ -166,21 +166,21 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 				),
 			box.dot = list(
 				pch = 19,
-				col = box.colour,
+				col = border.col,
 				lty = 1
 				),
 			box.rectangle = list(
 				lwd = lwd,
-				col = box.colour,
+				col = border.col,
 				lty = 1
 				),
 			box.umbrella =list(
 				lwd = lwd,
-				col = box.colour,
+				col = border.col,
 				lty = 1
 				),
 			plot.symbol = list(
-				col = box.colour,
+				col = border.col,
 				pch = 19,
 				cex = symbol.cex
 				),

@@ -10,8 +10,8 @@ left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL,
 ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, xaxis.cex = 2, yaxis.cex = 2, 
 xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, 
 yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, 
-xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xspacing = 1, 
-yspacing = 1, x.relation = 'same', y.relation = 'same', 
+xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, 
+y.spacing = 1, x.relation = 'same', y.relation = 'same', 
 xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, 
 key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, 
 width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
@@ -25,8 +25,8 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FA
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{panel.heights}{A vector specifying relative heights of the panels. Default is c(1,1)}
     \item{panel.widths}{A vector specifying relative widths of the panels. Default is 1}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
-    \item{main.cex}{Size of main font, defaults to 2}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.cex}{Size of text for main plot title, defaults to 2}
     \item{main.key.padding}{A number specifying the distance of main to plot, defaults to 1}
     \item{ylab.padding}{A number specifying the distance of y-axis to plot, defaults to 5}
     \item{xlab.padding}{A number specifying the distance of x-axis to plot, defaults to 5}
@@ -52,8 +52,8 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FA
     \item{xaxis.rot}{Rotation of x-axis labels}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
-    \item{xspacing}{A number specifying the horizontal distance between plots, defaults to 1}
-    \item{yspacing}{A number specifying the vertical distance between plots, defaults to 1}
+    \item{x.spacing}{A number specifying the horizontal distance between plots, defaults to 1}
+    \item{y.spacing}{A number specifying the vertical distance between plots, defaults to 1}
     \item{x.relation}{A character string that determines how x-axis limits are calculated for each panel. Possible values are \dQuote{same} (default), \dQuote{free} and \dQuote{sliced}. See ?xyplot}
     \item{y.relation}{A character string that determines how y-axis limits are calculated for each panel. Possible values are \dQuote{same} (default), \dQuote{free} and \dQuote{sliced}. See ?xyplot}
     \item{xaxis.tck}{A vector of length 2 that determines the size of x-axis tick marks. Defaults to c(0.75, 0.75).}
@@ -111,7 +111,7 @@ colnames(fill.squares) <- levels(factor(simple.data$y));
 simple.boxplot <- create.boxplot(
     formula = x ~ y,
     data = simple.data,
-    fill = 'lightgrey'
+    col = 'lightgrey'
     );
 
 # Create plot # 2
@@ -157,7 +157,7 @@ create.multiplot(
 simple.violin <- create.violinplot(
     formula = x ~ y,
     data = simple.data,
-    fill = 'lightgrey'
+    col = 'lightgrey'
     );
 
 # Simple example of multiplot with custom layout
@@ -176,7 +176,7 @@ create.multiplot(
     # Set whether to plot or not in the space (fills from bottom left to top right)
     layout.skip = c(FALSE, TRUE, FALSE, FALSE),
     # Move plots closer together
-    xspacing = 0,
+    x.spacing = 0,
     # Remove doubled internal axis
     yat = list(
         seq(1,3,1),
@@ -397,7 +397,7 @@ create.multiplot(
     ylab.label = c("\t", "Response to treatment","\t"),
     xlab.label = "Sample characteristics",
     panel.heights = c(1, 0.05,0.05,0.05),
-    yspacing = c(-1, -1, -1, 0),
+    y.spacing = c(-1, -1, -1, 0),
     xaxis.lab = NULL,
     yaxis.lab = list(NULL, NULL, NULL, seq(0, 350, 50)),
     legend = list(right = list(fun = legend)),
@@ -514,8 +514,8 @@ create.multiplot(
         NULL,
         seq(0,4,0.05)
         ),
-    xspacing = -0.5,
-    yspacing = c(0,-1),
+    x.spacing = -0.5,
+    y.spacing = c(0,-1),
     xaxis.fontface = 1,
     yaxis.fontface = 1
     );
@@ -665,7 +665,7 @@ create.multiplot(
         rev(rownames(SNV)[1:15])
         ),
     yaxis.cex = 0.7,
-    yspacing = -1,
+    y.spacing = -1,
     legend = list(
         bottom = list(
             x = 0.10,
@@ -809,8 +809,8 @@ create.multiplot(
         seq(0.0,1.0,0.2),
         seq(0,16,4)
         ),
-    xspacing = -0.5,
-    yspacing = -1.5,
+    x.spacing = -0.5,
+    y.spacing = -1.5,
     xaxis.cex = 0.7,
     yaxis.cex = 0.7,
     xat = list(
@@ -1048,8 +1048,8 @@ create.multiplot(
     ylab.cex = 0.75,
     xlab.label = c('\t', 'samples', '\t', '    -log10 pval'),
     ylab.label = c("", "Test", "","CAGT",  "covariates"),
-    yspacing = 0,
-    xspacing = 0,
+    y.spacing = 0,
+    x.spacing = 0,
     legend = list(
         left = list(
             x = 0.10,

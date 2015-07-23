@@ -35,8 +35,8 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
     \item{main.cex}{Size of text for main plot title}
-    \item{xlab.cex}{Size of x-axis labels, defaults to 2}
-    \item{ylab.cex}{Size of y-axis labels, defaults to 2}
+    \item{xlab.cex}{Size of x-axis label, defaults to 2}
+    \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}

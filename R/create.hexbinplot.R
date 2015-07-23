@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE HEXBINPLOTS #################################################################
-create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspect = 'xy', trans = NULL, inv = NULL, colours = NULL, colourkey = TRUE, colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5, xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, grid = FALSE, abline = NULL, abline.front = FALSE, add.axes = FALSE, xbins = 30, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
+create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspect = 'xy', trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE, colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5, xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', abline.front = FALSE, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE), curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, curves.lty = 1, add.axes = FALSE, xbins = 30, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, background.col= 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
 
 	# IMPORTANT NOTE:
 	# - the implementation of this function is different from any other functions in the library
@@ -32,6 +32,8 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 		data,
 		panel = function(...) {
 			# add rectangle if requested
+
+
 			if (add.rectangle) {
 				panel.rect(
 					xleft = xleft.rectangle,
@@ -58,9 +60,12 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 					0,
 					type = 'g',
 					col.line = "black",
-					abline = abline,
-					grid = grid
+					grid = add.grid
 					);
+
+				panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
+				panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
+
 				}
 			panel.hexbinplot(...);
 			if (abline.front == TRUE) {
@@ -69,16 +74,57 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 					0,
 					type = 'g',
 					col.line = "black",
-					abline = abline,
-					grid = grid
+					grid = add.grid
+					);
+
+				panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
+				panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
+
+				}
+
+			if (add.xyline) {
+				panel.abline(
+					a = 0,
+					b = 1,
+					lwd = xyline.lwd,
+					lty = xyline.lty,
+					col = xyline.col
 					);
 				}
+		
+			# if requested, add curve segments
+			if (add.curves) {
+
+				if (length(curves.exprs) > 1) {
+					if (1 == length(curves.from)) { curves.from <- rep(curves.from, length(curves.exprs)); }
+					if (1 == length(curves.to))   { curves.to   <- rep(curves.to,   length(curves.exprs)); }
+					if (1 == length(curves.col))  { curves.col  <- rep(curves.col,  length(curves.exprs)); }
+					if (1 == length(curves.lwd))  { curves.lwd  <- rep(curves.lwd,  length(curves.exprs)); }
+					if (1 == length(curves.lty))  { curves.lty  <- rep(curves.lty,  length(curves.exprs)); }
+					}
+
+				for (i in 1:length(curves.exprs)) {
+					with(
+						data = new.env(),
+						expr = panel.curve(
+							expr = curves.exprs[[i]](x),
+							from = curves.from[i],
+							to = curves.to[i],
+							col = curves.col[i],
+							lwd = curves.lwd[i],
+							lty = curves.lty[i]
+							)
+						);
+					}
+				}
+
+
 			},
 		aspect = aspect,
 		trans = trans,
 		inv = inv,
 		xbins = xbins,
-		colramp = if (is.null(colours)) { function(n) {LinGray(n, beg = 90, end = 15)} } else { colours },
+		colramp = if (is.null(colour.scheme)) { function(n) {LinGray(n, beg = 90, end = 15)} } else { colour.scheme },
 		colorkey = colourkey,
 		colorcut = colourcut,
 		mincnt = mincnt,
@@ -175,7 +221,7 @@ create.hexbinplot <- function(formula, data, filename = NULL, main = NULL, aspec
 			),
 		key = key,
 		legend = legend,
-		grid = grid
+		grid = add.grid
 		);
 	
 	# check if the maxcnt parameter has been passed 

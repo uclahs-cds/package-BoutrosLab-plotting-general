@@ -15,7 +15,7 @@ abline.col = 'black', segments.col = 'black', segments.lwd = 1, x.spacing = 0,
 y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, 
 left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", 
 xaxis.tck = 1, yaxis.tck = 1, level = NULL, col.regions = NULL, centers = NULL, 
-horizontal = TRUE, draw.bands =  FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1, 
+plot.horizontal = TRUE, draw.bands =  FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1, 
 layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', 
 resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
@@ -30,8 +30,8 @@ col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab')
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
     \item{main.cex}{Size of text for main plot title, defaults to 3}
-    \item{xlab.cex}{Size of x-axis labels, defaults to 2}
-    \item{ylab.cex}{Size of y-axis labels, defaults to 2}
+    \item{xlab.cex}{Size of x-axis label, defaults to 2}
+    \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
@@ -58,7 +58,7 @@ col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab')
     \item{segments.lwd}{Line width of segments, defaults to 1}
     \item{level}{Optional covariate that determines colour coding of the segments, if specified overwrites segments.col, can contain actual colors or values to determine colors, then col.regions should be defined}
     \item{col.regions}{Vector of colors, define if level is numeric} 
-    \item{horizontal}{Logical whether segments should be drawn horizontally (default) or vertically}
+    \item{plot.horizontal}{Logical whether segments should be drawn horizontally (default) or vertically}
     \item{draw.bands}{Logical to specify whether to draw lines (default) or rectangles}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}

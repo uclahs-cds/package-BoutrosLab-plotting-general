@@ -10,9 +10,9 @@ xaxis.lab = TRUE, yaxis.lab = TRUE, lwd = 1, xaxis.rot = 0,
 yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, 
 main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', 
 xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0), yaxis.tck = c(1,1), 
-fill.colour = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 21, 
+col = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 21, 
 extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, 
-start = NULL, end = NULL, scale = FALSE, horizontal = FALSE, top.padding = 0.1, 
+start = NULL, end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, 
 bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.3, width = 6, height = 6, 
 resolution = 1600, size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL,
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
@@ -45,7 +45,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to c(1,0)}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to c(1,1)}
-    \item{fill.colour}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
+    \item{col}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
     \item{border.lwd}{Width of the exterior boundary of the violin plots, defaults to 1}
     \item{extra.points}{A list of numeric vectors, each one of length equal to the number of violins to be plotted. Specifies a set or sets of extra points to be plotted along the vertical spine of each violin plot. Defaults to NULL (no points to be added)}
     \item{extra.points.pch}{A vector of the same length as extra.points specifying the symbol to use for each set of points. Defaults to 21}
@@ -55,7 +55,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{start}{Start of boundary cutoff, default is NULL for no boundary}
     \item{end}{End of boundary cutoff, default is NULL for no boundary}
     \item{scale}{Logical; Scales the violin plots, see ?panel.violin for more details, default is FALSE}
-    \item{horizontal}{Logical; Determines whether to draw violin plot horizontally or vertically; default is FALSE; If \code{horizontal} is \code{FALSE}, x will be coerced to a factor or shingle, and vise versa.}
+    \item{plot.horizontal}{Logical; Determines whether to draw violin plot horizontally or vertically; default is FALSE; If \code{horizontal} is \code{FALSE}, x will be coerced to a factor or shingle, and vise versa.}
     \item{top.padding}{A number giving the top padding in multiples of the lattice default}
     \item{bottom.padding}{A number giving the bottom padding in multiples of the lattice default}
     \item{left.padding}{A number giving the left padding in multiples of the lattice default}
@@ -238,7 +238,7 @@ create.violinplot(
     extra.points.col = c('white','grey'),
     extra.points.cex = 0.5,
     # Colour
-    fill.colour = 'dodgerblue',
+    col = 'dodgerblue',
     description = 'Violinplot created by BoutrosLab.plotting.general'
     );
 
@@ -263,7 +263,7 @@ create.violinplot(
     extra.points.pch = 21,
     extra.points.col = c('white','grey'),
     extra.points.cex = 0.5,
-    fill.colour = 'dodgerblue',
+    col = 'dodgerblue',
     # customizing labels
     yaxis.lab = c(
         0,
@@ -296,9 +296,9 @@ create.violinplot(
     extra.points.pch = 21,
     extra.points.col = c('white','grey'),
     extra.points.cex = 0.5,
-    fill.colour = 'dodgerblue',
+    col = 'dodgerblue',
     # orientation
-    horizontal = TRUE,
+    plot.horizontal = TRUE,
     description = 'Violinplot created by BoutrosLab.plotting.general'
     );
 
@@ -323,7 +323,7 @@ create.violinplot(
     extra.points.pch = 21,
     extra.points.col = c('white','grey'),
     extra.points.cex = 0.5,
-    fill.colour = 'dodgerblue',
+    col = 'dodgerblue',
     # background
     add.rectangle = TRUE,
     xleft.rectangle = seq(0.5, 8.5, 2),
@@ -350,7 +350,7 @@ create.violinplot(
     yaxis.fontface = 1,
     xlab.cex = 1.5,
     ylab.cex = 1.5,
-    fill.colour = 'dodgerblue',
+    col = 'dodgerblue',
     add.rectangle = TRUE,
     xleft.rectangle = seq(0.5, 8.5, 2),
     ybottom.rectangle = 0,

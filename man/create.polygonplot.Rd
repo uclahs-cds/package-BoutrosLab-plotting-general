@@ -5,7 +5,7 @@
 \usage{
 create.polygonplot(formula, data, filename = NULL, main = NULL, groups = NULL, max, min, 
 col = 'white', border.col = 'black', xy.col = 'black', strip.col = "white", 
-strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axis.lwd = 1, 
+strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, 
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, 
 xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, xaxis.cex = 2, 
@@ -29,7 +29,7 @@ legend = NULL, description = NULL, style = 'BoutrosLab');
     \item{formula}{The formula used to extract the boxplot components from the data-frame}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{groups}{The grouping variable in the data-frame}
     \item{max}{Max values for polygon}
     \item{min}{Min values for polygon}
@@ -43,12 +43,12 @@ legend = NULL, description = NULL, style = 'BoutrosLab');
     \item{pch}{Plotting character}
     \item{lwd}{Specifies line width, defaults to 1}
     \item{lty}{Specifies line style, defaults to 1 (solid)}
-    \item{axis.lwd}{Thickness of width of axis lines}
+    \item{axes.lwd}{Thickness of width of axes lines}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{main.cex}{Size of text for main plot title}
-    \item{xlab.cex}{Size of x-axis labels, defaults to 3}
-    \item{ylab.cex}{Size of y-axis labels, defaults to 3}
+    \item{xlab.cex}{Size of x-axis label, defaults to 3}
+    \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xaxis.cex}{Size of x-axis scales, defaults to 2}

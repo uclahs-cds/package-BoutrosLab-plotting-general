@@ -11,7 +11,8 @@ yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1,
 yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', 
 xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), 
 legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, 
-right.padding = 0.1, add.axes = FALSE, abline = NULL, height = 6, 
+right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, 
+abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, 
 width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
 description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, 
 ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
@@ -23,7 +24,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis, defaults to \dQuote{Density}}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{type}{Plot type}
     \item{lty}{Line type}
     \item{cex}{Character expansion for plotting symbol}
@@ -58,7 +59,11 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{left.padding}{A number giving the left padding in multiples of the lattice default}
     \item{right.padding}{A number giving the right padding in multiples of the lattice default}
     \item{add.axes}{Allow axis lines to be turned on or off}
-    \item{abline}{A list to be passed through \code{\link{panel.abline}} adding lines to the plot}
+    \item{abline.h}{Specify the superimposed horizontal line(s)}
+    \item{abline.v}{Specify the superimposed vertical line(s)}
+    \item{abline.type}{Specify the superimposed line type}
+    \item{abline.lwd}{Specify the superimposed line width}
+    \item{abline.col}{Specify the superimposed line colour (defaults to black)}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}

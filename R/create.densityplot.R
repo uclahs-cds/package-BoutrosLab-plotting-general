@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DENSITYPLOTS ################################################################
-create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
+create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
 
 	# create an object to store all the data
 	data.to.plot <- data.frame(
@@ -87,7 +87,10 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 	trellis.object <- lattice::xyplot(
 		y ~ x,
 		data.to.plot,
-		panel = function(groups.local = data.to.plot$groups, subscripts, type.local = type, abline.local = abline, ...) {
+		panel = function(groups.local = data.to.plot$groups, subscripts, type.local = type, ...) {
+
+			panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
+			panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
 
 			# if requested, add x=0, y=0 lines
 			if (add.axes) {
@@ -142,7 +145,6 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 				groups = groups.local,
 				subscripts = subscripts,
 				type = setdiff(type.local, 'g'),
-				abline = abline.local,
 				...
 				);
 			},

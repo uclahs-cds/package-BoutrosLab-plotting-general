@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 5.3.0 2015-07-23
+
+MINOR UPDATE:
+* standardized parameter names across all plotting functions
+* create.hexbinplot: added add.xyline and add.curves functionality (same as in create.scatterplot)
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.2.20 2015-07-13
 
 MINOR UPDATE:

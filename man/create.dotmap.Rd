@@ -12,7 +12,7 @@ xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
 axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, 
 top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, 
 left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, 
-grid.col.lwd = 1.5, grid.row.lwd = 1.5, spot.size.function = 'default', 
+col.lwd = 1.5, row.lwd = 1.5, spot.size.function = 'default', 
 spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, grid.colour = NULL, 
 colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, 
 colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1,
@@ -31,12 +31,12 @@ yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab');
     \item{pch}{Plotting character}
     \item{pch.border.col}{Colour of the dot border if using pch = 21:25}
     \item{add.grid}{Should a grid of black-lines separating each column/row be added?}
-    \item{main}{The main plot title (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
-    \item{main.cex}{Character expansion for the main title, defaults to 2}
+    \item{main.cex}{Size of text for the main title, defaults to 2}
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to colnames(x)}
@@ -59,8 +59,8 @@ yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab');
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
     \item{key}{A list giving the key (legend). The default suppresses drawing. If the key has a \dQuote{space} component then extra space will be cleared on that side of the plot for the key}
     \item{legend}{Add a legend to the plot. Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{grid.col.lwd}{Thickness of column grid lines}
-    \item{grid.row.lwd}{Thickness of row grid lines}
+    \item{col.lwd}{Thickness of column grid lines}
+    \item{row.lwd}{Thickness of row grid lines}
     \item{spot.size.function}{The function that translates values in x into dotmap spot-size. The default is 0.1 + (2 * abs(x))}
     \item{spot.colour.function}{The function that translates values in x into dotmap spot-colour. The default gives negative values blue, positive values red, and zero white}
     \item{NA.spot.size}{The size for plotting character for NA cells. Defaults to 7.}

@@ -242,7 +242,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 			text.offset = offset,
 			text.col = 'black',
 			text.cex = 0.75,
-			text.font = bold.text,
+			text.fontface = bold.text,
 			# adding borders around white swatches
 			symbols = symbol.locations,
 			height = height,

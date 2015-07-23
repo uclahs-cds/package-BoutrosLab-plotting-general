@@ -61,7 +61,7 @@ create.multiplot(
     xlimits = list(NULL, c(0,1)),
     xat = list(NULL,seq(0,1,0.5)),
     xaxis.labels = list(NULL,seq(0,1,0.5)),
-    xspacing = 0,
+    x.spacing = 0,
     print.new.legend = TRUE,
     legend = list(
         inside = list(
