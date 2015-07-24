@@ -12,8 +12,11 @@
 \renewcommand*\thesubsection{\arabic{section}.\arabic{subsection}}
 \usepackage{sectsty}
 \usepackage{graphicx}
-\sectionfont{\LARGE}
+\usepackage{titlesec}
+\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
 
+\sectionfont{\LARGE}
+\usepackage[super,comma]{natbib}
 \usepackage{lastpage}
 \makeatletter
 \renewcommand{\@oddfoot}{\hfil Page \thepage\ of \pageref{LastPage} \hfil}
@@ -36,7 +39,7 @@
 \maketitle
 
 \tableofcontents
-
+\newpage
 \section{Introduction}
 Why does data visualization matter? After all, data visualization takes work. Datasets are often complex, having millions of data points and many dimensions. Decisions have to be made regarding the best way of highlighting the main message. Aesthetic considerations require knowledge of colour theory, typography, composition, and more. Why do people go through all the trouble?
 
@@ -82,12 +85,12 @@ Rank & Aspect judged\\
 
 Figures should be designed to enhance a viewer's ability to compare data and draw appropriate conclusions \cite{tufte}. This can be done through careful arrangement of a figure, such as placing related elements near each other, highlighting important items, selecting appropriate colours and fonts, and more. Poorly-designed figures can distort the truth and lead viewers to draw inaccurate conclusions \cite{tufte}. 
 
-To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This ``test'' (which may be conducted multiple times) can reveal how clear a figure is.
+To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This ``test'' (which may need to be conducted multiple times) can reveal how clear a figure is.
 
 \subsection{What is BL.plotting.general?}
 BL.plotting.general is a software package for generating publication-quality, customizable plots. It produces a variety of chart-types, ranging from common charts for simple datasets to novel charts for displaying highly-dimensional datasets.
 
-This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics\cite{trellis} for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. 
+This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics\cite{trellis} for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. Trellis graphics are graphs that can display a variable or the relationship between variables, conditioned on one or more other variables. Therefore, they are very useful for displaying data sets with many variables, such as is often the case in biological data sets.
 
 \section{Designing figures}
 Before creating figures, it is important to know something about design. Terrible design will miscommunicate data, whereas excellent design will guide viewers to understand the data\cite{tufte}. 
@@ -97,11 +100,11 @@ Typography is the art of arranging type to make written words understandable. Th
 
 When it comes to choosing fonts for a figure, it is advisable to use no more than one or two fonts. The distinction between a typeface and a font is often confused: a typeface is Arial, which is made up of a number of fonts, such as Arial bold, Arial roman, Arial italic, and other such fonts \cite{wong-type}. Thus, when selecting which fonts to use in a figure, one option is to use Arial roman for most text, and Arial bold for headers.
 
-Another options for selecting different fonts is to choose very different fonts. This can be achieved by combining a serif and sans serif font with different font size, colour, boldness, etc \cite{williams}.
+Another options for selecting different fonts is to choose very different fonts. This can be achieved by combining a serif and sans serif font with different font size, colour, boldness, \emph{etc}\cite{williams}.
 
 Typefaces can be divided into two classes: serif and \textsf{sans serif}. A serif is a small mark found at the tips of letter forms. Serif fonts have serifs (such as Times New Roman), while \textsf{sans serif} fonts do not have serifs (such as Arial). There are mixed opinions as to which kind is advisable for which occasion.
 
-For figures, I would advise using common fonts, such as Arial. Unusual fonts may give unintended impressions, and has the danger of distracting viewers from the message, especially when the vast majority of figures use very standard fonts. This is enforced by journals, which often have figure guidelines restricting font choice. 
+For figures, we advise using common fonts, such as Arial. Unusual fonts may give unintended impressions, and has the danger of distracting viewers from the message, especially when the vast majority of figures use very standard fonts. This is enforced by journals, which often have figure guidelines restricting font choice. 
 
 If there is sufficient cause to use an unusual font, ensure that the chosen font is legible and appropriate for the use-case. 
 
@@ -196,7 +199,7 @@ Photographs are raster images. In order to print a large raster image, the image
 Logos are often made to be vector images. This is because they expect to be reproduced at different sizes. 
 
 \subsubsection{Image format}
-There are many different kinds of image formats available, which will produce either raster or vector images. Some examples of vector images are PDFs and SVGs. Some common bitmap examples include JPEGs, TIFFs, PNGs, and GIFs. 
+There are many different kinds of image formats available, which will produce either raster or vector images. Some examples of vector images are PDFs and SVGs. Some common bitmap examples include JPEGs, TIFFs, PNGs and GIFs. 
 
 Bitmap images can be compressed using either lossless or lossy algorithms. Lossless algorithms decrease file sizes without compromising the quality of the image, whereas lossy algorithms decrease file size by sacrificing image quality. However, lossy algorithms are often able to create a smaller image size. JPEGs generally use a lossy compression algorithm. This means that each time you edit and save a JPEG image, some of the image quality is lost. 
 
@@ -228,7 +231,7 @@ Therefore, the image resolution is related to (but not the same as) the image si
 
 Different use-cases require different resolutions. Digital displays require lower resolutions than print displays. Most computer monitors are able to display a maximum of 72 dpi, which means that even if an image has a higher resolution, the display will only display a maximum of 72 dpi. 
 
-Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. BL.plotting.general defaults to producing high resolution images of 1000 dpi or greater.
+Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. BL.plotting.general defaults to producing high resolution images of 1600 dpi.
 
 \section{Figure creation reviewed}
 Figure creation begins with understanding the data. The second step is designing the figure. Then the figure is created. Finally, the figure is assessed and improved.
@@ -244,11 +247,11 @@ Additional parameters may be used to adjust font sizes, add background shading, 
 Once a figure is made, it should be reproduced in its expected display format. For example, if a figure is expected to be printed in a journal, it should be assessed in a print format, and at the expected size. This allows viewers to check font legibility, colour differences, and other subtleties that may otherwise go unnoticed on screens.
 
 \section{Plotting Functions}
-The following  chart-types available in BL.plotting.general:
+The following  chart-types are available in BL.plotting.general:
 
 \begin{figure}[!ht]
   \begin{center}
-     \includegraphics[width=160mm]{Figures/available_chart_types.png}
+     \includegraphics[width=150mm]{Figures/chart-types.png}
      \caption{Available chart-types}
   \end{center}
 \end{figure}
@@ -1321,7 +1324,7 @@ The hexbinplot is a hexagonally binned plot which uses colour (usually colour va
 
 \subsubsection{Simple hexbinplot}
 The minimum input for a hexbinplot is data frame and formula.
-<<hexbin1, include=TRUE, fig.cap='Simple hexbinplot'>>=
+<<hexbin1, include=TRUE, fig.cap='Simple hexbinplot',fig.height=5, fig.width=5>>=
 hexbin.data <- data.frame(
     x = microarray[,1],
     y = microarray[,2]
@@ -1426,7 +1429,7 @@ The polygon plot draws a shape which can represent a data-range. There are many 
 The minimum input for a polygon plot is data frame and formula to extract the components. Additional input is needed to determine the maximum and minimum values of the polygon, as well as the optional median values.
 
 <<polygon1, include=TRUE, fig.cap='Simple polygon plot'>>=
-# generate fake data
+# generate test data
 set.seed(12345);
 temp  <- matrix(runif(1010), ncol = 10) + sort(runif(101));
 
@@ -2171,10 +2174,13 @@ create.multiplot(
 This section briefly outlines some issues that beginners may have with the multiplot function. 
 \newline
 \newline
-1. The way that the plots are displayed according to the layout you specify may be confusing. The first plot you specify in plot.objects is going to be drawn at the bottom left most area for a plot and the ordering will then fill the plots to the right. After reaching the rightmost plot, the plots in the row above will begin to be drawn. 
+1. The way that the plots are displayed according to the layout you specify may be confusing. The first plot you specify in \texttt{plot.objects} is going to be drawn at the bottom left most area for a plot and the ordering will then fill the plots to the right. After reaching the rightmost plot, the plots in the row above will begin to be drawn. 
 \newline
 \newline
-2. A common mistake is that the amount of panel widths/heights must be a multiple of the number of plots. The warning will look like:
+2. Further, while \texttt{plot.object} takes in a list of lattice objects and draws them from bottom to up, \texttt{panel.heights} takes a vector of elements and assigns it from top most plot to the bottom plot.
+\newline
+\newline
+3. A common mistake is that the amount of panel widths/heights must be a multiple of the number of plots. The warning will look like:
 
 \begin{verbatim}
         1: In widths.x[pos.widths[[nm]]] <- widths.settings[[nm]] * widths.defaults[[nm]]$x : 
@@ -2183,8 +2189,11 @@ This section briefly outlines some issues that beginners may have with the multi
         number of items to replace is not a multiple of replacement length
 \end{verbatim}
 
-This may cause the plots to not look as you intend, but is easily fixed by ensuring that your panel.widths and panel.heights parameters are multiples of the number of plots that can be plotted. For example, if your layout has 2 rows and 3 columns, the panel.heights parameter can have 2 inputs, and the panel.widths parameter can have 3 inputs.
-
+This may cause the plots to not look as you intend, but is easily fixed by ensuring that your \texttt{panel.widths} and \texttt{panel.heights} parameters are multiples of the number of plots that can be plotted. For example, if your layout has 2 rows and 3 columns, the \texttt{panel.heights} parameter can have 2 inputs, and the \texttt{panel.widths} parameter can have 3 inputs.
+\newline
+\newline
+4. \texttt{xaxis.labels}, \texttt{xat}, \texttt{yaxis.labels}, and \texttt{yat} need to take in list of values equal to the number of plot objects. For example, in a 2x2 multiplot, the input is not a list of 2 values, but 4.
+sv 
 \section{Other functions}
 The BL.plotting.general package contains a number of non-plotting functions which are included to assist in the plot-generation process. 
 
