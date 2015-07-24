@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 5.3.2 2015-07-24
+
+BUG FIXES:
+* create.heatmap: fixed bug which made labels disappear when stratifying dendrogram
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.3.1 2015-07-24
 
 MINOR UPDATE:

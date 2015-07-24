@@ -236,10 +236,18 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			}
 
 		# reorder label characteristics to match clustering
-		xaxis.lab <- xaxis.lab[order.dendrogram(dd.row)];
-		xaxis.cex <- xaxis.cex[order.dendrogram(dd.row)];
-		xaxis.rot <- xaxis.rot[order.dendrogram(dd.row)];
-		xaxis.col <- xaxis.col[order.dendrogram(dd.row)];
+		if (length(stratified.clusters.cols) > 0) {
+			xaxis.lab <- xaxis.lab[dd.row.order];
+			xaxis.cex <- xaxis.cex[dd.row.order];
+			xaxis.rot <- xaxis.rot[dd.row.order];
+			xaxis.col <- xaxis.col[dd.row.order];
+			}
+		else {
+			xaxis.lab <- xaxis.lab[order.dendrogram(dd.row)];
+			xaxis.cex <- xaxis.cex[order.dendrogram(dd.row)];
+			xaxis.rot <- xaxis.rot[order.dendrogram(dd.row)];
+			xaxis.col <- xaxis.col[order.dendrogram(dd.row)];
+			}
 
 		# if covariate bars are to be drawn, create them using the dendrogram ordering
 		if (length(covariates.top) > 0) {
@@ -394,9 +402,16 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			}
 
 		# reorder label characteristics to match clustering
-		yaxis.lab <- yaxis.lab[order.dendrogram(dd.col)];
-		yaxis.cex <- yaxis.cex[order.dendrogram(dd.col)]; 
-		yaxis.col <- yaxis.col[order.dendrogram(dd.col)];
+		if (length(stratified.clusters.rows) > 0) {
+			yaxis.lab <- yaxis.lab[dd.col.order];
+			yaxis.cex <- yaxis.cex[dd.col.order]; 
+			yaxis.col <- yaxis.col[dd.col.order];
+			}
+		else {
+			yaxis.lab <- yaxis.lab[order.dendrogram(dd.col)];
+			yaxis.cex <- yaxis.cex[order.dendrogram(dd.col)]; 
+			yaxis.col <- yaxis.col[order.dendrogram(dd.col)];
+			}
 
 		# if covariate bars are to be drawn, create them using the dendrogram ordering
 		if (length(covariates) > 0) {
