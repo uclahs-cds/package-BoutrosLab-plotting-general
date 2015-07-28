@@ -1,5 +1,6 @@
 \name{colour.gradient}
 \alias{colour.gradient}
+\alias{color.gradient}
 \title{Creates a colour gradient}
 \description{Creates a sequential palette of colours.}
 \usage{

@@ -1,5 +1,6 @@
 \name{display.colours}
 \alias{display.colours}
+\alias{display.colors}
 \title{Function to display R colors, as well as corresponding R grey colours.}
 \description{Displays R colors and their corresponding R grey colours.}
 \usage{

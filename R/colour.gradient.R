@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO GENERATE GRADIENT COLOUR PALETTES #################################################
-colour.gradient <- function(colour, length){
+colour.gradient <- color.gradient <- function(colour, length){
 
 	# create the range of colours, such that the colours range from white to black (this creates a greater value range)
 	palette.ramp <- colorRampPalette(c('white', colour, 'black'));

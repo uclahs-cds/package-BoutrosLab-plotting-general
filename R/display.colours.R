@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO DISPLAY COLOURS INCLUDING HOW THEY APPEAR IN GREYSCALE ############################
-display.colours <- function(cols, names = cols){
+display.colours <- display.colors <- function(cols, names = cols){
 	number.of.colours <- length(cols);
 
 	if(length(cols) != length(names)){

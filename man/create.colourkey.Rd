@@ -1,5 +1,6 @@
 \name{create.colourkey}
 \alias{create.colourkey}
+\alias{create.colorkey}
 \title{Create Colourkey}
 \description{A function for generating and placing a colour key. Good for use in multiplots when a smaller colour key is desired.}
 \usage{

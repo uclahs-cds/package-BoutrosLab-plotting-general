@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE COLOURKEYS #################################################################
-create.colourkey <- function(x, scale.data = FALSE, colour.scheme = c(), total.colours = 99, colour.centering.value = 0, colour.alpha = 1, fill.colour = 'darkgray', at = NULL, colourkey.labels.at = NULL, colourkey.labels = colourkey.labels.at, colourkey.labels.cex = 1, placement = NULL) {
+create.colourkey <- create.colorkey <- function(x, scale.data = FALSE, colour.scheme = c(), total.colours = 99, colour.centering.value = 0, colour.alpha = 1, fill.colour = 'darkgray', at = NULL, colourkey.labels.at = NULL, colourkey.labels = colourkey.labels.at, colourkey.labels.cex = 1, placement = NULL) {
 	
 	### SUBSET DATA ###############################################################################
 	# Scale the data if necessary

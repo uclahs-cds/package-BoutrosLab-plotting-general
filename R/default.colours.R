@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO RETURN DEFAULT COLOUR PALETTES ####################################################
-default.colours <- function(number.of.colours = 2, palette.type = 'qual', is.greyscale = TRUE, is.venn = FALSE) {
+default.colours <- default.colors <- function(number.of.colours = 2, palette.type = 'qual', is.greyscale = TRUE, is.venn = FALSE) {
 
 
 	### HANDLE VENN DIAGRAM CASES #################################################################

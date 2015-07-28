@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO SET COLOUR SCHEMES ################################################################
-force.colour.scheme <- function(x, scheme, fill.colour = NA, include.names = FALSE, return.factor = FALSE, return.scheme = FALSE){
+force.colour.scheme <- force.color.scheme <- function(x, scheme, fill.colour = NA, include.names = FALSE, return.factor = FALSE, return.scheme = FALSE){
 	
 	if(class(x) == 'factor') { 
 		stop('x cannot be a factor: please coerce to character before passing');

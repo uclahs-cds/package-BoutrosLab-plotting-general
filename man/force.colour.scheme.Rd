@@ -1,5 +1,6 @@
 \name{force.colour.scheme}
 \alias{force.colour.scheme}
+\alias{force.color.scheme}
 \title{Based on predefined colour schemes, returns a vector of corresponding colours.}
 \description{Takes a vector of character strings and an scheme returns the matching colours as a vector.}
 \usage{

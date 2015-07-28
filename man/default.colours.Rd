@@ -1,5 +1,6 @@
 \name{default.colours}
 \alias{default.colours}
+\alias{default.colors}
 \title{Provides default colour schemes.}
 \description{Returns colour schemes based on user input. Used to provide default colour schemes for simple cases.}
 \usage{

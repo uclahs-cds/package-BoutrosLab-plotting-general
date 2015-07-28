@@ -352,7 +352,10 @@ A simple scatterplot has two requirements: the data frame, and a formula to indi
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{library}\hlstd{(BoutrosLab.plotting.general);}
+\end{alltt}
 
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: lattice\\\#\# Loading required package: latticeExtra\\\#\# Loading required package: RColorBrewer\\\#\# Loading required package: cluster\\\#\# Loading required package: hexbin\\\#\# Loading required package: BoutrosLab.utilities\\\#\# Loading required package: BoutrosLab.statistics.general\\\#\# Loading required package: MASS\\\#\# Loading required package: BoutrosLab.dist.overload\\\#\# \\\#\# Attaching package: 'BoutrosLab.dist.overload'\\\#\# \\\#\# The following object is masked from 'package:stats':\\\#\# \\\#\#\ \ \ \  dist\\\#\# \\\#\# Loading required package: grid}}\begin{alltt}
 \hlstd{scatter.data} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}
     \hlkwc{sample.one} \hlstd{= microarray[}\hlnum{1}\hlopt{:}\hlnum{800}\hlstd{,}\hlnum{1}\hlstd{],}
     \hlkwc{sample.two} \hlstd{= microarray[}\hlnum{1}\hlopt{:}\hlnum{800}\hlstd{,}\hlnum{2}\hlstd{]}
