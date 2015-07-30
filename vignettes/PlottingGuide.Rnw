@@ -1,5 +1,5 @@
 %\VignetteEngine{knitr::knitr_notangle}
-% \VignetteIndexEntry{Plotting guide using BL.plotting.general}
+% \VignetteIndexEntry{Plotting guide using BoutrosLab.plotting.general}
 
 \documentclass[letterpaper]{report}
 
@@ -31,7 +31,7 @@
     urlcolor=black
 }
 
-\title{A guide to data visualization using BL.plotting.general}
+\title{A guide to data visualization using BoutrosLab.plotting.general}
 \author{Christine P'ng \& Jeff Green}
 
 \begin{document}
@@ -87,8 +87,8 @@ Figures should be designed to enhance a viewer's ability to compare data and dra
 
 To check if a figure is effective, it is helpful to request an interpretation of the figure from someone who does not know what the intended message is. This ``test'' (which may need to be conducted multiple times) can reveal how clear a figure is.
 
-\subsection{What is BL.plotting.general?}
-BL.plotting.general is a software package for generating publication-quality, customizable plots. It produces a variety of chart-types, ranging from common charts for simple datasets to novel charts for displaying highly-dimensional datasets.
+\subsection{What is BoutrosLab.plotting.general?}
+BoutrosLab.plotting.general is a software package for generating publication-quality, customizable plots. It produces a variety of chart-types, ranging from common charts for simple datasets to novel charts for displaying highly-dimensional datasets.
 
 This package is built on top of the \texttt{lattice} package \cite{lattice}, which is an implementation of Trellis graphics\cite{trellis} for R. Therefore, when plots are created in this package, parameters are passed to the appropriate \texttt{lattice} function and a Trellis object is created. Trellis graphics are graphs that can display a variable or the relationship between variables, conditioned on one or more other variables. Therefore, they are very useful for displaying data sets with many variables, such as is often the case in biological data sets.
 
@@ -222,7 +222,7 @@ TIFF & Lossless & RGB, CMYK, etc & millions \\
 \bigskip
 In summary: use TIFFs for print, use PNGs for smaller file size without quality loss, use JPEGs if some quality loss is acceptable, and use GIFs when only few colours are needed.
 
-The file type used by BL.plotting.general is determined by adding the extension to the file name. If no extension is specified, the package defaults to creating TIFF files.
+The file type used by BoutrosLab.plotting.general is determined by adding the extension to the file name. If no extension is specified, the package defaults to creating TIFF files.
 
 \subsection{Resolution}
 Image resolution is relevant to raster images which are not scalable. Pixel resolution is the type most commonly referred to when image resolution. This refers to the number of pixels in an inch, also called dots per inch (dpi) and describes the amount of detail an image holds.
@@ -231,7 +231,7 @@ Therefore, the image resolution is related to (but not the same as) the image si
 
 Different use-cases require different resolutions. Digital displays require lower resolutions than print displays. Most computer monitors are able to display a maximum of 72 dpi, which means that even if an image has a higher resolution, the display will only display a maximum of 72 dpi. 
 
-Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. BL.plotting.general defaults to producing high resolution images of 1600 dpi.
+Standard print resolution is often cited as 300 dpi. However, line art and text often need higher resolution to be clear. Journals may specify what resolution is required for figures. BoutrosLab.plotting.general defaults to producing high resolution images of 1600 dpi.
 
 \section{Figure creation reviewed}
 Figure creation begins with understanding the data. The second step is designing the figure. Then the figure is created. Finally, the figure is assessed and improved.
@@ -240,14 +240,14 @@ Imagine a dataset comprising of two groups of subjects. One group runs for one m
 
 One option is to plot each data point on a scatterplot. The two groups could be distinguished by colour and plotting character. Another option is to use the distribution of heart rates and create two boxplots. There are many ways of showing the same data, and depending on what the intended message is, different methods may be more appropriate.
 
-Plots in BL.plotting.general are created using a single function call. Depending on the function, mandatory parameters may be \verb|formula|, \verb|data| and/or \verb|x|. These parameters are used to indicate the data to be plotted and which variables to display.
+Plots in BoutrosLab.plotting.general are created using a single function call. Depending on the function, mandatory parameters may be \verb|formula|, \verb|data| and/or \verb|x|. These parameters are used to indicate the data to be plotted and which variables to display.
 
-Additional parameters may be used to adjust font sizes, add background shading, change colour schemes, and more. These parameters are optional and used for customization. The full range of parameters available is conveniently viewable on the BL.plotting.general API, together with extended example code of parameter usage.
+Additional parameters may be used to adjust font sizes, add background shading, change colour schemes, and more. These parameters are optional and used for customization. The full range of parameters available is conveniently viewable on the BoutrosLab.plotting.general API, together with extended example code of parameter usage.
 
 Once a figure is made, it should be reproduced in its expected display format. For example, if a figure is expected to be printed in a journal, it should be assessed in a print format, and at the expected size. This allows viewers to check font legibility, colour differences, and other subtleties that may otherwise go unnoticed on screens.
 
 \section{Plotting Functions}
-The following  chart-types are available in BL.plotting.general:
+The following  chart-types are available in BoutrosLab.plotting.general:
 
 \begin{figure}[!ht]
   \begin{center}
@@ -292,7 +292,7 @@ The scatterplot compares two variables on a Cartesian coordinate grid by plottin
 An interesting note is that scatterplots appear more correlated when scales are increased. This means that when the points in a scatterplot use less of the total plotting space available, a stronger association is perceived compared to when the plotting space is filled \cite{cleveland-scatter}.
 
 \subsubsection{Simple scatterplot}
-The scatterplot function accepts data in the form of an R  data frame. Here is an example of a data frame created using the \verb|microarray| dataset provided with BL.plotting.general.
+The scatterplot function accepts data in the form of an R  data frame. Here is an example of a data frame created using the \verb|microarray| dataset provided with BoutrosLab.plotting.general.
 
 A simple scatterplot has two requirements: the data frame, and a formula to indicate the x and y components of the data frame.
 
@@ -609,7 +609,7 @@ create.scatterplot(
 create.boxplot
 \end{verbatim}
 
-The boxplot is used to display distributions of data. It is also known as the box-and-whisker plot. The `box' ranges from the first to the third quartile, showing the interquartile range. The line within the box indicates the median (not the mean), and whiskers have variable meaning, such as the maximum and minimum of the data (but they are not error bars; they are not the s.d. or s.e.m). The meaning of whiskers should be indicated, and outliers may be plotted as points \cite{Krzywinski}. BL.plotting.general defaults to setting the whiskers to the most extreme data point within 1.5 $\times$ IQR of the edge of the box.
+The boxplot is used to display distributions of data. It is also known as the box-and-whisker plot. The `box' ranges from the first to the third quartile, showing the interquartile range. The line within the box indicates the median (not the mean), and whiskers have variable meaning, such as the maximum and minimum of the data (but they are not error bars; they are not the s.d. or s.e.m). The meaning of whiskers should be indicated, and outliers may be plotted as points \cite{Krzywinski}. BoutrosLab.plotting.general defaults to setting the whiskers to the most extreme data point within 1.5 $\times$ IQR of the edge of the box.
 
 \subsubsection{Simple boxplot}
 The boxplot also requires a data frame and a corresponding formula.
@@ -980,7 +980,7 @@ create.barplot
 
 The barplot is designed to display counts of categorical data. This means data which is divided into discrete bins. 
 
-When displaying data with uncertainty, therefore suggesting the addition of error bars, barplots are not an optimal choice (although, it \textit{is} possible to add error bars to barplots using BL.plotting.general). Barplots are not designed for displaying distributions, and error bars might cover ranges never observed in the data: it is advised that using a boxplot  or a strip plot might be more appropriate \cite{streit}. 
+When displaying data with uncertainty, therefore suggesting the addition of error bars, barplots are not an optimal choice (although, it \textit{is} possible to add error bars to barplots using BoutrosLab.plotting.general). Barplots are not designed for displaying distributions, and error bars might cover ranges never observed in the data: it is advised that using a boxplot  or a strip plot might be more appropriate \cite{streit}. 
 
 \subsubsection{Simple barplot}
 A minimal barplot requires a data frame and corresponding formula.
@@ -1171,7 +1171,7 @@ create.densityplot(
 create.dendrogram
 \end{verbatim}
 
-The dendrogram is a tree diagram used to display the clustering arrangement determined by hierarchical clustering. It is often used in conjunction with heatmaps to indicate the clustering of genes or samples. In BL.plotting.general, this function is called by the \verb|create.heatmap| function when cells are clustered.
+The dendrogram is a tree diagram used to display the clustering arrangement determined by hierarchical clustering. It is often used in conjunction with heatmaps to indicate the clustering of genes or samples. In BoutrosLab.plotting.general, this function is called by the \verb|create.heatmap| function when cells are clustered.
 
 The distance from a leaf node to a node indicates the correlation to other leaf nodes, where further distances indicate less correlation. Closely clustered leaf nodes (located at the bottom of the dendrogram) are highly correlated.
 
@@ -1188,7 +1188,7 @@ plot(x = dendrogram);
 create.dotmap
 \end{verbatim}
 
-The dotmap is a novel chart-type found in BL.plotting.general. It is a matrix of dots, where the dot sizes and dot colours are used to encode information. The matrix can also be filled with a background colour, similar to heatmaps. This plot is very useful for displaying high-dimensional data because it is able to display two dimensions more than a heatmap through dot size and dot colour.
+The dotmap is a novel chart-type found in BoutrosLab.plotting.general. It is a matrix of dots, where the dot sizes and dot colours are used to encode information. The matrix can also be filled with a background colour, similar to heatmaps. This plot is very useful for displaying high-dimensional data because it is able to display two dimensions more than a heatmap through dot size and dot colour.
 
 One example of how to use this plot is to use the dot size to indicate magnitude of fold change, dot colour to show the direction of change, and the background colour to indicate p-values.
 
@@ -2195,7 +2195,7 @@ This may cause the plots to not look as you intend, but is easily fixed by ensur
 4. \texttt{xaxis.labels}, \texttt{xat}, \texttt{yaxis.labels}, and \texttt{yat} need to take in list of values equal to the number of plot objects. For example, in a 2x2 multiplot, the input is not a list of 2 values, but 4.
 sv 
 \section{Other functions}
-The BL.plotting.general package contains a number of non-plotting functions which are included to assist in the plot-generation process. 
+The BoutrosLab.plotting.general package contains a number of non-plotting functions which are included to assist in the plot-generation process. 
 
 \subsection{Colours}
 There are number of functions to help choose colours for plotting:
@@ -2267,7 +2267,7 @@ sessionInfo();
 @
 
 \section{Resources}
-Further information on the BL.plotting.general package can be found at  http://labs.oicr.on.ca/boutros-lab/software/bl.plotting.general.
+Further information on the BoutrosLab.plotting.general package can be found at  http://labs.oicr.on.ca/boutros-lab/software/BoutrosLab.plotting.general.
 
 \begin{thebibliography}{1}
 \bibitem{Anscombe}
