@@ -696,8 +696,13 @@ create.scatterplot(
     points.col = c("blue", "darkgreen", "red"),
     add.text = TRUE,
     text.labels = paste("cutoff = ", c(0.25, 0.5, 0.75), sep = ""),
-    text.x = points.x - 0.14,
-    text.y = points.y + 0.03,
+    #text.x = points.x - 0.14,
+    #text.y = points.y + 0.03,
+    text.x = points.x,
+    text.y = points.y,
+    text.guess.labels = TRUE,
+    text.guess.label.position = 155,
+    text.guess.radius.factor = 2.5,
     description = 'Scatter plot created by BoutrosLab.plotting.general'
     );
 
