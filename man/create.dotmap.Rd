@@ -587,7 +587,9 @@ draw.key(
     # position label on the plot
     vp = viewport(x = 0.86, y = 0.155, height = 1, width = 0.5, angle = 90),
     draw = TRUE
-    )
+    );
+
+dev.off();
 
 # Nature style
 create.dotmap(
