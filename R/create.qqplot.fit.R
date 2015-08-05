@@ -10,13 +10,10 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE QQPLOT FIT #################################################################
-create.qqplot.fit <- function(x, data = NULL, confidence.bands = FALSE, conf = 0.95, confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'p', cex = 0.75, pch = 19, col = 'black', col.line = 'grey', lwd = 2, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
+create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.95, confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'p', cex = 0.75, pch = 19, col = 'black', col.line = 'grey', lwd = 2, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
 
-	# if x is numeric or integer, then change x into formula '~x' and use formula version of qqmath
-	if (class(x) %in% c('numeric', 'integer')) {
-		x <- paste("~", deparse(substitute(x)));
-		x <- as.formula(x);
-		}
+	
+
 
 	# set main, x-axis and y-axis label defaults
 	# if the label is NULL, then we leave it as blank;
