@@ -5,7 +5,7 @@
 \usage{
 create.barplot(formula, data, groups = NULL, stack = FALSE, 
 filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, 
-abline.type = NULL, abline.lwd = NULL, abline.col = 'black', add.grid = FALSE, 
+abline.lty = 1, abline.lwd = NULL, abline.col = 'black', add.grid = FALSE, 
 xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, grid.col = NULL,
 xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), 
 xlab.col = 'black', ylab.col = 'black', xaxis.lab = TRUE, yaxis.lab = TRUE, 
@@ -44,7 +44,7 @@ style = 'BoutrosLab'
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{abline.h}{Specify the superimposed horizontal line(s)}
     \item{abline.v}{Specify the superimposed vertical line(s)}
-    \item{abline.type}{Specify the superimposed line type}
+    \item{abline.lty}{Specify the superimposed line type}
     \item{abline.lwd}{Specify the superimposed line width}
     \item{abline.col}{Specify the superimposed line colour (defaults to black)}
     \item{add.grid}{Specify whether to draw grid or not (defaults to FALSE)}

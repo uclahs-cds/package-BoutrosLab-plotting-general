@@ -3,7 +3,7 @@
 \title{Make a quantile-quantile plot of a sample}
 \description{Takes a sample and creates a qq plot against a theoretical distribution, possibly conditioned on other variables.}
 \usage{
-create.qqplot.fit(x, data = NULL, confidence.bands = FALSE, conf = 0.95, 
+create.qqplot.fit(x, data = NA, confidence.bands = FALSE, conf = 0.95, 
 confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, 
 distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, 
 main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, 
