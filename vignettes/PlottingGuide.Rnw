@@ -1024,7 +1024,7 @@ create.barplot(
     # add line  
     abline.h = 5,
     abline.col = "red",
-    abline.type = "dotted",
+    abline.lty = "dotted",
     abline.lwd = 2,
     
     # change colours
