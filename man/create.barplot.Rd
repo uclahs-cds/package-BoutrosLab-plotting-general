@@ -6,7 +6,7 @@
 create.barplot(formula, data, groups = NULL, stack = FALSE, 
 filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, 
 abline.type = NULL, abline.lwd = NULL, abline.col = 'black', add.grid = FALSE, 
-xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, 
+xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, grid.col = NULL,
 xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), 
 xlab.col = 'black', ylab.col = 'black', xaxis.lab = TRUE, yaxis.lab = TRUE, 
 xaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', 
@@ -51,6 +51,8 @@ style = 'BoutrosLab'
     \item{xgrid.at}{Specify where to draw x-axis grid lines (defaults to xat)}
     \item{ygrid.at}{Specify where to draw y-axis grid lines (defaults to yat)}
     \item{grid.lwd}{Specify width of grid line (defaults to 5)}
+    \item{grid.col}{Specify colour of grid line. Currently only supports one colour.
+    Defaults to NULL, which uses the colour of the reference line.}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
