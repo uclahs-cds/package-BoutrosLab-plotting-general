@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE BOXPLOTS ###################################################################
-create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE, jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent', border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none', style = 'BoutrosLab') {
+create.boxplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, add.stripplot = FALSE, jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey', points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent', border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none', order.by = 'median', style = 'BoutrosLab') {
 
 	# add stripplot if requested
 	if (add.stripplot & outliers) {
@@ -35,7 +35,18 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 					...
 					);
 				}
-
+			#if requested add user defined rectangle
+			 if (add.rectangle) {
+                                panel.rect(
+                                        xleft = xleft.rectangle,
+                                        ybottom = ybottom.rectangle,
+                                        xright = xright.rectangle,
+                                        ytop = ytop.rectangle,
+                                        col = col.rectangle,
+                                        alpha = alpha.rectangle,
+                                        border = NA
+                                        );
+                                }
 			panel.bwplot(pch = "|", col = 'black', ...);
 
 			# add line if requested
@@ -49,19 +60,6 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 			if (length(line.func) > 0 && line.infront == TRUE) {
 				panel.curve(expr = line.func, from = line.from, to = line.to,col = line.col);
 				}
-			
-			# if requested, add user-defined rectangle (ie, confidence intervals)
-			if (add.rectangle) {
-				panel.rect(
-					xleft = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright = xright.rectangle,
-					ytop = ytop.rectangle,
-					col = col.rectangle,
-					alpha = alpha.rectangle,
-					border = NA
-					);
-				}
 			},
 		fill = col,
 		main = BoutrosLab.plotting.general::get.defaults(
@@ -70,7 +68,10 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else("bold"),
 				cex = main.cex,
-				adj = 0
+				adj = 0,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -82,6 +83,18 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 				fontface = if ('Nature' == style){'plain'} else("bold")
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = "fontfamily", 
 			add.to.list = list(
@@ -201,18 +214,30 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 	
 	# reorder by median
 	if (sample.order == 'increasing' | sample.order == 'decreasing') {
+		
 		if (is.numeric(trellis.object$panel.args[[1]]$x)) {
 			num.boxes <- levels(trellis.object$panel.args[[1]]$y);
-			medians <- NULL;
+			values.to.sort.by <- NULL;
 
-			# create a list of the medians of each box
+			# create a list of values to sort by for each box
 			for (i in c(1:length(num.boxes))) {
-				medians[i] <- median(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+				if(order.by == 'median'){
+					values.to.sort.by[i] <- median(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+					}
+				else if(order.by == 'mean'){
+					values.to.sort.by[i] <- mean(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+					}
+				else if(order.by == 'min'){
+					values.to.sort.by[i] <- min(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+					}
+				else if(order.by == 'max'){
+					values.to.sort.by[i] <- max(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+					}
 				}
-			ranks <- rank(medians);
+			ranks <- rank(values.to.sort.by,ties.method= "random");
 
 			# swap the rankings if decreasing order is specified
-			if (sample.order == 'decreasing') {ranks <- ranks(medians*(-1))}
+			if (sample.order == 'decreasing') {ranks <- rank(values.to.sort.by*(-1),ties.method= "random")}
 			newlocations <- NULL;
 			
 			# create a list of the newlocations each box "level" will appear
@@ -242,14 +267,26 @@ create.boxplot <- function(formula, data, filename = NULL, main = NULL, add.stri
 			}
 		else{
 			num.boxes <- num.boxes(trellis.object$panel.args[[1]]$x);
-			medians <- NULL;
+			values.to.sort.by <- NULL;
 
-			for (i in c(1:length(num.boxes))) {
-				medians[i] <- median(trellis.object$panel.args[[1]]$y[trellis.object$panel.args[[1]]$x == num.boxes[[i]]]);
-				}
-			ranks <- ranks(medians);
+			# create a list of the values to sort by for each box
+                        for (i in c(1:length(num.boxes))) {
+                                if(order.by == 'median'){ 
+                                        values.to.sort.by[i] <- median(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+                                        }
+                                else if(order.by == 'mean'){
+                                        values.to.sort.by[i] <- mean(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+                                        }
+                                else if(order.by == 'min'){
+                                        values.to.sort.by[i] <- min(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+                                        }
+                                else if(order.by == 'max'){
+                                        values.to.sort.by[i] <- max(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
+                                        }
+                                }  
+			ranks <- rank(values.to.sort.by,ties.method= "random");
 
-			if (sample.order == 'decreasing') {ranks <- ranks(medians*(-1));}
+			if (sample.order == 'decreasing') {ranks <- rank(values.to.sort.by*(-1),ties.method= "random");}
 			newlocations <- NULL;
 
 			for (i in c(1:length(num.boxes))) {

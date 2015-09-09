@@ -6,9 +6,12 @@
 create.qqplot.fit(x, data = NA, confidence.bands = FALSE, conf = 0.95, 
 confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, 
 distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, 
-main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, 
-ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, 
-ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, 
+main = NULL, main.just = "center", main.x = 0.5, main.y = 0.5,
+xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, 
+ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black',
+xlab.top.label = NULL, xlab.top.cex = 2,xlab.top.col = 'black', xlab.top.just = "center",
+xlab.top.x = 0.5, xlab.top.y = 0,
+xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, 
 xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', 
 yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, 
 yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, 
@@ -35,6 +38,9 @@ style = 'BoutrosLab');
     \item{add.grid}{Default manner of drawing grid lines}
     \item{groups}{The grouping variable in the data-frame}
     \item{main}{The main plot title}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{xlab.label}{x-axis title}
     \item{ylab.label}{y-axis title}
     \item{main.cex}{Size of the overall plot title, defaults to 3}
@@ -42,6 +48,12 @@ style = 'BoutrosLab');
     \item{ylab.cex}{Size of y-axis label, defaults to 2.5}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
@@ -83,12 +95,12 @@ style = 'BoutrosLab');
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{description}{Short description of image/plot; default NULL.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

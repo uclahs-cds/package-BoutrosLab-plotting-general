@@ -3,12 +3,15 @@
 \title{Make a polygonplot}
 \description{Takes a data.frame and creates a polygon}
 \usage{
-create.polygonplot(formula, data, filename = NULL, main = NULL, groups = NULL, max, min, 
+create.polygonplot(formula, data, filename = NULL, main = NULL, 
+main.just = "center", main.x = 0.5, main.y = 0.5, groups = NULL, max, min, 
 col = 'white', border.col = 'black', xy.col = 'black', strip.col = "white", 
 strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, 
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, 
-xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, xaxis.cex = 2, 
+xlab.col = 'black', ylab.col = 'black', 
+xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', 
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0, xaxis.cex = 2, 
 yaxis.rot = 0, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, 
 yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', 
 xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, 
@@ -30,6 +33,9 @@ legend = NULL, description = NULL, style = 'BoutrosLab');
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{groups}{The grouping variable in the data-frame}
     \item{max}{Max values for polygon}
     \item{min}{Min values for polygon}
@@ -51,6 +57,12 @@ legend = NULL, description = NULL, style = 'BoutrosLab');
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
     \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}

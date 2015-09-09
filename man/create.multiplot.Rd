@@ -4,10 +4,13 @@
 \description{Merges together multiple plots in the specified layout}
 \usage{
 create.multiplot(plot.objects, filename = NULL, panel.heights = c(1,1), 
-panel.widths = 1, main = NULL, main.cex = 2, main.key.padding = 1, 
+panel.widths = 1, main = NULL, main.just = "center", 
+main.x = 0.5, main.y = 0.5, main.cex = 2, main.key.padding = 1, 
 ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, 
 left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, 
-ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, xaxis.cex = 2, yaxis.cex = 2, 
+ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, 
+xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 2, yaxis.cex = 2, 
 xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, 
 yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, 
 xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, 
@@ -26,6 +29,9 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FA
     \item{panel.heights}{A vector specifying relative heights of the panels. Default is c(1,1)}
     \item{panel.widths}{A vector specifying relative widths of the panels. Default is 1}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{main.cex}{Size of text for main plot title, defaults to 2}
     \item{main.key.padding}{A number specifying the distance of main to plot, defaults to 1}
     \item{ylab.padding}{A number specifying the distance of y-axis to plot, defaults to 5}
@@ -39,6 +45,12 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FA
     \item{ylab.label}{The label for the y-axis}
     \item{xlab.cex}{Size of x-axis labels, defaults to 1.5}
     \item{ylab.cex}{Size of y-axis labels, defaults to 1.5}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
     \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
     \item{xaxis.labels}{Names to give the x-axis labels, defaults to lattice default behaviour}  
@@ -1060,6 +1072,34 @@ create.multiplot(
     # This parameter must be set for the legend to appear
     print.new.legend = TRUE,
     );
+
+BarPlotDataRetLabels <- data.frame(x = c("test1","test2","test3","test4"), y = c(10000,13000,12000,6700))
+HeatMapDataRetLabels <- matrix(nrow = 4, ncol = 4, data = rnorm(16,1,1))
+
+bpRet <- create.barplot(
+	formula = y~x, 
+	data = BarPlotDataRetLabels, 
+	xaxis.lab = NULL, 
+	xat = 0
+	);
+hmRet <- create.heatmap(
+	x= HeatMapDataRetLabels, 
+	yaxis.lab = c("Gene 1", "Gene 2", "Gene 3", "Gene 4"), 
+	yat = c(1,2,3,4), 
+	clustering.method = 'none'
+	);
+
+create.multiplot(
+	filename = "Multiplot_RetrievePlotLabels.tiff",
+	plot.objects = list(hmRet,bpRet,bpRet), 
+	retrieve.plot.labels = TRUE, 
+	print.new.legend = TRUE,
+	xlab.label = c('Samples'),
+	ylab.padding = 12,
+	y.spacing = c(0,0),
+	panel.heights = c(0.25,1,0.25)
+	);
+
 }
 \keyword{hplot}
 

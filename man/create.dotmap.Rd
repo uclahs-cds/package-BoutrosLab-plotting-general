@@ -3,11 +3,14 @@
 \title{Make a dotmap with coloured background}
 \description{Takes two data.frames and creates a dotmap with a coloured background. A dotmap is an ordered array of evenly-spaced dots whose size and colour can be user-specified to represent characteristics. For example, size gives the absolute magnitude of the correlation and colour gives the sign of the correlation. The coloured background may indicate p-values.}
 \usage{
-create.dotmap(x, bg.data = NULL, filename = NULL, main = NULL, pch = 19, 
+create.dotmap(x, bg.data = NULL, filename = NULL, main = NULL, 
+main.just = "center", main.x = 0.5, main.y = 0.5, pch = 19, 
 pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), 
 yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 2, 
 xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, 
-xlab.col = 'black', ylab.col = 'black', xaxis.cex = 2.5, yaxis.cex = 2.5, 
+xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
+xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",
+xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 2.5, yaxis.cex = 2.5, 
 xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, 
 axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, 
 top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, 
@@ -32,10 +35,19 @@ yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab');
     \item{pch.border.col}{Colour of the dot border if using pch = 21:25}
     \item{add.grid}{Should a grid of black-lines separating each column/row be added?}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{main.cex}{Size of text for the main title, defaults to 2}
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
@@ -87,12 +99,12 @@ yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab');
     \item{row.colour}{The colour for the row grid lines, defaults to \dQuote{black}. Can be a vector.}
     \item{description}{Description of image/plot; default NULL.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{dot.colour.scheme}{Colour Scheme for the dots}

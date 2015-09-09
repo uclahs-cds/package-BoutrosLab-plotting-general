@@ -10,9 +10,70 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE POLYGONPLOT ################################################################
-create.polygonplot <- function(formula, data, filename = NULL, main = NULL, groups = NULL, max, min, col = 'white', border.col = 'black', xy.col = 'black', strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.rot = 0, xaxis.cex = 2, yaxis.rot = 0, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, add.median = FALSE, median.lty = 3, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, style = 'BoutrosLab') {
+create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, groups = NULL, max, min, col = 'white', border.col = 'black', xy.col = 'black', strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0, xaxis.cex = 2, yaxis.rot = 0, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, add.median = FALSE, median.lty = 3, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, style = 'BoutrosLab') {
 
 	groups.new <- eval(substitute(groups), data, parent.frame());
+	if (length(xat) ==1 && xat == TRUE && length(xlimits) == 0) {
+		
+		
+
+		if (!is.null(data)) {
+			minimum <- 0;
+			maximum <- length(data[[1]]);
+		        difference <- maximum - minimum;
+                        lognumber <- floor(log(difference,10));
+                        
+                        # depending on difference, the labels will be multiples of 5,10 or 20
+                        if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
+                        else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
+                        else { factor <- (10**lognumber)*2; }
+                        
+                        addition <- factor/2;
+                        
+                        # depending on minimum create a sequence of at locations with padding
+                        
+                        at <- seq(0,factor*round(maximum/factor) + addition,factor);
+                       
+
+			xlimits <- c(minimum,maximum);
+			xat <- at;
+			}
+		}
+
+	if (length(yat) == 1 && yat == TRUE && length(ylimits) == 0) {
+		
+		
+		if(!is.null(data)) {
+			minimum <- min(min)
+			maximum <- max(max);
+		
+			# if minimum is greater than 0 make sure to display 0
+			minimum <- min(minimum,0);
+			difference <- maximum - minimum;
+			lognumber <- floor(log(difference,10));
+
+			# depending on difference, the labels will be multiples of 5,10 or 20
+			if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
+			else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
+			else { factor <- (10**lognumber)*2; }
+
+			addition <- factor/2;
+
+			# depending on minimum create a sequence of at locations with padding 
+			if (minimum == 0) { 
+				at <- seq(0,factor*round(maximum/factor) + addition,factor); 
+				}
+			else { 
+				at <- seq(factor*round(minimum/factor),factor*round(maximum/factor) + addition,factor);
+				# only add padding to minimum if it is not 0
+				minimum <- minimum - addition;
+				}
+			# add padding to max
+			maximum <- maximum + addition;
+			ylimits <- c(minimum,maximum);
+			yat <- at;
+			}
+		}
 
 	trellis.object <- lattice::xyplot(
 		formula,
@@ -259,7 +320,10 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -271,6 +335,19 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, grou
 				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
+
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
 			add.to.list = list(

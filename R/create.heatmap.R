@@ -10,12 +10,15 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE HEATMAPS ####################################################################
-create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', cluster.dimensions = 'both', rows.distance.method = 'correlation', cols.distance.method = 'correlation', cor.method = 'pearson', row.dendrogram = list(), col.dendrogram = list(), plot.dendrograms = 'both', force.clustering = FALSE, criteria.list = TRUE, covariates = list(), covariates.grid.row = NULL, covariates.grid.col = NULL, covariates.grid.border = NULL, covariates.row.lines = NULL, covariates.col.lines = NULL, covariates.reorder.grid.index = FALSE, covariates.padding = 0.25, covariates.top = list(), covariates.top.grid.row = NULL, covariates.top.grid.col = NULL, covariates.top.grid.border = NULL, covariates.top.row.lines = NULL, covariates.top.col.lines = NULL, covariates.top.reorder.grid.index = FALSE, covariates.top.padding = 0.25, covariate.legends = list(), legend.cex = 1, legend.title.cex = 1, legend.title.just = 'centre', legend.title.fontface = 'bold', legend.border = NULL, legend.border.padding = 1, legend.layout = NULL, legend.between.col = 1, legend.between.row = 1, legend.side = 'left', main = list(label = ''), main.cex = 2, right.size.add = 1, top.size.add = 1, right.dendrogram.size = 2.5, top.dendrogram.size = 2.5, scale.data = FALSE, yaxis.lab = NULL, xaxis.lab = NULL, xaxis.lab.top = NULL, xaxis.cex = NA, yaxis.cex = NA, xlab.cex = 1, ylab.cex = 1, xat = TRUE, xat.top = NULL, yat = TRUE, xaxis.tck = NULL, yaxis.tck = NULL, xaxis.col = 'black', yaxis.col = 'black', col.pos = NULL, row.pos = NULL, cell.text = '', text.fontface = 1, text.cex = 1, text.col = 'black', text.position = NULL, text.offset = 0, colourkey.cex = 3.6, xaxis.rot = 90, yaxis.rot = 0, xlab.label = '' , ylab.label = '', xlab.col = 'black', ylab.col = 'black', axes.lwd = 2, gridline.order = 'h', grid.row = FALSE, grid.col = FALSE, row.lines = seq(0, ncol(x), 1) + 0.5, col.lines = seq(0, nrow(x), 1) + 0.5, colour.scheme = c(), total.colours = 99, colour.centering.value = 0, colour.alpha = 1, fill.colour = 'darkgray', at = NULL, print.colour.key = TRUE, colourkey.labels.at = NULL, colourkey.labels = NULL, top.padding = 0.1, bottom.padding = 0.5, right.padding = 0.5, left.padding = 0.5, x.alternating = 1, shrink = 1, row.colour = 'black', col.colour = 'black', row.lwd = 1, col.lwd = 1, grid.colour = NULL, grid.lwd = NULL, width = 7, height = 7, size.units = 'in', resolution = 1600, enable.warnings = FALSE, xaxis.covariates = NULL, yaxis.covariates = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', symbols = list(borders = NULL, squares = NULL, circles = NULL), same.as.matrix = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'BoutrosLab') {
+create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', cluster.dimensions = 'both', rows.distance.method = 'correlation', cols.distance.method = 'correlation', cor.method = 'pearson', row.dendrogram = list(), col.dendrogram = list(), plot.dendrograms = 'both', force.clustering = FALSE, criteria.list = TRUE, covariates = list(), covariates.grid.row = NULL, covariates.grid.col = NULL, covariates.grid.border = NULL, covariates.row.lines = NULL, covariates.col.lines = NULL, covariates.reorder.grid.index = FALSE, covariates.padding = 0.25, covariates.top = list(), covariates.top.grid.row = NULL, covariates.top.grid.col = NULL, covariates.top.grid.border = NULL, covariates.top.row.lines = NULL, covariates.top.col.lines = NULL, covariates.top.reorder.grid.index = FALSE, covariates.top.padding = 0.25, covariate.legends = list(), legend.cex = 1, legend.title.cex = 1, legend.title.just = 'centre', legend.title.fontface = 'bold', legend.border = NULL, legend.border.padding = 1, legend.layout = NULL, legend.between.col = 1, legend.between.row = 1, legend.side = 'left', main = list(label = ''), main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 2, right.size.add = 1, top.size.add = 1, right.dendrogram.size = 2.5, top.dendrogram.size = 2.5, scale.data = FALSE, yaxis.lab = NULL, xaxis.lab = NULL, xaxis.lab.top = NULL, xaxis.cex = NA, yaxis.cex = NA, xlab.cex = 1, ylab.cex = 1,xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xat = TRUE, xat.top = NULL, yat = TRUE, xaxis.tck = NULL, yaxis.tck = NULL, xaxis.col = 'black', yaxis.col = 'black', col.pos = NULL, row.pos = NULL, cell.text = '', text.fontface = 1, text.cex = 1, text.col = 'black', text.position = NULL, text.offset = 0, colourkey.cex = 3.6, xaxis.rot = 90, yaxis.rot = 0, xlab.label = '' , ylab.label = '', xlab.col = 'black', ylab.col = 'black', axes.lwd = 2, gridline.order = 'h', grid.row = FALSE, grid.col = FALSE, row.lines = seq(0, ncol(x), 1) + 0.5, col.lines = seq(0, nrow(x), 1) + 0.5, colour.scheme = c(), total.colours = 99, colour.centering.value = 0, colour.alpha = 1, fill.colour = 'darkgray', at = NULL, print.colour.key = TRUE, colourkey.labels.at = NULL, colourkey.labels = NULL, top.padding = 0.1, bottom.padding = 0.5, right.padding = 0.5, left.padding = 0.5, x.alternating = 1, shrink = 1, row.colour = 'black', col.colour = 'black', row.lwd = 1, col.lwd = 1, grid.colour = NULL, grid.lwd = NULL, width = 6, height = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, xaxis.covariates = NULL, xaxis.covariates.y = 0, yaxis.covariates = NULL, yaxis.covariates.x = NULL, description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', symbols = list(borders = NULL, squares = NULL, circles = NULL), same.as.matrix = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'BoutrosLab') {
 
 	### PARAMETER CHECKING #########################################################################
 	# check that the resolution and size are sufficient for the dimensions of the data
 	# using a conservative estimate that the heatmap is 50% of the plot
-
+	# try to set default for xaxis.covariates.y value, if levelplot is resized user will have to input own value
+        if(is.null(yaxis.covariates.x) && !is.null(yaxis.covariates)){
+		yaxis.covariates.x <- -0.037*length(yaxis.covariates);
+	}
 	main <- unlist(main, use.names = FALSE);
 	if (size.units == 'in') {
 		if (nrow(x) > resolution * width * 0.5) {
@@ -29,6 +32,11 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	# transpose matrix to keep original form
 	if(same.as.matrix == TRUE){
 		x <- t(apply(x, 2, rev));
+		for(i in c(1:(length(yaxis.lab)/2))){
+			temp <- yaxis.lab[i];
+			yaxis.lab[i] = yaxis.lab[length(yaxis.lab) - i + 1];
+			yaxis.lab[length(yaxis.lab) - i + 1] = temp;
+		}
 		}
 	
 	# function to colour stratified dendrograms
@@ -81,7 +89,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		);
 
 	# try to recover memory
-	GarbageCollect();
+	
 	
 	### SUBSET DATA ################################################################################
 	# Extract a subset of data to work with
@@ -724,7 +732,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		legend[['inside']] <- list(
 			fun = xaxis.covariate.grob,
 			x = 0.5,
-			y = 0
+			y = xaxis.covariates.y
 			);
 		xaxis.cov.height.cm <- convertUnit(
 			grobHeight(xaxis.covariate.grob),
@@ -760,7 +768,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 
 		legend[['inside']] <- list(
 			fun = yaxis.covariate.grob,
-			x = -0.04,
+			x = yaxis.covariates.x,
 			y = 0.5
 			);
 
@@ -783,7 +791,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	lattice.options('axis.padding' = list(factor = lattice.old.factor));
 
 	# try to recover memory
-	GarbageCollect();
 
 	### AUTOMATIC COLOUR-KEY HANDLING ##############################################################
 	# work out data ranges, break point locations, and colour-number from input parameters
@@ -940,14 +947,15 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
 
 	### HEATMAP GENERATION #########################################################################
-	xlab.top <- '';
+        if(is.null(xlab.top.label)){
 
 	# if x-labels are on top, put xlabel on top too
 	if (2 == x.alternating) {
-		xlab.top <- xlab.label;
+		xlab.top.label <- xlab.label;
 		xlab.label <- '';
 		}
 
+		}
 	# determine length of tck marks
 	# tick lengths depend on xaxis.tck and x.alternating
 	x.tck <- c(0,0);
@@ -1286,14 +1294,17 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				)
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
-			add.to.list = list(
-				label = xlab.top,
-				cex = xlab.cex,
-				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
-				)
-			),
+		        property = 'fontfamily',
+        		add.to.list = list(
+                		label = xlab.top.label,
+                		cex = xlab.top.cex,
+                		col = xlab.top.col,
+                		fontface = if('Nature' == style){'plain'}else{'bold'},
+                		just = xlab.top.just,
+                		x = xlab.top.x,
+                		y = xlab.top.y
+                		)
+        		),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
 			add.to.list = list(
@@ -1308,7 +1319,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			add.to.list = list(
 				label = main,
 				cex = main.cex,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style){'plain'} else('bold'),
+				just = main.just,
+				x = main.x
 				)
 			),
 		shrink = shrink,

@@ -3,13 +3,16 @@
 \title{Make a density plot}
 \description{Takes a list of vectors and creates a density-plot with each vector as a separate curve}
 \usage{
-create.densityplot(x, filename = NULL, xlab.label = NULL, main = NULL, type = "l", 
+create.densityplot(x, filename = NULL, xlab.label = NULL, main = NULL,
+main.just = "center", main.x = 0.5, main.y = 0.5, type = "l", 
 lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, 
 ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, 
 xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, 
 yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, 
 yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', 
-xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), 
+xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
+xlab.top.col = 'black', xlab.top.just = "center", xlab.top.x = 0.5,
+xlab.top.y = 0, key = list(text = list(lab = c(''))), 
 legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, 
 right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, 
 abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, 
@@ -25,6 +28,9 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis, defaults to \dQuote{Density}}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{type}{Plot type}
     \item{lty}{Line type}
     \item{cex}{Character expansion for plotting symbol}
@@ -50,6 +56,12 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
@@ -71,12 +83,12 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{description}{Short description of image/plot; default NULL.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}

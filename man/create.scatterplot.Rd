@@ -3,12 +3,15 @@
 \title{Make a scatterplot}
 \description{Takes a data.frame and creates a scatterplot}
 \usage{
-create.scatterplot(formula, data, filename = NULL, groups = NULL, main = NULL, 
+create.scatterplot(formula, data, filename = NULL, groups = NULL, main = NULL,
+main.just = "center", main.x = 0.5, main.y = 0.5,
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), 
-main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', 
+main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',
+xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', 
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, 
 xlimits = NULL, ylimits = NULL, xat = TRUE, 
-yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, 
+yat = TRUE, add.grid = FALSE,xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, 
 xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, 
 yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', 
 yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, 
@@ -44,6 +47,9 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{groups}{The grouping variable in the data-frame}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
     \item{main.cex}{Size of text for main plot title}
@@ -51,10 +57,17 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
     \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
+    \item{add.grid}{Logical stating wheter or not the grid should be drawn on the plot}
     \item{xgrid.at}{Vector listing where the x-axis grid lines should be drawn, defaults to xat}
     \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
@@ -130,12 +143,12 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{curves.lwd}{Specifies width of curves, default is 1 for each curve}
     \item{curves.lty}{Specifies type of curves, default is 1 (solid) for each curve}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{add.points}{Allow additional points to be drawn, default is FALSE}
     \item{points.x}{The x co-ordinates where additional points should be drawn}
     \item{points.y}{The y co-ordinates where additional points should be drawn}

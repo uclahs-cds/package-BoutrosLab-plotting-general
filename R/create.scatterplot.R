@@ -166,7 +166,7 @@ inside.rectangle <- function(rectangle.center.x, rectangle.center.y, rectangle.w
 	}
 
 ### FUNCTION TO CREATE SCATTERPLOTS ###############################################################
-create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, main = NULL, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, pch = 19, col = 'black', strip.col = "white", strip.cex = 1, strip.fontface = 'bold', lwd = 1, lty = 1, alpha = 1, axes.lwd = 1, y.error.up = NULL, y.error.down = y.error.up, x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black', x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, error.bar.length = 0.1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key.top = 0.1, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, add.axes = FALSE, axes.lty = 'dashed', add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE), curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, curves.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.cex = 1, add.line.segments = FALSE, line.start = NULL, line.end = NULL, line.col = 'black', line.lwd = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1,  text.fontface = 'bold', text.guess.labels = FALSE, text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, key.left.padding = 0, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...) {
+create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, add.grid = FALSE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, pch = 19, col = 'black', strip.col = "white", strip.cex = 1, strip.fontface = 'bold', lwd = 1, lty = 1, alpha = 1, axes.lwd = 1, y.error.up = NULL, y.error.down = y.error.up, x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black', x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, error.bar.length = 0.1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key.top = 0.1, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, add.axes = FALSE, axes.lty = 'dashed', add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE), curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, curves.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.cex = 1, add.line.segments = FALSE, line.start = NULL, line.end = NULL, line.col = 'black', line.lwd = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1,  text.fontface = 'bold', text.guess.labels = FALSE, text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, key.left.padding = 0, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...) {
 
 	groups.new <- eval(substitute(groups), data, parent.frame());
 
@@ -878,8 +878,20 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 	trellis.object <- lattice::xyplot(
 		formula,
 		data,
-		panel = function(x, y, groups.local = groups.new, subscripts, type.local = type, abline.local = abline, ...) {
-		
+		panel = function(x, y, y.error.up.local = y.error.up, y.error.down.local = y.error.down, groups.local = groups.new, subscripts, type.local = type, abline.local = abline, ...) {
+		        # add rectangle
+                        if (add.rectangle) {
+                                panel.rect(
+                                        xleft = xleft.rectangle,
+                                        ybottom = ybottom.rectangle,
+                                        xright = xright.rectangle,
+                                        ytop = ytop.rectangle,
+                                        col = col.rectangle,
+                                        alpha = alpha.rectangle,
+                                        border = NA
+                                        );
+                                }
+
 			# if requested, add x=0, y=0 lines
 			if (add.axes) {
 				panel.abline(
@@ -902,19 +914,6 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 					);
 				}
 		
-			# if requested, add user-defined rectangle (ie, confidence intervals)
-			if (add.rectangle) {
-				panel.rect(
-					xleft = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright = xright.rectangle,
-					ytop = ytop.rectangle,
-					col = col.rectangle,
-					alpha = alpha.rectangle,
-					border = NA
-					);
-				}
-
 			# if requested, add curve segments
 			if (add.curves) {
 
@@ -942,7 +941,7 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 				}
 
 			# if grid-lines are requested, over-ride default behaviour
-			if ('g' %in% type) {
+			if ('g' %in% type || add.grid == TRUE) {
 
 				# create the grid-lines
 				panel.abline(
@@ -974,9 +973,9 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 				);
 
 			# if requested, add y-axis (i.e. vertical) error bars
-			if (!is.null(y.error.up)) {
+			if (!is.null(y.error.up.local)) {
 				panel.arrows(
-					x, y + y.error.up[subscripts], x, y - y.error.down[subscripts],
+					x, y + y.error.up.local[subscripts], x, y - y.error.down.local[subscripts],
 					groups = groups.local, 
 					length = error.bar.length,
 					angle = error.whisker.angle,
@@ -1080,7 +1079,10 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -1092,6 +1094,18 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
 			add.to.list = list(

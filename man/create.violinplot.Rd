@@ -3,12 +3,15 @@
 \title{Make a violin plot}
 \description{This function takes a dataframe and writes a pretty TIFF violin plot}
 \usage{
-create.violinplot(formula, data, filename = NULL, main = NULL, 
+create.violinplot(formula, data, filename = NULL, main = NULL,
+main.just = 'center', main.x = 0.5, main.y = 0.5,
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), 
 xaxis.lab = TRUE, yaxis.lab = TRUE, lwd = 1, xaxis.rot = 0, 
 yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, 
-main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', 
+main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',
+xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",
+xlab.top.x = 0.5, xlab.top.y = 0, 
 xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0), yaxis.tck = c(1,1), 
 col = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 21, 
 extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, 
@@ -25,6 +28,9 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
@@ -43,6 +49,12 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to c(1,0)}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to c(1,1)}
     \item{col}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
@@ -69,12 +81,12 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{description}{Short description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}

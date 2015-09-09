@@ -4,20 +4,22 @@
 \description{Takes a formula and a data.frame and creates a strip-plot}
 \usage{
 create.stripplot(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, 
-jitter.factor = 1, jitter.amount = NULL, main = NULL, 
+jitter.factor = 1, jitter.amount = NULL, main = NULL, main.just = "center",
+main.x = 0.5, main.y = 0.5,
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), 
 xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', 
 yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", fill = 'transparent', 
 colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, 
 ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3,
-xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', 
-yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, 
-bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, 
-layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, 
-median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', 
-width = 7, height = 7, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-key = NULL, legend = NULL, description = NULL, add.rectangle = FALSE, 
+xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',
+xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',xlab.top.just = "center",xlab.top.x = 0.5, 
+xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, 
+yaxis.tck = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, 
+ylab.axis.padding = 1, layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, 
+add.median = FALSE, median.values = NULL, strip.col = "white", strip.cex = 1, 
+strip.fontface = 'bold', width = 6, height = 6, size.units = 'in', resolution = 1600, 
+enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, add.rectangle = FALSE, 
 xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, 
 ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
 style = 'BoutrosLab')
@@ -30,7 +32,10 @@ style = 'BoutrosLab')
     \item{jitter.data}{Allow data to be staggered, default is FALSE}
     \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
     \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
-    \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main}{The main title for the plot (space is reclaimed if NULL)}s
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{xlab.label}{X-axis label}
     \item{ylab.label}{Y-axis label}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
@@ -56,6 +61,12 @@ style = 'BoutrosLab')
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 0}
@@ -83,12 +94,12 @@ style = 'BoutrosLab')
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{description}{Short description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

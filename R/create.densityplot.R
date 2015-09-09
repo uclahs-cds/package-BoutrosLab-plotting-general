@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DENSITYPLOTS ################################################################
-create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black', key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
+create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
 
 	# create an object to store all the data
 	data.to.plot <- data.frame(
@@ -88,6 +88,18 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 		y ~ x,
 		data.to.plot,
 		panel = function(groups.local = data.to.plot$groups, subscripts, type.local = type, ...) {
+			# add rectangle
+                        if (add.rectangle) {
+                                panel.rect(
+                                        xleft = xleft.rectangle,
+                                        ybottom = ybottom.rectangle,
+                                        xright = xright.rectangle,
+                                        ytop = ytop.rectangle,
+                                        col = col.rectangle,
+                                        alpha = alpha.rectangle,
+                                        border = NA
+                                        );
+                                }
 
 			panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
 			panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
@@ -103,19 +115,6 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 					);
 				}
 				
-			# add rectangle if requested
-			if (add.rectangle) {
-				panel.rect(
-					xleft = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright = xright.rectangle,
-					ytop = ytop.rectangle,
-					col = col.rectangle,
-					alpha = alpha.rectangle,
-					border = NA
-					);
-				}
-
 			# if grid-lines are requested, over-ride default behaviour
 			if ("g" %in% type) {
 				panel.abline(
@@ -157,7 +156,10 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else("bold"),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -169,6 +171,18 @@ create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NUL
 				col = xlab.col
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = "fontfamily", 
 			add.to.list = list(

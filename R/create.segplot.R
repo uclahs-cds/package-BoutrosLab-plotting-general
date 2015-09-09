@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE SEGPLOTS ###################################################################
-create.segplot <- function(formula, data, filename = NULL, main = NULL, lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 1.5, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, abline.h = NULL, abline.v = NULL, abline.lty = 1, abline.lwd = 1, abline.col = 'black', segments.col = 'black', segments.lwd = 1, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, level = NULL, col.regions =NULL, centers = NULL, plot.horizontal = TRUE, draw.bands =  FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
+create.segplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 1.5, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, abline.h = NULL, abline.v = NULL, abline.lty = 1, abline.lwd = 1, abline.col = 'black', segments.col = 'black', segments.lwd = 1, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, level = NULL, col.regions =NULL, centers = NULL, plot.horizontal = TRUE, draw.bands =  FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
 
 	trellis.object <- lattice::levelplot(
 		x = formula,
@@ -29,6 +29,29 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, lwd = 1,
 					alpha = alpha.rectangle,
 					border = NA
 					);
+				}
+			if(!is.logical(draw.bands)){
+				panel.rect(
+                                        xleft = data$min[draw.bands],
+                                        ybottom = draw.bands - 0.25,
+                                        xright = data$max[draw.bands],
+                                        ytop = draw.bands + 0.25,
+                                        col = segments.col,
+                                        alpha = 1,
+                                        border = NA
+                                        );	
+				}
+			else if(draw.bands == TRUE){
+				panel.rect(
+                                        xleft = data$min,
+                                        ybottom = seq(0.75,10,1),
+                                        xright = data$max,
+                                        ytop = seq(1.25,11,1),
+                                        col = segments.col,
+                                        alpha = 1,
+                                        border = NA
+                                        );
+
 				}
 
 			# if requested, add user-defined vertical line
@@ -59,7 +82,7 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, lwd = 1,
 				level = level,
 				centers = centers,
 				horizontal = plot.horizontal,
-				draw.bands = draw.bands,
+				draw.bands = FALSE,
 				...,
 				)
 			},
@@ -68,7 +91,10 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, lwd = 1,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -80,6 +106,18 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, lwd = 1,
 				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = "fontfamily", 
 			add.to.list = list(

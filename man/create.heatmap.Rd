@@ -18,10 +18,13 @@ covariates.top.padding = 0.25, covariate.legends = list(), legend.cex = 1,
 legend.title.cex = 1, legend.title.just = 'centre', legend.title.fontface = 'bold', 
 legend.border = NULL, legend.border.padding = 1, legend.layout = NULL, 
 legend.between.col = 1, legend.between.row = 1, legend.side = 'left', 
-main = list(label = ''), main.cex = 2, right.size.add = 1, top.size.add = 1, 
+main = list(label = ''),main.just = "center", main.x = 0.5, main.y = 0.5,
+main.cex = 2, right.size.add = 1, top.size.add = 1, 
 right.dendrogram.size = 2.5, top.dendrogram.size = 2.5, scale.data = FALSE, 
 yaxis.lab = NULL, xaxis.lab = NULL, xaxis.lab.top = NULL, xaxis.cex = NA, yaxis.cex = NA,
-xlab.cex = 1, ylab.cex = 1, xat = TRUE, xat.top = NULL, yat = TRUE, xaxis.tck = NULL, 
+xlab.cex = 1, ylab.cex = 1, xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, 
+xat = TRUE, xat.top = NULL, yat = TRUE, xaxis.tck = NULL, 
 yaxis.tck = NULL, xaxis.col = 'black', yaxis.col = 'black', col.pos = NULL, 
 row.pos = NULL, cell.text = '', text.fontface = 1, text.cex = 1, text.col = 'black', 
 text.position = NULL, text.offset = 0, colourkey.cex = 3.6, xaxis.rot = 90, 
@@ -33,9 +36,9 @@ fill.colour = 'darkgray', at = NULL, print.colour.key = TRUE, colourkey.labels.a
 colourkey.labels = NULL, top.padding = 0.1, bottom.padding = 0.5, right.padding = 0.5, 
 left.padding = 0.5, x.alternating = 1, shrink = 1, row.colour = 'black', 
 col.colour = 'black', row.lwd = 1, col.lwd = 1, grid.colour = NULL, grid.lwd = NULL, 
-width = 7, height = 7, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-xaxis.covariates = NULL, yaxis.covariates = NULL, description = NULL, 
-xaxis.fontface = 'bold', yaxis.fontface = 'bold', symbols = list(borders = NULL, 
+width = 6, height = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
+xaxis.covariates = NULL, xaxis.covariates.y = 0, yaxis.covariates = NULL, yaxis.covariates.x = NULL,
+description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', symbols = list(borders = NULL, 
 squares = NULL, circles = NULL), same.as.matrix = FALSE, axis.xlab.padding = 0.1, 
 stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'BoutrosLab');
 }
@@ -80,6 +83,9 @@ stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'Boutr
     \item{legend.between.row}{Amount of space to add between rows in the layout, in \dQuote{lines} units}
     \item{legend.side}{Side of the plot where the legends should be drawn -- \dQuote{left}, \dQuote{right}, or \dQuote{top}}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{main.cex}{Size of text for main plot title, defaults to 2.5}
     \item{right.size.add}{The size of each extra covariate row in the right dendrogram in units of \dQuote{lines}}
     \item{top.size.add}{The size of each extra covariate row in the top dendrogram in units of \dQuote{lines}}
@@ -101,6 +107,12 @@ stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'Boutr
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
     \item{xat.top}{Vector listing where the x-axis labels should be drawn on the top of the plot. Required only when you want bottom and top axis, otherwise use x.alternating = 2, to get top axis only. Defaults to NULL}
     \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
@@ -148,7 +160,9 @@ stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'Boutr
     \item{resolution}{Figure resolution in dpi}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{xaxis.covariates}{Any column-wise covariate annotate to add to the plot, as a fully formed list}
+    \item{xaxis.covariates.y}{The y coordinate of the location of the x axis covariates}
     \item{yaxis.covariates}{Any row-wise covariate annotate to add to the plot, as a fully formed list}
+    \item{yaxis.covariates.x}{The x coordinate of the lcoation of the y axis covariates}
     \item{description}{Short description of image/plot; default NULL.}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}

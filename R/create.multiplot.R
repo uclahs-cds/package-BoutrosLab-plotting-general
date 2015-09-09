@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE MULTIPLOT ###################################################################
-create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.cex = 2, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, xaxis.cex = 2, yaxis.cex = 2, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = NULL, retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FALSE) {
+create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 2, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5,xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = NULL, retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FALSE) {
 
 	# check that plots are trellis objects
 	for (i in 1:length(plot.objects)) {
@@ -60,7 +60,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		);
 
 	# if user asked to retrieve previous plot labels
-	if (retrieve.plot.labels == TRUE) {
+	if (is.logical(retrieve.plot.labels) && retrieve.plot.labels == TRUE) {
 		y.relation <- 'free'
 		x.relation <- 'free'
 		y.scale$relation <- y.relation;
@@ -120,12 +120,15 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 				add.to.list = y.scale
 				)
 			),
-		main = BoutrosLab.plotting.general::get.defaults(
+		main =  BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -136,6 +139,18 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 				cex = xlab.cex
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
 			add.to.list = list(
@@ -188,7 +203,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
         
-        if (retrieve.plot.labels) {
+        if (is.logical(retrieve.plot.labels) && retrieve.plot.labels == TRUE) {
 			xaxis.labels = list();
 			yaxis.labels = list();
 			xat = list();
@@ -221,7 +236,6 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			trellis.object$x.scales$labels = xaxis.labels;
 			trellis.object$y.scales$labels = yaxis.labels;
 			}
-
     # There is a glitch in update.trellis that prevents us from declaring multiple 'inside' legends
     # To get around this, we'll add in a special case to just set the 'legend' manually
     if (sum(names(legend) == "inside", na.rm = TRUE) > 1) {

@@ -3,12 +3,15 @@
 \title{Make a hexagonally binned plot}
 \description{Takes a data.frame and writes a hexagonally binned plot}
 \usage{
-create.hexbinplot(formula, data, filename = NULL, main = NULL, aspect = 'xy', 
+create.hexbinplot(formula, data, filename = NULL, main = NULL,
+main.just = "center", main.x = 0.5, main.y = 0.5, aspect = 'xy', 
 trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE, 
 colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5, 
 xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), xlab.col = 'black',
-ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, 
+ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0,
+ xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, 
 xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, 
 yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, 
 add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, 
@@ -30,6 +33,9 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL (default value) returns the trellis object itself}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{aspect}{This argument controls the physical aspect ratio of the panels, defaults to \dQuote{xy}} 
     \item{trans}{function specifying a transformation for the counts such as log, defaults to NULL}
     \item{inv}{the inverse transformation of trans, defaults to NULL}
@@ -57,6 +63,12 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
     \item{add.grid}{Allows grid lines to be turned on or off}
@@ -92,12 +104,12 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{description}{Short description of image/plot; default NULL.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{background.col}{Specifies the colour for the background of the plot}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}

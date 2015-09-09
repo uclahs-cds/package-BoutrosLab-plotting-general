@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE VIOLIN PLOTS ###############################################################
-create.violinplot <- function(formula, data, filename = NULL, main = NULL, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), xaxis.lab = TRUE, yaxis.lab = TRUE, lwd = 1, xaxis.rot = 0, yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0), yaxis.tck = c(1,1), col = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 21, extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, start = NULL, end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.3, width = 6, height = 6, resolution = 1600, size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
+create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), xaxis.lab = TRUE, yaxis.lab = TRUE, lwd = 1, xaxis.rot = 0, yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 2, yaxis.cex = 2, main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0), yaxis.tck = c(1,1), col = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 21, extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, start = NULL, end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.3, width = 6, height = 6, resolution = 1600, size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
 
 	trellis.object <- lattice::bwplot(
 		formula,
@@ -30,10 +30,10 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, xlab.
 					);
 				}
 			if (is.null(from) || is.null(to)) {
-				panel.violin(varwidth = varwidth, ...);
+				panel.violin(varwidth = varwidth,...);
 				}
 			else {		
-				panel.violin(from = from, to = to, varwidth = varwidth, ...);
+				panel.violin(from = from, to = to, varwidth = varwidth,...);
 				}
 		
 			if (!is.null(extra.points)) {	
@@ -66,7 +66,10 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, xlab.
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -78,6 +81,18 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, xlab.
 				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = "fontfamily", 
 			add.to.list = list(

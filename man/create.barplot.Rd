@@ -4,11 +4,14 @@
 \description{Takes a data.frame and creates a barplot}
 \usage{
 create.barplot(formula, data, groups = NULL, stack = FALSE, 
-filename = NULL, main = NULL, abline.h = NULL, abline.v = NULL, 
+filename = NULL, main = NULL, main.just = "center", main.x = 0.5,
+main.y = 0.5, abline.h = NULL, abline.v = NULL, 
 abline.lty = 1, abline.lwd = NULL, abline.col = 'black', add.grid = FALSE, 
 xgrid.at = xat, ygrid.at = yat, grid.lwd = 5, grid.col = NULL,
 xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), 
-xlab.col = 'black', ylab.col = 'black', xaxis.lab = TRUE, yaxis.lab = TRUE, 
+xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
+xlab.top.col = 'black', xlab.top.just = "center", 
+xlab.top.x = 0.5, xlab.top.y = 0, xaxis.lab = TRUE, yaxis.lab = TRUE, 
 xaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', 
 yaxis.col = 'black', xaxis.cex = 1.2, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, 
 xaxis.tck = 1, yaxis.tck = 1, main.cex = 2.5, xlab.cex = 2, ylab.cex = 2, 
@@ -42,6 +45,9 @@ style = 'BoutrosLab'
     \item{stack}{Logical, relevant when groups is non-null. If FALSE (the default), bars for different values of the grouping variable are drawn side by side, otherwise they are stacked}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{abline.h}{Specify the superimposed horizontal line(s)}
     \item{abline.v}{Specify the superimposed vertical line(s)}
     \item{abline.lty}{Specify the superimposed line type}
@@ -68,6 +74,12 @@ style = 'BoutrosLab'
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to black}
     \item{ylab.col}{Colour of the y-axis label, defaults to black}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
@@ -119,13 +131,13 @@ style = 'BoutrosLab'
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{description}{Description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
-    \item{origin}{The origin, generally 0}
+    \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle}
+    \item{origin}{The origin of the plot, generally 0}
     \item{reference}{Should the reference line be printed at the origin}
     \item{sample.order}{Should the bars be reordered, accepts values \dQuote{increasing}, \dQuote{decreasing} or a vector of sample names. Labels will also be reordered}
     \item{group.labels}{Should the labels be grouped to the same amount of bars per column}
@@ -903,5 +915,25 @@ create.barplot(
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
     );
 
+# Left Justified Example
+create.barplot(
+    filename = 'Barplot_TwoTopLabelsLeftJustified.tiff',
+    formula = x ~ y,
+    data = simple.data,
+    yat = seq(0,16,2),
+    ylab.label = NULL,
+    # set top label details
+    xlab.top.label = 'Sample Label',
+    xlab.top.cex = 1.5,
+    xlab.top.x = -0.125,
+    xlab.top.y = 0.5,
+    xlab.top.just = 'left',
+    # set main label details
+    main = 'Sample Main',
+    main.just = 'left',
+    main.x = 0,
+    main.y = 0.6,
+    top.padding = 1
+    );
 }
 \keyword{hplot}

@@ -3,7 +3,8 @@
 \title{Make a boxplot}
 \description{Takes a data.frame and creates a boxplot}
 \usage{
-create.boxplot(formula, data, filename = NULL, main = NULL, add.stripplot = FALSE,
+create.boxplot(formula, data, filename = NULL, main = NULL, 
+main.just = "center", main.x = 0.5, main.y = 0.5,add.stripplot = FALSE,
 jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey',
 points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL,
 abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL,
@@ -13,7 +14,9 @@ border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE,
 xlab.label = tail(sub('~','',formula[-2]),1), 
 ylab.label = tail(sub('~','',formula[-3]),1), 
 main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', 
-ylab.col = 'black', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, 
+ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', 
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, 
+xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, 
 xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', 
 xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, 
 top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
@@ -22,26 +25,29 @@ yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FAL
 height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
 key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', 
 yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, 
-line.col = 'transparent', line.infront = TRUE, sample.order = 'none', 
-style = 'BoutrosLab');
+line.col = 'transparent', line.infront = TRUE, sample.order = 'none',
+order.by = 'median', style = 'BoutrosLab');
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
+    \item{main.just}{The justification of the main title for the plot, default is centered}
+    \item{main.x}{The x location of the main title, deault is 0.5}
+    \item{main.y}{The y location of the main title, default is 0.5}
     \item{abline.h}{Specify the horizontal superimpose line}
     \item{abline.v}{Specify the vertical superimpose line}
     \item{abline.type}{Specify the superimpose line type}
     \item{abline.lwd}{Specify the superimpose line width}
     \item{abline.col}{Specify the superimpose line colour (defaults to black)}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left coordinate of the rectangle}
-    \item{ybottom.rectangle}{Specifies the bottom coordinate of the rectangle}
-    \item{xright.rectangle}{Specifies the right coordinate of the rectangle}
-    \item{ytop.rectangle}{Specifies the top coordinate of the rectangle}
-    \item{col.rectangle}{Specifies the colour of the rectangle}
-    \item{alpha.rectangle}{Specifies the alpha of the rectangle}
+    \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour of the rectangle to be drawn}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{col}{The colour to fill the interior of the boxplot, defaults to white}
     \item{border.col}{Colour of the boxplot, defaults to black}
     \item{symbol.cex}{Size of the boxplot outlier-symbol}
@@ -65,6 +71,12 @@ style = 'BoutrosLab');
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 2}
     \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
@@ -104,6 +116,7 @@ style = 'BoutrosLab');
     \item{line.col}{Colour of the line on the plot}
     \item{line.infront}{Should the line appear in front of the plot or not}
     \item{sample.order}{Should the sample be reordered}
+    \item{order.by}{A string specifying what the sample oreder should be ordered by, either max, min, median or mean}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
@@ -412,5 +425,23 @@ create.boxplot(
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
     );
 
+# Sorting by mean and multiple filenames
+create.boxplot(
+    filename = c('Boxplot_Sorted1.tiff','Boxplot_Sorted2.tiff'),
+    formula = y ~ x, 
+    data = reformatted.data,
+    main = 'Sorting',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    ylab.label = 'Gene',
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    # Reordered by median
+    sample.order = 'increasing',
+    order.by = 'mean',
+    description = 'Boxplot created by BoutrosLab.plotting.general'
+    );
 }
 \keyword{hplot}

@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE QQPLOT FIT #################################################################
-create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.95, confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, main = NULL, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'p', cex = 0.75, pch = 19, col = 'black', col.line = 'grey', lwd = 2, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
+create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.95, confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2.5, ylab.cex = 2.5, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'p', cex = 0.75, pch = 19, col = 'black', col.line = 'grey', lwd = 2, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab') {
 
 	
 
@@ -58,7 +58,7 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 				}
 			
 			# if grid-lines are requested, over-ride default behaviour
-			if ('g' %in% type) {
+			if ('g' %in% type || add.grid == TRUE) {
 				panel.abline(
 					v = BoutrosLab.plotting.general::generate.at.final(
 						at.input = xgrid.at,
@@ -270,7 +270,6 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 				...
 				);
 			},
-		grid = add.grid,
 		type = type,
 		cex = cex,
 		pch = pch,
@@ -282,7 +281,10 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 			add.to.list = list(
 				label = main, 
 				fontface = if ('Nature' == style){'plain'} else('bold'),
-				cex = main.cex
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
@@ -294,6 +296,18 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 				fontface = if ('Nature' == style){'plain'} else('bold')
 				)
 			),
+                xlab.top = BoutrosLab.plotting.general::get.defaults(
+                        property = 'fontfamily',
+                        add.to.list = list(
+                                label = xlab.top.label,
+                                cex = xlab.top.cex,
+                                col = xlab.top.col,
+                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                just = xlab.top.just,
+                                x = xlab.top.x,
+				y = xlab.top.y
+                                )
+                        ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
 			add.to.list = list(
