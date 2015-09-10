@@ -75,7 +75,7 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 			do.call(call.param$Function, call.args);
 		
 			# plot the object to the file
-			plot(trellis.object,newpage = TRUE);
+			plot(trellis.object,newpage = FALSE);
 	
 			# MANY checks for correctness of additional plots to embedded and parameters
 			if (
