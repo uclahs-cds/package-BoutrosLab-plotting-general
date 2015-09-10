@@ -40,9 +40,8 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		at = xat,
 		rot = xaxis.rot,
 		limits = xlimits,
-		fontface = xaxis.fontface
+		fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
 		);
-
 	# specify tck marks for different alternating settings
 	if (0 == yaxis.alternating) { yaxis.tck <- c(0,0); }
 	else if (1 == yaxis.alternating) { yaxis.tck[2] <- 0; }
@@ -56,7 +55,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		at = yat,
 		rot = 0,
 		limits = ylimits,
-		fontface = yaxis.fontface
+		fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
 		);
 
 	# if user asked to retrieve previous plot labels
@@ -89,6 +88,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 
 		y.same <- TRUE;
 		}
+	else{
+		y.scale$relation = 'free';
+		}
 
 	if (y.same && (typeof(xaxis.labels) != 'list') && (typeof(xat) != 'list') && (length(xlab.label) < 2)) {
 
@@ -103,6 +105,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			rot = xaxis.rot,
 			fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
 			);
+		}
+	else{
+		x.scale$relation = 'free';
 		}
 
 	trellis.object <- update(
