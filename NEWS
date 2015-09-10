@@ -1,3 +1,23 @@
+BoutrosLab.plotting.general 5.3.7
+
+BUG FIXES:
+same.as.matrix will now correcting readjust label specifications
+when combining scatterplots, they will no longer only use error bars from one scatter plot
+yaxis.covariates parameter can now allow specific location specification so it does not overlap the heatmap
+xgrid.at and ygrid.at now properly update for all functions
+background rectangles are now drawn in the background instead of foreground
+when combining scatterplots, they will no longer only use the text specified from one scatter plot
+removed circular definitions from Rd files
+standardized parameter defaults
+
+FEATURE UPDATES:
+Can now add subtitles through use of xaxis.top parameters
+Can now input a vector of files to be output to
+Can now sort boxes in create.boxplot by max, min, mean and median (defaults to median if not set)
+Can now draw both bands and lines on segplots
+Polygon plot will now auto-calculate x and y limits if not specified
+Can now vertically align labels and adjust there coordinates manually
+
 BoutrosLab.plotting.general 5.3.4 2015-07-31
 
 MINOR UPDATE:
