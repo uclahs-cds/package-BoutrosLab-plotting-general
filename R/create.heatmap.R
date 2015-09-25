@@ -78,14 +78,14 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	xaxis.cex[is.na(xaxis.cex)] <- ifelse(
 		test = nrow(x) < max(xyaxis.ref.cex$NumberOfRows),
 		yes = xyaxis.ref.cex$optimal.cex[nrow(x)],
-		no = 0.3
+		no = 0
 		);
 
 	# see if we can map a customized xaxis label-size, but set a reasonable default
 	yaxis.cex[is.na(yaxis.cex)] <- ifelse(
 		test = ncol(x) < max(xyaxis.ref.cex$NumberOfRows),
 		yes = xyaxis.ref.cex$optimal.cex[ncol(x)],
-		no = 0.3
+		no = 0
 		);
 
 	# try to recover memory
@@ -1024,6 +1024,15 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 
 		return(args);
 		}
+	
+	# look at nrow and ncol and if exceed limit (for now, limit = 50), turn off grid lines
+	grid.limit <- 50;
+	if (nrow(x) > grid.limit & grid.row == TRUE) {
+		grid.row <- FALSE;
+		}
+	if (ncol(x) > grid.limit & grid.col == TRUE) {
+		grid.col <- FALSE;
+		} 
 
 	# create heatmap
 	trellis.object <- lattice::levelplot(
