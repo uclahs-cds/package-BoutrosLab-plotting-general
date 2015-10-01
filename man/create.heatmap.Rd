@@ -30,6 +30,7 @@ row.pos = NULL, cell.text = '', text.fontface = 1, text.cex = 1, text.col = 'bla
 text.position = NULL, text.offset = 0, colourkey.cex = 3.6, xaxis.rot = 90, 
 yaxis.rot = 0, xlab.label = '' , ylab.label = '', xlab.col = 'black', ylab.col = 'black',
 axes.lwd = 2, gridline.order = 'h', grid.row = FALSE, grid.col = FALSE, 
+force.grid.row = FALSE, force.grid.col = FALSE, grid.limit = 50, 
 row.lines = seq(0, ncol(x), 1) + 0.5, col.lines = seq(0, nrow(x), 1) + 0.5, 
 colour.scheme = c(), total.colours = 99, colour.centering.value = 0, colour.alpha = 1, 
 fill.colour = 'darkgray', at = NULL, print.colour.key = TRUE, colourkey.labels.at = NULL, 
@@ -131,6 +132,9 @@ stratified.clusters.rows = NULL, stratified.clusters.cols = NULL, style = 'Boutr
     \item{gridline.order}{Character specifying order in which to draw interior grid-lines ('h' or 'v'). Defaults to 'h' for horizontal first.}
     \item{grid.row}{Allow turning off of the interior grid-lines. Default FALSE}
     \item{grid.col}{Allow turning off of the interior grid-lines. Default FALSE}
+    \item{force.grid.row}{Overrides default behaviour of turning off grid lines when number of rows exceed grid.limit. Defaults to FALSE}
+    \item{force.grid.col}{Overrides default behaviour of turning off grid lines when number of columns exceed grid.limit. Defaults to FALSE}
+    \item{grid.limit}{Limit set for when to turn off column and row lines if data size exceeds it. Defaults to 50}
     \item{row.lines}{Vector specifying location of lines, default is seq(1, ncol(x), 1) + 0.5. Note: Add 0.5 to customized vector}
     \item{col.lines}{Vector specifying location of lines, default is seq(1, nrow(x), 1) + 0.5. Note: Add 0.5 to customized vector}
     \item{colour.scheme}{Heatmap colouring. Accepts old-style themes, or a vector of either two or three colours that are gradiated to create the final palette.}

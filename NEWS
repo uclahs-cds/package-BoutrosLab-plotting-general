@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 5.3.9 2015-10-01
+
+FEATURE UPDATE:
+* create.heatmap: turns off grid lines when row or column number exceeds a certain threshold. 
+* auto-removal of grid lines can be overrided with forcing parameters
+
+---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.3.7
 
 BUG FIXES:
