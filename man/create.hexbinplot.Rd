@@ -4,28 +4,31 @@
 \description{Takes a data.frame and writes a hexagonally binned plot}
 \usage{
 create.hexbinplot(formula, data, filename = NULL, main = NULL,
-main.just = "center", main.x = 0.5, main.y = 0.5, aspect = 'xy', 
-trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE, 
-colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5, 
-xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = tail(sub('~','',formula[-2]),1), 
+main.just = "center", main.x = 0.5, main.y = 0.5, aspect = 'xy',
+trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE,
+colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 2.5,
+xlab.cex = 2.5, ylab.cex = 2.5, xlab.label = tail(sub('~','',formula[-2]),1),
 ylab.label = tail(sub('~','',formula[-3]),1), xlab.col = 'black',
 ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',
 xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0,
- xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, 
-xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, 
-yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, 
-add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, 
-abline.lwd = NULL, abline.col = 'black', abline.front = FALSE, add.xyline = FALSE, 
-xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, add.curves = FALSE, 
-curves.exprs = NULL, curves.from = min(data, na.rm = TRUE), 
-curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, 
-curves.lty = 1, add.axes = FALSE, 
-xbins = 30, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, 
-right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, 
-enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL, 
-add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, 
-xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
-alpha.rectangle = 1, background.col= 'transparent', xaxis.fontface = 'bold', 
+xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE,
+xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0,
+yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
+layout = NULL, as.table = FALSE, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold',
+add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL,
+abline.lwd = NULL, abline.col = 'black', abline.front = FALSE, add.xyline = FALSE,
+xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, add.curves = FALSE,
+curves.exprs = NULL, curves.from = min(data, na.rm = TRUE),
+curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2,
+curves.lty = 1, add.text = FALSE, text.labels = NULL, text.x = NULL,
+text.y = NULL,	text.col = 'black',	text.cex = 1, text.fontface = 'bold', add.axes = FALSE,
+xbins = 30, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5,
+right.padding = 0.1, x.relation = "same", y.relation = "same", x.spacing = 0, y.spacing = 0,
+height = 6, width = 6, size.units = 'in', resolution = 1600,
+enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,
+add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL,
+xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',
+alpha.rectangle = 1, background.col= 'transparent', xaxis.fontface = 'bold',
 yaxis.fontface = 'bold', style = 'BoutrosLab');
 }
 \arguments{
@@ -36,10 +39,10 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
-    \item{aspect}{This argument controls the physical aspect ratio of the panels, defaults to \dQuote{xy}} 
+    \item{aspect}{This argument controls the physical aspect ratio of the panels, defaults to \dQuote{xy}}
     \item{trans}{function specifying a transformation for the counts such as log, defaults to NULL}
     \item{inv}{the inverse transformation of trans, defaults to NULL}
-    \item{colour.scheme}{colour scheme to be used, default NULL gives LinGray colour scale}  
+    \item{colour.scheme}{colour scheme to be used, default NULL gives LinGray colour scale}
     \item{colourkey}{logical whether a legend should be drawn, defaults to TRUE}
     \item{colourcut}{Vector of values covering [0, 1] that determine hexagon colour class boundaries and hexagon legend size boundaries. Alternatively, an integer (<= maxcnt) specifying the number of equispaced colourcut values in [0,1].}
     \item{mincnt}{Cells with fewer counts are ignored}
@@ -71,6 +74,11 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL.}
+    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Strip title character expansion}
+    \item{strip.fontface}{Strip title fontface, defaults to bold}
     \item{add.grid}{Allows grid lines to be turned on or off}
     \item{abline.h}{Specify the superimposed horizontal line(s)}
     \item{abline.v}{Specify the superimposed vertical line(s)}
@@ -89,12 +97,23 @@ yaxis.fontface = 'bold', style = 'BoutrosLab');
     \item{curves.col}{Specifies colours of curves, default is black for each curve}
     \item{curves.lwd}{Specifies width of curves, default is 1 for each curve}
     \item{curves.lty}{Specifies type of curves, default is 1 (solid) for each curve}
+    \item{add.text}{Allow additional text to be drawn, default is FALSE}
+    \item{text.labels}{Labels for additional text}
+    \item{text.x}{The x co-ordinates where additional text should be placed}
+    \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.col}{The colour of additional text}
+    \item{text.cex}{The size of additional text}
+    \item{text.fontface}{The fontface for additional text}
     \item{add.axes}{Allow axis lines to be turned on or off}
     \item{xbins}{Number of bins to use in x, defaults to 30}
     \item{top.padding}{A number giving the top padding in multiples of the lattice default}
     \item{bottom.padding}{A number giving the bottom padding in multiples of the lattice default}
     \item{left.padding}{A number giving the left padding in multiples of the lattice default}
     \item{right.padding}{A number giving the right padding in multiples of the lattice default}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
+    \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
@@ -124,7 +143,7 @@ If this function is called without capturing the return value, or specifying a f
     Error in grid.Call.graphics("L_text", as.graphicsAnnot(x$label), x$x,  )
         Invalid font type
     Calls: print ... drawDetails.text -> grid.Call.graphics -> .Call.graphics
-If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count (value depends on nbins). Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without specifying the 'maxcnt' parameter using the desired number of bins. 
+If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count (value depends on nbins). Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without specifying the 'maxcnt' parameter using the desired number of bins.
     }
 }
 \seealso{\code{\link[lattice]{xyplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
@@ -430,12 +449,12 @@ create.hexbinplot(
     add.grid = TRUE,
     add.xyline = TRUE,
 
-    # set style to Nature 
+    # set style to Nature
     style = 'Nature',
-    
+
     # demonstrating how to italicize character variables
     ylab.lab = expression(paste('italicized ', italic('a'))),
-  
+
     # demonstrating how to create en-dashes
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 

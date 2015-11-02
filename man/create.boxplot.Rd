@@ -3,28 +3,30 @@
 \title{Make a boxplot}
 \description{Takes a data.frame and creates a boxplot}
 \usage{
-create.boxplot(formula, data, filename = NULL, main = NULL, 
+create.boxplot(formula, data, filename = NULL, main = NULL,
 main.just = "center", main.x = 0.5, main.y = 0.5,add.stripplot = FALSE,
 jitter.factor = 1, jitter.amount = NULL, points.pch = 19, points.col = 'darkgrey',
 points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL, abline.type = NULL,
 abline.lwd = NULL, abline.col = "black", add.rectangle = FALSE, xleft.rectangle = NULL,
-ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, 
-col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent', 
-border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, 
-xlab.label = tail(sub('~','',formula[-2]),1), 
-ylab.label = tail(sub('~','',formula[-3]),1), 
-main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', 
-ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', 
-xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, 
-xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, 
-xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', 
-xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, 
-top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, 
-ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, 
-yaxis.tck = 1, strip.col = "white", strip.cex = 1, layout = NULL, as.table = FALSE, 
-height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold', 
-yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0, 
+ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
+col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent',
+border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE,
+xlab.label = tail(sub('~','',formula[-2]),1),
+ylab.label = tail(sub('~','',formula[-3]),1),
+main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black',
+ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',
+xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0,
+xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2,
+xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black',
+xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0,
+top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2,
+ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1,
+yaxis.tck = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL,
+text.col = 'black', text.cex = 1, text.fontface = 'bold',
+strip.col = "white", strip.cex = 1, strip.fontface = 'bold', layout = NULL, as.table = FALSE,
+height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+key = NULL, legend = NULL, description = NULL, xaxis.fontface = 'bold',
+yaxis.fontface = 'bold', line.func = NULL, line.from = 0, line.to = 0,
 line.col = 'transparent', line.infront = TRUE, sample.order = 'none',
 order.by = 'median', style = 'BoutrosLab');
 }
@@ -81,8 +83,8 @@ order.by = 'median', style = 'BoutrosLab');
     \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
-    \item{xlimits}{Two-element vector giving the x-axis limits} 
-    \item{ylimits}{Two-element vector giving the y-axis limits} 
+    \item{xlimits}{Two-element vector giving the x-axis limits}
+    \item{ylimits}{Two-element vector giving the y-axis limits}
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
@@ -91,14 +93,22 @@ order.by = 'median', style = 'BoutrosLab');
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 2}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 2}
-    \item{ylab.axis.padding}{A number specifying the distance of y-axis label to the y-axis, defaults to 0}, 
+    \item{ylab.axis.padding}{A number specifying the distance of y-axis label to the y-axis, defaults to 0},
     \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
+    \item{add.text}{Allow additional text to be drawn, default is FALSE}
+    \item{text.labels}{Labels for additional text}
+    \item{text.x}{The x co-ordinates where additional text should be placed}
+    \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.col}{The colour of additional text}
+    \item{text.cex}{The size of additional text}
+    \item{text.fontface}{The fontface for additional text}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
     \item{strip.cex}{Strip title character expansion}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
+    \item{strip.fontface}{Strip title fontface, defaults to bold}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
@@ -140,7 +150,7 @@ simple.data <- data.frame(
 
 create.boxplot(
     filename = 'Boxplot_Simple.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = simple.data,
     main = 'Simple',
     description = 'Boxplot created by BoutrosLab.plotting.general'
@@ -149,7 +159,7 @@ create.boxplot(
 # add stripplot behind boxplot
 create.boxplot(
     filename = 'Boxplot_with_Stripplot.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = simple.data,
     main = 'With Stripplot',
     add.stripplot = TRUE,
@@ -165,7 +175,7 @@ reformatted.data <- data.frame(
 # Minimal Input
 create.boxplot(
     filename = 'Boxplot_Minimal_Input.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Minimal input',
     description = 'Boxplot created by BoutrosLab.plotting.general'
@@ -174,7 +184,7 @@ create.boxplot(
 # Axes and labels
 create.boxplot(
     filename = 'Boxplot_Axes_Labels.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Axes & labels',
     # Adjusting axes size
@@ -193,7 +203,7 @@ create.boxplot(
 # Sorting
 create.boxplot(
     filename = 'Boxplot_Sorted.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Sorting',
     xaxis.cex = 1,
@@ -219,7 +229,7 @@ sex.colour <- recode.vector(
 
 create.boxplot(
     filename = 'Boxplot_Colour_Change.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Colour change',
     xaxis.cex = 1,
@@ -237,7 +247,7 @@ create.boxplot(
 # Legend
 create.boxplot(
     filename = 'Boxplot_Legend.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Legend',
     xaxis.cex = 1,
@@ -279,7 +289,7 @@ create.boxplot(
 create.boxplot(
     filename = 'Boxplot_Orientation.tiff',
     # switch the order
-    formula = x ~ y, 
+    formula = x ~ y,
     data = reformatted.data,
     main = 'Orientation',
     xaxis.cex = 1,
@@ -322,7 +332,7 @@ create.boxplot(
 # Background rectangle
 create.boxplot(
     filename = 'Boxplot_BG_Rect.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Bg rectangle',
     xaxis.cex = 1,
@@ -371,7 +381,7 @@ create.boxplot(
 # Line
 create.boxplot(
     filename = 'Boxplot_Line.tiff',
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Line',
     xaxis.cex = 1,
@@ -392,7 +402,7 @@ create.boxplot(
 # Panel Organization
 create.boxplot(
     filename = 'Boxplot_Panels.tiff',
-    formula = ~ x | y, 
+    formula = ~ x | y,
     data = reformatted.data,
     main = 'Panels',
     xaxis.cex = 1,
@@ -415,12 +425,12 @@ create.boxplot(
     xaxis.cex = 1,
     yaxis.cex = 1,
 
-    # set style to Nature 
+    # set style to Nature
     style = 'Nature',
-    
+
     # demonstrating how to italicize character variables
     ylab.lab = expression(paste('italicized ', italic('a'))),
-  
+
     # demonstrating how to create en-dashes
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
     );
@@ -428,7 +438,7 @@ create.boxplot(
 # Sorting by mean and multiple filenames
 create.boxplot(
     filename = c('Boxplot_Sorted1.tiff','Boxplot_Sorted2.tiff'),
-    formula = y ~ x, 
+    formula = y ~ x,
     data = reformatted.data,
     main = 'Sorting',
     xaxis.cex = 1,
