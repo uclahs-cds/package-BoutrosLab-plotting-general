@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 5.4.2 2015-12-22
+
+FEATURE UPDATE:
+* create.scatterplot: added option to specify colour of grid lines.
+
+---------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.3.9 2015-10-01
 
 FEATURE UPDATE:

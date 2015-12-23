@@ -11,7 +11,7 @@ main.cex = 3, xlab.cex = 3, ylab.cex = 3, xlab.col = 'black', ylab.col = 'black'
 xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', 
 xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, 
 xlimits = NULL, ylimits = NULL, xat = TRUE, 
-yat = TRUE, add.grid = FALSE,xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, 
+yat = TRUE, add.grid = FALSE,xgrid.at = xat, ygrid.at = yat, grid.colour = NULL, xaxis.lab = NA, yaxis.lab = NA, 
 xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 2, yaxis.cex = 2, xaxis.rot = 0, 
 yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', 
 yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, 
@@ -70,6 +70,7 @@ horizontal = FALSE, description = NULL, style = 'BoutrosLab', ...);
     \item{add.grid}{Logical stating wheter or not the grid should be drawn on the plot}
     \item{xgrid.at}{Vector listing where the x-axis grid lines should be drawn, defaults to xat}
     \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
+    \item{grid.colour}{Colour for grid lines added. Defaults to NULL, which then uses the reference line colour}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
     \item{xaxis.log}{Logical indicating whether x-variable should be in logarithmic scale (and what base if numeric)}
