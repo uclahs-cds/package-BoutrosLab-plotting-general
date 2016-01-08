@@ -3,9 +3,17 @@
 \title{Correlation Key}
 \description{A function for adding correlation key legends to scatterplots.}
 \usage{
-get.corr.key(x, y, label.items = c("spearman", "spearman.p"), x.pos = 0.03, 
-y.pos = 0.97, key.corner = NULL, key.cex = 1, key.title = NULL, title.cex = 1, 
-alpha.background = 0)
+get.corr.key(
+	x, 
+	y, 
+	label.items = c("spearman", "spearman.p"), 
+	x.pos = 0.03, 
+	y.pos = 0.97, 
+	key.corner = NULL, 
+	key.cex = 1, 
+	key.title = NULL, 
+	title.cex = 1, 
+	alpha.background = 0)
 }
 \arguments{
     \item{x}{A vector of values}

@@ -4,9 +4,17 @@
 \description{Handle various graphics-driver weirdness and writes an output file and 
 returns 1 or returns the trellis.object}
 \usage{
-write.plot(trellis.object, filename = NULL, additional.trellis.objects = NULL, 
-additional.trellis.locations = NULL, height = 6, width = 6, size.units = 'in', 
-resolution = 1000, enable.warnings = FALSE, description = NULL);
+write.plot(
+	trellis.object,
+	filename = NULL, 
+	additional.trellis.objects = NULL, 
+	additional.trellis.locations = NULL, 
+	height = 6, 
+	width = 6, 
+	size.units = 'in', 
+	resolution = 1000, 
+	enable.warnings = FALSE, 
+	description = NULL);
 }
 \arguments{
     \item{trellis.object}{A trellis object to be plotted}

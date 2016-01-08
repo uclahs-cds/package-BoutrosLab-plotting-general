@@ -18,10 +18,10 @@ create.boxplot <- function(
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
 	col.rectangle = 'transparent', alpha.rectangle = 1, col = 'transparent', border.col = 'black', 
 	symbol.cex = 0.8, lwd = 1, outliers = TRUE, xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 3, ylab.cex = 3, 
+	ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, 
 	xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, 
 	xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0,
-	yaxis.rot = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.lab = TRUE, yaxis.lab = TRUE, 
+	yaxis.rot = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.lab = TRUE, yaxis.lab = TRUE, 
 	xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, 
 	x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, 
 	left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, 
@@ -29,15 +29,48 @@ create.boxplot <- function(
 	text.col = 'black', text.cex = 1, text.fontface = 'bold', strip.col = "white", strip.cex = 1, 
 	strip.fontface = 'bold', layout = NULL, as.table = FALSE, height = 6, width = 6, 
 	size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
-	description = NULL, xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, 
+	description = 'Created with BoutrosLab.plotting.general', xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, 
 	line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none', 
-	order.by = 'median', style = 'BoutrosLab') {
+	order.by = 'median', style = 'BoutrosLab', add.pvalues = FALSE,pvalues.cex = c(1),preload.default = 'custom') {
 
 	# add stripplot if requested
 	if (add.stripplot & outliers) {
 		outliers <- FALSE;
 		}
+        if(preload.default == 'paper'){
 
+                }
+        else if(preload.default == 'web'){
+
+                }
+	pvalues <- list()
+	positionpVal <- list()
+	rotatePVals <- FALSE
+	if(add.pvalues){
+		col1 = formula[3];
+		col2 = formula[2];
+		mf = model.frame(formula, as.data.frame(data))
+                names =  levels(mf[toString(col1)][[1]])
+		if(is.null(names)){
+			temp <- col1;
+			col1 = col2;
+			col2 = temp;
+                	names =  levels(mf[toString(col1)][[1]])
+			rotatePVals <- TRUE
+			}
+ 		factors <- as.vector(sapply(as.data.frame(mf)[toString(col1)],as.character))
+		maxVal <- max(mf[toString(col2)][[1]])
+		for( i in 1:length(names)){
+			name = toString(names[i])
+			d = mf[toString(col2)][[1]][factors == name]
+			t.value = (mean(d) - 10) / (sd(d) / sqrt(length(d))) 
+			pvalues[i] <- round(2*pt(-abs(t.value), df=length(d)-1),4)
+			if(pvalues[i] == 0){
+				pvalues[i] <- "<0.0001";
+			}
+			positionpVal[i] <- max(d) + maxVal * 0.03;
+			}
+		}
 	trellis.object <- lattice::bwplot(
 		x = formula,
 		data,
@@ -98,6 +131,17 @@ create.boxplot <- function(
 					cex      = text.cex,
 					fontface = text.fontface
 					);
+				}
+			if(add.pvalues){
+				panel.text(
+					x = if(rotatePVals){positionpVal}else{c(1:length(pvalues))},
+					y = if(rotatePVals){1:length(pvalues)}else{positionpVal},
+					labels = pvalues,
+					col = 'black',
+					cex = pvalues.cex, 
+					fontface = 'bold',
+					srt = if(rotatePVals){-90}else{0}
+					)
 				}
 			},
 		fill = col,
@@ -288,7 +332,16 @@ create.boxplot <- function(
 			for (i in c(1:length(num.boxes))) {
 				trellis.object$panel.args[[1]]$y[newlocations[[i]]] = num.boxes[ranks[i]];
 				}
-
+			newPValues <- NULL
+			newPositionPVal <- NULL
+                        if(add.pvalues){
+                                for(i in c(1:length(num.boxes))){
+                                        newPValues[ranks[i]] <- pvalues[i];
+					newPositionPVal[ranks[i]]<- positionpVal[i];
+                                        }
+                                pvalues = newPValues;
+				positionpVal = newPositionPVal;
+                                }
 			# if labels were not specified reorder the default ones
 			if (length(yaxis.lab) == 1 && yaxis.lab) {
 				for (i in c(1:length(num.boxes))) {
@@ -341,7 +394,16 @@ create.boxplot <- function(
 					trellis.object$x.scales$labels[ranks[i]] = num.boxes[i];
 					}
 				}
-
+                        newPValues <- NULL
+                        newPositionPVal <- NULL
+                        if(add.pvalues){
+                                for(i in c(1:length(num.boxes))){
+                                        newPValues[ranks[i]] <- pvalues[i];
+                                        newPositionPVal[ranks[i]]<- positionpVal[i];
+                                        }
+                                pvalues = newPValues;
+                                positionpVal = newPositionPVal;
+                                }
 			else {
 				newlabels <- NULL;
 				for(i in c(1:length(num.boxes))){

@@ -3,9 +3,17 @@
 \title{Create one or more covariate bars}
 \description{Takes a list of covariate bar annotates and creates a grid graphical object for them}
 \usage{
-covariates.grob(covariates, ord, side = "right", size = 1, grid.row = NULL, 
-grid.col = NULL, grid.border = NULL, row.lines = NULL, col.lines = NULL, 
-reorder.grid.index = FALSE)
+covariates.grob(
+	covariates, 
+	ord, 
+	side = "right", 
+	size = 1, 
+	grid.row = NULL, 
+	grid.col = NULL, 
+	grid.border = NULL, 
+	row.lines = NULL, 
+	col.lines = NULL, 
+	reorder.grid.index = FALSE)
 }
 \arguments{
     \item{covariates}{Any covariate annotate to add to the plot, as a fully formed list.}

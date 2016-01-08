@@ -4,8 +4,13 @@
 \title{Based on predefined colour schemes, returns a vector of corresponding colours.}
 \description{Takes a vector of character strings and an scheme returns the matching colours as a vector.}
 \usage{
-force.colour.scheme(x, scheme, fill.colour = NA, include.names = FALSE, 
-return.factor = FALSE, return.scheme = FALSE)
+force.colour.scheme(
+	x, 
+	scheme, 
+	fill.colour = NA, 
+	include.names = FALSE, 
+	return.factor = FALSE, 
+	return.scheme = FALSE)
 }
 \arguments{
     \item{x}{The input character or numeric vector}

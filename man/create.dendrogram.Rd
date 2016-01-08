@@ -3,8 +3,13 @@
 \title{Generate a dendrogram}
 \description{Takes a matrix and creates a row-wise or column-wise dendrogram}
 \usage{
-create.dendrogram(x, clustering.method = 'diana', cluster.dimension = 'col', 
-distance.method = 'correlation', cor.method = 'pearson', force.clustering = FALSE)
+create.dendrogram(
+	x, 
+	clustering.method = 'diana', 
+	cluster.dimension = 'col', 
+	distance.method = 'correlation', 
+	cor.method = 'pearson', 
+	force.clustering = FALSE)
 }
 \arguments{
     \item{x}{A matrix that is used to create the dendrogram}

@@ -10,8 +10,15 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DENSITYPLOTS ################################################################
-create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1, yaxis.cex = 1, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 2, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
+create.densityplot <- function(x, filename = NULL, xlab.label = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, type = "l", lty = 'solid', cex = 0.75, pch = 19, col = 'black', lwd = 2, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, main.cex = 3, xlab.cex = 2, ylab.cex = 2, ylab.label = 'Density', xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL, abline.lwd = NULL, abline.col = 'black', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab',preload.default = 'custom') {
 
+
+        if(preload.default == 'paper'){
+
+                }
+        else if(preload.default == 'web'){
+
+                }
 	# create an object to store all the data
 	data.to.plot <- data.frame(
 		x = rep(0, 512 * length(x)),

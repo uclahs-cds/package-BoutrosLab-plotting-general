@@ -4,7 +4,9 @@
 \title{Creates a colour gradient}
 \description{Creates a sequential palette of colours.}
 \usage{
-colour.gradient(colour, length);
+colour.gradient(
+	colour, 
+	length);
 }
 \arguments{
     \item{colour}{A single colour to be used as the center value of the sequence}

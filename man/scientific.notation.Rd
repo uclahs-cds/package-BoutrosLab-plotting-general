@@ -3,7 +3,10 @@
 \title{Use scientific notation in plots}
 \description{Returns an expression or list for plotting data in scientific notation}
 \usage{
-scientific.notation(x, digits = 1, type = 'expression')
+scientific.notation(
+	x, 
+	digits = 1, 
+	type = 'expression')
 }
 \arguments{
     \item{x}{The number we want in scientific notation}

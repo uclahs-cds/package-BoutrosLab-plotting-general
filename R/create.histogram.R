@@ -10,13 +10,18 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE HISTOGRAMS ##################################################################
-create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.label = NULL, col = "white", main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, breaks = NULL, xaxis.lab = TRUE, xaxis.cex = 1, xlimits = NULL, xat = TRUE, yaxis.lab = TRUE, yaxis.cex = 1, ylimits = NULL, yat = TRUE, xlab.cex = 2, ylab.cex = 2, main.cex = 2, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', ylab.col = 'black', xlab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'percent', x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", layout = NULL, strip.col = "white", strip.cex = 1, lwd = 2, lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = NULL,add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab') {
+create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.label = NULL, col = "white", main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, breaks = NULL, xaxis.lab = TRUE, xaxis.cex = 1.5, xlimits = NULL, xat = TRUE, yaxis.lab = TRUE, yaxis.cex = 1.5, ylimits = NULL, yat = TRUE, xlab.cex = 2, ylab.cex = 2, main.cex = 3, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', ylab.col = 'black', xlab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'percent', x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", layout = NULL, strip.col = "white", strip.cex = 1, lwd = 2, lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab', preload.default = 'custom' ) {
 	
 	# 'data' parameter shoud only be set if x if a formula
 	# otherwise a warning will be thrown (even if data = NULL), although the plot will still be created 
 	# temporarily turn off warnings to avoid confusion
 	options(warn = -1);
+        if(preload.default == 'paper'){
 
+                }
+        else if(preload.default == 'web'){
+
+                }
 	trellis.object <- lattice::histogram(
 		x = x,
 		data = data,

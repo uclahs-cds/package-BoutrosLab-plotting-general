@@ -3,7 +3,10 @@
 \title{Get operating system specific default properties}
 \description{Returns the value for the property requested}
 \usage{
-get.defaults(property, os.type, add.to.list)
+get.defaults(
+	property, 
+	os.type, 
+	add.to.list)
 }
 \arguments{
     \item{property}{The property to be retrieved}

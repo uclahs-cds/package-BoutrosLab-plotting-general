@@ -3,25 +3,74 @@
 \title{Joins plots together}
 \description{Merges together multiple plots in the specified layout}
 \usage{
-create.multiplot(plot.objects, filename = NULL, panel.heights = c(1,1), 
-panel.widths = 1, main = NULL, main.just = "center", 
-main.x = 0.5, main.y = 0.5, main.cex = 2, main.key.padding = 1, 
-ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, 
-left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, 
-ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5, 
-xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black',
-xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 2, yaxis.cex = 2, 
-xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, 
-yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, 
-xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, 
-y.spacing = 1, x.relation = 'same', y.relation = 'same', 
-xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, 
-key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, 
-width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, 
-merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), 
-layout.skip=rep(FALSE,length(plot.objects)), description = NULL, 
-retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FALSE);
+create.multiplot(
+	plot.objects, 
+	filename = NULL, 
+	panel.heights = c(1,1), 
+	panel.widths = 1, 
+	main = NULL, 
+	main.just = "center", 
+	main.x = 0.5, 
+	main.y = 0.5, 
+	main.cex = 3, 
+	main.key.padding = 1, 
+	ylab.padding = 5, 
+	xlab.padding = 5, 
+	xlab.to.xaxis.padding = 2, 
+	right.padding = 1, 
+	left.padding = 1, 
+	top.padding = 0.5, 
+	bottom.padding = 0.5, 
+	xlab.label = NULL, 
+	ylab.label = NULL, 
+	xlab.cex = 2, 
+	ylab.cex = 2, 
+	xlab.top.label = NULL, 
+	xlab.top.cex = 2, 
+	xlab.top.col = 'black',
+	xlab.top.just = "center", 
+	xlab.top.x = 0.5, 
+	xlab.top.y = 0, 
+	xaxis.cex = 1.5, 
+	yaxis.cex = 1.5, 
+	xaxis.labels = TRUE, 
+	yaxis.labels = TRUE, 
+	xaxis.alternating = 1, 
+	yaxis.alternating = 1, 
+	xat = TRUE, 
+	yat = TRUE, 
+	xlimits = NULL, 
+	ylimits = NULL, 
+	xaxis.rot = 0, 
+	xaxis.fontface = 'bold', 
+	yaxis.fontface = 'bold', 
+	x.spacing = 1, 
+	y.spacing = 1, 
+	x.relation = 'same', 
+	y.relation = 'same', 
+	xaxis.tck = c(0.75,0.75), 
+	yaxis.tck = c(0.75,0.75), 
+	axes.lwd = 1.5, 
+	key.right.padding = 1, 
+	key.left.padding = 1, 
+	key.bottom.padding = 1, 
+	height = 6, 
+	width = 6, 
+	size.units = 'in', 
+	resolution = 1600, 
+	enable.warnings = FALSE, 
+	key = list(text = list(lab = c(''))), 
+	legend =  NULL, 
+	print.new.legend = FALSE, 
+	merge.legends = FALSE, 
+	plot.layout = c(1,length(plot.objects)), 
+	layout.skip=rep(FALSE,length(plot.objects)), 
+	description = 'Created with BoutrosLab.plotting.general', 
+	retrieve.plot.labels = FALSE,
+	plot.labels.to.retrieve = NULL,
+	style = 'BoutrosLab', 
+	remove.all.border.lines = FALSE,
+	preload.default = 'custom');
 }
 \arguments{
     \item{plot.objects}{A list of plot objects. Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right}
@@ -87,8 +136,10 @@ retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FA
     \item{layout.skip}{A vector specifying which positions in the layout grid to leave blank/skip, defaults to not skipping any spots in the layout / rep(FALSE,length(plot.objects)). Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right }
     \item{description}{Short description of image/plot; default NULL.}
     \item{retrieve.plot.labels}{Should the plot retrieve the limits, labels and label locations from the the individual plots}
+    \item{plot.labels.to.retrieve}{list of plot objects to retrieve plot labels from}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
+    \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ken Chu and Denise Mak}
@@ -1100,6 +1151,27 @@ create.multiplot(
 	panel.heights = c(0.25,1,0.25)
 	);
 
+
+create.multiplot(
+    filename = 'Multiplot_Retrieve_Specefic_Labels.tiff',
+        plot.objects = list(simple.heatmap, simple.boxplot),
+        main = "Simple",
+        xlab.label = c("Patient Group"),
+	xaxis.labels = c("1","Drug Regimen"),
+        # The plotting function throws an error if this is not included
+        ylab.label = c("Sugar Level", "Drug Regimen"),
+        ylab.padding = 7,
+        # Parameters set in the multiplot will override settings in individual plots
+        xaxis.cex = 0.7,
+        yaxis.cex = 0.7,
+	yaxis.labels = c(NA,NA),
+	xat = list(TRUE,TRUE),
+	yat = list(TRUE,TRUE),
+	retrieve.plot.labels = TRUE,
+	plot.labels.to.retrieve = c(1),
+	xlimits = list(NULL,c("A","B","C")),
+	ylimits = list(NULL,c(-3,10))
+        );
 }
 \keyword{hplot}
 

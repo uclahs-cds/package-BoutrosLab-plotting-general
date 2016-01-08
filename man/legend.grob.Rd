@@ -3,10 +3,19 @@
 \title{Generate a legend grob}
 \description{Takes a list and generates a grob representing one or more legends}
 \usage{
-legend.grob(legends, label.cex = 1, title.cex = 1, title.just = 'centre', 
-title.fontface = 'bold', font.family = NULL, size = 3, border = NULL, 
-border.padding = 1, layout = c(1, length(legends)), between.col = 1, 
-between.row = 1)
+legend.grob(
+	legends, 
+	label.cex = 1, 
+	title.cex = 1, 
+	title.just = 'centre', 
+	title.fontface = 'bold', 
+	font.family = NULL, 
+	size = 3, 
+	border = NULL, 
+	border.padding = 1, 
+	layout = c(1, length(legends)), 
+	between.col = 1, 
+	between.row = 1)
 }
 \arguments{
     \item{legends}{A list defining one or more legends. Each must be a separate component called "legend". Each component is a list with components "colours", "labels", "border" (optional), "title" (optional), and "size" (optional).\cr

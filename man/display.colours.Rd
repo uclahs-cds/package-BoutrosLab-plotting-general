@@ -4,7 +4,9 @@
 \title{Function to display R colors, as well as corresponding R grey colours.}
 \description{Displays R colors and their corresponding R grey colours.}
 \usage{
-display.colours(cols, names = cols);
+display.colours(
+	cols, 
+	names = cols);
 }
 \arguments{
     \item{cols}{Vector of colours to be displayed.}

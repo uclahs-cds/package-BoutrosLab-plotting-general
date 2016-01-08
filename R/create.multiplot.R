@@ -10,8 +10,14 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE MULTIPLOT ###################################################################
-create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 2, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 1.5, ylab.cex = 1.5,xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 2, yaxis.cex = 2, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = NULL, retrieve.plot.labels = FALSE, style = 'BoutrosLab', remove.all.border.lines = FALSE) {
+create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = 'Created with BoutrosLab.plotting.general', retrieve.plot.labels = FALSE, plot.labels.to.retrieve = NULL, style = 'BoutrosLab', remove.all.border.lines = FALSE, preload.default = 'custom') {
 
+        if(preload.default == 'paper'){
+
+                }
+        else if(preload.default == 'web'){
+
+                }
 	# check that plots are trellis objects
 	for (i in 1:length(plot.objects)) {
 		if (class(plot.objects[[i]]) != 'trellis') {
@@ -207,39 +213,52 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		key = key,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
-        
         if (is.logical(retrieve.plot.labels) && retrieve.plot.labels == TRUE) {
-			xaxis.labels = list();
-			yaxis.labels = list();
-			xat = list();
-			yat = list();
-			xlimits = list();
-			ylimits = list();
+			Nxaxis.labels = list();
+			Nyaxis.labels = list();
+			Nxat = list();
+			Nyat = list();
+			Nxlimits = list();
+			Nylimits = list();
 			
 			for (p in c(1:length(plot.objects))) {
-				xlimits[[p]] = plot.objects[[p]]$x.limits;
+				if(is.null(plot.labels.to.retrieve) || p %in% plot.labels.to.retrieve){
+					Nxlimits[[p]] = plot.objects[[p]]$x.limits;
+                                	Nxat[[p]] = plot.objects[[p]]$x.scales$at;
+                                	Nylimits[[p]] = plot.objects[[p]]$y.limits;
+                                	Nyat[[p]] = plot.objects[[p]]$y.scales$at;
+   					if (length(plot.objects[[p]]$x.scales$labels) > 0) {
+   						Nxaxis.labels[[p]] = plot.objects[[p]]$x.scales$labels;
+   						}
+					else { Nxaxis.labels[[p]] = TRUE; }
+   					if (length(plot.objects[[p]]$y.scales$labels) > 0) {
+   						Nyaxis.labels[[p]] = plot.objects[[p]]$y.scales$labels;
+   						}
+					else { Nyaxis.labels[[p]] = TRUE; }
+					}
+				else if(!is.null(plot.labels.to.retrieve)){
+					Nxlimits[[p]] = xlimits[[p]];
+					Nxat[[p]] = xat[[p]];
+					Nylimits[[p]] = ylimits[[p]];
+					Nyat[[p]] = yat[[p]];
+                                        if (length(plot.objects[[p]]$x.scales$labels) > 0) {
+                                                Nxaxis.labels[[p]] = plot.objects[[p]]$x.scales$labels;
+                                                }
+                                        else { Nxaxis.labels[[p]] = TRUE; }
+                                        if (length(plot.objects[[p]]$y.scales$labels) > 0) {
+                                                Nyaxis.labels[[p]] = plot.objects[[p]]$y.scales$labels;
+                                                }
+                                        else { Nyaxis.labels[[p]] = TRUE; }
+                                        }
 
-   				if (length(plot.objects[[p]]$x.scales$labels) > 0) {
-   					xaxis.labels[[p]] = plot.objects[[p]]$x.scales$labels;
-   					}
-				else { xaxis.labels[[p]] = TRUE; }
 				
-				xat[[p]] = plot.objects[[p]]$x.scales$at;
-				ylimits[[p]] = plot.objects[[p]]$y.limits;
-   				
-   				if (length(plot.objects[[p]]$y.scales$labels) > 0) {
-   					yaxis.labels[[p]] = plot.objects[[p]]$y.scales$labels;
-   					}
-				else { yaxis.labels[[p]] = TRUE; }
-				yat[[p]] = plot.objects[[p]]$y.scales$at;
 				}
-
-			trellis.object$x.limits = xlimits;
-			trellis.object$y.limits = ylimits;
-			trellis.object$x.scales$at = xat;
-			trellis.object$y.scales$at = yat;
-			trellis.object$x.scales$labels = xaxis.labels;
-			trellis.object$y.scales$labels = yaxis.labels;
+			trellis.object$x.limits = Nxlimits;
+			trellis.object$y.limits = Nylimits;
+			trellis.object$x.scales$at = Nxat;
+			trellis.object$y.scales$at = Nyat;
+			trellis.object$x.scales$labels = Nxaxis.labels;
+			trellis.object$y.scales$labels = Nyaxis.labels;
 			}
     # There is a glitch in update.trellis that prevents us from declaring multiple 'inside' legends
     # To get around this, we'll add in a special case to just set the 'legend' manually

@@ -3,8 +3,13 @@
 \title{Utility function to display statistical result in a plot}
 \description{A utility function to display statistical result in a plot in scientific notation (when appropriate)}
 \usage{
-display.statistical.result(x, lower.cutoff = 2.2e-50, scientific.cutoff = 0.001, 
-digits = 2, statistic.type = "P", symbol = ": ");
+display.statistical.result(
+	x, 
+	lower.cutoff = 2.2e-50, 
+	scientific.cutoff = 0.001, 
+	digits = 2, 
+	statistic.type = "P", 
+	symbol = ": ");
 }
 
 \arguments{
