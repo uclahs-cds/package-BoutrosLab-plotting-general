@@ -1,9 +1,26 @@
+BoutrosLab.plotting.general 5.4.3 2016-01-04
+
+BUG FIXES:
+Inconsitency in dotmap/heatmap grid lines location fixed -> everything follows heatmaps spec now
+fixed bug where sample.order would reorde barplots incorrectly when horizontal
+default font sizes are consistent now
+default font sizes are more porportional 
+
+FEATURE UPDATES:
+ability to add multiple violin fill colours
+able to completely remove borders from heatmaps 
+add p values automatically to box plots
+ability to set a sperate set of defaults based on type of publication ( default sets still need to be added)
+ability to pick what plots to retrieve plot labels from in create.multiplot
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.4.2 2015-12-22
 
 FEATURE UPDATE:
 * create.scatterplot: added option to specify colour of grid lines.
 
----------------------------------------------------------------------------
+-------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.3.9 2015-10-01
 
