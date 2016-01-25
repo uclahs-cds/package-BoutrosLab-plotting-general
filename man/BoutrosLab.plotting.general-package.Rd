@@ -49,6 +49,7 @@ scientific.notation();
 show.available.palettes();
 write.metadata();
 write.plot();
+gleason.score.colour();
 }
 \author{
 Author: Paul C. Boutros <Paul.Boutros@oicr.on.ca>

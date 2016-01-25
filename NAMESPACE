@@ -11,7 +11,11 @@ import(
 	"grid"
 	);
 export(
+	"age.categorical.colour",
+	"age.gradient.colour",
 	"append.footnote",
+	"clinicalT.3category.colour",
+	"clinicalT.9category.colour",
 	"colour.gradient",
 	"covariates.grob",
 	"create.colourkey",
@@ -41,7 +45,10 @@ export(
 	"get.corr.key",
 	"get.defaults",
 	"get.line.breaks",
+	"gleason.score.colour",
 	"legend.grob",
+	"psa.categorical.colour",
+	"psa.gradient.colour",
 	"scientific.notation",
 	"show.available.palettes",
 	"write.metadata",
