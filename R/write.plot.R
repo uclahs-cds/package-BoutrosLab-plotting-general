@@ -40,9 +40,9 @@ write.plot <- function(trellis.object, filename = NULL, additional.trellis.objec
 		options(bitmapType = 'cairo');
 		for(i in c(1:length(filename))){
 			# determine which function to use
-			extension <- sub('(.+)\\.', '', filename[i], perl = TRUE);
+			extension <- file_ext(filename[i]);
 			# if no extension is passed, use TIFF
-			if (extension == filename[i]) {
+			if (extension == "") {
 				extension = 'tiff';
 				}
 
