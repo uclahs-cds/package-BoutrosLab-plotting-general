@@ -110,7 +110,11 @@ create.barplot(
 	line.to = 0, 
 	line.col = 'transparent', 
 	line.infront = TRUE,
-	text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
+	text.above.bars = list(labels = NULL, 
+				padding = NULL, 
+				bar.locations = NULL, 
+				rotation = 0
+				),
 	style = 'BoutrosLab',
 	preload.default = 'custom'
 );

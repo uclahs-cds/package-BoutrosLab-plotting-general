@@ -1124,7 +1124,8 @@ create.multiplot(
     print.new.legend = TRUE,
     );
 
-BarPlotDataRetLabels <- data.frame(x = c("test1","test2","test3","test4"), y = c(10000,13000,12000,6700))
+BarPlotDataRetLabels <- data.frame(x = c("test1","test2","test3","test4"), 
+				   y = c(10000,13000,12000,6700))
 HeatMapDataRetLabels <- matrix(nrow = 4, ncol = 4, data = rnorm(16,1,1))
 
 bpRet <- create.barplot(
