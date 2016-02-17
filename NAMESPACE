@@ -52,6 +52,7 @@ export(
 	"psa.gradient.colour",
 	"scientific.notation",
 	"show.available.palettes",
+	"tissue.colour",
 	"write.metadata",
 	"write.plot"
 	);

@@ -1,5 +1,6 @@
 \name{colour}
 \alias{gleason.score.colour}
+\alias{tissue.colour}
 \alias{gleason.sum.colour}
 \alias{age.gradient.colour}
 \alias{clinicalT.3category.colour}
