@@ -27,7 +27,7 @@ age.categorical.colour <- function(x, scheme=""){
             x.processed <- x
             };
 
-        if(length(grep(x=x, '-|>')) == 0){
+        if(length(grep(x=x, '-|>|<')) == 0){
             x <- as.numeric(x);
             x.processed <- rep('<50', length(x));
             x.processed[x >=50 & x < 60] <- '50 - 60';
@@ -59,7 +59,7 @@ age.categorical.colour <- function(x, scheme=""){
             x.processed <- x
             };
 
-        if(length(grep(x=x, '-|>')) == 0){
+        if(length(grep(x=x, '-|>|<')) == 0){
             x <- as.numeric(x);
             x.processed <- rep('<40', length(x));
             x.processed[x >=40 & x < 50] <- '40 - 50';
