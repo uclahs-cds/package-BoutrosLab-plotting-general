@@ -122,11 +122,6 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		relation = y.relation
 		);
 
-	message('x.scale');
-	print(x.scale);
-	message('y.scale');
-	print(y.scale);
-
 	trellis.object <- update(
 		combined.plot.objects,
 		relation = 'free',
