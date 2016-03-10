@@ -70,7 +70,8 @@ create.multiplot(
 	plot.labels.to.retrieve = NULL,
 	style = 'BoutrosLab', 
 	remove.all.border.lines = FALSE,
-	preload.default = 'custom');
+	preload.default = 'custom',
+	plot.for.carry.over.when.same = 1);
 }
 \arguments{
     \item{plot.objects}{A list of plot objects. Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right}
@@ -135,11 +136,12 @@ create.multiplot(
     \item{plot.layout}{A vector specifying the layout of the plots, defaults to a single column/ c(1,length(plot.objects))}
     \item{layout.skip}{A vector specifying which positions in the layout grid to leave blank/skip, defaults to not skipping any spots in the layout / rep(FALSE,length(plot.objects)). Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right }
     \item{description}{Short description of image/plot; default NULL.}
-    \item{retrieve.plot.labels}{Should the plot retrieve the limits, labels and label locations from the the individual plots}
-    \item{plot.labels.to.retrieve}{list of plot objects to retrieve plot labels from}
+    \item{retrieve.plot.labels}{Should the plot retrieve the limits, labels and label locations from the the individual plots - no longer doing anything}
+    \item{plot.labels.to.retrieve}{a vector of the indices referencing which plots in plot.objects should have there limits, at, and axis labels retrived in the multiplot vs using the arguments specified to multiplot}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{plot.for.carry.over.when.same}{which plot }
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ken Chu and Denise Mak}
