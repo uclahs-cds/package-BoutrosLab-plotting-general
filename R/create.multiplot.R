@@ -65,10 +65,10 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	else if (2 == yaxis.alternating) { yaxis.tck[1] <- 0; }
 
 	# if there are axis labels or tck locations for each plot, then the relations need to be free
-	if ((typeof(yaxis.labels) == 'list') && (typeof(yat) == 'list')) {
+	if ((typeof(yaxis.labels) == 'list') || (typeof(yat) == 'list')) {
 		y.relation <- 'free';
 		}
-	if ((typeof(xaxis.labels) == 'list') && (typeof(xat) == 'list')) {
+	if ((typeof(xaxis.labels) == 'list') || (typeof(xat) == 'list')) {
 		x.relation <- 'free';
 		}
 
@@ -121,6 +121,11 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
 		relation = y.relation
 		);
+
+	message('x.scale');
+	print(x.scale);
+	message('y.scale');
+	print(y.scale);
 
 	trellis.object <- update(
 		combined.plot.objects,
