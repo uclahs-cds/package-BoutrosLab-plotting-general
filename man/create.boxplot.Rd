@@ -103,7 +103,9 @@ create.boxplot(
 	style = 'BoutrosLab',
 	add.pvalues = FALSE,
 	pvalues.cex = c(1),
-	preload.default = 'custom');
+	preload.default = 'custom',
+    box.ratio = 1
+    );
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -206,6 +208,7 @@ create.boxplot(
     \item{add.pvalues}{logical determining if pvalues should appear above boxes}
     \item{pvalues.cex}{size of pvalues text},
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{box.ratio}{ability to change the box width, defaults to 1}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Maud H.W. Starmans}

@@ -31,7 +31,8 @@ create.boxplot <- function(
 	size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
 	description = 'Created with BoutrosLab.plotting.general', xaxis.fontface = 'bold', yaxis.fontface = 'bold', line.func = NULL, 
 	line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE, sample.order = 'none', 
-	order.by = 'median', style = 'BoutrosLab', add.pvalues = FALSE,pvalues.cex = c(1),preload.default = 'custom') {
+	order.by = 'median', style = 'BoutrosLab', add.pvalues = FALSE,pvalues.cex = c(1),preload.default = 'custom',
+	box.ratio = 1) {
 
 	# add stripplot if requested
 	if (add.stripplot & outliers) {
@@ -292,7 +293,8 @@ create.boxplot <- function(
 		as.table = as.table,
 		pretty = TRUE,
 		key = key,
-		legend = legend
+		legend = legend,
+		box.ratio = box.ratio
 		);
 
 	# reorder by median
