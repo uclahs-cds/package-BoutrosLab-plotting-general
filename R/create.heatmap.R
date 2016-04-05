@@ -1264,7 +1264,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				main = if (main == '') { 0.1 } else { 1.0 },
 				main.key.padding = if ('' == main) { 0.1 } else { 1.0 },
 				key.top = 1,
-				key.axis.padding = if (ncol(x < 30)) { 0.9 } else { 0.5 },
+				key.axis.padding = if (ncol(x) < 30) { 0.9 } else { 0.5 },
 				axis.top = if (1 == x.alternating) { 0.1 } else { 1.0 },
 				axis.bottom = if (is.null(xaxis.lab)) { 0.2 } else { 1.0 },
 				axis.xlab.padding = axis.xlab.padding,
