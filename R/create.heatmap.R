@@ -1283,7 +1283,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				ylab.axis.padding = 0.1,
 				axis.left = 1,
 				axis.right = 0.1,
-				axis.key.padding = if (nrow(x < 30)) { 0.9 } else { 0.5 },
+				axis.key.padding = if (nrow(x) < 30) { 0.9 } else { 0.5 },
 				key.right = 1,
 				right.padding = right.padding
 				),
