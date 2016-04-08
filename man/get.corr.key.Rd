@@ -13,7 +13,9 @@ get.corr.key(
 	key.cex = 1, 
 	key.title = NULL, 
 	title.cex = 1, 
-	alpha.background = 0)
+	alpha.background = 0,
+	num.decimals = 2
+	)
 }
 \arguments{
     \item{x}{A vector of values}
@@ -27,6 +29,7 @@ get.corr.key(
     \item{key.title}{The title of the key. Defaults to NULL}
     \item{title.cex}{The size of the key title. Defaults to 1}
     \item{alpha.background}{A value from 0 to 1 indicating the transparency of the legend box.}
+    \item{num.decimals}{Number of decimal places to keep for spearman, pearson and kendall correlations. Defaults to 2.}
 }
 \value{Returns a key in the format specified in the xyplot documentation.}
 \author{Daryl Waggott}

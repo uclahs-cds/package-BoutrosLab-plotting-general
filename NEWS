@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 5.6.2 2015-04-08
+
+FEATURE UPDATE
+* get.cor.key: parameterizing number of decimal places to keep for spearman, pearson and kendall correlation values
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.4.3 2016-01-04
 
 BUG FIXES:

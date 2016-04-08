@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE CORRELATION KEY ############################################################
-get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos = 0.03, y.pos = 0.97, key.corner = NULL, key.cex = 1, key.title = NULL, title.cex = 1, alpha.background = 0) {
+get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos = 0.03, y.pos = 0.97, key.corner = NULL, key.cex = 1, key.title = NULL, title.cex = 1, alpha.background = 0, num.decimals = 2) {
 
 	# use 'all' as an alternative to all the label items
 	if (label.items[1] == 'all') { label.items <- c('spearman', 'pearson', 'kendall', 'beta0', 'beta1', 'spearman.p', 'pearson.p', 'kendall.p', 'beta1.p'); }
@@ -41,14 +41,17 @@ get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos =
 			key.item <- substitute(
 				corr.symbol == paste(correlation, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
 				env = list(
-					correlation = round(
-						BoutrosLab.statistics.general::get.correlation.p.and.corr(
-							x = x,
-							y = y,
-							method = i
-							)[1],
-						digits = 2
-					),
+					correlation = format(
+						round(
+							BoutrosLab.statistics.general::get.correlation.p.and.corr(
+								x = x,
+								y = y,
+								method = i
+								)[1],
+							digits = num.decimals
+							),
+						nsmall = num.decimals
+						),
 					corr.symbol = corr.symbol
 					)
 				);
@@ -59,7 +62,7 @@ get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos =
 			key.item <- substitute(
 				Beta[0] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
 				env = list(
-					beta.effect = round(coef(lm(y ~ x))[1], 2)
+					beta.effect = format(round(coef(lm(y ~ x))[1], num.decimals), nsmall = num.decimals)
 					)
 				);
 			}
@@ -70,7 +73,7 @@ get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos =
 			key.item <- substitute(
 				Beta[1] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
 				env = list(
-					beta.effect = round(coef(lm(y ~ x))[2], 2)
+					beta.effect = format(round(coef(lm(y ~ x))[2], num.decimals), nsmall = num.decimals)
 					)
 				);
 			}
@@ -80,7 +83,7 @@ get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos =
 			key.item <- substitute(
 				Beta[paste(0,",rob")] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
 				env = list(
-					beta.effect = round(coef(rlm(y ~ x))[1], 2)
+					beta.effect = format(round(coef(rlm(y ~ x))[1], num.decimals), nsmall = num.decimals)
 					)
 				);
 			}
@@ -91,7 +94,7 @@ get.corr.key <- function(x, y, label.items = c("spearman","spearman.p"), x.pos =
 			key.item <- substitute(
 				Beta[paste(1, ",rob")] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
 				env = list(
-					beta.effect = round(coef(rlm(y ~ x))[2], 2)
+					beta.effect = format(round(coef(rlm(y ~ x))[2],  num.decimals), nsmall = num.decimals)
 					)
 				);
 			}
