@@ -26,7 +26,7 @@ gleason.sum.colour <- function(values) {
     }
   if(any(values == 7)){
     gleason.vals <- c(gleason.vals, 3)
-    gleason.cols[values == 7] <- gleason.colours[3] <- gleason.colours[5];
+    gleason.cols[values == 7] <- gleason.colours[3];
     }
   if(any(values == 8)){
     gleason.vals <- c(gleason.vals, 4)
