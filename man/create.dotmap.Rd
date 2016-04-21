@@ -53,6 +53,7 @@ create.dotmap(
 	spot.colour.function = 'default', 
 	NA.spot.size = 7, 
 	NA.pch = 4, 
+	NA.spot.size.colour = 'black',
 	grid.colour = NULL, 
 	colour.scheme = 'white', 
 	total.colours = 99, 
@@ -137,6 +138,7 @@ create.dotmap(
     \item{spot.colour.function}{The function that translates values in x into dotmap spot-colour. The default gives negative values blue, positive values red, and zero white}
     \item{NA.spot.size}{The size for plotting character for NA cells. Defaults to 7.}
     \item{NA.pch}{The type of plotting character to represent NA cells. Defaults to 4 ('X').}
+    \item{NA.spot.size.colour}{Colour for plotting character representing NA cells. Defaults to black.}
     \item{grid.colour}{The colour for the grid lines. DEPRECATED}
     \item{colour.scheme}{Background colouring. Accepts a vector of colours. Vectors of two or three colours are gradiated to create the final palette. Defaults to \dQuote{white}.}
     \item{total.colours}{Total number of colours to plot for the Background colours}
