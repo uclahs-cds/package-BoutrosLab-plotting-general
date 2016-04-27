@@ -538,5 +538,20 @@ create.hexbinplot(
     description = 'Hexbinplot created by BoutrosLab.plotting.general'
     );
 
+# Multiplot different groups
+set.seed(73);
+# Randomly generate groups
+groups <- sample(1:2, 10000, replace = TRUE);
+
+create.hexbinplot(
+	formula = y ~ x | groups,
+	filename = 'stratified_hexbinplot.tiff',
+	data = simple.data,
+	description = 'Hexbinplot created by BoutrosLab.plotting.general',
+	strip.col = 'white',
+	strip.cex = 0.8,
+	strip.fontface = 'bold'
+	);
+
 }
 \keyword{hplot}

@@ -1,9 +1,17 @@
+BoutrosLab.plotting.general 5.6.5 2016-04-27
+
+MINOR UPDATE
+* create.boxplot: Added example for adding text to plot.
+* create.hexbinplot: Added example of stratified multiplot.
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.4 2016-04-21
 
 FEATURE UPDATE
 * create.dotmap: NA plotting character can be made different colours with new variable, NA.spot.size.colour.
 	Default is set to black.
-	
+
 --------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.6.2 2016-04-08
@@ -19,11 +27,11 @@ BUG FIXES:
 Inconsitency in dotmap/heatmap grid lines location fixed -> everything follows heatmaps spec now
 fixed bug where sample.order would reorde barplots incorrectly when horizontal
 default font sizes are consistent now
-default font sizes are more porportional 
+default font sizes are more porportional
 
 FEATURE UPDATES:
 ability to add multiple violin fill colours
-able to completely remove borders from heatmaps 
+able to completely remove borders from heatmaps
 add p values automatically to box plots
 ability to set a sperate set of defaults based on type of publication ( default sets still need to be added)
 ability to pick what plots to retrieve plot labels from in create.multiplot
@@ -40,7 +48,7 @@ FEATURE UPDATE:
 BoutrosLab.plotting.general 5.3.9 2015-10-01
 
 FEATURE UPDATE:
-* create.heatmap: turns off grid lines when row or column number exceeds a certain threshold. 
+* create.heatmap: turns off grid lines when row or column number exceeds a certain threshold.
 * auto-removal of grid lines can be overrided with forcing parameters
 
 ---------------------------------------------------------------------------
@@ -188,7 +196,7 @@ MINOR UPDATE
 * default.colours: added new schemes spiral.noon and spiral.night
 * default.colours: rearranged order of qual scheme to decrease red-green combinations
 * force.colour.scheme: changed CNV colours to red/blue/green/white, MSI to green/yellow, risk to red/yellow
-* reorganized default.colours and force.colour.scheme to return deprecated schemes 
+* reorganized default.colours and force.colour.scheme to return deprecated schemes
 * show.available.palettes: reorganized layout of 'specific' scheme output
 ---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.1.6 2014-10-08
@@ -199,7 +207,7 @@ MINOR UPDATE
 BoutrosLab.plotting.general 5.1.5 2014-09-19
 
 MINOR UPDATE
-* show.available.palettes: added new function to show schemes available in default.colours and 
+* show.available.palettes: added new function to show schemes available in default.colours and
 force.colour.scheme
 * default.colours: refactored, changed greyscale warning to auto-calculate
 ---------------------------------------------------------------------------
@@ -244,7 +252,7 @@ MINOR UPDATE
 BoutrosLab.plotting.general 5.0.27 2014-07-31
 
 MINOR UPDATE
-* Updated examples in scatterplot, qqplot comparison, hexbinplot, heatmap, dotmap, and barplot to have better formatted axes labels 
+* Updated examples in scatterplot, qqplot comparison, hexbinplot, heatmap, dotmap, and barplot to have better formatted axes labels
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.0.26 2014-07-31
 
@@ -371,7 +379,7 @@ MINOR UPDATE
 BoutrosLab.plotting.general 5.0.2 2014-06-02
 
 BUG FIXES
-* create.barplot: 
+* create.barplot:
   - Re-added origin to panel call to allow for negative bars
   - Set y-axis default values to appear automatically
   - Fixed ordering of bars by increasing data
@@ -410,7 +418,7 @@ MINOR UPDATE
 BoutrosLab.plotting.general 4.3.14 2014-05-28
 
 MINOR UPDATE
-* Updated test suite to remove soon-to-be deleted plotting functions 
+* Updated test suite to remove soon-to-be deleted plotting functions
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 4.3.13 2014-05-23
 
@@ -576,7 +584,7 @@ BoutrosLab.plotting.general 4.2.24 2014-04-24
 MINOR UPDATE
 * embed.plot: Added example & updated documentation to use proper parameters
 * create.hexbinplot: Fixed formatting issue
-* create.scatterplot: Fixed auto-sensing of labels 
+* create.scatterplot: Fixed auto-sensing of labels
 * create.barplot: Added functionality of adding text above bars
 * create.heatmap: Added ability to have multi-sized borders
 * create.heatmap: Adjusted input of 'main' to accept non-list values
@@ -673,7 +681,7 @@ BoutrosLab.plotting.general 4.2.14 2014-03-05
 MINOR UPDATE
 * create.heatmap: Added functionality of inserting additional symbols
 * create.heatmap: Added example to documentation of symbol usage
-* create.scatterplot: Changed ablines to be drawn in front of plot 
+* create.scatterplot: Changed ablines to be drawn in front of plot
 * Added datasets files to inst folder for later use in examples
 * Added vignettes folder containing multiplot tutorial
 
@@ -828,7 +836,7 @@ MINOR UPDATES
 BoutrosLab.plotting.general 4.0.3 2013-10-18
 
 MINOR UPDATES
-* create.hexbinplot: Changed default of 'mincnt' to 1 (from 0) 
+* create.hexbinplot: Changed default of 'mincnt' to 1 (from 0)
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 4.0.2 2013-09-26
 
@@ -847,7 +855,7 @@ MAJOR UPDATES
 * Added 'write.metadata' function
 * Added 'description' parameter to all plotting function documentations
 * write.metadata: Added 'operating system', 'machine', 'system2'
-* create.multiplot: Updated documentation 
+* create.multiplot: Updated documentation
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 3.10.2 2013-07-29
 
@@ -919,7 +927,7 @@ MINOR UPDATES
 BoutrosLab.plotting.general 3.8.5 2013-06-17
 
 MINOR UPDATES
-* default.colours: Adjustments to chromosome colour palette 
+* default.colours: Adjustments to chromosome colour palette
 * default.colours: Added ability to provide multiple sequential and binary colour schemes
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 3.8.4 2013-06-13
@@ -1082,7 +1090,7 @@ MAJOR UPDATES
 BoutrosLab.plotting.general 3.5.17 2012-12-09
 
 MINOR UPDATES
-* create.polygon: Changed default values of 'xgrid.at' and 'ygrid.at' 
+* create.polygon: Changed default values of 'xgrid.at' and 'ygrid.at'
 * create.polygon: Added 'xaxis.fontface' and 'yaxis.fontface'
 * create.polygon: Added 'fontface = xaxis.fontface' and 'fontface = yaxis.fontface' to scales$x and scales$y
 * create.polygon: Added example to demonstrate use with legend.grob
@@ -1212,7 +1220,7 @@ BoutrosLab.plotting.general 3.4.1 2012-09-25
 
 MINOR UPDATES
 * create.heatmap: Added code to close devices opened by the grid::covertUnit function and remove Rplots.pdf files if necessary
-* legend.grob: Added code to remove Rplots.pdf files created by the lattice::draw.key 
+* legend.grob: Added code to remove Rplots.pdf files created by the lattice::draw.key
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 3.4.0 2012-09-12
 
@@ -1266,8 +1274,8 @@ MINOR UPDATES
 BoutrosLab.plotting.general 3.2.31 2012-08-16
 
 MINOR UPDATES
-* create.heatmap: Added notes in help file for using euclidean when lots of ties and correlation fails 
-* legend.grob: Added notes in help file for using euclidean when lots of ties and correlation fails 
+* create.heatmap: Added notes in help file for using euclidean when lots of ties and correlation fails
+* legend.grob: Added notes in help file for using euclidean when lots of ties and correlation fails
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 3.2.30 2012-08-14
 
@@ -1591,7 +1599,7 @@ MINOR UPDATES
 BoutrosLab.plotting.general 3.0.5 2012-02-15
 
 MINOR UPDATES
-* Added "see also" sections of documentation of plotting functions for easy referencing 
+* Added "see also" sections of documentation of plotting functions for easy referencing
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 3.0.4 2012-02-10
 
@@ -1682,7 +1690,7 @@ MINOR UPDATES
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.11.9 2012-01-04
 
-* Committing new version 
+* Committing new version
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.11.8 2012-01-04
 
@@ -1752,7 +1760,7 @@ BoutrosLab.plotting.general 2.10.10 2011-12-12
 
 MINOR UPDATES
 * optimal.heatmap.cex.txt: Improved formatting of header
-* create.heatmap: Cleaned up code 
+* create.heatmap: Cleaned up code
 * create.heatmap: Added example of how to specify row and column labels
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.10.9 2011-12-12
@@ -1778,7 +1786,7 @@ BUG FIXES
 * create.scatterplot: Fixed bug in default behaviour for 'curve.from' and 'curve.to' parameters
 
 MINOR UPDATES
-* create.scatterplot: Updated example 
+* create.scatterplot: Updated example
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.10.5 2011-12-01
 
@@ -1791,7 +1799,7 @@ MINOR UPDATES
 * create.scatterplot: Replace parameter 'add.lines' with 'add.curves', this allowing the user to draw any segment of any curve that can be specified with a function
 * create.scatterplot: Added example to demonstrate use of 'add.curves' parameter
 * create.polygon: Fixed 'alternating' parameter to force x-axis labels to be on the bottom row
-* create.polygon: Updated example 
+* create.polygon: Updated example
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.10.3 2011-11-29
 
@@ -1850,13 +1858,13 @@ MINOR UPDATES
 BoutrosLab.plotting.general 2.9.38 2011-09-14
 
 MINOR UPDATES
-* create.dotmap: Added example of using 'padding.text' 
+* create.dotmap: Added example of using 'padding.text'
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.9.37 2011-09-13
 
 MINOR UPDATES
 * create.qqplot.fit: Added polygon plots for confidence intervals
-* create.scatterplot: Fixed 'add.axes' parameter default value in documentation 
+* create.scatterplot: Fixed 'add.axes' parameter default value in documentation
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.9.36 2011-09-13
 
@@ -1912,7 +1920,7 @@ MINOR UPDATES
 BoutrosLab.plotting.general 2.9.27 2011-08-26
 
 MINOR UPDATES
-* create.histogram: Changed formatting of documentation 
+* create.histogram: Changed formatting of documentation
 * create.multiple.stripplots: Added 'ylab.axis.padding' parameter
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.9.26 2011-08-26
@@ -2133,7 +2141,7 @@ BoutrosLab.plotting.general 2.7.3 2011-05-31
 
 MINOR UPDATES
 * get.corr.key: Fixed syntax error in example
-* create.boxplot: Reverted functionality to use panel.BL.bwplot 
+* create.boxplot: Reverted functionality to use panel.BL.bwplot
 * create.scatterplot: Updated examples
 * create.histogram: Updated examples
 * create.scatterplot.with.error: Updated examples
@@ -2182,7 +2190,7 @@ BoutrosLab.plotting.general 2.6.4 2011-04-28
 MINOR UPDATES
 * get.corr.key: Improved code formatting
 * get.corr.key: Added 'beta0' and 'beta1' options to the key
-* create.hexbinplot: Added 'aspect' parameter to adjust plot size 
+* create.hexbinplot: Added 'aspect' parameter to adjust plot size
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 2.6.3 2011-04-21
 
@@ -2499,7 +2507,7 @@ MINOR UPDATES
 BoutrosLab.plotting.general 1.9.19 2010-09-12
 
 MINOR UPDATES
-* Updated documentation of plotting functions 
+* Updated documentation of plotting functions
 * Updated plotting functions to output a trellis object by default
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 1.9.18 2010-09-03
@@ -2866,7 +2874,7 @@ BoutrosLab.plotting.general 1.4.11 2010-02-19
 
 MINOR UPDATES
 * create.barplot: Fixed handling of clustering methods other than 'none' or 'diana'
-* create.heatmap: Allowed for column-wise covariates 
+* create.heatmap: Allowed for column-wise covariates
 * create.heatmap: Allowed for any agglomerative clustering method available via hclust
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 1.4.10 2010-02-08
