@@ -7,6 +7,9 @@ FEATURE UPDATE
 	Added parameter 'remove.all.border.lines' to allow barplots with no borders.
 	Added example for adding text to plot and adjusting box.ratio.
 
+BUG FIX
+* create.barplot: fixed adding error bars for data-frames [BPG-4]
+
 --------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.6.5 2016-04-27

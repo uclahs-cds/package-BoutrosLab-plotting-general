@@ -196,11 +196,11 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 				else {
 					xoffset <- 0;
 					}
-
 				panel.arrows(
-					x0 = x + xoffset,
+					# convert to numeric to handle when x is a factor
+					x0 = as.numeric(x) + xoffset,
 					y0 = y + y.error.up,
-					x1 = x + xoffset,
+					x1 = as.numeric(x) + xoffset,
 					y1 = y - y.error.down,
 					length = error.whisker.width,
 					angle = error.whisker.angle,
