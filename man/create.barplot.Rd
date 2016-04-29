@@ -66,13 +66,13 @@ create.barplot(
 	layout = NULL, 
 	as.table = FALSE, 
 	col = 'black', 
-    add.text = FALSE,
-    text.labels = NULL,
-    text.x = NULL,
-    text.y = NULL,
-    text.col = 'black',
-    text.cex = 1,
-    text.fontface = 'bold',
+	add.text = FALSE,
+	text.labels = NULL,
+	text.x = NULL,
+	text.y = NULL,
+	text.col = 'black',
+	text.cex = 1,
+	text.fontface = 'bold',
 	strip.col = 'white', 
 	strip.cex = 1, 
 	background.col = 'transparent', 
@@ -110,7 +110,7 @@ create.barplot(
 	alpha.rectangle = 1, 
 	origin = 0, 
 	reference = TRUE, 
-    box.ratio = 2, 
+	box.ratio = 2, 
 	sample.order = 'none', 
 	group.labels = FALSE, 
 	line.func = NULL, 
@@ -124,7 +124,8 @@ create.barplot(
 				rotation = 0
 				),
 	style = 'BoutrosLab',
-	preload.default = 'custom'
+	preload.default = 'custom',
+	remove.all.border.lines = FALSE
 );
 }
 \arguments{
@@ -246,6 +247,7 @@ create.barplot(
     \item{text.above.bars}{Should some form of text appear above the bars}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Mehrdad Shamsi}

@@ -4,6 +4,7 @@ FEATURE UPDATE
 * create.barplot:
 	Added parameters 'add.text', 'text.x', 'text.y', 'text.labels', 'text.col', 'text.cex', 'text.fontface' to allow users to add text labels to plot area.
 	Added parameter 'box.ratio' for adjusting thickness of each bar.
+	Added parameter 'remove.all.border.lines' to allow barplots with no borders.
 	Added example for adding text to plot and adjusting box.ratio.
 
 --------------------------------------------------------------------------

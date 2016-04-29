@@ -35,7 +35,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 	col.rectangle = 'transparent', alpha.rectangle = 1, origin = 0, reference = TRUE, box.ratio = 2,
 	sample.order = 'none', group.labels = FALSE, line.func = NULL, line.from = 0, line.to = 0,
 	line.col = 'transparent', line.infront = TRUE, text.above.bars = list(labels = NULL, padding = NULL,
-	bar.locations = NULL, rotation = 0), style = 'BoutrosLab',preload.default = 'custom') {
+	bar.locations = NULL, rotation = 0), style = 'BoutrosLab',preload.default = 'custom', remove.all.border.lines = FALSE) {
 
 
 ####### Error checking ########
@@ -317,7 +317,7 @@ create.barplot <- function(formula, data, groups = NULL, stack = FALSE, filename
 		par.settings = list(
 			axis.line = list(
 				lwd = lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				col = if ('Nature' == style || remove.all.border.lines){'transparent'} else('black')
 				),
 			layout.heights = list(
 				top.padding = top.padding,

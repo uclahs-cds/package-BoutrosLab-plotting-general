@@ -104,7 +104,7 @@ create.boxplot(
 	add.pvalues = FALSE,
 	pvalues.cex = c(1),
 	preload.default = 'custom',
-    box.ratio = 1
+	box.ratio = 1
     );
 }
 \arguments{
