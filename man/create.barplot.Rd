@@ -66,6 +66,13 @@ create.barplot(
 	layout = NULL, 
 	as.table = FALSE, 
 	col = 'black', 
+    add.text = FALSE,
+    text.labels = NULL,
+    text.x = NULL,
+    text.y = NULL,
+    text.col = 'black',
+    text.cex = 1,
+    text.fontface = 'bold',
 	strip.col = 'white', 
 	strip.cex = 1, 
 	background.col = 'transparent', 
@@ -103,6 +110,7 @@ create.barplot(
 	alpha.rectangle = 1, 
 	origin = 0, 
 	reference = TRUE, 
+    box.ratio = 2, 
 	sample.order = 'none', 
 	group.labels = FALSE, 
 	line.func = NULL, 
@@ -183,6 +191,13 @@ create.barplot(
     \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{col}{Filling colour of bars, defaults to black, does a grey-scale spectrum if !is.null(groups)}
+    \item{add.text}{Allow additional text to be drawn, default is FALSE}
+    \item{text.labels}{Labels for additional text}
+    \item{text.x}{The x co-ordinates where additional text should be placed}
+    \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.col}{The colour of additional text}
+    \item{text.cex}{The size of additional text}
+    \item{text.fontface}{The fontface for additional text}
     \item{strip.col}{Strip background colour, defaults to white}
     \item{strip.cex}{Strip title character expansion}
     \item{background.col}{Plot background colour, defaults to transparent}
@@ -220,6 +235,7 @@ create.barplot(
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle}
     \item{origin}{The origin of the plot, generally 0}
     \item{reference}{Should the reference line be printed at the origin}
+    \item{box.ratio}{Specifies the width of each bar, defaults to 2}
     \item{sample.order}{Should the bars be reordered, accepts values \dQuote{increasing}, \dQuote{decreasing} or a vector of sample names. Labels will also be reordered}
     \item{group.labels}{Should the labels be grouped to the same amount of bars per column}
     \item{line.func}{Function for the line that should be drawn on top of plot}
@@ -683,6 +699,25 @@ create.barplot(
     main = 'Plot horizontally',
     # Adjusting the panel layout
     plot.horizontal = TRUE,
+    description = 'Barplot created by BoutrosLab.plotting.general'
+    );
+
+# Change bar thickness and add text labels
+create.barplot(
+    filename = 'Barplot_Text_Labels.tiff',
+    # switch formula order
+    formula = samples ~ values,
+    data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
+    main = 'Text labels and thin bars',
+    # Adjusting the panel layout
+    plot.horizontal = TRUE,
+    box.ratio = 0.6,
+    add.text = TRUE,
+    text.x = 27.75,
+    text.y = 1:15,
+    text.labels = barplot.data[barplot.data$mutation == 'nonsynonymous','values'],
+    text.cex = 0.8,
+    text.fontface = 'italic',
     description = 'Barplot created by BoutrosLab.plotting.general'
     );
 

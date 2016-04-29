@@ -1,3 +1,13 @@
+BoutrosLab.plotting.general 5.6.6 2016-04-29
+
+FEATURE UPDATE
+* create.barplot:
+	Added parameters 'add.text', 'text.x', 'text.y', 'text.labels', 'text.col', 'text.cex', 'text.fontface' to allow users to add text labels to plot area.
+	Added parameter 'box.ratio' for adjusting thickness of each bar.
+	Added example for adding text to plot and adjusting box.ratio.
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.5 2016-04-27
 
 MINOR UPDATE
