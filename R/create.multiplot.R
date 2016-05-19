@@ -10,7 +10,24 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE MULTIPLOT ###################################################################
-create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, main.key.padding = 1, ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1, left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL, ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE, xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL, ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same', xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1, key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))), legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE, plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)), description = 'Created with BoutrosLab.plotting.general', retrieve.plot.labels = FALSE, plot.labels.to.retrieve = NULL, style = 'BoutrosLab', remove.all.border.lines = FALSE, preload.default = 'custom', plot.for.carry.over.when.same = 1) {
+create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,1), panel.widths = 1, main = NULL,
+							main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, main.key.padding = 1,
+							ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1,
+							left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL,
+							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xlab.top.cex = 2,
+							xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
+							xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE,
+							xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL,
+							ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold',
+							x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same',
+							xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1,
+							key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in',
+							resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))),
+							legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE,
+							plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)),
+							description = 'Created with BoutrosLab.plotting.general', retrieve.plot.labels = FALSE,
+							plot.labels.to.retrieve = NULL, style = 'BoutrosLab', remove.all.border.lines = FALSE,
+							preload.default = 'custom', plot.for.carry.over.when.same = 1) {
 
 	if(preload.default == 'paper'){
 
@@ -49,7 +66,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 				}
 		       	xat.plots[[i]] <- plot.objects[[i]]$x.scales$at;
 		       	yat.plots[[i]] <- plot.objects[[i]]$y.scales$at;
-			xlimits.plots[[i]] <- plot.objects[[i]]$x.limits;
+				xlimits.plots[[i]] <- plot.objects[[i]]$x.limits;
 		       	ylimits.plots[[i]] <- plot.objects[[i]]$y.limits;
 			}
 		}
@@ -78,19 +95,51 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		x.relation <- 'free';
 		}
 
-	# if the limits, at and axis labels are not specified then carry them forward from the plots
-	if(is.null(xlimits)) {
-		xlimits <- if('same' == x.relation){ xlimits.plots[[plot.for.carry.over.when.same]]} else {xlimits.plots};
+	# Checks to see if there are NULL value(s) in the limit lists
+	x.atleast.one.null = FALSE;
+	if(!is.null(xlimits) && !retrieve.plot.labels){
+		for(i in 1:length(xlimits)){
+			if(is.null(xlimits[[i]])){
+				x.atleast.one.null = TRUE;
+				break;
+				}
+			}
 		}
+
+	# If there are NULL value(s) or limit=NULL, then replace the NULL value(s)
+	if(is.null(xlimits) || x.atleast.one.null){
+		xlimits <- replace.nulls(
+			xlimits,
+			xlimits.plots[[plot.for.carry.over.when.same]],
+			xlimits.plots,
+			x.relation);
+	}
+
 	if(!is.null(xat) && !is.na(xat) && 1 == length(xat) && xat == TRUE) {
 		xat <- if('same' == x.relation){xat.plots[[plot.for.carry.over.when.same]]} else {xat.plots};
 		}
 	if(!is.null(xaxis.labels) && !is.na(xaxis.labels) && 1 == length(xaxis.labels) && xaxis.labels == TRUE) {
 		xaxis.labels <- if('same' == x.relation){xaxis.labels.plots[[plot.for.carry.over.when.same]]} else {xaxis.labels.plots};
 		}
-	if(is.null(ylimits)) {
-		ylimits <- if('same' == y.relation){ ylimits.plots[[plot.for.carry.over.when.same]]} else {ylimits.plots};
+
+	y.atleast.one.null = FALSE;
+	if(!is.null(ylimits) && !retrieve.plot.labels){
+		for(i in 1:length(ylimits)){
+			if(is.null(ylimits[[i]])){
+				y.atleast.one.null = TRUE;
+				break;
+				}
+			}
 		}
+
+	if(is.null(ylimits) || y.atleast.one.null){
+		ylimits <- replace.nulls(
+			ylimits,
+			ylimits.plots[[plot.for.carry.over.when.same]],
+			ylimits.plots,
+			y.relation);
+	}
+
 	if(!is.null(yat) && !is.na(yat) && 1 == length(yat) && yat == TRUE) {
 		yat <- if('same' == y.relation){yat.plots[[plot.for.carry.over.when.same]]} else {yat.plots};
 		}
@@ -286,7 +335,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	# To get around this, we'll add in a special case to just set the 'legend' manually
 	if (sum(names(legend) == "inside", na.rm = TRUE) > 1) {
 		trellis.object$legend <- legend;
-		} 
+		}
     
 	# If flag set to TRUE for removing all border lines, reset panel border lines
 	# TODO: RSUN, allow custom setting to redraw certain border lines
@@ -337,7 +386,6 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 	return(
 		BoutrosLab.plotting.general::write.plot(
 			trellis.object = trellis.object,
@@ -351,3 +399,23 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			)
 		);
 	}
+
+### FUNCTION TO REPLACE ANY NULL VALUES IN XLIMITS OR YLIMITS ######################################
+replace.nulls <- function(limits, carry.over, limits.plots, relation){
+	if(is.null(limits)) {
+		limits <- 
+				if("same" == relation){carry.over}
+				else {limits.plots};
+ 	}
+ 	else if("same" == relation){
+ 		limits <- carry.over;
+ 	}
+ 	else{
+ 		for(i in 1:length(limits)){
+ 			if(is.null(limits[[i]])){
+ 				limits[[i]] <- limits.plots[[i]];
+ 			}
+ 		}
+ 	}
+ 	return(limits);
+}
