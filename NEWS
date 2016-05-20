@@ -1,4 +1,13 @@
-BoutrosLab.plotting.general 5.6.7 2016-05-19
+BoutrosLab.plotting.general 5.6.8 2016-05-20
+
+FEATURE UPDATE
+*create.dotmap
+	For the spot.colour.function parameter, added two new accepted values: 'columns' and 'rows'
+	'columns' makes the dots belonging to individual columns different colours according to the default.colours palette
+	'rows' does the same thing but according to rows
+	There are 12 distinct colours in default.colours and the 12  colours will cycle if the number of columns/rows exceeds 12
+
+--------------------------------------------------------------------------
 
 BUG FIX
 * create.multiplot: fixed bug where NULL values in parameter list (for xlimits=/ylimits=) were being ignored/unprocessed [BPG-2]
