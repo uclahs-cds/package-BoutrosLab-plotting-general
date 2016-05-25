@@ -1,4 +1,4 @@
-BoutrosLab.plotting.general 5.6.8 2016-05-20
+BoutrosLab.plotting.general 5.6.8 2016-05-25
 
 FEATURE UPDATE
 *create.dotmap
@@ -9,10 +9,14 @@ FEATURE UPDATE
 
 --------------------------------------------------------------------------
 
+BoutrosLab.plotting.general 5.6.7 2016-05-19
+
 BUG FIX
 * create.multiplot: fixed bug where NULL values in parameter list (for xlimits=/ylimits=) were being ignored/unprocessed [BPG-2]
 
 --------------------------------------------------------------------------
+
+BoutrosLab.plotting.general 5.6.6 2016-04-29
 
 FEATURE UPDATE
 * create.barplot:
