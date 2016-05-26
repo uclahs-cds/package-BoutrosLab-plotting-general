@@ -51,6 +51,65 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			return(colours);
 			}
 		}
+	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'columns'){
+		spot.colour.function <- function(dummy.parameter){
+			temp <- x;
+			no.unique.columns = length(unique(colnames(temp)));
+			no.unique.rows = length(unique(rownames(temp)));
+
+			# Checks for repeated colnames and throws an error if there is
+			if(no.unique.columns != length(colnames(temp))){
+				stop(paste("Remove repeated column names"));
+				}
+
+			new.colnames = seq(1, no.unique.columns, 1);
+			colnames(temp) <- new.colnames;
+			temp <- stack(temp);
+			temp$values <- temp$ind;
+			temp$ind = NULL;
+
+			index = 1;
+			colours <- rep('white', no.unique.columns*no.unique.rows);
+			for(i in c(1:no.unique.columns)){
+				for(j in c(1:no.unique.rows)){
+					colours[index] <- default.colours(12)[(i%%12)+1];
+					index = index + 1;
+					}
+				}
+			return(colours);
+			}
+		}
+	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'rows'){
+		spot.colour.function <- function(dummy.parameter){
+			temp <- x;
+			no.unique.columns = length(unique(colnames(temp)));
+			no.unique.rows = length(unique(rownames(temp)));
+
+			# Checks for repeated rownames and throws an error if there is
+			if(no.unique.rows != length(rownames(temp))){
+				stop(paste("Remove repeated row names"));
+				}
+
+			colour.per.column <- c(1:no.unique.rows);
+			for(i in 0:no.unique.rows){
+				colour.per.column[i+1] <- default.colours(12)[(i%%12)+1];
+			}
+
+			temp <- stack(temp);
+			temp$ind = NULL;
+
+			max = nrow(temp);
+			index = 1;
+
+			for(i in c(1:no.unique.columns)){
+				for(j in c(1:no.unique.rows)){
+					temp$values[index] <- colour.per.column[j];
+					index = index + 1;
+					}
+				}
+			return(temp);
+			}
+		}
 
 	# set spot size/colour
 	spot.sizes <- spot.size.function(stack(x)$values);
