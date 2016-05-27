@@ -135,7 +135,7 @@ create.dotmap(
     \item{col.lwd}{Thickness of column grid lines}
     \item{row.lwd}{Thickness of row grid lines}
     \item{spot.size.function}{The function that translates values in x into dotmap spot-size. The default is 0.1 + (2 * abs(x))}
-    \item{spot.colour.function}{The function that translates values in x into dotmap spot-colour. The default gives negative values blue, positive values red, and zero white}
+    \item{spot.colour.function}{The function that translates values in x into dotmap spot-colour. The default gives negative values blue, positive values red, and zero white. Parameter also accepts 'columns' and 'rows', which groups the dot colours by columns or rows (not both), respectively. For column/row grouping, there are 12 unique colours and these colours will start to repeat once there are more than 12 columns/rows.}
     \item{NA.spot.size}{The size for plotting character for NA cells. Defaults to 7.}
     \item{NA.pch}{The type of plotting character to represent NA cells. Defaults to 4 ('X').}
     \item{NA.spot.size.colour}{Colour for plotting character representing NA cells. Defaults to black.}

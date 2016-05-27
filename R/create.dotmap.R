@@ -55,7 +55,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		spot.colour.function <- function(dummy.parameter){
 			temp <- x;
 			no.unique.columns = length(unique(colnames(temp)));
-			no.unique.rows = length(unique(rownames(temp)));
+			no.rows = length(rownames(temp));
 
 			# Checks for repeated colnames and throws an error if there is
 			if(no.unique.columns != length(colnames(temp))){
@@ -69,9 +69,9 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			temp$ind = NULL;
 
 			index = 1;
-			colours <- rep('white', no.unique.columns*no.unique.rows);
+			colours <- rep('white', no.unique.columns*no.rows);
 			for(i in c(1:no.unique.columns)){
-				for(j in c(1:no.unique.rows)){
+				for(j in c(1:no.rows)){
 					colours[index] <- default.colours(12)[(i%%12)+1];
 					index = index + 1;
 					}
@@ -82,7 +82,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'rows'){
 		spot.colour.function <- function(dummy.parameter){
 			temp <- x;
-			no.unique.columns = length(unique(colnames(temp)));
+			no.columns = length(colnames(temp));
 			no.unique.rows = length(unique(rownames(temp)));
 
 			# Checks for repeated rownames and throws an error if there is
@@ -101,7 +101,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			max = nrow(temp);
 			index = 1;
 
-			for(i in c(1:no.unique.columns)){
+			for(i in c(1:no.columns)){
 				for(j in c(1:no.unique.rows)){
 					temp$values[index] <- colour.per.column[j];
 					index = index + 1;
