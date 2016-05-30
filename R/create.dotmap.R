@@ -20,6 +20,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 
                 }
 	x <- as.data.frame(x);
+	temp <- x; # 'temp' used for column/row catagorization function
 
 	# determine size/colour functions
 	if (class(spot.size.function) == 'character' && spot.size.function == 'default') {
@@ -52,8 +53,8 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			}
 		}
 	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'columns'){
-		spot.colour.function <- function(dummy.parameter){
-			temp <- x;
+		spot.colour.function <- function(x){
+			# The following does not use the parameter 'x' and instead used the variable 'temp'
 			no.unique.columns = length(unique(colnames(temp)));
 			no.rows = length(rownames(temp));
 
@@ -80,8 +81,8 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			}
 		}
 	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'rows'){
-		spot.colour.function <- function(dummy.parameter){
-			temp <- x;
+		spot.colour.function <- function(x){
+			# The following does not use the parameter 'x' and instead used the variable 'temp'
 			no.columns = length(colnames(temp));
 			no.unique.rows = length(unique(rownames(temp)));
 
