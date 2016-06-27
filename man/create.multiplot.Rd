@@ -82,7 +82,7 @@ create.multiplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
-    \item{main.cex}{Size of text for main plot title, defaults to 2}
+    \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{main.key.padding}{A number specifying the distance of main to plot, defaults to 1}
     \item{ylab.padding}{A number specifying the distance of y-axis to plot, defaults to 5}
     \item{xlab.padding}{A number specifying the distance of x-axis to plot, defaults to 5}
