@@ -94,7 +94,7 @@ create.histogram(
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{col}{Fill colour for the histograms}
-    \item{breaks}{A vector listing the break-points of the histogram}
+    \item{breaks}{A vector listing the break-points of the histogram, or an integer specifying the desired number of breaks.}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 1}

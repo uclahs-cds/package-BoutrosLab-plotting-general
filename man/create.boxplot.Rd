@@ -202,8 +202,8 @@ create.boxplot(
     \item{line.to}{The ending point of the line on the plot}
     \item{line.col}{Colour of the line on the plot}
     \item{line.infront}{Should the line appear in front of the plot or not}
-    \item{sample.order}{Should the sample be reordered}
-    \item{order.by}{A string specifying what the sample oreder should be ordered by, either max, min, median or mean}
+    \item{sample.order}{String specifying how samples should be ordered. Either none, increasing, or decreasing.}
+    \item{order.by}{A string specifying what the sample order should be ordered by, either max, min, median or mean}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{add.pvalues}{logical determining if pvalues should appear above boxes}
     \item{pvalues.cex}{size of pvalues text},
