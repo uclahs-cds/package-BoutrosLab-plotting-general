@@ -852,7 +852,6 @@ create.multiplot(
     # These dimensions make the plot look much more proportional
     width = 12,
     height = 8,
-    resolution = 300,
     plot.objects = plots,
     panel.heights = c(0.2, 0.2, 1, 0.1),
     panel.widths = c(1,0.1),
