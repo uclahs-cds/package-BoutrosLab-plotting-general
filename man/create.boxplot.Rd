@@ -586,7 +586,6 @@ create.boxplot(
 	text.col = 'black',
 	text.cex = 1.5,
 	text.fontface = 'bold',
-	resolution = 500,
 	ylimits = c(
 		min(to.plot$x) - abs(min(to.plot$x) * 0.1),
 		max(to.plot$x) + abs(max(to.plot$x) * 0.1)
