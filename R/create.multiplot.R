@@ -18,7 +18,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
 							xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE,
 							xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL,
-							ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold',
+							ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', y.tck.dist=0.5, x.tck.dist=0.5, yaxis.fontface = 'bold',
 							x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same',
 							xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1,
 							key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in',
@@ -263,7 +263,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 				axis.key.padding = 1,
 				key.right = key.right.padding,
 				right.padding = right.padding
-				)
+				),
+				axis.components = list(left=list(pad1=y.tck.dist), bottom=list(pad1=x.tck.dist))
+				
 			),
 		key = key,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
@@ -386,6 +388,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+
 	return(
 		BoutrosLab.plotting.general::write.plot(
 			trellis.object = trellis.object,
@@ -398,7 +401,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			description = description
 			)
 		);
+
 	}
+	
 
 ### FUNCTION TO REPLACE ANY NULL VALUES IN XLIMITS OR YLIMITS ######################################
 replace.nulls <- function(limits, carry.over, limits.plots, relation){
