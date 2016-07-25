@@ -112,6 +112,7 @@ create.scatterplot(
 	points.y = NULL, 
 	points.pch = 19, 
 	points.col = 'black', 
+	points.col.border = 'black',
 	points.cex = 1, 
 	add.line.segments = FALSE, 
 	line.start = NULL, 
@@ -258,6 +259,7 @@ create.scatterplot(
     \item{points.y}{The y co-ordinates where additional points should be drawn}
     \item{points.pch}{The plotting character for additional points}
     \item{points.col}{The colour of additional points}
+    \item{points.col.border}{Colour of the border of additional points if points.pch >= 21. Defaults to black}
     \item{points.cex}{The size of additional points}
     \item{add.line.segments}{Allow additional line segments to be drawn, default is FALSE}
     \item{line.start}{The y co-ordinates where additional line segments should start}
