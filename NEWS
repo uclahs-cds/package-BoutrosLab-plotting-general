@@ -1,3 +1,17 @@
+BoutrosLab.plotting.general 5.6.10 2016-07-27
+
+BUG FIX
+* reintegrated untagged changes to trunk and re-added scatterplot feature updates.
+
+--------------------------------------------------------------------------
+
+BoutrosLab.plotting.general 5.6.9 2016-07-25
+
+FEATURE UPDATE
+* create.scatterplot: allow different border colour for added points when pch >= 21
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.8 2016-05-27
 
 FEATURE UPDATE
