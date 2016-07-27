@@ -39,8 +39,6 @@ create.multiplot(
 	yaxis.alternating = 1, 
 	xat = TRUE, 
 	yat = TRUE, 
-	y.tck.dist = 0.5,
-	x.tck.dist = 0.5,
 	xlimits = NULL, 
 	ylimits = NULL, 
 	xaxis.rot = 0, 
@@ -111,8 +109,6 @@ create.multiplot(
     \item{yaxis.alternating}{Gives control of axis labelling, defaults to 1 which means only left axis labels are drawn, set to 0 to remove tick marks}
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
-	\item{y.tck.dist}{Distance from tick marks to the y-axis tick labels}
-	\item{x.tck.dist}{Distance from tick makrs to the x-axis tick labels}
     \item{xlimits}{Vector listing where the x-axis limits should be for each subplot. Defaults to NULL to let R figure out the limits}
     \item{ylimits}{Vector listing where the y-axis limits should be for each subplot. Defaults to NULL to let R figure out the limits}
     \item{xaxis.rot}{Rotation of x-axis labels}
