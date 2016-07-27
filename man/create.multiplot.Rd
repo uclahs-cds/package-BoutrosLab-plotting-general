@@ -373,6 +373,7 @@ data_cov <- data.frame(
 bars <- create.barplot(
     formula = x~y,
     data = data_bars,
+    filename = NULL,
     ylimits = c(0,35),
     sample.order = 'increasing',
     lwd = 0
@@ -529,6 +530,7 @@ top_data <- data.frame(
 top <- create.barplot(
     formula = x~y,
     data = top_data,
+    filename = NULL,
     lwd = 0
     );
 
@@ -541,6 +543,7 @@ side_data <- data.frame(
 side <- create.barplot(
     formula = x~y,
     data = side_data,
+    filename = NULL,
     lwd = 0,
     sample.order = 'decreasing',
     plot.horizontal = TRUE
@@ -852,6 +855,7 @@ create.multiplot(
     # These dimensions make the plot look much more proportional
     width = 12,
     height = 8,
+    resolution = 300,
     plot.objects = plots,
     panel.heights = c(0.2, 0.2, 1, 0.1),
     panel.widths = c(1,0.1),
