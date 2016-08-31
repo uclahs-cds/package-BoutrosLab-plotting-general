@@ -24,6 +24,7 @@ create.stripplot(
 	lwd = 1, 
 	pch = 19, 
 	col = "black", 
+	col.border = 'black',
 	fill = 'transparent', 
 	colour.alpha = 1, 
 	cex = 0.75, 
@@ -103,6 +104,7 @@ create.stripplot(
     \item{lwd}{Line width, defaults to 1}
     \item{pch}{The plotting character (defaults to filled circles)}
     \item{col}{Colour of the plotting character (defaults to black)}
+    \item{col.border}{Colour of border when pch > 21. Defaults to black}
     \item{fill}{Fill colour of the plotting character if pch set to 21:25 (defaults to transparent)}
     \item{colour.alpha}{Bias to be added to colour selection (defaults to 1)}
     \item{cex}{The size of the plotting character}
