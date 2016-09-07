@@ -17,14 +17,14 @@ xaxis.rot = 0, yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 1.5, yaxis
 main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
 xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",
 xlab.top.x = 0.5, xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0),
-yaxis.tck = c(1,1), col = "black", border.lwd = 1, extra.points = NULL, extra.points.pch = 21,
-extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, start = NULL,
-end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7,
-left.padding = 0.5, right.padding = 0.3, width = 6, height = 6, resolution = 1600,
-size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general',
-add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
-ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold',
-yaxis.fontface = 'bold', style = 'BoutrosLab', preload.default = 'custom') {
+yaxis.tck = c(1,1), col = "black", border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1,
+extra.points = NULL, extra.points.pch = 21, extra.points.col = "white", extra.points.border = "black", 
+extra.points.cex = 1, start = NULL, end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, 
+bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.3, width = 6, height = 6, resolution = 1600,
+size.units = 'in', enable.warnings = FALSE, key = NULL, legend = NULL, 
+description = 'Created with BoutrosLab.plotting.general', add.rectangle = FALSE, xleft.rectangle = NULL, 
+ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', 
+alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab', preload.default = 'custom') {
 
         if(preload.default == 'paper'){
 
@@ -38,7 +38,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab', preload.default = 'custom') {
 	.panel.violin.mod <- function (x, y, box.ratio = 1, box.width = box.ratio/(1 + box.ratio),
 		horizontal = TRUE, alpha = plot.polygon$alpha, border = plot.polygon$border,
 		lty = plot.polygon$lty, lwd = plot.polygon$lwd, col = plot.polygon$col,
-		varwidth = FALSE, bw = NULL, adjust = NULL, kernel = NULL,
+		varwidth = FALSE, bw = bandwidth, adjust = bandwidth.adjust, kernel = NULL,
 		window = NULL, width = NULL, n = 50, from = NULL, to = NULL,
 		cut = NULL, na.rm = TRUE, ..., identifier = "violin")
 	{
@@ -155,6 +155,7 @@ yaxis.fontface = 'bold', style = 'BoutrosLab', preload.default = 'custom') {
 			else {
 				.panel.violin.mod(from = from, to = to, varwidth = varwidth,...);
 				}
+      
 
 			if (!is.null(extra.points)) {
 				for (i in 1:length(extra.points)) {

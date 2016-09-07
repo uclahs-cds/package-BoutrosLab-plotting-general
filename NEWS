@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 5.6.12 2016-09-07
+
+FEATURE UPDATE
+* create.densityplot & create.violinplot: allow adjustment of bandwidth with parameters bandwidth and bandwidth.adjust.
+
 BoutrosLab.plotting.general 5.6.11 2016-08-31
 
 FEATURE UPDATE

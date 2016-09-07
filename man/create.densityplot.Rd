@@ -16,7 +16,9 @@ create.densityplot(
 	cex = 0.75, 
 	pch = 19, 
 	col = 'black', 
-	lwd = 2, 
+	lwd = 2,
+ bandwidth = 'nrd0',
+ bandwidth.adjust = 1,
 	xlimits = NULL, 
 	ylimits = NULL, 
 	xat = TRUE, 
@@ -90,6 +92,8 @@ create.densityplot(
     \item{pch}{Plotting character}
     \item{col}{Point/line colour}
     \item{lwd}{Thickness of width of any best-fit lines}
+    \item{bandwidth}{Smoothing bandwidth, or character string giving rule to choose bandwidth ('nrd0', 'nrd', 'ucv', 'bcv', 'sj', or 'sj-ste'). Passed to base R function density.}
+    \item{bandwidth.adjust}{Adjustment parameter for the bandwidth (bandwidth used is bandwidth*bandwidth.adjust). Makes it easy to specify bandwidth as a proportion of the default.}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}

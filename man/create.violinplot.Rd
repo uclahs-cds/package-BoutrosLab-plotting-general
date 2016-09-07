@@ -39,6 +39,8 @@ create.violinplot(
 	yaxis.tck = c(1,1), 
 	col = "black", 
 	border.lwd = 1, 
+ bandwidth = 'nrd0',
+ bandwidth.adjust = 1,
 	extra.points = NULL, 
 	extra.points.pch = 21, 
 	extra.points.col = "white", 
@@ -108,6 +110,8 @@ create.violinplot(
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to c(1,1)}
     \item{col}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
     \item{border.lwd}{Width of the exterior boundary of the violin plots, defaults to 1}
+    \item{bandwidth}{Smoothing bandwidth, or character string giving rule to choose bandwidth ('nrd0', 'nrd', 'ucv', 'bcv', 'sj', or 'sj-ste'). Passed to base R function density, via lattice::bwplot.}
+    \item{bandwidth.adjust}{Adjustment parameter for the bandwidth (bandwidth used is bandwidth*bandwidth.adjust). Makes it easy to specify bandwidth as a proportion of the default.}
     \item{extra.points}{A list of numeric vectors, each one of length equal to the number of violins to be plotted. Specifies a set or sets of extra points to be plotted along the vertical spine of each violin plot. Defaults to NULL (no points to be added)}
     \item{extra.points.pch}{A vector of the same length as extra.points specifying the symbol to use for each set of points. Defaults to 21}
     \item{extra.points.col}{A vector of the same length as extra.points specifying the colour to use for each set of points. Defaults to \dQuote{white}}
