@@ -10,7 +10,25 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE POLYGONPLOT ################################################################
-create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, groups = NULL, max, min, col = 'white', border.col = 'black', xy.col = 'black', strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0, xaxis.cex = 1.5, yaxis.rot = 0, yaxis.cex = 1.5, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, add.median = FALSE, median.lty = 3, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom') {
+create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, 
+                               groups = NULL, max, min, col = 'white', alpha = 0.5, border.col = 'black', xy.col = 'black', strip.col = 'white', 
+                               strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), 
+                               ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', 
+                               ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center", 
+                               xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0, xaxis.cex = 1.5, yaxis.rot = 0, yaxis.cex = 1.5, 
+                               xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', 
+                               yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, 
+                               xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, 
+                               right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", 
+                               xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, 
+                               add.median = FALSE, median.lty = 3, median.lwd = 1.5, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, 
+                               median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', 
+                               extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, 
+                               ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", 
+                               xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, 
+                               abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
+                               key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', 
+                               preload.default = 'custom') {
 
 
         if(preload.default == 'paper'){
@@ -115,7 +133,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						x = x, 
 						y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
 						type = 'l',
-						lwd = 1.5,
+						lwd = median.lwd,
 						col = median.col,
 						lty = median.lty
 						);
@@ -198,6 +216,9 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 				median.lty <- if (length(median.lty) == 1) {
 					rep(median.lty, length(subscripts));
 					}
+				median.lwd <- if (length(median.lwd) == 1) {
+				  rep(median.lwd, length(subscripts));
+				}
 				else {
 					as.character(factor(x = groups, labels = median.lty));
 					}
@@ -245,6 +266,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 								x = x,
 								y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
 								type = 'l',
+                lwd =  median.lwd[subscripts],
 								col = median.col[subscripts],
 								lty = median.lty[subscripts]
 								);
@@ -309,7 +331,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 							}
 
 						},
-					alpha = 0.5, 
+					alpha = alpha, 
 					col = col,
 					border = "white",
 					...

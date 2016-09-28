@@ -14,7 +14,8 @@ create.polygonplot(
 	groups = NULL, 
 	max, 
 	min, 
-	col = 'white', 
+  	col = 'white', 
+  	alpha = 0.5,
 	border.col = 'black', 
 	xy.col = 'black', 
 	strip.col = "white", 
@@ -70,6 +71,7 @@ create.polygonplot(
 	add.xy.border = FALSE, 
 	add.median = FALSE, 
 	median.lty = 3, 
+  	median.lwd = 1.5,
 	use.loess.border = FALSE, 
 	use.loess.median = FALSE, 
 	median = NULL, 
@@ -117,6 +119,7 @@ create.polygonplot(
     \item{max}{Max values for polygon}
     \item{min}{Min values for polygon}
     \item{col}{Fill colour of polygon, defaults to white}
+    \item{alpha}{Transparency of polygons when several are plotted, defaults to 0.5.}
     \item{border.col}{Border colour(s) of polygon(s), defaults to black}
     \item{xy.col}{Colour of xy coordinates, defaults to black}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
@@ -172,6 +175,7 @@ create.polygonplot(
     \item{add.xy.border}{Add xy border to polygon, default is FALSE}
     \item{add.median}{Add median line, default is FALSE}
     \item{median.lty}{Median line type}
+    \item{median.lwd}{Median line width, defaults to 1.5}
     \item{use.loess.border}{Use loess curve for border instead of max/min values, default is FALSE}
     \item{use.loess.median}{Use loess curve for median values, default is FALSE}
     \item{median}{Median values for median line}
