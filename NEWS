@@ -1,13 +1,23 @@
+BoutrosLab.plotting.general 5.6.14 2016-10-05
+
+FEATURE UPDATE
+* create.polygonplot: option to add text.
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.13 2016-09-28
 
 FEATURE UPDATE
 * create.polygonplot: added parameters alpha and median.lwd.
 
+--------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.6.12 2016-09-07
 
 FEATURE UPDATE
 * create.densityplot & create.violinplot: allow adjustment of bandwidth with parameters bandwidth and bandwidth.adjust.
+
+--------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.6.11 2016-08-31
 
@@ -15,6 +25,7 @@ FEATURE UPDATE
 * create.stripplot: allow different border colour for added points when pch >= 21
 
 --------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.10 2016-07-27
 
 BUG FIX

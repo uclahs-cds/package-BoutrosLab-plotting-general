@@ -14,8 +14,8 @@ create.polygonplot(
 	groups = NULL, 
 	max, 
 	min, 
-  	col = 'white', 
-  	alpha = 0.5,
+	col = 'white', 
+	alpha = 0.5,
 	border.col = 'black', 
 	xy.col = 'black', 
 	strip.col = "white", 
@@ -71,7 +71,7 @@ create.polygonplot(
 	add.xy.border = FALSE, 
 	add.median = FALSE, 
 	median.lty = 3, 
-  	median.lwd = 1.5,
+	median.lwd = 1.5,
 	use.loess.border = FALSE, 
 	use.loess.median = FALSE, 
 	median = NULL, 
@@ -96,6 +96,13 @@ create.polygonplot(
 	abline.col = "black", 
 	abline.lwd = 1, 
 	abline.lty = 1, 
+	add.text = FALSE, 
+	text.labels = NULL, 
+	text.x = NULL, 
+	text.y = NULL, 
+	text.col = 'black', 
+	text.cex = 1, 
+	text.fontface = 'bold', 
 	height = 6, 
 	width = 6, 
 	size.units = 'in', 
@@ -200,6 +207,13 @@ create.polygonplot(
     \item{abline.col}{Horizontal line colour, defaults to black}
     \item{abline.lwd}{Specifies horizontal line width, defaults to 1}
     \item{abline.lty}{Specifies horizontal line style, defaults to 1 (solid)}
+    \item{add.text}{Allow additional text to be drawn, default is FALSE}
+    \item{text.labels}{Labels for additional text}
+    \item{text.x}{The x co-ordinates where additional text should be placed}
+    \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.col}{The colour of additional text}
+    \item{text.cex}{The size of additional text}
+    \item{text.fontface}{The fontface for additional text}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}

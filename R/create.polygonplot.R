@@ -26,7 +26,8 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
                                extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, 
                                ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", 
                                xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, 
-                               abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
+                               abline.lty = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, 
+                               text.fontface = 'bold', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
                                key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', 
                                preload.default = 'custom') {
 
@@ -154,6 +155,8 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						);
 					}
 
+        
+        
 				# add background grid
 				if (!is.null(xgrid.at) || !is.null(ygrid.at)) {
 					panel.abline(
@@ -196,8 +199,22 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						col = abline.col
 						);
 					}
-						
+        
+				
+				# if requested, add text
+				if(add.text) {
+				  panel.text(
+				    x = text.x,
+				    y = text.y,
+				    labels = text.labels,
+				    col = text.col,
+				    cex = text.cex,
+				    fontface = text.fontface
+				  );
 				}
+				
+			}
+	
 				
 			else {
 				# can't use ternary operator because need to return vectors
@@ -329,6 +346,21 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 								col = abline.col
 								);
 							}
+            
+						
+						# if requested, add text
+            if(add.text) {
+              panel.text(
+                x = text.x,
+                y = text.y,
+                labels = text.labels,
+                col = text.col,
+                cex = text.cex,
+                fontface = text.fontface
+              );
+            }
+
+						
 
 						},
 					alpha = alpha, 
