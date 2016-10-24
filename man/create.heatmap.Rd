@@ -83,6 +83,7 @@ create.heatmap(
 	text.offset = 0, 
 	colourkey.cex = 3.6, 
 	xaxis.rot = 90, 
+	xaxis.rot.top = 90,
 	yaxis.rot = 0, 
 	xlab.label = '' , 
 	ylab.label = '', 
@@ -196,6 +197,7 @@ create.heatmap(
     \item{xaxis.cex}{Size of x-axis label text - defaults to values found in a look-up table}
     \item{yaxis.cex}{Size of y-axis label text - defaults to values found in a look-up table}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 90}
+	\item{xaxis.rot.top}{Rotation of the top x-axis tick labels; defaults to 90}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}

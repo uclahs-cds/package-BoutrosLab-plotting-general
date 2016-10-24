@@ -48,6 +48,8 @@ create.multiplot(
 	y.spacing = 1, 
 	x.relation = 'same', 
 	y.relation = 'same', 
+	y.tck.dist=0.5, 
+	x.tck.dist=0.5,
 	xaxis.tck = c(0.75,0.75), 
 	yaxis.tck = c(0.75,0.75), 
 	axes.lwd = 1.5, 
@@ -120,7 +122,9 @@ create.multiplot(
     \item{y.relation}{A character string that determines how y-axis limits are calculated for each panel. Possible values are \dQuote{same} (default), \dQuote{free} and \dQuote{sliced}. See ?xyplot}
     \item{xaxis.tck}{A vector of length 2 that determines the size of x-axis tick marks. Defaults to c(0.75, 0.75).}
     \item{yaxis.tck}{A vector of length 2 that determines the size of y-axis tick marks. Defaults to c(0.75, 0.75).}
-    \item{axes.lwd}{Width of border. Note it also changes the colourkey border and ticks}
+    \item{x.tck.dist}{A  number specifying the distance between x-axis labels and tick marks. Defaults to 0.5.}
+	\item{y.tck.dist}{A number specifying the distance between y-axis labels and tick marks. Defaults to 0.5.}
+	\item{axes.lwd}{Width of border. Note it also changes the colourkey border and ticks}
     \item{key.right.padding}{Space between right-most plot and any keys/legends}
     \item{key.left.padding}{Space between left-most plot and any keys/legends}
     \item{key.bottom.padding}{Space between bottom-most plot and any keys/legends}
