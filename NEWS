@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 5.6.15 2016-10-24
+
+FEATURE UPDATE
+* create.boxplot: option to left/right align text.
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.14 2016-10-05
 
 FEATURE UPDATE

@@ -75,6 +75,7 @@ create.boxplot(
 	text.labels = NULL,
 	text.x = NULL,
 	text.y = NULL,
+	text.anchor = 'centre',
 	text.col = 'black',
 	text.cex = 1,
 	text.fontface = 'bold',
@@ -179,6 +180,7 @@ create.boxplot(
     \item{text.labels}{Labels for additional text}
     \item{text.x}{The x co-ordinates where additional text should be placed}
     \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.anchor}{Part of text that should be anchored to x/y coordinates. Defaults to 'centre'. Use 'left' or 'right' to left or right-align text.}
     \item{text.col}{The colour of additional text}
     \item{text.cex}{The size of additional text}
     \item{text.fontface}{The fontface for additional text}
@@ -205,7 +207,7 @@ create.boxplot(
     \item{sample.order}{String specifying how samples should be ordered. Either none, increasing, or decreasing.}
     \item{order.by}{A string specifying what the sample order should be ordered by, either max, min, median or mean}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
-    \item{add.pvalues}{logical determining if pvalues should appear above boxes}
+    \item{add.pvalues}{logical determining if p-values should appear above boxes (t-test for whether group mean equals 10)}
     \item{pvalues.cex}{size of pvalues text},
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{box.ratio}{ability to change the box width, defaults to 1}

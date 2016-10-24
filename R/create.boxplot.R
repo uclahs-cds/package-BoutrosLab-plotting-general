@@ -25,7 +25,7 @@ create.boxplot <- function(
 	xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, 
 	x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, 
 	left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, 
-	yaxis.tck = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, 
+	yaxis.tck = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.anchor = 'centre',
 	text.col = 'black', text.cex = 1, text.fontface = 'bold', strip.col = "white", strip.cex = 1, 
 	strip.fontface = 'bold', layout = NULL, as.table = FALSE, height = 6, width = 6, 
 	size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
@@ -34,6 +34,23 @@ create.boxplot <- function(
 	order.by = 'median', style = 'BoutrosLab', add.pvalues = FALSE,pvalues.cex = c(1),preload.default = 'custom',
 	box.ratio = 1) {
 
+  #### PARAMETER CHECK ############################################################################
+  
+  if( !is.numeric(text.anchor) && !(tolower(text.anchor) %in% c('centre', 'center', 'left', 'right')) ) {
+    stop('text.anchor must be either numeric or one of "left", "right", and "centre"');
+  }
+  
+  
+  ### Sort out text.anchor parameter
+  # if left/right aligned, set text parameter adj to 0/1.
+  if('centre' == tolower(text.anchor) || 'center' == tolower(text.anchor)) {
+    text.anchor <- 0.5;
+  } else if('left' == tolower(text.anchor)) {
+    text.anchor <- 0;
+  } else if('right' == tolower(text.anchor)) {
+    text.anchor <- 1;
+  }
+  
 	# add stripplot if requested
 	if (add.stripplot & outliers) {
 		outliers <- FALSE;
@@ -130,7 +147,8 @@ create.boxplot <- function(
 					labels   = text.labels,
 					col      = text.col,
 					cex      = text.cex,
-					fontface = text.fontface
+					fontface = text.fontface,
+          adj      = text.anchor
 					);
 				}
 			if(add.pvalues){
