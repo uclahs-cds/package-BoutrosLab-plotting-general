@@ -40,8 +40,8 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			}
 		}
 	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'discrete') {
-		if(length(unique(x)) > length(dot.colour.scheme)){
-			stop(paste("Not enough colours specified to use discrete function: need at least", length(unique(x)), "colours"));
+		if(length(unique(unlist(x))) > length(dot.colour.scheme)){
+			stop(paste("Not enough colours specified to use discrete function: need at least", length(unique(unlist(x))), "colours"));
 			}
 		spot.colour.function <- function(x) {
 			unique.values = unique(x);
