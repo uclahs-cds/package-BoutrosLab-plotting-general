@@ -62,6 +62,7 @@ create.heatmap(
 	ylab.cex = 2, 
 	xlab.top.label = NULL, 
 	xlab.top.cex = 2, 
+	xaxis.top.cex=1,
 	xlab.top.col = 'black',
 	xlab.top.just = "center", 
 	xlab.top.x = 0.5, 
@@ -196,6 +197,7 @@ create.heatmap(
     \item{yaxis.lab}{A vector of col labels, NA = use existing colnames, NULL = none}
     \item{xaxis.cex}{Size of x-axis label text - defaults to values found in a look-up table}
     \item{yaxis.cex}{Size of y-axis label text - defaults to values found in a look-up table}
+	\item{xaxis.top.cex}{Size of the top x-axis label text}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 90}
 	\item{xaxis.rot.top}{Rotation of the top x-axis tick labels; defaults to 90}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
