@@ -48,6 +48,7 @@ export(
 	"gleason.score.colour",
 	"gleason.sum.colour",
 	"legend.grob",
+	"pcawg.colours",
 	"psa.categorical.colour",
 	"psa.gradient.colour",
 	"scientific.notation",
