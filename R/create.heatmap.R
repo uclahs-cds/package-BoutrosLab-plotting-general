@@ -76,7 +76,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	xaxis.cex <- rep(xaxis.cex, length.out = nrow(x));
 	xaxis.rot <- rep(xaxis.rot, length.out = nrow(x));
 	xaxis.col <- rep(xaxis.col, length.out = nrow(x));
-
+	
+	xaxis.rot[2] <- xaxis.rot.top
 	# vectorize all y-axis characteristics
 	yaxis.cex <- rep(yaxis.cex, length.out = ncol(x));
 	yaxis.col <- rep(yaxis.col, length.out = ncol(x));
@@ -1032,25 +1033,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		return(args);
 		}
 	if(is.null(xaxis.top.cex)){xaxis.top.cex <- xaxis.cex};
-	axis.CF <- function(side,...){
-		if("top"==side & x.alternating > 1){
-			if(length(xat.top) == 0) {
-			     xat.top <- c(1:length(xaxis.lab.top));
-			 }
-			if (is.null(xaxis.top.tck)){
-				ticks = FALSE;
-				xaxis.top.tck = 0;
-			}
-			else{
-				ticks = TRUE;
-			}
-			text.fontface <- if ('Nature' == style){'plain'} else(xaxis.fontface);
-			panel.axis(rot = xaxis.rot.top,at = xat.top,labels=xaxis.lab.top,side = side, outside=TRUE , text.cex = xaxis.top.cex, text.fontface = text.fontface, tck = xaxis.top.tck, ticks = ticks)
-			}
-		else{
-			axis.default(side=side,...)
-		}
-		}
 	# look at nrow and ncol and if exceed limit (for now, default limit = 50), turn off grid lines
 	if ((nrow(x) > grid.limit & grid.row == TRUE) & force.grid.row != TRUE) {
 		grid.row <- FALSE;
@@ -1270,8 +1252,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
 				)
 			),
-	#	xscale.components = xscale.components.new,
-		axis = axis.CF,
+		xscale.components = xscale.components.new,
+	#	axis = axis.CF,
 		col.regions = my.palette,
 		colorkey = colour.key,
 		legend = legend,
