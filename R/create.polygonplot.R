@@ -23,12 +23,14 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
                                xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, 
                                add.median = FALSE, median.lty = 3, median.lwd = 1.5, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, 
                                median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', 
-                               extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, xgrid.at = xat, 
-                               ygrid.at = yat, grid.lty = 1, grid.col = "grey", grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", 
-                               xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, 
-                               abline.lty = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, 
-                               text.fontface = 'bold', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-                               key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', 
+                               extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, add.rectangle = FALSE,
+                               xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
+                               col.rectangle = 'transparent', alpha.rectangle = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", 
+                               grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, 
+                               abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.text = FALSE, text.labels = NULL, 
+                               text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', height = 6, width = 6, 
+                               size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
+                               description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', 
                                preload.default = 'custom') {
 
 
@@ -108,6 +110,24 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 		min = min,
 		median = median,
 		panel = function(x, y, col = col, border = border.col, groups = groups.new, subscripts, ...) {
+      
+		  # add rectangle if requested
+      # want rectangle in the background, and only plotted once
+      #   => add first, outside of grouping if/else split
+		  if (add.rectangle) {
+		    panel.rect(
+		      xleft = xleft.rectangle,
+		      ybottom = ybottom.rectangle,
+		      xright = xright.rectangle,
+		      ytop = ytop.rectangle,
+		      col = col.rectangle,
+		      alpha = alpha.rectangle,
+		      border = NA
+		    );
+		  }
+		  
+            
+      # if no grouping variable, draw a single polygon
 			if (is.null(groups.new)) {
 
 				# draw polygon
@@ -217,6 +237,8 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 	
 				
 			else {
+        # Grouping variable exists - need to draw separate polygons for each level
+        
 				# can't use ternary operator because need to return vectors
 				border.col <- if (length(border.col) == 1) {
 					rep(border.col, length(subscripts));
@@ -253,12 +275,15 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 					as.integer(as.character(factor(x = groups, labels = extra.points.pch)));
 					}
 
+        # Plot polygons
+        # this is plotted with different graphical parameters for each distinct value of the grouping variable
 				panel.superpose(
 					x, 
 					y, 
 					groups = groups.new, 
 					subscripts,
 					panel.groups = function(x, y, max, min, groups = groups.new, subscripts, type, ..., font, fontface) {
+             
 
 						# draw polygon
 						panel.polygon(

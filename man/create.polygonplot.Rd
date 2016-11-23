@@ -82,6 +82,13 @@ create.polygonplot(
 	extra.points.col = 'black', 
 	extra.points.fill = 'white', 
 	extra.points.cex = 1, 
+  add.rectangle = FALSE, 
+  xleft.rectangle = NULL, 
+	ybottom.rectangle = NULL, 
+	xright.rectangle = NULL, 
+	ytop.rectangle = NULL, 
+	col.rectangle = 'transparent', 
+	alpha.rectangle = 1, 
 	xgrid.at = xat, 
 	ygrid.at = yat, 
 	grid.lty = 1, 
@@ -193,6 +200,13 @@ create.polygonplot(
     \item{extra.points.col}{A vector specifying the border colours of the extra points to add to the plot. Defaults to \dQuote{black}}
     \item{extra.points.fill}{A vector specifying the fill colours of the extra points to add to the plot. Defaults to \dQuote{white}}
     \item{extra.points.cex}{A vector specifying the sizes of the extra points to add to the plot. Defaults to 1}
+    \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
+    \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
+    \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
+    \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
+    \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
+    \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
+    \item{alpha.rectangle}{Specifies the colour bias of the rectangle}
     \item{xgrid.at}{A vector listing the co-ordinates at which vertical grid-lines should be drawn. Default suppresses drawing of vertical grid-lines}
     \item{ygrid.at}{A vector listing the co-ordinates at which horizontal grid-lines should be drawn. Default suppresses drawing of horizontal grid-lines}
     \item{grid.lty}{Specifies the line type to use for the grid-lines. Defaults to 1 (solid lines)}
