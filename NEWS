@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 5.6.19 2016-12-06
+
+FEATURE UPDATE
+* pcawg.colours: add project.code to colour.schemes
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.6.18 2016-11-23
 
 FEATURE UPDATE

@@ -1,13 +1,16 @@
 ### pcawg.colours.R #########################################################################
 #
-# Authors: Jennifer Aguiar & Constance Li (constance.li@oicr.on.ca)
+# Authors:
+#   Jennifer Aguiar
+#   Constance Li (constance.li@oicr.on.ca)
+#   Nathaniel Schmitz (nathaniel.schmitz@oicr.on.ca)
 #
 
 ### DESCRIPTION ####################################################################################
 #
 # Return standard PCAWG colour palettes. Case insensitive.
 # 
-# To see all available schemes, set:			scheme='all', return.scheme = FALSE
+# To see all available schemes, set:		scheme='all', return.scheme = FALSE
 # To return all full schemes, set: 			scheme='all', return.scheme = TRUE
 # To return specific full schemes, set: 	scheme=<wanted scheme>, return.scheme = TRUE
 #   Note: x will be ignored when scheme='all' OR return.scheme = TRUE 
@@ -607,8 +610,92 @@ pcawg.colours <- function(
 				thy.adenoca,
 				uterus.adenoca
 				)
+			),
+		project.code = list(
+			levels = c(
+				'LICA',
+				'LIHC',
+				'LINC',
+				'LIRI',
+				'PACA',
+				'EOPC',
+				'PRAD',
+				'BRCA',
+				'KIRC',
+				'RECA',
+				'OV',
+				'DLBC',
+				'MALY',
+				'CLL',
+				'CLLE',
+				'PBCA',
+				'MELA',
+				'SKCM',
+				'COAD',
+				'READ',
+				'STAD',
+				'UCEC',
+				'HNSC',
+				'ORCA',
+				'ESAD',
+				'LUSC',
+				'THCA',
+				'KICH',
+				'PAEN',
+				'LUAD',
+				'GBM',
+				'SARC',
+				'BTCA',
+				'CMDI',
+				'BLCA',
+				'BOCA',
+				'CESC',
+				'LGG',
+				'LAML'
+				),
+			colours = c(
+				liver.hcc,
+				liver.hcc,
+				liver.hcc,
+				liver.hcc,
+				panc.adenoca,
+				prost.adenoca,
+				prost.adenoca,
+				breast.adenoca,
+				kidney.rcc,
+				kidney.rcc,
+				ovary.adenoca,
+				lymph.bnhl,
+				lymph.bnhl,
+				lymph.bnhl,
+				lymph.bnhl,
+				cns.oligo,
+				skin.melanoma,
+				skin.melanoma,
+				colorect.adenoca,
+				colorect.adenoca,
+				stomach.adenoca,
+				uterus.adenoca,
+				head.scc,
+				head.scc,
+				eso.adenoca,
+				lung.scc,
+				thy.adenoca,
+				kidney.rcc,
+				panc.adenoca,
+				lung.scc,
+				cns.oligo,
+				bone.leiomyo,
+				biliary.adenoca,
+				myeloid.aml,
+				bladder.tcc,
+				bone.leiomyo,
+				cervix.scc,
+				cns.oligo,
+				myeloid.aml
+				)
 			)
-		)
+		);
 	
 	# Error if wanted scheme doesn't match existing schemes
 	if (is.null(colour.schemes[[scheme]]) && scheme != 'all'){
