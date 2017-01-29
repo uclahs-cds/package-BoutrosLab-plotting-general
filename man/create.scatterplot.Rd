@@ -51,6 +51,7 @@ create.scatterplot(
 	cex = 0.75, 
 	pch = 19, 
 	col = 'black', 
+	col.border = 'black',
 	strip.col = "white", 
 	strip.cex = 1, 
 	strip.fontface = 'bold', 
@@ -193,6 +194,7 @@ create.scatterplot(
     \item{cex}{Character expansion for plotting symbol}
     \item{pch}{Plotting character}
     \item{col}{Point/line colour}
+    \item{col.border}{Colour of border when points pch >= 21. Defaults to \dQuote{black}}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
     \item{strip.cex}{Strip title character expansion}
     \item{strip.fontface}{Strip title fontface, defaults to bold}

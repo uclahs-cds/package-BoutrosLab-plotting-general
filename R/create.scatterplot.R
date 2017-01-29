@@ -166,7 +166,7 @@ inside.rectangle <- function(rectangle.center.x, rectangle.center.y, rectangle.w
 	}
 
 ### FUNCTION TO CREATE SCATTERPLOTS ###############################################################
-create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, add.grid = FALSE, xgrid.at = xat, ygrid.at = yat,grid.colour = NULL,xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, pch = 19, col = 'black', strip.col = "white", strip.cex = 1, strip.fontface = 'bold', lwd = 1, lty = 1, alpha = 1, axes.lwd = 1, y.error.up = NULL, y.error.down = y.error.up, x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black', x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, error.bar.length = 0.1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key.top = 0.1, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, add.axes = FALSE, axes.lty = 'dashed', add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE), curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, curves.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.col.border = 'black', points.cex = 1, add.line.segments = FALSE, line.start = NULL, line.end = NULL, line.col = 'black', line.lwd = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1,  text.fontface = 'bold', text.guess.labels = FALSE, text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, key.left.padding = 0, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab',preload.default = 'custom',...) {
+create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, add.grid = FALSE, xgrid.at = xat, ygrid.at = yat,grid.colour = NULL,xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,1), yaxis.tck = c(1,1), type = 'p', cex = 0.75, pch = 19, col = 'black', col.border = 'black', strip.col = "white", strip.cex = 1, strip.fontface = 'bold', lwd = 1, lty = 1, alpha = 1, axes.lwd = 1, y.error.up = NULL, y.error.down = y.error.up, x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black', x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, error.bar.length = 0.1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key.top = 0.1, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, add.axes = FALSE, axes.lty = 'dashed', add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE), curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, curves.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.col.border = 'black', points.cex = 1, add.line.segments = FALSE, line.start = NULL, line.end = NULL, line.col = 'black', line.lwd = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1,  text.fontface = 'bold', text.guess.labels = FALSE, text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, key.left.padding = 0, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab',preload.default = 'custom',...) {
 
         if(preload.default == 'paper'){
 
@@ -1094,7 +1094,23 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 		type = type,
 		cex = cex,
 		pch = pch,
-		col = col,
+		col = mapply(
+			function(point.pch, point.colours, point.border){
+				if(point.pch %in% 0:20) { return(point.colours); } else 
+				if (point.pch %in% 21:25) { return(point.border); }
+				},
+			point.pch = pch, 
+			point.colours = col, 
+			point.border = col.border
+			),
+		fill = mapply(
+			function(point.pch, point.colours){
+				if(point.pch %in% 0:20) { NA; } else 
+				if (point.pch %in% 21:25) { return(point.colours); }
+				},
+			point.pch = pch, 
+			point.colours = col
+			),
 		lwd = lwd,
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
