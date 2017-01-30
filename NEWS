@@ -1,4 +1,12 @@
-BoutrosLab.plotting.general 5.6.19 2017-01-28
+BoutrosLab.plotting.general 5.6.21 2017-01-30
+
+BUG FIX
+* create.scatterplot: adding conditional for when pch is not referring
+to a point (this is in reference to KM plots)
+
+--------------------------------------------------------------------------
+
+BoutrosLab.plotting.general 5.6.20 2017-01-28
 
 FEATURE UPDATE
 * create.scatterplot: addition of parameter "col.border".

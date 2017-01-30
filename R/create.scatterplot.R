@@ -1096,8 +1096,9 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 		pch = pch,
 		col = mapply(
 			function(point.pch, point.colours, point.border){
-				if(point.pch %in% 0:20) { return(point.colours); } else 
-				if (point.pch %in% 21:25) { return(point.border); }
+				if (point.pch %in% 0:20) { return(point.colours); } else 
+				if (point.pch %in% 21:25) { return(point.border); } else 
+				if (! point.pch %in% 0:25) { return(point.colours); } 
 				},
 			point.pch = pch, 
 			point.colours = col, 
@@ -1105,8 +1106,9 @@ create.scatterplot <- function(formula, data, filename = NULL, groups = NULL, ma
 			),
 		fill = mapply(
 			function(point.pch, point.colours){
-				if(point.pch %in% 0:20) { NA; } else 
-				if (point.pch %in% 21:25) { return(point.colours); }
+				if (point.pch %in% 0:20) { NA; } else 
+				if (point.pch %in% 21:25) { return(point.colours); } else
+				if (! point.pch %in% 0:25) { return(point.colours); }
 				},
 			point.pch = pch, 
 			point.colours = col
