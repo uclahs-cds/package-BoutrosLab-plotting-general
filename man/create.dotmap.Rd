@@ -82,6 +82,8 @@ create.dotmap(
 	ytop.rectangle = NULL, 
 	col.rectangle = 'transparent', 
 	alpha.rectangle = 1, 
+	border.rectangle = NULL,
+	lwd.rectangle = 1,
 	xaxis.fontface = 'bold', 
 	yaxis.fontface = 'bold', 
 	dot.colour.scheme = NULL, 
@@ -167,7 +169,9 @@ create.dotmap(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
-    \item{xaxis.fontface}{Fontface for the x-axis scales}
+    \item{border.rectangle}{Specifies the colour of the rectangle border}
+	\item{lwd.rectangle}{Specifies the thickness of the rectangle border}
+	\item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{dot.colour.scheme}{Colour Scheme for the dots}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
