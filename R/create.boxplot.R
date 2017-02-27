@@ -354,14 +354,14 @@ create.boxplot <- function(
 				}
 			newPValues <- NULL
 			newPositionPVal <- NULL
-                        if(add.pvalues){
-                                for(i in c(1:length(num.boxes))){
-                                        newPValues[ranks[i]] <- pvalues[i];
+            if(add.pvalues){
+                for(i in c(1:length(num.boxes))){
+                    newPValues[ranks[i]] <- pvalues[i];
 					newPositionPVal[ranks[i]]<- positionpVal[i];
-                                        }
-                                pvalues = newPValues;
-				positionpVal = newPositionPVal;
-                                }
+                    }
+                pvalues <- newPValues;
+				positionpVal <- newPositionPVal;
+                }
 			# if labels were not specified reorder the default ones
 			if (length(yaxis.lab) == 1 && yaxis.lab) {
 				for (i in c(1:length(num.boxes))) {
@@ -378,24 +378,25 @@ create.boxplot <- function(
 				}
 			}
 		else{
-			num.boxes <- num.boxes(trellis.object$panel.args[[1]]$x);
+			num.boxes <- levels(trellis.object$panel.args[[1]]$x);
+			
 			values.to.sort.by <- NULL;
 
 			# create a list of the values to sort by for each box
-                        for (i in c(1:length(num.boxes))) {
-                                if(order.by == 'median'){
-                                        values.to.sort.by[i] <- median(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
-                                        }
-                                else if(order.by == 'mean'){
-                                        values.to.sort.by[i] <- mean(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
-                                        }
-                                else if(order.by == 'min'){
-                                        values.to.sort.by[i] <- min(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
-                                        }
-                                else if(order.by == 'max'){
-                                        values.to.sort.by[i] <- max(trellis.object$panel.args[[1]]$x[trellis.object$panel.args[[1]]$y == num.boxes[[i]]]);
-                                        }
-                                }
+            for (i in c(1:length(num.boxes))) {
+                    if(order.by == 'median'){
+                            values.to.sort.by[i] <- median(trellis.object$panel.args[[1]]$y[trellis.object$panel.args[[1]]$x == num.boxes[[i]]]);
+                            }
+                    else if(order.by == 'mean'){
+                            values.to.sort.by[i] <- mean(trellis.object$panel.args[[1]]$y[trellis.object$panel.args[[1]]$x == num.boxes[[i]]]);
+                            }
+                    else if(order.by == 'min'){
+                            values.to.sort.by[i] <- min(trellis.object$panel.args[[1]]$y[trellis.object$panel.args[[1]]$x == num.boxes[[i]]]);
+                            }
+                    else if(order.by == 'max'){
+                            values.to.sort.by[i] <- max(trellis.object$panel.args[[1]]$y[trellis.object$panel.args[[1]]$x == num.boxes[[i]]]);
+                            }
+                    }
 			ranks <- rank(values.to.sort.by,ties.method= "random");
 
 			if (sample.order == 'decreasing') {ranks <- rank(values.to.sort.by*(-1),ties.method= "random");}
@@ -408,22 +409,23 @@ create.boxplot <- function(
 			for (i in c(1:length(num.boxes))) {
 				trellis.object$panel.args[[1]]$x[newlocations[[i]]] = num.boxes[ranks[i]];
 				}
+			
+			newPValues <- NULL
+            newPositionPVal <- NULL
+            if(add.pvalues){
+	            for(i in c(1:length(num.boxes))){
+	                    newPValues[ranks[i]] <- pvalues[i];
+	                    newPositionPVal[ranks[i]]<- positionpVal[i];
+	                }
+	            pvalues <- newPValues;
+	            positionpVal <- newPositionPVal;
+            }
 
 			if (length(xaxis.lab) == 1 && xaxis.lab) {
 				for (i in c(1:length(num.boxes))) {
 					trellis.object$x.scales$labels[ranks[i]] = num.boxes[i];
 					}
 				}
-                        newPValues <- NULL
-                        newPositionPVal <- NULL
-                        if(add.pvalues){
-                                for(i in c(1:length(num.boxes))){
-                                        newPValues[ranks[i]] <- pvalues[i];
-                                        newPositionPVal[ranks[i]]<- positionpVal[i];
-                                        }
-                                pvalues = newPValues;
-                                positionpVal = newPositionPVal;
-                                }
 			else {
 				newlabels <- NULL;
 				for(i in c(1:length(num.boxes))){
