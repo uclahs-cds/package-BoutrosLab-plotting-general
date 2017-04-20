@@ -14,7 +14,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, main.key.padding = 1,
 							ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1,
 							left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL,
-							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xlab.top.cex = 2,
+							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xaxis.lab.top = NULL, xat.top = TRUE, xlab.top.cex = 2, xaxis.top.idx = NULL,
 							xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
 							xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE,
 							xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL,
@@ -70,7 +70,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		       	ylimits.plots[[i]] <- plot.objects[[i]]$y.limits;
 			}
 		}
-
+	if (is.null(xaxis.top.idx)){
+		xaxis.top.idx <- length(plot.objects)
+		}
 	# specify tck marks for different alternating settings
 	if (0 == xaxis.alternating) { xaxis.tck <- c(0,0); }
 	else if (1 == xaxis.alternating) { xaxis.tck[2] <- 0; }
@@ -171,6 +173,26 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		relation = y.relation
 		);
 
+ # function to draw different top and bottom axes
+    xscale.components.new <- function(...) {
+
+		args <- xscale.components.default(...);
+        packet <- which.packet()
+		if (!is.null(packet) ){if( packet==xaxis.top.idx){
+		args$top <- args$bottom;
+        if(length(xat.top)==0) {
+            xat.top <- c(1:length(xaxis.lab.top));
+            }
+        args$top$ticks$at <- xat.top
+        args$top$labels$at <- xat.top;
+        args$top$labels$labels <- xaxis.lab.top;}}
+        return(args);
+        }
+xscale.components.old <- function(...){
+	args <- xscale.components.default(...)
+	return(args)
+	}
+	xscale.list <- list(xscale.components.old, xscale.components.old, xscale.components.new)
 	trellis.object <- update(
 		combined.plot.objects,
 		relation = 'free',
@@ -270,7 +292,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		key = key,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
-
+	if (!is.null(xaxis.lab.top)){
+		trellis.object <- update(trellis.object,xscale.components = xscale.components.new)
+	}
 	# update above doesn't seem to go through so force it here
 	trellis.object$x.limits = xlimits;
 	trellis.object$y.limits = ylimits;

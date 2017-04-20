@@ -26,7 +26,10 @@ create.multiplot(
 	xlab.cex = 2, 
 	ylab.cex = 2, 
 	xlab.top.label = NULL, 
+	xaxis.lab.top = NULL,
+	xat.top = NULL,
 	xlab.top.cex = 2, 
+	xaxis.top.idx = NULL,
 	xlab.top.col = 'black',
 	xlab.top.just = "center", 
 	xlab.top.x = 0.5, 
@@ -98,7 +101,10 @@ create.multiplot(
     \item{xlab.cex}{Size of x-axis labels, defaults to 1.5}
     \item{ylab.cex}{Size of y-axis labels, defaults to 1.5}
     \item{xlab.top.label}{The label for the top x-axis}
+	\item{xaxis.lab.top}{A vector of tick labels for the top x-axis. Currently only supports labelling a single top x-axis in the plot}
+	\item{xat.top}{A vector specifying tick positions for the top x-axis. Currently only supports a single top x-axis in the plot. Note when labelling a top x-axis even if you're not labelling a bottom x-axis labels xat must still be defined (eg as a list of empty vectors) or it will lead to unpredictable labelling}
     \item{xlab.top.cex}{Size of top x-axis label}
+	\item{xaxis.top.idx}{Index of the plot for which you want  top x-axis tick labels. Defaults to the last plot specified. Currently only supports one plot.}
     \item{xlab.top.col}{Colour of the top x-axis label}
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
@@ -107,7 +113,7 @@ create.multiplot(
     \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
     \item{xaxis.labels}{Names to give the x-axis labels, defaults to lattice default behaviour}  
     \item{yaxis.labels}{Names to give the y-axis labels, defaults to lattice default behaviour}
-    \item{xaxis.alternating}{Gives control of axis labelling, default to 1 which means only bottom axis labels are drawn, set to 0 to remove tick marks}
+    \item{xaxis.alternating}{Gives control of axis tick marks (1 bottom only, 2 top only, 3 both top and bottom), default to 1 which means only bottom axis tick marks are drawn, set to 0 to remove tick marks}
     \item{yaxis.alternating}{Gives control of axis labelling, defaults to 1 which means only left axis labels are drawn, set to 0 to remove tick marks}
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
