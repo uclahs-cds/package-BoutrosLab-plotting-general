@@ -26,7 +26,7 @@ create.multiplot(
 	xlab.cex = 2, 
 	ylab.cex = 2, 
 	xlab.top.label = NULL, 
-	xaxis.lab.top = NULL,
+	xaxis.top.tck.lab = NULL,
 	xat.top = NULL,
 	xlab.top.cex = 2, 
 	xaxis.top.idx = NULL,
@@ -101,7 +101,7 @@ create.multiplot(
     \item{xlab.cex}{Size of x-axis labels, defaults to 1.5}
     \item{ylab.cex}{Size of y-axis labels, defaults to 1.5}
     \item{xlab.top.label}{The label for the top x-axis}
-	\item{xaxis.lab.top}{A vector of tick labels for the top x-axis. Currently only supports labelling a single top x-axis in the plot}
+	\item{xaxis.top.tck.lab}{A vector of tick labels for the top x-axis. Currently only supports labelling a single top x-axis in the plot}
 	\item{xat.top}{A vector specifying tick positions for the top x-axis. Currently only supports a single top x-axis in the plot. Note when labelling a top x-axis even if you're not labelling a bottom x-axis labels xat must still be defined (eg as a list of empty vectors) or it will lead to unpredictable labelling}
     \item{xlab.top.cex}{Size of top x-axis label}
 	\item{xaxis.top.idx}{Index of the plot for which you want  top x-axis tick labels. Defaults to the last plot specified. Currently only supports one plot.}

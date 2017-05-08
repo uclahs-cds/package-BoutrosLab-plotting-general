@@ -14,7 +14,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, main.key.padding = 1,
 							ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1,
 							left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL,
-							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xaxis.lab.top = NULL, xat.top = TRUE, xlab.top.cex = 2, xaxis.top.idx = NULL,
+							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xaxis.top.tck.lab = NULL, xat.top = TRUE, xlab.top.cex = 2, xaxis.top.idx = NULL,
 							xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
 							xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE,
 							xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL,
@@ -181,11 +181,11 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		if (!is.null(packet) ){if( packet==xaxis.top.idx){
 		args$top <- args$bottom;
         if(length(xat.top)==0) {
-            xat.top <- c(1:length(xaxis.lab.top));
+            xat.top <- c(1:length(xaxis.top.tck.lab));
             }
         args$top$ticks$at <- xat.top
         args$top$labels$at <- xat.top;
-        args$top$labels$labels <- xaxis.lab.top;}}
+        args$top$labels$labels <- xaxis.top.tck.lab;}}
         return(args);
         }
 xscale.components.old <- function(...){
@@ -292,7 +292,7 @@ xscale.components.old <- function(...){
 		key = key,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
-	if (!is.null(xaxis.lab.top)){
+	if (!is.null(xaxis.top.tck.lab)){
 		trellis.object <- update(trellis.object,xscale.components = xscale.components.new)
 	}
 	# update above doesn't seem to go through so force it here
