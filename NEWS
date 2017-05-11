@@ -1,3 +1,19 @@
+BoutrosLab.plotting.general 5.7.0 2017-05-11
+
+BUG FIX
+* create.violinplot: fixed a bug in colour functionality; now repeats colours when fewer colours are supplied than there are groups
+
+FEATURE UPDATE
+* create.hexbinplot: changed argument abline.type to abline.lty to be consistent with other functions
+* create.segplot: added warning for specific use case (multiplot fails when a vertical segplot is the first plot)
+* create.manhattanplot: changed argument axis.lwd to axes.lwd to be consistent with other functions
+
+MINOR (FORMATTING) CHANGES
+* create.hexbinplot, create.histogram, create.manhattanplot, create.polygonplot, create.qqplot.comparison, create.qqplot.fit,
+	create.scatterplot, create.stripplot, create.segplot, create.violinplot, age.categorical.colour, append.footnote:
+	applied code formatting (BL standards)
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.6.24 2017-04-20
 
 FEATURE UPDATE
@@ -11,7 +27,6 @@ BUG FIX
 *pcawg.colours: fixed bug that prevented project code colours from being returned. 
 
 --------------------------------------------------------------------------
-
 
 BoutrosLab.plotting.general 5.6.22 2017-02-09
 

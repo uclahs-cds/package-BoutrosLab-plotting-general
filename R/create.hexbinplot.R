@@ -13,24 +13,26 @@
 create.hexbinplot <- function(
 	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
 	aspect = 'xy', trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE,
-	colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, main.cex = 3, xlab.cex = 2,
-	ylab.cex = 2, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1),
-	xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2,
-	xlab.top.col = 'black', xlab.top.just = "center", xlab.top.x = 0.5,
-	xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA,
-	yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black',
-	yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, strip.col = "white",
-	strip.cex = 1, strip.fontface = 'bold', add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.type = NULL,
-	abline.lwd = NULL, abline.col = 'black', abline.front = FALSE, add.xyline = FALSE, xyline.col = "black",
-	xyline.lwd = 1, xyline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE),
-	curves.to = max(data, na.rm = TRUE), curves.col = "black", curves.lwd = 2, curves.lty = 1,
-	add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL,	text.col = 'black',	text.cex = 1,
-	text.fontface = 'bold', add.axes = FALSE, xbins = 30, top.padding = 0.1, bottom.padding = 0.7,
-	left.padding = 0.5,	right.padding = 0.1, x.relation = "same", y.relation = "same", x.spacing = 0, y.spacing = 0,
-	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL,
-	description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL,
-	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
-	background.col = 'transparent', xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab',preload.default = 'custom') {
+	colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, xbins = 30, main.cex = 3, xlab.cex = 2,
+	ylab.cex = 2, xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
+	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
+	xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA,	
+	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black',
+	yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold',
+	layout = NULL, as.table = FALSE, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', 
+	add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.lty = NULL, abline.lwd = NULL, 
+	abline.col = 'black', abline.front = FALSE, add.xyline = FALSE, xyline.col = 'black', xyline.lwd = 1,
+	xyline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE),
+	curves.to = max(data, na.rm = TRUE), curves.col = 'black', curves.lwd = 2, curves.lty = 1,
+	add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black',	text.cex = 1,
+	text.fontface = 'bold', add.axes = FALSE, top.padding = 0.1, bottom.padding = 0.7,
+	left.padding = 0.5, right.padding = 0.1, x.relation = 'same', y.relation = 'same', x.spacing = 0, y.spacing = 0,
+	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
+	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, background.col = 'transparent',
+	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab',preload.default = 'custom'
+	) {
 
 	# IMPORTANT NOTE:
 	# - the implementation of this function is different from any other functions in the library
@@ -46,13 +48,13 @@ create.hexbinplot <- function(
 	# - Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without
 	# - specifying the 'maxcnt' parameter using the desired number of bins.
 
-	# create the parameter list
-        if(preload.default == 'paper'){
-
+	# add preloaded defaults
+        if (preload.default == 'paper') {
                 }
-        else if(preload.default == 'web'){
-
+        else if (preload.default == 'web') {
                 }
+
+	# fill in the defined parameters
 	parameter.list <- list(
 		formula,
 		data,
@@ -74,10 +76,10 @@ create.hexbinplot <- function(
 			# if axes are requested
 			if (add.axes) {
 				panel.abline(
-					h        = 0,
-					v        = 0,
-					col.line = "black",
-					lty      = "dashed",
+					h	 = 0,
+					v	 = 0,
+					col.line = 'black',
+					lty      = 'dashed',
 					lwd      = 1.5
 					);
 				}
@@ -89,12 +91,12 @@ create.hexbinplot <- function(
 					0,
 					0,
 					type     = 'g',
-					col.line = "black",
+					col.line = 'black',
 					grid     = add.grid
 					);
 
-				panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
-				panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
+				panel.abline(h = abline.h, lty = abline.lty, lwd = abline.lwd, col = abline.col);
+				panel.abline(v = abline.v, lty = abline.lty, lwd = abline.lwd, col = abline.col);
 
 				}
 
@@ -108,12 +110,12 @@ create.hexbinplot <- function(
 					0,
 					0,
 					type     = 'g',
-					col.line = "black",
+					col.line = 'black',
 					grid     = add.grid
 					);
 
-				panel.abline(h = abline.h, lty = abline.type, lwd = abline.lwd, col = abline.col);
-				panel.abline(v = abline.v, lty = abline.type, lwd = abline.lwd, col = abline.col);
+				panel.abline(h = abline.h, lty = abline.lty, lwd = abline.lwd, col = abline.col);
+				panel.abline(v = abline.v, lty = abline.lty, lwd = abline.lwd, col = abline.col);
 
 				}
 
@@ -157,8 +159,8 @@ create.hexbinplot <- function(
 			# Add text to plot
 			if (add.text) {
 				 panel.text(
-					x        = text.x,
-					y        = text.y,
+					x	 = text.x,
+					y	 = text.y,
 					labels   = text.labels,
 					col      = text.col,
 					cex      = text.cex,
@@ -170,15 +172,15 @@ create.hexbinplot <- function(
 		trans = trans,
 		inv = inv,
 		xbins = xbins,
-		colramp = if (is.null(colour.scheme)) { function(n) {LinGray(n, beg = 90, end = 15)} } else { colour.scheme },
+		colramp = if (is.null(colour.scheme)) { function(n) { LinGray(n, beg = 90, end = 15) } } else { colour.scheme },
 		colorkey = colourkey,
 		colorcut = colourcut,
 		mincnt = mincnt,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily",
+			property = 'fontfamily',
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style) {'plain'} else {'bold'},
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -186,39 +188,39 @@ create.hexbinplot <- function(
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily",
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style) {'plain'} else {'bold'}
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
-        	property = 'fontfamily',
-            add.to.list = list(
-            	label = xlab.top.label,
-            	cex = xlab.top.cex,
-                col = xlab.top.col,
-                fontface = if('Nature' == style) {'plain'} else {'bold'},
-                just = xlab.top.just,
-                x = xlab.top.x,
+			property = 'fontfamily',
+			add.to.list = list(
+	    			label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
+				just = xlab.top.just,
+				x = xlab.top.x,
 				y = xlab.top.y
-                )
+        		        )
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily",
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style) {'plain'} else {'bold'}
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		scales = list(
 			alternating = FALSE,
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily",
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -228,11 +230,11 @@ create.hexbinplot <- function(
 					limits = xlimits,
 					relation = x.relation,
 					at = xat,
-					fontface = if ('Nature' == style) {'plain'} else { xaxis.fontface }
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface }
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily",
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,
@@ -242,7 +244,7 @@ create.hexbinplot <- function(
 					limits = ylimits,
 					relation = y.relation,
 					at = yat,
-					fontface = if ('Nature' == style) {'plain'} else { yaxis.fontface }
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface }
 					)
 				)
 			),
@@ -324,14 +326,15 @@ create.hexbinplot <- function(
 		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
 		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 
 	# output the object
 	return(

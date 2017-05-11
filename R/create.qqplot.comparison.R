@@ -10,13 +10,27 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE QQPLOT COMPARISON ###########################################################
-create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = 'fill', prepanel = NULL, add.grid = FALSE,groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = NULL, ylab.label = NULL, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, main.cex = 3, xlab.cex = 2, xaxis.fontface = 'bold', xlab.col = 'black', yaxis.fontface = 'bold', ylab.cex = 2, ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', type = 'p', cex = 0.75, pch = 19, col = 'black', lwd = 1, lty = 1, axes.lwd = 2.25, xaxis.tck = 1, yaxis.tck = 1, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab', preload.default = 'custom') {
+create.qqplot.comparison <- function(
+	x, data = NULL, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5,
+	main.y = 0.5, main.cex = 3, aspect = 'fill', prepanel = NULL, xlab.label = NULL, ylab.label = NULL,
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlimits = NULL, ylimits = NULL,
+	xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA,	xaxis.cex = 1.5, yaxis.cex = 1.5,
+	xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0,
+	yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
+	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center',
+	xlab.top.x = 0.5, xlab.top.y = 0, add.grid = FALSE, xgrid.at = xat, ygrid.at = yat, type = 'p', cex = 0.75,
+	pch = 19, col = 'black', lwd = 1, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))),
+	legend = NULL, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL,
+	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
+	top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1,
+	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	) {
 
-        if(preload.default == 'paper'){
-
+	# add preloaded defaults
+        if (preload.default == 'paper') {
                 }
-        else if(preload.default == 'web'){
-
+        else if (preload.default == 'web') {
                 }
 
 	# x should be a formula or a list of data whose length is 2
@@ -34,21 +48,20 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 		# set x-axis and y-axis label defaults
 		# if the label is NULL, then we leave it as blank;
 		# if the label is NA, then we use a specific default label.
-		if (!is.null(xlab.label) & !is.expression(xlab.label)) { 
+		if (!is.null(xlab.label) & !is.expression(xlab.label)) {
 			if (is.na(xlab.label)) {
-				xlab.label <- "sample one";
+				xlab.label <- 'sample one';
 				}
 			}
-		if (!is.null(ylab.label) & !is.expression(ylab.label)) { 
+		if (!is.null(ylab.label) & !is.expression(ylab.label)) {
 			if (is.na(ylab.label)) {
-				ylab.label <- "sample two";
+				ylab.label <- 'sample two';
 				}
 			}
 		}
 
-	else { 
-
-		formula.to.plot <- x; 
+	else {
+		formula.to.plot <- x;
 		data.to.plot <- data;
 
 		# parse the formula to get x-axis and y-axis labels defaults
@@ -58,7 +71,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 		y <- as.factorOrShingle(y);
 
 		# if x-axis labels is NA, set the default
-		if (!is.null(xlab.label) & !is.expression(xlab.label)) { 
+		if (!is.null(xlab.label) & !is.expression(xlab.label)) {
 			if (is.na(xlab.label)) {
 				# get the name of the first sample from the formula
 				if (is.factor(y)) {
@@ -71,15 +84,13 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 			}
 
 		# if y-axis labels is NA, set the default
-		if (!is.null(ylab.label) & !is.expression(ylab.label)) { 
+		if (!is.null(ylab.label) & !is.expression(ylab.label)) {
 			if (is.na(ylab.label)) {
-				# get the name of the second sample from the formula
+					# get the name of the second sample from the formula
 					if (is.factor(y)) {
-					ylab.label <- unique(levels(y))[2];
-					}
-					else {
-					ylab.label <- paste(parseform$left.name, ':', as.character(unique(levels(y)[[2]])));
-					}
+						ylab.label <- unique(levels(y))[2];
+						}
+					else { ylab.label <- paste(parseform$left.name, ':', as.character(unique(levels(y)[[2]]))); }
 				}
 			}
 		}
@@ -88,8 +99,8 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 	# if the label is NULL, then we leave it as blank;
 	# if the label is NA, then we use a specific default label.
 	if (!is.null(main) & !is.expression(main)) {
-		if (is.na(main)) { 
-			main <- 'Q-Q plot'; 
+		if (is.na(main)) {
+			main <- 'Q-Q plot';
 			}
 		}
 
@@ -97,8 +108,8 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 	trellis.object <- lattice::qq(
 		x = formula.to.plot,
 		data = data.to.plot,
-		panel = function(type.local = type, groups.local = groups, subscripts, identifier = "qq", ...) {
-			
+		panel = function(type.local = type, groups.local = groups, subscripts, identifier = 'qq', ...) {
+
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
@@ -113,7 +124,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 				}
 
 			# if grid-lines are requested, over-ride default behaviour
-			if ("g" %in% type || add.grid == TRUE) {
+			if ('g' %in% type || add.grid == TRUE) {
 				panel.abline(
 					v = BoutrosLab.plotting.general::generate.at.final(
 						at.input = xgrid.at,
@@ -125,10 +136,12 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 						limits = ylimits,
 						data.vector = z
 						),
-					col = trellis.par.get("reference.line")$col
+					col = trellis.par.get('reference.line')$col
 					);
 				}
-			panel.qq(..., groups = groups.local, subscripts = subscripts, identifier = "qq");
+
+			panel.qq(..., groups = groups.local, subscripts = subscripts, identifier = 'qq');
+
 			},
 		aspect = aspect,
 		type = type,
@@ -138,10 +151,10 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 		lwd = lwd,
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -149,12 +162,12 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
@@ -163,30 +176,30 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
                                 col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
                                 just = xlab.top.just,
                                 x = xlab.top.x,
 				y = xlab.top.y
                                 )
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily',
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
 					col = xaxis.col,
 					limits = xlimits,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					at = xat,
 					labels = xaxis.lab,
 					log = xaxis.log,
@@ -195,13 +208,13 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily',
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,
 					col = yaxis.col,
 					limits = ylimits,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					at = yat,
 					labels = yaxis.lab,
 					log = yaxis.log,
@@ -215,7 +228,7 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 		par.settings = list(
 			axis.line = list(
 				lwd = axes.lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				col = if ('Nature' == style) { 'transparent' } else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -252,10 +265,10 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -270,17 +283,18 @@ create.qqplot.comparison <- function(x, data = NULL, filename = NULL, aspect = '
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 
 	# output the object
 	return(

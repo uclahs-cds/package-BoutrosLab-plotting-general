@@ -4,84 +4,85 @@
 \description{Takes a formula and a data.frame and creates a strip-plot}
 \usage{
 create.stripplot(
-	formula, 
-	data, 
-	filename = NULL, 
-	groups = NULL, 
-	jitter.data = FALSE, 
-	jitter.factor = 1, 
-	jitter.amount = NULL, 
-	main = NULL, 
-	main.just = "center",
-	main.x = 0.5, 
+	formula,
+	data,
+	filename = NULL,
+	groups = NULL,
+	jitter.data = FALSE,
+	jitter.factor = 1,
+	jitter.amount = NULL,
+	main = NULL,
+	main.just = 'center',
+	main.x = 0.5,
 	main.y = 0.5,
-	xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), 
-	xaxis.lab = TRUE, 
-	yaxis.lab = TRUE, 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
-	lwd = 1, 
-	pch = 19, 
-	col = "black", 
+	xlab.label = tail(sub('~', '', formula[-2]), 1),
+	ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	lwd = 1,
+	pch = 19,
+	col = 'black',
 	col.border = 'black',
-	fill = 'transparent', 
-	colour.alpha = 1, 
-	cex = 0.75, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	xlimits = NULL, 
-	ylimits = NULL, 
-	xat = TRUE, 
-	yat = TRUE, 
-	xaxis.cex = 1.5, 
-	yaxis.cex = 1.5, 
+	fill = 'transparent',
+	colour.alpha = 1,
+	cex = 0.75,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
 	main.cex = 3,
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	xlab.col = 'black', 
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
 	ylab.col = 'black',
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
+	xlab.top.label = NULL,
+	xlab.top.cex = 2,
 	xlab.top.col = 'black',
-	xlab.top.just = "center",
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	xaxis.tck = 0, 
-	yaxis.tck = 1, 
-	top.padding = 0.1, 
-	bottom.padding = 0.7, 
-	right.padding = 0.3, 
-	left.padding = 0.5, 
-	ylab.axis.padding = 1, 
-	layout = NULL, 
-	as.table = TRUE, 
-	x.spacing = 0, 
-	y.spacing = 0, 
-	add.median = FALSE, 
-	median.values = NULL, 
-	strip.col = "white", 
-	strip.cex = 1, 
-	strip.fontface = 'bold', 
-	width = 6, 
-	height = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	key = NULL, 
-	legend = NULL, 
-	description = 'Created with BoutrosLab.plotting.general', 
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.tck = 0,
+	yaxis.tck = 1,
+	top.padding = 0.1,
+	bottom.padding = 0.7,
+	right.padding = 0.3,
+	left.padding = 0.5,
+	ylab.axis.padding = 1,
+	layout = NULL,
+	as.table = TRUE,
+	x.spacing = 0,
+	y.spacing = 0,
+	add.median = FALSE,
+	median.values = NULL,
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
 	alpha.rectangle = 1,
+	strip.col = 'white',
+	strip.cex = 1,
+	strip.fontface = 'bold',
+	key = NULL,
+	legend = NULL,
+	width = 6,
+	height = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
-	preload.default = 'custom')
+	preload.default = 'custom'
+	)
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -137,22 +138,11 @@ create.stripplot(
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}
     \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
-    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
-    \item{strip.cex}{Strip title character expansion}
-    \item{strip.fontface}{Strip text fontface, defaults to bold}
     \item{as.table}{Specifies panel drawing order, default is TRUE to draw from top left corner, moving right then down. Set to FALSE to draw panels from bottom left corner, moving right then up}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
     \item{add.median}{TRUE/FALSE indicating whether lines should be drawn at the group medians, default is FALSE}
     \item{median.values}{A vector of values representing the median of each group, default is NULL}
-    \item{width}{Figure width, defaults to 6 inches}
-    \item{height}{Figure height, defaults to 6 inches}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1600}
-    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
-    \item{key}{A list giving the key (legend). The default suppresses drawing}
-    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{description}{Short description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
@@ -160,6 +150,17 @@ create.stripplot(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Strip title character expansion}
+    \item{strip.fontface}{Strip text fontface, defaults to bold}
+    \item{key}{A list giving the key (legend). The default suppresses drawing}
+    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
+    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
+    \item{description}{Short description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
 }

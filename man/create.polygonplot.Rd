@@ -4,132 +4,134 @@
 \description{Takes a data.frame and creates a polygon}
 \usage{
 create.polygonplot(
-	formula, 
-	data, 
-	filename = NULL, 
-	main = NULL, 
-	main.just = "center", 
-	main.x = 0.5, 
-	main.y = 0.5, 
-	groups = NULL, 
-	max, 
-	min, 
-	col = 'white', 
+	formula,
+	data,
+	filename = NULL,
+	groups = NULL,
+	main = NULL,
+	main.just = 'center',
+	main.x = 0.5,
+	main.y = 0.5,
+	main.cex = 3,
+	max,
+	min,
+	col = 'white',
 	alpha = 0.5,
-	border.col = 'black', 
-	xy.col = 'black', 
-	strip.col = "white", 
-	strip.cex = 1, 
-	type = 'p', 
-	cex = 0.75, 
-	pch = 19, 
-	lwd = 1, 
-	lty = 1, 
-	axes.lwd = 1, 
-	xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), 
-	main.cex = 3, 
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	xlab.col = 'black', 
-	ylab.col = 'black', 
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
-	xlab.top.col = 'black', 
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xaxis.rot = 0, 
-	xaxis.cex = 1.5, 
-	yaxis.rot = 0, 
-	yaxis.cex = 1.5, 
-	xaxis.lab = TRUE, 
-	yaxis.lab = TRUE, 
-	xaxis.log = FALSE, 
-	yaxis.log = FALSE, 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	xlimits = NULL, 
-	ylimits = NULL, 
-	xat = TRUE, 
-	yat = TRUE, 
-	x.spacing = 0, 
-	y.spacing = 0, 
-	top.padding = 0.5, 
-	bottom.padding = 2, 
-	right.padding = 1, 
-	left.padding = 2, 	
-	ylab.axis.padding = 0, 
-	x.relation = "same", 
-	y.relation = "same", 
-	xaxis.tck = 1, 
-	yaxis.tck = 1, 
-	layout = NULL, 
-	as.table = FALSE, 
-	add.xy.border = FALSE, 
-	add.median = FALSE, 
-	median.lty = 3, 
+	border.col = 'black',
+	xy.col = 'black',
+	strip.col = 'white',
+	strip.cex = 1,
+	type = 'p',
+	cex = 0.75,
+	pch = 19,
+	lwd = 1,
+	lty = 1,
+	axes.lwd = 1,
+	xlab.label = tail(sub('~', '', formula[-2]), 1),
+	ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
+	ylab.col = 'black',
+	xlab.top.label = NULL,
+	xlab.top.cex = 2,
+	xlab.top.col = 'black',
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.log = FALSE,
+	yaxis.log = FALSE,
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.tck = 1,
+	yaxis.tck = 1,
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	layout = NULL,
+	as.table = FALSE,
+	x.spacing = 0,
+	y.spacing = 0,
+	x.relation = 'same',
+	y.relation = 'same',
+	top.padding = 0.5,
+	bottom.padding = 2,
+	right.padding = 1,
+	left.padding = 2,	
+	ylab.axis.padding = 0,
+	add.xy.border = FALSE,
+	add.median = FALSE,
+	median.lty = 3,
 	median.lwd = 1.5,
-	use.loess.border = FALSE, 
-	use.loess.median = FALSE, 
-	median = NULL, 
-	median.col = "black", 
-	extra.points = NULL, 
-	extra.points.pch = 21, 
-	extra.points.type = 'p', 
-	extra.points.col = 'black', 
-	extra.points.fill = 'white', 
-	extra.points.cex = 1, 
-  add.rectangle = FALSE, 
-  xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	xgrid.at = xat, 
-	ygrid.at = yat, 
-	grid.lty = 1, 
-	grid.col = "grey", 
-	grid.lwd = 0.3, 
-	add.xyline = FALSE, 
-	xyline.col = "black", 
-	xyline.lwd = 1, 
-	xyline.lty = 1, 
-	abline.h = NULL, 
-	abline.v = NULL, 
-	abline.col = "black", 
-	abline.lwd = 1, 
-	abline.lty = 1, 
-	add.text = FALSE, 
-	text.labels = NULL, 
-	text.x = NULL, 
-	text.y = NULL, 
-	text.col = 'black', 
-	text.cex = 1, 
-	text.fontface = 'bold', 
-	height = 6, 
-	width = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	key = NULL, 
-	legend = NULL, 
+	use.loess.border = FALSE,
+	use.loess.median = FALSE,
+	median = NULL,
+	median.col = 'black',
+	extra.points = NULL,
+	extra.points.pch = 21,
+	extra.points.type = 'p',
+	extra.points.col = 'black',
+	extra.points.fill = 'white',
+	extra.points.cex = 1,
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
+	alpha.rectangle = 1,
+	xgrid.at = xat,
+	ygrid.at = yat,
+	grid.lty = 1,
+	grid.col = 'grey',
+	grid.lwd = 0.3,
+	add.xyline = FALSE,
+	xyline.col = 'black',
+	xyline.lwd = 1,
+	xyline.lty = 1,
+	abline.h = NULL,
+	abline.v = NULL,
+	abline.col = 'black',
+	abline.lwd = 1,
+	abline.lty = 1,
+	add.text = FALSE,
+	text.labels = NULL,
+	text.x = NULL,
+	text.y = NULL,
+	text.col = 'black',
+	text.cex = 1,
+	text.fontface = 'bold',
+	key = NULL,
+	legend = NULL,
+	height = 6,
+	width = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', 
 	style = 'BoutrosLab',
-	preload.default = 'custom');
+	preload.default = 'custom'
+	);
 }
 \arguments{
     \item{formula}{The formula used to extract the boxplot components from the data-frame}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
+    \item{groups}{The grouping variable in the data-frame}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
-    \item{groups}{The grouping variable in the data-frame}
+    \item{main.cex}{Size of text for main plot title}
     \item{max}{Max values for polygon}
     \item{min}{Min values for polygon}
     \item{col}{Fill colour of polygon, defaults to white}
@@ -146,7 +148,6 @@ create.polygonplot(
     \item{axes.lwd}{Thickness of width of axes lines}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
-    \item{main.cex}{Size of text for main plot title}
     \item{xlab.cex}{Size of x-axis label, defaults to 3}
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
@@ -157,16 +158,16 @@ create.polygonplot(
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
-    \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
-    \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
+    \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
+    \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
+    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.log}{Logical indicating whether x-variable should be in logarithmic scale (and what base if numeric)}
     \item{yaxis.log}{Logical indicating whether y-variable should be in logarithmic scale (and what base if numeric)}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
-    \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
-    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
@@ -175,17 +176,17 @@ create.polygonplot(
     \item{ylimits}{Two-element vector giving the y-axis limits} 
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
+    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.5}
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 2}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 2}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 0}, 
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
-    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{add.xy.border}{Add xy border to polygon, default is FALSE}
     \item{add.median}{Add median line, default is FALSE}
     \item{median.lty}{Median line type}
@@ -228,13 +229,13 @@ create.polygonplot(
     \item{text.col}{The colour of additional text}
     \item{text.cex}{The size of additional text}
     \item{text.fontface}{The fontface for additional text}
+    \item{key}{Add a key to the plot. See xyplot.}
+    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
     \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
-    \item{key}{Add a key to the plot. See xyplot.}
-    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{description}{Short description of image/plot; default NULL.}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}

@@ -10,15 +10,38 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE SEGPLOTS ###################################################################
-create.segplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.rot = 0, yaxis.rot = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, abline.h = NULL, abline.v = NULL, abline.lty = 1, abline.lwd = 1, abline.col = 'black', segments.col = 'black', segments.lwd = 1, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", xaxis.tck = 1, yaxis.tck = 1, level = NULL, col.regions =NULL, centers = NULL, plot.horizontal = TRUE, draw.bands =  FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1, layout = NULL, as.table = FALSE, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab', preload.default = 'custom') {
+create.segplot <- function(
+	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
+	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
+	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center',
+	xlab.top.x = 0.5, xlab.top.y = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.rot = 0,
+	yaxis.rot = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.lab = TRUE, yaxis.lab = TRUE,
+	xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE,
+	xaxis.tck = 1, yaxis.tck = 1, abline.h = NULL, abline.v = NULL, abline.lty = 1, abline.lwd = 1, 
+	abline.col = 'black', segments.col = 'black', segments.lwd = 1, x.spacing = 0, y.spacing = 0, 
+	top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, 
+	x.relation = 'same', y.relation = 'same', level = NULL, col.regions = NULL, centers = NULL,
+	plot.horizontal = TRUE, draw.bands = FALSE, pch = 16, symbol.col = 'black', symbol.cex = 1,
+	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
+	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, axes.lwd = 1,
+	layout = NULL, as.table = FALSE, key = NULL, legend = NULL, height = 6, width = 6,
+	size.units = 'in', resolution = 1600, enable.warnings = FALSE, style = 'BoutrosLab',
+	description = 'Created with BoutrosLab.plotting.general', preload.default = 'custom'
+	) {
 
-
-        if(preload.default == 'paper'){
-
+	# add preloaded defaults
+        if (preload.default == 'paper') {
                 }
-        else if(preload.default == 'web'){
-
+        else if (preload.default == 'web') {
                 }
+
+	# add some error checking
+	if (!plot.horizontal) {
+		warning("Be aware that vertical segplots can not be used as the first plot in a multiplot. Consider using create.scatterplot instead.");
+		}
+
+	# Now make the actual plot object
 	trellis.object <- lattice::levelplot(
 		x = formula,
 		data,
@@ -37,7 +60,9 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 					border = NA
 					);
 				}
-			if(!is.logical(draw.bands)){
+
+			# add bands if requested
+			if (!is.logical(draw.bands)) {
 				panel.rect(
                                         xleft = data$min[draw.bands],
                                         ybottom = draw.bands - 0.25,
@@ -48,7 +73,8 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
                                         border = NA
                                         );	
 				}
-			else if(draw.bands == TRUE){
+
+			else if (draw.bands == TRUE) {
 				panel.rect(
                                         xleft = data$min,
                                         ybottom = seq(0.75,10,1),
@@ -58,7 +84,6 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
                                         alpha = 1,
                                         border = NA
                                         );
-
 				}
 
 			# if requested, add user-defined vertical line
@@ -80,6 +105,7 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 					col = abline.col
 					);
 				}
+
 			panel.segplot(
 				col = segments.col,
 				fill = segments.col,
@@ -94,10 +120,10 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 				)
 			},
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -105,12 +131,12 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily', 
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
@@ -119,19 +145,19 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
                                 col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
                                 just = xlab.top.just,
                                 x = xlab.top.x,
 				y = xlab.top.y
                                 )
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily', 
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		between = list(
@@ -140,26 +166,26 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 			),	
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily', 
 				add.to.list = list(
 					labels = xaxis.lab,
 					rot = xaxis.rot,
 					limits = xlimits,
 					cex = xaxis.cex,
 					col = xaxis.col,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					at = xat,
 					relation = x.relation,
 					tck = xaxis.tck
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily', 
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,
 					col = yaxis.col,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					rot = yaxis.rot,
 					tck = yaxis.tck,
 					limits = ylimits,
@@ -172,8 +198,8 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 			),
 		par.settings = list(
 			axis.line = list(
-				lwd = lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				lwd = axes.lwd,
+				col = if ('Nature' == style) { 'transparent' } else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -224,10 +250,10 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -242,17 +268,18 @@ create.segplot <- function(formula, data, filename = NULL, main = NULL, main.jus
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
 		} 
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 
 	# output the object
 	return(

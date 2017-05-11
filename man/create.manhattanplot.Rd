@@ -4,105 +4,106 @@
 \description{Takes a data.frame and creates a Manhattan plot}
 \usage{
 create.manhattanplot(
-	formula, 
-	data, 
-	filename = NULL, 
+	formula,
+	data,
+	filename = NULL,
 	main = NULL,
-	main.just = "center", 
-	main.x = 0.5, 
+	main.just = 'center',
+	main.x = 0.5,
 	main.y = 0.5,
-	xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), 
-	main.cex = 3, 
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	xlab.col = 'black', 
-	ylab.col = 'black', 
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
+	main.cex = 3,
+	xlab.label = tail(sub('~', '', formula[-2]), 1),
+	ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
+	ylab.col = 'black',
+	xlab.top.label = NULL,
+	xlab.top.cex = 2,
 	xlab.top.col = 'black',
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5, 
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
 	xlab.top.y = 0,
-	xlimits = NULL, 
-	ylimits = NULL, 
-	xat = TRUE, 
-	yat = TRUE, 
-	xaxis.lab = NA, 
-	yaxis.lab = NA, 
-	xaxis.log = FALSE, 
-	yaxis.log = FALSE, 
-	xaxis.cex = 1.5, 
-	yaxis.cex = 1.5, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	xaxis.fontface = 'plain', 
-	yaxis.fontface = 'plain', 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	xaxis.tck = 0, 
-	yaxis.tck = c(1,1), 
-	type = 'p', 
-	cex = 2, 
-	pch = '.', 
-	col = 'black', 
-	strip.col = "white", 
-	strip.cex = 1, 
-	lwd = 1, 
-	lty = 1, 
-	alpha = 1, 
-	axis.lwd = 1, 
-	key = list(text = list(lab = c(''))), 
-	legend = NULL, 
-	x.spacing = 0, 
-	y.spacing = 0, 
-	top.padding = 0, 
-	bottom.padding = 0, 
-	right.padding = 0, 
-	left.padding = 0, 
-	key.top = 0, 
-	ylab.axis.padding = 1, 
-	axis.key.padding = 1, 
-	x.relation = "same", 
-	y.relation = "same", 
-	layout = NULL, 
-	as.table = FALSE, 
-	axes.lty = 'dashed', 
-	abline.h = NULL, 
-	abline.col = "black", 
-	abline.lwd = 1, 
-	abline.lty = 1, 
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	add.points = FALSE, 
-	points.x = NULL, 
-	points.y = NULL, 
-	points.pch = 19, 
-	points.col = 'black', 
-	points.cex = 1, 
-	add.text = FALSE, 
-	text.labels = NULL, 
-	text.x = NULL, 
-	text.y = NULL, 
-	text.col = 'black', 
-	text.cex = 1, 
-	text.fontface = 'bold', 
-	key.left.padding = 0, 
-	height = 6, 
-	width = 10, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	horizontal = FALSE, 
-	description = 'Created with BoutrosLab.plotting.general', 
-	style = 'BoutrosLab', 
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	xaxis.lab = NA,
+	yaxis.lab = NA,
+	xaxis.log = FALSE,
+	yaxis.log = FALSE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.fontface = 'plain',
+	yaxis.fontface = 'plain',
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.tck = 0,
+	yaxis.tck = c(1,1),
+	horizontal = FALSE,
+	type = 'p',
+	cex = 2,
+	pch = '.',
+	col = 'black',
+	lwd = 1,
+	lty = 1,
+	alpha = 1,
+	strip.col = 'white',
+	strip.cex = 1,
+	axes.lwd = 1,
+	axes.lty = 'dashed',
+	key = list(text = list(lab = c(''))),
+	legend = NULL,
+	layout = NULL,
+	as.table = FALSE,
+	x.spacing = 0,
+	y.spacing = 0,
+	x.relation = 'same',
+	y.relation = 'same',
+	top.padding = 0,
+	bottom.padding = 0,
+	right.padding = 0,
+	left.padding = 0,
+	key.top = 0,
+	key.left.padding = 0,
+	ylab.axis.padding = 1,
+	axis.key.padding = 1,
+	abline.h = NULL,
+	abline.col = 'black',
+	abline.lwd = 1,
+	abline.lty = 1,
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
+	alpha.rectangle = 1,
+	add.points = FALSE,
+	points.x = NULL,
+	points.y = NULL,
+	points.pch = 19,
+	points.col = 'black',
+	points.cex = 1,
+	add.text = FALSE,
+	text.labels = NULL,
+	text.x = NULL,
+	text.y = NULL,
+	text.col = 'black',
+	text.cex = 1,
+	text.fontface = 'bold',
+	height = 6,
+	width = 10,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
+	style = 'BoutrosLab',
+	description = 'Created with BoutrosLab.plotting.general',
 	preload.default = 'custom',
-	...);
+	...
+	);
     }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -112,9 +113,9 @@ create.manhattanplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of text for main plot title}
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
-    \item{main.cex}{Size of text for main plot title}
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
@@ -143,37 +144,34 @@ create.manhattanplot(
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
     \item{yaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
+    \item{horizontal}{xyplot-specific function that allows you to change if type='h' draws lines to the vertical or horizontal axis}
     \item{type}{Plot type}
     \item{cex}{Character expansion for plotting symbol}
     \item{pch}{Plotting character}
     \item{col}{Point/line colour}
+    \item{lwd}{Specifies line width, defaults to 1}
+    \item{lty}{Specifies line style, defaults to 1 (solid)}
+    \item{alpha}{Specifies line transparency, defaults to 1 (opaque)}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
     \item{strip.cex}{Strip title character expansion}
+    \item{axes.lwd}{Thickness of width of axis lines}
+    \item{axes.lty}{Specifies axis line style, defaults to \dQuote{dashed}}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
+    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}F
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0}
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 0}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 0}
     \item{key.top}{A number specifying the distance at top of key, defaults to 0}
+    \item{key.left.padding}{Amount of padding to go onto any legend on the left}
     \item{ylab.axis.padding}{A number specifying the distance of label to the y-axis, defaults to 1}
     \item{axis.key.padding}{A number specifying the distance from the y-axis to the key, defaults to 1}
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
-    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}F
-    \item{lwd}{Specifies line width, defaults to 1}
-    \item{lty}{Specifies line style, defaults to 1 (solid)}
-    \item{alpha}{Specifies line transparency, defaults to 1 (opaque)}
-    \item{axis.lwd}{Thickness of width of axis lines}
-    \item{key.left.padding}{Amount of padding to go onto any legend on the left}
-    \item{height}{Figure height, defaults to 6 inches}
-    \item{width}{Figure width, defaults to 6 inches}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1600}
-    \item{axes.lty}{Specifies axis line style, defaults to \dQuote{dashed}}
     \item{abline.h}{Allow horizontal line to be drawn, default to NULL}
     \item{abline.col}{Horizontal line colour, defaults to black}
     \item{abline.lwd}{Specifies horizontal line width, defaults to 1}
@@ -198,10 +196,13 @@ create.manhattanplot(
     \item{text.col}{The colour of additional text}
     \item{text.cex}{The size of additional text}
     \item{text.fontface}{The fontface for additional text}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
-    \item{horizontal}{xyplot-specific function that allows you to change if type="h" draws lines to the vertical or horizontal axis}
-    \item{description}{Short description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
+    \item{description}{Short description of image/plot; default NULL}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{...}{Additional arguments to be passed to xyplot}
 }
@@ -231,7 +232,7 @@ create.manhattanplot(
     );
 
 # set up chromosome covariate colours to use for chr covariate, below
-chr.colours <- force.colour.scheme(microarray$Chr, scheme = "chromosome");
+chr.colours <- force.colour.scheme(microarray$Chr, scheme = 'chromosome');
 
 # make chr covariate and chr labels 
 chr.n.genes       <- vector();
@@ -274,7 +275,7 @@ create.manhattanplot(
     data = microarray,
     main = 'Custom axes',
     xlab.label = expression('Chromosomes'),
-    ylab.label = expression("P"["adjusted"]),
+    ylab.label = expression('P'['adjusted']),
     xat = chr.tck,
     xaxis.lab = c(1:22, 'X', 'Y'),
     xaxis.tck = 0,
@@ -298,7 +299,7 @@ create.manhattanplot(
     data = microarray,
     main = 'Colour scheme',
     xlab.label = expression('Chromosomes'),
-    ylab.label = expression("P"["adjusted"]),
+    ylab.label = expression('P'['adjusted']),
     xat = chr.tck,
     xaxis.lab = c(1:22, 'X', 'Y'),
     xaxis.tck = 0,
@@ -323,7 +324,7 @@ create.manhattanplot(
     data = microarray,
     main = 'Plotting character',
     xlab.label = expression('Chromosomes'),
-    ylab.label = expression("P"["adjusted"]),
+    ylab.label = expression('P'['adjusted']),
     xat = chr.tck,
     xaxis.lab = c(1:22, 'X', 'Y'),
     xaxis.tck = 0,
@@ -351,7 +352,7 @@ create.manhattanplot(
     data = microarray,
     main = 'Line',
     xlab.label = expression('Chromosomes'),
-    ylab.label = expression("P"["adjusted"]),
+    ylab.label = expression('P'['adjusted']),
     xat = chr.tck,
     xaxis.lab = c(1:22, 'X', 'Y'),
     xaxis.tck = 0,
@@ -383,7 +384,7 @@ create.manhattanplot(
     data = microarray,
     main = 'Bg rectangles',
     xlab.label = expression('Chromosomes'),
-    ylab.label = expression("P"["adjusted"]),
+    ylab.label = expression('P'['adjusted']),
     xat = chr.tck,
     xaxis.lab = c(1:22, 'X', 'Y'),
     xaxis.tck = 0,
@@ -461,6 +462,5 @@ create.manhattanplot(
 
     description = 'Manhattan plot created using BoutrosLab.plotting.general'
     );
-
 }
 \keyword{hplot}

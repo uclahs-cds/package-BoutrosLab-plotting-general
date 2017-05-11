@@ -10,26 +10,45 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE HISTOGRAMS ##################################################################
-create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.label = NULL, col = "white", main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, breaks = NULL, xaxis.lab = TRUE, xaxis.cex = 1.5, xlimits = NULL, xat = TRUE, yaxis.lab = TRUE, yaxis.cex = 1.5, ylimits = NULL, yat = TRUE, xlab.cex = 2, ylab.cex = 2, main.cex = 3, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', ylab.col = 'black', xlab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'percent', x.spacing = 0, y.spacing = 0, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", layout = NULL, strip.col = "white", strip.cex = 1, lwd = 2, lty = 1, abline.h = NULL, abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', style = 'BoutrosLab', preload.default = 'custom' ) {
+create.histogram <- function(
+	x, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3,
+	xlab.label = NULL, ylab.label = NULL, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
+	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xlimits = NULL, ylimits = NULL,
+	xat = TRUE, yat = TRUE, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black',
+	xaxis.tck = 1, yaxis.tck = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xlab.top.label = NULL,
+	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
+	type = 'percent', breaks = NULL, col = 'white', lwd = 2, lty = 1, layout = NULL, x.spacing = 0, y.spacing = 0,
+	x.relation = 'same', y.relation = 'same', strip.col = 'white', strip.cex = 1, top.padding = 0.1,
+	bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, ylab.axis.padding = 0, abline.h = NULL,
+	abline.v = NULL, abline.col = 'black', abline.lwd = 1, abline.lty = 1, key = NULL, legend = NULL,
+	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
+	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6,
+	size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	) {
 	
 	# 'data' parameter shoud only be set if x if a formula
 	# otherwise a warning will be thrown (even if data = NULL), although the plot will still be created 
 	# temporarily turn off warnings to avoid confusion
 	options(warn = -1);
-        if(preload.default == 'paper'){
 
-                }
-        else if(preload.default == 'web'){
+	# add preloaded defaults
+	if (preload.default == 'paper') {
+		}
+	else if (preload.default == 'web') {
+		}
 
-                }
+	# Now make the actual plot object
 	trellis.object <- lattice::histogram(
 		x = x,
 		data = data,
 		panel = function(...) {
+
 			# turn warnings back on
 			options(warn = 0);
-			
+
 			panel.histogram(...);
+
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
@@ -42,6 +61,8 @@ create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.l
 					border = NA
 					);
 				}
+
+			# if requested, add user-defined horizontal line
 			if (!is.null(abline.h)) {
 				panel.abline(
 					h = abline.h,
@@ -50,6 +71,8 @@ create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.l
 					col = abline.col
 					);
 				}
+
+			# if requested, add user-defined vertical line
 			if (!is.null(abline.v)) {
 				panel.abline(
 					v = abline.v,
@@ -65,10 +88,10 @@ create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.l
 		lty = lty,
 		breaks = breaks,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -76,75 +99,75 @@ create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.l
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
-                xlab.top = BoutrosLab.plotting.general::get.defaults(
-                        property = 'fontfamily',
-                        add.to.list = list(
-                                label = xlab.top.label,
-                                cex = xlab.top.cex,
-                                col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
-                                just = xlab.top.just,
-                                x = xlab.top.x,
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' }else { 'bold' },
+				just = xlab.top.just,
+				x = xlab.top.x,
 				x = xlab.top.y
-                                )
-                        ),
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
 					col = xaxis.col,
 					rot = xaxis.rot,
 					tck = xaxis.tck,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					limits = xlimits,
 					at = xat,
 					relation = x.relation,
-					alternating = FALSE					
+					alternating = FALSE
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,
 					col = yaxis.col,
 					rot = yaxis.rot,
 					tck = yaxis.tck,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					limits = ylimits,
 					at = yat,
 					relation = y.relation,
-					alternating = FALSE					
+					alternating = FALSE
 					)
 				)
 			),
 		between = list(
 			x = x.spacing,
 			y = y.spacing
-			),			
+			),
 		par.settings = list(
 			axis.line = list(
 				lwd = 2,
-				col = if ('Nature' == style){'transparent'} else('black')
+				col = if ('Nature' == style) {'transparent'} else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -180,20 +203,20 @@ create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.l
 			),
 		par.strip.text = list(
 			cex = strip.cex
-			),		
+			),
 		layout = layout,
 		key = key,
-		legend = legend		
+		legend = legend
 		);
-	
+
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -208,13 +231,15 @@ create.histogram <- function(x, data, filename = NULL, xlab.label = NULL, ylab.l
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}

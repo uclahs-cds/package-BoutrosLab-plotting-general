@@ -4,75 +4,76 @@
 \description{This function takes a dataframe and writes a pretty TIFF violin plot}
 \usage{
 create.violinplot(
-	formula, 
-	data, 
-	filename = NULL, 
+	formula,
+	data,
+	filename = NULL,
 	main = NULL,
-	main.just = 'center', 
+	main.just = 'center',
 	main.x = 0.5,
 	main.y = 0.5,
-	xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), 
-	xaxis.lab = TRUE, 
-	yaxis.lab = TRUE, 
-	lwd = 1, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	ylimits = NULL, 
-	yat = TRUE, 
-	xaxis.cex = 1.5, 
-	yaxis.cex = 1.5, 
-	main.cex = 3, 
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	xlab.col = 'black', 
+	xlab.label = tail(sub('~','',formula[-2]),1),
+	ylab.label = tail(sub('~','',formula[-3]),1),
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	ylimits = NULL,
+	yat = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	main.cex = 3,
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
 	ylab.col = 'black',
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
-	xlab.top.col = 'black', 
+	xlab.top.label = NULL,
+	xlab.top.cex = 2,
+	xlab.top.col = 'black',
 	xlab.top.just = "center",
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	xaxis.tck = c(1,0), 
-	yaxis.tck = c(1,1), 
-	col = "black", 
-	border.lwd = 1, 
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.tck = c(1,0),
+	yaxis.tck = c(1,1),
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	col = "black",
+	lwd = 1,
+	border.lwd = 1,
 	bandwidth = 'nrd0',
 	bandwidth.adjust = 1,
-	extra.points = NULL, 
-	extra.points.pch = 21, 
-	extra.points.col = "white", 
-	extra.points.border = "black", 
-	extra.points.cex = 1, 
-	start = NULL, 
-	end = NULL, 
-	scale = FALSE, 
-	plot.horizontal = FALSE, 
-	top.padding = 0.1, 
-	bottom.padding = 0.7, 
-	left.padding = 0.5, 
-	right.padding = 0.3, 
-	width = 6, 
-	height = 6, 
-	resolution = 1600, 
-	size.units = 'in', 
-	enable.warnings = FALSE, 
-	key = NULL, 
+	extra.points = NULL,
+	extra.points.pch = 21,
+	extra.points.col = "white",
+	extra.points.border = "black",
+	extra.points.cex = 1,
+	start = NULL,
+	end = NULL,
+	scale = FALSE,
+	plot.horizontal = FALSE,
+	top.padding = 0.1,
+	bottom.padding = 0.7,
+	left.padding = 0.5,
+	right.padding = 0.3,
+	key = NULL,
 	legend = NULL,
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
+	alpha.rectangle = 1,
+	width = 6,
+	height = 6,
+	resolution = 1600,
+	size.units = 'in',
+	enable.warnings = FALSE, 
 	description = 'Created with BoutrosLab.plotting.general',
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
 	style = 'BoutrosLab',
-	preload.default = 'custom');
+	preload.default = 'custom'
+	)
 }
 \arguments{
     \item{formula}{The formula used to extract the violin components from the data-frame}
@@ -86,7 +87,6 @@ create.violinplot(
     \item{ylab.label}{The label for the y-axis}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
-    \item{lwd}{Line width, defaults to 1}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
@@ -96,8 +96,6 @@ create.violinplot(
     \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{xlab.cex}{Size of x-axis label, defaults to 3}
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
-    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
-    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xlab.top.label}{The label for the top x-axis}
@@ -106,9 +104,12 @@ create.violinplot(
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
+    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
+    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to c(1,0)}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to c(1,1)}
     \item{col}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
+    \item{lwd}{Line width, defaults to 1}
     \item{border.lwd}{Width of the exterior boundary of the violin plots, defaults to 1}
     \item{bandwidth}{Smoothing bandwidth, or character string giving rule to choose bandwidth ('nrd0', 'nrd', 'ucv', 'bcv', 'sj', or 'sj-ste'). Passed to base R function density, via lattice::bwplot.}
     \item{bandwidth.adjust}{Adjustment parameter for the bandwidth (bandwidth used is bandwidth*bandwidth.adjust). Makes it easy to specify bandwidth as a proportion of the default.}
@@ -125,14 +126,8 @@ create.violinplot(
     \item{bottom.padding}{A number giving the bottom padding in multiples of the lattice default}
     \item{left.padding}{A number giving the left padding in multiples of the lattice default}
     \item{right.padding}{A number giving the right padding in multiples of the lattice default}
-    \item{width}{Figure width, defaults to 6 inches}
-    \item{height}{Figure height, defaults to 6 inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1600}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{description}{Short description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
@@ -142,6 +137,12 @@ create.violinplot(
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
+    \item{description}{Short description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
 }

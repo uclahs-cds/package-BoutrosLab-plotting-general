@@ -10,31 +10,46 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE QQPLOT FIT #################################################################
-create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.95, confidence.method = 'both', reference.line.method = 'quartiles', filename = NULL, distribution = qnorm, aspect = 'fill', prepanel = NULL, add.grid = FALSE, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = NULL, ylab.label = NULL, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center", xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xgrid.at = xat, ygrid.at = yat, xaxis.lab = NA, yaxis.lab = NA, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, type = 'p', cex = 0.75, pch = 19, col = 'black', col.line = 'grey', lwd = 2, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL, top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab', preload.default = 'custom') {
+create.qqplot.fit <- function(
+	x, data = NA, filename = NULL, groups = NULL, confidence.bands = FALSE, conf = 0.95,
+	confidence.method = 'both', reference.line.method = 'quartiles', distribution = qnorm, aspect = 'fill',
+	prepanel = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3,
+	xlab.label = NULL, ylab.label = NULL, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
+	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5,
+	xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA,
+	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold', xaxis.log = FALSE, yaxis.log = FALSE, xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1,
+	yaxis.tck = 1, add.grid = FALSE, xgrid.at = xat, ygrid.at = yat, type = 'p', cex = 0.75, pch = 19, col = 'black',
+	col.line = 'grey', lwd = 2, lty = 1, axes.lwd = 2.25, key = list(text = list(lab = c(''))), legend = NULL,
+	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
+	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, top.padding = 3, bottom.padding = 0.7,
+	left.padding = 0.5, right.padding = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600,
+	enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
+	style = 'BoutrosLab', preload.default = 'custom'
+	) {
 
-	
-
-        if(preload.default == 'paper'){
-
+	# add preloaded defaults
+        if (preload.default == 'paper') {
                 }
-        else if(preload.default == 'web'){
-
+        else if (preload.default == 'web') {
                 }
 
 	# set main, x-axis and y-axis label defaults
 	# if the label is NULL, then we leave it as blank;
 	# if the label is NA, then we use a specific default label.
 	if (!is.null(main) & !is.expression(main)) {
-		if (is.na(main)) { 
-			main <- 'Q-Q plot'; 
+		if (is.na(main)) {
+			main <- 'Q-Q plot';
 			}
 		}
-	if (!is.null(xlab.label) & !is.expression(xlab.label)) { 
+
+	if (!is.null(xlab.label) & !is.expression(xlab.label)) {
 		if (is.na(xlab.label)) {
 			xlab.label <- deparse(substitute(distribution));
 			}
 		}
-	if (!is.null(ylab.label)  & !is.expression(ylab.label)) { 
+
+	if (!is.null(ylab.label) & !is.expression(ylab.label)) {
 		if (is.na(ylab.label)) {
 			ylab.label <- latticeParseFormula(as.formula(x), data = data)$right.name;
 			}
@@ -47,9 +62,18 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 		distribution = distribution,
 		aspect = aspect,
 		prepanel = prepanel.qqmathline,
-
-		panel = function(x, type.local = type, groups.local = groups, subscripts, distribution.local = distribution, col.local = col.line, col = col, lwd = lwd, ...) {
-			
+		panel = function(
+			x,
+			type.local = type,
+			groups.local = groups,
+			subscripts,
+			distribution.local = distribution,
+			col.local = col.line,
+			col = col,
+			lwd = lwd, 
+			...
+			) {
+	
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
@@ -62,7 +86,7 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 					border = NA
 					);
 				}
-			
+
 			# if grid-lines are requested, over-ride default behaviour
 			if ('g' %in% type || add.grid == TRUE) {
 				panel.abline(
@@ -79,19 +103,19 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 					col = trellis.par.get('reference.line')$col
 					);
 				}
-			
+
 			# draw the reference line, could be one of the following:
 			#	quartile: across 1/4 and 3/4 quantiles
 			#	diagonal: abline(0,1),
 			#	robust: best fit by linear regression
 			if (reference.line.method == 'quartiles') {
 				panel.qqmathline(
-					x, 
-					distribution = distribution.local, 
-					groups = groups.local, 
+					x,
+					distribution = distribution.local,
+					groups = groups.local,
 					subscripts = subscripts,
-					lwd = lwd, 
-					col = col.line, 
+					lwd = lwd,
+					col = col.line,
 					...
 					);
 				}
@@ -99,22 +123,36 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 			if (reference.line.method == 'diagonal' & !confidence.bands) {
 				panel.abline(0, 1);
 				}
-			
-			if (reference.line.method == 'robust' & !confidence.bands) {	
-				tmp.data <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(x = x, distribution = distribution, conf = conf, conf.method = confidence.method, reference.line.method = reference.line.method);
+
+			if (reference.line.method == 'robust' & !confidence.bands) {
+				tmp.data <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(
+					x = x,
+					distribution = distribution,
+					conf = conf,
+					conf.method = confidence.method,
+					reference.line.method = reference.line.method
+					);
+
 				a <- tmp.data$a;
 				b <- tmp.data$b;
 				panel.abline(a, b);
 				}
-			
+
 			# if confidence bands are requested
 			if (confidence.bands) {
-	
+
 				# for non-grouped data
 				if (is.null(groups)) {
 
-				# store the value to create the confidence bands
-					tmp.ci <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(x = x, distribution = distribution, conf = conf, conf.method = confidence.method, reference.line.method = reference.line.method);
+					# store the value to create the confidence bands
+					tmp.ci <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(
+						x = x,
+						distribution = distribution,
+						conf = conf,
+						conf.method = confidence.method,
+						reference.line.method = reference.line.method
+						);
+
 					if (!reference.line.method == 'quartiles') {
 						panel.abline(tmp.ci$a, tmp.ci$b);
 						}
@@ -122,12 +160,12 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 					# using the returned value to plot
 					if (confidence.method == 'both') {
 						panel.polygon(
-							x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])), 
+							x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])),
 							y = c(tmp.ci$upper.sim, rev(tmp.ci$lower.sim)),
 							col = '#e6e6e6',
 							border = '#e6e6e6',
 							alpha = 0.5
-							); 
+							);
 
 					if (confidence.method == 'both') {
 						panel.lines(tmp.ci$z, tmp.ci$upper.pw, lty = 1, lwd = lwd, col = '#b5b5b5');
@@ -147,7 +185,7 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 						}
 
 						panel.polygon(
-							x = c(tmp.ci$z, rev(tmp.ci$z)), 
+							x = c(tmp.ci$z, rev(tmp.ci$z)),
 							y = c(tmp.ci$upper.pw, rev(tmp.ci$lower.pw)),
 							col = '#b5b5b5',
 							border = '#b5b5b5',
@@ -171,16 +209,17 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 					else {
 						if (confidence.method == 'simultaneous') {
 							panel.polygon(
-								x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])), 
+								x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])),
 								y = c(tmp.ci$upper.sim, rev(tmp.ci$lower.sim)),
 								col = '#e6e6e6',
 								border = '#e6e6e6',
 								alpha = 0.5
 								);
 							}
+
 						if (confidence.method == 'pointwise') {
 							panel.polygon(
-								x = c(tmp.ci$z, rev(tmp.ci$z)), 
+								x = c(tmp.ci$z, rev(tmp.ci$z)),
 								y = c(tmp.ci$upper.pw, rev(tmp.ci$lower.pw)),
 								col = '#b5b5b5',
 								border = '#b5b5b5',
@@ -192,7 +231,6 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 
 				# for grouped data
 				else {
-
 					grouped.data <- split(x, groups);
 					groups.names <- sort(unique(groups.local));
 					number.groups <- length(groups.names);
@@ -200,16 +238,22 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 					for (k in 1:number.groups) {
 
 						# store the value to create the confidence bands for each group
-						tmp.ci <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(x = grouped.data[[groups.names[k]]], distribution = distribution, conf = conf, conf.method = confidence.method);
-						if(!reference.line.method == 'quartiles') {
+						tmp.ci <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(
+							x = grouped.data[[groups.names[k]]],
+							distribution = distribution,
+							conf = conf,
+							conf.method = confidence.method
+							);
+
+						if (!reference.line.method == 'quartiles') {
 							panel.abline(tmp.ci$a, tmp.ci$b);
 							}
-					
+
 						# using the returned value to plot
 						if (confidence.method == 'both') {
 
 							panel.polygon(
-								x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])), 
+								x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])),
 								y = c(tmp.ci$upper.sim, rev(tmp.ci$lower.sim)),
 								col = '#e6e6e6',
 								border = '#e6e6e6',
@@ -217,7 +261,7 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 								);
 
 							panel.polygon(
-								x = c(tmp.ci$z, rev(tmp.ci$z)), 
+								x = c(tmp.ci$z, rev(tmp.ci$z)),
 								y = c(tmp.ci$upper.pw, rev(tmp.ci$lower.pw)),
 								col = '#b5b5b5',
 								border = '#b5b5b5',
@@ -225,7 +269,7 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 								);
 
 							# draw the key to indicate the two methods only once
-							if (1 == k) {	
+							if (1 == k) {
 								draw.key(
 									list(
 										text = list(
@@ -245,16 +289,17 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 						else {
 							if (confidence.method == 'simultaneous') {
 								panel.polygon(
-									x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])), 
+									x = c(tmp.ci$z[tmp.ci$u], rev(tmp.ci$z[tmp.ci$l])),
 									y = c(tmp.ci$upper.sim, rev(tmp.ci$lower.sim)),
 									col = '#e6e6e6',
 									border = '#e6e6e6',
 									alpha = 0.5
 									);
 								}
+
 							if (confidence.method == 'pointwise') {
 								panel.polygon(
-									x = c(tmp.ci$z, rev(tmp.ci$z)), 
+									x = c(tmp.ci$z, rev(tmp.ci$z)),
 									y = c(tmp.ci$upper.pw, rev(tmp.ci$lower.pw)),
 									col = '#b5b5b5',
 									border = '#b5b5b5',
@@ -268,10 +313,10 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 
 			# draw the main plot
 			panel.qqmath(
-				x, 
-				distribution = distribution.local, 
-				groups = groups.local, 
-				subscripts = subscripts, 
+				x,
+				distribution = distribution.local,
+				groups = groups.local,
+				subscripts = subscripts,
 				col = col,
 				...
 				);
@@ -283,10 +328,10 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 		lwd = lwd,
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
-				label = main, 
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				label = main,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -294,12 +339,12 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
@@ -308,30 +353,30 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
                                 col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
+                                fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
                                 just = xlab.top.just,
                                 x = xlab.top.x,
 				y = xlab.top.y
                                 )
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
 					col = xaxis.col,
 					limits = xlimits,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					at = xat,
 					labels = xaxis.lab,
 					log = xaxis.log,
@@ -340,13 +385,13 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,
 					col = yaxis.col,
 					limits = ylimits,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					at = yat,
 					labels = yaxis.lab,
 					log = yaxis.log,
@@ -360,7 +405,7 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 		par.settings = list(
 			axis.line = list(
 				lwd = axes.lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				col = if ('Nature' == style) { 'transparent' } else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -397,10 +442,10 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -415,17 +460,18 @@ create.qqplot.fit <- function(x, data = NA, confidence.bands = FALSE, conf = 0.9
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.")
+		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 
 	# output the object
 	return(

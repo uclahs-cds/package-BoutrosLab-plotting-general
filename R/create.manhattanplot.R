@@ -10,32 +10,52 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE MANHATTANPLOTS ##############################################################
-create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5,xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = c(1,1), type = 'p', cex = 2, pch = '.', col = 'black', strip.col = "white", strip.cex = 1, lwd = 1, lty = 1, alpha = 1, axis.lwd = 1, key = list(text = list(lab = c(''))), legend = NULL, x.spacing = 0, y.spacing = 0, top.padding = 0, bottom.padding = 0, right.padding = 0, left.padding = 0, key.top = 0, ylab.axis.padding = 1, axis.key.padding = 1, x.relation = "same", y.relation = "same", layout = NULL, as.table = FALSE, axes.lty = 'dashed', abline.h = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL, points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', key.left.padding = 0, height = 6, width = 10, size.units = 'in', resolution = 1600, enable.warnings = FALSE, horizontal = FALSE, description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', ...) {
+create.manhattanplot <- function(
+	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
+	main.cex = 3, xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
+	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL,
+	ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE,
+	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain',
+	xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = c(1,1), horizontal = FALSE, type = 'p',
+	cex = 2, pch = '.', col = 'black', lwd = 1, lty = 1, alpha = 1, strip.col = 'white', strip.cex = 1,
+	axes.lwd = 1, axes.lty = 'dashed', key = list(text = list(lab = c(''))), legend = NULL, layout = NULL,
+	as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same', y.relation = 'same', top.padding = 0,
+	bottom.padding = 0, right.padding = 0, left.padding = 0, key.top = 0, key.left.padding = 0, ylab.axis.padding = 1,
+	axis.key.padding = 1, abline.h = NULL, abline.col = 'black', abline.lwd = 1, abline.lty = 1, add.rectangle = FALSE,
+	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
+	col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL,
+	points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE, text.labels = NULL, text.x = NULL,
+	text.y = NULL, text.col = 'black', text.cex = 1,text.fontface = 'bold', height = 6, width = 10, size.units = 'in',
+	resolution = 1600, enable.warnings = FALSE, style = 'BoutrosLab',
+	description = 'Created with BoutrosLab.plotting.general', preload.default = 'custom', ...
+	) {
 
-        if(preload.default == 'paper'){
+	# add preloaded defaults
+	if (preload.default == 'paper') {
+		}
+	else if (preload.default == 'web') {
+		}
 
-                }
-        else if(preload.default == 'web'){
-
-                }
-
+	# Now make the actual plot object
 	trellis.object <- lattice::xyplot(
 		formula,
 		data,
 		panel = function(subscripts, type.local = type, abline.local = abline, ...) {
+
 			# add rectangle
-                        if (add.rectangle) {
-                                panel.rect(
-                                        xleft = xleft.rectangle,
-                                        ybottom = ybottom.rectangle,
-                                        xright = xright.rectangle,
-                                        ytop = ytop.rectangle,
-                                        col = col.rectangle,
-                                        alpha = alpha.rectangle,
-                                        border = NA
-                                        );
-                                }
-	
+			if (add.rectangle) {
+				panel.rect(
+					xleft = xleft.rectangle,
+					ybottom = ybottom.rectangle,
+					xright = xright.rectangle,
+					ytop = ytop.rectangle,
+					col = col.rectangle,
+					alpha = alpha.rectangle,
+					border = NA
+					);
+				}
+
 			# if requested, add user-defined horizontal line
 			if (!is.null(abline.h)) {
 				panel.abline(
@@ -45,7 +65,7 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 					col = abline.col
 					);
 				}
-							
+
 			# create the main plot
 			panel.xyplot(
 				subscripts = subscripts,
@@ -62,10 +82,10 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 		lwd = lwd,
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -73,43 +93,43 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
-                xlab.top = BoutrosLab.plotting.general::get.defaults(
-                        property = 'fontfamily',
-                        add.to.list = list(
-                                label = xlab.top.label,
-                                cex = xlab.top.cex,
-                                col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
-                                just = xlab.top.just,
-                                x = xlab.top.x,
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' } else {'bold'},
+				just = xlab.top.just,
+				x = xlab.top.x,
 				y = xlab.top.y
-                                )
-                        ),
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
 					limits = xlimits,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					col = xaxis.col,
 					at = xat,
 					labels = xaxis.lab,
@@ -120,12 +140,12 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,
 					limits = ylimits,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					col = yaxis.col,
 					at = yat,
 					labels = yaxis.lab,
@@ -144,12 +164,12 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 		as.table = as.table,
 		par.settings = list(
 			axis.line = list(
-				lwd = axis.lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				lwd = axes.lwd,
+				col = if ('Nature' == style) {'transparent'} else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
-				main = if (is.null(main)) { 0.3} else { 1 },
+				main = if (is.null(main)) { 0.3 } else { 1 },
 				main.key.padding = 0.1,
 				key.top = key.top,
 				key.axis.padding = 0.1,
@@ -194,10 +214,10 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -212,13 +232,15 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
@@ -236,5 +258,4 @@ create.manhattanplot <- function(formula, data, filename = NULL, main = NULL, ma
 			description = description
 			)
 		);
-
 	}

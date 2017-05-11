@@ -4,147 +4,148 @@
 \description{Takes a data.frame and creates a scatterplot}
 \usage{
 create.scatterplot(
-	formula, 
-	data, 
-	filename = NULL, 
-	groups = NULL, 
+	formula,
+	data,
+	filename = NULL,
+	groups = NULL,
 	main = NULL,
-	main.just = "center", 
-	main.x = 0.5, 
-	main.y = 0.5,
-	xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), 
-	main.cex = 3, 
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	xlab.col = 'black', 
+	main.just = 'center',
+	main.x = 0.5,
+        main.y = 0.5,
+	main.cex = 3,
+	xlab.label = tail(sub('~', '', formula[-2]), 1),
+	ylab.label = tail(sub('~', '', formula[-3]), 1),
+        xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
 	ylab.col = 'black',
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
-	xlab.top.col = 'black', 
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xlimits = NULL, 
-	ylimits = NULL, 
-	xat = TRUE, 
-	yat = TRUE, 
+        xlab.top.label = NULL,
+	xlab.top.cex = 2,
+	xlab.top.col = 'black',
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
+        xlab.top.y = 0,
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	xaxis.lab = NA,
+	yaxis.lab = NA,
+	xaxis.log = FALSE,
+	yaxis.log = FALSE,
+        xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.tck = c(1,1),
+	yaxis.tck = c(1,1),
 	add.grid = FALSE,
-	xgrid.at = xat, 
-	ygrid.at = yat,
+	xgrid.at = xat,
+        ygrid.at = yat,
 	grid.colour = NULL,
-	xaxis.lab = NA, 
-	yaxis.lab = NA, 
-	xaxis.log = FALSE, 
-	yaxis.log = FALSE, 
-	xaxis.cex = 1.5, 
-	yaxis.cex = 1.5, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	xaxis.tck = c(1,1), 
-	yaxis.tck = c(1,1), 
-	type = 'p', 
-	cex = 0.75, 
-	pch = 19, 
-	col = 'black', 
+	horizontal = FALSE,
+	type = 'p',
+	cex = 0.75,
+	pch = 19,
+	col = 'black',
 	col.border = 'black',
-	strip.col = "white", 
-	strip.cex = 1, 
-	strip.fontface = 'bold', 
-	lwd = 1, 
-	lty = 1, 
-	alpha = 1, 
-	axes.lwd = 1, 
-	y.error.up = NULL, 
-	y.error.down = y.error.up, 
-	x.error.right = NULL, 
-	x.error.left = x.error.right, 
-	y.error.bar.col = 'black', 
-	x.error.bar.col = y.error.bar.col, 
-	error.whisker.angle = 90, 
-	error.bar.lwd = 1, 
-	error.bar.length = 0.1, 
-	key = list(text = list(lab = c(''))), 
-	legend = NULL, 
-	x.spacing = 0, 
-	y.spacing = 0, 
-	top.padding = 0.1, 
-	bottom.padding = 0.7, 
-	right.padding = 0.1, 
-	left.padding = 0.5, 
-	key.top = 0.1, 
-	ylab.axis.padding = 1, 
-	axis.key.padding = 1, 
-	x.relation = "same", 
-	y.relation = "same", 
-	layout = NULL, 
-	as.table = FALSE, 
-	add.axes = FALSE, 
-	axes.lty = 'dashed', 
-	add.xyline = FALSE, 
-	xyline.col = "black", 
-	xyline.lwd = 1, 
-	xyline.lty = 1, 
-	abline.h = NULL, 
-	abline.v = NULL, 
-	abline.col = "black", 
-	abline.lwd = 1, 
-	abline.lty = 1, 
-	add.curves = FALSE, 
-	curves.exprs = NULL, 
-	curves.from = min(data, na.rm = TRUE), 
-	curves.to = max(data, na.rm = TRUE), 
-	curves.col = "black", 
-	curves.lwd = 2, 
-	curves.lty = 1, 
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	add.points = FALSE, 
-	points.x = NULL, 
-	points.y = NULL, 
-	points.pch = 19, 
-	points.col = 'black', 
+	lwd = 1,
+	lty = 1,
+	alpha = 1,
+	axes.lwd = 1,
+	strip.col = 'white',
+	strip.cex = 1,
+	strip.fontface = 'bold',
+	y.error.up = NULL,
+	y.error.down = y.error.up,
+	x.error.right = NULL,
+	x.error.left = x.error.right,
+	y.error.bar.col = 'black',
+	x.error.bar.col = y.error.bar.col,
+	error.whisker.angle = 90,
+	error.bar.lwd = 1,
+	error.bar.length = 0.1,
+	key = list(text = list(lab = c(''))),
+	legend = NULL,
+	top.padding = 0.1,
+	bottom.padding = 0.7,
+	right.padding = 0.1,
+	left.padding = 0.5,
+	key.top = 0.1,
+	key.left.padding = 0,
+	ylab.axis.padding = 1,
+	axis.key.padding = 1,
+	layout = NULL,
+	as.table = FALSE,
+	x.spacing = 0,
+	y.spacing = 0,	
+	x.relation = 'same',
+	y.relation = 'same',
+	add.axes = FALSE,
+	axes.lty = 'dashed',
+	add.xyline = FALSE,
+	xyline.col = 'black',
+	xyline.lwd = 1,
+	xyline.lty = 1,
+	abline.h = NULL,
+	abline.v = NULL,
+	abline.col = 'black',
+	abline.lwd = 1,
+	abline.lty = 1,
+	add.curves = FALSE,
+	curves.exprs = NULL,
+	curves.from = min(data, na.rm = TRUE),
+	curves.to = max(data, na.rm = TRUE),
+	curves.col = 'black',
+	curves.lwd = 2,
+	curves.lty = 1,
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
+	alpha.rectangle = 1,
+	add.points = FALSE,
+	points.x = NULL,
+	points.y = NULL,
+	points.pch = 19,
+	points.col = 'black',
 	points.col.border = 'black',
-	points.cex = 1, 
-	add.line.segments = FALSE, 
-	line.start = NULL, 
-	line.end = NULL, 
-	line.col = 'black', 
-	line.lwd = 1, 
-	add.text = FALSE, 
-	text.labels = NULL, 
-	text.x = NULL, 
-	text.y = NULL, 
-	text.col = 'black', 
-	text.cex = 1, 
-	text.fontface = 'bold', 
-	text.guess.labels = FALSE, 
-	text.guess.skip.labels = TRUE, 
-	text.guess.ignore.radius = FALSE, 
-	text.guess.ignore.rectangle = FALSE, 
-	text.guess.radius.factor = 1, 
-	text.guess.buffer.factor = 1, 
-	text.guess.label.position = NULL, 
-	key.left.padding = 0, 
-	height = 6, 
-	width = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	horizontal = FALSE, 
-	description = 'Created with BoutrosLab.plotting.general', 
-	style = 'BoutrosLab', 
+	points.cex = 1,
+	add.line.segments = FALSE,
+	line.start = NULL,
+	line.end = NULL,
+	line.col = 'black',
+	line.lwd = 1,
+	add.text = FALSE,
+	text.labels = NULL,
+	text.x = NULL,
+	text.y = NULL,
+	text.col = 'black',
+	text.cex = 1,
+	text.fontface = 'bold',
+	text.guess.labels = FALSE,
+	text.guess.skip.labels = TRUE,
+	text.guess.ignore.radius = FALSE,
+	text.guess.ignore.rectangle = FALSE,
+	text.guess.radius.factor = 1,
+	text.guess.buffer.factor = 1,
+	text.guess.label.position = NULL,
+	height = 6,
+	width = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general',
+	style = 'BoutrosLab',
 	preload.default = 'custom',
-	...);
+	...
+	);
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -155,9 +156,9 @@ create.scatterplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of text for main plot title}
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
-    \item{main.cex}{Size of text for main plot title}
     \item{xlab.cex}{Size of x-axis label, defaults to 3}
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
@@ -172,10 +173,6 @@ create.scatterplot(
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
     \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
-    \item{add.grid}{Logical stating wheter or not the grid should be drawn on the plot}
-    \item{xgrid.at}{Vector listing where the x-axis grid lines should be drawn, defaults to xat}
-    \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
-    \item{grid.colour}{ability to set individual grid line colours}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
     \item{xaxis.log}{Logical indicating whether x-variable should be in logarithmic scale (and what base if numeric)}
@@ -190,33 +187,23 @@ create.scatterplot(
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
     \item{yaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
+    \item{add.grid}{Logical stating wheter or not the grid should be drawn on the plot}
+    \item{xgrid.at}{Vector listing where the x-axis grid lines should be drawn, defaults to xat}
+    \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
+    \item{grid.colour}{ability to set individual grid line colours}
+    \item{horizontal}{xyplot-specific function that allows you to change if type='h' draws lines to the vertical or horizontal axis}
     \item{type}{Plot type}
     \item{cex}{Character expansion for plotting symbol}
     \item{pch}{Plotting character}
     \item{col}{Point/line colour}
     \item{col.border}{Colour of border when points pch >= 21. Defaults to \dQuote{black}}
-    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
-    \item{strip.cex}{Strip title character expansion}
-    \item{strip.fontface}{Strip title fontface, defaults to bold}
-    \item{key}{A list giving the key (legend). The default suppresses drawing}
-    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
-    \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
-    \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.1}
-    \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
-    \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.1}
-    \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
-    \item{key.top}{A number specifying the distance at top of key, defaults to 0.1}
-    \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}
-    \item{axis.key.padding}{A number specifying the distance from the y-axis to the key, defaults to 1}
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
-    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{lwd}{Specifies line width, defaults to 1}
     \item{lty}{Specifies line style, defaults to 1 (solid)}
     \item{alpha}{Specifies line transparency, defaults to 1 (opaque)}
     \item{axes.lwd}{Thickness of width of axes lines}
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Strip title character expansion}
+    \item{strip.fontface}{Strip title fontface, defaults to bold}
     \item{y.error.up}{upward error vector. Defaults to NULL. When y.error.up is NULL, vertical error bar is not drawn}
     \item{y.error.down}{Downward error vector. Defaults to y.error.down to show symmetric error bars}
     \item{x.error.right}{Rightward error vector. Defaults to NULL. When x.error.right is NULL, horizontal error bar is not drawn}
@@ -226,11 +213,22 @@ create.scatterplot(
     \item{error.whisker.angle}{Angle of the whisker drawn on error bar. Defaults to 90 degree}
     \item{error.bar.lwd}{Error bar line width. Defaults to 1}
     \item{error.bar.length}{Length of the error bar whiskers. Defaults to 0.1}
+    \item{key}{A list giving the key (legend). The default suppresses drawing}
+    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
+    \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.1}
+    \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
+    \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.1}
+    \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
+    \item{key.top}{A number specifying the distance at top of key, defaults to 0.1}
     \item{key.left.padding}{Amount of padding to go onto any legend on the left}
-    \item{height}{Figure height, defaults to 6 inches}
-    \item{width}{Figure width, defaults to 6 inches}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1600}
+    \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}
+    \item{axis.key.padding}{A number specifying the distance from the y-axis to the key, defaults to 1}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
+    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
+    \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
+    \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{add.axes}{Allow axis lines to be turned on or off, default is FALSE}
     \item{axes.lty}{Specifies axis line style, defaults to \dQuote{dashed}}
     \item{add.xyline}{Allow y=x line to be drawn, default is FALSE}
@@ -282,8 +280,11 @@ create.scatterplot(
     \item{text.guess.radius.factor}{A numeric value to factor the radius value to alter distance from the label and the data point}
     \item{text.guess.buffer.factor}{A numeric value to factor the buffer value to alter the space which is used to consider if data.points are potentially going to collide}
     \item{text.guess.label.position}{A numeric value between 0 and 360 to specify the percise angle of a text box center and the positive x-axis. Angles move counter-clockwise beginning at the positive x axis}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
-    \item{horizontal}{xyplot-specific function that allows you to change if type="h" draws lines to the vertical or horizontal axis}
     \item{description}{Short description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
@@ -675,7 +676,7 @@ create.scatterplot(
     error.bar.lwd = 1,
     error.whisker.angle = 120,
     y.error.up = error.data$error,
-    y.error.bar.col = "black",
+    y.error.bar.col = 'black',
     description = 'Scatter plot created by BoutrosLab.plotting.general'
     );
 
@@ -785,15 +786,15 @@ for (c in cutoffs) {
         roc.results <- table(
                 factor(roc.classification, levels = c(0,1)),
                 factor(observed.values, levels = c(0,1)),
-                dnn = c("pred", "obs")
+                dnn = c('pred', 'obs')
                 );
         tprs <- c(tprs, roc.results[2,2] / (roc.results[2,2] + roc.results[1,2]));
         fprs <- c(fprs, roc.results[2,1] / (roc.results[2,1] + roc.results[1,1]));
         }
 
 roc.data <- data.frame(cutoff = cutoffs, TPR = tprs, FPR = fprs);
-points.x <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), "FPR"];
-points.y <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), "TPR"];
+points.x <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), 'FPR'];
+points.y <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), 'TPR'];
 
 create.scatterplot(
     filename = 'Scatterplot_ROC.tiff',
@@ -815,9 +816,9 @@ create.scatterplot(
     add.points = TRUE,
     points.x = points.x,
     points.y = points.y,
-    points.col = c("blue", "darkgreen", "red"),
+    points.col = c('blue', 'darkgreen', 'red'),
     add.text = TRUE,
-    text.labels = paste("cutoff = ", c(0.25, 0.5, 0.75), sep = ""),
+    text.labels = paste('cutoff = ', c(0.25, 0.5, 0.75), sep = ''),
     #text.x = points.x - 0.14,
     #text.y = points.y + 0.03,
     text.x = points.x,
@@ -861,8 +862,8 @@ create.scatterplot(
     yaxis.lab = expression(10^0,10^-2,10^-4,10^-6,10^-8),
     yaxis.cex = 1.5,
     xaxis.cex = 1.5,
-    xlab.label = "foldChange",
-    ylab.label = "pValues",
+    xlab.label = 'foldChange',
+    ylab.label = 'pValues',
     xlab.cex = 1.75,
     ylab.cex = 1.75
     );
@@ -887,8 +888,8 @@ create.scatterplot(
     yaxis.lab = expression(10^0,10^-2,10^-4,10^-6,10^-8),
     yaxis.cex = 1.5,
     xaxis.cex = 1.5,
-    xlab.label = "foldChange",
-    ylab.label = "pValues",
+    xlab.label = 'foldChange',
+    ylab.label = 'pValues',
     xlab.cex = 1.75,
     ylab.cex = 1.75,
     add.text = TRUE,

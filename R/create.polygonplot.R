@@ -10,58 +10,57 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE POLYGONPLOT ################################################################
-create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, 
-                               groups = NULL, max, min, col = 'white', alpha = 0.5, border.col = 'black', xy.col = 'black', strip.col = 'white', 
-                               strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1, xlab.label = tail(sub('~','',formula[-2]),1), 
-                               ylab.label = tail(sub('~','',formula[-3]),1), main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', 
-                               ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center", 
-                               xlab.top.x = 0.5, xlab.top.y = 0, xaxis.rot = 0, xaxis.cex = 1.5, yaxis.rot = 0, yaxis.cex = 1.5, 
-                               xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.fontface = 'bold', 
-                               yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black', xlimits = NULL, ylimits = NULL, 
-                               xat = TRUE, yat = TRUE, x.spacing = 0, y.spacing = 0, top.padding = 0.5, bottom.padding = 2, 
-                               right.padding = 1, left.padding = 2, ylab.axis.padding = 0, x.relation = "same", y.relation = "same", 
-                               xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, add.xy.border = FALSE, 
-                               add.median = FALSE, median.lty = 3, median.lwd = 1.5, use.loess.border = FALSE, use.loess.median = FALSE, median = NULL, 
-                               median.col = "black", extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p', 
-                               extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, add.rectangle = FALSE,
-                               xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
-                               col.rectangle = 'transparent', alpha.rectangle = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1, grid.col = "grey", 
-                               grid.lwd = 0.3, add.xyline = FALSE, xyline.col = "black", xyline.lwd = 1, xyline.lty = 1, abline.h = NULL, 
-                               abline.v = NULL, abline.col = "black", abline.lwd = 1, abline.lty = 1, add.text = FALSE, text.labels = NULL, 
-                               text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', height = 6, width = 6, 
-                               size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, 
-                               description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', 
-                               preload.default = 'custom') {
+create.polygonplot <- function(
+	formula, data, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
+	main.cex = 3, max, min, col = 'white', alpha = 0.5, border.col = 'black', xy.col = 'black',
+	strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1,
+	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
+	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xaxis.lab = TRUE,
+	yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.log = FALSE,
+	yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black',
+	xaxis.tck = 1, yaxis.tck = 1, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, layout = NULL,
+	as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same', y.relation = 'same', top.padding = 0.5,
+	bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, add.xy.border = FALSE,
+	add.median = FALSE, median.lty = 3, median.lwd = 1.5, use.loess.border = FALSE, use.loess.median = FALSE,
+	median = NULL, median.col = 'black', extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p',
+	extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, add.rectangle = FALSE,
+	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
+	col.rectangle = 'transparent', alpha.rectangle = 1, xgrid.at = xat, ygrid.at = yat, grid.lty = 1,
+	grid.col = 'grey', grid.lwd = 0.3, add.xyline = FALSE, xyline.col = 'black', xyline.lwd = 1, xyline.lty = 1,
+	abline.h = NULL, abline.v = NULL, abline.col = 'black', abline.lwd = 1, abline.lty = 1, add.text = FALSE,
+	text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold',
+	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	) {
 
+	# add preloaded defaults
+	if (preload.default == 'paper') {
+		}
+	else if (preload.default == 'web') {
+		}
 
-        if(preload.default == 'paper'){
-
-                }
-        else if(preload.default == 'web'){
-
-                }
+	# update groups function
 	groups.new <- eval(substitute(groups), data, parent.frame());
-	if (length(xat) ==1 && xat == TRUE && length(xlimits) == 0) {
-		
-		
+
+	# auto set parameters
+	if (length(xat) == 1 && xat == TRUE && length(xlimits) == 0) {
 
 		if (!is.null(data)) {
 			minimum <- 0;
 			maximum <- length(data[[1]]);
-		        difference <- maximum - minimum;
-                        lognumber <- floor(log(difference,10));
-                        
-                        # depending on difference, the labels will be multiples of 5,10 or 20
-                        if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-                        else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
-                        else { factor <- (10**lognumber)*2; }
-                        
-                        addition <- factor/2;
-                        
-                        # depending on minimum create a sequence of at locations with padding
-                        
-                        at <- seq(0,factor*round(maximum/factor) + addition,factor);
-                       
+			difference <- maximum - minimum;
+			lognumber <- floor(log(difference,10));
+
+			# depending on difference, the labels will be multiples of 5,10 or 20
+			if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
+			else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
+			else { factor <- (10**lognumber)*2; }
+
+			addition <- factor/2;
+
+			# depending on minimum create a sequence of at locations with padding
+			at <- seq(0,factor*round(maximum/factor) + addition,factor);
 
 			xlimits <- c(minimum,maximum);
 			xat <- at;
@@ -70,11 +69,10 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 
 	if (length(yat) == 1 && yat == TRUE && length(ylimits) == 0) {
 		
-		
-		if(!is.null(data)) {
-			minimum <- min(min)
+		if (!is.null(data)) {
+			minimum <- min(min);
 			maximum <- max(max);
-		
+
 			# if minimum is greater than 0 make sure to display 0
 			minimum <- min(minimum,0);
 			difference <- maximum - minimum;
@@ -87,15 +85,16 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 
 			addition <- factor/2;
 
-			# depending on minimum create a sequence of at locations with padding 
-			if (minimum == 0) { 
-				at <- seq(0,factor*round(maximum/factor) + addition,factor); 
+			# depending on minimum create a sequence of at locations with padding
+			if (minimum == 0) {
+				at <- seq(0, factor*round(maximum/factor) + addition, factor);
 				}
-			else { 
-				at <- seq(factor*round(minimum/factor),factor*round(maximum/factor) + addition,factor);
+			else {
+				at <- seq(factor*round(minimum/factor), factor*round(maximum/factor) + addition, factor);
 				# only add padding to minimum if it is not 0
 				minimum <- minimum - addition;
 				}
+
 			# add padding to max
 			maximum <- maximum + addition;
 			ylimits <- c(minimum,maximum);
@@ -103,6 +102,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 			}
 		}
 
+	# create the plot object
 	trellis.object <- lattice::xyplot(
 		formula,
 		data,
@@ -110,49 +110,51 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 		min = min,
 		median = median,
 		panel = function(x, y, col = col, border = border.col, groups = groups.new, subscripts, ...) {
-      
-		  # add rectangle if requested
-      # want rectangle in the background, and only plotted once
-      #   => add first, outside of grouping if/else split
-		  if (add.rectangle) {
-		    panel.rect(
-		      xleft = xleft.rectangle,
-		      ybottom = ybottom.rectangle,
-		      xright = xright.rectangle,
-		      ytop = ytop.rectangle,
-		      col = col.rectangle,
-		      alpha = alpha.rectangle,
-		      border = NA
-		    );
-		  }
-		  
-            
-      # if no grouping variable, draw a single polygon
+
+			# add rectangle if requested
+			# want rectangle in the background, and only plotted once
+			#  => add first, outside of grouping if/else split
+			if (add.rectangle) {
+				panel.rect(
+					xleft = xleft.rectangle,
+					ybottom = ybottom.rectangle,
+					xright = xright.rectangle,
+					ytop = ytop.rectangle,
+					col = col.rectangle,
+					alpha = alpha.rectangle,
+					border = NA
+					);
+		  		}
+
+			# if no grouping variable, draw a single polygon
 			if (is.null(groups.new)) {
 
 				# draw polygon
 				panel.polygon(
-					x = c(x, rev(x)), 
-					y = if (use.loess.border) { c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else { c(max[subscripts], rev(min[subscripts])) } ,  
-					col = col, 
+					x = c(x, rev(x)),
+					y = if (use.loess.border) { 
+						c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else {
+						c(max[subscripts], rev(min[subscripts]))
+						},
+					col = col,
 					...
 					);
 
 				# draw xy points along border of polygon
 				if (add.xy.border) {
-					panel.xyplot( 
-						x = c(x, rev(x)), 
+					panel.xyplot(
+						x = c(x, rev(x)),
 						y = c(max[subscripts], rev(min[subscripts])),
 						type = 'p',
 						col = xy.col
 						);
 					}
-				
+
 				# draw median line
 				if (add.median & !is.null(median)) {
 					panel.xyplot(
-						x = x, 
-						y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
+						x = x,
+						y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] },
 						type = 'l',
 						lwd = median.lwd,
 						col = median.col,
@@ -175,8 +177,6 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						);
 					}
 
-        
-        
 				# add background grid
 				if (!is.null(xgrid.at) || !is.null(ygrid.at)) {
 					panel.abline(
@@ -186,20 +186,20 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						col = grid.col,
 						lwd = grid.lwd,
 						alpha = 0.5
-						)
+						);
 					}
 
 				# if requested, add y=x line
 				if (add.xyline) {
 					panel.abline(
-						a = 0, 
-						b = 1, 
+						a = 0,
+						b = 1,
 						lwd = xyline.lwd,
 						lty = xyline.lty,
 						col = xyline.col
 						);
 					}
-				
+
 				# if requested, add user-defined horizontal line
 				if (!is.null(abline.h)) {
 					panel.abline(
@@ -209,7 +209,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						col = abline.col
 						);
 					}
-				
+
 				# if requested, add user-defined vertical line
 				if (!is.null(abline.v)) {
 					panel.abline(
@@ -219,77 +219,62 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						col = abline.col
 						);
 					}
-        
 				
 				# if requested, add text
-				if(add.text) {
-				  panel.text(
-				    x = text.x,
-				    y = text.y,
-				    labels = text.labels,
-				    col = text.col,
-				    cex = text.cex,
-				    fontface = text.fontface
-				  );
-				}
-				
-			}
-	
+				if (add.text) {
+					panel.text(
+						x = text.x,
+						y = text.y,
+						labels = text.labels,
+						col = text.col,
+						cex = text.cex,
+						fontface = text.fontface
+						);
+					}
+				}	
 				
 			else {
-        # Grouping variable exists - need to draw separate polygons for each level
-        
+				# Grouping variable exists - need to draw separate polygons for each level
 				# can't use ternary operator because need to return vectors
-				border.col <- if (length(border.col) == 1) {
-					rep(border.col, length(subscripts));
-					} 
-				else {
+				border.col <- if (length(border.col) == 1) { rep(border.col, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = border.col));
 					}
-				median.col <- if (length(median.col) == 1) {
-					rep(median.col, length(subscripts));
-					}	
-				else {
+
+				median.col <- if (length(median.col) == 1) { rep(median.col, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = median.col));
 					}
-				median.lty <- if (length(median.lty) == 1) {
-					rep(median.lty, length(subscripts));
-					}
-				median.lwd <- if (length(median.lwd) == 1) {
-				  rep(median.lwd, length(subscripts));
-				}
-				else {
+
+				median.lty <- if (length(median.lty) == 1) { rep(median.lty, length(subscripts)); }
+				median.lwd <- if (length(median.lwd) == 1) { rep(median.lwd, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = median.lty));
 					}
-				extra.points.col <- if (length(extra.points.col) == 1) {
-					rep(extra.points.col, length(subscripts));
-					} 
-				else {
+
+				extra.points.col <- if (length(extra.points.col) == 1) { rep(extra.points.col, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = extra.points.col));
 					}
+
 				# need to cast twice to retrieve integer pch values
-				extra.points.pch <- if (length(extra.points.pch) == 1) {
-					rep(extra.points.pch, length(subscripts));
-					} 
-				else {
+				extra.points.pch <- if (length(extra.points.pch) == 1) { rep(extra.points.pch, length(subscripts)); } else {
 					as.integer(as.character(factor(x = groups, labels = extra.points.pch)));
 					}
 
-        # Plot polygons
-        # this is plotted with different graphical parameters for each distinct value of the grouping variable
+				# Plot polygons
+				# this is plotted with different graphical parameters for each distinct value of the grouping variable
 				panel.superpose(
-					x, 
-					y, 
-					groups = groups.new, 
+					x,
+					y,
+					groups = groups.new,
 					subscripts,
 					panel.groups = function(x, y, max, min, groups = groups.new, subscripts, type, ..., font, fontface) {
-             
 
 						# draw polygon
 						panel.polygon(
-							x = c(x, rev(x)), 
-							y = if (use.loess.border) {c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else { c(max[subscripts], rev(min[subscripts])) } , 
-							type, 
+							x = c(x, rev(x)),
+							y = if (use.loess.border) {
+								c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else {
+								c(max[subscripts], rev(min[subscripts]))
+								},
+							type,
 							...
 							);
 
@@ -304,11 +289,11 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 
 						# draw median line
 						if (add.median & !is.null(median)) {
-							panel.xyplot( 
+							panel.xyplot(
 								x = x,
 								y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
 								type = 'l',
-                lwd =  median.lwd[subscripts],
+								lwd =  median.lwd[subscripts],
 								col = median.col[subscripts],
 								lty = median.lty[subscripts]
 								);
@@ -317,17 +302,17 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						# add extra points, assuming same grouping as original data
 						if (!is.null(extra.points)) {
 							panel.xyplot(
-							x = x,
-							y = extra.points$y[subscripts],
-							groups = groups,
-							subscripts = subscripts,
-							type = extra.points.type,
-							pch = extra.points.pch[subscripts],
-							col = extra.points.col[subscripts],
-							cex = extra.points.cex,
-							fill = extra.points.fill
-							);
-						}
+								x = x,
+								y = extra.points$y[subscripts],
+								groups = groups,
+								subscripts = subscripts,
+								type = extra.points.type,
+								pch = extra.points.pch[subscripts],
+								col = extra.points.col[subscripts],
+								cex = extra.points.cex,
+								fill = extra.points.fill
+								);
+							}
 
 						# add background grid
 						if (!is.null(xgrid.at) || !is.null(ygrid.at)) {
@@ -344,8 +329,8 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 						# if requested, add y=x line
 						if (add.xyline) {
 							panel.abline(
-								a = 0, 
-								b = 1, 
+								a = 0,
+								b = 1,
 								lwd = xyline.lwd,
 								lty = xyline.lty,
 								col = xyline.col
@@ -361,7 +346,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 								col = abline.col
 								);
 							}
-						
+
 						# if requested, add user-defined vertical line
 						if (!is.null(abline.v)) {
 							panel.abline(
@@ -371,26 +356,22 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 								col = abline.col
 								);
 							}
-            
-						
+
 						# if requested, add text
-            if(add.text) {
-              panel.text(
-                x = text.x,
-                y = text.y,
-                labels = text.labels,
-                col = text.col,
-                cex = text.cex,
-                fontface = text.fontface
-              );
-            }
-
-						
-
+						if (add.text) {
+							panel.text(
+								x = text.x,
+								y = text.y,
+								labels = text.labels,
+								col = text.col,
+								cex = text.cex,
+								fontface = text.fontface
+								);
+							}
 						},
 					alpha = alpha, 
 					col = col,
-					border = "white",
+					border = 'white',
 					...
 					);				
 				}
@@ -402,10 +383,10 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 		lwd = lwd,
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -413,47 +394,46 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
-                xlab.top = BoutrosLab.plotting.general::get.defaults(
-                        property = 'fontfamily',
-                        add.to.list = list(
-                                label = xlab.top.label,
-                                cex = xlab.top.cex,
-                                col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
-                                just = xlab.top.just,
-                                x = xlab.top.x,
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
+				just = xlab.top.just,
+				x = xlab.top.x,
 				y = xlab.top.y
-                                )
-                        ),
-
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
-			),			
+			),
 		between = list(
-			x = x.spacing, 
+			x = x.spacing,
 			y = y.spacing
-			),	
+			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = xaxis.lab,
 					log = xaxis.log,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					rot = xaxis.rot,
 					limits = xlimits,
 					cex = xaxis.cex,
@@ -465,10 +445,10 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = yaxis.lab,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					limits = ylimits,
 					cex = yaxis.cex,
 					col = yaxis.col,
@@ -483,7 +463,7 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 		par.settings = list(
 			axis.line = list(
 				lwd = axes.lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				col = if ('Nature' == style) { 'transparent' } else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -531,10 +511,10 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -549,13 +529,15 @@ create.polygonplot <- function(formula, data, filename = NULL, main = NULL, main
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}

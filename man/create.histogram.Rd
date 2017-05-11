@@ -4,81 +4,82 @@
 \description{Takes a vector and creates a histogram}
 \usage{
 create.histogram(
-	x, 
-	data, 
-	filename = NULL, 
-	xlab.label = NULL, 
-	ylab.label = NULL,
-	col = "white", 
-	main = NULL, 
-	main.just = "center", 
-	main.x = 0.5, 
+	x,
+	data,
+	filename = NULL,
+	main = NULL,
+	main.just = 'center',
+	main.x = 0.5,
 	main.y = 0.5,
-	breaks = NULL, 
-	xaxis.lab = TRUE, 
-	xaxis.cex = 1.5, 
-	xlimits = NULL, 
-	xat = TRUE, 
-	yaxis.lab = TRUE, 
-	yaxis.cex = 1.5, 
-	ylimits = NULL, 
-	yat = TRUE,
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	main.cex = 3, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	ylab.col = 'black', 
+	main.cex = 3,
+	xlab.label = NULL,
+	ylab.label = NULL,
+	xlab.cex = 2,
+	ylab.cex = 2,
 	xlab.col = 'black',
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
+	ylab.col = 'black',
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.tck = 1,
+	yaxis.tck = 1,
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	xlab.top.label = NULL,
+	xlab.top.cex = 2,
 	xlab.top.col = 'black',
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xaxis.tck = 1, 
-	yaxis.tck = 1, 
-	type = 'percent', 
-	x.spacing = 0, 
-	y.spacing = 0, 
-	top.padding = 0.1, 
-	bottom.padding = 0.7, 
-	right.padding = 0.1, 
-	left.padding = 0.5, 
-	ylab.axis.padding = 0, 
-	x.relation = "same", 
-	y.relation = "same", 
-	layout = NULL, 
-	strip.col = "white", 
-	strip.cex = 1, 
-	lwd = 2, 
-	lty = 1, 
-	abline.h = NULL, 
-	abline.v = NULL, 
-	abline.col = "black", 
-	abline.lwd = 1, 
-	abline.lty = 1, 
-	height = 6, 
-	width = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	key = NULL, 
-	legend = NULL, 
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	type = 'percent',
+	breaks = NULL,
+	col = 'white',
+	lwd = 2,
+	lty = 1,
+	layout = NULL,
+	x.spacing = 0,
+	y.spacing = 0,
+	x.relation = 'same',
+	y.relation = 'same',
+	strip.col = 'white',
+	strip.cex = 1,
+	top.padding = 0.1,
+	bottom.padding = 0.7,
+	right.padding = 0.1,
+	left.padding = 0.5,
+	ylab.axis.padding = 0,
+	abline.h = NULL,
+	abline.v = NULL,
+	abline.col = 'black',
+	abline.lwd = 1,
+	abline.lty = 1,
+	key = NULL,
+	legend = NULL,
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
+	alpha.rectangle = 1,
+	height = 6,
+	width = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general',
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
 	style = 'BoutrosLab',
-	preload.default = 'custom');
+	preload.default = 'custom'
+	);
 }
 \arguments{
     \item{x}{A formula or a numeric vector (not frequencies!)}
@@ -93,58 +94,54 @@ create.histogram(
     \item{ylab.label}{y-axis title}
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
-    \item{col}{Fill colour for the histograms}
-    \item{breaks}{A vector listing the break-points of the histogram, or an integer specifying the desired number of breaks.}
+    \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
+    \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 1}
     \item{yaxis.cex}{Size of y-axis tick labels, defaults to 1}
+    \item{xlimits}{Two-element vector giving the x-axis limits}
+    \item{ylimits}{Two-element vector giving the y-axis limits}
+    \item{xat}{Vector listing where the x-axis ticks should be drawn}
+    \item{yat}{Vector listing where the y-axis ticks should be drawn}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
+    \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
+    \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
+    \item{xaxis.fontface}{Fontface for the x-axis scales}
+    \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{xlab.top.label}{The label for the top x-axis}
     \item{xlab.top.cex}{Size of top x-axis label}
     \item{xlab.top.col}{Colour of the top x-axis label}
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
-    \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
-    \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
-    \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
-    \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
-    \item{xlimits}{Two-element vector giving the x-axis limits}
-    \item{xat}{Vector listing where the x-axis ticks should be drawn}
-    \item{ylimits}{Two-element vector giving the y-axis limits}
-    \item{yat}{Vector listing where the y-axis ticks should be drawn}
     \item{type}{Should the plot be of the \dQuote{percent} (default), \dQuote{density} or \dQuote{count}}
+    \item{breaks}{A vector listing the break-points of the histogram, or an integer specifying the desired number of breaks.}
+    \item{col}{Fill colour for the histograms}
+    \item{lwd}{Specifies line width}
+    \item{lty}{Specifies line style}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Strip title character expansion}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.1}
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.5}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 0}, 
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
-    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
-    \item{strip.cex}{Strip title character expansion}
-    \item{lwd}{Specifies line width}
-    \item{lty}{Specifies line style}
     \item{abline.h}{Allow horizontal line to be drawn, default to NULL}
     \item{abline.v}{Allow vertical line to be drawn, default to NULL}
     \item{abline.col}{Horizontal and vertical line colour, defaults to black}
     \item{abline.lwd}{Specifies horizontal/vertical line width, defaults to 1}
     \item{abline.lty}{Specifies horizontal/vertical line style, defaults to 1 (solid)}
-    \item{height}{Figure height, defaults to 6 inches}
-    \item{width}{Figure width, defaults to 6 inches}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1600}
-    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{description}{Short description of image/plot; default NULL.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
@@ -152,8 +149,12 @@ create.histogram(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
-    \item{xaxis.fontface}{Fontface for the x-axis scales}
-    \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
+    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
+    \item{description}{Short description of image/plot; default NULL.}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
 }

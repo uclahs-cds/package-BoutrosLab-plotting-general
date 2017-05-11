@@ -10,17 +10,35 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE STRIPPLOTS #################################################################
-create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1), ylab.label = tail(sub('~','',formula[-3]),1), xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1, pch = 19, col = "black", col.border = 'black', fill = 'transparent', colour.alpha = 1, cex = 0.75, xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1, layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, median.values = NULL, strip.col = "white", strip.cex = 1, strip.fontface = 'bold', width = 6, height = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, key = NULL, legend = NULL, description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, style = 'BoutrosLab', preload.default = 'custom') {
+create.stripplot <- function(
+	formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, 
+	jitter.amount = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, 
+	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1,
+	pch = 19, col = 'black', col.border = 'black', fill = 'transparent', colour.alpha = 1, cex = 0.75,
+	xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 1.5,
+	yaxis.cex = 1.5, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
+	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center',
+	xlab.top.x = 0.5, xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1,
+	top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1,
+	layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, median.values = NULL,
+	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
+	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
+	strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', key = NULL, legend = NULL,
+	width = 6, height = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	) {
 
-        if(preload.default == 'paper'){
+	# add preloaded defaults
+	if (preload.default == 'paper') {
+		}
+	else if (preload.default == 'web') {
+		}
 
-                }
-        else if(preload.default == 'web'){
-
-                }
-
+	# update groups function
 	groups.new <- eval(substitute(groups), data, parent.frame());
 
+	# Now make the actual plot object
 	trellis.object <- lattice::stripplot(
 		formula,
 		data,
@@ -38,6 +56,8 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 					border = NA
 					);
 				}
+
+			# make the stripplot
 			panel.stripplot(
 				jitter.data = jitter.data,
 				factor = jitter.factor,
@@ -51,23 +71,22 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 			if (add.median && is.null(median.values)) {
 				warning("median.values must be specified to median to be added.");
 				}
-			if (add.median && !is.null(median.values)) {
+			else if (add.median && !is.null(median.values)) {
 				meds <- median.values;
 				xlocs <- seq_along(meds);
 				panel.segments(
 					xlocs - 1/4, meds, xlocs + 1/4, meds,
 					lwd = 2, 
-					col = "red"
+					col = 'red'
 					);
 				}
 			},
-		type = "p",
+		type = 'p',
 		cex = cex,
 		pch = pch,
 		col = mapply(
-			function(pch, spot.colours, spot.border){
-				if(pch %in% 0:20) { return(spot.colours); } else 
-				if (pch %in% 21:25) { return(spot.border); }
+			function(pch, spot.colours, spot.border) {
+				if (pch %in% 0:20) { return(spot.colours); } else if (pch %in% 21:25) { return(spot.border); }
 				},
 			pch, 
 			spot.colours = col, 
@@ -75,18 +94,17 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 			),
 		fill = mapply(
 			function(pch, spot.colours){
-				if(pch %in% 0:20) { NA; } else 
-				if (pch %in% 21:25) { return(spot.colours); }
+				if (pch %in% 0:20) { NA; } else if (pch %in% 21:25) { return(spot.colours); }
 				},
 			pch, 
 			spot.colours = col
 			),
 		alpha = colour.alpha,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily', 
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -94,38 +112,38 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily', 
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
 				col = xlab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
-                xlab.top = BoutrosLab.plotting.general::get.defaults(
-                        property = 'fontfamily',
-                        add.to.list = list(
-                                label = xlab.top.label,
-                                cex = xlab.top.cex,
-                                col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
-                                just = xlab.top.just,
-                                x = xlab.top.x,
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
+				just = xlab.top.just,
+				x = xlab.top.x,
 				y = xlab.top.y
-                                )
-                        ),
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily", 
+			property = 'fontfamily', 
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
 				col = ylab.col,
-				fontface = if ('Nature' == style){'plain'} else('bold')
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily', 
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -133,13 +151,13 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 					col = xaxis.col,
 					limits = xlimits,
 					at = xat,
-					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface },
 					alternating = FALSE,
 					tck = xaxis.tck
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily", 
+				property = 'fontfamily', 
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,
@@ -147,7 +165,7 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 					limits = ylimits,
 					at = yat,
 					tck = yaxis.tck,
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface),
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },
 					alternating = FALSE,
 					rot = yaxis.rot
 					)
@@ -160,11 +178,11 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 		par.settings = list(
 			axis.line = list(
 				lwd = lwd,
-				col = if ('Nature' == style){'transparent'} else('black')
+				col = if ('Nature' == style) { 'transparent' } else { 'black' }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
-				main = if (is.null(main)) { 0.3} else { 1 },
+				main = if (is.null(main)) { 0.3 } else { 1 },
 				main.key.padding = 0.1,
 				key.top = 0.1,
 				key.axis.padding = 0.1,
@@ -208,10 +226,11 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
+
 			# Only draw axes on the left and bottom
-			if(side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if(side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -229,10 +248,12 @@ create.stripplot <- function(formula, data, filename = NULL, groups = NULL, jitt
 		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
 		} 
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
