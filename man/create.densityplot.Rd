@@ -4,88 +4,100 @@
 \description{Takes a list of vectors and creates a density-plot with each vector as a separate curve}
 \usage{
 create.densityplot(
-	x, 
-	filename = NULL, 
-	xlab.label = NULL, 
+	x,
+	filename = NULL,
 	main = NULL,
-	main.just = "center", 
-	main.x = 0.5, 
-	main.y = 0.5, 
-	type = "l", 
-	lty = 'solid', 
-	cex = 0.75, 
-	pch = 19, 
-	col = 'black', 
+	main.just = 'center',
+	main.x = 0.5,
+	main.y = 0.5,
+	main.cex = 3,
+	xlab.label = NULL,
+	ylab.label = 'Density',
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
+	ylab.col = 'black',
+	xlab.top.label = NULL,
+	xlab.top.cex = 2,
+	xlab.top.col = 'black',
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	type = 'l',
+	lty = 'solid',
+	cex = 0.75,
+	pch = 19,
+	col = 'black',
 	lwd = 2,
 	bandwidth = 'nrd0',
 	bandwidth.adjust = 1,
-	xlimits = NULL, 
-	ylimits = NULL, 
-	xat = TRUE, 
-	yat = TRUE, 
-	xgrid.at = xat, 
-	ygrid.at = yat, 
-	xaxis.lab = NA, 
-	yaxis.lab = NA, 
-	xaxis.cex = 1.5, 
-	yaxis.cex = 1.5, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	xaxis.tck = 1, 
-	yaxis.tck = 1, 
-	main.cex = 3, 
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	ylab.label = 'Density', 
-	xlab.col = 'black', 
-	ylab.col = 'black', 
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2,
-	xlab.top.col = 'black', 
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5,
-	xlab.top.y = 0, 
-	key = list(text = list(lab = c(''))), 
-	legend = NULL, 
-	top.padding = 0.1, 
-	bottom.padding = 0.7, 
-	left.padding = 0.5, 
-	right.padding = 0.1, 
-	add.axes = FALSE, 
-	abline.h = NULL, 
-	abline.v = NULL, 
-	abline.type = NULL, 
-	abline.lwd = NULL, 
-	abline.col = 'black', 
-	height = 6, 
-	width = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	xaxis.lab = NA,
+	yaxis.lab = NA,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	xaxis.tck = 1,
+	yaxis.tck = 1,
+	xgrid.at = xat,
+	ygrid.at = yat,
+	key = list(text = list(lab = c(''))),
+	legend = NULL,
+	top.padding = 0.1,
+	bottom.padding = 0.7,
+	left.padding = 0.5,
+	right.padding = 0.1,
+	add.axes = FALSE,
+	abline.h = NULL,
+	abline.v = NULL,
+	abline.lty = NULL,
+	abline.lwd = NULL,
+	abline.col = 'black',
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'transparent',
+	alpha.rectangle = 1,
+	height = 6,
+	width = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general',
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
 	style = 'BoutrosLab',
-	preload.default = 'custom');
+	preload.default = 'custom'
+	);
 }
 \arguments{
     \item{x}{A list of vectors, each of which will be plotted as a separate curve in the final plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
-    \item{xlab.label}{The label for the x-axis}
-    \item{ylab.label}{The label for the y-axis, defaults to \dQuote{Density}}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of text for main plot title, defaults to 2}
+    \item{xlab.label}{The label for the x-axis}
+    \item{ylab.label}{The label for the y-axis, defaults to \dQuote{Density}}
+    \item{xlab.cex}{Size of x-axis label, defaults to 2}
+    \item{ylab.cex}{Size of y-axis label, defaults to 2}
+    \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
+    \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
+    \item{xlab.top.label}{The label for the top x-axis}
+    \item{xlab.top.cex}{Size of top x-axis label}
+    \item{xlab.top.col}{Colour of the top x-axis label}
+    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
+    \item{xlab.top.x}{The x location of the top x-axis label}
+    \item{xlab.top.y}{The y location of the top y-axis label}
     \item{type}{Plot type}
     \item{lty}{Line type}
     \item{cex}{Character expansion for plotting symbol}
@@ -98,29 +110,20 @@ create.densityplot(
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
     \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
-    \item{xgrid.at}{Vector listing where the x-axis grid lines should be drawn, defaults to xat}
-    \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
     \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
     \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 1}
     \item{yaxis.cex}{Size of x-axis tick labels, defaults to 1}
-    \item{main.cex}{Size of text for main plot title, defaults to 2}
-    \item{xlab.cex}{Size of x-axis label, defaults to 2}
-    \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
-    \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
-    \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
-    \item{xlab.top.label}{The label for the top x-axis}
-    \item{xlab.top.cex}{Size of top x-axis label}
-    \item{xlab.top.col}{Colour of the top x-axis label}
-    \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
-    \item{xlab.top.x}{The x location of the top x-axis label}
-    \item{xlab.top.y}{The y location of the top y-axis label}
+    \item{xaxis.fontface}{Fontface for the x-axis scales}
+    \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
+    \item{xgrid.at}{Vector listing where the x-axis grid lines should be drawn, defaults to xat}
+    \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{top.padding}{A number giving the top padding in multiples of the lattice default}
@@ -130,15 +133,9 @@ create.densityplot(
     \item{add.axes}{Allow axis lines to be turned on or off}
     \item{abline.h}{Specify the superimposed horizontal line(s)}
     \item{abline.v}{Specify the superimposed vertical line(s)}
-    \item{abline.type}{Specify the superimposed line type}
+    \item{abline.lty}{Specify the superimposed line type}
     \item{abline.lwd}{Specify the superimposed line width}
     \item{abline.col}{Specify the superimposed line colour (defaults to black)}
-    \item{height}{Figure height, defaults to 6 inches}
-    \item{width}{Figure width, defaults to 6 inches}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution in dpi, defaults to 1600}
-    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
-    \item{description}{Short description of image/plot; default NULL.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
@@ -146,8 +143,12 @@ create.densityplot(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
-    \item{xaxis.fontface}{Fontface for the x-axis scales}
-    \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{height}{Figure height, defaults to 6 inches}
+    \item{width}{Figure width, defaults to 6 inches}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution in dpi, defaults to 1600}
+    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
+    \item{description}{Short description of image/plot; default NULL.}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
 }

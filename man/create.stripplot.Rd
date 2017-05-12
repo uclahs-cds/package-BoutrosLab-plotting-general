@@ -15,28 +15,9 @@ create.stripplot(
 	main.just = 'center',
 	main.x = 0.5,
 	main.y = 0.5,
+	main.cex = 3,
 	xlab.label = tail(sub('~', '', formula[-2]), 1),
 	ylab.label = tail(sub('~', '', formula[-3]), 1),
-	xaxis.lab = TRUE,
-	yaxis.lab = TRUE,
-	xaxis.fontface = 'bold',
-	yaxis.fontface = 'bold',
-	lwd = 1,
-	pch = 19,
-	col = 'black',
-	col.border = 'black',
-	fill = 'transparent',
-	colour.alpha = 1,
-	cex = 0.75,
-	xaxis.rot = 0,
-	yaxis.rot = 0,
-	xlimits = NULL,
-	ylimits = NULL,
-	xat = TRUE,
-	yat = TRUE,
-	xaxis.cex = 1.5,
-	yaxis.cex = 1.5,
-	main.cex = 3,
 	xlab.cex = 2,
 	ylab.cex = 2,
 	xlab.col = 'black',
@@ -47,10 +28,29 @@ create.stripplot(
 	xlab.top.just = 'center',
 	xlab.top.x = 0.5,
 	xlab.top.y = 0,
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
 	xaxis.col = 'black',
 	yaxis.col = 'black',
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	xaxis.rot = 0,
+	yaxis.rot = 0,
 	xaxis.tck = 0,
 	yaxis.tck = 1,
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	lwd = 1,
+	pch = 19,
+	col = 'black',
+	col.border = 'black',
+	fill = 'transparent',
+	colour.alpha = 1,
+	cex = 0.75,
 	top.padding = 0.1,
 	bottom.padding = 0.7,
 	right.padding = 0.3,
@@ -74,8 +74,8 @@ create.stripplot(
 	strip.fontface = 'bold',
 	key = NULL,
 	legend = NULL,
-	width = 6,
 	height = 6,
+	width = 6,
 	size.units = 'in',
 	resolution = 1600,
 	enable.warnings = FALSE,
@@ -96,28 +96,9 @@ create.stripplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of text for main plot title}
     \item{xlab.label}{X-axis label}
     \item{ylab.label}{Y-axis label}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
-    \item{xaxis.fontface}{Fontface for the x-axis scales}
-    \item{yaxis.fontface}{Fontface for the y-axis scales}
-    \item{lwd}{Line width, defaults to 1}
-    \item{pch}{The plotting character (defaults to filled circles)}
-    \item{col}{Colour of the plotting character (defaults to black)}
-    \item{col.border}{Colour of border when pch > 21. Defaults to black}
-    \item{fill}{Fill colour of the plotting character if pch set to 21:25 (defaults to transparent)}
-    \item{colour.alpha}{Bias to be added to colour selection (defaults to 1)}
-    \item{cex}{The size of the plotting character}
-    \item{xaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
-    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
-    \item{xlimits}{Two-element vector giving the x-axis limits, default is automatic}
-    \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
-    \item{xat}{Vector listing where the x-axis labels should be drawn, default is automatic}
-    \item{yat}{Vector listing where the y-axis labels should be drawn, default is automatic}
-    \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
-    \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
-    \item{main.cex}{Size of text for main plot title}
     \item{xlab.cex}{Size of x-axis label, defaults to 3}
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
@@ -128,10 +109,29 @@ create.stripplot(
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
+    \item{yaxis.cex}{Size of y-axis scales, defaults to 2}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
+    \item{xaxis.fontface}{Fontface for the x-axis scales}
+    \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{xaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
+    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 0}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
+    \item{xlimits}{Two-element vector giving the x-axis limits, default is automatic}
+    \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
+    \item{xat}{Vector listing where the x-axis labels should be drawn, default is automatic}
+    \item{yat}{Vector listing where the y-axis labels should be drawn, default is automatic}
+    \item{lwd}{Line width, defaults to 1}
+    \item{pch}{The plotting character (defaults to filled circles)}
+    \item{col}{Colour of the plotting character (defaults to black)}
+    \item{col.border}{Colour of border when pch > 21. Defaults to black}
+    \item{fill}{Fill colour of the plotting character if pch set to 21:25 (defaults to transparent)}
+    \item{colour.alpha}{Bias to be added to colour selection (defaults to 1)}
+    \item{cex}{The size of the plotting character}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.1}
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.3}
@@ -155,8 +155,8 @@ create.stripplot(
     \item{strip.fontface}{Strip text fontface, defaults to bold}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{width}{Figure width, defaults to 6 inches}
     \item{height}{Figure height, defaults to 6 inches}
+    \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
     \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}

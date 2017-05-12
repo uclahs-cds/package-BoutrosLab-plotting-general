@@ -11,6 +11,7 @@ create.hexbinplot(
 	main.just = 'center',
 	main.x = 0.5,
 	main.y = 0.5,
+	main.cex = 3,
         aspect = 'xy',
 	trans = NULL,
 	inv = NULL,
@@ -20,11 +21,10 @@ create.hexbinplot(
 	mincnt = 1,
 	maxcnt = NULL,
 	xbins = 30,
-	main.cex = 3,
-	xlab.cex = 2,
-        ylab.cex = 2,
 	xlab.label = tail(sub('~', '', formula[-2]), 1),
 	ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2,
+        ylab.cex = 2,
         xlab.col = 'black',
 	ylab.col = 'black',
 	xlab.top.label = NULL,
@@ -51,6 +51,10 @@ create.hexbinplot(
 	yaxis.fontface = 'bold',
         layout = NULL,
 	as.table = FALSE,
+	x.relation = 'same',
+	y.relation = 'same',
+	x.spacing = 0,
+	y.spacing = 0,
 	strip.col = 'white',
         strip.cex = 1,
 	strip.fontface = 'bold',
@@ -84,10 +88,6 @@ create.hexbinplot(
 	bottom.padding = 0.7,
         left.padding = 0.5,
 	right.padding = 0.1,
-	x.relation = 'same',
-	y.relation = 'same',
-	x.spacing = 0,
-	y.spacing = 0,
         add.rectangle = FALSE,
 	xleft.rectangle = NULL,
 	ybottom.rectangle = NULL,
@@ -116,6 +116,7 @@ create.hexbinplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of the main plot title}
     \item{aspect}{This argument controls the physical aspect ratio of the panels, defaults to \dQuote{xy}}
     \item{trans}{function specifying a transformation for the counts such as log, defaults to NULL}
     \item{inv}{the inverse transformation of trans, defaults to NULL}
@@ -125,11 +126,10 @@ create.hexbinplot(
     \item{mincnt}{Cells with fewer counts are ignored}
     \item{maxcnt}{Cells with more counts are ignored, defaults to auto-generation}
     \item{xbins}{Number of bins to use in x, defaults to 30}
-    \item{main.cex}{Size of the main plot title}
-    \item{xlab.cex}{Size of x-axis label}
-    \item{ylab.cex}{Size of y-axis label}
     \item{xlab.label}{X-axis label}
     \item{ylab.label}{Y-axis label}
+    \item{xlab.cex}{Size of x-axis label}
+    \item{ylab.cex}{Size of y-axis label}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
     \item{ylab.col}{Colour of the y-axis label, defaults to \dQuote{black}}
     \item{xlab.top.label}{The label for the top x-axis}
@@ -156,6 +156,10 @@ create.hexbinplot(
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL.}
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
+    \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
     \item{strip.cex}{Strip title character expansion}
     \item{strip.fontface}{Strip title fontface, defaults to bold}
@@ -189,10 +193,6 @@ create.hexbinplot(
     \item{bottom.padding}{A number giving the bottom padding in multiples of the lattice default}
     \item{left.padding}{A number giving the left padding in multiples of the lattice default}
     \item{right.padding}{A number giving the right padding in multiples of the lattice default}
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
-    \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}

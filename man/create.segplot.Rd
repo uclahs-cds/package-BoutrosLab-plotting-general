@@ -11,9 +11,9 @@ create.segplot(
 	main.just = 'center',
 	main.x = 0.5,
 	main.y = 0.5,
+	main.cex = 3,
 	xlab.label = tail(sub('~', '', formula[-2]), 1),
 	ylab.label = tail(sub('~', '', formula[-3]), 1),
-	main.cex = 3,
 	xlab.cex = 2,
 	ylab.cex = 2,
 	xlab.col = 'black',
@@ -24,22 +24,22 @@ create.segplot(
 	xlab.top.just = 'center',
 	xlab.top.x = 0.5,
 	xlab.top.y = 0,
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
 	xaxis.fontface = 'plain',
 	yaxis.fontface = 'plain',
 	xaxis.rot = 0,
 	yaxis.rot = 0,
-	xaxis.cex = 1.5,
-	yaxis.cex = 1.5,
-	xaxis.lab = TRUE,
-	yaxis.lab = TRUE,
-	xaxis.col = 'black',
-	yaxis.col = 'black',
+	xaxis.tck = 1,
+	yaxis.tck = 1,
 	xlimits = NULL,
 	ylimits = NULL,
 	xat = TRUE,
 	yat = TRUE,
-	xaxis.tck = 1,
-	yaxis.tck = 1,
 	abline.h = NULL,
 	abline.v = NULL,
 	abline.lty = 1,
@@ -47,15 +47,17 @@ create.segplot(
 	abline.col = 'black',
 	segments.col = 'black',
 	segments.lwd = 1,
+	layout = NULL,
+	as.table = FALSE,
 	x.spacing = 0,
 	y.spacing = 0,
+	x.relation = 'same',
+	y.relation = 'same',
 	top.padding = 0.5,
 	bottom.padding = 2,
 	right.padding = 1,
 	left.padding = 2,
 	ylab.axis.padding = 0,
-	x.relation = 'same',
-	y.relation = 'same',
 	level = NULL,
 	col.regions = NULL,
 	centers = NULL,
@@ -72,8 +74,6 @@ create.segplot(
 	col.rectangle = 'transparent',
 	alpha.rectangle = 1,
 	axes.lwd = 1,
-	layout = NULL,
-	as.table = FALSE,
 	key = NULL,
 	legend = NULL,
 	height = 6,
@@ -81,8 +81,8 @@ create.segplot(
 	size.units = 'in',
 	resolution = 1600,
 	enable.warnings = FALSE,
-	style = 'BoutrosLab',
 	description = 'Created with BoutrosLab.plotting.general',
+	style = 'BoutrosLab',
 	preload.default = 'custom'
 	)
 }
@@ -94,9 +94,9 @@ create.segplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{xlab.label}{x-axis label}
     \item{ylab.label}{y-axis label}
-    \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
@@ -107,22 +107,22 @@ create.segplot(
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.cex}{Size of x-axis scales, defaults to 1.5}
+    \item{yaxis.cex}{Size of y-axis scales, defaults to 1.5}
+    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
+    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.fontface}{Fontface for the x-axis scales, defaults to \dQuote{plain}}
     \item{yaxis.fontface}{Fontface for the y-axis scales, defaults to \dQuote{plain}}
     \item{xaxis.rot}{Counterclockwise rotation of text in x-axis scales in degrees, defaults to 0}
     \item{yaxis.rot}{Counterclockwise rotation of text in y-axis scales in degrees, defaults to 0}
-    \item{xaxis.cex}{Size of x-axis scales, defaults to 1.5}
-    \item{yaxis.cex}{Size of y-axis scales, defaults to 1.5}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
-    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
-    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
+    \item{xaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
+    \item{yaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
     \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
     \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
-    \item{xaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
-    \item{yaxis.tck}{Specifies the length of the tick mark, defaults to 1 for both top and bottom axes}
     \item{abline.h}{Allow horizontal line to be drawn, default to NULL}
     \item{abline.v}{Allow vertical line to be drawn, default to NULL}
     \item{abline.lty}{Specifies horizontal line style, defaults to 1 (solid)}
@@ -130,15 +130,17 @@ create.segplot(
     \item{abline.col}{Horizontal line colour, defaults to black}
     \item{segments.col}{Colour of segments, defaults to \dQuote{black}}
     \item{segments.lwd}{Line width of segments, defaults to 1}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
+    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.1}
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}, 
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{level}{Optional covariate that determines colour coding of the segments, if specified overwrites segments.col, can contain actual colors or values to determine colors, then col.regions should be defined}
     \item{col.regions}{Vector of colors, define if level is numeric}
     \item{centers}{Optional vector for centers of segments, defaults to NULL}  
@@ -155,8 +157,6 @@ create.segplot(
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{axes.lwd}{Specifies axes line width, defaults to 1}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
-    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{key}{A list giving the key (legend). The default suppresses drawing}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{height}{Figure height, defaults to 6 inches}

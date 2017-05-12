@@ -5,18 +5,19 @@
 \description{A function for generating and placing a colour key. Good for use in multiplots when a smaller colour key is desired.}
 \usage{
 create.colourkey(
-	x, 
-	scale.data = FALSE, 
-	colour.scheme = c(), 
-	total.colours = 99, 
-	colour.centering.value = 0, 
-	colour.alpha = 1, 
-	fill.colour = 'darkgray', 
-	at = NULL, 
-	colourkey.labels.at = NULL, 
-	colourkey.labels = colourkey.labels.at, 
-	colourkey.labels.cex = 1, 
-	placement = NULL)
+	x,
+	scale.data = FALSE,
+	colour.scheme = c(),
+	total.colours = 99,
+	colour.centering.value = 0,
+	colour.alpha = 1,
+	fill.colour = 'darkgray',
+	at = NULL,
+	colourkey.labels.at = NULL,
+	colourkey.labels = colourkey.labels.at,
+	colourkey.labels.cex = 1,
+	placement = NULL
+	);
 }
 \arguments{
     \item{x}{Either a data-frame or a matrix from which the heatmap was created}
@@ -38,7 +39,7 @@ create.colourkey(
 \seealso{xyplot, plotmath}
 \examples{
 set.seed(1234567890);
-x <- outer(-5:5, -5:5, "*") + matrix(nrow = 11, ncol = 11, data = runif(11 * 11));
+x <- outer(-5:5, -5:5, '*') + matrix(nrow = 11, ncol = 11, data = runif(11 * 11));
 colnames(x) <- paste('col', 1:11, sep = '-');
 rownames(x) <- paste('row', 1:11, sep = '-');
 

@@ -11,17 +11,9 @@ create.violinplot(
 	main.just = 'center',
 	main.x = 0.5,
 	main.y = 0.5,
-	xlab.label = tail(sub('~','',formula[-2]),1),
-	ylab.label = tail(sub('~','',formula[-3]),1),
-	xaxis.lab = TRUE,
-	yaxis.lab = TRUE,
-	xaxis.rot = 0,
-	yaxis.rot = 0,
-	ylimits = NULL,
-	yat = TRUE,
-	xaxis.cex = 1.5,
-	yaxis.cex = 1.5,
 	main.cex = 3,
+	xlab.label = tail(sub('~', '', formula[-2]), 1),
+	ylab.label = tail(sub('~', '', formula[-3]), 1),
 	xlab.cex = 2,
 	ylab.cex = 2,
 	xlab.col = 'black',
@@ -29,24 +21,32 @@ create.violinplot(
 	xlab.top.label = NULL,
 	xlab.top.cex = 2,
 	xlab.top.col = 'black',
-	xlab.top.just = "center",
+	xlab.top.just = 'center',
 	xlab.top.x = 0.5,
 	xlab.top.y = 0,
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
 	xaxis.col = 'black',
 	yaxis.col = 'black',
-	xaxis.tck = c(1,0),
-	yaxis.tck = c(1,1),
 	xaxis.fontface = 'bold',
 	yaxis.fontface = 'bold',
-	col = "black",
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.tck = c(1,0),
+	yaxis.tck = c(1,1),
+	ylimits = NULL,
+	yat = TRUE,
+	col = 'black',
 	lwd = 1,
 	border.lwd = 1,
 	bandwidth = 'nrd0',
 	bandwidth.adjust = 1,
 	extra.points = NULL,
 	extra.points.pch = 21,
-	extra.points.col = "white",
-	extra.points.border = "black",
+	extra.points.col = 'white',
+	extra.points.border = 'black',
 	extra.points.cex = 1,
 	start = NULL,
 	end = NULL,
@@ -65,8 +65,8 @@ create.violinplot(
 	ytop.rectangle = NULL,
 	col.rectangle = 'transparent',
 	alpha.rectangle = 1,
-	width = 6,
 	height = 6,
+	width = 6,
 	resolution = 1600,
 	size.units = 'in',
 	enable.warnings = FALSE, 
@@ -83,17 +83,9 @@ create.violinplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
+    \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
-    \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
-    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
-    \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
-    \item{yat}{Vector listing where the y-axis labels should be drawn, default is automatic}
-    \item{xaxis.cex}{Size of x-axis tick labels, defaults to 2}
-    \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
-    \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{xlab.cex}{Size of x-axis label, defaults to 3}
     \item{ylab.cex}{Size of y-axis label, defaults to 3}
     \item{xlab.col}{Colour of the x-axis label, defaults to \dQuote{black}}
@@ -104,10 +96,20 @@ create.violinplot(
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.cex}{Size of x-axis tick labels, defaults to 2}
+    \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
+    \item{xaxis.fontface}{Fontface for the x-axis scales}
+    \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
+    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to c(1,0)}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to c(1,1)}
+    \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
+    \item{yat}{Vector listing where the y-axis labels should be drawn, default is automatic}
     \item{col}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
     \item{lwd}{Line width, defaults to 1}
     \item{border.lwd}{Width of the exterior boundary of the violin plots, defaults to 1}
@@ -135,10 +137,8 @@ create.violinplot(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
-    \item{xaxis.fontface}{Fontface for the x-axis scales}
-    \item{yaxis.fontface}{Fontface for the y-axis scales}
-    \item{width}{Figure width, defaults to 6 inches}
     \item{height}{Figure height, defaults to 6 inches}
+    \item{width}{Figure width, defaults to 6 inches}
     \item{resolution}{Figure resolution in dpi, defaults to 1600}
     \item{size.units}{Figure units, defaults to inches}
     \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}

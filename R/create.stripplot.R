@@ -11,22 +11,22 @@
 
 ### FUNCTION TO CREATE STRIPPLOTS #################################################################
 create.stripplot <- function(
-	formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, 
-	jitter.amount = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, 
+	formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL,
+	main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, 
 	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
-	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', lwd = 1,
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
+	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
+	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black',
+	yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0,
+	xaxis.tck = 0, yaxis.tck = 1, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, lwd = 1,
 	pch = 19, col = 'black', col.border = 'black', fill = 'transparent', colour.alpha = 1, cex = 0.75,
-	xaxis.rot = 0, yaxis.rot = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.cex = 1.5,
-	yaxis.cex = 1.5, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
-	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center',
-	xlab.top.x = 0.5, xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = 1,
 	top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.3, left.padding = 0.5, ylab.axis.padding = 1,
 	layout = NULL, as.table = TRUE, x.spacing = 0, y.spacing = 0, add.median = FALSE, median.values = NULL,
 	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
-	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
-	strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', key = NULL, legend = NULL,
-	width = 6, height = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, strip.col = 'white', strip.cex = 1,
+	strip.fontface = 'bold', key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in',
+	resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
+	style = 'BoutrosLab', preload.default = 'custom'
 	) {
 
 	# add preloaded defaults

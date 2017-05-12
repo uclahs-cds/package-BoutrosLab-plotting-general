@@ -12,26 +12,26 @@
 ### FUNCTION TO CREATE HEXBINPLOTS #################################################################
 create.hexbinplot <- function(
 	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
-	aspect = 'xy', trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE,
-	colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, xbins = 30, main.cex = 3, xlab.cex = 2,
-	ylab.cex = 2, xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
-	xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
-	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
-	xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA,	
-	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black',
-	yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold',
-	layout = NULL, as.table = FALSE, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', 
-	add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.lty = NULL, abline.lwd = NULL, 
+	main.cex = 3, aspect = 'xy', trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE,
+	colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, xbins = 30,
+	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
+	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL,
+	ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA,	xaxis.cex = 1.5, yaxis.cex = 1.5,
+	xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
+	xaxis.fontface = 'bold', yaxis.fontface = 'bold', layout = NULL, as.table = FALSE, x.relation = 'same',
+	y.relation = 'same', x.spacing = 0, y.spacing = 0, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', 
+	add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.lty = NULL, abline.lwd = NULL,
 	abline.col = 'black', abline.front = FALSE, add.xyline = FALSE, xyline.col = 'black', xyline.lwd = 1,
 	xyline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE),
 	curves.to = max(data, na.rm = TRUE), curves.col = 'black', curves.lwd = 2, curves.lty = 1,
 	add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black',	text.cex = 1,
-	text.fontface = 'bold', add.axes = FALSE, top.padding = 0.1, bottom.padding = 0.7,
-	left.padding = 0.5, right.padding = 0.1, x.relation = 'same', y.relation = 'same', x.spacing = 0, y.spacing = 0,
-	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
-	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, background.col = 'transparent',
-	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab',preload.default = 'custom'
+	text.fontface = 'bold', add.axes = FALSE, top.padding = 0.1, bottom.padding = 0.7, left.padding = 0.5,
+	right.padding = 0.1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL,
+	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
+	background.col = 'transparent',	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in',
+	resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
+	style = 'BoutrosLab',preload.default = 'custom'
 	) {
 
 	# IMPORTANT NOTE:

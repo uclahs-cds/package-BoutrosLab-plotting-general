@@ -10,21 +10,21 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE VIOLIN PLOTS ###############################################################
-create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.just = 'center',
-	main.x = 0.5, main.y = 0.5, xlab.label = tail(sub('~','',formula[-2]),1),
-	ylab.label = tail(sub('~','',formula[-3]),1), xaxis.lab = TRUE, yaxis.lab = TRUE,
-	xaxis.rot = 0, yaxis.rot = 0, ylimits = NULL, yat = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5,
-	main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black',
-	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",
-	xlab.top.x = 0.5, xlab.top.y = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = c(1,0),
-	yaxis.tck = c(1,1), xaxis.fontface = 'bold', yaxis.fontface = 'bold', col = "black", lwd = 1,
+create.violinplot <- function(
+	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
+	main.cex = 3, xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
+	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
+	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black',
+	yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0,
+	xaxis.tck = c(1,0), yaxis.tck = c(1,1), ylimits = NULL, yat = TRUE, col = 'black', lwd = 1,
 	border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1, extra.points = NULL, extra.points.pch = 21,
-	extra.points.col = "white", extra.points.border = "black", extra.points.cex = 1, start = NULL, 
+	extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1, start = NULL, 
 	end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7, 
 	left.padding = 0.5, right.padding = 0.3, key = NULL, legend = NULL, add.rectangle = FALSE, 
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
-	col.rectangle = 'transparent', alpha.rectangle = 1, width = 6, height = 6, resolution = 1600, size.units = 'in',
-	enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
+	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
+	size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab', preload.default = 'custom'
 	) {
 
@@ -42,13 +42,13 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 		lty = plot.polygon$lty, lwd = plot.polygon$lwd, col = plot.polygon$col,
 		varwidth = FALSE, bw = bandwidth, adjust = bandwidth.adjust, kernel = NULL,
 		window = NULL, width = NULL, n = 50, from = NULL, to = NULL,
-		cut = NULL, na.rm = TRUE, ..., identifier = "violin") {
+		cut = NULL, na.rm = TRUE, ..., identifier = 'violin') {
 
 		if (all(is.na(x) | is.na(y))) {	return(); }
 
 		x <- as.numeric(x);
 		y <- as.numeric(y);
-		plot.polygon <- trellis.par.get("plot.polygon");
+		plot.polygon <- trellis.par.get('plot.polygon');
 		darg <- list();
 		darg$bw <- bw;
 		darg$adjust <- adjust;
@@ -63,24 +63,25 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 
 		my.density <- function(x) {
 			ans <- try(
-				do.call("density", c(list(x = x), darg)),
+				do.call('density', c(list(x = x), darg)),
 				silent = TRUE
 				);
-			if (inherits(ans, "try-error")) {
+
+			if (inherits(ans, 'try-error')) {
 				list(x = rep(x[1], 3), y = c(0, 1, 0));
-				} 
+				}
 			else { ans; }
 			}
 
 		numeric.list <- if (horizontal) { split(x, factor(y)); } else { split(y, factor(x)); }
 		levels.fos <- as.numeric(names(numeric.list));
-	
+
 		# check colours are appropriate length
 		if (length(col) < length(levels.fos)) { col <- rep(col, length(levels.fos)); }
 
 		d.list <- lapply(numeric.list, my.density);
-		dx.list <- lapply(d.list, "[[", "x");
-		dy.list <- lapply(d.list, "[[", "y");
+		dx.list <- lapply(d.list, '[[', 'x');
+		dy.list <- lapply(d.list, '[[', 'y');
 		max.d <- sapply(dy.list, max);
 		if (varwidth) {	max.d[] <- max(max.d); }
 		cur.limits <- current.panel.limits();
@@ -90,10 +91,10 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 
 		## Modified from methods::hasArg.
 		hasGroupNumber <- function() {
-			aname <- "group.number";
+			aname <- 'group.number';
 			fnames <- names(formals(sys.function(sys.parent())));
 			if (is.na(match(aname, fnames))) {
-				if (is.na(match("...", fnames))) { FALSE; } 
+				if (is.na(match('...', fnames))) { FALSE; }
 				else {
 					dotsCall <- eval(quote(substitute(list(...))), sys.parent());
 					!is.na(match(aname, names(dotsCall)));
@@ -112,23 +113,25 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				if (is.finite(max.d[i])) {
 					pushViewport(
 						viewport(
-							y = unit(levels.fos[i], "native"),
-							height = unit(height, "native"),
+							y = unit(levels.fos[i], 'native'),
+							height = unit(height, 'native'),
 					  		yscale = c(max.d[i] * c(-1, 1)),
 							xscale = xscale
 							)
 						);
+
 					grid.polygon(
 						x = c(dx.list[[i]], rev(dx.list[[i]])),
 						y = c(dy.list[[i]], -rev(dy.list[[i]])),
-						default.units = "native",
+						default.units = 'native',
 						name = trellis.grobname(
 							identifier,
-							type = "panel",
+							type = 'panel',
 							group = group
 							),
-						gp = gpar(fill = col[i], col = border,lty = lty, lwd = lwd, alpha = alpha)
+						gp = gpar(fill = col[i], col = border, lty = lty, lwd = lwd, alpha = alpha)
 						);
+
 					popViewport();
 					}
 				}
@@ -138,23 +141,25 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				if (is.finite(max.d[i])) {
 					pushViewport(
 						viewport(
-							x = unit(levels.fos[i], "native"),
-							width = unit(height, "native"),
+							x = unit(levels.fos[i], 'native'),
+							width = unit(height, 'native'),
 							xscale = c(max.d[i] * c(-1, 1)),
 							yscale = yscale
 							)
 						);
+
 					grid.polygon(
 						y = c(dx.list[[i]], rev(dx.list[[i]])),
 					  	x = c(dy.list[[i]], -rev(dy.list[[i]])),
-						default.units = "native",
+						default.units = 'native',
 						name = trellis.grobname(
 							identifier,
-							type = "panel",
+							type = 'panel',
 							group = group
 							),
 						gp = gpar(fill = col[i], col = border, lty = lty, lwd = lwd, alpha = alpha)
 						);
+
 					popViewport();
 					}
 				}
@@ -189,7 +194,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 			else {
 				.panel.violin.mod(from = from, to = to, varwidth = varwidth,...);
 				}
-      
+
 			# add extra points if requested
 			if (!is.null(extra.points)) {
 				for (i in 1:length(extra.points)) {
@@ -217,7 +222,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				}
 			},
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily",
+			property = 'fontfamily',
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -228,7 +233,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily",
+			property = 'fontfamily',
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -249,7 +254,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = "fontfamily",
+			property = 'fontfamily',
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -260,7 +265,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 		scales = list(
 			lwd = 1,
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily",
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -271,7 +276,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = "fontfamily",
+				property = 'fontfamily',
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,
@@ -323,21 +328,21 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				),
 			box.dot = list(
 				pch = 19,
-				col = "#000000",
+				col = '#000000',
 				lty = 1
 				),
 			box.rectangle = list(
 				lwd = 3,
-				col = "#000000",
+				col = '#000000',
 				lty = 1
 				),
 			box.umbrella =list(
 				lwd = 2,
-				col = "#000000",
+				col = '#000000',
 				lty = 1
 				),
 			plot.symbol = list(
-				col = "#000000",
+				col = '#000000',
 				pch = 19,
 				cex = 0.5
 				),
@@ -346,7 +351,7 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 				lwd = border.lwd
 				)
 			),
-		pch = "|",
+		pch = '|',
 		pretty = TRUE,
 		horizontal = plot.horizontal,
 		key = key,
@@ -357,10 +362,10 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = "black", ...) {
+		trellis.object$axis = function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c("bottom","left")) {
-				axis.default(side = side, line.col = "black", ...);
+			if (side %in% c('bottom','left')) {
+				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
 				}
@@ -375,13 +380,15 @@ create.violinplot <- function(formula, data, filename = NULL, main = NULL, main.
 		# Other required changes which are not accomplished here
 		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
 		}
 
+	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
 		}
 
+	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}

@@ -4,12 +4,13 @@
 \description{Takes a matrix and creates a row-wise or column-wise dendrogram}
 \usage{
 create.dendrogram(
-	x, 
-	clustering.method = 'diana', 
-	cluster.dimension = 'col', 
-	distance.method = 'correlation', 
-	cor.method = 'pearson', 
-	force.clustering = FALSE)
+	x,
+	clustering.method = 'diana',
+	cluster.dimension = 'col',
+	distance.method = 'correlation',
+	cor.method = 'pearson',
+	force.clustering = FALSE
+	);
 }
 \arguments{
     \item{x}{A matrix that is used to create the dendrogram}
@@ -23,7 +24,7 @@ create.dendrogram(
 \author{Lauren Chong}
 \examples{
 # create temp data
-x <- outer(-5:5, -5:5, "*") + matrix(nrow = 11, ncol = 11, data = runif(11 * 11));
+x <- outer(-5:5, -5:5, '*') + matrix(nrow = 11, ncol = 11, data = runif(11 * 11));
 colnames(x) <- paste('col', 1:11, sep = '-');
 rownames(x) <- paste('row', 1:11, sep = '-');
 
