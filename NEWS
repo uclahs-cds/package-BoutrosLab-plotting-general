@@ -1,3 +1,23 @@
+BoutrosLab.plotting.general 5.7.1 2017-05-17
+
+BUG FIX
+* write.plot.R: fixed an error that didn't allow adding additional plots when returning object to screen (when filename = NULL)
+* create.barplot.R: fixed a bug interfering with add.rectangle and removed redundant add.background.shading (repeats add.rectangle functionality)
+* force.colour.scheme: if multiple outputs were requested only one would be returned; now returns a list
+
+FEATURE UPDATE
+* create.barplot.R: minor improvements to some examples
+	*split argument lwd into axes.lwd and border.lwd to be consistent with other functions
+	*removed argument remove.all.border.lines as this can now be accomplished with axes.lwd
+
+MINOR (FORMATTING) CHANGES
+* colour.gradient.R, covariates.grob.R, create.barplot.R, create.boxplot.R, create.colourkey.R, create.dendrogram.R, create.densityplot.R,
+	create.hexbinplot.R, create.segplot.R, create.stripplot.R, create.violinplot.R, default.colours.R, display.colours.R,
+	display.statistical.result.R, force.colour.scheme.R, generate.at.final.R, get.corr.key.R, get.defaults.R, get.line.breaks.R, legend.grob.R,
+	scientific.notation.R, show.available.palettes.R, write.metadata.R, write.plot.R:
+	applied code formatting (BL standards)
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.7.0 2017-05-11
 
 BUG FIX

@@ -308,7 +308,7 @@ plot.heatmap <- function(all_data){
         )
 }
 
-plot.barplot <- function(all_data){
+plot.barplot <- function(all_data) {
 
     # save the parameter values that will be reused in the multiplot
     multiplot_visuals <- list(
@@ -324,7 +324,7 @@ plot.barplot <- function(all_data){
     barplot.formatted <- create.barplot(
         formula = x ~ y,
         data = all_data[,7:8],
-        lwd = 0,
+        border.lwd = 0,
         col = 'grey',
         xlab.label = multiplot_visuals$xlab.label,
         xaxis.lab = multiplot_visuals$xaxis.labels,
@@ -385,7 +385,7 @@ bars <- create.barplot(
     data = data_bars,
     ylimits = c(0,35),
     sample.order = 'increasing',
-    lwd = 0
+    border.lwd = 0
     );
 
 # Make covariate bars out of heatmaps
@@ -539,7 +539,7 @@ top_data <- data.frame(
 top <- create.barplot(
     formula = x~y,
     data = top_data,
-    lwd = 0
+    border.lwd = 0
     );
 
 side_data <- data.frame(
@@ -551,7 +551,7 @@ side_data <- data.frame(
 side <- create.barplot(
     formula = x~y,
     data = side_data,
-    lwd = 0,
+    border.lwd = 0,
     sample.order = 'decreasing',
     plot.horizontal = TRUE
     );

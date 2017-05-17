@@ -4,9 +4,10 @@
 \description{Returns the value for the property requested}
 \usage{
 get.defaults(
-	property, 
-	os.type, 
-	add.to.list)
+	property = 'fontfamily',
+	os.type = .Platform$OS.type,
+	add.to.list = NULL
+	);
 }
 \arguments{
     \item{property}{The property to be retrieved}
@@ -17,9 +18,9 @@ get.defaults(
 \author{Syed Haider}
 \examples{
     # returns the fontfamily for current OS
-    get.defaults(property = "fontfamily")
-    
+    get.defaults(property = "fontfamily");
+
     # returns the fontfamily for unix
-    get.defaults(property = "fontfamily", os.type = 'windows')
+    get.defaults(property = "fontfamily", os.type = 'windows');
 }
 \keyword{iplot}

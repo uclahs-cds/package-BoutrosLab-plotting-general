@@ -36,5 +36,5 @@ get.defaults <- function(property = 'fontfamily', os.type = .Platform$OS.type, a
 			}
 		}
 
-	return (add.to.list);
+	return(add.to.list);
 	}

@@ -10,7 +10,9 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO DISPLAY AVAILABLE COLOUR SCHEMES ##################################################
-show.available.palettes <- function(type = 'general', filename = NULL, height = 5, width = 8, resolution = 300){
+show.available.palettes <- function(
+	type = 'general', filename = NULL, height = 5, width = 8, resolution = 300
+	) {
 
 	type <- tolower(type);
 
@@ -25,9 +27,9 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 		# Encoding the colours as numbers
 		max.length <- 0;
 
-		for ( i in 1:length(general)) {
-			if(length(general[[i]]) > max.length) {
-				max.length <- length(general[[i]])
+		for (i in 1:length(general)) {
+			if (length(general[[i]]) > max.length) {
+				max.length <- length(general[[i]]);
 				}
 			}
 
@@ -41,10 +43,9 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 				}
 			}
 
-		for (i in 1:length(general)){
-
-			if (length(general[[i]]) < max.length){
-				length(general[[i]]) <- max.length;				
+		for (i in 1:length(general)) {
+			if (length(general[[i]]) < max.length) {
+				length(general[[i]]) <- max.length;
 				}
 			}
 
@@ -52,9 +53,9 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 		reordered.data <- as.data.frame(lapply(general, as.numeric));
 
 		# Using the heatmap function to display the colour palettes
-		BoutrosLab.plotting.general::create.heatmap(	
+		BoutrosLab.plotting.general::create.heatmap(
 			filename = filename,
-			# reverse order of columns for display 
+			# reverse order of columns for display
 			x = reordered.data[c(rev(seq(1, dim(reordered.data)[2], 1)))],
 			clustering.method = 'none',
 			colour.scheme = all.colours,
@@ -78,30 +79,30 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 		}
 
 	### DISPLAY SPECIFIC SCHEMES ##################################################################
-
 	else if ('specific' == type) {
 
-		specific <- force.colour.scheme(x = '', scheme = 'all', return.scheme = TRUE); 
+		specific <- force.colour.scheme(x = '', scheme = 'all', return.scheme = TRUE)$scheme;
 
 		# sort by length, longest first
-		swapped = TRUE;
+		swapped <- TRUE;
 		while (TRUE == swapped) {
 			swapped = FALSE;
 			for (i in 2:length(specific)) {
 				if (length(specific[[i-1]]$colours) < length(specific[[i]]$colours)) {
-					temp <- specific[i];
-					temp.name <- names(specific)[i];
-					specific[i] <- specific[i - 1];
-					names(specific)[i] <- names(specific)[i - 1];
-					specific[i - 1] <- temp;
-					names(specific)[i - 1] <- temp.name;
-					swapped = TRUE;
+					temp			<- specific[i];
+					temp.name		<- names(specific)[i];
+					specific[i]		<- specific[i - 1];
+					names(specific)[i] 	<- names(specific)[i - 1];
+					specific[i - 1]		<- temp;
+					names(specific)[i - 1]	<- temp.name;
+
+					swapped <- TRUE;
 					}
 				}
 			}
 
 		number.of.colours <- 0;
-		for (i in 1:length(specific)){
+		for (i in 1:length(specific)) {
 			number.of.colours <- number.of.colours + length(specific[[i]]$levels);
 			}
 
@@ -113,17 +114,17 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 
 		# initate with first row
 		temp.col <- c(0, specific[[1]]$colours);
-		
-		for (i in 2:length(specific)){
+
+		for (i in 2:length(specific)) {
 
 			potential.length <- length(temp.col) + length(specific[[i-1]]$colours) + 2;
 
-			if (potential.length <= display.height && i < length(specific)){
+			if (potential.length <= display.height && i < length(specific)) {
 				temp.col <- c(temp.col, NA, 0, specific[[i]]$colours);
-			} else {
-
+				}
+			else {
 				# special case for the last row
-				if (length(specific) == i){
+				if (length(specific) == i) {
 					temp.col <- c(temp.col, NA, 0, specific[[i]]$colours);
 					}
 
@@ -131,24 +132,25 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 				length(temp.col) <- display.height;
 
 				# check if inital row has been added
-				if(0 == ncol(formatted.data)){
+				if (0 == ncol(formatted.data)) {
 					formatted.data <- temp.col;
-				} else {
+					}
+				else {
 					formatted.data <- cbind(formatted.data, temp.col);
-					} 
-				
+					}
+
 				# add spacers for labels
 				spacer.col <- NA;
 				length(spacer.col) <- display.height;
 
 				spacing.for.labels <- 0;
-				for (word in 1:length(temp.col)){
-					if (nchar(temp.col[2]) > spacing.for.labels){
+				for (word in 1:length(temp.col)) {
+					if (nchar(temp.col[2]) > spacing.for.labels) {
 						spacing.for.labels <- nchar(temp.col[2]);
 						}
-					}	
+					}
 
-				for(k in 1:spacing.for.labels){
+				for (k in 1:spacing.for.labels) {
 					formatted.data <- cbind(formatted.data, spacer.col);
 					}
 
@@ -163,25 +165,25 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 
 		# map colours to numbers
 		all.colours <- character();
-		for (i in 1:length(specific)){
+		for (i in 1:length(specific)) {
 			all.colours <- c(all.colours, specific[[i]]$colours);
 			}
 
 		colour.number <- 1;
-		for (i in 1:length(formatted.data)){
-			if (!is.na(formatted.data[i]) && 0 != formatted.data[i]){
+		for (i in 1:length(formatted.data)) {
+			if (!is.na(formatted.data[i]) && 0 != formatted.data[i]) {
 				formatted.data[i] <- colour.number;
 				colour.number <- colour.number + 1;
 				}
 			}
-		
+
 		enumerated.data <- as.data.frame(apply(formatted.data, c(1,2), as.numeric));
 
 		# get labels
 		labels <- character();
 		bold.text <- numeric();
 		offset <- numeric();
-		for (i in 1:length(specific)){
+		for (i in 1:length(specific)) {
 			labels <- c(labels, names(specific)[i], specific[[i]]$levels);
 			bold.text <- c(bold.text, 2, rep(1, length(specific[[i]]$levels)));
 			offset <- c(offset, -0.5, rep(1, length(specific[[i]]$levels)));
@@ -200,7 +202,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 		border.colour.matrix <- matrix(
 			nrow = nrow(colour.coded.data),
 			ncol = ncol(colour.coded.data),
-			data = "grey"
+			data = 'grey'
 			);
 
 		border.size.matrix <- matrix(
@@ -219,7 +221,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 				)
 			);
 
-		symbol.locations$borders[[1]]$x[which("white" == colour.coded.data, arr.ind = TRUE)] <- TRUE;
+		symbol.locations$borders[[1]]$x[which('white' == colour.coded.data, arr.ind = TRUE)] <- TRUE;
 
 		# display the colours using the heatmap function
 		create.heatmap(
@@ -227,9 +229,9 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 			x = enumerated.data,
 			same.as.matrix = TRUE,
 			# adding white for the header spaces, which are labelled 0
-			colour.scheme = c("white", all.colours),
+			colour.scheme = c('white', all.colours),
 			total.colours = (length(all.colours) + 2),
-			fill.colour = "white",
+			fill.colour = 'white',
 			clustering.method = 'none',
 			axes.lwd = 0,
 			print.colour.key = FALSE,
@@ -251,7 +253,7 @@ show.available.palettes <- function(type = 'general', filename = NULL, height = 
 			);
 		}
 
-	else (
-		stop("Invalid value supplied to type parameter")
-		)
+	else {
+		stop("Invalid value supplied to type parameter.");
+		}
 	}

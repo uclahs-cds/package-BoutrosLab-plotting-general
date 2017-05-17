@@ -6,7 +6,8 @@
 \usage{
 colour.gradient(
 	colour, 
-	length);
+	length
+	);
 }
 \arguments{
     \item{colour}{A single colour to be used as the center value of the sequence}

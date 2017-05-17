@@ -17,13 +17,15 @@
 #	- The number to be put in scientific notation
 #	- The statistics type ("P", "Q", etc.)
 # Output variables: An expression.
-display.statistical.result <- function(x, lower.cutoff = 2.2e-50, scientific.cutoff = 0.001, digits = 2, statistic.type = "P", symbol = ": ") {
+display.statistical.result <- function(
+	x, lower.cutoff = 2.2e-50, scientific.cutoff = 0.001, digits = 2, statistic.type = 'P', symbol = ': '
+	) {
 
-	# If x is smaller or equal to lower.cutoff, then the expression returned describes x 
+	# If x is smaller or equal to lower.cutoff, then the expression returned describes x
 	# simply as being smaller than lower.cutoff
-	if (lower.cutoff >= x){
+	if (lower.cutoff >= x) {
 		pvalue <- substitute(
-			expr = paste(statistic.type, " < ", base %*% 10^exponent, phantom('|')[phantom('|')]),
+			expr = paste(statistic.type, ' < ', base %*% 10^exponent, phantom('|')[phantom('|')]),
 			env = list(
 				base = unlist(
 					BoutrosLab.plotting.general::scientific.notation(
@@ -44,13 +46,12 @@ display.statistical.result <- function(x, lower.cutoff = 2.2e-50, scientific.cut
 			);
 
 		pvalue <- as.expression(pvalue);
-		
 		}
 
 	# If x is greater or equal to scientific.cutoff, standard decimal notation is used in 
 	# the returned expression, rather than scientific notation
-	else if (scientific.cutoff <= x){
-		pvalue <- as.expression(paste(statistic.type, symbol, signif(x, digits = digits), sep = "")); 
+	else if (scientific.cutoff <= x) {
+		pvalue <- as.expression(paste(statistic.type, symbol, signif(x, digits = digits), sep = ''));
 		}
 
 	# The following branch of the conditional statement is executed if and only if
@@ -80,7 +81,6 @@ display.statistical.result <- function(x, lower.cutoff = 2.2e-50, scientific.cut
 			);
 
 		pvalue <- as.expression(pvalue);
-
 		}
 
 	return(pvalue);

@@ -10,13 +10,16 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO GET LINE BREAKS ###################################################################
-get.line.breaks <- function(x) { 
-	
-	v <- rep(NA, length(x)); 
-	
-	for (i in 2:length(v)) {
-		v[i] <- ifelse( x[i] != x[i-1], TRUE, FALSE); 
-		};
+get.line.breaks <- function(x) {
 
-	which(v) - 0.5;
+	v <- rep(NA, length(x));
+
+	for (i in 2:length(v)) {
+		v[i] <- ifelse(x[i] != x[i-1], TRUE, FALSE);
+		}
+
+	# find breaks and add padding
+	breaks <- which(v) - 0.5;
+
+	return(breaks);
 	}

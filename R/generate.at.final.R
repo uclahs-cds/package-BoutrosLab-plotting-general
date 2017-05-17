@@ -31,4 +31,3 @@ generate.at.final <- function(at.input, limits, data.vector) {
 
 	return(at.final);
 	}
-

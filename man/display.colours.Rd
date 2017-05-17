@@ -6,7 +6,8 @@
 \usage{
 display.colours(
 	cols, 
-	names = cols);
+	names = cols
+	);
 }
 \arguments{
     \item{cols}{Vector of colours to be displayed.}
@@ -17,13 +18,13 @@ display.colours(
 \author{Christine P'ng}
 \examples{
 
-display.colours("red")
+display.colours('red');
 # Red and Grey are displayed
 
-display.colours(default.colours(5))
+display.colours(default.colours(5));
 # Five default colours and their grey values are displayed
 
-test.colours <- force.colour.scheme(c("skin","nerve"), "tissue");
+test.colours <- force.colour.scheme(c('skin','nerve'), 'tissue');
 display.colours(test.colours);
 
 }

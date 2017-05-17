@@ -4,68 +4,80 @@
 \description{Takes a data.frame and creates a barplot}
 \usage{
 create.barplot(
-	formula, 
-	data, 
-	groups = NULL, 
-	stack = FALSE, 
-	filename = NULL, 
-	main = NULL, 
-	main.just = "center", 
+	formula,
+	data,
+	groups = NULL,
+	stack = FALSE,
+	filename = NULL,
+	main = NULL,
+	main.just = 'center',
 	main.x = 0.5,
-	main.y = 0.5, 
-	abline.h = NULL, 
-	abline.v = NULL, 
-	abline.lty = 1, 
-	abline.lwd = NULL, 
-	abline.col = 'black', 
-	add.grid = FALSE, 
-	xgrid.at = xat, 
-	ygrid.at = yat, 
-	grid.lwd = 5, 
-	grid.col = NULL,
-	xlab.label = tail(sub('~','',formula[-2]),1), 
-	ylab.label = tail(sub('~','',formula[-3]),1), 
-	xlab.col = 'black', 
-	ylab.col = 'black', 
-	xlab.top.label = NULL, 
+	main.y = 0.5,
+	main.cex = 3,
+	xlab.label = tail(sub('~', '', formula[-2]), 1),
+	ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.col = 'black',
+	ylab.col = 'black',
+	xlab.top.label = NULL,
 	xlab.top.cex = 2,
-	xlab.top.col = 'black', 
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xaxis.lab = TRUE, 
-	yaxis.lab = TRUE, 
-	xaxis.col = 'black', 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
-	yaxis.col = 'black', 
-	xaxis.cex = 1.5, 
-	yaxis.cex = 1.5, 
-	xaxis.rot = 0, 
-	yaxis.rot = 0, 
-	xaxis.tck = 1, 
-	yaxis.tck = 1, 
-	main.cex = 2.5, 
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	ylimits = NULL, 
-	yat = TRUE, 
-	xlimits = NULL, 
-	xat = TRUE, 
-	x.spacing = 0, 
-	y.spacing = 0, 
-	top.padding = 0.5, 
-	bottom.padding = 1, 
-	right.padding = 1, 
-	left.padding = 1, 
-	key.bottom = 0.1, 
-	ylab.axis.padding = 0, 
-	axis.xlab.padding = 0.5, 
-	x.relation = 'same', 
-	y.relation = 'same', 
-	layout = NULL, 
-	as.table = FALSE, 
-	col = 'black', 
+	xlab.top.col = 'black',
+	xlab.top.just = 'center',
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	abline.h = NULL,
+	abline.v = NULL,
+	abline.lty = 1,
+	abline.lwd = NULL,
+	abline.col = 'black',
+	axes.lwd = 1,
+	add.grid = FALSE,
+	xgrid.at = xat,
+	ygrid.at = yat,
+	grid.lwd = 5,
+	grid.col = NULL,
+	xaxis.lab = TRUE,
+	yaxis.lab = TRUE,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	xaxis.cex = 1.5,
+	yaxis.cex = 1.5,
+	xaxis.rot = 0,
+	yaxis.rot = 0,
+	xaxis.tck = 1,
+	yaxis.tck = 1,
+	xlimits = NULL,
+	ylimits = NULL,
+	xat = TRUE,
+	yat = TRUE,
+	layout = NULL,
+	as.table = FALSE,
+	x.spacing = 0,
+	y.spacing = 0,
+	x.relation = 'same',
+	y.relation = 'same',
+	top.padding = 0.5,
+	bottom.padding = 1,
+	right.padding = 1,
+	left.padding = 1,
+	key.bottom = 0.1,
+	ylab.axis.padding = 0.5,
+	xlab.axis.padding = 0.5,
+	col = 'black',
+	border.col = 'black',
+	border.lwd = 1,
+	plot.horizontal = FALSE,
+	background.col = 'transparent',
+	origin = 0,
+	reference = TRUE,
+	box.ratio = 2,
+	sample.order = 'none',
+	group.labels = FALSE,
+	key = list(text = list(lab = c(''))),
+	legend = NULL,
 	add.text = FALSE,
 	text.labels = NULL,
 	text.x = NULL,
@@ -73,60 +85,44 @@ create.barplot(
 	text.col = 'black',
 	text.cex = 1,
 	text.fontface = 'bold',
-	strip.col = 'white', 
-	strip.cex = 1, 
-	background.col = 'transparent', 
-	border.col = 'black', 
-	y.error.up = NULL, 
-	y.error.down = y.error.up, 
-	y.error.bar.col = 'black', 
-	error.whisker.width = width/(nrow(data)*4), 
-	error.bar.lwd = 1, 
+	strip.col = 'white',
+	strip.cex = 1,
+	y.error.up = NULL,
+	y.error.down = y.error.up,
+	y.error.bar.col = 'black',
+	error.whisker.width = width/(nrow(data)*4),
+	error.bar.lwd = 1,
 	error.whisker.angle = 90,
-	add.background.shading = FALSE, 
-	background.shading.xpos = NULL, 
-	background.shading.ypos = NULL, 
-	background.shading.colour = 'grey85', 
-	raster = NULL, 
-	raster.vert = TRUE, 
-	raster.just = 'center', 
-	raster.width.dim = unit(2/37, 'npc'), 
-	key = list(text = list(lab = c(''))),
-	legend = NULL, 
-	lwd = 1, 
-	plot.horizontal = FALSE, 
-	height = 6, 
-	width = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	description = 'Created with BoutrosLab.plotting.general',
-	add.rectangle = FALSE, 
-	xleft.rectangle = NULL, 
-	ybottom.rectangle = NULL, 
-	xright.rectangle = NULL, 
-	ytop.rectangle = NULL, 
-	col.rectangle = 'transparent', 
-	alpha.rectangle = 1, 
-	origin = 0, 
-	reference = TRUE, 
-	box.ratio = 2, 
-	sample.order = 'none', 
-	group.labels = FALSE, 
-	line.func = NULL, 
-	line.from = 0, 
-	line.to = 0, 
-	line.col = 'transparent', 
+	add.rectangle = FALSE,
+	xleft.rectangle = NULL,
+	ybottom.rectangle = NULL,
+	xright.rectangle = NULL,
+	ytop.rectangle = NULL,
+	col.rectangle = 'grey85',
+	alpha.rectangle = 1,
+	line.func = NULL,
+	line.from = 0,
+	line.to = 0,
+	line.col = 'transparent',
 	line.infront = TRUE,
-	text.above.bars = list(labels = NULL, 
-				padding = NULL, 
-				bar.locations = NULL, 
-				rotation = 0
-				),
+	text.above.bars = list(labels = NULL,
+		padding = NULL,
+		bar.locations = NULL,
+		rotation = 0
+		),
+	raster = NULL,
+	raster.vert = TRUE,
+	raster.just = 'center',
+	raster.width.dim = unit(2/37, 'npc'),
+	height = 6,
+	width = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
-	preload.default = 'custom',
-	remove.all.border.lines = FALSE
-);
+	preload.default = 'custom'
+	);
 }
 \arguments{
     \item{formula}{The formula used to extract the x & y components from the data-frame}
@@ -138,28 +134,9 @@ create.barplot(
     \item{main.just}{The justification of the main title for the plot, default is centered}
     \item{main.x}{The x location of the main title, deault is 0.5}
     \item{main.y}{The y location of the main title, default is 0.5}
-    \item{abline.h}{Specify the superimposed horizontal line(s)}
-    \item{abline.v}{Specify the superimposed vertical line(s)}
-    \item{abline.lty}{Specify the superimposed line type}
-    \item{abline.lwd}{Specify the superimposed line width}
-    \item{abline.col}{Specify the superimposed line colour (defaults to black)}
-    \item{add.grid}{Specify whether to draw grid or not (defaults to FALSE)}
-    \item{xgrid.at}{Specify where to draw x-axis grid lines (defaults to xat)}
-    \item{ygrid.at}{Specify where to draw y-axis grid lines (defaults to yat)}
-    \item{grid.lwd}{Specify width of grid line (defaults to 5)}
-    \item{grid.col}{Specify colour of grid line. Currently only supports one colour.
-    Defaults to NULL, which uses the colour of the reference line.}
+    \item{main.cex}{Size of text for main plot title, defaults to 3}
     \item{xlab.label}{The label for the x-axis}
     \item{ylab.label}{The label for the y-axis}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
-    \item{xaxis.cex}{Size of x-axis tick labels, defaults to 1.2}
-    \item{yaxis.cex}{Size of y-axis tick labels, defaults to 1.5}
-    \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
-    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
-    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to black}
-    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to black}
-    \item{main.cex}{Size of text for main plot title, defaults to 2.5}
     \item{xlab.cex}{Size of x-axis label, defaults to 2}
     \item{ylab.cex}{Size of y-axis label, defaults to 2}
     \item{xlab.col}{Colour of the x-axis label, defaults to black}
@@ -170,28 +147,58 @@ create.barplot(
     \item{xlab.top.just}{Justification of the top x-axis label, defaults to centered}
     \item{xlab.top.x}{The x location of the top x-axis label}
     \item{xlab.top.y}{The y location of the top y-axis label}
+    \item{abline.h}{Specify the superimposed horizontal line(s)}
+    \item{abline.v}{Specify the superimposed vertical line(s)}
+    \item{abline.lty}{Specify the superimposed line type}
+    \item{abline.lwd}{Specify the superimposed line width}
+    \item{abline.col}{Specify the superimposed line colour (defaults to black)}
+    \item{axes.lwd}{Specify line width of the axes; set to 0 to turn off axes}
+    \item{add.grid}{Specify whether to draw grid or not (defaults to FALSE)}
+    \item{xgrid.at}{Specify where to draw x-axis grid lines (defaults to xat)}
+    \item{ygrid.at}{Specify where to draw y-axis grid lines (defaults to yat)}
+    \item{grid.lwd}{Specify width of grid line (defaults to 5)}
+    \item{grid.col}{Specify colour of grid line. Currently only supports one colour. Defaults to NULL, which uses the colour of the reference line.}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.col}{Colour of the x-axis tick labels, defaults to black}
+    \item{yaxis.col}{Colour of the y-axis tick labels, defaults to black}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
+    \item{xaxis.cex}{Size of x-axis tick labels, defaults to 1.2}
+    \item{yaxis.cex}{Size of y-axis tick labels, defaults to 1.5}
+    \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
+    \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
-    \item{ylimits}{Two-element vector giving the y-axis limits}  
-    \item{yat}{Vector listing where the y-axis labels should be drawn}
     \item{xlimits}{Two-element vector giving the x-axis limits. Useful when plot.horizontal = TRUE}  
+    \item{ylimits}{Two-element vector giving the y-axis limits}  
     \item{xat}{Vector listing where the x-axis labels should be drawn. Useful when plot.horizontal = TRUE}
+    \item{yat}{Vector listing where the y-axis labels should be drawn}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
+    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
+    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
+    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
     \item{top.padding}{A number specifying the distance to the top margin, defaults to 0.5}
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 2}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 1}
     \item{key.bottom}{A number specifying how much space should be left for the key at the bottom, defaults to 0.1}
     \item{ylab.axis.padding}{A number specifying the distance of y-axis label to the y-axis, defaults to 0}, 
-    \item{axis.xlab.padding}{A number specifying the distance of x-axis label to the x-axis, defaults to 0.5. Named differently than ylab.axis.padding because these are lattice's internal names for these values}
-    \item{x.relation}{Allows x-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{y.relation}{Allows y-axis scales to vary if set to \dQuote{free}, defaults to \dQuote{same}}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
-    \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
+    \item{xlab.axis.padding}{A number specifying the distance of x-axis label to the x-axis, defaults to 0.5. Named differently than ylab.axis.padding because these are lattice's internal names for these values}
     \item{col}{Filling colour of bars, defaults to black, does a grey-scale spectrum if !is.null(groups)}
+    \item{border.col}{Specify border colour (defaults to black)}
+    \item{border.lwd}{Specify border width (defaults to 1)}
+    \item{plot.horizontal}{Plot the bars horizontally}
+    \item{background.col}{Plot background colour, defaults to transparent}
+    \item{origin}{The origin of the plot, generally 0}
+    \item{reference}{Should the reference line be printed at the origin}
+    \item{box.ratio}{Specifies the width of each bar, defaults to 2}
+    \item{sample.order}{Should the bars be reordered, accepts values \dQuote{increasing}, \dQuote{decreasing} or a vector of sample names. Labels will also be reordered}
+    \item{group.labels}{Should the labels be grouped to the same amount of bars per column}
+    \item{key}{A list giving the key (legend). The default suppresses drawing}
+    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{add.text}{Allow additional text to be drawn, default is FALSE}
     \item{text.labels}{Labels for additional text}
     \item{text.x}{The x co-ordinates where additional text should be placed}
@@ -201,32 +208,12 @@ create.barplot(
     \item{text.fontface}{The fontface for additional text}
     \item{strip.col}{Strip background colour, defaults to white}
     \item{strip.cex}{Strip title character expansion}
-    \item{background.col}{Plot background colour, defaults to transparent}
-    \item{border.col}{Specify border colour (defaults to black)}
     \item{y.error.up}{A vector specifying the length of the error bar going up from each point. If set to NULL (the default), error bars will not be drawn}
     \item{y.error.down}{A vector specifying the length of the error bar going down from each point. By default, it is set to y.error.up}
     \item{y.error.bar.col}{A string or vector of strings specifying the colour of the error bars. Defaults to black}
     \item{error.whisker.width}{A number specifying the width of the error bars. Defaults to a rough approximation based on the size of the data}
     \item{error.bar.lwd}{The line width of the error bars. Defaults to 1}
     \item{error.whisker.angle}{The angle of the error bar whiskers, defaults to 90. Can be changed to produce arrow-like bars}
-    \item{add.background.shading}{Logical indicating whether to alternate background shade for every other breakpoint}
-    \item{background.shading.xpos}{Positions on xaxis where shading should change}
-    \item{background.shading.ypos}{Positions on yaxis where shading should change}
-    \item{background.shading.colour}{colour of the background shading; defaults to grey85}
-    \item{raster}{The image to raster over each bar - see Raster Images in R Graphics by Paul Murrell for full details}
-    \item{raster.vert}{A logical indicating whether the raster is applied vertically or horizontally}
-    \item{raster.just}{A word giving the justification of the raster, can be set to \dQuote{left}, \dQuote{right}, \dQuote{centre}, \dQuote{center}, \dQuote{bottom}, or \dQuote{top}}
-    \item{raster.width.dim}{A unit object giving the width of the raster bar}
-    \item{key}{A list giving the key (legend). The default suppresses drawing}
-    \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
-    \item{lwd}{Line width, defaults to 1}
-    \item{plot.horizontal}{Plot the bars horizontally}
-    \item{height}{Figure height, defaults to 6 in}
-    \item{width}{Figure width, defaults to 6 in}
-    \item{size.units}{Figure units, defaults to inches}
-    \item{resolution}{Figure resolution, defaults to 1600}
-    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
-    \item{description}{Description of image/plot; default NULL}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
@@ -234,20 +221,24 @@ create.barplot(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle}
-    \item{origin}{The origin of the plot, generally 0}
-    \item{reference}{Should the reference line be printed at the origin}
-    \item{box.ratio}{Specifies the width of each bar, defaults to 2}
-    \item{sample.order}{Should the bars be reordered, accepts values \dQuote{increasing}, \dQuote{decreasing} or a vector of sample names. Labels will also be reordered}
-    \item{group.labels}{Should the labels be grouped to the same amount of bars per column}
     \item{line.func}{Function for the line that should be drawn on top of plot}
     \item{line.from}{The starting point of the line on the plot}
     \item{line.to}{The ending point of the line on the plot}
     \item{line.col}{Colour of the line on the plot}
     \item{line.infront}{Should the line appear in front of the plot or not}
-    \item{text.above.bars}{Should some form of text appear above the bars}
+    \item{text.above.bars}{Should some form of text appear above the bars; input as a list}
+    \item{raster}{The image to raster over each bar - see Raster Images in R Graphics by Paul Murrell for full details}
+    \item{raster.vert}{A logical indicating whether the raster is applied vertically or horizontally}
+    \item{raster.just}{A word giving the justification of the raster, can be set to \dQuote{left}, \dQuote{right}, \dQuote{centre}, \dQuote{center}, \dQuote{bottom}, or \dQuote{top}}
+    \item{raster.width.dim}{A unit object giving the width of the raster bar}
+    \item{height}{Figure height, defaults to 6 in}
+    \item{width}{Figure width, defaults to 6 in}
+    \item{size.units}{Figure units, defaults to inches}
+    \item{resolution}{Figure resolution, defaults to 1600}
+    \item{enable.warnings}{Print warnings if set to TRUE, defaults to FALSE}
+    \item{description}{Description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
-    \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Mehrdad Shamsi}
@@ -495,6 +486,7 @@ create.barplot(
     col = default.colours(12, is.greyscale = FALSE)[11:12],
     # Grouped labels
     xaxis.lab = rep(c('nonsynonymous', 'other'), 15),
+    xaxis.rot = 90,
     group.labels = TRUE,
     description = 'Barplot created by BoutrosLab.plotting.general'
     );
@@ -584,6 +576,7 @@ create.barplot(
     yaxis.fontface = 1,
     # Adjusting the panel layout
     layout = c(1,2),
+    y.spacing = 1,
     description = 'Barplot created by BoutrosLab.plotting.general'
     );
 
@@ -649,7 +642,7 @@ covariates.legends <- list(
     legend = list(
         colours = c('chartreuse4','chartreuse2'),
         labels = c('MSS','MSI-High'),
-        title = "MSI",
+        title = 'MSI',
         border = 'white'
         )
     );
@@ -675,6 +668,7 @@ create.barplot(
     # removing x-axis formatting to give space to covariates
     xaxis.tck = 0,
     xaxis.lab = rep('',15),
+    xaxis.cex = 0,
     # covariates
     legend = list(
         bottom = list(fun = covariate.object.grob),
@@ -682,7 +676,7 @@ create.barplot(
         ),
     key = list(
         x = 1,
-        y = -0.015,
+        y = -0.028,
         text = list(
             lab = c('Sex','Stage','MSI')
             ),
@@ -744,6 +738,7 @@ create.barplot(
     yat = seq(0,14,2),
     xaxis.cex = 1,
     yaxis.cex = 1,
+    xaxis.rot = 45,
     xlab.cex = 1.5,
     ylab.cex = 1.5,
     xaxis.fontface = 1,
@@ -912,10 +907,12 @@ create.barplot(
     yaxis.fontface = 1,
     # Lines
     sample.order = 'increasing',
-    line.func = function(x) {x = 10},
+    line.func = function(x) {0.1*x**2},
     line.from = 0,
     line.to = 16,
     line.col = 'darkgrey',
+    abline.h = 10,
+    abline.col = 'red',
     col = sex.colours,
     legend = list(
         inside = list(

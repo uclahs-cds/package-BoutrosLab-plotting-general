@@ -1892,7 +1892,8 @@ sample.barplot <- create.barplot(
      col = "grey",
      
      # remove lines
-     lwd = 0
+     axes.lwd = 0,
+     border.lwd = 0
      );
 
 sample.barplot
@@ -1906,7 +1907,8 @@ Here the side bar plot representing the importance of the gene is created. The b
 importance.barplot <- create.barplot(
      formula = x~y,
      data = side.barplot.data,
-     lwd = 0,
+     axes.lwd = 0,
+     border.lwd = 0,
      col = "grey",
      
      # The data here is sorted. 

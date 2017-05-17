@@ -4,27 +4,28 @@
 \description{A function for adding correlation key legends to scatterplots.}
 \usage{
 get.corr.key(
-	x, 
-	y, 
-	label.items = c("spearman", "spearman.p"), 
-	x.pos = 0.03, 
-	y.pos = 0.97, 
-	key.corner = NULL, 
-	key.cex = 1, 
-	key.title = NULL, 
-	title.cex = 1, 
+	x,
+	y,
+	label.items = c('spearman', 'spearman.p'),
+	x.pos = 0.03,
+	y.pos = 0.97,
+	key.corner = NULL,
+	key.cex = 1,
+	key.title = NULL,
+	title.cex = 1,
 	alpha.background = 0,
 	num.decimals = 2
-	)
+	);
 }
 \arguments{
     \item{x}{A vector of values}
     \item{y}{Another vector of values with the same length as x}
-    \item{label.items}{A vector of things to include in the key.  Any combination of the following can be used.  
-        c("spearman","pearson","kendall","beta0", beta1,"spearman.p","pearson.p","kendall.p","beta1.p", "beta.robust", "beta.robust.p").  "all" is an alternative to the full list.}
+    \item{label.items}{A vector of things to include in the key. Any combination of the following can be used. 
+        c('spearman', 'pearson', 'kendall', 'beta0', 'beta1', 'spearman.p', 'pearson.p', 'kendall.p', 'beta1.p', 'beta.robust', 'beta.robust.p'); 
+	'all' is an alternative to the full list.}
     \item{x.pos}{Horizontal position of the key corner}
     \item{y.pos}{Vertical position of the key corner}
-    \item{key.corner}{The corner of the key defaults to the closest corner of the plot.  This helps overcome some variable character and row sizing.}
+    \item{key.corner}{The corner of the key defaults to the closest corner of the plot. This helps overcome some variable character and row sizing.}
     \item{key.cex}{Specifies the size of font for the key, defaults to 1.}
     \item{key.title}{The title of the key. Defaults to NULL}
     \item{title.cex}{The size of the key title. Defaults to 1}
@@ -88,7 +89,7 @@ BoutrosLab.plotting.general::create.scatterplot(
     key = BoutrosLab.plotting.general::get.corr.key(
         tmp.data$y,
         tmp.data$x,
-        label.items = c('beta1', 'beta1.robust','beta1.p','beta1.robust.p')
+        label.items = c('beta1', 'beta1.robust', 'beta1.p', 'beta1.robust.p')
         )
     );
 

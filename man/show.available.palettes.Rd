@@ -4,11 +4,12 @@
 \description{Displays the available colour palettes}
 \usage{
 show.available.palettes(
-	type = 'general', 
-	filename = NULL, 
-	height = 5, 
-	width = 8, 
-	resolution = 300);
+	type = 'general',
+	filename = NULL,
+	height = 5,
+	width = 8,
+	resolution = 300
+	);
 }
 \arguments{
     \item{type}{Either \dQuote{general}, \dQuote{specific}, or \dQuote{both} (default)}
@@ -20,16 +21,17 @@ show.available.palettes(
 
 \author{Christine P'ng}
 \examples{
-
 show.available.palettes(
 	filename = 'show_case_specific_schemes.tiff',
-	type = 'specific'
+	type = 'specific',
+	width = 10
 	);
 
 show.available.palettes(
 	filename = 'default_schemes.tiff',
 	type = 'general',
-	height = 6, width = 8
+	height = 6,
+	width = 8
 	);
 }
 \keyword{colour}

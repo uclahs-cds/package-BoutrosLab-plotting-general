@@ -5,12 +5,13 @@
 \description{Takes a vector of character strings and an scheme returns the matching colours as a vector.}
 \usage{
 force.colour.scheme(
-	x, 
-	scheme, 
-	fill.colour = NA, 
-	include.names = FALSE, 
-	return.factor = FALSE, 
-	return.scheme = FALSE)
+	x,
+	scheme,
+	fill.colour = NA,
+	include.names = FALSE,
+	return.factor = FALSE,
+	return.scheme = FALSE
+	);
 }
 \arguments{
     \item{x}{The input character or numeric vector}
@@ -20,11 +21,11 @@ force.colour.scheme(
         \dQuote{risk}, \dQuote{MSI}, \dQuote{tumour}, \dQuote{CNV}, \dQuote{organism}},
         \dQuote{chromosome} and \dQuote{biomolecule}
     \item{fill.colour}{Value to enter when value of x not present in scheme.}
-    \item{include.names}{bool: whether to output a named vector or not}
-    \item{return.factor}{Alt behaviour to return factors, not colours}
-    \item{return.scheme}{Alt behaviour to return scheme list, not colours}
+    \item{include.names}{Should the output be a named vector or not?}
+    \item{return.factor}{Should factors (scheme names) be returned?}
+    \item{return.scheme}{Should the scheme list be returned?}
     }
-
+\value{If multiple returns are requested, outputs a list (return.factor: factor length x with scheme names; scheme: list containing scheme names and colours; colours: vector length x with the required colours).}
 \details{
     The input character options for each colour scheme are as follows:
     annovar.annotation

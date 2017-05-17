@@ -4,16 +4,17 @@
 \description{Takes a list of covariate bar annotates and creates a grid graphical object for them}
 \usage{
 covariates.grob(
-	covariates, 
-	ord, 
-	side = "right", 
-	size = 1, 
-	grid.row = NULL, 
-	grid.col = NULL, 
-	grid.border = NULL, 
-	row.lines = NULL, 
-	col.lines = NULL, 
-	reorder.grid.index = FALSE)
+	covariates,
+	ord,
+	side = 'right',
+	size = 1,
+	grid.row = NULL,
+	grid.col = NULL,
+	grid.border = NULL,
+	row.lines = NULL,
+	col.lines = NULL,
+	reorder.grid.index = FALSE
+	);
 }
 \arguments{
     \item{covariates}{Any covariate annotate to add to the plot, as a fully formed list.}
@@ -38,7 +39,8 @@ By default, the covariate bar grid is drawn via borders around individual rectan
 \examples{
 # create temp data
 set.seed(1234567890);
-x <- outer(-5:5, -5:5, "*") + matrix(nrow = 11, ncol = 11, data = runif(11 * 11));
+
+x <- outer(-5:5, -5:5, '*') + matrix(nrow = 11, ncol = 11, data = runif(11 * 11));
 colnames(x) <- paste('col', 1:11, sep = '-');
 rownames(x) <- paste('row', 1:11, sep = '-');
 
@@ -54,12 +56,12 @@ covariate.colours2[covariate.colours2 != default.colours(3)[2]] <- default.colou
 # create an object to draw the covariates from
 covariates1 <- list(
     rect = list(
-        col = "black",
+        col = 'black',
         fill = covariate.colours1,
         lwd = 1.5
         ),
     rect = list(
-        col = "black",
+        col = 'black',
         fill = covariate.colours2,
         lwd = 1.5
         )
@@ -69,27 +71,29 @@ covariates1 <- list(
 covariates.grob1 <- covariates.grob(
     covariates = covariates1,
     ord = c(1:ncol(x)),
-    side = "right"
+    side = 'right'
     );
-tiff("covariates_grob1.tiff", 
-    type = "cairo", 
+tiff(
+    'covariates_grob1.tiff', 
+    type = 'cairo', 
     width = 6, 
     height = 6, 
     units = 'in', 
     res = 1000, 
-    compression = 'lzw');
+    compression = 'lzw'
+    );
 grid.draw(covariates.grob1);
 dev.off();
 
 # create a dendrogram for x
 cov.dendrogram <- BoutrosLab.plotting.general::create.dendrogram(
     x = x,
-    clustering.method = "average"
+    clustering.method = 'average'
     );
 
 covariates2 <-list(
     rect = list(
-        col = "black",
+        col = 'black',
         fill = covariate.colours2,
         lwd = 1.5
         )
@@ -99,16 +103,18 @@ covariates2 <-list(
 covariates.grob2 <- covariates.grob(
     covariates = covariates2,
     ord = order.dendrogram(cov.dendrogram),
-    side = "top",
+    side = 'top',
     size = 2
     );
-tiff("covariates_grob2.tiff", 
-    type = "cairo", 
+tiff(
+    'covariates_grob2.tiff', 
+    type = 'cairo', 
     width = 6, 
     height = 6, 
     units = 'in', 
     res = 1000, 
-    compression = 'lzw');
+    compression = 'lzw'
+    );
 grid.draw(covariates.grob2);
 dev.off();
 
@@ -116,28 +122,30 @@ dev.off();
 covariates.grob3 <- covariates.grob(
     covariates = covariates1,
     ord = c(1:ncol(x)),
-    side = "right",
-    grid.border = list(col = "red", lwd = 1.5)
+    side = 'right',
+    grid.border = list(col = 'red', lwd = 1.5)
     );
-tiff("covariates_grob3.tiff", 
-    type = "cairo", 
+tiff(
+    'covariates_grob3.tiff', 
+    type = 'cairo', 
     width = 6, 
     height = 6, 
     units = 'in', 
     res = 1000, 
-    compression = 'lzw');
+    compression = 'lzw'
+    );
 grid.draw(covariates.grob3);
 dev.off();
 
 # create covariates with transparent rectangle borders
 covariates3 <- list(
     rect = list(
-        col = "transparent",
+        col = 'transparent',
         fill = covariate.colours1,
         lwd = 1.5
         ),
     rect = list(
-        col = "transparent",
+        col = 'transparent',
         fill = covariate.colours2,
         lwd = 1.5
         )
@@ -147,17 +155,19 @@ covariates3 <- list(
 covariates.grob4 <- covariates.grob(
     covariates = covariates3,
     ord = c(1:nrow(x)),
-    side = "top",
-    grid.col = list(col = "black", lty = 3),
+    side = 'top',
+    grid.col = list(col = 'black', lty = 3),
     grid.border = list()
     );
-tiff("covariates_grob4.tiff", 
-    type = "cairo", 
+tiff(
+    'covariates_grob4.tiff', 
+    type = 'cairo', 
     width = 6, 
     height = 6, 
     units = 'in', 
     res = 1000, 
-    compression = 'lzw');
+    compression = 'lzw'
+    );
 grid.draw(covariates.grob4);
 dev.off();
 
@@ -165,20 +175,22 @@ dev.off();
 covariates.grob5 <- covariates.grob(
     covariates = covariates3,
     ord = order.dendrogram(cov.dendrogram),
-    side = "right",
-    grid.row = list(lineend = "butt", lwd = 2),
+    side = 'right',
+    grid.row = list(lineend = 'butt', lwd = 2),
     row.lines = 6,
     reorder.grid.index = FALSE, # note: this is already set by default
     grid.col = list(lty = 2),
     col.lines = c(0,1)
     );
-tiff("covariates_grob5.tiff", 
-    type = "cairo", 
+tiff(
+    'covariates_grob5.tiff', 
+    type = 'cairo', 
     width = 6, 
     height = 6, 
     units = 'in', 
     res = 1000, 
-    compression = 'lzw');
+    compression = 'lzw'
+    );
 grid.draw(covariates.grob5);
 dev.off();
 }

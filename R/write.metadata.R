@@ -12,51 +12,56 @@
 ### FUNCTION TO WRITE METADATA ####################################################################
 write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE) {
 
-	exiftool.location <- Sys.which("exiftool");
-	
+	exiftool.location <- Sys.which('exiftool');
+
 	# whether to output stuff or not
 	if (FALSE == verbose) {
 		standard_out = NULL;
 		}
 	else {
-		standard_out = "";
+		standard_out = '';
 		}
 
 	# write metadata only if file exists and exiftool has been installed
-	if (!is.null(filename) && exiftool.location != "") {
+	if (!is.null(filename) && exiftool.location != '') {
+
 		# retrieve software versions
 		R.version <- getRversion();
-		plotting.survival.version <- "";
-		lattice.version <- packageVersion("lattice");
-		latticeExtra.version <- packageVersion("latticeExtra");
-		plotting.general.version <- packageVersion("BoutrosLab.plotting.general");
-		tryCatch(plotting.survival.version <- packageVersion("BoutrosLab.plotting.survival"),
-		error = function(e){plotting.survival.version <- "unknown"})
+		plotting.survival.version <- '';
+
+		lattice.version			<- packageVersion('lattice');
+		latticeExtra.version		<- packageVersion('latticeExtra');
+		plotting.general.version 	<- packageVersion('BoutrosLab.plotting.general');
+		tryCatch(
+			plotting.survival.version <- packageVersion('BoutrosLab.plotting.survival'),
+			error = function(e) {
+				plotting.survival.version <- 'unknown';
+				}
+			);
 
 		# retrieve computer information
-		operating.system <- paste(Sys.info()[["sysname"]], Sys.info()[["version"]], collapse = " ");
-		machine <- Sys.info()[["machine"]];
+		operating.system <- paste(Sys.info()[['sysname']], Sys.info()[['version']], collapse = ' ');
+		machine <- Sys.info()[['machine']];
 
 		# retrieve username
-		author <- Sys.info()[["user"]];
+		author <- Sys.info()[['user']];
 
 		# write author of plot
 		system2(
-			"exiftool",
-			args = paste(
+			'exiftool',
+			args = paste0(
 				" -Author='",
 				author,
 				"' -overwrite_original ",
-				filename,
-				sep = ""
+				filename
 				),
 			stdout = standard_out
 			);
 
 		# write R version used to make plot
 		system2(
-			"exiftool",
-			args = paste(
+			'exiftool',
+			args = paste0(
 				" -Software='R ",
 				R.version,
 				" | lattice ",
@@ -68,47 +73,43 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 				" | BL.plotting.survival ",
 				plotting.survival.version,
 				"' -overwrite_original ",
-				filename,
-				sep = ""
+				filename
 				),
 			stdout = standard_out
 			);
 
 		# description of figure
 		system2(
-			"exiftool",
-			args = paste(
+			'exiftool',
+			args = paste0(
 				"-ImageDescription='",
 				description,
 				"' -overwrite_original ",
-				filename,
-				sep = ""
+				filename
 				),
 			stdout = standard_out
 			);
 
 		# operating system
 		system2(
-			"exiftool",
-			args = paste(
+			'exiftool',
+			args = paste0(
 				" -SoftwareVersion='",
 				operating.system,
 				"' -overwrite_original ",
-				filename,
-				sep = ""
+				filename
 				),
 			stdout = standard_out
 			);
 
 		# hardware
 		system2(
-			"exiftool",
-			args = paste(
+			'exiftool',
+			args = paste0(
 				" -Make='",
 				machine,
 				"' -overwrite_original ",
-				filename,
-				sep = ""
+				filename
 				),
 			stdout = standard_out
 			);

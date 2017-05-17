@@ -56,36 +56,39 @@ heatmap1 <- create.heatmap(
     print.colour.key = FALSE,
     colour.scheme = c('chartreuse3', 'white', 'blue'),
     at = seq(-25, 25, 0.01)
-            );
+    );
+
 barplot1 <- create.barplot(
     1:nrow(y) ~ mean,
     y,
     plot.horizontal = TRUE
     );
+
 create.multiplot(
-    plot.objects = list(heatmap1,barplot1),
+    plot.objects = list(heatmap1, barplot1),
     filename = 'multiplot_with_colourkey.tiff',
     plot.layout = c(2,1),
     panel.widths = c(2,1),
-    yat = list(1:nrow(y),NULL),
+    yat = list(1:nrow(y), NULL),
     yaxis.labels = rownames(y),
     xlimits = list(NULL, c(0,1)),
-    xat = list(NULL,seq(0,1,0.5)),
-    xaxis.labels = list(NULL,seq(0,1,0.5)),
+    xat = list(NULL, seq(0,1,0.5)),
+    xaxis.labels = list(NULL, seq(0,1,0.5)),
     x.spacing = 0,
     print.new.legend = TRUE,
     legend = list(
         inside = list(
             fun = BoutrosLab.plotting.general::create.colourkey(
-                x = x, 
-                colour.scheme = c('chartreuse3', 'white', 'blue'), 
-                at = seq(-25, 25, 0.01), 
+                x = x,
+                colour.scheme = c('chartreuse3', 'white', 'blue'),
+                at = seq(-25, 25, 0.01),
                 colourkey.labels.at = c(-25, 0, 25),
-                placement = viewport(just='left',x=0.55,y=-0.55,width=0.5)
+                placement = viewport(just = 'left', x = 0.55, y = -0.55, width = 0.5)
                 )
             )
         ),
-    width = 10, 
+    bottom.padding = 4,
+    width = 10,
     height = 8,
     resolution = 500
     );

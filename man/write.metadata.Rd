@@ -4,12 +4,13 @@
 \description{Utilizes exiftool to write metadata to generated plots. Writes the R version, lattice version, latticeExtra version, BoutrosLab.plotting.general version, BoutrosLab.plotting.survival version, operating system, machine, author, image description.}
 \usage{
 write.metadata(
-	filename = NULL, 
-	description = NULL, 
-	verbose = FALSE);
+	filename = NULL,
+	description = NULL,
+	verbose = FALSE
+	);
 }
 \arguments{
-	\item{filename}{Filename for output, or if NULL (default value) returns image unchanged}
+	\item{filename}{Filename for output, or if NULL (default value) returns image unchanged.}
 	\item{description}{Short description of image; default NULL}
 	\item{verbose}{Option to standard output; default FALSE}
 }

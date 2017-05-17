@@ -19,24 +19,24 @@ scientific.notation <- function(x, digits = 1, type = 'expression') {
 				BoutrosLab.plotting.general::scientific.notation(x[1]),
 				BoutrosLab.plotting.general::scientific.notation(x[-1])
 				)
-			)
-		} 
+			);
+		}
 
 	# handle zeros
 	if (!x) { return(0); }
 
 	# determine the exponent & base
 	exponent <- floor(log10(x));
-	base <- sprintf(paste("%.", digits, "f", sep = ""), x / 10^exponent);
+	base <- sprintf(paste('%.', digits, 'f', sep = ''), x / 10^exponent);
 
 	# return the value
-	if(type == 'expression'){
-		return(as.expression(substitute(base %*% 10^exponent, list(base = base, exponent = exponent))));	
+	if (type == 'expression') {
+		return(as.expression(substitute(base %*% 10^exponent, list(base = base, exponent = exponent))));
 		}
-	else if(type == 'list'){
+	else if (type == 'list') {
 		return(list(base = base, exponent = exponent));
 		}
-	else{
-		warning("Return type can only be 'expression' or 'list'");
+	else {
+		warning("Return type can only be 'expression' or 'list'.");
 		}
 	}

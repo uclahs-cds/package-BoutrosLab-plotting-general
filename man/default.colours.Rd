@@ -5,10 +5,11 @@
 \description{Returns colour schemes based on user input. Used to provide default colour schemes for simple cases.}
 \usage{
 default.colours(
-	number.of.colours = 2, 
-	palette.type = 'qual', 
-	is.greyscale = TRUE, 
-	is.venn = FALSE);
+	number.of.colours = 2,
+	palette.type = 'qual',
+	is.greyscale = TRUE,
+	is.venn = FALSE
+	);
 }
 \arguments{
     \item{number.of.colours}{The number of colours requested for the colour scheme.}
