@@ -12,8 +12,8 @@
 ### FUNCTION TO CREATE CORRELATION KEY ############################################################
 get.corr.key <- function(
 	x, y, label.items = c('spearman','spearman.p'), x.pos = 0.03, y.pos = 0.97, key.corner = NULL,
-	key.cex = 1, key.title = NULL, title.cex = 1, alpha.background = 0, num.decimals = 2
-	) {
+	key.cex = 1, key.title = NULL, title.cex = 1, alpha.background = 0, num.decimals = 2,
+	border = 'white') {
 
 	# use 'all' as an alternative to all the label items
 	if (label.items[1] == 'all') {
@@ -215,8 +215,10 @@ get.corr.key <- function(
 		title = key.title,
 		cex.title = title.cex,
 		background = 'white',
-		alpha.background = alpha.background
+		alpha.background = alpha.background,
+		border = border
 		);
 
 	return(key);
 	}
+

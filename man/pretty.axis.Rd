@@ -1,0 +1,39 @@
+\name{pretty.axis}
+\alias{pretty.axis}
+\title{Create ideal labels and values for a given dataset (detects log scales)}
+\description{Takes a dataset and several parameters and outputs an object with values and labels ideal for that dataset}
+\usage{
+pretty.axis(
+	x, 
+	pretty = TRUE, 
+	log.scaled = FALSE, 
+	log.zero = 0.1, 
+	y.max.factor = 1, 
+	n.y.labels = 4, 
+	max.min.log10.diff = 2
+)
+}
+\arguments{    
+    \item{x}{The dataset that is intended to be used for the labels and redisdributed data}
+    \item{pretty}{Parameter flag for if output should be in pretty format}
+    \item{log.scaled}{parameter set to determine if scaling is logarithmic or not}
+    \item{log.zero}{log 0 starting point}
+    \item{y.max.factor}{maximum factor for y variable}
+    \item{n.y.labels}{number of labels to output}
+    \item{max.min.log10.diff}{the max and min diffrence for dataset to be determined logarithmic}
+}
+\author{Takafumi Yamaguch}
+\seealso{\code{\link[lattice]{stripplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
+\examples{
+set.seed(223);
+simple.data <- data.frame(
+    x = sample(1:15, 10),
+    y = LETTERS[1:10]
+    );
+
+pretty.axis(simple.data$x)
+
+data2 <- c(1,10,100,1000)
+
+pretty.axis(data2)
+}
