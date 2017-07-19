@@ -146,20 +146,6 @@ create.boxplot <- function(
 		data,
 		panel = function(...) {
 
-			# if requested add user defined rectangle
-			if (add.rectangle) {
-
-				panel.rect(
-					xleft   = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright  = xright.rectangle,
-					ytop    = ytop.rectangle,
-					col     = col.rectangle,
-					alpha   = alpha.rectangle,
-					border  = NA
-					);
-				}
-
 			# add stripplot in background if requested
 			if (add.stripplot) {
 
@@ -172,6 +158,20 @@ create.boxplot <- function(
 					cex         = points.cex,
 					alpha       = points.alpha,
 					...
+					);
+				}
+
+			# if requested add user defined rectangle
+			if (add.rectangle) {
+
+				panel.rect(
+					xleft   = xleft.rectangle,
+					ybottom = ybottom.rectangle,
+					xright  = xright.rectangle,
+					ytop    = ytop.rectangle,
+					col     = col.rectangle,
+					alpha   = alpha.rectangle,
+					border  = NA
 					);
 				}
 

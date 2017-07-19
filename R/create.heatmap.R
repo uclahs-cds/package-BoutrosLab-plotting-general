@@ -35,7 +35,10 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			warning("HEATMAP: There are probably not enough pixels to represent all the rows in the heatmap.  Try increasing the resolution or height.");
 			}
 		}
-
+        # if you only have one column, you start to get weird behaviour, duplicating it fixes that.
+        if(ncol(x) == 1){
+                x[[2]] = x[[1]]
+        } 
 	# transpose matrix to keep original form
 	if(same.as.matrix == TRUE){
 		x <- t(apply(x, 2, rev));

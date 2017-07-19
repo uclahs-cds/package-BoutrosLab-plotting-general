@@ -8,7 +8,8 @@ import(
 	"hexbin", 
 	"lattice",
   	"latticeExtra",
-	"grid"
+	"grid",
+	"e1071"
 	);
 export(
 	"age.categorical.colour",
@@ -54,6 +55,7 @@ export(
 	"psa.categorical.colour",
 	"psa.gradient.colour",
 	"scientific.notation",
+	"search.metadata",
 	"show.available.palettes",
 	"tissue.colour",
 	"write.metadata",

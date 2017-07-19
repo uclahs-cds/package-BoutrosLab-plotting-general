@@ -4,7 +4,7 @@
 \title{Return standard PCAWG colour palettes.}
 \description{Return standard PCAWG colour palettes. Case insensitive.}
 \usage{
-default.colours(
+pcawg.colours(
 	x = NULL, 
 	scheme = NULL, 
 	fill.colour = 'slategrey', 

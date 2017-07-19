@@ -13,7 +13,7 @@ write.plot(
 	size.units = 'in',
 	resolution = 1000,
 	enable.warnings = FALSE,
-	description = NULL
+	description = "Created with BoutrosLab.plotting.general"
 	);
 }
 \arguments{

@@ -57,6 +57,11 @@ pretty.axis <- function(x, pretty = TRUE, log.scaled = NA, log.zero = 0.1, max.f
 	if(cond1 && cond2){
 
 		out$log.scaled <- TRUE;
+	        if(!is.na(log.scaled) && !log.scaled){
+
+                        out$log.scaled <- FALSE;
+
+                	}
 		
 		} else {
 		
@@ -101,7 +106,7 @@ pretty.axis <- function(x, pretty = TRUE, log.scaled = NA, log.zero = 0.1, max.f
 		out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
 
 		# set axis labels
-		if(abs(mean(x, na.rm = TRUE)) > 1000 || abs(mean(x, na.rm = TRUE)) < 0.001 ) {
+		if(abs(mean(x, na.rm = TRUE)) > 1000 || abs(mean(x, na.rm = TRUE)) < 0.001 ) { #probably need more tweaks
 			
 			out$axis.lab <- as.power10.expression(out$at);
 

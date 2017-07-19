@@ -12,7 +12,8 @@
 ### FUNCTION TO WRITE PLOT  #######################################################################
 write.plot <- function(
 	trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL,
-	height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, description = NULL
+	height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
+	description = "Created with BoutrosLab.plotting.general"
 	) {
 
 	# if requested create the image file

@@ -56,13 +56,13 @@ create.heatmap(
 	yaxis.lab = NULL, 
 	xaxis.lab = NULL, 
 	xaxis.lab.top = NULL, 
-	xaxis.cex = 1.5, 
+	xaxis.cex = 1.5,
+	xaxis.top.cex = NULL,
 	yaxis.cex = 1.5,
 	xlab.cex = 2, 
 	ylab.cex = 2, 
-	xlab.top.label = NULL, 
-	xlab.top.cex = 2, 
-	xaxis.top.cex=1,
+	xlab.top.label = NULL,  
+        xlab.top.cex = 2,
 	xlab.top.col = 'black',
 	xlab.top.just = "center", 
 	xlab.top.x = 0.5, 
@@ -70,7 +70,8 @@ create.heatmap(
 	xat = TRUE, 
 	xat.top = NULL, 
 	yat = TRUE, 
-	xaxis.tck = NULL, 
+	xaxis.tck = NULL,
+	xaxis.top.tck = NULL,
 	yaxis.tck = NULL, 
 	xaxis.col = 'black', 
 	yaxis.col = 'black', 
@@ -196,8 +197,8 @@ create.heatmap(
     \item{xaxis.lab.top}{The label for the top x-axis. Required only if you want to print a top *and* bottom xaxis, otherwise use x.alternating = 2 for top axis only. Defaults to NULL}
     \item{yaxis.lab}{A vector of col labels, NA = use existing colnames, NULL = none}
     \item{xaxis.cex}{Size of x-axis label text - defaults to values found in a look-up table}
+    \item{xaxis.top.cex}{Size of top x axis label text}
     \item{yaxis.cex}{Size of y-axis label text - defaults to values found in a look-up table}
-	\item{xaxis.top.cex}{Size of the top x-axis label text}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 90}
 	\item{xaxis.rot.top}{Rotation of the top x-axis tick labels; defaults to 90}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
@@ -219,6 +220,7 @@ create.heatmap(
     \item{xat.top}{Vector listing where the x-axis labels should be drawn on the top of the plot. Required only when you want bottom and top axis, otherwise use x.alternating = 2, to get top axis only. Defaults to NULL}
     \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
     \item{xaxis.tck}{Size of x-axis tick marks. Defaults to NULL for intelligent choice based on covariate size.}
+    \item{xaxis.top.tck}{Size of top x-axis tick marks. Defaults to NULL for intelligent choice based on covariate size.}
     \item{yaxis.tck}{Size of y-axis tick marks. Defaults to NULL for intelligent choice based on covariate size.}
     \item{col.pos}{Vector of column positions for adding text to cell, defaults to NULL}
     \item{row.pos}{Vector of row positions for adding text to cell, defaults to NULL} 

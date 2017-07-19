@@ -4,13 +4,15 @@
 \description{Takes a dataset and several parameters and outputs an object with values and labels ideal for that dataset}
 \usage{
 pretty.axis(
-	x, 
-	pretty = TRUE, 
-	log.scaled = FALSE, 
-	log.zero = 0.1, 
-	y.max.factor = 1, 
-	n.y.labels = 4, 
-	max.min.log10.diff = 2
+    x, 
+    pretty = TRUE, 
+    log.scaled = NA, 
+    log.zero = 0.1, 
+    max.factor = 1, 
+    min.factor = 1, 
+    include.origin = TRUE, 
+    num.labels = 4, 
+    max.min.log10.diff = 2
 )
 }
 \arguments{    
@@ -18,8 +20,10 @@ pretty.axis(
     \item{pretty}{Parameter flag for if output should be in pretty format}
     \item{log.scaled}{parameter set to determine if scaling is logarithmic or not}
     \item{log.zero}{log 0 starting point}
-    \item{y.max.factor}{maximum factor for y variable}
-    \item{n.y.labels}{number of labels to output}
+    \item{max.factor}{maximum factor for y variable}
+    \item{min.factor}{minimum factor for y variable}
+    \item{include.origin}{flag to include the origin value or not}
+    \item{num.labels}{number of labels to output}
     \item{max.min.log10.diff}{the max and min diffrence for dataset to be determined logarithmic}
 }
 \author{Takafumi Yamaguch}
