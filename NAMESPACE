@@ -55,7 +55,6 @@ export(
 	"psa.categorical.colour",
 	"psa.gradient.colour",
 	"scientific.notation",
-	"search.metadata",
 	"show.available.palettes",
 	"tissue.colour",
 	"write.metadata",
