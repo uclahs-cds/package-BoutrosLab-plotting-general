@@ -164,7 +164,8 @@ default.colours <- default.colors <- function(
 		seq.redorange = schemes$seq.redorange,
 		seq.orange = schemes$seq.orange
 		);
-
+		
+        
 	### CREATE PALETTE #############################################################################
 	# check if number of colour schemes requested equals number of palette types specified (else return error)
 	if (length(number.of.colours) != length(palette.type)) {

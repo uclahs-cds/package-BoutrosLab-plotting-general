@@ -44,7 +44,8 @@ create.multiplot(
 	yat = TRUE, 
 	xlimits = NULL, 
 	ylimits = NULL, 
-	xaxis.rot = 0, 
+	xaxis.rot = 0,
+	xaxis.rot.top = 0,
 	xaxis.fontface = 'bold',
 	y.tck.dist=0.5,
 	x.tck.dist=0.5, 
@@ -71,7 +72,6 @@ create.multiplot(
 	plot.layout = c(1,length(plot.objects)), 
 	layout.skip=rep(FALSE,length(plot.objects)), 
 	description = 'Created with BoutrosLab.plotting.general', 
-	retrieve.plot.labels = FALSE,
 	plot.labels.to.retrieve = NULL,
 	style = 'BoutrosLab', 
 	remove.all.border.lines = FALSE,
@@ -119,7 +119,8 @@ create.multiplot(
     \item{yat}{Vector listing where the y-axis labels should be drawn}
     \item{xlimits}{Vector listing where the x-axis limits should be for each subplot. Defaults to NULL to let R figure out the limits}
     \item{ylimits}{Vector listing where the y-axis limits should be for each subplot. Defaults to NULL to let R figure out the limits}
-    \item{xaxis.rot}{Rotation of x-axis labels}
+    \item{xaxis.rot}{Rotation of bottom x-axis labels}
+    \item{xaxis.rot.top}{Rotation of top x-axis labels}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{x.spacing}{A number specifying the horizontal distance between plots, defaults to 1}
@@ -146,7 +147,6 @@ create.multiplot(
     \item{plot.layout}{A vector specifying the layout of the plots, defaults to a single column/ c(1,length(plot.objects))}
     \item{layout.skip}{A vector specifying which positions in the layout grid to leave blank/skip, defaults to not skipping any spots in the layout / rep(FALSE,length(plot.objects)). Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right }
     \item{description}{Short description of image/plot; default NULL.}
-    \item{retrieve.plot.labels}{Should the plot retrieve the limits, labels and label locations from the the individual plots - no longer doing anything}
     \item{plot.labels.to.retrieve}{a vector of the indices referencing which plots in plot.objects should have there limits, at, and axis labels retrived in the multiplot vs using the arguments specified to multiplot}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
@@ -1152,12 +1152,12 @@ hmRet <- create.heatmap(
 create.multiplot(
 	filename = "Multiplot_RetrievePlotLabels.tiff",
 	plot.objects = list(hmRet,bpRet,bpRet), 
-	retrieve.plot.labels = TRUE, 
 	print.new.legend = TRUE,
 	xlab.label = c('Samples'),
 	ylab.padding = 12,
 	y.spacing = c(0,0),
-	panel.heights = c(0.25,1,0.25)
+	panel.heights = c(0.25,1,0.25),
+	plot.labels.to.retrieve = c(1,2,3)
 	);
 
 
@@ -1176,7 +1176,6 @@ create.multiplot(
 	yaxis.labels = c(NA,NA),
 	xat = list(TRUE,TRUE),
 	yat = list(TRUE,TRUE),
-	retrieve.plot.labels = TRUE,
 	plot.labels.to.retrieve = c(1),
 	xlimits = list(NULL,c("A","B","C")),
 	ylimits = list(NULL,c(-3,10))

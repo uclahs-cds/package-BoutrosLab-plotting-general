@@ -167,10 +167,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			}
 		}
 		
-	# ensure valid legend.side is specified
-	if (!(legend.side %in% c('left', 'right', 'top'))) {
-		stop('Invalid legend.side argument -- available options are "left", "right", and "top"');
-		}
 
 	### CLUSTERING & COVARIATES ###################################################################
 	legend <- list();
@@ -550,40 +546,128 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 
 		# get font family for grobPack which is different from what lattice accepts
 		font.family <- "sans";
-		
+	        
 		# create grob representing the legend
-		if (is.null(legend.layout) && legend.side == 'top') {
-			legend.layout = c(length(covariate.legends), 1);
+		
+		legend.layout = c(1, length(covariate.legends));
+		legend.grob.left <- NULL
+		legend.grob.top <- NULL
+		legend.grob.right <- NULL
+		if(length(legend.side) > 1 && length(covariate.legends[legend.side == "left"]) > 0){
+                	legend.grob.left <- BoutrosLab.plotting.general::legend.grob(
+                        	legends = covariate.legends[legend.side == "left"],
+                        	label.cex = legend.cex,
+                        	title.cex = legend.title.cex,
+                        	title.just = legend.title.just,
+                        	title.fontface = legend.title.fontface,
+                        	font.family = font.family,
+                        	border = legend.border,
+                        	border.padding = legend.border.padding,
+                        	layout = legend.layout,
+                        	between.col = legend.between.col,
+                        	between.row = legend.between.row
+                        	);
 			}
-		else if (is.null(legend.layout)) {
-			legend.layout = c(1, length(covariate.legends));
+		else if(length(legend.side) == 1 && legend.side == 'left'){
+			legend.grob.left <- BoutrosLab.plotting.general::legend.grob(
+                                legends = covariate.legends,
+                                label.cex = legend.cex,
+                                title.cex = legend.title.cex,
+                                title.just = legend.title.just,
+                                title.fontface = legend.title.fontface,
+                                font.family = font.family,
+                                border = legend.border,
+                                border.padding = legend.border.padding,
+                                layout = legend.layout,
+                                between.col = legend.between.col,
+                                between.row = legend.between.row
+                                );
 			}
-
-		legend.grob <- BoutrosLab.plotting.general::legend.grob(
-			legends = covariate.legends,
-			label.cex = legend.cex,
-			title.cex = legend.title.cex,
-			title.just = legend.title.just,
-			title.fontface = legend.title.fontface,
-			font.family = font.family,
-			border = legend.border,
-			border.padding = legend.border.padding,
-			layout = legend.layout,
-			between.col = legend.between.col,
-			between.row = legend.between.row
-			);
+      if(length(legend.side) > 1 && length(covariate.legends[legend.side == "top"]) > 0){
+                	legend.grob.top <- BoutrosLab.plotting.general::legend.grob(
+                        	legends = covariate.legends[legend.side == "top"],
+                        	label.cex = legend.cex,
+                        	title.cex = legend.title.cex,
+                        	title.just = legend.title.just,
+                        	title.fontface = legend.title.fontface,
+                        	font.family = font.family,
+                        	border = legend.border,
+                        	border.padding = legend.border.padding,
+                        	layout = c(length(covariate.legends), 1),
+                        	between.col = legend.between.col,
+                        	between.row = legend.between.row
+                        	);
+			}
+		else if(length(legend.side) == 1 && legend.side == 'top'){
+			legend.grob.top <- BoutrosLab.plotting.general::legend.grob(
+                                legends = covariate.legends,
+                                label.cex = legend.cex,
+                                title.cex = legend.title.cex,
+                                title.just = legend.title.just,
+                                title.fontface = legend.title.fontface,
+                                font.family = font.family,
+                                border = legend.border,
+                                border.padding = legend.border.padding,
+                                layout = c(length(covariate.legends), 1),
+                                between.col = legend.between.col,
+                                between.row = legend.between.row
+                                );
+			}
+		if(length(legend.side) > 1 && length(covariate.legends[legend.side == "right"]) > 0){
+                	legend.grob.right <- BoutrosLab.plotting.general::legend.grob(
+                        	legends = covariate.legends[legend.side == "right"],
+                        	label.cex = legend.cex,
+                        	title.cex = legend.title.cex,
+                        	title.just = legend.title.just,
+                        	title.fontface = legend.title.fontface,
+                        	font.family = font.family,
+                        	border = legend.border,
+                        	border.padding = legend.border.padding,
+                        	layout = legend.layout,
+                        	between.col = legend.between.col,
+                        	between.row = legend.between.row
+                        	);
+			}
+		else if(length(legend.side) == 1 && legend.side == 'right'){
+			legend.grob.right <- BoutrosLab.plotting.general::legend.grob(
+                                legends = covariate.legends,
+                                label.cex = legend.cex,
+                                title.cex = legend.title.cex,
+                                title.just = legend.title.just,
+                                title.fontface = legend.title.fontface,
+                                font.family = font.family,
+                                border = legend.border,
+                                border.padding = legend.border.padding,
+                                layout = legend.layout,
+                                between.col = legend.between.col,
+                                between.row = legend.between.row
+                                );
+                        }
+		
+		#legend.grob <- BoutrosLab.plotting.general::legend.grob(
+		#	legends = covariate.legends,
+		#	label.cex = legend.cex,
+		#	title.cex = legend.title.cex,
+		#	title.just = legend.title.just,
+		#	title.fontface = legend.title.fontface,
+		#	font.family = font.family,
+		#	border = legend.border,
+		#	border.padding = legend.border.padding,
+		#	layout = legend.layout,
+		#	between.col = legend.between.col,
+		#	between.row = legend.between.row
+		#	);
 				
 		# add the legend grob to the image
-		if ('left' == legend.side) {
-			legend[['left']] <- list(fun = legend.grob);
+		if(!is.null(legend.grob.left)){
+			legend[['left']] <- list(fun = legend.grob.left);
 			}
-		else if ('right' == legend.side) {
-
+		if(!is.null(legend.grob.right)){
 			# check if we have already drawn something on the right side
 			right.grob <- legend[['right']][['fun']];
 			
 			if (is.null(right.grob)) {
-				legend[['right']] <- list(fun = legend.grob);
+				legend[['right']] <- list(fun = legend.grob.right);
 				}
 			else {
 				# NOTE: the convertUnit() call requires an open device
@@ -594,10 +678,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				if (length(dev.list()) > 0) {
 					devices.open <- TRUE;
 					}
-
 				# determine width of legend grob in cm
 				legend.width.cm <- convertUnit(
-					grobWidth(legend.grob),
+					grobWidth(legend.grob.right),
 					unitTo = 'cm',
 					axisFrom = 'x',
 					typeFrom = 'dimension',
@@ -613,8 +696,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 						unlink('Rplots.pdf');
 						}
 					}
-				
-				# make a layout for the existing grob plus the legend
+			
+			# make a layout for the existing grob plus the legend
 				right.layout.final <- grid.layout(
 					nrow = 1,
 					ncol = 2,
@@ -641,7 +724,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				# place the legend
 				right.grob.final <- placeGrob(
 					frame = right.grob.final,
-					grob = legend.grob,
+					grob = legend.grob.right,
 					row = 1,
 					col = 2
 					);
@@ -649,13 +732,12 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				legend[['right']] <- list(fun = right.grob.final);
 				}
 			}
-		else if ('top' == legend.side) {
-
+		if(!is.null(legend.grob.top)){
 			# check if we have already drawn something on the top
 			top.grob <- legend[['top']][['fun']];
 			
 			if (is.null(top.grob)) {
-				legend[['top']] <- list(fun = legend.grob);
+				legend[['top']] <- list(fun = legend.grob.top);
 				}
 			else {
 				# NOTE: the convertUnit() call requires an open device
@@ -666,10 +748,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				if (length(dev.list()) > 0) {
 					devices.open <- TRUE;
 					}
-
 				# determine height of legend grob
 				legend.height.cm <- convertUnit(
-					grobHeight(legend.grob),
+					grobHeight(legend.grob.top),
 					unitTo = 'cm',
 					axisFrom = 'y',
 					typeFrom = 'dimension',
@@ -705,7 +786,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				# place the existing grob
 				top.grob.final <- placeGrob(
 					frame = top.grob.final,
-					grob = legend.grob,
+					grob = legend.grob.top,
 					row = 1,
 					col = 1
 					);
@@ -720,7 +801,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				
 				legend[['top']] <- list(fun = top.grob.final);
 				}
-			}
+			}	
 		}
 
 	# draw xaxis covariates	
@@ -1037,11 +1118,11 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
 	if(is.null(xaxis.top.cex)){xaxis.top.cex <- xaxis.cex};
 	# look at nrow and ncol and if exceed limit (for now, default limit = 50), turn off grid lines
-	if ((nrow(x) > grid.limit & grid.row == TRUE) & force.grid.row != TRUE) {
+	if ((ncol(x) > grid.limit & grid.row == TRUE) & force.grid.row != TRUE) {
 		grid.row <- FALSE;
 		cat(paste0('Warning: number of rows exceeded limit (', grid.limit, '), row lines are turned off. Please set "force.grid.row" to TRUE to override this\n'));
 		}
-	if ((ncol(x) > grid.limit & grid.col == TRUE) & force.grid.col != TRUE) {
+	if ((nrow(x) > grid.limit & grid.col == TRUE) & force.grid.col != TRUE) {
 		grid.col <- FALSE;
 		cat(paste0('Warning: number of columns exceeded limit (', grid.limit, '), column lines are turned off. Please set "force.grid.col" to TRUE to override this\n'));
 		} 

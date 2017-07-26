@@ -19,6 +19,63 @@ force.colour.scheme <- force.color.scheme <- function(
 		stop("Argument 'x' cannot be a factor: please coerce to character before passing.");
 		}
 
+	if(scheme == 'psa.categorical'){
+		x.processed <- x;
+        	if(length(grep(x=x, '-|>')) == 0){
+        		x <- as.numeric(x);
+        		x.processed <- rep('0 - 9.9', length(x));
+        		x.processed[x >=10 & x < 20] <- '10 - 19.9';
+        		if(any(x>=20, na.rm=TRUE)){
+                		x.processed[x>=20] <- '>= 20';
+                		}
+        		if(any(is.na(x))){
+                		x.processed[is.na(x)] <- NA;
+                		}
+			}
+		x = x.processed
+		}
+	else if(scheme == 'age.categorical'){
+		x.processed <- x;
+		if (length(grep(x = x, '-|>|<')) == 0) {
+                        x <- as.numeric(x);
+                        x.processed <- rep('<50', length(x));
+                        x.processed[x >= 50 & x < 60] <- '50 - 60';
+                        x.processed[x >= 60 & x < 70] <- '60 - 70';
+                        if (any(x >= 70, na.rm = TRUE)) {
+                                x.processed[x >= 70] <- '>= 70';
+                                }
+                        if (any(is.na(x))) {
+                                x.processed[is.na(x)] <- NA;
+                                }
+                        }
+		x = x.processed
+		}
+	else if(scheme == "age.gradient"){
+		x[x < 40] <- 40;
+        	x[x > 70] <- 70;
+
+        	colour.x <- x - 40;
+        	colour.x <- colour.x/30.0;
+
+        	colour.scheme <- c('white', 'black');
+        	ColourFunction <- colorRamp(colour.scheme, space = 'rgb');
+        	my.palette <- rgb(ColourFunction(colour.x), maxColorValue = 255);
+		return(my.palette);
+		}
+	else if(scheme == "psa.gradient"){
+		x[x < 0] <- 0;
+        	x[x > 20] <- 20;
+
+        	x <- x/20.0;
+
+        	print(x)
+        	colour.scheme <- c('white', 'darkred');
+        	ColourFunction <- colorRamp(colour.scheme, space = 'rgb');
+
+        	my.palette <- rgb(ColourFunction(x), maxColorValue = 255);
+
+        	return(my.palette);
+		}
 	# Set all input to lower case
 	x <- tolower(x);
 	scheme <- tolower(scheme);
@@ -158,6 +215,25 @@ force.colour.scheme <- force.color.scheme <- function(
 	nonsynonymous		<- rgb(177/255, 213/255, 181/255);
 	stopgain		<- rgb(249/255, 179/255, 142/255);
 	frameshiftdeletion	<- rgb(154/255, 163/255, 242/255);
+	
+	#clincal T3 
+	clinical.t3_1 = rgb(255,247,223, maxColorValue = 255);
+	clinical.t3_2 = rgb(221,246,139, maxColorValue = 255);
+	clinical.t3_3 = rgb(109,196,110, maxColorValue = 255);
+	clinical.t3_4 = rgb(47,109,96, maxColorValue = 255);
+	clinical.t3_5 = rgb(25,55,81, maxColorValue = 255);
+	clinical.t3_6 = rgb(8,0,16, maxColorValue = 255);
+
+	#clinical T9
+	clinical.t9_1 = rgb(143,161,82, maxColorValue = 255);
+	clinical.t9_2 = rgb(178,200,105, maxColorValue = 255);
+	clinical.t9_3 = rgb(221,246,139, maxColorValue = 255);
+	clinical.t9_4 = rgb(56,145,58, maxColorValue = 255);
+	clinical.t9_5 = rgb(109,196,110, maxColorValue = 255);
+	clinical.t9_6 = rgb(179,238,180, maxColorValue = 255);
+	clinical.t9_7 = rgb(47,109,96, maxColorValue = 255);
+	clinical.t9_8 = rgb(94,194,170, maxColorValue = 255);
+	clinical.t9_9 = rgb(192,231,222, maxColorValue = 255);
 
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
 	avail.schemes <- list(
@@ -232,6 +308,34 @@ force.colour.scheme <- force.color.scheme <- function(
 		organism = list(
 			levels = c('human', 'rat', 'mouse'),
 			colours = c(Human, Rat, Mouse)
+			),
+		clinicalt3 = list(
+			levels = c('t0','t1','t2','t3','t4','t5'),
+			colours = c(clinical.t3_1, clinical.t3_2, clinical.t3_3, clinical.t3_4, clinical.t3_5, clinical.t3_6)
+			),
+		clinicalt9 = list(
+                        levels = c('t1a','t1b','t1c','t2a','t2b','t2c','t3a','t3b','t3c'),
+                        colours = c(clinical.t9_1, clinical.t9_2, clinical.t9_3, clinical.t9_4, clinical.t9_5, clinical.t9_6, clinical.t9_7, clinical.t9_8, clinical.t9_9)
+                        ),
+		gleason.score = list(
+			levels = c('3+3', '3+4', '4+3', '4+4', '4+5', '3+5', '5+3', '5+4', '5+5', 'missing', 'NA'),
+			colours = c('white', 'yellow', 'orange', 'red', 'brown', 'maroon3', 'magenta4', 'mediumblue', 'black', 'slategrey', 'slategrey')
+			),
+		gleason.sum = list(
+			levels = c(5,6,7,8,9,'missing','NA'),
+			colours = c("#FEEBE2", "#FBB4B9", "#F768A1", "#C51B8A", "#7A0177", "slategrey", "slategrey", "slategrey")
+			),
+		tissue.color = list(
+			levels = c('Blood', 'Frozen', 'FFPE'),
+			colours = c(colours()[507], colours()[532], colours()[557])
+			),
+		psa.categorical = list(
+			levels = c('0 - 9.9', '10 - 19.9', '>= 20'),
+			colours = c("#FEE6CE", "#FDAE6B", "#E6550D")
+			),
+		age.categorical = list(
+			levels = c('<50', '50 - 60', '60 - 70', '>= 70'),
+			colours = c("gray100", "gray66", "gray33", "gray0")
 			)
 		);
 

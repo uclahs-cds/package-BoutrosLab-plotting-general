@@ -15,7 +15,6 @@ write.plot <- function(
 	height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
 	description = "Created with BoutrosLab.plotting.general"
 	) {
-
 	# if requested create the image file
 	if (!is.null(filename)) {
 
@@ -166,7 +165,6 @@ write.plot <- function(
 		}
 
 	else if (is.null(filename)) {
-
 		# MANY checks for correctness of additional plots to embedded and parameters
 		if (
 			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
@@ -197,7 +195,6 @@ write.plot <- function(
 				) {
 				stop("Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop.");
 				}
-
 			# checking lengths of inputs
 			input.lengths <- list(
 				length(additional.trellis.objects),
@@ -206,16 +203,13 @@ write.plot <- function(
 				length(additional.trellis.locations$xright),
 				length(additional.trellis.locations$ytop)
 				);
-
 			# only proceed if inputs are equal
 			if (length(unique(input.lengths)) != 1) {
 				stop("Lists of trellis objects and coordinates provided not equal in length.");
 				}
 			else if (length(unique(input.lengths)) == 1) {
-
 				# plot the object to the file
 				plot(trellis.object, newpage = TRUE);
-					
 				for (i in 1:length(additional.trellis.objects)) {
 					 print(
 						x = additional.trellis.objects[[i]],

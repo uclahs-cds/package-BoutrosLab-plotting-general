@@ -11,8 +11,8 @@
 
 ### FUNCTION TO CREATE GIF  #######################################################################
 create.gif <- function(execFunc, parameters, numberOfFrames, delay = 40, filename) {
-        png(file="writeGifTemp%03d.png")
-        for (i in (1:numberOfFrames)){
+	png(file="writeGifTemp%03d.png")
+	for (i in (1:numberOfFrames)){
 		print(do.call(execFunc,parameters[[i]]));
 	}
 	dev.off()
@@ -22,4 +22,3 @@ create.gif <- function(execFunc, parameters, numberOfFrames, delay = 40, filenam
 	# cleaning up
 	file.remove(list.files(pattern="writeGifTemp"))
 }
-

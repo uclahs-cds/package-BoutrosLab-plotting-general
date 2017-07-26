@@ -62,7 +62,7 @@ export(
 	);
 importFrom("grDevices", "col2rgb", "colorRamp", "colorRampPalette",
              "dev.cur", "dev.list", "dev.off", "grey", "ps.options",
-             "rgb", "setEPS", "colours");
+             "rgb", "setEPS", "colours", "png");
 importFrom("graphics", "abline", "par", "plot.new", "rect",
              "strheight", "strwidth", "text");
 importFrom("stats", "as.dendrogram", "as.dist", "as.formula",

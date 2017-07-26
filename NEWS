@@ -1,3 +1,20 @@
+BoutrosLab.plotting.general 5.7.5 2017-07-26
+
+BUG FIX
+* create.heatmap - grid row/column limits reversed
+* legend.grob - continuous legends produce warnings
+* ytop.rectangle in create.scatterplot() doesn't work properly.
+* Remove the old option (retrieve.plot.labels) and merge into (plot.labels.to.retrieve)
+
+FEATURES
+* merged multiple colour functions (old ones to be removed in next commit)
+* multiple colours of error bars in scatterplot
+* Add xaxis.rot.top option to create.multiplot
+* have legends on both the left AND the right for create.heatmap
+
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.7.4 2017-07-19
 
 BUG FIX

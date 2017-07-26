@@ -33,6 +33,15 @@ create.polygonplot <- function(
 	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
 	) {
+	
+
+	### needed to copy in case using variable to define rectangles dimensions
+        rectangleInfo = list(
+                                xright = xright.rectangle,
+                                xleft = xleft.rectangle,
+                                ytop = ytop.rectangle,
+                                ybottom = ybottom.rectangle
+                        );
 
 	if(!is.null(yat)){
 		if(yat == "auto"){
@@ -159,10 +168,10 @@ create.polygonplot <- function(
 			#  => add first, outside of grouping if/else split
 			if (add.rectangle) {
 				panel.rect(
-					xleft = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright = xright.rectangle,
-					ytop = ytop.rectangle,
+					xleft = rectangleInfo$xleft,
+					ybottom = rectangleInfo$ybottom,
+					xright = rectangleInfo$xright,
+					ytop = rectangleInfo$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA

@@ -18,14 +18,14 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
 							xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE,
 							xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL,
-							ylimits = NULL, xaxis.rot = 0, xaxis.fontface = 'bold', y.tck.dist=0.5, x.tck.dist=0.5, yaxis.fontface = 'bold',
+							ylimits = NULL, xaxis.rot = 0, xaxis.rot.top = 0, xaxis.fontface = 'bold', y.tck.dist=0.5, x.tck.dist=0.5, yaxis.fontface = 'bold',
 							x.spacing = 1, y.spacing = 1, x.relation = 'same', y.relation = 'same',
 							xaxis.tck = c(0.75,0.75), yaxis.tck = c(0.75,0.75), axes.lwd = 1.5, key.right.padding = 1,
 							key.left.padding = 1, key.bottom.padding = 1, height = 6, width = 6, size.units = 'in',
 							resolution = 1600, enable.warnings = FALSE, key = list(text = list(lab = c(''))),
 							legend =  NULL, print.new.legend = FALSE, merge.legends = FALSE,
 							plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)),
-							description = 'Created with BoutrosLab.plotting.general', retrieve.plot.labels = FALSE,
+							description = 'Created with BoutrosLab.plotting.general',
 							plot.labels.to.retrieve = NULL, style = 'BoutrosLab', remove.all.border.lines = FALSE,
 							preload.default = 'custom', plot.for.carry.over.when.same = 1) {
 
@@ -92,14 +92,14 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		}
 
 	# if user asked to retrieve previous plot labels, then the relations need to be free
-	if (is.logical(retrieve.plot.labels) && retrieve.plot.labels == TRUE) {
+	if (!is.null(plot.labels.to.retrieve)) {
 		y.relation <- 'free';
 		x.relation <- 'free';
 		}
 
 	# Checks to see if there are NULL value(s) in the limit lists
 	x.atleast.one.null = FALSE;
-	if(!is.null(xlimits) && !retrieve.plot.labels){
+	if(!is.null(xlimits) && is.null(plot.labels.to.retrieve)){
 		for(i in 1:length(xlimits)){
 			if(is.null(xlimits[[i]])){
 				x.atleast.one.null = TRUE;
@@ -125,7 +125,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		}
 
 	y.atleast.one.null = FALSE;
-	if(!is.null(ylimits) && !retrieve.plot.labels){
+	if(!is.null(ylimits) && is.null(plot.labels.to.retrieve)){
 		for(i in 1:length(ylimits)){
 			if(is.null(ylimits[[i]])){
 				y.atleast.one.null = TRUE;
@@ -156,7 +156,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		labels = xaxis.labels,
 		cex = xaxis.cex,
 		at = xat,
-		rot = xaxis.rot,
+		rot = c(xaxis.rot, xaxis.rot.top),
 		limits = xlimits,
 		fontface = if ('Nature' == style){'plain'} else(xaxis.fontface),
 		relation = x.relation
@@ -300,7 +300,7 @@ xscale.components.old <- function(...){
 	trellis.object$y.limits = ylimits;
 
 	# pulling forward a combination of axis limits, at and labels from the individual plots and the values passed to multiplot as a argument to the created mutliplot
-	if (is.logical(retrieve.plot.labels) && retrieve.plot.labels == TRUE) {
+	if (!is.null(plot.labels.to.retrieve)) {
 		Nxaxis.labels <- list();
 		Nyaxis.labels <- list();
 		Nxat <- list();
@@ -310,7 +310,7 @@ xscale.components.old <- function(...){
 
 		for (p in c(1:length(plot.objects))) {
 			# if the plot is listed in plot.labels.to.retrieve, use the values from the individual plots
-			if(is.null(plot.labels.to.retrieve) || p %in% plot.labels.to.retrieve){
+			if(p %in% plot.labels.to.retrieve){
 				Nxlimits[[p]] <- plot.objects[[p]]$x.limits;
 				Nxat[[p]] <- plot.objects[[p]]$x.scales$at;
 				Nylimits[[p]] <- plot.objects[[p]]$y.limits;
@@ -329,19 +329,19 @@ xscale.components.old <- function(...){
 					}
 				}
 			# if the plot is not listed in plot.labels.to.retrieve, use the values pass to multiplot as arguments
-			else if(!is.null(plot.labels.to.retrieve)){
+			else{
 				Nxlimits[[p]] <- xlimits[[p]];
 				Nxat[[p]] <- xat[[p]];
 				Nylimits[[p]] <- ylimits[[p]];
 				Nyat[[p]] <- yat[[p]];
-				if (length(plot.objects[[p]]$x.scales$labels) > 0) {
-					Nxaxis.labels[[p]] <- plot.objects[[p]]$x.scales$labels;
+				if (length(xaxis.labels) >= p) {
+					Nxaxis.labels[[p]] <- xaxis.labels[[p]];
 					}
 				else {
 					Nxaxis.labels[[p]] <- TRUE;
 					}
-				if (length(plot.objects[[p]]$y.scales$labels) > 0) {
-					Nyaxis.labels[[p]] <- plot.objects[[p]]$y.scales$labels;
+				if (length(yaxis.labels) >= p) {
+					Nyaxis.labels[[p]] <- yaxis.labels[[p]];
 					}
 				else {
 					Nyaxis.labels[[p]] = TRUE;

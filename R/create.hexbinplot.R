@@ -47,6 +47,14 @@ create.hexbinplot <- function(
 	# - if 'maxcnt' is passed, make sure it is not smaller than the actual maximum count (value depends on nbins).
 	# - Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without
 	# - specifying the 'maxcnt' parameter using the desired number of bins.
+	
+	### needed to copy in case using variable to define rectangles dimensions
+        rectangleInfo = list(
+                                xright = xright.rectangle,
+                                xleft = xleft.rectangle,
+                                ytop = ytop.rectangle,
+                                ybottom = ybottom.rectangle
+                        );
 
         if(!is.null(yat)){
         	if(yat == "auto"){
@@ -106,10 +114,10 @@ create.hexbinplot <- function(
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft   = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright  = xright.rectangle,
-					ytop    = ytop.rectangle,
+					xleft   = rectangleInfo$xleft,
+					ybottom = rectangleInfo$ybottom,
+					xright  = rectangleInfo$xright,
+					ytop    = rectangleInfo$ytop,
 					col     = col.rectangle,
 					alpha   = alpha.rectangle,
 					border  = NA

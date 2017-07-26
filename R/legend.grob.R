@@ -132,7 +132,7 @@ legend.grob <- function(
 
 						colorRamp <- colorRampPalette(legendi[['colours']]);
 						legend.key <- list(
-							space = c('right', 'top'),
+							space = 'right',
 							between = 0.5,
 							rep = TRUE,
 							tick.number = if (is.null(legendi[['tck.number']])) { 0 } else{ legendi[['tck.number']] },

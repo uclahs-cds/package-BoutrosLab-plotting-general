@@ -30,6 +30,13 @@ create.segplot <- function(
 	) {
 
 
+	### needed to copy in case using variable to define rectangles dimensions
+        rectangleInfo = list(
+                                xright = xright.rectangle,
+                                xleft = xleft.rectangle,
+                                ytop = ytop.rectangle,
+                                ybottom = ybottom.rectangle
+                        );
 
 	# add preloaded defaults
         if (preload.default == 'paper') {
@@ -52,10 +59,10 @@ create.segplot <- function(
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft = xleft.rectangle,
-					ybottom = ybottom.rectangle,
-					xright = xright.rectangle,
-					ytop = ytop.rectangle,
+					xleft = rectangleInfo$xleft,
+					ybottom = rectangleInfo$ybottom,
+					xright = rectangleInfo$xright,
+					ytop = rectangleInfo$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA

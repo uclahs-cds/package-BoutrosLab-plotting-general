@@ -186,8 +186,18 @@ create.scatterplot <- function(
 	text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE,
 	text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, height = 6,
 	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', ...
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', 
+	group.specific.colouring = TRUE, ...
 	) {
+
+
+	### needed to copy in case using variable to define rectangles dimensions
+        rectangleInfo = list(
+                                xright = xright.rectangle,
+                                xleft = xleft.rectangle,
+                                ytop = ytop.rectangle,
+                                ybottom = ybottom.rectangle
+                        );
 
 	if(!is.null(yat)){
         	if(yat == "auto"){
@@ -350,7 +360,7 @@ create.scatterplot <- function(
 
 	# If formula does NOT contain conditioning variables,
 	# then group-specific error bar colouring is supported.
-	else {
+	else if(group.specific.colouring == TRUE){
 		# generate the vector of colours for horizontal error bars, by remapping
 		# the levels of the grouping variable according to x.error.bar.col
 		# if x.error.bar.col is NOT a vector, do nothing
@@ -366,6 +376,7 @@ create.scatterplot <- function(
 						') of levels of the grouping variable does not equal the length (',
 						length(x.error.bar.col),
 						') of x.error.bar.col.',
+						' set group.specific.colouring = FALSE to acoomplish this',
 						sep = ''
 						)
 					);
@@ -387,6 +398,7 @@ create.scatterplot <- function(
 						') of levels of the grouping variable does not equal the length (',
 						length(y.error.bar.col),
 						') of y.error.bar.col.',
+						' set group.specific.colouring = FALSE to acoomplish this',
 						sep = ''
 						)
 					);
@@ -974,10 +986,10 @@ create.scatterplot <- function(
 		        # add background rectangle if requested
                         if (add.rectangle) {
                                 panel.rect(
-                                        xleft = xleft.rectangle,
-                                        ybottom = ybottom.rectangle,
-                                        xright = xright.rectangle,
-                                        ytop = ytop.rectangle,
+                                        xleft = rectangleInfo$xleft,
+                                        ybottom = rectangleInfo$ybottom,
+                                        xright = rectangleInfo$xright,
+                                        ytop = rectangleInfo$ytop,
                                         col = col.rectangle,
                                         alpha = alpha.rectangle,
                                         border = NA

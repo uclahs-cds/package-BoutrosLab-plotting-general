@@ -653,7 +653,7 @@ create.heatmap(
     covariates.top.col.lines = c(5,6),
     covariates.top.grid.col = list(col = 'blue', lwd = 2),
     # legend customization
-    legend.side = 'right',
+    legend.side = c('right','left','top'),
     legend.title.cex = 0.75,
     legend.cex = 0.75,
     legend.title.just = 'left',

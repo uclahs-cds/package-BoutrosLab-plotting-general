@@ -144,6 +144,7 @@ create.scatterplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
 	preload.default = 'custom',
+	group.specific.colouring = TRUE,
 	...
 	);
 }
@@ -288,6 +289,7 @@ create.scatterplot(
     \item{description}{Short description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{group.specific.colouring}{Variable to specify if group specific multi colouring for error bars is enforced}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
@@ -679,6 +681,48 @@ create.scatterplot(
     y.error.bar.col = 'black',
     description = 'Scatter plot created by BoutrosLab.plotting.general'
     );
+
+create.scatterplot(
+    filename = 'Scatterplot_Error_Bars_MultiColor.tiff',
+    formula = values ~ chr,
+    data = error.data,
+    main = 'Error Bars',
+    xlab.label = 'Base pair location on chromosome one',
+    ylab.label = 'Gene expression change',
+    # xat = seq(0, 16, 2),
+    yat = seq(0, 14, 2),
+    # xlimits = c(0, 15),
+    ylimits = c(0, 13),
+    # Format xaxes
+    xaxis.lab = c(
+        scientific.notation(0, 1),
+        scientific.notation(1000000, 1),
+        scientific.notation(2000000, 1),
+        scientific.notation(3000000, 1),
+        scientific.notation(4000000, 1),
+        scientific.notation(5000000, 1),
+        scientific.notation(6000000, 1),
+        scientific.notation(7000000, 1)
+        ),
+    xaxis.rot = 90,
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    pch = 19,
+    col = 'black',
+    fill = 'transparent',
+    # Specifying error bars
+    error.bar.lwd = 1,
+    error.whisker.angle = 120,
+    y.error.up = error.data$error,
+    y.error.bar.col = c('black','red','blue'),
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    group.specific.colouring = FALSE
+    );
+
 
 # Gridlines
 create.scatterplot(
