@@ -1,9 +1,9 @@
-\name{pretty.axis}
-\alias{pretty.axis}
+\name{auto.axis}
+\alias{auto.axis}
 \title{Create ideal labels and values for a given dataset (detects log scales)}
 \description{Takes a dataset and several parameters and outputs an object with values and labels ideal for that dataset}
 \usage{
-pretty.axis(
+auto.axis(
     x, 
     pretty = TRUE, 
     log.scaled = NA, 
@@ -35,9 +35,9 @@ simple.data <- data.frame(
     y = LETTERS[1:10]
     );
 
-pretty.axis(simple.data$x)
+auto.axis(simple.data$x)
 
 data2 <- c(1,10,100,1000)
 
-pretty.axis(data2)
+auto.axis(data2)
 }

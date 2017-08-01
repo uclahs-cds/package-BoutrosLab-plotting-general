@@ -58,21 +58,21 @@ create.hexbinplot <- function(
 
         if(!is.null(yat)){
         	if(yat == "auto"){
-                	out = pretty.axis(unlist(data[toString(formula[[2]])]))
+                	out = auto.axis(unlist(data[toString(formula[[2]])]))
                 	data[toString(formula[[2]])] = out$x
 			yat = out$at
                 	yaxis.lab = out$axis.lab
 		}
 
         	else if(yat == "auto.linear"){
-                	out = pretty.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
+                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
                 	data[toString(formula[[2]])] = out$x
                 	yat = out$at
                 	yaxis.lab = out$axis.lab
 		}
     
         	else if(yat == "auto.log"){
-                	out = pretty.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
+                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
                 	data[toString(formula[[2]])] = out$x
                 	yat = out$at
                 	yaxis.lab = out$axis.lab
@@ -80,19 +80,19 @@ create.hexbinplot <- function(
 	}
 	if(!is.null(xat)){
         	if(xat == "auto"){
-                	out = pretty.axis(unlist(data[toString(formula[[3]])]))
+                	out = auto.axis(unlist(data[toString(formula[[3]])]))
                 	data[toString(formula[[3]])] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab
         	}
         	else if(xat == "auto.linear"){
-                	out = pretty.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
+                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
                 	data[toString(formula[[3]])] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab
         	}
         	else if(xat == "auto.log"){
-                	out = pretty.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
+                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
                 	data[toString(formula[[3]])] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab

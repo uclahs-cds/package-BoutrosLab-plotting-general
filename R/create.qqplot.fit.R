@@ -38,21 +38,21 @@ create.qqplot.fit <- function(
 
 	if(!is.null(yat)){
         	if(yat == "auto"){
-                	out = pretty.axis(unlist(x[[1]]))
+                	out = auto.axis(unlist(x[[1]]))
                 	x[[1]] = out$x
                 	yat = out$at
                 	yaxis.lab = out$axis.lab
         	}
 
         	else if(yat == "auto.linear"){
-                	out = pretty.axis(unlist(x[[1]]),log.scaled = FALSE)
+                	out = auto.axis(unlist(x[[1]]),log.scaled = FALSE)
                 	x[[1]] = out$x
                 	yat = out$at
                 	yaxis.lab = out$axis.lab
         	}
 
         	else if(yat == "auto.log"){
-                	out = pretty.axis(unlist(x[[1]]),log.scaled = TRUE)
+                	out = auto.axis(unlist(x[[1]]),log.scaled = TRUE)
                 	x[[1]] = out$x
                 	yat = out$at
                 	yaxis.lab = out$axis.lab
@@ -61,19 +61,19 @@ create.qqplot.fit <- function(
 
 	if(!is.null(xat)){
         	if(xat == "auto"){
-                	out = pretty.axis(unlist(x[[2]]))
+                	out = auto.axis(unlist(x[[2]]))
                 	x[[2]] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab
         	}
         	else if(xat == "auto.linear"){
-                	out = pretty.axis(unlist(x[[2]]),log.scaled = FALSE)
+                	out = auto.axis(unlist(x[[2]]),log.scaled = FALSE)
                 	x[[2]] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab
         	}
         	else if(xat == "auto.log"){
-                	out = pretty.axis(unlist(x[[2]]),log.scaled = TRUE)
+                	out = auto.axis(unlist(x[[2]]),log.scaled = TRUE)
                 	x[[2]] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab

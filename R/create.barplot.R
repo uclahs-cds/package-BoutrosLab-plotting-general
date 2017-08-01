@@ -53,12 +53,12 @@ create.barplot <- function(
 				f = list()
 				for (x in 1:length(s))
 					f[[x]] = sum(s[[x]][toString(formula[[2]])])
-				out = pretty.axis(f, log.scaled = FALSE)
+				out = auto.axis(f, log.scaled = FALSE)
 				yat = out$at
 			        yaxis.lab = out$axis.lab
 			}
 			else{
-                		out = pretty.axis(unlist(data[toString(formula[[2]])]))
+                		out = auto.axis(unlist(data[toString(formula[[2]])]))
                 		data[toString(formula[[2]])] = out$x
 				yat = out$at
                 		yaxis.lab = out$axis.lab
@@ -72,12 +72,12 @@ create.barplot <- function(
                                 f = list()
                                 for (x in 1:length(s))
                                         f[[x]] = sum(s[[x]][toString(formula[[2]])])
-                                out = pretty.axis(f,log.scaled = FALSE)
+                                out = auto.axis(f,log.scaled = FALSE)
                                 yat = out$at
                                 yaxis.lab = out$axis.lab
                         }
 			else{
-                		out = pretty.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
+                		out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
                 		data[toString(formula[[2]])] = out$x
                 		yat = out$at
                 		yaxis.lab = out$axis.lab
@@ -85,7 +85,7 @@ create.barplot <- function(
 		}
     
         	else if(yat == "auto.log"){
-                	out = pretty.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
+                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
                 	data[toString(formula[[2]])] = out$x
                 	yat = out$at
                 	yaxis.lab = out$axis.lab
@@ -99,13 +99,13 @@ create.barplot <- function(
                                 f = list()
                                 for (x in 1:length(s))
                                        	f[[x]] = sum(s[[x]][toString(formula[[2]])])
-                                out = pretty.axis(f, log.scaled = FALSE)
+                                out = auto.axis(f, log.scaled = FALSE)
                                 xat = out$at
                                 xaxis.lab = out$axis.lab
 				
                         }
 			else{
-                		out = pretty.axis(unlist(data[toString(formula[[3]])]))
+                		out = auto.axis(unlist(data[toString(formula[[3]])]))
                 		data[toString(formula[[3]])] = out$x
                 		xat = out$at
                 		xaxis.lab = out$axis.lab
@@ -114,25 +114,23 @@ create.barplot <- function(
         	else if(xat == "auto.linear"){
                         if(stack == TRUE){
                                 # run once to get data readjustment (in case log)
-                                out = pretty.axis(unlist(data[toString(formula[[2]])]))
-                                data[toString(formula[[2]])] = out$x
                                 s = split(data, data[toString(formula[[3]])])
                                 f = list()
                                 for (x in 1:length(s))
                                         f[[x]] = sum(s[[x]][toString(formula[[2]])])
-                                out = pretty.axis(f, log.scaled = FALSE)
+                                out = auto.axis(f, log.scaled = FALSE)
                                 xat = out$at
                                 xaxis.lab = out$axis.lab
                         }
 			else{
-                		out = pretty.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
+                		out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
                 		data[toString(formula[[3]])] = out$x
                 		xat = out$at
                 		xaxis.lab = out$axis.lab
 			}
         	}
         	else if(xat == "auto.log"){
-                	out = pretty.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
+                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
                 	data[toString(formula[[3]])] = out$x
                 	xat = out$at
                 	xaxis.lab = out$axis.lab
