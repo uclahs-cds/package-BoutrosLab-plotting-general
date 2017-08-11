@@ -1,4 +1,18 @@
-BoutrosLab.plotting.general 5.7.5 2017-07-26
+BoutrosLab.plotting.general 5.7.6 2017-08-11
+
+BUG FIX
+* 1D heatmaps now work -- automatically
+* Error bars now work properly with grouped bar plots
+
+FEATURES
+* automatic layout justification for legends (using just arg) for continous legends
+* added helper function for seperating thousands by commas, i.e -> (12345) -> (12,345)
+* merged all the relevent colour functions into force.colour.scheme
+* can now extract dendrograms from a heatmap (only one, and may require manual manipulation)
+
+
+
+--------------------------------------------------------------------------
 
 BUG FIX
 * create.heatmap - grid row/column limits reversed

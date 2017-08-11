@@ -12,12 +12,8 @@ import(
 	"e1071"
 	);
 export(
-	"age.categorical.colour",
-	"age.gradient.colour",
 	"append.footnote",
 	"auto.axis",
-	"clinicalT.3category.colour",
-	"clinicalT.9category.colour",
 	"colour.gradient",
 	"covariates.grob",
 	"create.colourkey",
@@ -43,20 +39,16 @@ export(
 	"default.colours",
 	"display.colours",
 	"display.statistical.result",
+	"thousands.split",
 	"force.colour.scheme",
 	"generate.at.final",
 	"get.corr.key",
 	"get.defaults",
 	"get.line.breaks",
-	"gleason.score.colour",
-	"gleason.sum.colour",
 	"legend.grob",
 	"pcawg.colours",
-	"psa.categorical.colour",
-	"psa.gradient.colour",
 	"scientific.notation",
 	"show.available.palettes",
-	"tissue.colour",
 	"write.metadata",
 	"write.plot"
 	);

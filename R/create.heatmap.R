@@ -37,7 +37,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
         # if you only have one column, you start to get weird behaviour, duplicating it fixes that.
         if(ncol(x) == 1){
-                x[[2]] = x[[1]]
+                x = t(cbind(x, x))
         } 
 	# transpose matrix to keep original form
 	if(same.as.matrix == TRUE){

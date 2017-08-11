@@ -155,9 +155,10 @@ legend.grob <- function(
 								key = legend.key,
 								draw = FALSE,
 								vp = viewport(
-									x = if (is.null(legendi[['pos.x']])) { 0.5 } else { legendi[['pos.x']] },
-									y = if (is.null(legendi[['pos.y']])) { 0.5 } else { legendi[['pos.y']] },
-									angle = if (is.null(legendi[['angle']])) { 0 } else { legendi[['angle']] }
+									x = if (is.null(legendi[['pos.x']])) { 0 } else { legendi[['pos.x']] },
+									y = if (is.null(legendi[['pos.y']])) { 0 } else { legendi[['pos.y']] },
+									angle = if (is.null(legendi[['angle']])) { 0 } else { legendi[['angle']] },
+									just = if(is.null(legendi[['just']])){ c("left", "bottom") } else { legendi[['just']] }
 									)
 								),
 							row = 3 * (legend.row - 1) + 2,

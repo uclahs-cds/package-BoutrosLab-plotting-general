@@ -76,7 +76,15 @@ create.multiplot(
 	style = 'BoutrosLab', 
 	remove.all.border.lines = FALSE,
 	preload.default = 'custom',
-	plot.for.carry.over.when.same = 1);
+	plot.for.carry.over.when.same = 1,
+	get.dendrogram.from = NULL, 
+	dendrogram.right.size = NULL, 
+	dendrogram.right.x = NULL, 
+	dendrogram.right.y = NULL, 
+  dendrogram.top.size = NULL, 
+  dendrogram.top.x = NULL, 
+  dendrogram.top.y = NULL
+);
 }
 \arguments{
     \item{plot.objects}{A list of plot objects. Goes in this order: Bottom Left, Bottom Right, Top Left, Top Right}
@@ -152,6 +160,13 @@ create.multiplot(
     \item{remove.all.border.lines}{defaults to FALSE. Flag for whether all borders around plots should be removed.}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{plot.for.carry.over.when.same}{which plot }
+    \item{get.dendrogram.from}{which plot to retrieve dendrogram from}
+    \item{dendrogram.right.size}{ size of right side dendrogram }
+    \item{dendrogram.right.x}{x position of right side dendrogram}
+    \item{dendrogram.right.y}{y position of right side dendrogram}
+    \item{dendrogram.top.size}{ size of top side dendrogram }
+    \item{dendrogram.top.x}{x position of top side dendrogram}
+    \item{dendrogram.top.y}{y position of top side dendrogram}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ken Chu and Denise Mak}
@@ -1179,6 +1194,112 @@ create.multiplot(
 	plot.labels.to.retrieve = c(1),
 	xlimits = list(NULL,c("A","B","C")),
 	ylimits = list(NULL,c(-3,10))
+        );
+        
+# Dendrogram provided
+dist <- data.frame(
+    a = rnorm(100, 1), 
+    b = rnorm(100, 3), 
+    c = rnorm(100, 5)
+    );
+
+simple.data <- data.frame(
+    x = c(dist$a, dist$b, dist$c),
+    y = rep(LETTERS[1:3], each = 100)
+    );
+col.dendrogram <- BoutrosLab.plotting.general::create.dendrogram(
+    x = microarray[1:20, 1:20],
+    cluster.dimension = 'col'
+    );
+
+row.dendrogram <- BoutrosLab.plotting.general::create.dendrogram(
+    x = microarray[1:20, 1:20],
+    cluster.dimension = 'row'
+    );
+
+simple.boxplot <- create.boxplot(
+    formula = x ~ y,
+    data = simple.data,
+    col = 'lightgrey'
+    );
+
+simple.heatmap <- create.heatmap(
+    x = microarray[1:20, 1:20],
+    main = 'Dendrogram provided',
+    xlab.label = 'Genes',
+    ylab.label = 'Samples',
+    xaxis.lab = NA,
+    yaxis.lab = 1:20,
+    xaxis.cex = 0.75,
+    yaxis.cex = 0.75,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2,12,1),
+    colour.alpha = 'automatic',
+    # note: row/column dendrograms are switched because the function inverts rows and columns
+    clustering.method = 'none',
+    row.dendrogram = col.dendrogram,
+    col.dendrogram = row.dendrogram,
+    # Adjusting the size of the dendrogram
+    right.dendrogram.size = 3,
+    top.dendrogram.size = 2.5,
+    description = 'Heatmap created using BoutrosLab.plotting.general'
+    );
+    
+legend <- legend.grob(
+    list(
+        legend = list(
+            colours = default.colours(4),
+            title = "Batch",
+            labels = LETTERS[1:4],
+            size = 3,
+            title.cex = 1,
+            label.cex = 1,
+            border = 'black'
+            ),
+        legend = list(
+            colours = c("lightblue","dodgerblue2","dodgerblue4"),
+            title = "Grade",
+            labels = c("Low","Normal","High"),
+            size = 3,
+            title.cex = 1,
+            label.cex = 1,
+            border = 'black'
+            ),
+        legend = list(
+            colours = c("grey","coral1"),
+            title = "Biomarker",
+            labels = c("Not present","Present"),
+            size = 3,
+            title.cex = 1,
+            label.cex = 1,
+            border = 'black'
+            )
+        ),
+    title.just = 'left'
+    );
+create.multiplot(
+        filename = "MultiPlot_getDendrograms.tiff",
+        plot.objects = list(simple.heatmap, simple.boxplot),
+        main = "Simple",
+        xlab.label = c("Patient Group"),
+	y.spacing = 3,
+        # The plotting function throws an error if this is not included
+        ylab.label = c("Sugar Level", "Drug Regimen"),
+        ylab.padding = 7,
+        # Parameters set in the multiplot will override settings in individual plots
+        xaxis.cex = 0.7,
+        yaxis.cex = 0.7,
+	yaxis.lab = list(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20),c(-2,-1,0,1,2,3,4,5)),
+	xaxis.lab = list(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, 16,17,18,19,20),c(1,2,3)),
+	xaxis.rot = 45,
+	xaxis.rot.top = 90,
+    	legend = list(right = list(fun = legend)),
+	print.new.legend = TRUE,
+	get.dendrogram.from = 1, 
+	dendrogram.right.size = 0.40, dendrogram.right.x = 29, dendrogram.right.y = 67,
+	dendrogram.top.size = 1, dendrogram.top.x = 110, dendrogram.top.y = -180
         );
 }
 \keyword{hplot}

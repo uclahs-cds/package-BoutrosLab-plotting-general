@@ -35,7 +35,7 @@ create.qqplot.comparison <- function(
                                 ybottom = ybottom.rectangle
                         );
 
-	if(!is.null(yat)){
+	if(!is.null(yat) && length(yat) == 1){
         	if(yat == "auto"){
                 	out = auto.axis(unlist(x[[1]]))
                 	x[[1]] = out$x
@@ -58,7 +58,7 @@ create.qqplot.comparison <- function(
         	}
 	}
 	
-	if(!is.null(xat)){
+	if(!is.null(xat) && length(xat) == 1){
         	if(xat == "auto"){
                 	out = auto.axis(unlist(x[[2]]))
                 	x[[2]] = out$x

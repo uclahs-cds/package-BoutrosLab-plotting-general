@@ -304,6 +304,15 @@ simple.data <- data.frame(
     w <- rnorm(n = 15)
     );
 
+simple.1D.data <- data.frame(x = rnorm(n = 15)); 
+
+
+create.heatmap(
+    filename = "Heatmap_1D.tiff",
+    x=simple.1D.data, 
+    clustering.method='none'
+    ); 
+
 create.heatmap(
     filename = 'Heatmap_Simple.tiff',
     x = simple.data,
@@ -1190,7 +1199,7 @@ discrete.covariate.legend <- list(
         title = expression(underline('one')),
 	continuous = TRUE,
 	height=3,
-	pos.x = 0.40
+	pos.x = -0.1
         ),
     legend = list(
         colours = c('grey0', 'grey100'),
@@ -1203,13 +1212,13 @@ discrete.covariate.legend <- list(
         title = expression(underline('three')),
 	continuous = TRUE,
         height = 3,
-        pos.x = 0.3,
-        pos.y = 0.55,
+        pos.y = 0.5,
         angle = -90,
         tck = 1,
         tck.number = 3,
         at = c(0,100),
-        labels.rot = 90
+        labels.rot = 90,
+	just = c("center","bottom")
         )
    );
 

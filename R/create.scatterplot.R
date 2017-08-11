@@ -199,7 +199,7 @@ create.scatterplot <- function(
                                 ybottom = ybottom.rectangle
                         );
 
-	if(!is.null(yat)){
+	if(!is.null(yat) && length(yat) == 1){
         	if(yat == "auto"){
                 	out = auto.axis(unlist(data[toString(formula[[2]])]))
                 	data[toString(formula[[2]])] = out$x
@@ -221,7 +221,7 @@ create.scatterplot <- function(
                 	yaxis.lab = out$axis.lab
         	}
 	}
-	if(!is.null(xat)){
+	if(!is.null(xat) && length(xat) == 1){
         	if(xat == "auto"){
                 	out = auto.axis(unlist(data[toString(formula[[3]])]))
                 	data[toString(formula[[3]])] = out$x

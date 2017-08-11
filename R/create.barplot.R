@@ -45,7 +45,7 @@ create.barplot <- function(
                         );
 
 	
-	if(!is.null(yat)){       
+	if(!is.null(yat) && length(yat)==1){       
 		if(yat == "auto"){
 			if(stack == TRUE){
 				# run once to get data readjustment (in case log)
@@ -91,7 +91,7 @@ create.barplot <- function(
                 	yaxis.lab = out$axis.lab
         	}
 	}
-	if(!is.null(xat)){
+	if(!is.null(xat) && length(xat) == 1){
         	if(xat == "auto"){
                         if(stack == TRUE){
                                 # run once to get data readjustment (in case log)
@@ -297,14 +297,24 @@ create.barplot <- function(
 
 				# handle x-position offset due to groups
 				if (!is.null(groups)) {
+					
 					num.groups <- length(subscripts) / length(unique(groups));
 					group.num  <- (subscripts - 1) %/% num.groups;
-					xoffset <- error.whisker.width * (mean(groups) - 2 + group.num);
+					if(length(unique(group.num)) %% 2 == 1){
+					  group.num = group.num - trunc(length(unique(group.num))/2)
+					  
+					}
+					else{
+					  ng = trunc(length(unique(group.num))/2)
+	
+					  subtr = 1 + 2*(ng-1)
+					  group.num = group.num*2 - subtr
+					}
+					xoffset <- (6/(nrow(data)*4)) * (group.num)*(1.75 - (0.85*(length(unique(groups))+1)%%2))
 					}
 				else {
 					xoffset <- 0;
-					}
-
+				}
 				panel.arrows(
 					# convert to numeric to handle when x is a factor
 					x0 = as.numeric(x) + xoffset,

@@ -14,8 +14,8 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, main.key.padding = 1,
 							ylab.padding = 5, xlab.padding = 5, xlab.to.xaxis.padding = 2, right.padding = 1,
 							left.padding = 1, top.padding = 0.5, bottom.padding = 0.5, xlab.label = NULL,
-							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xaxis.top.tck.lab = NULL, xat.top = TRUE, xlab.top.cex = 2, xaxis.top.idx = NULL,
-							xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
+							ylab.label = NULL, xlab.cex = 2, ylab.cex = 2,xlab.top.label = NULL,xaxis.top.tck.lab = NULL, xat.top = TRUE, xlab.top.cex = 2,
+							xaxis.top.idx = NULL, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0,
 							xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.labels = TRUE, yaxis.labels = TRUE,
 							xaxis.alternating = 1, yaxis.alternating = 1, xat = TRUE, yat = TRUE, xlimits = NULL,
 							ylimits = NULL, xaxis.rot = 0, xaxis.rot.top = 0, xaxis.fontface = 'bold', y.tck.dist=0.5, x.tck.dist=0.5, yaxis.fontface = 'bold',
@@ -27,7 +27,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							plot.layout = c(1,length(plot.objects)), layout.skip=rep(FALSE,length(plot.objects)),
 							description = 'Created with BoutrosLab.plotting.general',
 							plot.labels.to.retrieve = NULL, style = 'BoutrosLab', remove.all.border.lines = FALSE,
-							preload.default = 'custom', plot.for.carry.over.when.same = 1) {
+							preload.default = 'custom', plot.for.carry.over.when.same = 1, get.dendrogram.from = NULL, 
+							dendrogram.right.size = NULL, dendrogram.right.x = NULL, dendrogram.right.y = NULL, 
+							dendrogram.top.size = NULL, dendrogram.top.x = NULL, dendrogram.top.y = NULL) {
 
 	if(preload.default == 'paper'){
 
@@ -292,13 +294,143 @@ xscale.components.old <- function(...){
 		key = key,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
+	if(print.new.legend){
+	  trellis.object$legend= legend
+	}
 	if (!is.null(xaxis.top.tck.lab)){
 		trellis.object <- update(trellis.object,xscale.components = xscale.components.new)
 	}
 	# update above doesn't seem to go through so force it here
 	trellis.object$x.limits = xlimits;
 	trellis.object$y.limits = ylimits;
+  if(!is.null(get.dendrogram.from)){
+    
+    old.legend.top = plot.objects[[get.dendrogram.from]]$legend$top$fun
+    
 
+    if(!is.null(old.legend.top)){
+      if(is.null(trellis.object$legend$top$fun) || print.new.legend == FALSE){
+          trellis.object$legend$top$fun = old.legend.top
+        
+          trellis.object$legend$top$fun$framevp$width = unit(dendrogram.top.size,"npc")
+          trellis.object$legend$top$fun$framevp$height = unit(dendrogram.top.size,"npc")
+          trellis.object$legend$top$fun$framevp$x = unit(dendrogram.top.x, "points")
+          trellis.object$legend$top$fun$framevp$y = unit(dendrogram.top.y, "points")
+      }
+      else{
+        old.legend.top.height.cm <- convertUnit(
+          grobHeight(old.legend.top),
+          unitTo = 'cm',
+          axisFrom = 'y',
+          typeFrom = 'dimension',
+          valueOnly = TRUE
+        );
+      
+        old.legend.top$framevp$width = unit(dendrogram.top.size,"npc")
+        old.legend.top$framevp$height = unit(dendrogram.top.size,"npc")
+        old.legend.top$framevp$x = unit(dendrogram.top.x, "points")
+        old.legend.top$framevp$y = unit(dendrogram.top.y, "points")
+    
+        top.layout.final <- grid.layout(
+          ncol = 1,
+          nrow = 2,
+          heights = unit(
+            x = c(old.legend.top.height.cm + 2, 1),
+            units = c('cm', 'grobheight'),
+            data = list(NULL, old.legend.top)
+          ),
+          widths = unit(1, 'null'),
+          respect = FALSE
+        );
+    
+        # create a frame using this layout
+        top.grob.final <- frameGrob(layout = top.layout.final);
+    
+        # place the existing grob
+        top.grob.final <- placeGrob(
+          frame = top.grob.final,
+          grob = old.legend.top,
+          row = 1,
+          col = 1
+        );
+    
+      # place the legend
+        top.grob.final <- placeGrob(
+          frame = top.grob.final,
+          grob = trellis.object$legend$top$fun,
+          row = 2,
+          col = 1
+        );
+    
+        trellis.object$legend$top$fun = top.grob.final
+      }
+    }
+    
+    old.legend.right = plot.objects[[get.dendrogram.from]]$legend$right$fun
+    if(!is.null(old.legend.right)){
+      if(is.null(trellis.object$legend$right$fun)  || print.new.legend == FALSE){
+        trellis.object$legend$right$fun = old.legend.right
+      
+        trellis.object$legend$right$fun$framevp$width = unit(dendrogram.right.size,"npc")
+        trellis.object$legend$right$fun$framevp$height = unit(dendrogram.right.size,"npc")
+        trellis.object$legend$right$fun$framevp$x = unit(dendrogram.right.x, "points")
+        trellis.object$legend$right$fun$framevp$y = unit(dendrogram.right.y, "points")
+      }
+      else{
+        old.legend.right.width.cm <- convertUnit(
+          grobWidth(old.legend.right),
+          unitTo = 'cm',
+          axisFrom = 'x',
+          typeFrom = 'dimension',
+          valueOnly = TRUE
+        );
+    
+        old.legend.right$framevp$width = unit(dendrogram.right.size,"npc")
+        old.legend.right$framevp$height = unit(dendrogram.right.size,"npc")
+        old.legend.right$framevp$x = unit(dendrogram.right.x, "points")
+        old.legend.right$framevp$y = unit(dendrogram.right.y, "points")
+    
+
+    
+    
+        right.layout.final <- grid.layout(
+          nrow = 1,
+          ncol = 2,
+          widths = unit(
+            x = c(1, old.legend.right.width.cm + 2),
+            units = c('grobwidth','cm'),
+            data = list(old.legend.right, NULL)
+          ),
+          heights = unit(1, 'null'),
+          respect = FALSE
+        );
+    
+        right.grob.final <- frameGrob(layout = right.layout.final);
+    
+        # place the existing grob
+        right.grob.final <- placeGrob(
+          frame = right.grob.final,
+          grob = old.legend.right,
+          row = 1,
+          col = 1
+        );
+    
+        # place the legend
+        right.grob.final <- placeGrob(
+          frame = right.grob.final,
+          grob = trellis.object$legend$right$fun,
+          row = 1,
+          col = 2
+        );
+        trellis.object$legend$right$fun = right.grob.final
+      }
+    }
+    
+
+    
+
+    
+  }
 	# pulling forward a combination of axis limits, at and labels from the individual plots and the values passed to multiplot as a argument to the created mutliplot
 	if (!is.null(plot.labels.to.retrieve)) {
 		Nxaxis.labels <- list();

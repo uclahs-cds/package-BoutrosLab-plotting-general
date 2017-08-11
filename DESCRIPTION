@@ -1,8 +1,8 @@
 Package: BoutrosLab.plotting.general
-Version: 5.7.5
+Version: 5.7.6
 Type: Package
 Title: Functions to Create Publication-Quality Plots
-Date: 2017-07-26
+Date: 2017-08-11
 Author: Paul C. Boutros
 Maintainer: Paul Boutros <Paul.Boutros@oicr.on.ca>
 Depends: R (>= 3.0.2), lattice (>= 0.20-27), latticeExtra (>= 0.6-26), cluster (>= 1.14.4), hexbin (>= 1.26.3), BoutrosLab.utilities (>= 1.9.5), BoutrosLab.statistics.general (>= 2.1.1), MASS(>= 7.3-29), BoutrosLab.dist.overload (>= 1.0.1), grid, tools, e1071

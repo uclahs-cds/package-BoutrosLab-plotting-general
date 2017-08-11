@@ -34,13 +34,30 @@ force.colour.scheme <- force.color.scheme <- function(
 			}
 		x = x.processed
 		}
-	else if(scheme == 'age.categorical'){
+	else if(scheme == 'age.categorical.default'){
 		x.processed <- x;
 		if (length(grep(x = x, '-|>|<')) == 0) {
                         x <- as.numeric(x);
                         x.processed <- rep('<50', length(x));
                         x.processed[x >= 50 & x < 60] <- '50 - 60';
                         x.processed[x >= 60 & x < 70] <- '60 - 70';
+                        if (any(x >= 70, na.rm = TRUE)) {
+                                x.processed[x >= 70] <- '>= 70';
+                                }
+                        if (any(is.na(x))) {
+                                x.processed[is.na(x)] <- NA;
+                                }
+                        }
+		x = x.processed
+		}
+	else if(scheme == 'age.categorical.prostate'){
+		x.processed <- x;
+		if (length(grep(x = x, '-|>|<')) == 0) {
+                        x <- as.numeric(x);
+                        x.processed <- rep('<40', length(x));
+                        x.processed[x >= 40 & x < 50] <- '40 - 50';
+                        x.processed[x >= 50 & x < 65] <- '50 - 65';
+                        x.processed[x >= 65 & x < 70] <- '65 - 70';
                         if (any(x >= 70, na.rm = TRUE)) {
                                 x.processed[x >= 70] <- '>= 70';
                                 }
@@ -326,16 +343,20 @@ force.colour.scheme <- force.color.scheme <- function(
 			colours = c("#FEEBE2", "#FBB4B9", "#F768A1", "#C51B8A", "#7A0177", "slategrey", "slategrey", "slategrey")
 			),
 		tissue.color = list(
-			levels = c('Blood', 'Frozen', 'FFPE'),
-			colours = c(colours()[507], colours()[532], colours()[557])
+			levels = c('blood', 'frozen', 'ffpe'),
+			colours = c("orangered4", "peachpuff2", "rosybrown")
 			),
 		psa.categorical = list(
 			levels = c('0 - 9.9', '10 - 19.9', '>= 20'),
 			colours = c("#FEE6CE", "#FDAE6B", "#E6550D")
 			),
-		age.categorical = list(
+		age.categorical.default = list(
 			levels = c('<50', '50 - 60', '60 - 70', '>= 70'),
 			colours = c("gray100", "gray66", "gray33", "gray0")
+			),
+		age.categorical.prostate = list(
+			levels = c('<40', '40 - 50', '50 - 65', '65 - 70', '>= 70'),
+			colours = c("gray100", "gray75", "gray50", "gray25", "gray0")
 			)
 		);
 
