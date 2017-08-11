@@ -16,18 +16,21 @@ thousands.split <- function(nums){
 		
 		text = format(nums[k], scientific = FALSE)
 
-		num.sets = trunc(nchar(text)/3)
-		remainingLetters = nchar(text) - num.sets*3
-		final.str = ''
-
+		num.sets = trunc(nchar(text)/3) #number of sets of 3
+		remainingLetters = nchar(text) %% 3 # remainder
+		final.str = '' #string to be manipulated
+		
+		#handle remainder first (first set of < 3)
 		if(remainingLetters != 0){
 			final.str =  substring(text,1, remainingLetters)
 			text = substring(text, remainingLetters +1, nchar(text))
 			}
-
-
+		
+		#split the text up
 		sst <- strsplit(text, "")[[1]]
+		#grab sets of 3
 		out <- paste0(sst[c(TRUE, FALSE, FALSE)], sst[c(FALSE, TRUE, FALSE)], sst[c(FALSE, FALSE, TRUE)])	
+		#insert comma in between each set
 		if(num.sets != 0){
 			for (i in c(1:num.sets)){
 				if(remainingLetters == 0 && i == 1){
