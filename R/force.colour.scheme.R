@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO SET COLOUR SCHEMES ################################################################
-force.color.scheme <- function(
+force.colour.scheme <- force.color.scheme <- function(
 	x, scheme, fill.colour = 'slategrey', include.names = FALSE, return.factor = FALSE, return.scheme = FALSE
 	) {
 

@@ -10,7 +10,7 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DOTMAPS #####################################################################
-create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, col.lwd = 1.5, row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, NA.spot.size.colour = 'black', grid.colour = NULL, colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white', key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, col.colour = 'black', row.colour = 'black', description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',border.rectangle=NULL, lwd.rectangle = NULL, alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab',preload.default = 'custom') {
+create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL, axis.xlab.padding = 1, ylab.axis.padding = 1, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, col.lwd = 1.5, row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, NA.spot.size.colour = 'black', grid.colour = NULL, colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white', key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, col.colour = 'black', row.colour = 'black', description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',border.rectangle=NULL, lwd.rectangle = NULL, alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab',preload.default = 'custom') {
 
 
 	### needed to copy in case using variable to define rectangles dimensions
@@ -467,7 +467,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 				key.axis.padding = 0.1,
 				axis.top = axis.top,
 				axis.bottom = axis.bottom,
-				axis.xlab.padding = 1,
+				axis.xlab.padding = axis.xlab.padding,
 				xlab = if (is.null(xaxis.lab)) {0.1} else {1},
 				xlab.key.padding = 0.5,
 				key.bottom = 1,
@@ -480,7 +480,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 				key.left = 1,
 				key.ylab.padding = 0.1,
 				ylab = if (is.null(yaxis.lab)) {0.1} else {1},
-				ylab.axis.padding = 1,
+				ylab.axis.padding = ylab.axis.padding,
 				axis.left = axis.left,
 				axis.right = axis.right,
 				axis.key.padding = 0.1,
