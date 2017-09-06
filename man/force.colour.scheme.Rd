@@ -7,7 +7,7 @@
 force.colour.scheme(
 	x,
 	scheme,
-	fill.colour = NA,
+	fill.colour = 'slategrey',
 	include.names = FALSE,
 	return.factor = FALSE,
 	return.scheme = FALSE
