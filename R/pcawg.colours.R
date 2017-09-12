@@ -66,6 +66,8 @@ pcawg.colours <- function(
 	inversion <- '#FFA500'
 	transposition <- '#7300E7'
 	translocation <- '#458B00'
+	insertion <- '#1BE7FF'
+
 	# Chromosomes
 	chr1 <- '#DE47AB'
 	chr2 <- '#72BE97'
@@ -140,6 +142,9 @@ pcawg.colours <- function(
 	bladder.tcc <- '#EEAD0E' 
 	bone.osteosarc <- '#FFD700'
 	bone.leiomyo <- '#FFEC8B'
+		# New naming for tumour types 
+	softtissue.leiomyo <- '#FFEC8B'
+	softtissue.liposarc <- '#CDCB50'
 	bone.epith  <- '#ADAC44'
 	breast.adenoca <- '#CD6090' 
 	cervix.scc <- '#79CDCD' 
@@ -157,7 +162,7 @@ pcawg.colours <- function(
 	lung.scc <- '#FDF5E6'
 	lung.adenoca <- '#FFFFFF' 
 	lymph.bnhl <- '#698B22'
-	lymph.cll <- '#F4A35D' 
+	lymph.cll <- '#698B22' 
 	myeloid.mpn <- '#FFC100' 
 	myeloid.aml <- '#CD6600' 
 	ovary.adenoca <- '#008B8B' 
@@ -174,6 +179,7 @@ pcawg.colours <- function(
 	breast.lobularca.alt <- '#F095BD'
 	breast.dcis <- '#DDCDCD'
 	lymph.nos <- '#DDCDCD'
+	lymph.nos.alt <- '#698B22'
 	myeloid.mds <- '#DDCDCD'
 	cervix.adenoca <- '#DDCDCD'
 
@@ -257,14 +263,16 @@ pcawg.colours <- function(
 				'cna.loss',
 				'inversion',
 				'transposition',
-				'translocation'
+				'translocation',
+				'insertion'
 				),
 			colours = c(
 				cna.gain,
 				cna.loss,
 				inversion,
 				transposition,
-				translocation
+				translocation,
+				insertion
 				)
 			),
 		chromosomes = list(
@@ -484,6 +492,8 @@ pcawg.colours <- function(
 				'bone.osteosarc',
 				'bone.leiomyo',
 				'bone.epith',
+				'softtissue.leiomyo', 
+				'softtissue.liposarc',
 				'breast.adenoca',
 				'cervix.scc',
 				'cns.medullo',
@@ -526,6 +536,8 @@ pcawg.colours <- function(
 				bone.osteosarc,
 				bone.leiomyo,
 				bone.epith,
+				softtissue.leiomyo,
+				softtissue.liposarc,
 				breast.adenoca,
 				cervix.scc,
 				cns.medullo,
