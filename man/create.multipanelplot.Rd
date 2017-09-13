@@ -137,7 +137,15 @@ simple.heatmap <- create.heatmap(
 	xaxis.rot = 0
         );
 
-create.multipanelplot(plot.objects = list(simple.boxplot,simple.heatmap), y.spacing = 2,  ylab.axis.padding = 2, main = 'Simple', top.padding = 2, filename = 'Multipanelplot_Simple.tiff')
+create.multipanelplot(
+	filename = 'Multipanelplot_Simple.tiff',
+	plot.objects = list(simple.boxplot,simple.heatmap), 
+	y.spacing = 2,  
+	ylab.axis.padding = 2, 
+	main = 'Simple', 
+	top.padding = 2, 
+	)
+
 # Create plot # 1
 simple.boxplot2 <- create.boxplot(
     formula = x ~ y,
@@ -186,7 +194,20 @@ simple.heatmap2 <- create.heatmap(
         );
 
 
-create.multipanelplot(plot.objects = list(simple.boxplot2, simple.violin2,simple.heatmap2), layout.width = 2, layout.height = 2, xlab.label = 'Patient Group', main = 'Simple Layout', top.padding = 2, heights = c(3,1), x.spacing = 2, y.spacing = 2, filename = 'Multipanelplot_Simple_Layout.tiff')
+create.multipanelplot(
+	filename = 'Multipanelplot_Simple_Layout.tiff',
+	plot.objects = list(simple.boxplot2, 
+	simple.violin2,simple.heatmap2), 
+	layout.width = 2, 
+	layout.height = 2, 
+	xlab.label = 'Patient Group', 
+	main = 'Simple Layout', 
+	top.padding = 2, 
+	heights = c(3,1), 
+	x.spacing = 2, 
+	y.spacing = 2
+	)
+
 all_data <- data.frame(
     a = rnorm(n = 25, mean = 0, sd = 0.75),
     b = rnorm(n = 25, mean = 0, sd = 0.75),
@@ -227,7 +248,13 @@ all_data <- data.frame(
         yaxis.cex = 1.5
         ); 
 
-create.multipanelplot(plot.objects = list(barplot.formatted, heatmap.formatted), heights = c(1,3), y.spacing = 2, main = 'Formatted', top.padding = 2, filename = 'Multipanelplot_Formatting.tiff')
+create.multipanelplot(filename = 'Multipanelplot_Formatting.tiff',
+	plot.objects = list(barplot.formatted, heatmap.formatted), 
+	heights = c(1,3), 
+	y.spacing = 2, 
+	main = 'Formatted', 
+	top.padding = 2
+	)
 
 data_bars <- data.frame(
     x = sample(x = 5:35, size = 10),
@@ -334,7 +361,16 @@ legendG <- legend.grob(
    	layout = c(1,3)
     	);
 
-create.multipanelplot(plot.objects = list(bars, cov_3, cov_2, cov_1 ), heights = c(1, 0.1,0.1,0.1), legend = list(right = list(fun = legendG)), ylab.label = 'Response to Treatment', main = 'Bar Chart',x.spacing = 0, y.spacing = 3, filename = 'Multipanelplot_Barchart.tiff')
+create.multipanelplot(
+	filename = 'Multipanelplot_Barchart.tiff',
+	plot.objects = list(bars, cov_3, cov_2, cov_1 ), 	
+	heights = c(1, 0.1,0.1,0.1), 
+	legend = list(right = list(fun = legendG)), 
+	ylab.label = 'Response to Treatment', 
+	main = 'Bar Chart',
+	x.spacing = 0, 
+	y.spacing = 3
+	)
 
 # Set up plots for complex example
 
@@ -483,6 +519,7 @@ cov_legend.grob <- legend.grob(
 
 
 create.multipanelplot(
+	filename = 'Multipanelplot_with_heatmap.tiff',
 	plot.objects = list(dotmap,covariates), 
 	heights = c(1,0.2), 
 	y.spacing = 0, 
@@ -501,8 +538,7 @@ create.multipanelplot(
             y = 0.50,
             fun = dotmap_legend.grob
             )
-        ),
-        filename = 'Multipanelplot_with_heatmap.tiff'
+        )
 
 )
 
@@ -676,7 +712,7 @@ create.multipanelplot(
 	height = 12,
 	width = 12,
 	main = 'Complex', 
-	top.padding = 2,	
+	top.padding = 2
 )
 
 # Create a multiplot with a heatmap, key like legend and barplot
@@ -839,8 +875,8 @@ create.multipanelplot(
             fun = cov_legend.grob
             )
         ),
-	main = 'Continous Legend', 
-	top.padding = 2
+    main = 'Continous Legend', 
+    top.padding = 2
     # This parameter must be set for the legend to appear
     );
 
