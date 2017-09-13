@@ -11,7 +11,7 @@ auto.axis(
     max.factor = 1, 
     min.factor = 1, 
     include.origin = TRUE, 
-    num.labels = 4, 
+    num.labels = 5, 
     max.min.log10.diff = 2
 )
 }

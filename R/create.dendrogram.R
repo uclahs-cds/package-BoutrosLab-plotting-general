@@ -12,9 +12,13 @@
 ### FUNCTION TO CREATE DENDROGRAM ##################################################################
 create.dendrogram <- function(
 	x, clustering.method = 'diana', cluster.dimension = 'col', distance.method = 'correlation',
-	cor.method = 'pearson', force.clustering = FALSE
+	cor.method = 'pearson', force.clustering = FALSE, same.as.matrix = FALSE
 	) {
 
+  
+  if(same.as.matrix){
+      x <- t(apply(x, 2, rev));
+      }
 	# This function will create a dendrogram using either row-wise or column-wise clustering
 	# It is called from the create.heatmap function when clustering is required and no dendrograms are provided
 	# verify proper input formatting

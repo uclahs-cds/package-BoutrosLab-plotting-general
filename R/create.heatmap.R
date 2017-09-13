@@ -193,8 +193,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 					x = x[stratified.clusters.cols[[i]],],
 					clustering.method = clustering.method,
 					cluster.dimension = 'row',
-					distance.method = cols.distance.method,
 					cor.method = cor.method,
+					distance.method = cols.distance.method,
 					force.clustering = force.clustering
 					);
 				}
@@ -240,6 +240,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		# reorder data for plotting
 		if (length(stratified.clusters.cols) > 0) {
 			x <- x[dd.row.order,];
+
 			}
 		else {
 			x <- x[order.dendrogram(dd.row),];
@@ -300,7 +301,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				}
 			}
 
-		# if both covariates and dendrograms are to be drawn, place them in a grid and set the legend to hold the appropriate grob
+		# if both covariates and dendrograms are to be drawn, place them in a grid and set the legend to hold the approntate grob
 		if (length(covariates.top) > 0 && plot.dendrograms %in% c('both', 'top')) {
 
 			top.layout <- grid.layout(
@@ -398,8 +399,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				cor.method = cor.method,
 				force.clustering = force.clustering
 				);
-			}
-
+		}
 		}
 	
 	if (exists('dd.col')) {
@@ -1126,7 +1126,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		grid.col <- FALSE;
 		cat(paste0('Warning: number of columns exceeded limit (', grid.limit, '), column lines are turned off. Please set "force.grid.col" to TRUE to override this\n'));
 		} 
-
 	# create heatmap
 	trellis.object <- lattice::levelplot(
 		x,
@@ -1307,33 +1306,40 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			},
 		aspect = 'fill',
 		scales = list(
-			x = list(
-				labels = xaxis.lab,
-				cex = xaxis.cex,
-				col = xaxis.col,
-				tck = x.tck,
-				alternating = x.alternating,
-				rot = xaxis.rot,
-				at = xat,
-				fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
+			
+			x = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily',
+				add.to.list = list(
+					labels = xaxis.lab,
+					cex = xaxis.cex,
+					col = xaxis.col,
+					tck = x.tck,
+					alternating = x.alternating,
+					rot = xaxis.rot,
+					at = xat,
+					fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
+					)
 				),
-			y = list(
-				labels = yaxis.lab,
-				cex = yaxis.cex,
-				col = yaxis.col,
-				rot = yaxis.rot,
-				tck = if(! is.null(yaxis.tck)){
-						c(yaxis.tck, 0);
-					} else if (ncol(x) < 65) { 
-						c(0.2 + yaxis.cov.height.cm, 0.2)
-						} 
-					else {
-						c(0 + yaxis.cov.height.cm,0)
-						},
-				axs = 'r',
-				alternating = 1,
-				at = yat,
-				fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
+			y = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily',
+				add.to.list = list(
+					labels = yaxis.lab,
+					cex = yaxis.cex,
+					col = yaxis.col,
+					rot = yaxis.rot,
+					tck = if(! is.null(yaxis.tck)){
+							c(yaxis.tck, 0);
+						} else if (ncol(x) < 65) { 
+							c(0.2 + yaxis.cov.height.cm, 0.2)
+							} 
+						else {
+							c(0 + yaxis.cov.height.cm,0)
+							},
+					axs = 'r',
+					alternating = 1,
+					at = yat,
+					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
+					)
 				)
 			),
 		xscale.components = xscale.components.new,

@@ -122,7 +122,7 @@ default.colours <- default.colors <- function(
 	### ORGANIZE PALETTES ##########################################################################
 	# Add new schemes to this list
 	schemes <- list(
-		dotmap = c('darkorange1', 'dodgerblue2'),
+		dotmap = c('dodgerblue2', 'darkorange1'),
 		seq = BoutrosLab.plotting.general::colour.gradient('chartreuse4', 5),
 		div = c(div_one, div_two, div_thr, div_fou, div_fiv, div_six, div_sev, div_eig),
 		survival = c('royalblue2', 'firebrick', 'chartreuse3', 'purple4', 'plum1', 'orange', 'maroon3', 'turquoise3', 'chocolate4', 'lightcoral'),

@@ -9,7 +9,8 @@ create.dendrogram(
 	cluster.dimension = 'col',
 	distance.method = 'correlation',
 	cor.method = 'pearson',
-	force.clustering = FALSE
+	force.clustering = FALSE,
+	same.as.matrix = FALSE
 	);
 }
 \arguments{
@@ -19,6 +20,7 @@ create.dendrogram(
     \item{distance.method}{Method name of the distance measure to be used for clustering. Defaults to \dQuote{correlation}. Other supported methods are same as in ?dist. Also supports \dQuote{jaccard} which is useful for clustering categorical variables.}
     \item{cor.method}{The method used for calculating correlation. Defaults to \dQuote{pearson}}
     \item{force.clustering}{Binary to over-ride the control that prevents clustering of too-large matrices}
+    \item{same.as.matrix}{Prevents the flipping of the matrix that the function normally does}
     }
 \value{Returns an object of the dendrogram class corresponding to the row-wise or column-wise dendrogram for x}
 \author{Lauren Chong}

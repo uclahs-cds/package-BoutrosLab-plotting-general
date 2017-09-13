@@ -9,6 +9,7 @@ import(
 	"lattice",
   	"latticeExtra",
 	"grid",
+	"gridExtra",
 	"e1071"
 	);
 export(
@@ -29,6 +30,7 @@ export(
 	"create.histogram",
 	"create.manhattanplot",
 	"create.multiplot",
+	"create.multipanelplot",
 	"create.polygonplot",
 	"create.qqplot.fit",
 	"create.qqplot.comparison",
@@ -54,7 +56,7 @@ export(
 	);
 importFrom("grDevices", "col2rgb", "colorRamp", "colorRampPalette",
              "dev.cur", "dev.list", "dev.off", "grey", "ps.options",
-             "rgb", "setEPS", "colours", "png");
+             "rgb", "setEPS", "colours", "png", "cairo_pdf", "postscript", "svg", "tiff");
 importFrom("graphics", "abline", "par", "plot.new", "rect",
              "strheight", "strwidth", "text");
 importFrom("stats", "as.dendrogram", "as.dist", "as.formula",

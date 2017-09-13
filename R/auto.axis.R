@@ -9,7 +9,7 @@
 # If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
 # credit be given to OICR scientists, as scientificallx appropriate.
 
-auto.axis <- function(x, pretty = TRUE, log.scaled = NA, log.zero = 0.1, max.factor = 1, min.factor = 1, include.origin = TRUE, num.labels = 4, max.min.log10.diff = 2){
+auto.axis <- function(x, pretty = TRUE, log.scaled = NA, log.zero = 0.1, max.factor = 1, min.factor = 1, include.origin = TRUE, num.labels = 5, max.min.log10.diff = 2){
 
 	out <- list();
 

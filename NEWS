@@ -1,3 +1,23 @@
+BoutrosLab.plotting.general 5.8.0 2017-08-11
+
+ADDITIONS
+* new create.multiplot function (create.multipanelplot)
+
+BUG FIX
+* auto-axis now gives 5 labels by default instead of 4
+* same.as.matrix can now be applied to create dendrogram outside of heatmap
+* fixed filename error in crete.gif
+* heatmap now loads defaults
+* segplot defaults to bold like rest of plots
+* colours for default dotmap now match the documentation (had to reverse them)
+
+FEATURE UPDATE
+*pcawg.colours: new and renamed tumour type names added to palette, sv class 'insertion' assigned colour
+
+
+--------------------------------------------------------------------------
+
+
 BoutrosLab.plotting.general 5.7.6 2017-08-11
 
 BUG FIX

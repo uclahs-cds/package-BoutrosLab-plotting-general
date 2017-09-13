@@ -16,7 +16,7 @@ create.segplot <- function(
 	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
 	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xaxis.lab = TRUE,
 	yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black',
-	xaxis.fontface = 'plain', yaxis.fontface = 'plain', xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1,
+	xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0, xaxis.tck = 1,
 	yaxis.tck = 1, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, abline.h = NULL, abline.v = NULL,
 	abline.lty = 1, abline.lwd = 1, abline.col = 'black', segments.col = 'black', segments.lwd = 1,
 	layout = NULL, as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same', y.relation = 'same',
@@ -55,7 +55,7 @@ create.segplot <- function(
 		data,
 		prepanel = prepanel.segplot,
 		panel = function( abline.local = abline, ...) {
-			
+
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
@@ -126,6 +126,7 @@ create.segplot <- function(
 				draw.bands = FALSE,
 				...,
 				)
+			
 			},
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
