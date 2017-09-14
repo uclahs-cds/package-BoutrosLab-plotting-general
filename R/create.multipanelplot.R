@@ -1,3 +1,13 @@
+### Custom printing function for multipanel object
+
+print.multipanel <- function(x, ...){
+		class(x) = c('gtable', 'gTree', 'grob','gDesc')
+		if(!is.null(dev.list())){
+			dev.off()
+			}
+  		grid.draw(x)
+		}
+
 create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10, width = 10, resolution = 1000, 
                             heights = c(rep(1,layout.height)),widths = c(rep(1,layout.width)), layout.width = 1, 
                             layout.height = length(plot.objects), main = '', main.padding = 2,main.x = 0.5, main.y = 0.5, x.spacing = 0, y.spacing= 0,
@@ -43,8 +53,8 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 
 				plot.objects[[i]]$main$label <- ''
-				plot.objects[[i]]$par.settings$layout.heights <- NULL;
-				plot.objects[[i]]$par.settings$layout.widths <- NULL;
+				#plot.objects[[i]]$par.settings$layout.heights <- NULL;
+				#plot.objects[[i]]$par.settings$layout.widths <- NULL;
 				plot.objects[[i]]$par.settings$layout.widths$left.padding <- 0;
 				plot.objects[[i]]$par.settings$layout.widths$key.left <- 0;
 				plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 0;
@@ -53,20 +63,20 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 				plot.objects[[i]]$par.settings$layout.widths$axis.left <- 0;
 				plot.objects[[i]]$par.settings$layout.widths$axis.right <- 0;
 				plot.objects[[i]]$par.settings$layout.widths$axis.key.padding <- 0;
-				plot.objects[[i]]$par.settings$layout.widths$key.right <- 0;
-				plot.objects[[i]]$par.settings$layout.widths$right.padding <- 0.1;
+				plot.objects[[i]]$par.settings$layout.widths$key.right <- 0; #
+				plot.objects[[i]]$par.settings$layout.widths$right.padding <- 0;
 				plot.objects[[i]]$par.settings$layout.heights$top.padding <- 0;
 				plot.objects[[i]]$par.settings$layout.heights$main <- 0;
  				plot.objects[[i]]$par.settings$layout.heights$main.key.padding <- 0;
-				plot.objects[[i]]$par.settings$layout.heights$key.top <- 0;
-				plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <- 0;
+				plot.objects[[i]]$par.settings$layout.heights$key.top <- 0; #
+				plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <-  0; #
 				plot.objects[[i]]$par.settings$layout.heights$axis.top <- 0;
 				plot.objects[[i]]$par.settings$layout.heights$axis.bottom <- 0;
 				plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding;
 				plot.objects[[i]]$par.settings$layout.heights$xlab <- 0;
-				plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 0;
-				plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 0;
-				plot.objects[[i]]$par.settings$layout.heights$key.sub.padding <- 0;
+				plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 0; #
+				plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 0; #
+				plot.objects[[i]]$par.settings$layout.heights$key.sub.padding <- 0; #
 				plot.objects[[i]]$par.settings$layout.heights$sub <- 0;
 				plot.objects[[i]]$par.settings$layout.heights$bottom.padding <- 0;
 				}
@@ -154,8 +164,13 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			
 			if (plot.objects[[i]]$y.scales$labels == TRUE || is.null(plot.objects[[i]]$y.scales$labels)) {
 				if (!is.null(plot.objects[[i]]$panel.args[[1]]$y)) {
-					yvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$y)
-					y.axis.labs =  pretty(yvals[is.finite(yvals)])
+					if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))){
+                                        	y.axis.labs = levels(plot.objects[[i]]$panel.args[[1]]$y)
+                                        	}
+					else{
+						yvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$y)
+						y.axis.labs =  pretty(yvals[is.finite(yvals)])
+						}
 					}
 				else {
 					y.axis.labs = ''
@@ -173,8 +188,13 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 			if (plot.objects[[i]]$x.scales$labels == TRUE || is.null(plot.objects[[i]]$x.scales$labels)) {
 				if (!is.null(plot.objects[[i]]$panel.args[[1]]$x)) {
-					xvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$x)
-					x.axis.labs =  pretty(xvals[is.finite(xvals)])
+                                	if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$x))){
+                                        	x.axis.labs = levels(plot.objects[[i]]$panel.args[[1]]$x)
+                                        	}
+					else{
+						xvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$x)
+						x.axis.labs =  pretty(xvals[is.finite(xvals)])
+						}
 					}
 				else{
 					x.axis.labs = ''
@@ -484,6 +504,8 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		bottom = bottom.grob, 
 		right = right.grob
 		);
+	
+
 	# return grob
 	if (!is.null(filename)) {
 		BoutrosLab.plotting.general::write.plot(
@@ -498,10 +520,13 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			);
 		}
 	else {
+		class(grob) <- "multipanel"
 		# return grob itself
 		return (grob);
 		}
 	}
+
+
 
 ## function to get the grob width given the text and specification parameters##
 get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolution) {
@@ -596,5 +621,4 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 	return (heightGrob);
   
 	}
-
 

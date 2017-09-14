@@ -154,6 +154,7 @@ simple.boxplot2 <- create.boxplot(
     xlab.label = '',
     col = 'lightgrey',
     xaxis.tck = c(0,0),
+    xaxis.lab = c('','',''),
     yaxis.tck = c(1,0),
     yaxis.lab = seq(-1,8,2),
     yat = seq(-1,8,2),
