@@ -168,7 +168,94 @@ force.colour.scheme(
         \item{Lipid}
         }
 
-    } 
+    clinicalt3
+    \itemize{
+        \item{t0}
+        \item{t1}
+        \item{t2}
+        \item{t3}
+        \item{t4}
+        \item{t5}
+        }
+
+    clinicalt9
+    \itemize{
+        \item{t1a}
+        \item{t1b}
+        \item{t1c}
+        \item{t2a}
+        \item{t2b}
+        \item{t2c}
+        \item{t3a}
+        \item{t3b}
+        \item{t3c}
+        }
+
+    gleason.score
+    \itemize{
+        \item{3+3}
+        \item{3+4}
+        \item{4+4}
+        \item{4+5}
+        \item{3+5}
+        \item{5+3}
+        \item{5+4}
+        \item{5+5}
+        \item{missing}
+        \item{NA}
+        }
+
+    gleason.sum
+    \itemize{
+        \item{5}
+        \item{6}
+        \item{7}
+        \item{8}
+        \item{9}
+        \item{missing}
+        \item{NA}
+        }
+
+    tissue.color
+    \itemize{
+        \item{blood}
+        \item{frozen}
+        \item{ffpe}
+        }
+
+    psa.categorical
+    \itemize{
+        \item{0 - 9.9}
+        \item{10 - 19.9}
+        \item{>= 20}
+        }
+  
+    age.categorical.default
+    \itemize{
+        \item{<50}
+        \item{50 - 60}
+        \item{60 - 70}
+        \item{>= 70}
+        }
+
+    age.categorical.prostate
+    \itemize{
+        \item{<40}
+        \item{40 - 50}
+        \item{50 - 65}
+        \item{65 - 70}
+        \item{>= 70}
+        }
+    age.gradient
+
+    psa.gradient 
+
+
+
+
+    
+
+  } 
 
 \author{Nicholas Harding}
 \examples{

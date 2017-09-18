@@ -161,22 +161,27 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		if (!is.null(plot.objects[[i]]$par.settings)) {
 			y.label.size[i] <- get.text.grob.width(plot.objects[[i]]$ylab$label,plot.objects[[i]]$ylab$cex,90,filename, width,height,resolution);
 			x.label.size[i] <- get.text.grob.height(plot.objects[[i]]$xlab$label,plot.objects[[i]]$xlab$cex,0,filename,width,height,resolution);
-			
-			if (plot.objects[[i]]$y.scales$labels == TRUE || is.null(plot.objects[[i]]$y.scales$labels)) {
-				if (!is.null(plot.objects[[i]]$panel.args[[1]]$y)) {
-					if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))){
-                                        	y.axis.labs = levels(plot.objects[[i]]$panel.args[[1]]$y)
-                                        	}
-					else{
-						yvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$y)
-						y.axis.labs =  pretty(yvals[is.finite(yvals)])
+		 	
+			if(!is.expression(plot.objects[[i]]$y.scales$labels[1])){
+				if (plot.objects[[i]]$y.scales$labels == TRUE || is.null(plot.objects[[i]]$y.scales$labels)) {
+					if (!is.null(plot.objects[[i]]$panel.args[[1]]$y)) {
+						if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))){
+                                        		y.axis.labs = levels(plot.objects[[i]]$panel.args[[1]]$y)
+                                        		}
+						else{
+							yvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$y)
+							y.axis.labs =  pretty(yvals[is.finite(yvals)])
+							}
+						}
+					else {
+						y.axis.labs = ''
 						}
 					}
 				else {
-					y.axis.labs = ''
+					y.axis.labs = plot.objects[[i]]$y.scales$labels
 					}
 				}
-			else {
+			else{
 				y.axis.labs = plot.objects[[i]]$y.scales$labels
 				}
 
@@ -185,24 +190,29 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 								plot.objects[[i]]$y.scales$rot[1], 
 								filename, width,height,resolution);
 			left.ticks[i] <- plot.objects[[i]]$y.scales$tck[1]*tick.to.padding.ratio;
-
-			if (plot.objects[[i]]$x.scales$labels == TRUE || is.null(plot.objects[[i]]$x.scales$labels)) {
-				if (!is.null(plot.objects[[i]]$panel.args[[1]]$x)) {
-                                	if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$x))){
-                                        	x.axis.labs = levels(plot.objects[[i]]$panel.args[[1]]$x)
-                                        	}
+			if(!is.expression(plot.objects[[i]]$x.scales$labels[1])){
+				if (plot.objects[[i]]$x.scales$labels == TRUE || is.null(plot.objects[[i]]$x.scales$labels)) {
+					if (!is.null(plot.objects[[i]]$panel.args[[1]]$x)) {
+                                		if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$x))){
+                                        		x.axis.labs = levels(plot.objects[[i]]$panel.args[[1]]$x)
+                                        		}
+						else{
+							xvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$x)
+							x.axis.labs =  pretty(xvals[is.finite(xvals)])
+							}
+						}
 					else{
-						xvals = as.numeric(plot.objects[[i]]$panel.args[[1]]$x)
-						x.axis.labs =  pretty(xvals[is.finite(xvals)])
+						x.axis.labs = ''
 						}
 					}
-				else{
-					x.axis.labs = ''
+				else {
+					x.axis.labs = plot.objects[[i]]$x.scales$labels
 					}
-				}
+			}
 			else {
-				x.axis.labs = plot.objects[[i]]$x.scales$labels
-				}
+                                x.axis.labs = plot.objects[[i]]$x.scales$labels
+                                }
+
 
 			largest.x.axis[i] <- get.text.grob.height(x.axis.labs,
 								 plot.objects[[i]]$x.scales$cex, 
@@ -554,7 +564,7 @@ get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolu
 			}
 		}
 	# if not an empty label or all blank, create the grob, and get its width
-	if (length(labels) > 0 && !(all(labels == ''))) {
+	if (length(labels) > 0 && !(all(toString(labels) == ''))) {
 		grob <- textGrob(labels,gp=gpar(cex = cex,lineheight = 1), rot = rot, x = c(rep(0.5, length(labels))), y = c(rep(0.5, length(labels))));
 		widthGrob <- convertUnit(
 			grobWidth(grob),
@@ -600,7 +610,7 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 			}
 		}
 	# if not an empty label or all blank, create the grob, and get its height
-	if (length(labels) > 0 && !(all(labels == ''))) {
+	if (length(labels) > 0 && !(all(toString(labels) == ''))) {
 		grob <- textGrob(labels,gp=gpar(cex = cex,lineheight = 1), rot = rot, x = c(rep(0.5, length(labels))), y = c(rep(0.5, length(labels))));
 		heightGrob <- convertUnit(
 			grobHeight(grob),
