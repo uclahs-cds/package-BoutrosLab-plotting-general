@@ -1,5 +1,17 @@
 BoutrosLab.plotting.general 5.8.0 2017-08-11
 
+BUG FIX
+* Multipanel plot background colour
+* Multipanel plot not accepting expression labels
+* Multipanel deleting plots main labels
+* heatmap legend layout works properly now
+
+
+--------------------------------------------------------------------------
+
+
+BoutrosLab.plotting.general 5.8.0 2017-08-11
+
 ADDITIONS
 * new create.multiplot function (create.multipanelplot)
 

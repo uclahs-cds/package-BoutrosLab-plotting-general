@@ -548,8 +548,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		font.family <- "sans";
 	        
 		# create grob representing the legend
-		
-		legend.layout = c(1, length(covariate.legends));
+	        if(is.null(legend.layout)){
+			legend.layout = c(1, length(covariate.legends));
+			}
 		legend.grob.left <- NULL
 		legend.grob.top <- NULL
 		legend.grob.right <- NULL

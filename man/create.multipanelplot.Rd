@@ -104,7 +104,6 @@ simple.boxplot <- create.boxplot(
     formula = x ~ y,
     data = simple.data,
     xaxis.lab = c('','',''),
-    main = "Simple Plot",
     main.x = 0.57,
     ylab.label = 'Sugar Level',
     xlab.label = '',

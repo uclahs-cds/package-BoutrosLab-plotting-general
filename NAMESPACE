@@ -10,6 +10,7 @@ import(
   	"latticeExtra",
 	"grid",
 	"gridExtra",
+	"gtable",
 	"e1071"
 	);
 export(
