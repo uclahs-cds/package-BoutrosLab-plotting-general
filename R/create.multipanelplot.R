@@ -1,10 +1,13 @@
 ### Custom printing function for multipanel object
 
 print.multipanel <- function(x, ...){
-		class(x) = c('gtable', 'gTree', 'grob','gDesc')
+		## set class to that of a grid object
+		class(x) <- c('gtable', 'gTree', 'grob','gDesc')
+		## close previous items if exist
 		if(!is.null(dev.list())){
 			dev.off()
 			}
+		## draw the plot like a grob
   		grid.draw(x)
 		}
 
@@ -13,53 +16,92 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
                             layout.height = length(plot.objects), main = '', main.padding = 2,main.x = 0.5, main.y = 0.5, x.spacing = 0, y.spacing= 0,
                             xlab.label = '', xlab.cex = 2, ylab.label = '', ylab.label.right = '', 
                             ylab.cex = 2, main.cex = 3, legend = NULL, left.padding = 3,  
-                            ylab.axis.padding = 0,xlab.axis.padding = 0, bottom.padding = 0, top.padding = 0, right.padding = 0,
-                            layout.skip = c(rep(FALSE, layout.width*layout.height)),
-                            description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE){
-  
+                            ylab.axis.padding = c(rep(0,layout.width)),xlab.axis.padding = c(rep(0,layout.height)), bottom.padding = 0, 
+				top.padding = 0, right.padding = 0,layout.skip = c(rep(FALSE, layout.width*layout.height)),
+                            description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE) {
+	## make axis.padding appropriate length if only 1 value specified
+	if(length(ylab.axis.padding) == 1) {
+		ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
+
+		}
+	if(length(xlab.axis.padding) == 1) {
+		xlab.axis.padding <- rep(xlab.axis.padding,layout.height);
+		}
 	### ERROR CHECKING ###
 	if (length(heights) != layout.height) {
-		stop("heights must have layout.height number of entries");
+		stop("heights must have layout.height  number of entries");
 		}
 	if (length(widths) != layout.width) {
-		stop("widths must have layout.width number of entries");
+		stop("widths must have layout.width  number of entries");
 		}
-	if (length( layout.skip) != layout.width*layout.height) {
+	if (length(layout.skip) != layout.width*layout.height) {
 		stop("layout.skip must have same number of entries as layout.width * layout.height");
 		}
-	if(!is.list(plot.objects)){
+	if(!is.list(plot.objects)) {
 		stop("plot.objects must be a list");
 		}
-		
+	if(length(ylab.axis.padding) != layout.width) {
+		stop("ylab.axis.padding must be the same size as layout.width");
+		}
+	if(length(xlab.axis.padding) != layout.height) {
+		stop("xlab.axis.padding must be the same size as layout.height");
+		}
+	
 	padding.text.to.padding.ratio <- 6; # this is used to align plots with diffrent label sizes
   	tick.to.padding.ratio <- 0.9484252; # this is used to evaluate length of ticks (is equivalent to 1mm)
+	additional.padding <- 0.5 # this is additional padding for labels that goes above calculation (takes care of overhanging values)
+	### MINOR ADJUSTMENTS TO MAKE VALUES SEEM MORE LOGICAL
+	x.spacing <- x.spacing/10;
+	y.spacing <- y.spacing/10;
+
 	### HANDLE SKIP LAYOUT ###
 	newplots <- list();
 	plotnum <- 1;
-	for (i in c(1:(layout.width*layout.height))) {
+	
+	## ADD BLANKS FOR LAYOUT.SKIP
+	for(i in c(1:(layout.width*layout.height))) {
 		if (plotnum <= length(plot.objects) && layout.skip[i] == FALSE) {
 			newplots[i] <- plot.objects[plotnum];
 			plotnum <- plotnum + 1;
 			}
 		else {
-			newplots[[i]] <- rectGrob(gp=gpar(col="white", alpha = 0)); # make a white spacer grob
+			newplots[[i]] <- rectGrob(gp=gpar(col="white", alpha = 0));
 			}
-  		}
-  
+		}
 	plot.objects <- newplots
+	layout.height <- layout.height*2;
+	layout.width <- layout.width*2;
+
+	
+	newplots <- list();
+	plotnum <- 1;
+
+	### AND IN BETWEEN GROBS TO REPRESENT X AND Y SPACING (PREVENTS PUSHING OF PLOTS)
+	for(k in c(1:layout.height)) {
+		for(i in c(1:layout.width)) {
+			if(i %% 2 == 0 || k %% 2 == 0) {
+				newplots[[i + (k-1)*(layout.width)]] <- rectGrob(gp=gpar(col="white", alpha = 0));
+				}
+			else {
+				newplots[i + (k-1)*(layout.width)] <- plot.objects[plotnum];
+				plotnum <- plotnum + 1;
+				}
+
+			}
+		}
+	plot.objects <- newplots
+	
   
 	### PAR SETTINGS EQUIVALENT ###
 	for (i in c(1:length(plot.objects))) {
-      		# make all paddings the same (in order to line them up)
+      		# make all paddings the same (in order to line them up) -- needed or plots wont line up properly
 		if (!is.null(plot.objects[[i]]$par.settings)) {
 
-			#plot.objects[[i]]$par.settings$layout.heights <- NULL;
-			#plot.objects[[i]]$par.settings$layout.widths <- NULL;
 			plot.objects[[i]]$par.settings$layout.widths$left.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$key.left <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$ylab <- 0;
-			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <-  ylab.axis.padding;
+			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.left <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.right <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.key.padding <- 0;
@@ -72,7 +114,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <-  0; #
 			plot.objects[[i]]$par.settings$layout.heights$axis.top <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.bottom <- 0;
-			plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding;
+			plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$xlab <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 0; #
 			plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 0; #
@@ -83,72 +125,37 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
       		}
 		
   
-  
-	# add appropriate paddings to specific plots
-	for (i in c(1:length(plot.objects))) {
-		if (!is.null(plot.objects[[i]]$par.settings)) {
-	
-      			if (i %in% seq(1,length(plot.objects),layout.width)) {
-				plot.objects[[i]]$par.settings$layout.widths$left.padding <- left.padding;
-				}
-      
-			if (i %in% seq(layout.width,length(plot.objects),layout.width)) {
-				plot.objects[[i]]$par.settings$layout.widths$right.padding <- right.padding;
-				}
-      
-			if (i %in% seq((layout.width*(layout.height) - (layout.width - 1)),length(plot.objects),1)) {
-				plot.objects[[i]]$par.settings$layout.heights$bottom.padding <- bottom.padding;
-				}
-      
-			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <- ylab.axis.padding;
-			plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding;
-      
-			if (i %in% seq(1,layout.width,1)) {
-				plot.objects[[i]]$par.settings$layout.heights$top.padding <- top.padding;
-				}
-			}
-		}
 
 	### SPACING #####
 	#make y spacing into an array of proper length
 	if (length(y.spacing) == 1) {
-		y.spacing <- rep(y.spacing,length(plot.objects));
+		y.spacing <- rep(y.spacing,layout.height/2);
 		}
-	else if (length(y.spacing) == layout.height) {
-		y.spacing <- rep(y.spacing,layout.width, each = layout.width);
-		}
-	else {
-		stop("y.spacing must be length 1, or same as layout.height");
-		}
-  
-	#make x spacing into an array of proper length
 	if (length(x.spacing) == 1) {
-		x.spacing <- rep(x.spacing,length(plot.objects));
+		x.spacing <- rep(x.spacing,layout.width/2);
 		}
-	else if (length(x.spacing) == layout.width) {
-		x.spacing <- rep(x.spacing,layout.height);
-		}
-	else {
-		stop("x.spacing must be length 1, or same as layout.width");
-		}
-  
-	# add spacing to par.settings
-	for (i in c(1:length(plot.objects))) {	
-		if (!is.null(plot.objects[[i]]$par.settings)) {
-			plot.objects[[i]]$par.settings$layout.heights$top.padding <- plot.objects[[i]]$par.settings$layout.heights$top.padding + y.spacing[i];
-			plot.objects[[i]]$par.settings$layout.widths$right.padding <- plot.objects[[i]]$par.settings$layout.widths$right.padding + x.spacing[i];
-			}	
-		}
+
+	# adjust widths to accuratly using the x and y spacing values
+  	widths <- as.vector(rbind(widths,x.spacing))
+	heights <- as.vector(rbind(heights,y.spacing))
+	heights[length(heights)] <- 0
+	widths[length(widths)] <- 0
+	
+	
   
 	### PADDING ####
   
 	#variables to represent amount of padding needed
-	largest.y.axis <- list();
+	### X AND Y PLOT AXIS LABELS
+	largest.y.axis <- list(); 
 	largest.x.axis <- list();
-	left.ticks <- list();
+	### TICKS
+	left.ticks <- list(); 
 	bottom.ticks <- list();
-	y.label.size <- list();
+	### X AND Y AXIS LABELS
+	y.label.size <- list(); 
 	x.label.size <- list();
+	### MAIN PLOT LABEL
 	main.size <- list();
 	for (i in  c(1:length(plot.objects))) {
     
@@ -161,14 +168,17 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		main.size[i] <- 0
     		# set variables for each plot according to their respective plot values
 		if (!is.null(plot.objects[[i]]$par.settings)) {
+			### GET GROB INFO FOR SIMPLE VARS
 			main.size[i] <- get.text.grob.height(plot.objects[[i]]$main$label,plot.objects[[i]]$main$cex,0,filename,width,height,resolution);
 			y.label.size[i] <- get.text.grob.width(plot.objects[[i]]$ylab$label,plot.objects[[i]]$ylab$cex,90,filename, width,height,resolution);
 			x.label.size[i] <- get.text.grob.height(plot.objects[[i]]$xlab$label,plot.objects[[i]]$xlab$cex,0,filename,width,height,resolution);
-		 	
-			if(!is.expression(plot.objects[[i]]$y.scales$labels[1])){
-				if (is.na(plot.objects[[i]]$y.scales$labels) || plot.objects[[i]]$y.scales$labels == TRUE || is.null(plot.objects[[i]]$y.scales$labels)) {
+			left.ticks[i] <- plot.objects[[i]]$y.scales$tck[1]*tick.to.padding.ratio;
+			bottom.ticks[i] <- plot.objects[[i]]$x.scales$tck[1]*tick.to.padding.ratio;
+		 	### Labels can get a bit weird because they come in many shapes and forms (i.e, expressions, NA, NULL....) --- this is intended to check for all those
+			if(!is.expression(plot.objects[[i]]$y.scales$labels[1])) {
+				if (is.null(plot.objects[[i]]$y.scales$labels) || is.na(plot.objects[[i]]$y.scales$labels) || plot.objects[[i]]$y.scales$labels == TRUE ) {
 					if (!is.null(plot.objects[[i]]$panel.args[[1]]$y)) {
-						if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))){
+						if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))) {
                                         		y.axis.labs <- levels(plot.objects[[i]]$panel.args[[1]]$y)
                                         		}
 						else{
@@ -184,7 +194,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 					y.axis.labs <- plot.objects[[i]]$y.scales$labels
 					}
 				}
-			else{
+			else {
 				y.axis.labs <- plot.objects[[i]]$y.scales$labels
 				}
 
@@ -192,9 +202,9 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 								plot.objects[[i]]$y.scales$cex, 
 								plot.objects[[i]]$y.scales$rot[1], 
 								filename, width,height,resolution);
-			left.ticks[i] <- plot.objects[[i]]$y.scales$tck[1]*tick.to.padding.ratio;
-			if(!is.expression(plot.objects[[i]]$x.scales$labels[1])){
-				if (is.na(plot.objects[[i]]$x.scales$labels) || plot.objects[[i]]$x.scales$labels == TRUE || is.null(plot.objects[[i]]$x.scales$labels)) {
+			
+			if(!is.expression(plot.objects[[i]]$x.scales$labels[1])) {
+				if (is.null(plot.objects[[i]]$x.scales$labels) || is.na(plot.objects[[i]]$x.scales$labels) || plot.objects[[i]]$x.scales$labels == TRUE) {
 					if (!is.null(plot.objects[[i]]$panel.args[[1]]$x)) {
                                 		if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$x))){
                                         		x.axis.labs <- levels(plot.objects[[i]]$panel.args[[1]]$x)
@@ -221,35 +231,36 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 								 plot.objects[[i]]$x.scales$cex, 
 								 plot.objects[[i]]$x.scales$rot[1], 
 								 filename, width,height,resolution);
-      			bottom.ticks[i] <- plot.objects[[i]]$x.scales$tck[1]*tick.to.padding.ratio;
+      			
 			}
 		}
   
-	# add the correct amount to each plot based on the column
+	
+	# add the correct amount to each plot based on the column (use ylab axis)
 	for ( i in c(1:layout.width)) {
 		maxAxis <- max(unlist(largest.y.axis[seq(i,length(plot.objects),layout.width)]));
 		maxTicks <- max(unlist(left.ticks[seq(i,length(plot.objects),layout.width)]));
 		maxLabels <- max(unlist(y.label.size[seq(i,length(plot.objects),layout.width)]));
 		for ( j in seq(i,length(plot.objects),layout.width)) {
-			to.add <- (maxAxis + maxLabels) / padding.text.to.padding.ratio + maxTicks;
+			to.add <- (maxAxis + maxLabels) / padding.text.to.padding.ratio + maxTicks + additional.padding;
 			if (!is.null(plot.objects[[j]]$par.settings)) {
-				plot.objects[[j]]$par.settings$layout.widths$ylab.axis.padding <- plot.objects[[j]]$par.settings$layout.widths$ylab.axis.padding + to.add;
+				plot.objects[[j]]$par.settings$layout.widths$ylab.axis.padding <- ylab.axis.padding[ceiling(i/2)] + to.add;
 				}
 			}
 		}
   
   
-	# add the correct amount to each plot based on the row
+	# add the correct amount to each plot based on the row (use xlab axis)
 	for ( i in seq(1,length(plot.objects),layout.width)) {
 		maxAxis <- max(unlist(largest.x.axis[seq(i,i + layout.width - 1,1)]));
 		maxTicks <- max(unlist(bottom.ticks[seq(i,i + layout.width - 1,1)]));
 		maxLabels <- max(unlist(x.label.size[seq(i,i + layout.width - 1,1)]));
 		maxMain <- max(unlist(main.size[seq(i,i + layout.width - 1,1)]))/2;
 		for ( j in c(i:(i + layout.width - 1))) {
-			to.add <- (maxAxis + maxLabels) / padding.text.to.padding.ratio + maxTicks;
+			to.add <- (maxAxis + maxLabels) / padding.text.to.padding.ratio + maxTicks + additional.padding;
 			if (j <= length(plot.objects) && !is.null(plot.objects[[j]]$par.settings)) {
-				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding + to.add;
-				if(maxMain != 0 && (is.null(plot.objects[[j]]$main$label) || plot.objects[[j]]$main$label == '')){
+				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding[ceiling(i/(layout.width*2))] + to.add;
+				if(maxMain != 0 && (is.null(plot.objects[[j]]$main$label) || plot.objects[[j]]$main$label == '')) {
 					plot.objects[[j]]$main$label <- '\t'; #make sure it thinks a label is there 
 					}
 				plot.objects[[j]]$par.settings$layout.heights$main <- plot.objects[[j]]$par.settings$layout.heights$main+(maxMain/padding.text.to.padding.ratio);
@@ -258,20 +269,6 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		}
   
 
-	# adjust spacing and layout values for last row/column
-	for (i in c(1:length(plot.objects))) {
-		if (!is.null(plot.objects[[i]]$par.settings)) {
-			# dont add spacing to last row
-			if (i %in% seq(1,layout.width,1)) {
-				plot.objects[[i]]$par.settings$layout.heights$top.padding <- top.padding;
-				}
-      
-			# dont add spacing to last column
-			if (i %% layout.width == 0) {
-				plot.objects[[i]]$par.settings$layout.widths$right.padding <- right.padding;
-				}
-			}
-		}
 
 	#grobs representing main labels on each side
 	main.label <- textGrob(main,gp=gpar(cex = main.cex, fontface = 'bold', fontfamily = 'Arial'), x = main.x, y = main.y);
@@ -443,12 +440,12 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			);
     
 		top.layout.final <- grid.layout(
-			nrow = 3,
+			nrow = 4,
 			ncol = 1,
 			heights = unit(
-				x = c(height.text,main.padding,height.legend),
-				units = c('lines','lines','lines'),
-        			data = list(NULL, NULL,NULL)
+				x = c(top.padding,height.text,main.padding,height.legend),
+				units = c('lines','lines','lines','lines'),
+        			data = list(NULL, NULL,NULL,NULL)
       				),
 			widths = unit(1, 'null'),
 			respect = FALSE
@@ -458,19 +455,25 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		top.grob <- placeGrob(
 			frame = top.grob,
 			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
-			row = 2,
-			col = 1
-			);
-		top.grob <- placeGrob(
-			frame = top.grob,
-			grob = main.label,
 			row = 1,
 			col = 1
 			);
 		top.grob <- placeGrob(
 			frame = top.grob,
-			grob = legend$top$fun,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
 			row = 3,
+			col = 1
+			);
+		top.grob <- placeGrob(
+			frame = top.grob,
+			grob = main.label,
+			row = 2,
+			col = 1
+			);
+		top.grob <- placeGrob(
+			frame = top.grob,
+			grob = legend$top$fun,
+			row = 4,
 			col = 1
 			);
 		}
@@ -485,17 +488,23 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			);
     
 		top.layout.final <- grid.layout(
-			nrow = 2,
+			nrow = 3,
 			ncol = 1,
 			heights = unit(
-				x = c(height.text,main.padding),
-				units = c('lines','lines'),
-				data = list(NULL, NULL)
+				x = c(top.padding,height.text,main.padding),
+				units = c('lines','lines','lines'),
+				data = list(NULL, NULL,NULL)
 				),
 			widths = unit(1, 'null'),
 			respect = FALSE
 			);
 		top.grob <- frameGrob(layout = top.layout.final)
+		top.grob <- placeGrob(
+			frame = top.grob,
+      			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+      			row = 2,
+      			col = 1
+			);
 		top.grob <- placeGrob(
 			frame = top.grob,
       			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
@@ -505,16 +514,16 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		top.grob <- placeGrob(
 			frame = top.grob,
 			grob = main.label,
-			row = 2,
+			row = 3,
 			col = 1
 			);
 		}
 
-	# create grob
+	# create grob of all plots
 	grob <- arrangeGrob(
 		grobs = plot.objects,
 		heights=heights, 
-    		widths = widths, 
+    		widths = widths,
 		ncol = layout.width,
 		nrow=layout.height, 
 		top = top.grob, 
@@ -522,6 +531,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		bottom = bottom.grob, 
 		right = right.grob
 		);
+	## Add white background color
 	grob <- gtable_add_grob(grob,grobs = rectGrob(gp=gpar(fill="white", lwd=0)),1,1,nrow(grob),ncol(grob),0)
 
 	# return grob
@@ -546,7 +556,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 
 
-## function to get the grob width given the text and specification parameters##
+### function to get the grob width given the text and specification parameters##
 get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolution) {
   
 	#grob size depends on image type and size -- must simulate opening the device
@@ -585,6 +595,7 @@ get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolu
 	else {
 		widthGrob <- 0;
 		}
+	### make sure to turn off the dev or we will have one open for every time this is called
 	if (!is.null(filename)) {
 		dev.off();
 		}
@@ -592,7 +603,8 @@ get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolu
 	return (widthGrob);  
 
 	}
-## function to get the grob height given the text and specification parameters##
+
+### function to get the grob height given the text and specification parameters##
 get.text.grob.height <- function(labels, cex, rot, filename, width, height, resolution) {
   
 	#grob size depends on image type and size -- must simulate opening the device
@@ -631,7 +643,7 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 	else {
 		heightGrob <- 0;
 		}
-
+	### make sure to turn off the dev or we will have one open for every time this is called
 	if (!is.null(filename)) {
 		dev.off();
 		}

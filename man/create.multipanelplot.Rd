@@ -27,8 +27,8 @@ create.multipanelplot(
 	main.cex = 3,
 	legend = NULL,
 	left.padding = 3,
-	ylab.axis.padding = 0,
-	xlab.axis.padding = 0,
+	ylab.axis.padding = c(rep(0, layout.width)),
+	xlab.axis.padding = c(rep(0, layout.height)),
 	bottom.padding = 0,
 	top.padding = 0,
 	right.padding = 0,
@@ -142,7 +142,7 @@ create.multipanelplot(
 	y.spacing = 2,  
 	ylab.axis.padding = 2, 
 	main = 'Simple', 
-	top.padding = 2, 
+	top.padding = 2
 	)
 
 # Create plot # 1
@@ -369,7 +369,7 @@ create.multipanelplot(
 	ylab.label = 'Response to Treatment', 
 	main = 'Bar Chart',
 	x.spacing = 0, 
-	y.spacing = 3
+	y.spacing = 1
 	)
 
 # Set up plots for complex example
@@ -687,11 +687,11 @@ create.multipanelplot(
 	filename = "Multipanelplot_Complex.tiff",
 	layout.height = 4,
         layout.width = 2,
-	x.spacing = 2,
+	x.spacing = 0.2,
 	left.padding = 8,
 	layout.skip = c(FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE),
-        y.spacing = c(0,0,0,-1),
-	ylab.axis.padding = 0,
+        y.spacing = c(0,0,-0.5),
+	ylab.axis.padding = c(1,0),
 	legend = list(
 	left = list(
             fun = dotmap_legend.grob,
@@ -868,15 +868,16 @@ create.multipanelplot(
     layout.height = 3,
     layout.width = 2,
     layout.skip = c(FALSE, FALSE,FALSE,TRUE,FALSE,TRUE),
-    y.spacing = 3,
-    x.spacing = 2,
+    y.spacing = 1,
+    x.spacing = 0.5,
     legend = list(
         left = list(
             fun = cov_legend.grob
             )
         ),
     main = 'Continous Legend', 
-    top.padding = 2
+    main.padding = 4,
+    top.padding = -2
     # This parameter must be set for the legend to appear
     );
 
@@ -890,8 +891,8 @@ create.multipanelplot(
     layout.width = 4,
     main.padding = 3,
     layout.skip = c(FALSE, FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE),
-    y.spacing = c(0,0,0,0),
-    x.spacing = c(1,2,3,4),
+    y.spacing = c(0,0,0),
+    x.spacing = c(1,2,3),
     legend = list(
         left = list(
             fun = cov_legend.grob

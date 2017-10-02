@@ -1,4 +1,13 @@
-BoutrosLab.plotting.general 5.8.0 2017-08-11
+BoutrosLab.plotting.general 5.8.2 2017-08-11
+
+BUG FIX
+* Completely reworked how spacing works in multipanel plot -- now creates rectangular grobs instead of using top/left/right/bottom padding 
+
+
+--------------------------------------------------------------------------
+
+
+BoutrosLab.plotting.general 5.8.1 2017-08-11
 
 BUG FIX
 * Multipanel plot background colour
