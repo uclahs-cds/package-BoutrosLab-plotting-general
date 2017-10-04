@@ -140,7 +140,8 @@ create.heatmap(
 	same.as.matrix = FALSE, 
 	axis.xlab.padding = 0.1, 
 	stratified.clusters.rows = NULL, 
-	stratified.clusters.cols = NULL, 
+	stratified.clusters.cols = NULL,
+        inside.legend = NULL, 
 	style = 'BoutrosLab',
 	preload.default = 'custom');
 }
@@ -280,6 +281,7 @@ create.heatmap(
     \item{axis.xlab.padding}{Padding between axis of plot and x label}
     \item{stratified.clusters.rows}{the row locations of the rows to be combined into a strata}
     \item{stratified.clusters.cols}{the column locations of the columns to be combined into a strata}
+    \item{inside.legend}{legend specification for the inside legend/key of the heatmap}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
  }
@@ -310,10 +312,27 @@ simple.1D.data <- data.frame(x = rnorm(n = 15));
 
 
 create.heatmap(
-    filename = "Heatmap_1D.tiff",
+    filename = "Heatmap_1D_Inside_Legend.tiff",
     x=simple.1D.data, 
-    clustering.method='none'
-    ); 
+    clustering.method='none',
+    inside.legend = list(fun = draw.key,
+        args = list(
+	    key = list(
+                text = list(
+                    lab = c('test','test','test','test'),
+                    cex = 1,
+                    fontface = 'bold'
+                    ),
+                padding.text = 3,
+                background = 'white',
+		alpha.background = 0
+                )
+            ),
+        x = 0.5,
+        y = 0.5
+        )
+    )
+
 
 create.heatmap(
     filename = 'Heatmap_Simple.tiff',
