@@ -746,6 +746,28 @@ create.barplot(
     description = 'Barplot created by BoutrosLab.plotting.general'
     );
 
+
+create.barplot(
+    filename = 'Barplot_Error_Bars_Horizontal.tiff',
+    # needs sequential x-axis
+    formula = values ~ 1:15,
+    data = error.data,
+    y.error.up = error.data$error,
+    yaxis.lab = error.data$genes,
+    plot.horizontal = TRUE,
+    main = 'Error bars',
+    xlab.lab = 'Gene',
+    ylab.lab = 'Change in Expression',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.rot = 45,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    description = 'Barplot created by BoutrosLab.plotting.general'
+    );
+
 # Grid lines
 create.barplot(
     filename = 'Barplot_Gridlines.tiff',

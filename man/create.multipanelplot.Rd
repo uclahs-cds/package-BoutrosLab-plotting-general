@@ -9,8 +9,8 @@ create.multipanelplot(
 	height = 10,
 	width = 10,
 	resolution = 1000,
-	heights = c(rep(1,layout.height)),
-	widths = c(rep(1,layout.width)),
+	plot.objects.heights = c(rep(1,layout.height)),
+	plot.objects.widths = c(rep(1,layout.width)),
 	layout.width = 1,
 	layout.height = length(plot.objects),
 	main = '',
@@ -44,16 +44,16 @@ create.multipanelplot(
     \item{height}{Height of resulting file}
     \item{width}{Width of resulting file}
     \item{resolution}{Resolution of resulting file}
-    \item{heights}{Heights of each row of the plot}
-    \item{widths}{Widths of each column of the plot}
-    \item{layout.width}{how many plots per row}
+    \item{plot.objects.heights}{Heights of each row of the plot. Must be vector of same size as layout.height}
+    \item{plot.objects.widths}{Widths of each column of the plot. Must be vector of same size as layout.width}
+    \item{layout.width}{how many plots per row.}
     \item{layout.height}{how many plots per column}
     \item{main}{main label text}
     \item{main.padding}{padding for main label from the plots below}
     \item{main.x}{main label x coordinate}
     \item{main.y}{main label y coordinate}
-    \item{x.spacing}{horizontal spacing between each plot}
-    \item{y.spacing}{vertical spacing between each plot}
+    \item{x.spacing}{horizontal spacing between each plot. Can be single value or vector of length layout.width - 1}
+    \item{y.spacing}{vertical spacing between each plot. Can be single value or vector of length layout.height - 1}
     \item{xlab.label}{bottom x-axis main label}
     \item{xlab.cex}{bottom x-axis main label cex}
     \item{ylab.label}{left side y-axis label}
@@ -62,12 +62,12 @@ create.multipanelplot(
     \item{main.cex}{main label cex}
     \item{legend}{legend for the plot}
     \item{left.padding}{padding from the left side of the frame}
-    \item{ylab.axis.padding}{padding between axis and y label of plots}
-    \item{xlab.axis.padding}{padding between axis and x label of plots}
+    \item{ylab.axis.padding}{padding between axis and y label of plots. Can be single value or vector of length layout.width}
+    \item{xlab.axis.padding}{padding between axis and x label of plots. Can be single value or vector of length layout.height}
     \item{bottom.padding}{padding from the bottom side of the frame}
     \item{top.padding}{padding from the top side of the frame}
     \item{right.padding}{padding from the right side of the frame}
-    \item{layout.skip}{list specifiying locations to skip plots}
+    \item{layout.skip}{list specifiying locations to skip plots. Must be vector of length layout.width*layout.height}
     \item{description}{description of what plot is displaying}
     \item{size.units}{the units the height and width of file represent}
     \item{enable.warnings}{enables warnings to be output}
@@ -119,31 +119,31 @@ simple.boxplot <- create.boxplot(
 
 # Create plot # 2
 simple.heatmap <- create.heatmap(
-        x = t(fill.squares),
-        clustering.method = 'none',
-        shrink = 0.8,
-        yaxis.lab = c(3,2,3),
-        yaxis.tck = 1,
-	xaxis.lab = c('A','B','C'),
-        ylab.label = 'Drug Regimen',
-        xlab.label = 'Patient Group',
-        colour.scheme = c("white", "grey20"),
-        fill.colour = "white",
-        print.colour.key = FALSE,
-	left.padding = 0,
-        xaxis.tck = c(1,0),
-	right.padding = 0,
-	xaxis.rot = 0
-        );
+    x = t(fill.squares),
+    clustering.method = 'none',
+    shrink = 0.8,
+    yaxis.lab = c(3,2,3),
+    yaxis.tck = 1,
+    xaxis.lab = c('A','B','C'),
+    ylab.label = 'Drug Regimen',
+    xlab.label = 'Patient Group',
+    colour.scheme = c("white", "grey20"),
+    fill.colour = "white",
+    print.colour.key = FALSE,
+    left.padding = 0,
+    xaxis.tck = c(1,0),
+    right.padding = 0,
+    xaxis.rot = 0
+    );
 
 create.multipanelplot(
-	filename = 'Multipanelplot_Simple.tiff',
-	plot.objects = list(simple.boxplot,simple.heatmap), 
-	y.spacing = 2,  
-	ylab.axis.padding = 2, 
-	main = 'Simple', 
-	top.padding = 2
-	)
+    filename = 'Multipanelplot_Simple.tiff',
+    plot.objects = list(simple.boxplot,simple.heatmap), 
+    y.spacing = 2,  
+    ylab.axis.padding = 2, 
+    main = 'Simple', 
+    top.padding = 2
+    );
 
 # Create plot # 1
 simple.boxplot2 <- create.boxplot(
@@ -157,9 +157,9 @@ simple.boxplot2 <- create.boxplot(
     yaxis.tck = c(1,0),
     yaxis.lab = seq(-1,8,2),
     yat = seq(-1,8,2),
-left.padding = 0,
-right.padding = 0,
-lwd = 2
+    left.padding = 0,
+    right.padding = 0,
+    lwd = 2
     );
 
 simple.violin2 <- create.violinplot(
@@ -176,39 +176,39 @@ simple.violin2 <- create.violinplot(
 
 # Create plot # 2
 simple.heatmap2 <- create.heatmap(
-        x = t(fill.squares),
-        clustering.method = 'none',
-        shrink = 0.8,
-        yaxis.lab = c(1,2,3),
-        yaxis.tck = 1,
-	xaxis.lab = c('A','B','C'),
-        ylab.label = 'Drug Regimen',
-        colour.scheme = c("white", "grey20"),
-        fill.colour = "white",
-        print.colour.key = FALSE,
-	left.padding = 0,
-        xaxis.tck = c(3,0),
-	right.padding = 0,
-	xaxis.rot = 0,
-	ylab.cex = 2
-        );
+    x = t(fill.squares),
+    clustering.method = 'none',
+    shrink = 0.8,
+    yaxis.lab = c(1,2,3),
+    yaxis.tck = 1,
+    xaxis.lab = c('A','B','C'),
+    ylab.label = 'Drug Regimen',
+    colour.scheme = c("white", "grey20"),
+    fill.colour = "white",
+    print.colour.key = FALSE,
+    left.padding = 0,
+    xaxis.tck = c(3,0),
+    right.padding = 0,
+    xaxis.rot = 0,
+    ylab.cex = 2
+    );
 
 
 create.multipanelplot(
-	filename = 'Multipanelplot_Simple_Layout.tiff',
-	plot.objects = list(simple.boxplot2, 
-	simple.violin2,simple.heatmap2), 
-	layout.width = 2, 
-	layout.height = 2, 
-	xlab.label = 'Patient Group', 
-	main = 'Simple Layout', 
-	top.padding = 2, 
-	heights = c(3,1), 
-	x.spacing = 2, 
-	y.spacing = 2
-	)
+    filename = 'Multipanelplot_Simple_Layout.tiff',
+    plot.objects = list(simple.boxplot2, 
+    simple.violin2,simple.heatmap2), 
+    layout.width = 2, 
+    layout.height = 2, 
+    xlab.label = 'Patient Group', 
+    main = 'Simple Layout', 
+    top.padding = 2, 
+    plot.objects.heights = c(3,1), 
+    x.spacing = 2, 
+    y.spacing = 2
+    );
 
-all_data <- data.frame(
+all.data <- data.frame(
     a = rnorm(n = 25, mean = 0, sd = 0.75),
     b = rnorm(n = 25, mean = 0, sd = 0.75),
     c = rnorm(n = 25, mean = 0, sd = 0.75),
@@ -218,50 +218,51 @@ all_data <- data.frame(
     x = rnorm(n = 25, mean = 5),
     y = seq(1, 25, 1)
     );
-    # create the plot -- this allows for previewing of the individual plot
-    barplot.formatted <- create.barplot(
-        formula = x ~ y,
-        data = all_data[,7:8],
-	yaxis.tck = c(1,0),
-        border.lwd = 0,
-        col = 'grey',
-        xlab.label = '',
-        xat = c(-100),
-        ylab.label = '',
-        yaxis.lab = seq(1, ceiling(max(all_data$x)), 1),
-        yat = seq(1, ceiling(max(all_data$x)), 1),
-        yaxis.cex = 1.5
-        );
+# create the plot -- this allows for previewing of the individual plot
+barplot.formatted <- create.barplot(
+    formula = x ~ y,
+    data = all.data[,7:8],
+    yaxis.tck = c(1,0),
+    border.lwd = 0,
+    col = 'grey',
+    xlab.label = '',
+    xat = c(-100),
+    ylab.label = '',
+    yaxis.lab = seq(1, ceiling(max(all.data$x)), 1),
+    yat = seq(1, ceiling(max(all.data$x)), 1),
+    yaxis.cex = 1.5
+    );
 
-    heatmap.formatted <- create.heatmap(
-        x = all_data[,1:6],
-        clustering.method = 'none',
-        colour.scheme = c('magenta','white','green'),
-        print.colour.key = FALSE,
-        xlab.label = '',
-	yaxis.tck = c(1,0),
-        xat = c(1:25),
-        yaxis.lab = c("BRCA1", "BRCA2", "APC", "TIN", "ARG", "FOO"),
-        yat = c(1,2,3,4,5,6),
-	xaxis.lab = c(1:25),
-	xaxis.rot = 0,
-        yaxis.cex = 1.5
-        ); 
+heatmap.formatted <- create.heatmap(
+    x = all.data[,1:6],
+    clustering.method = 'none',
+    colour.scheme = c('magenta','white','green'),
+    print.colour.key = FALSE,
+    xlab.label = '',
+    yaxis.tck = c(1,0),
+    xat = c(1:25),
+    yaxis.lab = c("BRCA1", "BRCA2", "APC", "TIN", "ARG", "FOO"),
+    yat = c(1,2,3,4,5,6),
+    xaxis.lab = c(1:25),
+    xaxis.rot = 0,
+    yaxis.cex = 1.5
+    ); 
 
-create.multipanelplot(filename = 'Multipanelplot_Formatting.tiff',
-	plot.objects = list(barplot.formatted, heatmap.formatted), 
-	heights = c(1,3), 
-	y.spacing = 2, 
-	main = 'Formatted', 
-	top.padding = 2
-	)
+create.multipanelplot(
+    filename = 'Multipanelplot_Formatting.tiff',
+    plot.objects = list(barplot.formatted, heatmap.formatted), 
+    plot.objects.heights = c(1,3), 
+    y.spacing = 2, 
+    main = 'Formatted', 
+    top.padding = 2
+    );
 
-data_bars <- data.frame(
+data.bars <- data.frame(
     x = sample(x = 5:35, size = 10),
     y = seq(1,10,1)
     );
 
-data_cov <- data.frame(
+data.cov <- data.frame(
     x = rnorm(n = 10, mean = 0, sd = 0.75),
     y = rnorm(n = 10, mean = 0, sd = 0.75),
     z = rnorm(n = 10, mean = 0, sd = 0.75)
@@ -270,7 +271,7 @@ data_cov <- data.frame(
 # Create main barplot
 bars <- create.barplot(
     formula = x~y,
-    data = data_bars,
+    data = data.bars,
     ylimits = c(0,35),
     ylab.label = '',
     sample.order = 'increasing',
@@ -282,8 +283,8 @@ bars <- create.barplot(
     );
 
 # Make covariate bars out of heatmaps
-cov_1 <- create.heatmap(
-    x = as.matrix(data_bars$y),
+cov.1 <- create.heatmap(
+    x = as.matrix(data.bars$y),
     clustering.method = 'none',
     scale.data = FALSE,
     colour.scheme = default.colours(4),
@@ -296,8 +297,8 @@ cov_1 <- create.heatmap(
     axes.lwd = 0
     );
 
-cov_2 <- create.heatmap(
-    x = as.matrix(data_cov$y),
+cov.2 <- create.heatmap(
+    x = as.matrix(data.cov$y),
     clustering.method = 'none',
     scale.data = FALSE,
     colour.scheme = c("lightblue","dodgerblue2", "dodgerblue4"),
@@ -309,8 +310,8 @@ cov_2 <- create.heatmap(
     yaxis.tck = 0
     );
 
-cov_3 <- create.heatmap(
-    x = as.matrix(data_cov$z),
+cov.3 <- create.heatmap(
+    x = as.matrix(data.cov$z),
     clustering.method = 'none',
     scale.data = FALSE,
     colour.scheme = c("grey","coral1"),
@@ -362,25 +363,25 @@ legendG <- legend.grob(
     	);
 
 create.multipanelplot(
-	filename = 'Multipanelplot_Barchart.tiff',
-	plot.objects = list(bars, cov_3, cov_2, cov_1 ), 	
-	heights = c(1, 0.1,0.1,0.1), 
-	legend = list(right = list(fun = legendG)), 
-	ylab.label = 'Response to Treatment', 
-	main = 'Bar Chart',
-	x.spacing = 0, 
-	y.spacing = 1
-	)
+    filename = 'Multipanelplot_Barchart.tiff',
+    plot.objects = list(bars, cov.3, cov.2, cov.1 ), 	
+    plot.objects.heights = c(1, 0.1,0.1,0.1), 
+    legend = list(right = list(fun = legendG)), 
+    ylab.label = 'Response to Treatment', 
+    main = 'Bar Chart',
+    x.spacing = 0, 
+    y.spacing = 1
+    );
 
 # Set up plots for complex example
 
 # Dotmap
-spot_sizes <- function(x) { 0.5 * abs(x); }
-dotmap_dot_colours <- c('red','blue');
-spot_colours <- function(x) {
+spot.sizes <- function(x) { 0.5 * abs(x); }
+dotmap.dot.colours <- c('red','blue');
+spot.colours <- function(x) {
     colours <- rep('white', length(x));
-    colours[sign(x) == -1] <- dotmap_dot_colours[1];
-    colours[sign(x) ==  1] <- dotmap_dot_colours[2];
+    colours[sign(x) == -1] <- dotmap.dot.colours[1];
+    colours[sign(x) ==  1] <- dotmap.dot.colours[2];
     return(colours);
     };
 
@@ -404,8 +405,8 @@ dotmap <- create.dotmap(
     bg.alpha = 1,
     yaxis.tck = c(1,0),
     fill.colour = 'grey95',
-    spot.size.function = spot_sizes,
-    spot.colour.function = spot_colours,
+    spot.size.function = spot.sizes,
+    spot.colour.function = spot.colours,
     xaxis.tck = 0,
     xaxis.lab = c(rep('',100)),
     bottom.padding = 0, 
@@ -416,7 +417,7 @@ dotmap <- create.dotmap(
     );
 
 # Dotmap legend
-dotmap_legend <- list(
+dotmap.legend <- list(
     legend = list(
         colours = bg.colours,
         labels = c('Nonsynonymous','Stop Gain','Frameshift deletion', 
@@ -426,7 +427,7 @@ dotmap_legend <- list(
         pch = 15
         ),
     legend = list(
-        colours = dotmap_dot_colours,
+        colours = dotmap.dot.colours,
         labels = c('Gain','Loss'),
         border = 'white',
         title = 'CNA',
@@ -434,8 +435,8 @@ dotmap_legend <- list(
         )
     );
 
-dotmap_legend.grob <- legend.grob(
-    legends = dotmap_legend,
+dotmap.legend.grob <- legend.grob(
+    legends = dotmap.legend,
     title.just = 'left',
     label.cex = 0.7,
     title.cex = 0.7
@@ -488,7 +489,7 @@ covariates <- create.heatmap(
 ## Warning: number of columns exceeded limit (50), column lines are turned off. Please set "force.grid.col" to TRUE to override this
 
 # Coviate Legends
-cov_legends <- list(
+cov.legends <- list(
     legend = list(
         colours = cov.colours[8:9],
         labels = c('MSS','MSI-High'),
@@ -509,8 +510,8 @@ cov_legends <- list(
         )
     );
 
-cov_legend.grob <- legend.grob(
-    legends = cov_legends,
+cov.legend.grob <- legend.grob(
+    legends = cov.legends,
     title.just = 'left',
     label.cex = 0.7,
     title.cex = 0.7,
@@ -519,47 +520,45 @@ cov_legend.grob <- legend.grob(
 
 
 create.multipanelplot(
-	filename = 'Multipanelplot_with_heatmap.tiff',
-	plot.objects = list(dotmap,covariates), 
-	heights = c(1,0.2), 
-	y.spacing = 0, 
-	main = 'Dotmap', 
-	top.padding = 2,
-	#filename = "test.tiff",
-	layout.height = 2,
-	legend = list(
-	bottom = list(
+    filename = 'Multipanelplot_with_heatmap.tiff',
+    plot.objects = list(dotmap,covariates), 
+    plot.objects.heights = c(1,0.2), 
+    y.spacing = 0, 
+    main = 'Dotmap', 
+    top.padding = 2,
+    layout.height = 2,
+    legend = list(
+        bottom = list(
             x = 0.10,
             y = 0.50,
-            fun = cov_legend.grob
+            fun = cov.legend.grob
             ),
         right = list(
             x = 0.10,
             y = 0.50,
-            fun = dotmap_legend.grob
+            fun = dotmap.legend.grob
             )
         )
-
-)
+    );
 
 # Add more plots, using more complex layout
 # grouped barplot
-groupedbar_colours <- c('indianred1','indianred4');
+groupedbar.colours <- c('indianred1','indianred4');
 
 count.SNV <- apply(SNV[1:15,], 2, function(x){length(which(!is.na(x)))});
 count.CNA <- apply(CNA[1:15,], 2, function(x){length(which(!(x==0)))});
 
-grouped_data <- data.frame(
+grouped.data <- data.frame(
     values = c(count.SNV, count.CNA),
     samples = rep(colnames(SNV),2),
     group = rep(c('SNV','CNA'), each = 58)
     );
 
-grouped_barplot <- create.barplot(
+grouped.barplot <- create.barplot(
     formula = values ~ samples,
-    data = grouped_data,
-    groups = grouped_data$group,
-    col = groupedbar_colours,
+    data = grouped.data,
+    groups = grouped.data$group,
+    col = groupedbar.colours,
     top.padding = 0,
     bottom.padding = 0,
     left.padding = 0,
@@ -578,28 +577,28 @@ grouped_barplot <- create.barplot(
     );
 
 # stacked barplot
-col_one <- rgb(255/255, 225/255, 238/255);
-col_two <- rgb(244/255, 224/255, 166/255);
-col_thr <- rgb(177/255, 211/255, 154/255);
-col_fou <- rgb(101/255, 180/255, 162/255);
-col_fiv <- rgb(51/255, 106/255, 144/255);
-stackedbar_colours <- c(col_one, col_two, col_thr, col_fou, col_fiv, 'orchid4');
-stacked_data_labels <- c('C>A/G>T','C>T/G>A','C>G/G>C','T>A/A>T','T>G/A>C', 'T>C/A>G');
+col.one <- rgb(255/255, 225/255, 238/255);
+col.two <- rgb(244/255, 224/255, 166/255);
+col.thr <- rgb(177/255, 211/255, 154/255);
+col.fou <- rgb(101/255, 180/255, 162/255);
+col.fiv <- rgb(51/255, 106/255, 144/255);
+stackedbar.colours <- c(col.one, col.two, col.thr, col.fou, col.fiv, 'orchid4');
+stacked.data.labels <- c('C>A/G>T','C>T/G>A','C>G/G>C','T>A/A>T','T>G/A>C', 'T>C/A>G');
 
-stacked_data <- data.frame(
+stacked.data <- data.frame(
     values = c(patient$prop.CAGT, patient$prop.CTGA, patient$prop.CGGC, patient$prop.TAAT, 
         patient$prop.TGAC, patient$prop.TCAG), 
     divisions = rep(rownames(patient), 6),
-    group = rep(stacked_data_labels, each = 58)
+    group = rep(stacked.data.labels, each = 58)
     );
 
 # Generate stacked barplot
-stacked_barplot <- create.barplot(
+stacked.barplot <- create.barplot(
     formula = values ~ divisions,
-    data = stacked_data,
-    groups = stacked_data$group,
+    data = stacked.data,
+    groups = stacked.data$group,
     stack = TRUE,
-    col = stackedbar_colours,
+    col = stackedbar.colours,
     border.col = 'white',
     main = '',
     xlab.label = '',
@@ -615,31 +614,31 @@ stacked_barplot <- create.barplot(
     );
 
 # barchart legends
-stackedbar_legend <- list(
+stackedbar.legend <- list(
     legend = list(
-        colours = rev(stackedbar_colours),
-        labels = rev(stacked_data_labels),
+        colours = rev(stackedbar.colours),
+        labels = rev(stacked.data.labels),
         border = 'white'
         )
     );
 
-groupedbar_legend <- list(
+groupedbar.legend <- list(
     legend = list(
-        colours = groupedbar_colours,
+        colours = groupedbar.colours,
         labels = c('CNA','SNV'),
         border = 'white'
         )
     );
 
-groupedbar_legend.grob <- legend.grob(
-    legends = groupedbar_legend,
+groupedbar.legend.grob <- legend.grob(
+    legends = groupedbar.legend,
     title.just = 'left',
     label.cex = 0.7,
     title.cex = 0.7
     );
 
-stackedbar_legend.grob <- legend.grob(
-    legends = stackedbar_legend,
+stackedbar.legend.grob <- legend.grob(
+    legends = stackedbar.legend,
     title.just = 'left',
     label.cex = 0.7,
     title.cex = 0.7
@@ -677,24 +676,24 @@ segplot <- create.segplot(
     );
 # Create multiplot
 
-plots <- list(grouped_barplot,stacked_barplot,dotmap, segplot,covariates);
+plots <- list(grouped.barplot,stacked.barplot,dotmap, segplot,covariates);
 create.multipanelplot(
-	main.x = 0.47,
-        main.y = 0.5,
-	plot.objects = plots,
-	heights = c(0.4, 0.3, 1, 0.1),
-	widths = c(1,0.2),
-	filename = "Multipanelplot_Complex.tiff",
-	layout.height = 4,
-        layout.width = 2,
-	x.spacing = 0.2,
-	left.padding = 8,
-	layout.skip = c(FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE),
-        y.spacing = c(0,0,-0.5),
-	ylab.axis.padding = c(1,0),
-	legend = list(
-	left = list(
-            fun = dotmap_legend.grob,
+    main.x = 0.47,
+    main.y = 0.5,
+    plot.objects = plots,
+    plot.objects.heights = c(0.4, 0.3, 1, 0.1),
+    plot.objects.widths = c(1,0.2),
+    filename = "Multipanelplot_Complex.tiff",
+    layout.height = 4,
+    layout.width = 2,
+    x.spacing = 0.2,
+    left.padding = 8,
+    layout.skip = c(FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE),
+    y.spacing = c(0,0,-0.5),
+    ylab.axis.padding = c(1,0),
+    legend = list(
+        left = list(
+            fun = dotmap.legend.grob,
             args = list(
                 key = list(
                     points = list(
@@ -702,18 +701,13 @@ create.multipanelplot(
                         )
                     )
                 )
-            )#,
-	#bottom = list(
-       #     x = 0.10,
-        #    y = 0.50,
-        #    fun = cov_legend.grob
-        #    )
+            )
 	),
-	height = 12,
-	width = 12,
-	main = 'Complex', 
-	top.padding = 2
-)
+    height = 12,
+    width = 12,
+    main = 'Complex', 
+    top.padding = 2
+    );
 
 # Create a multiplot with a heatmap, key like legend and barplot
 
@@ -734,20 +728,20 @@ simple.heatmap <- create.heatmap(patient[, 4:6],
 
 # and a simple bar plot
 pvals <- data.frame(
-        order = c(1:3),
-        pvalue = -log10(c(0.0004, 0.045, 0.0001)),
-        stringsAsFactors = FALSE
+    order = c(1:3),
+    pvalue = -log10(c(0.0004, 0.045, 0.0001)),
+    stringsAsFactors = FALSE
         )
 #create bar plot
 simple.bar <- create.barplot(
-        formula = order ~ rev(pvalue),
-        data = pvals,
-        xlimits = c(0,5),
-        plot.horizontal=TRUE,
-	xlab.label = '',
-	ylab.label = '',
-	yaxis.lab = c(1,2,3)
-        );
+    formula = order ~ rev(pvalue),
+    data = pvals,
+    xlimits = c(0,5),
+    plot.horizontal=TRUE,
+    xlab.label = '',
+    ylab.label = '',
+    yaxis.lab = c(1,2,3)
+    );
 
 # then the covariates heatmap
 cov.colours <- c(
@@ -807,7 +801,7 @@ covariates2 <- create.heatmap(
 ## Warning: number of rows exceeded limit (50), row lines are turned off. Please set "force.grid.row" to TRUE to override this
 
 
-cov_legends <- list(
+cov.legends <- list(
     legend = list(
         colours = c("white", "black"),
         labels = c('0','2'),
@@ -840,20 +834,20 @@ cov_legends <- list(
         labels = c('0.09','0.72'),
         border = 'grey',
         title = 'CAGT',
-    continuous = TRUE,
-    height = 3,
-    pos.x = 0,
-    pos.y = 1.25,
-    angle = -90,
-    tck = 1,
-    tck.number = 2,
-    at = c(0,100),
-  labels.rot = 90
+        continuous = TRUE,
+        height = 3,
+        pos.x = 0,
+        pos.y = 1.25,
+        angle = -90,
+        tck = 1,
+        tck.number = 2,
+        at = c(0,100),
+        labels.rot = 90
         )
     );
 
-cov_legend.grob <- legend.grob(
-    legends = cov_legends,
+cov.legend.grob <- legend.grob(
+    legends = cov.legends,
     title.just = 'left',
     label.cex = 0.7,
     title.cex = 0.7
@@ -863,8 +857,8 @@ cov_legend.grob <- legend.grob(
 create.multipanelplot(
     filename = 'Multipanelplot_continousLegend.tiff',
     plot.objects = list(simple.heatmap, simple.bar,covariates2,covariates),
-    heights = c(1,0.1,0.35),
-    widths = c(1,0.25),
+    plot.objects.heights = c(1,0.1,0.35),
+    plot.objects.widths = c(1,0.25),
     layout.height = 3,
     layout.width = 2,
     layout.skip = c(FALSE, FALSE,FALSE,TRUE,FALSE,TRUE),
@@ -872,7 +866,7 @@ create.multipanelplot(
     x.spacing = 0.5,
     legend = list(
         left = list(
-            fun = cov_legend.grob
+            fun = cov.legend.grob
             )
         ),
     main = 'Continous Legend', 
@@ -884,9 +878,9 @@ create.multipanelplot(
  create.multipanelplot(
     filename = 'Multipanelplot_manyPlots.tiff',
     main = 'Large Scale',
-    plot.objects = list(simple.boxplot,simple.heatmap,simple.bar,barplot.formatted,dotmap,grouped_barplot,stacked_barplot,covariates,covariates2,heatmap.formatted),
-    heights = c(1,1,1,1),
-    widths = c(1,1, 1,1),
+    plot.objects = list(simple.boxplot,simple.heatmap,simple.bar,barplot.formatted,dotmap,grouped.barplot,stacked.barplot,covariates,covariates2,heatmap.formatted),
+    plot.objects.heights = c(1,1,1,1),
+    plot.objects.widths = c(1,1, 1,1),
     layout.height = 4,
     layout.width = 4,
     main.padding = 3,
@@ -895,7 +889,7 @@ create.multipanelplot(
     x.spacing = c(1,2,3),
     legend = list(
         left = list(
-            fun = cov_legend.grob
+            fun = cov.legend.grob
             )
         ),
     height = 12,

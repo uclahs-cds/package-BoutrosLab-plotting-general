@@ -310,23 +310,40 @@ create.barplot <- function(
 					  subtr = 1 + 2*(ng-1)
 					  group.num = group.num*2 - subtr
 					}
-					xoffset <- (6/(nrow(data)*4)) * (group.num)*(1.75 - (0.85*(length(unique(groups))+1)%%2))
+					offset <- (6/(nrow(data)*4)) * (group.num)*(1.75 - (0.85*(length(unique(groups))+1)%%2))
 					}
 				else {
-					xoffset <- 0;
+					offset <- 0;
 				}
-				panel.arrows(
-					# convert to numeric to handle when x is a factor
-					x0 = as.numeric(x) + xoffset,
-					y0 = y + y.error.up,
-					x1 = as.numeric(x) + xoffset,
-					y1 = y - y.error.down,
-					length = error.whisker.width,
-					angle = error.whisker.angle,
-					ends = 'both',
-					col = y.error.bar.col,
-					lwd = error.bar.lwd
-					);
+				if(!plot.horizontal){
+					panel.arrows(
+						# convert to numeric to handle when x is a factor
+						x0 = as.numeric(x) + offset,
+						y0 = y + y.error.up,
+						x1 = as.numeric(x) + offset,
+						y1 = y - y.error.down,
+						length = error.whisker.width,
+						angle = error.whisker.angle,
+						ends = 'both',
+						col = y.error.bar.col,
+						lwd = error.bar.lwd
+						);
+					}
+				else{
+					panel.arrows(
+                                                # convert to numeric to handle when x is a factor
+                                                y0 = as.numeric(y) + offset,
+                                                x0 = x + y.error.up,
+                                                y1 = as.numeric(y) + offset,
+                                                x1 = x - y.error.down,
+                                                length = error.whisker.width,
+                                                angle = error.whisker.angle,
+                                                ends = 'both',
+                                                col = y.error.bar.col,
+                                                lwd = error.bar.lwd
+                                                );
+
+					}
 				}
 
 			# add raster fill 

@@ -82,7 +82,8 @@ create.heatmap(
 	text.cex = 1, 
 	text.col = 'black', 
 	text.position = NULL, 
-	text.offset = 0, 
+	text.offset = 0,
+	text.use.grid.coordinates = TRUE, 
 	colourkey.cex = 3.6, 
 	xaxis.rot = 90, 
 	xaxis.rot.top = 90,
@@ -230,6 +231,7 @@ create.heatmap(
     \item{text.col}{Text colour, default is black.}
     \item{text.position}{The position of the text, defaults to center.}
     \item{text.offset}{The offset of the position, defaults to 0.}
+    \item{text.use.grid.coordinates}{Indetifier if grid coordinates or npc coordinates should be used}
     \item{colourkey.cex}{Size of colourkey label text}
     \item{axes.lwd}{Width of heatmap border. Note it also changes the colourkey border and ticks}
     \item{gridline.order}{Character specifying order in which to draw interior grid-lines ('h' or 'v'). Defaults to 'h' for horizontal first.}
@@ -725,6 +727,36 @@ create.heatmap(
     cell.text = microarray[1:20, 1:20][microarray[1:20, 1:20] > 11],
     text.col = 'white',
     text.cex = 0.65,
+    description = 'Heatmap created using BoutrosLab.plotting.general'
+    );
+# Label cells
+create.heatmap(
+    filename = 'Heatmap_Labelled_Cells_NPC.tiff',
+    x = microarray[1:20, 1:20],
+    main = 'Labelled cells',
+    xlab.label = 'Genes',
+    ylab.label = 'Samples',
+    xaxis.cex = 0.75,
+    yaxis.cex = 0.75,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    colourkey.cex = 1,
+    colourkey.labels.at = seq(2,12,1),
+    colour.alpha = 'automatic',
+    grid.row = TRUE,
+    grid.col = TRUE,
+    row.colour = 'white',
+    col.colour = 'white',
+    row.lwd = 1.5,
+    col.lwd = 1.5,
+    clustering.method = 'none',
+    text.use.grid.coordinates = FALSE,
+    # conditionally labelling cells 
+    # flipping rows and columns because the heatmap function does so
+    cell.text = c("text1","text2"),
+    text.col = 'white',
+    text.cex = 0.65,
+    text.position = list(c(0.5,0.5),c(0.75,0.75)),
     description = 'Heatmap created using BoutrosLab.plotting.general'
     );
 
