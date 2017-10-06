@@ -14,12 +14,14 @@ print.multipanel <- function(x, ...){
 
 create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10, width = 10, resolution = 1000, 
                             plot.objects.heights = c(rep(1,layout.height)),plot.objects.widths = c(rep(1,layout.width)), layout.width = 1, 
-                            layout.height = length(plot.objects), main = '', main.padding = 2,main.x = 0.5, main.y = 0.5, x.spacing = 0, y.spacing= 0,
+                            layout.height = length(plot.objects), main = '',main.x = 0.5, main.y = 0.5, x.spacing = 0, y.spacing= 0,
                             xlab.label = '', xlab.cex = 2, ylab.label = '', ylab.label.right = '', 
-                            ylab.cex = 2, main.cex = 3, legend = NULL, left.padding = 3,  
+                            ylab.cex = 2, main.cex = 3, legend = NULL, left.padding = 0,  
                             ylab.axis.padding = c(rep(0,layout.width)),xlab.axis.padding = c(rep(0,layout.height)), bottom.padding = 0, 
-				top.padding = 0, right.padding = 0,layout.skip = c(rep(FALSE, layout.width*layout.height)),
+			    top.padding = 0, right.padding = 0,layout.skip = c(rep(FALSE, layout.width*layout.height)), left.legend.padding = 2,
+			    right.legend.padding = 2, bottom.legend.padding = 2, top.legend.padding = 2,
                             description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE) {
+
 	## make axis.padding appropriate length if only 1 value specified
 	if(1 == length(ylab.axis.padding)) {
 		ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
@@ -49,9 +51,9 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		stop("xlab.axis.padding must be the same size as layout.height");
 		}
 	
-	padding.text.to.padding.ratio <- 6; # this is used to align plots with diffrent label sizes
+	padding.text.to.padding.ratio <- 6.04; # this is used to align plots with diffrent label sizes
   	tick.to.padding.ratio <- 0.9484252; # this is used to evaluate length of ticks (is equivalent to 1mm)
-	additional.padding <- 0.5; # this is additional padding for labels that goes above calculation (takes care of overhanging values)
+	additional.padding <- 1; # this is additional padding for labels that goes above calculation (takes care of overhanging values)
 	
 	### MINOR ADJUSTMENTS TO MAKE VALUES SEEM MORE LOGICAL
 	x.spacing <- x.spacing/10;
@@ -102,29 +104,30 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		if (!is.null(plot.objects[[i]]$par.settings)) {
 
 			plot.objects[[i]]$par.settings$layout.widths$left.padding <- 0;
-			plot.objects[[i]]$par.settings$layout.widths$key.left <- 0;
+			plot.objects[[i]]$par.settings$layout.widths$key.left <- 1;
 			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$ylab <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.left <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.right <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.key.padding <- 0;
-			plot.objects[[i]]$par.settings$layout.widths$key.right <- 0; 
+			plot.objects[[i]]$par.settings$layout.widths$key.right <- 1; 
 			plot.objects[[i]]$par.settings$layout.widths$right.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$top.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$main <- 0;
  			plot.objects[[i]]$par.settings$layout.heights$main.key.padding <- 0;
-			plot.objects[[i]]$par.settings$layout.heights$key.top <- 0; 
+			plot.objects[[i]]$par.settings$layout.heights$key.top <- 1; 
 			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <-  0; 
 			plot.objects[[i]]$par.settings$layout.heights$axis.top <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.bottom <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$xlab <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 0; 
-			plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 0; 
+			plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 1; 
 			plot.objects[[i]]$par.settings$layout.heights$key.sub.padding <- 0; 
 			plot.objects[[i]]$par.settings$layout.heights$sub <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$bottom.padding <- 0;
+
 			}
       		}
 		
@@ -161,6 +164,12 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 	x.label.size <- list();
 	### MAIN PLOT LABEL
 	main.size <- list();
+	### LEGENDS
+	left.legend <- 0
+	right.legend <- 0
+	bottom.legend <- 0
+	top.legend <- 0
+
 	for (i in  c(1:length(plot.objects))) {
     
 		largest.y.axis[i] <- 0;
@@ -170,9 +179,17 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		x.label.size[i] <- 0;
 		y.label.size[i] <- 0;
 		main.size[i] <- 0;
+		left.legend[i] <- 0;
+		right.legend[i] <- 0;
+		top.legend[i] <- 0;
+		bottom.legend[i] <- 0;
     		# set variables for each plot according to their respective plot values
 		if (!is.null(plot.objects[[i]]$par.settings)) {
 			### GET GROB INFO FOR SIMPLE VARS
+			top.legend[i] <- get.legend.height(plot.objects[[i]]$legend$top,filename,width,height,resolution);
+			bottom.legend[i] <- get.legend.height(plot.objects[[i]]$legend$bottom,filename,width,height,resolution);
+			left.legend[i] <- get.legend.width(plot.objects[[i]]$legend$left,filename,width,height,resolution);
+			right.legend[i] <- get.legend.width(plot.objects[[i]]$legend$right,filename,width,height,resolution);
 			main.size[i] <- get.text.grob.height(plot.objects[[i]]$main$label,plot.objects[[i]]$main$cex,0,filename,width,height,resolution);
 			y.label.size[i] <- get.text.grob.width(plot.objects[[i]]$ylab$label,plot.objects[[i]]$ylab$cex,90,filename, width,height,resolution);
 			x.label.size[i] <- get.text.grob.height(plot.objects[[i]]$xlab$label,plot.objects[[i]]$xlab$cex,0,filename,width,height,resolution);
@@ -202,10 +219,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 				y.axis.labs <- plot.objects[[i]]$y.scales$labels;
 				}
 
-			largest.y.axis[i] <- get.text.grob.width(y.axis.labs,
-								plot.objects[[i]]$y.scales$cex, 
-								plot.objects[[i]]$y.scales$rot[1], 
-								filename, width,height,resolution);
+			largest.y.axis[i] <- get.text.grob.width(y.axis.labs,plot.objects[[i]]$y.scales$cex, plot.objects[[i]]$y.scales$rot[1],filename, width,height,resolution);
 			
 			if(!is.expression(plot.objects[[i]]$x.scales$labels[1])) {
 				if (is.null(plot.objects[[i]]$x.scales$labels) || is.na(plot.objects[[i]]$x.scales$labels) || plot.objects[[i]]$x.scales$labels == TRUE) {
@@ -231,10 +245,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
                                 }
 
 
-			largest.x.axis[i] <- get.text.grob.height(x.axis.labs,
-								 plot.objects[[i]]$x.scales$cex, 
-								 plot.objects[[i]]$x.scales$rot[1], 
-								 filename, width,height,resolution);
+			largest.x.axis[i] <- get.text.grob.height(x.axis.labs, plot.objects[[i]]$x.scales$cex, plot.objects[[i]]$x.scales$rot[1], filename, width,height,resolution);
       			
 			}
 		}
@@ -245,10 +256,16 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		maxAxis <- max(unlist(largest.y.axis[seq(i,length(plot.objects),layout.width)]));
 		maxTicks <- max(unlist(left.ticks[seq(i,length(plot.objects),layout.width)]));
 		maxLabels <- max(unlist(y.label.size[seq(i,length(plot.objects),layout.width)]));
+		maxRightLegend <- max(unlist(right.legend[seq(i,length(plot.objects),layout.width)]))
+		maxLeftLegend <- max(unlist(left.legend[seq(i,length(plot.objects),layout.width)]))
 		for ( j in seq(i,length(plot.objects),layout.width)) {
 			to.add <- (maxAxis + maxLabels) / padding.text.to.padding.ratio + maxTicks + additional.padding;
 			if (!is.null(plot.objects[[j]]$par.settings)) {
+				diff.right.legend <- abs(right.legend[j] - maxRightLegend)/padding.text.to.padding.ratio;
+				diff.left.legend <- abs(left.legend[j] - maxLeftLegend)/padding.text.to.padding.ratio;
 				plot.objects[[j]]$par.settings$layout.widths$ylab.axis.padding <- ylab.axis.padding[ceiling(i/2)] + to.add;
+				plot.objects[[j]]$par.settings$layout.widths$left.padding <- plot.objects[[j]]$par.settings$layout.widths$left.padding + diff.left.legend;
+				plot.objects[[j]]$par.settings$layout.widths$right.padding <- plot.objects[[j]]$par.settings$layout.widths$right.padding + diff.right.legend;
 				}
 			}
 		}
@@ -260,14 +277,20 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		maxTicks <- max(unlist(bottom.ticks[seq(i,i + layout.width - 1,1)]));
 		maxLabels <- max(unlist(x.label.size[seq(i,i + layout.width - 1,1)]));
 		maxMain <- max(unlist(main.size[seq(i,i + layout.width - 1,1)]))/2;
+		maxTopLegend <- max(unlist(top.legend[seq(i,i + layout.width - 1,1)]));
+		maxBottomLegend <- max(unlist(bottom.legend[seq(i,i + layout.width - 1,1)]));
 		for ( j in c(i:(i + layout.width - 1))) {
 			to.add <- (maxAxis + maxLabels) / padding.text.to.padding.ratio + maxTicks + additional.padding;
 			if (j <= length(plot.objects) && !is.null(plot.objects[[j]]$par.settings)) {
+				diff.top.legend <- abs(top.legend[j] - maxTopLegend)/padding.text.to.padding.ratio;
+				diff.bottom.legend <- abs(bottom.legend[j] - maxBottomLegend)/padding.text.to.padding.ratio;
 				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding[ceiling(i/(layout.width*2))] + to.add;
 				if(maxMain != 0 && (is.null(plot.objects[[j]]$main$label) || plot.objects[[j]]$main$label == '')) {
 					plot.objects[[j]]$main$label <- '\t'; #make sure it thinks a label is there 
 					}
-				plot.objects[[j]]$par.settings$layout.heights$main <- plot.objects[[j]]$par.settings$layout.heights$main+(maxMain/padding.text.to.padding.ratio);
+				plot.objects[[j]]$par.settings$layout.heights$top.padding <- plot.objects[[j]]$par.settings$layout.heights$top.padding + diff.top.legend;
+				plot.objects[[j]]$par.settings$layout.heights$bottom.padding <- plot.objects[[j]]$par.settings$layout.heights$bottom.padding + diff.bottom.legend;
+				plot.objects[[j]]$par.settings$layout.heights$main.key.padding <- plot.objects[[j]]$par.settings$layout.heights$main.key.padding+(maxMain/padding.text.to.padding.ratio);
 				}
 			}
 		}
@@ -284,6 +307,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
   
 	### LEFT GROB
 	if (!is.null(legend$left$fun)) { 
+
 		width.legend <- convertUnit(
 			grobWidth(legend$left$fun),
 			unitTo = 'lines',
@@ -291,41 +315,101 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			typeFrom = 'dimension',
 			valueOnly = TRUE
 			);
-    
-		width.text <- convertUnit(
-			grobWidth(y.label),
-			unitTo = 'lines',
-			axisFrom = 'x',
-			typeFrom = 'dimension',
-			valueOnly = TRUE
-			);
+
+    		width.text <- 0;
+
+		if(ylab.label != ''){
+			width.text <- convertUnit(
+				grobWidth(y.label),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+		}
     
 		left.layout.final <- grid.layout(
 			nrow = 1,
-			ncol = 2,
+			ncol = 4,
 			widths = unit(
-				x = c(width.legend, width.text),
-				units = c('lines','lines')
+				x = c(left.padding,width.text,width.legend, left.legend.padding),
+				units = c('lines','lines','lines','lines')
 				),
 			heights = unit(1, 'null'),
 			respect = FALSE
 			);
 		left.grob <- frameGrob(layout = left.layout.final);
-			left.grob <- placeGrob(
+		left.grob <- placeGrob(
 			frame = left.grob,
-			grob = legend$left$fun,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
 			row = 1,
-			col = 1
+			col = 1  
 			);
+
 		left.grob <- placeGrob(
 			frame = left.grob,
 			grob = y.label,
 			row = 1,
 			col = 2
 			);
+
+		left.grob <- placeGrob(
+			frame = left.grob,
+			grob = legend$left$fun,
+			row = 1,
+			col = 3
+			);
+		left.grob <- placeGrob(
+			frame = left.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 4  
+			);
+
 		}
 	else {
-		left.grob <- y.label;
+
+    		width.text <- 0;
+		if(ylab.label != ''){
+			width.text <- convertUnit(
+				grobWidth(y.label),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+		}
+    
+		left.layout.final <- grid.layout(
+			nrow = 1,
+			ncol = 3,
+			widths = unit(
+				x = c(left.padding,width.text,left.legend.padding),
+				units = c('lines','lines','lines')
+				),
+			heights = unit(1, 'null'),
+			respect = FALSE
+			);
+		left.grob <- frameGrob(layout = left.layout.final);
+		left.grob <- placeGrob(
+			frame = left.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 1  
+			);
+
+		left.grob <- placeGrob(
+			frame = left.grob,
+			grob = y.label,
+			row = 1,
+			col = 2
+			);
+		left.grob <- placeGrob(
+			frame = left.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 3  
+			);
 		}
   
 	### RIGHT GROB
@@ -337,22 +421,24 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			typeFrom = 'dimension',
 			valueOnly = TRUE
 			);
-    
-		width.text <- convertUnit(
-			grobWidth(y.label.right),
-			unitTo = 'lines',
-			axisFrom = 'x',
-			typeFrom = 'dimension',
-			valueOnly = TRUE
-			);
+
+    		width.text <- 0;
+		if(ylab.label.right != ''){
+			width.text <- convertUnit(
+				grobWidth(y.label.right),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+			}
     
 		right.layout.final <- grid.layout(
 			nrow = 1,
-			ncol = 2,
+			ncol = 4,
 			widths = unit(
-				x = c(width.text, width.legend),
-				units = c('lines','lines'),
-				data = list(NULL, NULL)
+				x = c(right.legend.padding,width.legend,width.text,right.padding),
+				units = c('lines','lines','lines','lines')
 				),
 			heights = unit(1, 'null'),
 			respect = FALSE
@@ -361,24 +447,77 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		right.grob <- frameGrob(layout = right.layout.final);
 		right.grob <- placeGrob(
 			frame = right.grob,
-			grob = y.label.right,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
 			row = 1,
 			col = 1
 			);
-    
 		right.grob <- placeGrob(
 			frame = right.grob,
 			grob = legend$right$fun,
 			row = 1,
 			col = 2
 			);
+		right.grob <- placeGrob(
+			frame = right.grob,
+			grob = y.label.right,
+			row = 1,
+			col = 3
+			);
+		right.grob <- placeGrob(
+			frame = right.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 4
+			);
 		}
 	else {
-		right.grob <- y.label.right;
+
+    		width.text <- 0;
+		if(ylab.label.right != ''){
+			width.text <- convertUnit(
+				grobWidth(y.label.right),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+			}
+    
+		right.layout.final <- grid.layout(
+			nrow = 1,
+			ncol = 3,
+			widths = unit(
+				x = c(right.legend.padding,width.text,right.padding),
+				units = c('lines','lines','lines')
+				),
+			heights = unit(1, 'null'),
+			respect = FALSE
+			);
+    
+		right.grob <- frameGrob(layout = right.layout.final);
+		right.grob <- placeGrob(
+			frame = right.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 1
+			);
+		right.grob <- placeGrob(
+			frame = right.grob,
+			grob = y.label.right,
+			row = 1,
+			col = 2
+			);
+		right.grob <- placeGrob(
+			frame = right.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 3
+			);
 		}
   
 	### BOTTOM GROB
 	if (!is.null(legend$bottom$fun)) { 
+
 		height.legend <- convertUnit(
 			grobHeight(legend$bottom$fun),
 			unitTo = 'lines',
@@ -386,22 +525,23 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			typeFrom = 'dimension',
 			valueOnly = TRUE
 			);
-    
-		height.text <- convertUnit(
-			grobHeight(x.label),
-			unitTo = 'lines',
-			axisFrom = 'x',
-			typeFrom = 'dimension',
-			valueOnly = TRUE
-			);
+    		height.text <- 0;
+		if(xlab.label != ''){
+			height.text <- convertUnit(
+				grobHeight(x.label),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+			}
     
 		bottom.layout.final <- grid.layout(
-			nrow = 2,
+			nrow = 4,
 			ncol = 1,
 			heights = unit(
-				x = c(height.text, height.legend),
-				units = c('lines','lines'),
-				data = list(NULL, NULL)
+				x = c(bottom.legend.padding, height.legend,height.text,bottom.padding),
+				units = c('lines','lines','lines','lines')
 				),
 			widths = unit(1, 'null'),
 			respect = FALSE
@@ -410,7 +550,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		bottom.grob <- frameGrob(layout = bottom.layout.final);
 		bottom.grob <- placeGrob(
 			frame = bottom.grob,
-			grob = x.label,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
 			row = 1,
 			col = 1
 			);
@@ -420,13 +560,67 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			row = 2,
 			col = 1
 			);
+		bottom.grob <- placeGrob(
+			frame = bottom.grob,
+			grob = x.label,
+			row = 3,
+			col = 1
+			);
+		bottom.grob <- placeGrob(
+			frame = bottom.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 4,
+			col = 1
+			);
 		}
 	else {
-		bottom.grob <- x.label;
+
+    		height.text <- 0;
+		if(xlab.label != ''){
+			height.text <- convertUnit(
+				grobHeight(x.label),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+			}
+    
+		bottom.layout.final <- grid.layout(
+			nrow = 4,
+			ncol = 1,
+			heights = unit(
+				x = c(bottom.legend.padding,height.text,bottom.padding),
+				units = c('lines','lines','lines')
+				),
+			widths = unit(1, 'null'),
+			respect = FALSE
+			);
+    
+		bottom.grob <- frameGrob(layout = bottom.layout.final);
+		bottom.grob <- placeGrob(
+			frame = bottom.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 1,
+			col = 1
+			);
+		bottom.grob <- placeGrob(
+			frame = bottom.grob,
+			grob = x.label,
+			row = 2,
+			col = 1
+			);
+		bottom.grob <- placeGrob(
+			frame = bottom.grob,
+			grob = rectGrob(gp=gpar(col="white", alpha = 0)),
+			row = 3,
+			col = 1
+			);
 		}
   
 	### TOP GROB
 	if (!is.null(legend$top$fun)) { 
+	
 		height.legend <- convertUnit(
 			grobHeight(legend$top$fun),
 			unitTo = 'lines',
@@ -434,22 +628,23 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			typeFrom = 'dimension',
 			valueOnly = TRUE
 			);
-    
-		height.text <- convertUnit(
-			grobHeight(main.label),
-			unitTo = 'lines',
-			axisFrom = 'x',
-			typeFrom = 'dimension',
-			valueOnly = TRUE
-			);
+    		height.text <- 0;
+		if(main != ''){
+			height.text <- convertUnit(
+				grobHeight(main.label),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+			}
     
 		top.layout.final <- grid.layout(
 			nrow = 4,
 			ncol = 1,
 			heights = unit(
-				x = c(top.padding,height.text,main.padding,height.legend),
-				units = c('lines','lines','lines','lines'),
-        			data = list(NULL, NULL,NULL,NULL)
+				x = c(top.padding,height.text,height.legend,top.legend.padding),
+				units = c('lines','lines','lines','lines')
       				),
 			widths = unit(1, 'null'),
 			respect = FALSE
@@ -482,22 +677,22 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			);
 		}
 	else {
-    
-		height.text <- convertUnit(
-			grobHeight(main.label),
-			unitTo = 'lines',
-			axisFrom = 'x',
-			typeFrom = 'dimension',
-			valueOnly = TRUE
-			);
-    
+		height.text <- 0;
+		if(main.label != ''){
+			height.text <- convertUnit(
+				grobHeight(main.label),
+				unitTo = 'lines',
+				axisFrom = 'x',
+				typeFrom = 'dimension',
+				valueOnly = TRUE
+				);
+			}
 		top.layout.final <- grid.layout(
 			nrow = 3,
 			ncol = 1,
 			heights = unit(
-				x = c(top.padding,height.text,main.padding),
-				units = c('lines','lines','lines'),
-				data = list(NULL, NULL,NULL)
+				x = c(top.padding,height.text,top.legend.padding),
+				units = c('lines','lines','lines')
 				),
 			widths = unit(1, 'null'),
 			respect = FALSE
@@ -522,7 +717,6 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			col = 1
 			);
 		}
-
 	# create grob of all plots
 	grob <- arrangeGrob(
 		grobs = plot.objects,
@@ -558,7 +752,109 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		}
 	}
 
+get.legend.height <- function(legend,filename,width, height, resolution){
+	#grob size depends on image type and size -- must simulate opening the device
+	extension <- file_ext(filename);
+	if (!is.null(filename)) {
+		if ('tiff' == extension) {
+			tiff(height = height, width = width, res = resolution);
+			}
+		else if ('png' == extension) {
+			png(height = height, width = width, res = resolution);
+			}
+		else if ('pdf' == extension) {
+			cairo_pdf(height = height, width = width);
+			}
+		else if ('svg' == extension) {
+			svg(height = height, width = width);
+			}
+		else if ('eps' == extension) {
+			postscript(height = height, width = width);
+			}
+		else {
+			stop('File type not supported');
+			}
+		}
+	if(is.null(legend)){
+		height.legend <- 0;
+		}
+	else if(is.grob(legend$fun)) {
+		height.legend <- convertUnit(
+			grobHeight(legend$fun),
+			unitTo = 'points',
+			axisFrom = 'y',
+			typeFrom = 'dimension'
+			);
+		}
+	else{
+		grob <- do.call(legend$fun,list(key = legend$args$key, draw=FALSE));
+		height.legend <- convertUnit(
+			grobHeight(grob),
+			unitTo = 'points',
+			axisFrom = 'y',
+			typeFrom = 'dimension'
+			);
+		}
 
+	if (!is.null(filename)) {
+		dev.off();
+		}
+
+	return(height.legend);
+
+	}
+
+get.legend.width <- function(legend,filename,width, height, resolution){
+	#grob size depends on image type and size -- must simulate opening the device
+	extension <- file_ext(filename);
+	if (!is.null(filename)) {
+		if ('tiff' == extension) {
+			tiff(height = height, width = width, res = resolution);
+			}
+		else if ('png' == extension) {
+			png(height = height, width = width, res = resolution);
+			}
+		else if ('pdf' == extension) {
+			cairo_pdf(height = height, width = width);
+			}
+		else if ('svg' == extension) {
+			svg(height = height, width = width);
+			}
+		else if ('eps' == extension) {
+			postscript(height = height, width = width);
+			}
+		else {
+			stop('File type not supported');
+			}
+		}
+	if(is.null(legend)){
+		width.legend <- 0;
+		}
+	else if(is.grob(legend$fun)) {
+		width.legend <- convertUnit(
+			grobWidth(legend$fun),
+			unitTo = 'points',
+			axisFrom = 'x',
+			typeFrom = 'dimension'
+			);
+		}
+	else{
+		grob <- do.call(legend$fun,list(key = legend$args$key, draw=FALSE));
+		width.legend <- convertUnit(
+			grobWidth(grob),
+			unitTo = 'points',
+			axisFrom = 'x',
+			typeFrom = 'dimension'
+			);
+		}
+
+	if (!is.null(filename)) {
+		dev.off();
+		}
+
+	return(width.legend);
+
+	}
 
 ### function to get the grob width given the text and specification parameters##
 get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolution) {

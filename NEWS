@@ -1,3 +1,16 @@
+BoutrosLab.plotting.general 5.8.3 2017-08-11
+
+BUG FIX
+* Multipanel plot now works with legends from original plots
+* Barplot error bars now work with horizontal plots too
+
+FEATURE
+* heatmap now accepts inside legends and can specify text not based on grid cooridnates
+
+
+--------------------------------------------------------------------------
+
+
 BoutrosLab.plotting.general 5.8.2 2017-08-11
 
 BUG FIX

@@ -14,7 +14,6 @@ create.multipanelplot(
 	layout.width = 1,
 	layout.height = length(plot.objects),
 	main = '',
-	main.padding = 2,
 	main.x = 0.5,
 	main.y = 0.5,
 	x.spacing = 0, 
@@ -26,13 +25,17 @@ create.multipanelplot(
 	ylab.cex = 2,
 	main.cex = 3,
 	legend = NULL,
-	left.padding = 3,
+	left.padding = 0,
 	ylab.axis.padding = c(rep(0, layout.width)),
 	xlab.axis.padding = c(rep(0, layout.height)),
 	bottom.padding = 0,
 	top.padding = 0,
 	right.padding = 0,
 	layout.skip = c(rep(FALSE, layout.width*layout.height)),
+	left.legend.padding = 2,
+	right.legend.padding = 2, 
+	bottom.legend.padding = 2, 
+	top.legend.padding = 2,
 	description = 'Created with BoutrosLab.plotting.general',
 	size.units = 'in',
 	enable.warnings = FALSE
@@ -49,7 +52,6 @@ create.multipanelplot(
     \item{layout.width}{how many plots per row.}
     \item{layout.height}{how many plots per column}
     \item{main}{main label text}
-    \item{main.padding}{padding for main label from the plots below}
     \item{main.x}{main label x coordinate}
     \item{main.y}{main label y coordinate}
     \item{x.spacing}{horizontal spacing between each plot. Can be single value or vector of length layout.width - 1}
@@ -68,6 +70,10 @@ create.multipanelplot(
     \item{top.padding}{padding from the top side of the frame}
     \item{right.padding}{padding from the right side of the frame}
     \item{layout.skip}{list specifiying locations to skip plots. Must be vector of length layout.width*layout.height}
+    \item{left.legend.padding}{padding between legend and left side of figure (can use without a legend)}
+    \item{right.legend.padding}{padding between legend and right side of figure (can use without a legend)}
+    \item{bottom.legend.padding}{padding between legend and bottom side of figure (can use without a legend)}
+    \item{top.legend.padding}{padding between legend and top side of figure (can use without a legend)}
     \item{description}{description of what plot is displaying}
     \item{size.units}{the units the height and width of file represent}
     \item{enable.warnings}{enables warnings to be output}
@@ -144,6 +150,33 @@ create.multipanelplot(
     main = 'Simple', 
     top.padding = 2
     );
+
+# Create plot # 2
+simple.heatmap.with.legends <- create.heatmap(
+    x = t(fill.squares),
+    shrink = 0.8,
+    yaxis.lab = c(3,2,3),
+    yaxis.tck = 1,
+    xaxis.lab = c('A','B','C'),
+    ylab.label = 'Drug Regimen',
+    xlab.label = '',
+    colour.scheme = c("white", "grey20"),
+    fill.colour = "white",
+    left.padding = 0,
+    xaxis.tck = c(1,0),
+    right.padding = 0,
+    xaxis.rot = 0
+    );
+
+create.multipanelplot(
+    filename = 'Multipanelplot_Simple_Legends.tiff',
+    plot.objects = list(simple.boxplot,simple.heatmap.with.legends),
+    y.spacing = 2,
+    ylab.axis.padding = 2,
+    main = 'Simple',
+    top.padding = 2
+    );
+
 
 # Create plot # 1
 simple.boxplot2 <- create.boxplot(
@@ -687,7 +720,7 @@ create.multipanelplot(
     layout.height = 4,
     layout.width = 2,
     x.spacing = 0.2,
-    left.padding = 8,
+    left.padding = 0,
     layout.skip = c(FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE),
     y.spacing = c(0,0,-0.5),
     ylab.axis.padding = c(1,0),
@@ -870,7 +903,7 @@ create.multipanelplot(
             )
         ),
     main = 'Continous Legend', 
-    main.padding = 4,
+    top.legend.padding = 4,
     top.padding = -2
     # This parameter must be set for the legend to appear
     );
@@ -883,7 +916,7 @@ create.multipanelplot(
     plot.objects.widths = c(1,1, 1,1),
     layout.height = 4,
     layout.width = 4,
-    main.padding = 3,
+    top.legend.padding = 3,
     layout.skip = c(FALSE, FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE),
     y.spacing = c(0,0,0),
     x.spacing = c(1,2,3),
