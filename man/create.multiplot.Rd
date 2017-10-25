@@ -1291,7 +1291,10 @@ create.multiplot(
         # Parameters set in the multiplot will override settings in individual plots
         xaxis.cex = 0.7,
         yaxis.cex = 0.7,
-	yaxis.lab = list(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20),c(-2,-1,0,1,2,3,4,5)),
+	yaxis.lab = list(
+		c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20),
+		c(-2,-1,0,1,2,3,4,5)
+		),
 	xaxis.lab = list(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, 16,17,18,19,20),c(1,2,3)),
 	xaxis.rot = 45,
 	xaxis.rot.top = 90,

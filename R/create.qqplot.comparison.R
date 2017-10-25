@@ -26,7 +26,6 @@ create.qqplot.comparison <- function(
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
 	) {
-
 	### needed to copy in case using variable to define rectangles dimensions
         rectangleInfo = list(
                                 xright = xright.rectangle,

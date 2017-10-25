@@ -37,8 +37,18 @@ simple.data3 <- data.frame(
     y = LETTERS[1:10]
     );
 
-p = list(list(formula = x ~ y,data = simple.data1, yat = seq(0,16,2)),list(formula = x ~ y,data = simple.data2, yat = seq(0,16,2)),list(formula = x ~ y,data = simple.data3, yat = seq(0,16,2)))
+p = list(
+	list(formula = x ~ y,data = simple.data1, yat = seq(0,16,2)),
+	list(formula = x ~ y,data = simple.data2, yat = seq(0,16,2)),
+	list(formula = x ~ y,data = simple.data3, yat = seq(0,16,2))
+	)
 
-create.gif(execFunc = create.barplot, parameters = p, numberOfFrames = 3, delay = 20, filename='test.gif') 
+create.gif(
+	execFunc = create.barplot, 
+	parameters = p, 
+	numberOfFrames = 3, 
+	delay = 20, 
+	filename='test.gif'
+	) 
 
 }

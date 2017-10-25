@@ -68,6 +68,14 @@ create.densityplot(
 	ytop.rectangle = NULL,
 	col.rectangle = 'transparent',
 	alpha.rectangle = 1,
+	add.text = FALSE, 
+	text.labels = NULL, 
+	text.x = NULL, 
+	text.y = NULL, 
+	text.anchor = "centre", 
+	text.col = "black", 
+	text.cex = 1,
+        text.fontface = "bold",
 	height = 6,
 	width = 6,
 	size.units = 'in',
@@ -143,6 +151,14 @@ create.densityplot(
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
     \item{col.rectangle}{Specifies the colour to fill the rectangle's area}
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
+    \item{add.text}{Allow additional text to be drawn, default is FALSE}
+    \item{text.labels}{Labels for additional text}
+    \item{text.x}{The x co-ordinates where additional text should be placed}
+    \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.anchor}{Part of text that should be anchored to x/y coordinates. Defaults to 'centre'. Use 'left' or 'right' to left or right-align text.}
+    \item{text.col}{The colour of additional text}
+    \item{text.cex}{The size of additional text}
+    \item{text.fontface}{The fontface for additional text}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}

@@ -16,10 +16,10 @@ get.defaults <- function(property = 'fontfamily', os.type = .Platform$OS.type, a
 	if (os.type == 'unix') {
 		if (property == 'fontfamily') {
 			if (length(add.to.list) > 0) {
-				add.to.list[["fontfamily"]] <- 'Arial';
+				add.to.list[["fontfamily"]] <- 'ArialMT';
 				}
 			else {
-				add.to.list <- 'Arial';
+				add.to.list <- 'ArialMT';
 				}
 			}
 		}

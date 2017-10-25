@@ -137,7 +137,8 @@ create.heatmap(
 	symbols = list(borders = NULL, 
 	squares = NULL, 
 	circles = NULL), 
-	same.as.matrix = FALSE, 
+	same.as.matrix = FALSE,
+	input.colours = FALSE, 
 	axis.xlab.padding = 0.1, 
 	stratified.clusters.rows = NULL, 
 	stratified.clusters.cols = NULL,
@@ -278,6 +279,7 @@ create.heatmap(
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{symbols}{Extra symbols to be added (borders, squares and circles)}
     \item{same.as.matrix}{Prevents the flipping of the matrix that the function normally does}
+    \item{input.colours}{boolean expressing whether or not the matrix was specified using colours or integer values. Defaults to FALSE}
     \item{axis.xlab.padding}{Padding between axis of plot and x label}
     \item{stratified.clusters.rows}{the row locations of the rows to be combined into a strata}
     \item{stratified.clusters.cols}{the column locations of the columns to be combined into a strata}
@@ -341,6 +343,20 @@ create.heatmap(
     description = 'Heatmap created using BoutrosLab.plotting.general'
     );
 
+simple.data.col <- data.frame(
+    x <- c('blue','green','red','yellow','blue','red','black','white','purple','grey'),
+    y <- rep('red',10),
+    z <- rep('yellow',10),
+    v <- rep('green',10),
+    w <- rep('purple',10)
+    );
+
+create.heatmap(
+    filename="Heatmap_Simple_Using_Colours.tiff",
+    x=simple.data.col, 
+    clustering.method='none',
+    input.colours = TRUE
+    )
 # Minimal Input
 create.heatmap(
     filename = 'Heatmap_Minimal_Input.tiff',

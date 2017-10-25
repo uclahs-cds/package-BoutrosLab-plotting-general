@@ -22,7 +22,8 @@ create.densityplot <- function(
 	left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.lty = NULL,
 	abline.lwd = NULL, abline.col = 'black', add.rectangle = FALSE, xleft.rectangle = NULL,
 	ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',
-	alpha.rectangle = 1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	alpha.rectangle = 1,add.text = FALSE,text.labels = NULL,text.x = NULL,text.y = NULL,text.anchor = 'centre',text.col = 'black', 
+	text.cex = 1,text.fontface = 'bold', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
 	) {
 
@@ -185,6 +186,19 @@ create.densityplot <- function(
 
 			panel.abline(h = abline.h, lty = abline.lty, lwd = abline.lwd, col = abline.col);
 			panel.abline(v = abline.v, lty = abline.lty, lwd = abline.lwd, col = abline.col);
+			# Add text to plot
+                        if (add.text) {
+
+                                 panel.text(
+                                        x        = text.x,
+                                        y        = text.y,
+                                        labels   = text.labels,
+                                        col      = text.col,
+                                        cex      = text.cex,
+                                        fontface = text.fontface,
+                                        adj      = text.anchor
+                                        );
+                                }
 
 			# if requested, add x=0, y=0 lines
 			if (add.axes) {

@@ -38,7 +38,8 @@ create.multipanelplot(
 	top.legend.padding = 2,
 	description = 'Created with BoutrosLab.plotting.general',
 	size.units = 'in',
-	enable.warnings = FALSE
+	enable.warnings = FALSE,
+	style = "BoutrosLab"
 );
 }
 \arguments{
@@ -77,6 +78,7 @@ create.multipanelplot(
     \item{description}{description of what plot is displaying}
     \item{size.units}{the units the height and width of file represent}
     \item{enable.warnings}{enables warnings to be output}
+    \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
 }
 \author{Jeff Green}
 \section{Warning}{
@@ -519,7 +521,8 @@ covariates <- create.heatmap(
     right.padding = 0
     );
 
-## Warning: number of columns exceeded limit (50), column lines are turned off. Please set "force.grid.col" to TRUE to override this
+## Warning: number of columns exceeded limit (50), column lines are 
+## turned off. Please set "force.grid.col" to TRUE to override this
 
 # Coviate Legends
 cov.legends <- list(
@@ -814,7 +817,8 @@ covariates <- create.heatmap(
     xat = c(1,2,3)
     );
 
-## Warning: number of columns exceeded limit (50), column lines are turned off. Please set "force.grid.col" to TRUE to override this
+## Warning: number of columns exceeded limit (50), column 
+## lines are turned off. Please set "force.grid.col" to TRUE to override this
 
 covariates2 <- create.heatmap(
     x = patient[4],
@@ -831,7 +835,8 @@ covariates2 <- create.heatmap(
     xat = c(1,2,3)
     );
 
-## Warning: number of rows exceeded limit (50), row lines are turned off. Please set "force.grid.row" to TRUE to override this
+## Warning: number of rows exceeded limit (50), row 
+## lines are turned off. Please set "force.grid.row" to TRUE to override this
 
 
 cov.legends <- list(
@@ -911,7 +916,18 @@ create.multipanelplot(
  create.multipanelplot(
     filename = 'Multipanelplot_manyPlots.tiff',
     main = 'Large Scale',
-    plot.objects = list(simple.boxplot,simple.heatmap,simple.bar,barplot.formatted,dotmap,grouped.barplot,stacked.barplot,covariates,covariates2,heatmap.formatted),
+    plot.objects = list(
+	simple.boxplot,
+	simple.heatmap,
+	simple.bar,
+	barplot.formatted,
+	dotmap,
+	grouped.barplot,
+	stacked.barplot,
+	covariates,
+	covariates2,
+	heatmap.formatted
+	),
     plot.objects.heights = c(1,1,1,1),
     plot.objects.widths = c(1,1, 1,1),
     layout.height = 4,
