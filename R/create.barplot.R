@@ -266,7 +266,7 @@ create.barplot <- function(
 				}
 
 			# Add the barplot
-			panel.barchart(x, y, subscripts = subscripts, groups = groups.new, border = border.col, lwd = border.lwd, ..., origin = 0);
+			panel.barchart(x, y, subscripts = subscripts, groups = groups.new, border = border.col, lwd = border.lwd, ..., origin = origin);
 
 			# add lines superimposed
 			if (length(line.func) > 0 && !line.infront) {
