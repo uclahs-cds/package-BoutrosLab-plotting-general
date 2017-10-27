@@ -34,7 +34,9 @@ legend.grob <- function(
 	legend.grob.final <- NULL;
 
 	if (length(legends) > 0) {
-
+		if(is.null(font.family)){
+			font.family = BoutrosLab.plotting.general::get.defaults(property = 'fontfamily')
+			}
 		num.legends <- length(legends);
 
 		# If user-specified layout is not the right size, use a default layout
