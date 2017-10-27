@@ -21,7 +21,14 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			    top.padding = 0, right.padding = 0,layout.skip = c(rep(FALSE, layout.width*layout.height)), left.legend.padding = 2,
 			    right.legend.padding = 2, bottom.legend.padding = 2, top.legend.padding = 2,
                             description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE, style= 'BoutrosLab') {
-
+        ## make axis.padding appropriate length if only 1 value specified
+        if(1 == length(ylab.axis.padding)) {
+                ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
+                }
+        if(1 == length(xlab.axis.padding)) {
+                xlab.axis.padding <- rep(xlab.axis.padding,layout.height);
+                }
+	
 	### ERROR CHECKING ###
 	if (length(plot.objects.heights) != layout.height) {
 		stop("plot.objects.heights must have layout.height  number of entries");
@@ -42,13 +49,6 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		stop("xlab.axis.padding must be the same size as layout.height");
 		}
 
-	## make axis.padding appropriate length if only 1 value specified
-	if(1 == length(ylab.axis.padding)) {
-		ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
-		}
-	if(1 == length(xlab.axis.padding)) {
-		xlab.axis.padding <- rep(xlab.axis.padding,layout.height);
-		}
 
 	
 	padding.text.to.padding.ratio <- 6.04; # this is used to align plots with diffrent label sizes
