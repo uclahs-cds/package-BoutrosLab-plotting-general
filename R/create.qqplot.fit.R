@@ -381,6 +381,7 @@ create.qqplot.fit <- function(
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -392,6 +393,7 @@ create.qqplot.fit <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -401,6 +403,7 @@ create.qqplot.fit <- function(
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
                         property = 'fontfamily',
+			style = style,
                         add.to.list = list(
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
@@ -413,6 +416,7 @@ create.qqplot.fit <- function(
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -423,6 +427,7 @@ create.qqplot.fit <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
@@ -438,6 +443,7 @@ create.qqplot.fit <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,

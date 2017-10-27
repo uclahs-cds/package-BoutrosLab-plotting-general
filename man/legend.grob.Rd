@@ -15,7 +15,8 @@ legend.grob(
 	border.padding = 1,
 	layout = c(1, length(legends)),
 	between.col = 1,
-	between.row = 1
+	between.row = 1,
+	style = 'BoutrosLab'
 	);
 }
 \arguments{
@@ -32,6 +33,7 @@ The 'colours' component is a vector of fill colours to be used for the rectangle
     \item{layout}{Numeric vector of length 2 specifying the number of columns and rows for the legend layout. Defaults to a 1-column layout. Note that legends are added to the layout in a row-wise order.}
     \item{between.col}{Amount of space to add between columns in the layout, in 'lines' units. Defaults to 0.5.}
     \item{between.row}{Amount of space to add between rows in the layout, in 'lines' units. Defaults to 0.5.}
+    \item{style}{Style used to determine font}
  }
 \value{Returns an grob representing the legend(s)}
 \author{Lauren Chong}

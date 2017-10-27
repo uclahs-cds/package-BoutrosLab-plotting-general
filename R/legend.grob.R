@@ -13,7 +13,7 @@
 legend.grob <- function(
 	legends, label.cex = 1, title.cex = 1, title.just = 'centre', title.fontface = 'bold',
 	font.family = NULL, size = 3, border = NULL, border.padding = 1, layout = c(1, length(legends)),
-	between.col = 1, between.row = 1
+	between.col = 1, between.row = 1, style = 'BoutrosLab'
 	) {
 
 	# NOTE: calls to 'draw.key' may open a device for drawing (even with 'draw = FALSE' set)
@@ -35,7 +35,7 @@ legend.grob <- function(
 
 	if (length(legends) > 0) {
 		if(is.null(font.family)){
-			font.family = BoutrosLab.plotting.general::get.defaults(property = 'fontfamily')
+			font.family = BoutrosLab.plotting.general::get.defaults(property = 'fontfamily',style = style)
 			}
 		num.legends <- length(legends);
 

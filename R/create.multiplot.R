@@ -203,15 +203,18 @@ xscale.components.old <- function(...){
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = x.scale
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = y.scale
 				)
 			),
 		main =  BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
+			style = style,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -223,6 +226,7 @@ xscale.components.old <- function(...){
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
+			style = style,
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -231,6 +235,7 @@ xscale.components.old <- function(...){
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -242,7 +247,8 @@ xscale.components.old <- function(...){
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
+			style = style, 
 			add.to.list = list(
 				label = rev(ylab.label),
 				fontface = if ('Nature' == style){'plain'} else('bold'),

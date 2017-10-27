@@ -375,6 +375,7 @@ create.barplot <- function(
 		horizontal = plot.horizontal,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -386,6 +387,7 @@ create.barplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -395,6 +397,7 @@ create.barplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -407,6 +410,7 @@ create.barplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = ylab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -417,6 +421,7 @@ create.barplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -432,6 +437,7 @@ create.barplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,

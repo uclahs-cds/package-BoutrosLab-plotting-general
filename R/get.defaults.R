@@ -10,16 +10,17 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO GET OPERATING SYSTEM PROPERTIES ###################################################
-get.defaults <- function(property = 'fontfamily', os.type = .Platform$OS.type, add.to.list = NULL) {
+get.defaults <- function(property = 'fontfamily', os.type = .Platform$OS.type, add.to.list = NULL, style = 'BoutrosLab') {
 
 	# *nix specific settings
 	if (os.type == 'unix') {
 		if (property == 'fontfamily') {
 			if (length(add.to.list) > 0) {
-				add.to.list[["fontfamily"]] <- 'ArialMT';
+				
+				add.to.list[["fontfamily"]] <- if(style == 'Nature') {'Arial';} else{'ArialMT';}
 				}
 			else {
-				add.to.list <- 'ArialMT';
+				add.to.list <- if(style == 'Nature') {'Arial';} else{'ArialMT';}
 				}
 			}
 		}

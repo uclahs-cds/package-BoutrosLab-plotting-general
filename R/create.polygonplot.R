@@ -436,6 +436,7 @@ create.polygonplot <- function(
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -447,6 +448,7 @@ create.polygonplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -456,6 +458,7 @@ create.polygonplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -468,6 +471,7 @@ create.polygonplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -482,6 +486,7 @@ create.polygonplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					labels = xaxis.lab,
 					log = xaxis.log,
@@ -498,6 +503,7 @@ create.polygonplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					labels = yaxis.lab,
 					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface },

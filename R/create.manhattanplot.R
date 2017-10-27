@@ -133,6 +133,7 @@ create.manhattanplot <- function(
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -144,6 +145,7 @@ create.manhattanplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -153,6 +155,7 @@ create.manhattanplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -165,6 +168,7 @@ create.manhattanplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
+			style = style,
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -175,6 +179,7 @@ create.manhattanplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
@@ -191,6 +196,7 @@ create.manhattanplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
+				style = style,
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,

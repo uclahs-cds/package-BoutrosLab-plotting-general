@@ -22,14 +22,6 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 			    right.legend.padding = 2, bottom.legend.padding = 2, top.legend.padding = 2,
                             description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE, style= 'BoutrosLab') {
 
-	## make axis.padding appropriate length if only 1 value specified
-	if(1 == length(ylab.axis.padding)) {
-		ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
-		}
-	if(1 == length(xlab.axis.padding)) {
-		xlab.axis.padding <- rep(xlab.axis.padding,layout.height);
-		}
-
 	### ERROR CHECKING ###
 	if (length(plot.objects.heights) != layout.height) {
 		stop("plot.objects.heights must have layout.height  number of entries");
@@ -50,21 +42,15 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 		stop("xlab.axis.padding must be the same size as layout.height");
 		}
 
-	# If Nature style requested, change figure accordingly
-        if ('Nature' == style) {
+	## make axis.padding appropriate length if only 1 value specified
+	if(1 == length(ylab.axis.padding)) {
+		ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
+		}
+	if(1 == length(xlab.axis.padding)) {
+		xlab.axis.padding <- rep(xlab.axis.padding,layout.height);
+		}
 
-                # Ensure sufficient resolution for graphs
-                if (resolution < 1200) {
-                        resolution <- 1200;
-                        warning("Setting resolution to 1200 dpi.");
-                        }
-
-                # Other required changes which are not accomplished here
-                warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
-
-                warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend");
-                } 
-
+	
 	padding.text.to.padding.ratio <- 6.04; # this is used to align plots with diffrent label sizes
   	tick.to.padding.ratio <- 0.9484252; # this is used to evaluate length of ticks (is equivalent to 1mm)
 	additional.padding <- 1; # this is additional padding for labels that goes above calculation (takes care of overhanging values)
@@ -792,6 +778,23 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 	## Add white background color
 	grob <- gtable_add_grob(grob,grobs = rectGrob(gp=gpar(fill="white", lwd=0)),1,1,nrow(grob),ncol(grob),0);
+
+
+	# If Nature style requested, change figure accordingly
+        if ('Nature' == style) {
+
+                # Ensure sufficient resolution for graphs
+                if (resolution < 1200) {
+                        resolution <- 1200;
+                        warning("Setting resolution to 1200 dpi.");
+                        }
+
+                # Other required changes which are not accomplished here
+                warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+
+                warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend");
+                } 
+
 
 	# return grob
 	if (!is.null(filename)) {
