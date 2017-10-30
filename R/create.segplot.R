@@ -130,7 +130,7 @@ create.segplot <- function(
 			},
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -142,7 +142,7 @@ create.segplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -152,7 +152,7 @@ create.segplot <- function(
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
                         property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
                         add.to.list = list(
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
@@ -165,7 +165,7 @@ create.segplot <- function(
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -180,7 +180,7 @@ create.segplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings, 
+				use.legacy.settings = use.legacy.settings || ('Nature' == style), 
 				add.to.list = list(
 					labels = xaxis.lab,
 					rot = xaxis.rot,
@@ -195,7 +195,7 @@ create.segplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily', 
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,

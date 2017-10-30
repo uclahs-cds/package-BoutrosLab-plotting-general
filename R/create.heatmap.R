@@ -1333,7 +1333,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -1347,7 +1347,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,
@@ -1421,7 +1421,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -1431,7 +1431,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 		        property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
         		add.to.list = list(
                 		label = xlab.top.label,
                 		cex = xlab.top.cex,
@@ -1444,7 +1444,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
         		),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings, 
+			use.legacy.settings = use.legacy.settings || ('Nature' == style), 
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -1454,7 +1454,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			),
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
 				cex = main.cex,

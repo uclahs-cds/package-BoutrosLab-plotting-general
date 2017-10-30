@@ -250,7 +250,7 @@ create.densityplot <- function(
 		col = col,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -262,7 +262,7 @@ create.densityplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -272,7 +272,7 @@ create.densityplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -285,7 +285,7 @@ create.densityplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -296,7 +296,7 @@ create.densityplot <- function(
 		scales = list(
 			x = get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
@@ -311,7 +311,7 @@ create.densityplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,

@@ -20,7 +20,8 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
                             ylab.axis.padding = c(rep(0,layout.width)),xlab.axis.padding = c(rep(0,layout.height)), bottom.padding = 0, 
 			    top.padding = 0, right.padding = 0,layout.skip = c(rep(FALSE, layout.width*layout.height)), left.legend.padding = 2,
 			    right.legend.padding = 2, bottom.legend.padding = 2, top.legend.padding = 2,
-                            description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE, style= 'BoutrosLab') {
+                            description = 'Created with BoutrosLab.plotting.general', size.units = 'in',enable.warnings = FALSE, style= 'BoutrosLab',
+			    use.legacy.settings = FALSE) {
         ## make axis.padding appropriate length if only 1 value specified
         if(1 == length(ylab.axis.padding)) {
                 ylab.axis.padding <- rep(ylab.axis.padding,layout.width);
@@ -327,10 +328,10 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 
 	#grobs representing main labels on each side
-	main.label <- textGrob(main,gp=gpar(cex = main.cex, fontface = 'bold', fontfamily = 'Arial'), x = main.x, y = main.y);
-	y.label <- textGrob(ylab.label,gp=gpar(cex = ylab.cex, fontface = 'bold', fontfamily = 'Arial'),rot = 90);
-	y.label.right <- textGrob(ylab.label.right,gp=gpar(cex = ylab.cex, fontface = 'bold', fontfamily = 'Arial'), rot = -90);
-	x.label <- textGrob(xlab.label,gp=gpar(cex = xlab.cex, fontface = 'bold', fontfamily = 'Arial'));
+	main.label <- textGrob(main,gp=gpar(cex = main.cex, fontface = 'bold', fontfamily = get.defaults( property = 'fontfamily',use.legacy.settings = use.legacy.settings  || ('Nature' == style))), x = main.x, y = main.y);
+	y.label <- textGrob(ylab.label,gp=gpar(cex = ylab.cex, fontface = 'bold', fontfamily = get.defaults( property = 'fontfamily',use.legacy.settings = use.legacy.settings || ('Nature' == style))),rot = 90);
+	y.label.right <- textGrob(ylab.label.right,gp=gpar(cex = ylab.cex, fontface = 'bold', fontfamily = get.defaults( property = 'fontfamily',use.legacy.settings = use.legacy.settings || ('Nature' == style))), rot = -90);
+	x.label <- textGrob(xlab.label,gp=gpar(cex = xlab.cex, fontface = 'bold', fontfamily = get.defaults( property = 'fontfamily',use.legacy.settings = use.legacy.settings || ('Nature' == style))));
 	
 	### IF LEGENDS ARE KEYS, MUST BE MADE INTO GROBS FIRST
   	if(identical(legend$left$fun,draw.key) || identical(legend$left$fun,draw.colorkey)){

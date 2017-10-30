@@ -388,7 +388,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		colorkey = colourkey,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -400,7 +400,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -410,7 +410,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
                         property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
                         add.to.list = list(
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
@@ -423,7 +423,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -434,7 +434,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily', 
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -448,7 +448,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily', 
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = rev(yaxis.lab),
 					cex = yaxis.cex, # necessary because we forcing the 'natural' ordering of rows when making bg.data

@@ -229,7 +229,7 @@ create.hexbinplot <- function(
 		mincnt = mincnt,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -241,7 +241,7 @@ create.hexbinplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -251,7 +251,7 @@ create.hexbinplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 	    			label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -264,7 +264,7 @@ create.hexbinplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -276,7 +276,7 @@ create.hexbinplot <- function(
 			alternating = FALSE,
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -291,7 +291,7 @@ create.hexbinplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,

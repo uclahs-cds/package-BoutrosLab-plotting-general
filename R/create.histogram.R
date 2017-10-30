@@ -98,7 +98,7 @@ create.histogram <- function(
 		breaks = breaks,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -110,7 +110,7 @@ create.histogram <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -120,7 +120,7 @@ create.histogram <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -133,7 +133,7 @@ create.histogram <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			use.legacy.settings = use.legacy.settings,
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -144,7 +144,7 @@ create.histogram <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -160,7 +160,7 @@ create.histogram <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings,
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,

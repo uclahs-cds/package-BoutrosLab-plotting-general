@@ -39,7 +39,8 @@ create.multipanelplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	size.units = 'in',
 	enable.warnings = FALSE,
-	style = "BoutrosLab"
+	style = "BoutrosLab",
+	use.legacy.settings = FALSE
 );
 }
 \arguments{
@@ -79,6 +80,7 @@ create.multipanelplot(
     \item{size.units}{the units the height and width of file represent}
     \item{enable.warnings}{enables warnings to be output}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
 }
 \author{Jeff Green}
 \section{Warning}{
