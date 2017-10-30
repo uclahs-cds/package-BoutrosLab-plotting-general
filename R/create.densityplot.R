@@ -24,7 +24,7 @@ create.densityplot <- function(
 	ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',
 	alpha.rectangle = 1,add.text = FALSE,text.labels = NULL,text.x = NULL,text.y = NULL,text.anchor = 'centre',text.col = 'black', 
 	text.cex = 1,text.fontface = 'bold', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE
 	) {
 
 	### needed to copy in case using variable to define rectangles dimensions
@@ -250,7 +250,7 @@ create.densityplot <- function(
 		col = col,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -262,7 +262,7 @@ create.densityplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -272,7 +272,7 @@ create.densityplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -285,7 +285,7 @@ create.densityplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = ylab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -296,7 +296,7 @@ create.densityplot <- function(
 		scales = list(
 			x = get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
@@ -311,7 +311,7 @@ create.densityplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,

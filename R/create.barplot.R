@@ -34,7 +34,8 @@ create.barplot <- function(
 	text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
 	raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2/37, 'npc'),
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', 
+	use.legacy.settings = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangleInfo = list(
@@ -375,7 +376,7 @@ create.barplot <- function(
 		horizontal = plot.horizontal,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -387,7 +388,7 @@ create.barplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -397,7 +398,7 @@ create.barplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -410,7 +411,7 @@ create.barplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = ylab.label,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -421,7 +422,7 @@ create.barplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -437,7 +438,7 @@ create.barplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,

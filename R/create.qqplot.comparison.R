@@ -24,7 +24,8 @@ create.qqplot.comparison <- function(
 	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
 	top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1,
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom'
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
+	use.legacy.settings = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions
         rectangleInfo = list(
@@ -203,7 +204,7 @@ create.qqplot.comparison <- function(
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -215,7 +216,7 @@ create.qqplot.comparison <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -225,7 +226,7 @@ create.qqplot.comparison <- function(
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
                         property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
                         add.to.list = list(
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
@@ -238,7 +239,7 @@ create.qqplot.comparison <- function(
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -249,7 +250,7 @@ create.qqplot.comparison <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
@@ -265,7 +266,7 @@ create.qqplot.comparison <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,

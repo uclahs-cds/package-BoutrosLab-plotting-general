@@ -145,6 +145,7 @@ create.scatterplot(
 	style = 'BoutrosLab',
 	preload.default = 'custom',
 	group.specific.colouring = TRUE,
+	use.legacy.settings = FALSE,
 	...
 	);
 }
@@ -290,6 +291,7 @@ create.scatterplot(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{group.specific.colouring}{Variable to specify if group specific multi colouring for error bars is enforced}
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

@@ -187,7 +187,7 @@ create.scatterplot <- function(
 	text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, height = 6,
 	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', 
-	group.specific.colouring = TRUE, ...
+	group.specific.colouring = TRUE, use.legacy.settings = FALSE,  ...
 	) {
 
 
@@ -1211,7 +1211,7 @@ create.scatterplot <- function(
 		lty = lty,
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -1223,7 +1223,7 @@ create.scatterplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -1233,7 +1233,7 @@ create.scatterplot <- function(
 			),
                 xlab.top = BoutrosLab.plotting.general::get.defaults(
                         property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
                         add.to.list = list(
                                 label = xlab.top.label,
                                 cex = xlab.top.cex,
@@ -1246,7 +1246,7 @@ create.scatterplot <- function(
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -1257,7 +1257,7 @@ create.scatterplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					cex = xaxis.cex,
 					rot = xaxis.rot,
@@ -1274,7 +1274,7 @@ create.scatterplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					cex = yaxis.cex,
 					rot = yaxis.rot,

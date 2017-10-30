@@ -81,9 +81,10 @@ create.multiplot(
 	dendrogram.right.size = NULL, 
 	dendrogram.right.x = NULL, 
 	dendrogram.right.y = NULL, 
-  dendrogram.top.size = NULL, 
-  dendrogram.top.x = NULL, 
-  dendrogram.top.y = NULL
+        dendrogram.top.size = NULL, 
+        dendrogram.top.x = NULL, 
+        dendrogram.top.y = NULL,
+        use.legacy.settings = FALSE
 );
 }
 \arguments{
@@ -167,6 +168,7 @@ create.multiplot(
     \item{dendrogram.top.size}{ size of top side dendrogram }
     \item{dendrogram.top.x}{x position of top side dendrogram}
     \item{dendrogram.top.y}{y position of top side dendrogram}
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Ken Chu and Denise Mak}

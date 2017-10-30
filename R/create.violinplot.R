@@ -25,7 +25,7 @@ create.violinplot <- function(
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
 	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
 	size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
-	style = 'BoutrosLab', preload.default = 'custom'
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE
 	) {
 
 
@@ -234,7 +234,7 @@ create.violinplot <- function(
 			},
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
@@ -246,7 +246,7 @@ create.violinplot <- function(
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.label,
 				cex = xlab.cex,
@@ -256,7 +256,7 @@ create.violinplot <- function(
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -269,7 +269,7 @@ create.violinplot <- function(
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = ylab.label,
 				cex = ylab.cex,
@@ -281,7 +281,7 @@ create.violinplot <- function(
 			lwd = 1,
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -293,7 +293,7 @@ create.violinplot <- function(
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = list(
 					labels = yaxis.lab,
 					cex = yaxis.cex,

@@ -102,6 +102,7 @@ create.manhattanplot(
 	style = 'BoutrosLab',
 	description = 'Created with BoutrosLab.plotting.general',
 	preload.default = 'custom',
+        use.legacy.settings = FALSE,
 	...
 	);
     }
@@ -204,6 +205,7 @@ create.manhattanplot(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{description}{Short description of image/plot; default NULL}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

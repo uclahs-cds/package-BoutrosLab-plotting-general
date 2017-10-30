@@ -72,7 +72,8 @@ create.violinplot(
 	enable.warnings = FALSE, 
 	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
-	preload.default = 'custom'
+	preload.default = 'custom',
+	use.legacy.settings = FALSE
 	)
 }
 \arguments{
@@ -145,6 +146,7 @@ create.violinplot(
     \item{description}{Short description of image/plot; default NULL}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}

@@ -29,7 +29,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							plot.labels.to.retrieve = NULL, style = 'BoutrosLab', remove.all.border.lines = FALSE,
 							preload.default = 'custom', plot.for.carry.over.when.same = 1, get.dendrogram.from = NULL, 
 							dendrogram.right.size = NULL, dendrogram.right.x = NULL, dendrogram.right.y = NULL, 
-							dendrogram.top.size = NULL, dendrogram.top.x = NULL, dendrogram.top.y = NULL) {
+							dendrogram.top.size = NULL, dendrogram.top.x = NULL, dendrogram.top.y = NULL, use.legacy.settings = FALSE) {
 
 	if(preload.default == 'paper'){
 
@@ -203,18 +203,18 @@ xscale.components.old <- function(...){
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = x.scale
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				style = style,
+				use.legacy.settings = use.legacy.settings,
 				add.to.list = y.scale
 				)
 			),
 		main =  BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = main,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -226,7 +226,7 @@ xscale.components.old <- function(...){
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily', 
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.label,
 				fontface = if ('Nature' == style){'plain'} else('bold'),
@@ -235,7 +235,7 @@ xscale.components.old <- function(...){
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style,
+			use.legacy.settings = use.legacy.settings,
 			add.to.list = list(
 				label = xlab.top.label,
 				cex = xlab.top.cex,
@@ -248,7 +248,7 @@ xscale.components.old <- function(...){
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
-			style = style, 
+			use.legacy.settings = use.legacy.settings, 
 			add.to.list = list(
 				label = rev(ylab.label),
 				fontface = if ('Nature' == style){'plain'} else('bold'),

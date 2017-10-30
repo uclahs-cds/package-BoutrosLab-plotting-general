@@ -88,7 +88,9 @@ create.dotmap(
 	yaxis.fontface = 'bold', 
 	dot.colour.scheme = NULL, 
 	style = 'BoutrosLab',
-	preload.default = 'custom');
+	preload.default = 'custom',
+        use.legacy.settings = FALSE
+);
 }
 \arguments{
     \item{x}{An unstacked data.frame to plot the dotmap}
@@ -176,6 +178,7 @@ create.dotmap(
     \item{dot.colour.scheme}{Colour Scheme for the dots}
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     }
 \details{It would be nice to have a library of suitable spot.size and spot.colour functions. 
     \preformatted{
