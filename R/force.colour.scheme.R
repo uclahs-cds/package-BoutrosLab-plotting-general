@@ -97,7 +97,7 @@ force.colour.scheme <- force.color.scheme <- function(
                 x.processed <- x;
                 x <- as.numeric(x);
                 x.processed <- rep('NA', length(x));
-		x.processed[x >=0 & x < 0.4] <- '1';
+		        x.processed[x >= 0.2 & x < 0.4] <- '1';
                 x.processed[x >= 0.4 & x < 0.6] <- '2';
                 x.processed[x >= 0.6 & x <= 1] <- '3';
                 x = x.processed
