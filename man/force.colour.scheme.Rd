@@ -250,7 +250,37 @@ force.colour.scheme(
 
     psa.gradient 
 
-
+    heteroplasmy
+    \itemize{
+        \item{0 - 0.4}
+        \item{0.4 - 0.6}
+        \item{0.6 - 1.0}
+        }
+    
+    mt.annotation
+    \itemize{
+        \item{MT-DLOOP}
+        \item{MT-T*}
+        \item{MT-RNR*}
+        \item{MT-ND1}
+        \item{MT-ND2}
+        \item{MT-ND3}
+        \item{MT-ND4L}
+        \item{MT-ND4L/MT-ND4}
+        \item{MT-ND4}
+        \item{MT-ND5}
+        \item{MT-ND6}
+        \item{MT-CO1}
+        \item{MT-CO2}
+        \item{MT-CO3}
+        \item{MT-ATP6/MT-CO3}
+        \item{MT-ATP6}
+        \item{MT-ATP8/MT-ATP6}
+        \item{MT-ATP8}
+        \item{MT-CYB}
+        \item{MT-NC*}
+        \item{MT-OL*}
+        }
 
 
     

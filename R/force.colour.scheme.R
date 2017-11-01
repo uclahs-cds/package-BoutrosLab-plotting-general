@@ -93,6 +93,23 @@ force.colour.scheme <- force.color.scheme <- function(
 
         	return(my.palette);
 		}
+	else if(scheme == 'heteroplasmy'){
+                x.processed <- x;
+                x <- as.numeric(x);
+                x.processed <- rep('NA', length(x));
+		x.processed[x >=0 & x < 0.4] <- '1';
+                x.processed[x >= 0.4 & x < 0.6] <- '2';
+                x.processed[x >= 0.6 & x <= 1] <- '3';
+                x = x.processed
+                }
+	else if(scheme == 'mt.annotation'){
+                x.processed <- x;
+                x.processed[grepl('MT-T', x.processed)] <- 'MT-T';
+                x.processed[grepl('MT-RNR', x.processed)] <- 'MT-RNR';
+                x.processed[grepl('MT-NC', x.processed)] <- 'MT-NC';
+                x.processed[grepl('MT-OL', x.processed)] <- 'MT-OL';
+		x = x.processed
+                }
 	# Set all input to lower case
 	x <- tolower(x);
 	scheme <- tolower(scheme);
@@ -251,6 +268,22 @@ force.colour.scheme <- force.color.scheme <- function(
 	clinical.t9_7 = rgb(47,109,96, maxColorValue = 255);
 	clinical.t9_8 = rgb(94,194,170, maxColorValue = 255);
 	clinical.t9_9 = rgb(192,231,222, maxColorValue = 255);
+	
+	#heteroplasmy
+	heteroplasmy.1 = 'lightskyblue';
+	heteroplasmy.2 = 'dodgerblue';
+	heteroplasmy.3 = 'mediumblue';
+
+	#MT annotation
+	mt.annotation.1 = '#B041FF';
+	mt.annotation.2 = '#5EFB6E';
+	mt.annotation.3 = '#005000';
+	mt.annotation.4 = '#2B65EC';
+	mt.annotation.5 = '#FF6E32';
+	mt.annotation.6 = '#A00000';
+	mt.annotation.7 = '#FFFF78';
+	mt.annotation.8 = 'white';
+
 
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
 	avail.schemes <- list(
@@ -357,6 +390,14 @@ force.colour.scheme <- force.color.scheme <- function(
 		age.categorical.prostate = list(
 			levels = c('<40', '40 - 50', '50 - 65', '65 - 70', '>= 70'),
 			colours = c("gray100", "gray75", "gray50", "gray25", "gray0")
+			),
+		heteroplasmy = list(
+			levels = c('1','2','3'),
+			colours = c(heteroplasmy.1, heteroplasmy.2, heteroplasmy.3)
+			),
+		mt.annotation = list(
+			levels = c('mt-dloop','mt-t', 'mt-rnr',  'mt-nd1', 'mt-nd2', 'mt-nd3', 'mt-nd4l',  'mt-nd4l/mt-nd4', 'mt-nd4', 'mt-nd5', 'mt-nd6', 'mt-co1', 'mt-co2', 'mt-co3', 'mt-atp6/mt-co3', 'mt-atp6',  'mt-atp8/mt-atp6', 'mt-atp8', 'mt-cyb', 'mt-nc', 'mt-ol'),
+			colours = c(mt.annotation.1, mt.annotation.2, mt.annotation.3, mt.annotation.4, mt.annotation.4, mt.annotation.4, mt.annotation.4, mt.annotation.4, mt.annotation.4, mt.annotation.4, mt.annotation.4, mt.annotation.6, mt.annotation.6, mt.annotation.6, mt.annotation.6, mt.annotation.7, mt.annotation.7, mt.annotation.7, mt.annotation.5, mt.annotation.8, mt.annotation.8)
 			)
 		);
 
