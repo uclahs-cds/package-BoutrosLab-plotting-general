@@ -252,7 +252,8 @@ force.colour.scheme(
 
     heteroplasmy
     \itemize{
-        \item{0 - 0.4}
+	\item{0 - 0.2}
+        \item{0.2 - 0.4}
         \item{0.4 - 0.6}
         \item{0.6 - 1.0}
         }

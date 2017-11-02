@@ -97,7 +97,8 @@ force.colour.scheme <- force.color.scheme <- function(
                 x.processed <- x;
                 x <- as.numeric(x);
                 x.processed <- rep('NA', length(x));
-		        x.processed[x >= 0.2 & x < 0.4] <- '1';
+		x.processed[x >= 0 & x < 0.2] <- '0';
+		x.processed[x >= 0.2 & x < 0.4] <- '1';
                 x.processed[x >= 0.4 & x < 0.6] <- '2';
                 x.processed[x >= 0.6 & x <= 1] <- '3';
                 x = x.processed
@@ -270,6 +271,7 @@ force.colour.scheme <- force.color.scheme <- function(
 	clinical.t9_9 = rgb(192,231,222, maxColorValue = 255);
 	
 	#heteroplasmy
+	heteroplasmy.0 = 'white';
 	heteroplasmy.1 = 'lightskyblue';
 	heteroplasmy.2 = 'dodgerblue';
 	heteroplasmy.3 = 'mediumblue';
@@ -392,8 +394,8 @@ force.colour.scheme <- force.color.scheme <- function(
 			colours = c("gray100", "gray75", "gray50", "gray25", "gray0")
 			),
 		heteroplasmy = list(
-			levels = c('1','2','3'),
-			colours = c(heteroplasmy.1, heteroplasmy.2, heteroplasmy.3)
+			levels = c('0','1','2','3'),
+			colours = c(heteroplasmy.0, heteroplasmy.1, heteroplasmy.2, heteroplasmy.3)
 			),
 		mt.annotation = list(
 			levels = c('mt-dloop','mt-t', 'mt-rnr',  'mt-nd1', 'mt-nd2', 'mt-nd3', 'mt-nd4l',  'mt-nd4l/mt-nd4', 'mt-nd4', 'mt-nd5', 'mt-nd6', 'mt-co1', 'mt-co2', 'mt-co3', 'mt-atp6/mt-co3', 'mt-atp6',  'mt-atp8/mt-atp6', 'mt-atp8', 'mt-cyb', 'mt-nc', 'mt-ol'),
