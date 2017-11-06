@@ -37,6 +37,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
         # if you only have one column, you start to get weird behaviour, duplicating it fixes that.
         if(ncol(x) == 1){
+		print("test");
                 x = t(cbind(x, x))
         } 
 	# transpose matrix to keep original form
@@ -100,24 +101,34 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		);
 
 	# try to recover memory
-	
+	#if (TRUE == input.colours) {
+		#s = unique(unlist(x))
+		#for (i in c(1:length(s))) {
+		#	x[x == s[i]] <- i;
+		#	}
+		#for(i in c(1:ncol(x))){
+		#	x[[i]] <- as.numeric(x[[i]]);
+		#	}
+		#total.colours = length(s) + 1
+		#colour.scheme = s
+		#}
 	
 	### SUBSET DATA ################################################################################
 	# Extract a subset of data to work with
+
 	x <- x[criteria.list,];
 	x <- as.matrix(x);
-
 	if (TRUE == input.colours) {
-		mat <- as.matrix(x);
-		s = unique(unlist(as.list(mat)));
-		for (i in c(1:length(s))) {
-			mat[mat == s[i]] <- i;
-			}
-		storage.mode(mat) <- "numeric";
-		total.colours = length(s) + 1
-		colour.scheme = s
-		x <- mat;
-		}
+        	s = unique(unlist(as.list(x)))
+        	for (i in c(1:length(s))) {
+        	    x[x == s[i]] <- i
+        	}
+       		storage.mode(x) <- "numeric"
+       	 	total.colours = length(s) + 1
+       		colour.scheme = s
+    	}
+
+	
 
 	# Scale the data if necessary
 	if (scale.data) {
