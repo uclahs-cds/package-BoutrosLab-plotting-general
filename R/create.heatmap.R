@@ -871,38 +871,21 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			yaxis.covariate.grob <- BoutrosLab.plotting.general::covariates.grob(
 				covariates = yaxis.covariates, 
 				ord = order.dendrogram(dd.col), 
-				side = "right",
-				grid.row = covariates.grid.row,
-				grid.col = covariates.grid.col,
-				grid.border = covariates.grid.border,
-				row.lines = covariates.row.lines,
-				col.lines = covariates.col.lines,
-				reorder.grid.index = covariates.reorder.grid.index
+				side = "right"
 				);
 			}
 		else {
 			yaxis.covariate.grob <- BoutrosLab.plotting.general::covariates.grob(
 				covariates = yaxis.covariates,
 				ord = c(1:ncol(x)),
-				side = "right",
-				grid.row = covariates.grid.row,
-				grid.col = covariates.grid.col,
-				grid.border = covariates.grid.border,
-				row.lines = covariates.row.lines,
-				col.lines = covariates.col.lines,
-				reorder.grid.index = covariates.reorder.grid.index
+				side = "right"
 				);
 			}
 
-		legend <- append(
-			legend,
-			list(
-				inside = list(
-					fun = yaxis.covariate.grob,
-					x = yaxis.covariates.x,
-					y = 0.5
-					)
-				)
+		legend[['inside']] <- list(
+			fun = yaxis.covariate.grob,
+			x = yaxis.covariates.x,
+			y = 0.5
 			);
 
 		yaxis.cov.height.cm <- convertUnit(
