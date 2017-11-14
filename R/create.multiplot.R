@@ -30,7 +30,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 							preload.default = 'custom', plot.for.carry.over.when.same = 1, get.dendrogram.from = NULL, 
 							dendrogram.right.size = NULL, dendrogram.right.x = NULL, dendrogram.right.y = NULL, 
 							dendrogram.top.size = NULL, dendrogram.top.x = NULL, dendrogram.top.y = NULL, use.legacy.settings = FALSE) {
-
+	
 	if(preload.default == 'paper'){
 
 		}
@@ -51,6 +51,9 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	yat.plots <- list()[1:length(plot.objects)];
 	xlimits.plots <- list()[1:length(plot.objects)];
 	ylimits.plots <- list()[1:length(plot.objects)];
+	# Determine the max range the includes all the plots specified in 
+	max.xlimits <- NULL;
+	max.ylimits <- NULL;
 
 	# combine plot objects together and set layout
 	combined.plot.objects <- c(plot.objects[[1]], layout = plot.layout);
@@ -66,10 +69,22 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			if(length(plot.objects[[i]]$y.scales$labels) > 0) {
 				yaxis.labels.plots[[i]] <- plot.objects[[i]]$y.scales$labels;
 				}
-		       	xat.plots[[i]] <- plot.objects[[i]]$x.scales$at;
-		       	yat.plots[[i]] <- plot.objects[[i]]$y.scales$at;
+	       	xat.plots[[i]] <- plot.objects[[i]]$x.scales$at;
+	       	yat.plots[[i]] <- plot.objects[[i]]$y.scales$at;
 				xlimits.plots[[i]] <- plot.objects[[i]]$x.limits;
-		       	ylimits.plots[[i]] <- plot.objects[[i]]$y.limits;
+	       	ylimits.plots[[i]] <- plot.objects[[i]]$y.limits;
+
+			# keep track of the largest points of the ranges
+			if(i %in% plot.for.carry.over.when.same) {
+				if(!is.na(plot.objects[[i]]$x.limits)) {
+					max.xlimits[1] <- min(max.xlimits[1],plot.objects[[i]]$x.limits[1]);
+					max.xlimits[2] <- max(max.xlimits[2],plot.objects[[i]]$x.limits[2]);
+					}
+				if(!is.na(plot.objects[[i]]$y.limits)) {
+					max.ylimits[1] <- min(max.ylimits[1],plot.objects[[i]]$y.limits[1]);
+					max.ylimits[2] <- max(max.ylimits[2],plot.objects[[i]]$y.limits[2]);
+					}
+				}
 			}
 		}
 	if (is.null(xaxis.top.idx)){
@@ -120,10 +135,12 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	}
 
 	if(!is.null(xat) && !is.na(xat) && 1 == length(xat) && xat == TRUE) {
-		xat <- if('same' == x.relation){xat.plots[[plot.for.carry.over.when.same]]} else {xat.plots};
+		same.xat <- if(length(plot.for.carry.over.when.same) > 1){TRUE} else {xat.plots[[plot.for.carry.over.when.same]]};
+		xat <- if('same' == x.relation){same.xat} else {xat.plots};
 		}
 	if(!is.null(xaxis.labels) && !is.na(xaxis.labels) && 1 == length(xaxis.labels) && xaxis.labels == TRUE) {
-		xaxis.labels <- if('same' == x.relation){xaxis.labels.plots[[plot.for.carry.over.when.same]]} else {xaxis.labels.plots};
+		same.xaxis.labels <- if(length(plot.for.carry.over.when.same) > 1){TRUE} else {xaxis.labels.plots[[plot.for.carry.over.when.same]]};
+		xaxis.labels <- if('same' == x.relation){same.xaxis.labels} else {xaxis.labels.plots};
 		}
 
 	y.atleast.one.null = FALSE;
@@ -145,10 +162,12 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	}
 
 	if(!is.null(yat) && !is.na(yat) && 1 == length(yat) && yat == TRUE) {
-		yat <- if('same' == y.relation){yat.plots[[plot.for.carry.over.when.same]]} else {yat.plots};
+		same.yat <- if(length(plot.for.carry.over.when.same) > 1){TRUE} else {yat.plots[[plot.for.carry.over.when.same]]};
+		yat <- if('same' == y.relation){same.yat} else {yat.plots};
 		}
 	if(!is.null(yaxis.labels) && !is.na(yaxis.labels) && 1 == length(yaxis.labels) && yaxis.labels == TRUE) {
-		yaxis.labels <- if('same' == y.relation){yaxis.labels.plots[[plot.for.carry.over.when.same]]} else {yaxis.labels.plots};
+		same.yaxis.labels <- if(length(plot.for.carry.over.when.same) > 1){TRUE} else {yaxis.labels.plots[[plot.for.carry.over.when.same]]};
+		yaxis.labels <- if('same' == y.relation){same.yaxis.labels} else {yaxis.labels.plots};
 		}
 
 	# consolidate all the parameters together for updating the lattice 
