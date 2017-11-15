@@ -13,7 +13,7 @@
 legend.grob <- function(
 	legends, label.cex = 1, title.cex = 1, title.just = 'centre', title.fontface = 'bold',
 	font.family = NULL, size = 3, border = NULL, border.padding = 1, layout = c(1, length(legends)),
-	between.col = 1, between.row = 1, use.legacy.settings = FALSE
+	between.col = 1, between.row = 1, use.legacy.settings = FALSE, x = 0.5, y = 0.5
 	) {
 
 	# NOTE: calls to 'draw.key' may open a device for drawing (even with 'draw = FALSE' set)
@@ -262,6 +262,8 @@ legend.grob <- function(
 				}
 			}
 		}
-
+	# set x and y coordinates
+	legend.grob.final$framevp$y = unit(y,"npc");
+	legend.grob.final$framevp$x = unit(x,"npc");
 	return(legend.grob.final);
 	}

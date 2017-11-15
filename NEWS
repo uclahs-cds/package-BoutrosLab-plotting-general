@@ -1,3 +1,15 @@
+BoutrosLab.plotting.general 5.8.6 2017-11-15
+
+FEATURE
+* legend and covariate grobs can now use x and y coordinates
+
+BUG
+* heatmap using colours must faster
+* legacy settings in multipanel plot now affect all individual plots too
+
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.8.5 2017-11-01
 
 FEATURE
@@ -5,7 +17,6 @@ FEATURE
 
 
 --------------------------------------------------------------------------
-
 
 
 BoutrosLab.plotting.general 5.8.4 2017-10-25

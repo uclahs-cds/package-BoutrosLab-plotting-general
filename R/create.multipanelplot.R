@@ -102,36 +102,43 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 	for (i in c(1:length(plot.objects))) {
       		# make all paddings the same (in order to line them up) -- needed or plots wont line up properly
 		if (!is.null(plot.objects[[i]]$par.settings)) {
-
+			
 			plot.objects[[i]]$par.settings$layout.widths$left.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$key.left <- 1;
-			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 0;
+			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.widths$ylab <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.left <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.right <- 0;
-			plot.objects[[i]]$par.settings$layout.widths$axis.key.padding <- 0;
+			plot.objects[[i]]$par.settings$layout.widths$axis.key.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.widths$key.right <- 1; 
 			plot.objects[[i]]$par.settings$layout.widths$right.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$top.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$main <- 0;
- 			plot.objects[[i]]$par.settings$layout.heights$main.key.padding <- 0;
+ 			plot.objects[[i]]$par.settings$layout.heights$main.key.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$key.top <- 1; 
-			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <-  0; 
+			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <-  1; 
 			plot.objects[[i]]$par.settings$layout.heights$axis.top <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.bottom <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$xlab <- 0;
-			plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 0; 
+			plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 1; 
 			plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 1; 
 			plot.objects[[i]]$par.settings$layout.heights$key.sub.padding <- 0; 
 			plot.objects[[i]]$par.settings$layout.heights$sub <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$bottom.padding <- 0;
-
+			if (use.legacy.settings) {
+				plot.objects[[i]]$main$fontfamily = 'Arial';
+				plot.objects[[i]]$ylab$fontfamily = 'Arial';
+				plot.objects[[i]]$xlab$fontfamily = 'Arial';
+				plot.objects[[i]]$xlab.top$fontfamily = 'Arial';
+				plot.objects[[i]]$x.scales$fontfamily = 'Arial';
+				plot.objects[[i]]$y.scales$fontfamily = 'Arial';
+				}
 			}
       		}
 		
-  
+
 
 	### SPACING #####
 	#make y spacing into an array of proper length
@@ -264,7 +271,7 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 				);
 			}
 		}
-  
+
 	
 	# add the correct amount to each plot based on the column (use ylab axis)
 	for (i in c(1:layout.width)) {
@@ -283,6 +290,10 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 				diff.right.legend <- abs(right.legend[j] - maxRightLegend)/padding.text.to.padding.ratio;
 				diff.left.legend <- abs(left.legend[j] - maxLeftLegend)/padding.text.to.padding.ratio;
+				
+				### if has legend, must account for minor key padding
+				if(0 != diff.right.legend) {diff.right.legend = diff.right.legend + 1/padding.text.to.padding.ratio}
+				if(0 != diff.left.legend) {diff.left.legend = diff.left.legend + 1/padding.text.to.padding.ratio}
 
 				plot.objects[[j]]$par.settings$layout.widths$ylab.axis.padding <- ylab.axis.padding[ceiling(i/2)] + to.add;
 				plot.objects[[j]]$par.settings$layout.widths$left.padding <- plot.objects[[j]]$par.settings$layout.widths$left.padding + diff.left.legend;
@@ -311,6 +322,11 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 				diff.top.legend <- abs(top.legend[j] - maxTopLegend)/padding.text.to.padding.ratio;
 				diff.bottom.legend <- abs(bottom.legend[j] - maxBottomLegend)/padding.text.to.padding.ratio;
+
+				### if has legend, must account for minor key padding
+				if(0 != diff.top.legend) {diff.top.legend = diff.top.legend + 1/padding.text.to.padding.ratio}
+				if(0 != diff.bottom.legend) {diff.bottom.legend = diff.bottom.legend + 1/padding.text.to.padding.ratio}
+
 				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding[ceiling(i/(layout.width*2))] + to.add;
 
 				if(maxMain != 0 && (is.null(plot.objects[[j]]$main$label) || plot.objects[[j]]$main$label == '')) {
@@ -334,21 +350,17 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 	x.label <- textGrob(xlab.label,gp=gpar(cex = xlab.cex, fontface = 'bold', fontfamily = get.defaults( property = 'fontfamily',use.legacy.settings = use.legacy.settings || ('Nature' == style))));
 	
 	### IF LEGENDS ARE KEYS, MUST BE MADE INTO GROBS FIRST
-  	if(identical(legend$left$fun,draw.key) || identical(legend$left$fun,draw.colorkey)){
-		legend$left$fun <- do.call(legend$left$fun, list(key = legend$left$args$key))
-
+  	if (identical(legend$left$fun,draw.key) || identical(legend$left$fun,draw.colorkey)) {
+		legend$left$fun <- do.call(legend$left$fun, list(key = legend$left$args$key));
 		}
-  	if(identical(legend$right$fun,draw.key) || identical(legend$right$fun,draw.colorkey)){
-		legend$right$fun <- do.call(legend$right$fun, list(key = legend$right$args$key))
-
+  	if (identical(legend$right$fun,draw.key) || identical(legend$right$fun,draw.colorkey)) {
+		legend$right$fun <- do.call(legend$right$fun, list(key = legend$right$args$key));
 		}
-  	if(identical(legend$bottom$fun,draw.key) || identical(legend$bottom$fun,draw.colorkey)){
-		legend$bottom$fun <- do.call(legend$bottom$fun, list(key = legend$bottom$args$key))
-
+  	if (identical(legend$bottom$fun,draw.key) || identical(legend$bottom$fun,draw.colorkey)) {
+		legend$bottom$fun <- do.call(legend$bottom$fun, list(key = legend$bottom$args$key));
 		}
-  	if(identical(legend$top$fun,draw.key) || identical(legend$top$fun,draw.colorkey)){
-		legend$top$fun <- do.call(legend$top$fun, list(key = legend$top$args$key))
-
+  	if (identical(legend$top$fun,draw.key) || identical(legend$top$fun,draw.colorkey)) {
+		legend$top$fun <- do.call(legend$top$fun, list(key = legend$top$args$key));
 		}
 
 	### LEFT,RIGHT,TOP,BOTTOM GROBS ############
@@ -819,6 +831,9 @@ create.multipanelplot<-function(plot.objects = NULL, filename = NULL,height = 10
 
 get.legend.height <- function(legend,filename,width, height, resolution){
 
+	if(class(legend$fun) == "function"){
+		legend$fun <- do.call(legend$fun, legend$args);
+		}
 	#grob size depends on image type and size -- must simulate opening the device
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
@@ -866,11 +881,14 @@ get.legend.height <- function(legend,filename,width, height, resolution){
 		dev.off();
 		}
 
-	return(height.legend);
+	return(as.integer(height.legend));
 
 	}
 
 get.legend.width <- function(legend,filename,width, height, resolution){
+	if(class(legend$fun) == "function"){
+		legend$fun <- do.call(legend$fun, legend$args);
+		}
 	#grob size depends on image type and size -- must simulate opening the device
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
@@ -918,12 +936,13 @@ get.legend.width <- function(legend,filename,width, height, resolution){
 		dev.off();
 		}
 
-	return(width.legend);
+	return(as.integer(width.legend));
 
 	}
 
 ### function to get the grob width given the text and specification parameters##
 get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolution) {
+	
 	#grob size depends on image type and size -- must simulate opening the device
 	if(is.null(labels)){
 		return(0);

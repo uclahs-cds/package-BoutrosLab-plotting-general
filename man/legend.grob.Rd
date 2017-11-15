@@ -16,7 +16,9 @@ legend.grob(
 	layout = c(1, length(legends)),
 	between.col = 1,
 	between.row = 1,
-	use.legacy.settings = FALSE
+	use.legacy.settings = FALSE,
+        x = 0.5,
+        y = 0.5
 	);
 }
 \arguments{
@@ -34,6 +36,8 @@ The 'colours' component is a vector of fill colours to be used for the rectangle
     \item{between.col}{Amount of space to add between columns in the layout, in 'lines' units. Defaults to 0.5.}
     \item{between.row}{Amount of space to add between rows in the layout, in 'lines' units. Defaults to 0.5.}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)} 
+    \item{x}{x coordinate in npc coordinate system}
+    \item{y}{y coordinate in npc coordinate system}
 }
 \value{Returns an grob representing the legend(s)}
 \author{Lauren Chong}

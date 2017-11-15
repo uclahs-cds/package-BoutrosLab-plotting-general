@@ -101,17 +101,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		);
 
 	# try to recover memory
-	#if (TRUE == input.colours) {
-		#s = unique(unlist(x))
-		#for (i in c(1:length(s))) {
-		#	x[x == s[i]] <- i;
-		#	}
-		#for(i in c(1:ncol(x))){
-		#	x[[i]] <- as.numeric(x[[i]]);
-		#	}
-		#total.colours = length(s) + 1
-		#colour.scheme = s
-		#}
+
 	
 	### SUBSET DATA ################################################################################
 	# Extract a subset of data to work with
@@ -126,7 +116,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
        		storage.mode(x) <- "numeric"
        	 	total.colours = length(s) + 1
        		colour.scheme = s
-    	}
+    		}
 
 	
 

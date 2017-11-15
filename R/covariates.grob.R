@@ -12,7 +12,7 @@
 ### FUNCTION TO CREATE A COVARIATE BAR GROB ########################################################
 covariates.grob <- function(
 	covariates, ord, side = 'right', size = 1, grid.row = NULL, grid.col = NULL, grid.border = NULL,
-	row.lines = NULL, col.lines = NULL, reorder.grid.index = FALSE
+	row.lines = NULL, col.lines = NULL, reorder.grid.index = FALSE, x = 0.5, y =0.5
 	) {
 
 	# This function creates a grid graphical object representing a covariate bar
@@ -268,7 +268,9 @@ covariates.grob <- function(
 
 	# Restore original lattice setting
 	lattice.options('axis.padding' = list(factor = lattice.old.factor));
-
+	# set x and y coordinates
+	key.gf$framevp$y = unit(y,"npc");
+	key.gf$framevp$x = unit(x,"npc");
 	# Return the grob
 	return(key.gf);
 	}

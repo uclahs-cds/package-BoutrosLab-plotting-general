@@ -13,7 +13,9 @@ covariates.grob(
 	grid.border = NULL,
 	row.lines = NULL,
 	col.lines = NULL,
-	reorder.grid.index = FALSE
+	reorder.grid.index = FALSE,
+        x = 0.5,
+        y = 0.5
 	);
 }
 \arguments{
@@ -27,7 +29,9 @@ covariates.grob(
     \item{row.lines}{Vector of row indices where grid lines should be drawn. If NULL (default), all row lines are drawn. Ignored if \code{grid.row} is not specified.}
     \item{col.lines}{Vector of column indices where grid lines should be drawn. If NULL (default), all column lines are drawn. Ignored if \code{grid.col} is not specified.}
     \item{reorder.grid.index}{Boolean specifying whether grid line indices should be re-ordered according to the \code{ord} argument. Defaults to FALSE.}
- }
+    \item{x}{x coordinate in npc coordinate system}
+    \item{y}{y coordinate in npc coordinate system} 
+}
 \value{A grid graphical object (grob) representing the covariate bar(s)}
 \author{Lauren Chong}
 \seealso{\code{\link{gpar}}}
