@@ -837,25 +837,25 @@ get.legend.height <- function(legend,filename,width, height, resolution){
 	#grob size depends on image type and size -- must simulate opening the device
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
-		if ('tiff' == extension) {
-			tiff(height = height, width = width, res = resolution);
-			}
-		else if ('png' == extension) {
-			png(height = height, width = width, res = resolution);
-			}
-		else if ('pdf' == extension) {
-			cairo_pdf(height = height, width = width);
-			}
-		else if ('svg' == extension) {
-			svg(height = height, width = width);
-			}
-		else if ('eps' == extension) {
-			postscript(height = height, width = width);
-			}
-		else {
-			stop('File type not supported');
-			}
-		}
+                if ('tiff' == extension) {
+                        tiff(filename="temp", type="cairo", height = height, width = width, res = resolution);
+                        }
+                else if ('png' == extension) {
+                        png(filename="temp", type="cairo", height = height, width = width, res = resolution);
+                        }
+                else if ('pdf' == extension) {
+                        cairo_pdf(filename="temp", height = height, width = width);
+                        }
+                else if ('svg' == extension) {
+                        svg(filename="temp", height = height, width = width);
+                        }
+                else if ('eps' == extension) {
+                        postscript(height=height,width=width);
+                        }
+                else {
+                        stop('File type not supported');
+                        }
+                }
 	if(is.null(legend)){
 		height.legend <- 0;
 		}
@@ -879,6 +879,7 @@ get.legend.height <- function(legend,filename,width, height, resolution){
 
 	if (!is.null(filename)) {
 		dev.off();
+		file.remove("temp");
 		}
 
 	return(as.integer(height.legend));
@@ -892,25 +893,25 @@ get.legend.width <- function(legend,filename,width, height, resolution){
 	#grob size depends on image type and size -- must simulate opening the device
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
-		if ('tiff' == extension) {
-			tiff(height = height, width = width, res = resolution);
-			}
-		else if ('png' == extension) {
-			png(height = height, width = width, res = resolution);
-			}
-		else if ('pdf' == extension) {
-			cairo_pdf(height = height, width = width);
-			}
-		else if ('svg' == extension) {
-			svg(height = height, width = width);
-			}
-		else if ('eps' == extension) {
-			postscript(height = height, width = width);
-			}
-		else {
-			stop('File type not supported');
-			}
-		}
+                if ('tiff' == extension) {
+                        tiff(filename="temp", type="cairo", height = height, width = width, res = resolution);
+                        }
+                else if ('png' == extension) {
+                        png(filename="temp", type="cairo", height = height, width = width, res = resolution);
+                        }
+                else if ('pdf' == extension) {
+                        cairo_pdf(filename="temp", height = height, width = width);
+                        }
+                else if ('svg' == extension) {
+                        svg(filename="temp", height = height, width = width);
+                        }
+                else if ('eps' == extension) {
+                        postscript(height=height,width=width);
+                        }
+                else {
+                        stop('File type not supported');
+                        }
+                }
 	if(is.null(legend)){
 		width.legend <- 0;
 		}
@@ -934,6 +935,7 @@ get.legend.width <- function(legend,filename,width, height, resolution){
 
 	if (!is.null(filename)) {
 		dev.off();
+		file.remove("temp");
 		}
 
 	return(as.integer(width.legend));
@@ -948,27 +950,27 @@ get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolu
 		return(0);
 		}
 	extension <- file_ext(filename);
-	if (!is.null(filename)) {
-		if ('tiff' == extension) {
-			tiff(height = height, width = width, res = resolution);
-			}
-		else if ('png' == extension) {
-			png(height = height, width = width, res = resolution);
-			}
-		else if ('pdf' == extension) {
-			cairo_pdf(height = height, width = width);
-			}
-		else if ('svg' == extension) {
-			svg(height = height, width = width);
-			}
-		else if ('eps' == extension) {
-			postscript(height = height, width = width);
-			}
-		else {
-			stop('File type not supported');
-			}
-		}
-	# if not an empty label or all blank, create the grob, and get its width
+	        if (!is.null(filename)) {
+                if ('tiff' == extension) {
+                        tiff(filename="temp", type="cairo", height = height, width = width, res = resolution);
+                        }
+                else if ('png' == extension) {
+                        png(filename="temp", type="cairo", height = height, width = width, res = resolution);
+                        }
+                else if ('pdf' == extension) {
+                        cairo_pdf(filename="temp", height = height, width = width);
+                        }
+                else if ('svg' == extension) {
+                        svg(filename="temp", height = height, width = width);
+                        }
+                else if ('eps' == extension) {
+                        postscript(height=height,width=width);
+                        }
+                else {
+                        stop('File type not supported');
+                        }
+                }
+        # if not an empty label or all blank, create the grob, and get its width
 	if (0 < length(labels)  && !(all('' == toString(labels)))) {
 		grob <- textGrob(labels,gp=gpar(cex = cex,lineheight = 1), rot = rot, x = c(rep(0.5, length(labels))), y = c(rep(0.5, length(labels))));
 		widthGrob <- convertUnit(
@@ -985,6 +987,7 @@ get.text.grob.width <- function(labels, cex, rot, filename,width, height, resolu
 	### make sure to turn off the dev or we will have one open for every time this is called
 	if (!is.null(filename)) {
 		dev.off();
+		file.remove("temp");
 		}
 
 	return (widthGrob);  
@@ -1000,16 +1003,16 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
 		if ('tiff' == extension) {
-			tiff(height = height, width = width, res = resolution);
+			tiff(filename="temp", type="cairo", height = height, width = width, res = resolution);
 			}
 		else if ('png' == extension) {
-			png(height = height, width = width, res = resolution);
+			png(filename="temp", type="cairo", height = height, width = width, res = resolution);
 			}
 		else if ('pdf' == extension) {
-			cairo_pdf(height = height, width = width);
+			cairo_pdf(filename="temp", height = height, width = width);
 			}
 		else if ('svg' == extension) {
-			svg(height = height, width = width);
+			svg(filename="temp", height = height, width = width);
 			}
 		else if ('eps' == extension) {
 			postscript(height=height,width=width);
@@ -1035,6 +1038,7 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 	### make sure to turn off the dev or we will have one open for every time this is called
 	if (!is.null(filename)) {
 		dev.off();
+		file.remove("temp");
 		}
   
 	return (heightGrob);
