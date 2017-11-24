@@ -60,7 +60,7 @@ create.multiplot(
 	key.right.padding = 1, 
 	key.left.padding = 1, 
 	key.bottom.padding = 1, 
-	xlab.key.padding = 1,
+	xlab.key.padding = 0.5,
 	height = 6, 
 	width = 6, 
 	size.units = 'in', 
