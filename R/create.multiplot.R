@@ -300,9 +300,6 @@ xscale.components.old <- function(...){
 		key = key,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
-	if(print.new.legend){
-	  trellis.object$legend= legend
-	}
 	if (!is.null(xaxis.top.tck.lab)){
 		trellis.object <- update(trellis.object,xscale.components = xscale.components.new)
 	}
@@ -310,9 +307,12 @@ xscale.components.old <- function(...){
 	trellis.object$x.limits = xlimits;
 	trellis.object$y.limits = ylimits;
   if(!is.null(get.dendrogram.from)){
-    
+
+      if(print.new.legend){
+          trellis.object$legend= legend
+          }
     old.legend.top = plot.objects[[get.dendrogram.from]]$legend$top$fun
-    
+
 
     if(!is.null(old.legend.top)){
       if(is.null(trellis.object$legend$top$fun) || print.new.legend == FALSE){
