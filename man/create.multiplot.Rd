@@ -60,6 +60,7 @@ create.multiplot(
 	key.right.padding = 1, 
 	key.left.padding = 1, 
 	key.bottom.padding = 1, 
+	xlab.key.padding = 1,
 	height = 6, 
 	width = 6, 
 	size.units = 'in', 
@@ -139,11 +140,12 @@ create.multiplot(
     \item{xaxis.tck}{A vector of length 2 that determines the size of x-axis tick marks. Defaults to c(0.75, 0.75).}
     \item{yaxis.tck}{A vector of length 2 that determines the size of y-axis tick marks. Defaults to c(0.75, 0.75).}
     \item{x.tck.dist}{A  number specifying the distance between x-axis labels and tick marks. Defaults to 0.5.}
-	\item{y.tck.dist}{A number specifying the distance between y-axis labels and tick marks. Defaults to 0.5.}
-	\item{axes.lwd}{Width of border. Note it also changes the colourkey border and ticks}
+    \item{y.tck.dist}{A number specifying the distance between y-axis labels and tick marks. Defaults to 0.5.}
+    \item{axes.lwd}{Width of border. Note it also changes the colourkey border and ticks}
     \item{key.right.padding}{Space between right-most plot and any keys/legends}
     \item{key.left.padding}{Space between left-most plot and any keys/legends}
     \item{key.bottom.padding}{Space between bottom-most plot and any keys/legends}
+    \item{xlab.key.padding}{Space between bottom-most xlab and any keys/legends}
     \item{height}{Figure height, defaults to 6 inches}
     \item{width}{Figure width, defaults to 6 inches}
     \item{size.units}{Figure units, defaults to inches}
