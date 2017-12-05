@@ -4,16 +4,16 @@
 \description{Takes a function and several sets of parameters and makes a gif of their function calls}
 \usage{
 create.gif(
-	execFunc,
+	exec.func,
 	parameters,
-	numberOfFrames, 
+	number.of.frames, 
 	delay = 40, 
 	filename)
 }
 \arguments{
-    \item{execFunc}{The function that will be used to make the plots for the gif}
+    \item{exec.func}{The function that will be used to make the plots for the gif}
     \item{parameters}{Parameter list to be sent to the exec func at each frame}
-    \item{numberOfFrames}{Total number of frames to be made (must match number of parameter lists)}
+    \item{number.of.frames}{Total number of frames to be made (must match number of parameter lists)}
     \item{delay}{Delay between each frame in the gif}
     \item{filename}{Name of output file  (must end in .gif)}
 }
@@ -44,9 +44,9 @@ p = list(
 	)
 
 create.gif(
-	execFunc = create.barplot, 
+	exec.func = create.barplot, 
 	parameters = p, 
-	numberOfFrames = 3, 
+	number.of.frames = 3, 
 	delay = 20, 
 	filename='test.gif'
 	) 

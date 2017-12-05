@@ -10,39 +10,38 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 
-thousands.split <- function(nums){
-	to.return = {}
-	for(k in c(1:length(nums))){
-		
-		text = format(nums[k], scientific = FALSE)
+thousands.split <- function(nums) {
+	to.return <- {};
+	for (k in c(1:length(nums))) {
 
-		num.sets = trunc(nchar(text)/3) #number of sets of 3
-		remainingLetters = nchar(text) %% 3 # remainder
-		final.str = '' #string to be manipulated
-		
+		text <- format(nums[k], scientific = FALSE);
+
+		num.sets <- trunc(nchar(text) / 3); #number of sets of 3
+		remaining.letters <- nchar(text) %% 3; # remainder
+		final.str <- ''; #string to be manipulated
+
 		#handle remainder first (first set of < 3)
-		if(remainingLetters != 0){
-			final.str =  substring(text,1, remainingLetters)
-			text = substring(text, remainingLetters +1, nchar(text))
+		if (remaining.letters != 0) {
+			final.str <- substring(text, 1, remaining.letters);
+			text <- substring(text, remaining.letters + 1, nchar(text));
 			}
-		
+
 		#split the text up
-		sst <- strsplit(text, "")[[1]]
+		sst <- strsplit(text, '')[[1]];
 		#grab sets of 3
-		out <- paste0(sst[c(TRUE, FALSE, FALSE)], sst[c(FALSE, TRUE, FALSE)], sst[c(FALSE, FALSE, TRUE)])	
+		out <- paste0(sst[c(TRUE, FALSE, FALSE)], sst[c(FALSE, TRUE, FALSE)], sst[c(FALSE, FALSE, TRUE)]);
 		#insert comma in between each set
-		if(num.sets != 0){
-			for (i in c(1:num.sets)){
-				if(remainingLetters == 0 && i == 1){
-					final.str = out[i]
-					} 
-				else{
-					final.str <- paste0(final.str, ',', out[i])
+		if (num.sets != 0) {
+			for (i in c(1:num.sets)) {
+				if (remaining.letters == 0 && i == 1) {
+					final.str <- out[i];
 					}
-	
+				else {
+					final.str <- paste0(final.str, ',', out[i]);
+					}
 				}
 			}
-			to.return[[k]] = final.str
+		to.return[[k]] <- final.str;
 		}
-	return(to.return)
+	return(to.return);
 	}

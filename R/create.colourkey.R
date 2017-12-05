@@ -15,7 +15,7 @@ create.colourkey <- create.colorkey <- function(
 	colour.alpha = 1, fill.colour = 'darkgray', at = NULL, colourkey.labels.at = NULL,
 	colourkey.labels = colourkey.labels.at, colourkey.labels.cex = 1, placement = NULL
 	) {
-	
+
 	### SUBSET DATA ###############################################################################
 	# Scale the data if necessary
 	if (scale.data) {
@@ -32,8 +32,8 @@ create.colourkey <- create.colorkey <- function(
 		at <- seq(from = min.value, to = max.value, length.out = total.colours);
 		}
 	else {
-		min.value <- min((at) - colour.centering.value, na.rm = TRUE);
-		max.value <- max((at) - colour.centering.value, na.rm = TRUE);
+		min.value <- min(at - colour.centering.value, na.rm = TRUE);
+		max.value <- max(at - colour.centering.value, na.rm = TRUE);
 		max.at <- max(at);
 		min.at <- min(at);
 
@@ -83,16 +83,16 @@ create.colourkey <- create.colorkey <- function(
 
 	# colour-handling: first handle legacy cases
 	if (1 == length(colour.scheme)) {
-		if (colour.scheme == 'RedWhiteBlue')	 { colour.scheme = c('red', 'white', 'blue'); }
-		else if (colour.scheme == 'WhiteBlack')      { colour.scheme = c('white', 'black'); }
-		else if (colour.scheme == 'BlueWhiteYellow') { colour.scheme = c('blue', 'white', 'yellow'); }
+		if (colour.scheme == 'RedWhiteBlue')	 { colour.scheme <- c('red', 'white', 'blue'); }
+		else if (colour.scheme == 'WhiteBlack')      { colour.scheme <- c('white', 'black'); }
+		else if (colour.scheme == 'BlueWhiteYellow') { colour.scheme <- c('blue', 'white', 'yellow'); }
 		else { stop('Unknown colour scheme:', colour.scheme); }
 		}
 
 	# colour-handling: next cover one-sided colour schemes
 	if (2 == length(colour.scheme)) {
-		ColourFunction <- colorRamp(colour.scheme, space = 'Lab');
-		my.palette <- rgb(ColourFunction(seq(0,1,1/total.colours)^colour.alpha), maxColorValue = 255);
+		colour.function <- colorRamp(colour.scheme, space = 'Lab');
+		my.palette <- rgb(colour.function(seq(0, 1, 1 / total.colours) ^ colour.alpha), maxColorValue = 255);
 		}
 
 	# colour-handling: then handle two-sided colour schemes
@@ -102,8 +102,8 @@ create.colourkey <- create.colorkey <- function(
 		if (!is.twosided) { warning('Using a three-colour scheme with one-sided data is not advised!'); }
 
 		# create the colour scheme
-		ColourFunctionLow  <- colorRamp(colour.scheme[1:2], space = 'Lab');
-		ColourFunctionHigh <- colorRamp(colour.scheme[2:3], space = 'Lab');
+		colour.function.low  <- colorRamp(colour.scheme[1 : 2], space = 'Lab');
+		colour.function.high <- colorRamp(colour.scheme[2 : 3], space = 'Lab');
 
 		# the number of negative colours is based on the fraction of the range that's below the center value
 		# the number of positive colours is based on the number of negatives
@@ -125,10 +125,10 @@ create.colourkey <- create.colorkey <- function(
 
 		# create the colour palette
 		my.palette <- c(
-			rgb( ColourFunctionLow(seq(0,1,1/neg.colours)^colour.alpha), maxColorValue = 255),
+			rgb( colour.function.low(seq(0, 1, 1 / neg.colours) ^ colour.alpha), maxColorValue = 255),
 			 # this helps ensure that the values are centered properly
 			colour.scheme[2],
-			rgb( ColourFunctionHigh(seq(0,1,1/pos.colours)^(1/colour.alpha)), maxColorValue = 255)
+			rgb( colour.function.high(seq(0, 1, 1 / pos.colours) ^ (1 / colour.alpha)), maxColorValue = 255)
 			);
 		}
 

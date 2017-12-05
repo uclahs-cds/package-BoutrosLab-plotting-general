@@ -16,10 +16,10 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 
 	# whether to output stuff or not
 	if (FALSE == verbose) {
-		standard_out = NULL;
+		standard.out <- NULL;
 		}
 	else {
-		standard_out = '';
+		standard.out <- '';
 		}
 
 	# write metadata only if file exists and exiftool has been installed
@@ -30,7 +30,7 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 		plotting.survival.version <- '';
 
 		lattice.version			<- packageVersion('lattice');
-		latticeExtra.version		<- packageVersion('latticeExtra');
+		lattice.extra.version		<- packageVersion('latticeExtra');
 		plotting.general.version 	<- packageVersion('BoutrosLab.plotting.general');
 		tryCatch(
 			plotting.survival.version <- packageVersion('BoutrosLab.plotting.survival'),
@@ -55,7 +55,7 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 				"' -overwrite_original ",
 				filename
 				),
-			stdout = standard_out
+			stdout = standard.out
 			);
 
 		# write R version used to make plot
@@ -64,18 +64,18 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 			args = paste0(
 				" -Software='R ",
 				R.version,
-				" | lattice ",
+				' | lattice ',
 				lattice.version,
-				" | latticeExtra ",
-				latticeExtra.version,
-				" | BL.plotting.general ",
+				' | latticeExtra ',
+				lattice.extra.version,
+				' | BL.plotting.general ',
 				plotting.general.version,
-				" | BL.plotting.survival ",
+				' | BL.plotting.survival ',
 				plotting.survival.version,
 				"' -overwrite_original ",
 				filename
 				),
-			stdout = standard_out
+			stdout = standard.out
 			);
 
 		# description of figure
@@ -87,7 +87,7 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 				"' -overwrite_original ",
 				filename
 				),
-			stdout = standard_out
+			stdout = standard.out
 			);
 
 		# operating system
@@ -99,7 +99,7 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 				"' -overwrite_original ",
 				filename
 				),
-			stdout = standard_out
+			stdout = standard.out
 			);
 
 		# hardware
@@ -111,7 +111,7 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 				"' -overwrite_original ",
 				filename
 				),
-			stdout = standard_out
+			stdout = standard.out
 			);
 		}
 	}

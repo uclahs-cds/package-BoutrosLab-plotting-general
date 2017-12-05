@@ -27,11 +27,11 @@ scientific.notation <- function(x, digits = 1, type = 'expression') {
 
 	# determine the exponent & base
 	exponent <- floor(log10(x));
-	base <- sprintf(paste('%.', digits, 'f', sep = ''), x / 10^exponent);
+	base <- sprintf(paste('%.', digits, 'f', sep = ''), x / 10 ^ exponent);
 
 	# return the value
 	if (type == 'expression') {
-		return(as.expression(substitute(base %*% 10^exponent, list(base = base, exponent = exponent))));
+		return(as.expression(substitute(base %*% 10 ^ exponent, list(base = base, exponent = exponent))));
 		}
 	else if (type == 'list') {
 		return(list(base = base, exponent = exponent));

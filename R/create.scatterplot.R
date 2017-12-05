@@ -12,9 +12,9 @@
 ### inside.ellipse #################################################################################
 #
 # PURPOSE
-# Produces an NxM matrix of booleans corresponding to N data points (data.x and data.y) 
+# Produces an NxM matrix of booleans corresponding to N data points (data.x and data.y)
 # being inside M ellipses (ellipse.center.x, ellipse.radii.x, ellipse.center.y, ellipse.radii.y).
-#   
+#
 # INPUT
 # ellipse.center.x:	is an numeric defining the x coordinate(s) of the ellipse center
 # ellipse.center.y:	is an numeric defining the y coordinate(s) of the ellipse center
@@ -28,39 +28,42 @@
 #
 ####################################################################################################
 inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, ellipse.radii.y, data.x, data.y) {
-	
+
 	### PARAMETER CHECK ########################################################################
 
 	# ensure input variables are numeric, otherwise throw a warning.
-	if (!is.numeric(ellipse.center.x) || !is.numeric(ellipse.radii.x) || !is.numeric(ellipse.center.y) || !is.numeric(ellipse.radii.y) || !is.numeric(data.x) || !is.numeric(data.y)) {
-		warning("In inside.ellipse: input variables are not all numeric.");
+	if (!is.numeric(ellipse.center.x) || !is.numeric(ellipse.radii.x) || !is.numeric(ellipse.center.y) ||
+		!is.numeric(ellipse.radii.y) || !is.numeric(data.x) || !is.numeric(data.y)) {
+		warning('In inside.ellipse: input variables are not all numeric.');
 		}
 
 	# ensure input variable are vectors, otherwise throw a warning.
-	if (!is.vector(ellipse.center.x) || !is.vector(ellipse.radii.x) || !is.vector(ellipse.center.y) || !is.vector(ellipse.radii.y) || !is.vector(data.x) || !is.vector(data.y)) {
-		warning("In inside.ellipse: input variables are not all vectors.");
+	if (!is.vector(ellipse.center.x) || !is.vector(ellipse.radii.x) || !is.vector(ellipse.center.y) ||
+		!is.vector(ellipse.radii.y) || !is.vector(data.x) || !is.vector(data.y)) {
+		warning('In inside.ellipse: input variables are not all vectors.');
 		}
 
 	# ensure the lengths of the variables defining all the ellipses are the same
-	if (!(length(ellipse.center.x) == length(ellipse.center.y) && length(ellipse.radii.x) == length(ellipse.radii.y) && length(ellipse.center.x) == length(ellipse.radii.x))) {
-		warning("In inside ellipse: The length of ellipse.center.x, ellipse.radii.x, ellipse.center.y and ellipse.radii.y are not all the same.");
+	if (!(length(ellipse.center.x) == length(ellipse.center.y) && length(ellipse.radii.x) == length(ellipse.radii.y) &&
+		length(ellipse.center.x) == length(ellipse.radii.x))) {
+		warning('In inside ellipse: The length of ellipse.center.x, ellipse.radii.x, ellipse.center.y and ellipse.radii.y are not all the same.');
 		}
 
 	# ensure the lengths of the data points are the same
 	if (!length(data.x) == length(data.y)) {
-		warning("In inside.ellipse: The length of data.x and data.y are different.");
+		warning('In inside.ellipse: The length of data.x and data.y are different.');
 		}
 
 	### ELLIPSE CALCULATION ####################################################################
 	# for every element in data.x and every element in ellipse.center.x, compute the cartesian
-	# subtraction, such that the resulting variable is a matrix with row i representing 
+	# subtraction, such that the resulting variable is a matrix with row i representing
 	# the difference between the ith data.x and all the ellipse.center.x
 	difference.x <- outer(
 		X = data.x,
 		Y = ellipse.center.x,
 		FUN = '-'
 		);
-	
+
 	# for every element in data.y and every element in ellipse.center.y, compute the cartesian
 	# subtraction, such that the resulting variable is a matrix with row i representing
 	# the difference between the ith data.y and all the ellipse.center.y
@@ -74,7 +77,7 @@ inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, 
 	# defined by the 4 ellipse variables (ellipse.center.x, ellipse.center.y, ellipse.radii.x, ellipse.radii.y).
 	# Currently this matrix has rows as the data.points and columns as the ellipses. Thus at row i and column j
 	# We have data.point i and ellipse j.
-	inside.ellipse.outcome <- ((difference.x / ellipse.radii.x)^2) + ((difference.y / ellipse.radii.y)^2) <= 1;
+	inside.ellipse.outcome <- ( (difference.x / ellipse.radii.x) ^ 2) + ( (difference.y / ellipse.radii.y) ^ 2) <= 1;
 
 	return(inside.ellipse.outcome);
 	}
@@ -82,7 +85,7 @@ inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, 
 ### inside.rectangle ###############################################################################
 #
 # PURPOSE
-# Produces an NxM matrix of booleans corresponding to N data points (data.x and data.y) 
+# Produces an NxM matrix of booleans corresponding to N data points (data.x and data.y)
 # being inside M ellipses (ellipse.center.x, ellipse.radii.x, ellipse.center.y, ellipse.radii.y).
 #
 # INPUT
@@ -98,26 +101,28 @@ inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, 
 #
 ####################################################################################################
 inside.rectangle <- function(rectangle.center.x, rectangle.center.y, rectangle.width, rectangle.height, data.x, data.y) {
-	
+
 	### PARAMETER CHECK ########################################################################
 	# ensure all variables are numeric, otherwise throw a warning
-	if (!is.numeric(rectangle.center.x) || !is.numeric(rectangle.center.y) || !is.numeric(rectangle.width) || !is.numeric(rectangle.height) || !is.numeric(data.x) || !is.numeric(data.y)) {
-		warning("Variables passed to inside.rectangle are not all numeric.");
+	if (!is.numeric(rectangle.center.x) || !is.numeric(rectangle.center.y) || !is.numeric(rectangle.width)
+		|| !is.numeric(rectangle.height) || !is.numeric(data.x) || !is.numeric(data.y)) {
+		warning('Variables passed to inside.rectangle are not all numeric.');
 		}
 
 	# ensure all variables are vectors, otherwise throw a warning
-	if (!is.vector(rectangle.center.x) || !is.vector(rectangle.center.y) || !is.vector(rectangle.width) || !is.vector(rectangle.height) || !is.vector(data.x) || !is.vector(data.y)) {
-		warning("Variables passed to inside.rectangle are not all vectors.");
+	if (!is.vector(rectangle.center.x) || !is.vector(rectangle.center.y) || !is.vector(rectangle.width)
+		|| !is.vector(rectangle.height) || !is.vector(data.x) || !is.vector(data.y)) {
+		warning('Variables passed to inside.rectangle are not all vectors.');
 		}
 
 	# ensure all variables defining the rectangles are of the same length
 	if (length(rectangle.center.x) != length(rectangle.center.y) || length(rectangle.height) != length(rectangle.width)) {
-		warning("Variables which define the rectangle in inside.rectangle are not all of the same length.");	
+		warning('Variables which define the rectangle in inside.rectangle are not all of the same length.');
 		}
 
 	# ensure all variables defining the data points are of the same length
 	if (length(data.x) != length(data.y)) {
-		warning("Variables which define the data points in inside.rectangle are no all of the same length.");
+		warning('Variables which define the data points in inside.rectangle are no all of the same length.');
 		}
 
 	### RECTANGLE CALCULATION ##################################################################
@@ -143,7 +148,7 @@ inside.rectangle <- function(rectangle.center.x, rectangle.center.y, rectangle.w
 	# that ever rectangle.center.x will be compared with every data.x
 	inside.rectangle.outcome.x <- (tmp.x - (rectangle.width / 2)) < data.x & data.x < (tmp.x + (rectangle.width / 2));
 
-	# same as inside.rectangle.outcome.x, except for y values	
+	# same as inside.rectangle.outcome.x, except for y values
 	inside.rectangle.outcome.y <- (tmp.y - (rectangle.height / 2)) < data.y & data.y < (tmp.y + (rectangle.height / 2));
 
 	# generate a matrix of booleans outlining where data falls inside the any of the defined
@@ -166,11 +171,11 @@ create.scatterplot <- function(
 	xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA,
 	yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0,
 	yaxis.rot = 0, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black',
-	xaxis.tck = c(1,1), yaxis.tck = c(1,1),	add.grid = FALSE, xgrid.at = xat, ygrid.at = yat, grid.colour = NULL, 
+	xaxis.tck = c(1, 1), yaxis.tck = c(1, 1), add.grid = FALSE, xgrid.at = xat, ygrid.at = yat, grid.colour = NULL,
 	horizontal = FALSE, type = 'p', cex = 0.75, pch = 19, col = 'black', col.border = 'black', lwd = 1, lty = 1,
-	alpha = 1, axes.lwd = 1, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', y.error.up = NULL, 
-	y.error.down = y.error.up, x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black', 
-	x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, error.bar.length = 0.1, 
+	alpha = 1, axes.lwd = 1, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', y.error.up = NULL,
+	y.error.down = y.error.up, x.error.right = NULL, x.error.left = x.error.right, y.error.bar.col = 'black',
+	x.error.bar.col = y.error.bar.col, error.whisker.angle = 90, error.bar.lwd = 1, error.bar.length = 0.1,
 	key = list(text = list(lab = c(''))), legend = NULL, top.padding = 0.1, bottom.padding = 0.7,
 	right.padding = 0.1, left.padding = 0.5, key.top = 0.1, key.left.padding = 0, ylab.axis.padding = 1,
 	axis.key.padding = 1, layout = NULL, as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same',
@@ -185,62 +190,62 @@ create.scatterplot <- function(
 	text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', text.guess.labels = FALSE,
 	text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE,
 	text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, height = 6,
-	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, 
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', 
+	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	group.specific.colouring = TRUE, use.legacy.settings = FALSE,  ...
 	) {
 
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+        	xright = xright.rectangle,
+                xleft = xleft.rectangle,
+                ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
-	if(!is.null(yat) && length(yat) == 1){
-        	if(yat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]))
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
+	if (!is.null(yat) && length(yat) == 1) {
+        	if (yat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
+        	else if (yat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]))
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
+        	else if (yat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
+		}
+	if (!is.null(xat) && length(xat) == 1) {
+        	if (xat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+		}
 
 	# add preloaded defaults
         if (preload.default == 'paper') {
@@ -253,16 +258,16 @@ create.scatterplot <- function(
 
 	# error checking
 	if (add.curves & !all(sapply(data, is.numeric))) {
-		warning("Curves cannot be drawn with grouping variables.");
-		data <- data[,sapply(data, is.numeric)];
+		warning('Curves cannot be drawn with grouping variables.');
+		data <- data[, sapply(data, is.numeric)];
 		}
 
 	# auto set parameters
 	if (length(xat) == 1 && xat == TRUE && length(xlimits) == 0) {
 
-		adjustedformula <- as.formula(paste0(as.character(formula[2]), "~", strsplit(as.character(formula[3])," [|] ")[[1]][1]));
+		adjustedformula <- as.formula(paste0(as.character(formula[2]), '~', strsplit(as.character(formula[3]), ' [|] ')[[1]][1]));
 
-		if (is.numeric(model.frame(adjustedformula, data)[1,2])) {
+		if (is.numeric(model.frame(adjustedformula, data)[1, 2])) {
 			minimum <- min(model.frame(adjustedformula, data)[2]);
 			maximum <- max(model.frame(adjustedformula, data)[2]);
 
@@ -272,32 +277,32 @@ create.scatterplot <- function(
 			lognumber <- floor(log(difference, 10));
 
 			# depending on difference, the labels will be multiples of 5, 10 or 20
-			if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-			else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
-			else { factor <- (10**lognumber)*2; }
+			if (difference < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
+			else if (difference < (10 ** lognumber * 7)) { factor <- (10 ** lognumber); }
+			else { factor <- (10 ** lognumber) * 2; }
 
-			addition <- factor/2;
+			addition <- factor / 2;
 
-			# depending on minimum create a sequence of at locations with padding 
-			if (minimum == 0) { at <- seq(0, factor*round(maximum/factor) + addition, factor); }
+			# depending on minimum create a sequence of at locations with padding
+			if (minimum == 0) { at <- seq(0, factor * round(maximum / factor) + addition, factor); }
 			else {
-				at <- seq(factor*round(minimum/factor), factor*round(maximum/factor) + addition, factor);
+				at <- seq(factor * round(minimum / factor), factor * round(maximum / factor) + addition, factor);
 				# only add padding to minimum if it is not 0
 				minimum <- minimum - addition;
 				}
 
 			# add padding to max
 			maximum <- maximum + addition;
-			xlimits <- c(minimum,maximum);
+			xlimits <- c(minimum, maximum);
 			xat <- at;
 			}
 		}
 
 	if (length(yat) == 1 && yat == TRUE && length(ylimits) == 0) {
 
-		adjustedformula <- as.formula(paste0(as.character(formula[2]), "~", strsplit(as.character(formula[3])," [|] ")[[1]][1]));
+		adjustedformula <- as.formula(paste0(as.character(formula[2]), '~', strsplit(as.character(formula[3]), ' [|] ')[[1]][1]));
 
-		if (is.numeric(as.vector(model.frame(adjustedformula, data)[1,1]))) {
+		if (is.numeric(as.vector(model.frame(adjustedformula, data)[1, 1]))) {
 			minimum <- min(model.frame(adjustedformula, data)[1]);
 			maximum <- max(model.frame(adjustedformula, data)[1]);
 
@@ -307,25 +312,25 @@ create.scatterplot <- function(
 			lognumber <- floor(log(difference, 10));
 
 			# depending on difference, the labels will be multiples of 5,10 or 20
-			if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-			else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
-			else { factor <- (10**lognumber)*2; }
+			if (difference < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
+			else if (difference < (10 ** lognumber * 7)) { factor <- (10 ** lognumber); }
+			else { factor <- (10 ** lognumber) * 2; }
 
-			addition <- factor/2;
+			addition <- factor / 2;
 
 			# depending on minimum create a sequence of at locations with padding
 			if (minimum == 0) {
-				at <- seq(0, factor*round(maximum/factor) + addition, factor);
+				at <- seq(0, factor * round(maximum / factor) + addition, factor);
 				}
 			else {
-				at <- seq(factor*round(minimum/factor), factor*round(maximum/factor) + addition, factor);
+				at <- seq(factor * round(minimum / factor), factor * round(maximum / factor) + addition, factor);
 				# only add padding to minimum if it is not 0
 				minimum <- minimum - addition;
 				}
 
 			# add padding to max
 			maximum <- maximum + addition;
-			ylimits <- c(minimum,maximum);
+			ylimits <- c(minimum, maximum);
 			yat <- at;
 			}
 		}
@@ -360,7 +365,7 @@ create.scatterplot <- function(
 
 	# If formula does NOT contain conditioning variables,
 	# then group-specific error bar colouring is supported.
-	else if(group.specific.colouring == TRUE){
+	else if (group.specific.colouring == TRUE) {
 		# generate the vector of colours for horizontal error bars, by remapping
 		# the levels of the grouping variable according to x.error.bar.col
 		# if x.error.bar.col is NOT a vector, do nothing
@@ -407,7 +412,7 @@ create.scatterplot <- function(
 		}
 
 	### AUTOMATIC LABEL POSITIONING ################################################################
-	# Variables to decide whether or not the program should continue with the automatic 
+	# Variables to decide whether or not the program should continue with the automatic
 	# labeling algorithm. This variables purpose is to help organize the code and prevent
 	# a large amount of indentation
 	safe.to.guess <- TRUE;
@@ -503,8 +508,8 @@ create.scatterplot <- function(
 		# The block within this if statement has organized parameter checks checking if all variables
 		# are multiples of the largest fundamental variable. Fundamental variables are text.guess.labels,
 		# text.x or text.y. If a single variable or multiple variables are not multiples of the max length
-		# of these three variables a warning will be thrown per incorrect variable and safe.to.guess will 
-		# become FALSE preventing any further paramter blocks from occuring and the overall automatic 
+		# of these three variables a warning will be thrown per incorrect variable and safe.to.guess will
+		# become FALSE preventing any further paramter blocks from occuring and the overall automatic
 		# label positioning algorithm.
 		if (safe.to.guess) {
 
@@ -606,7 +611,7 @@ create.scatterplot <- function(
 
 			text.guess.skip.labels <- rep(
 				x = text.guess.skip.labels,
-				times = len / length(text.guess.skip.labels)				
+				times = len / length(text.guess.skip.labels)
 				);
 
 			text.guess.labels <- rep(
@@ -662,7 +667,7 @@ create.scatterplot <- function(
 			guess.ignore.rectangle <- text.guess.ignore.rectangle[text.guess.labels];
 
 			# These are the variables responsible for the manual labeling
-			# remove all the automatic labeling values as they have already 
+			# remove all the automatic labeling values as they have already
 			# been stored in separate variables.
 			text.x		<- text.x[!text.guess.labels];
 			text.y		<- text.y[!text.guess.labels];
@@ -686,13 +691,13 @@ create.scatterplot <- function(
 				);
 
 			# obtain x and y values from data to use in calculations
-			adjustedformula <- as.formula(paste0(as.character(formula[2]), "~", strsplit(as.character(formula[3])," [|] ")[[1]][1]));
+			adjustedformula <- as.formula(paste0(as.character(formula[2]), '~', strsplit(as.character(formula[3]), ' [|] ')[[1]][1]));
 			data.x <- as.numeric(as.matrix(model.frame(adjustedformula, data)[2]));
-			data.y <- as.numeric(as.matrix(model.frame(adjustedformula, data)[1]));			
+			data.y <- as.numeric(as.matrix(model.frame(adjustedformula, data)[1]));
 
 			# boolean used to check if xlimits or ylimits are defined
-			# There are two options at defining the data space for a trellis object. One can 
-			# poorly estimate using the range of the data or they can have the best estimate by 
+			# There are two options at defining the data space for a trellis object. One can
+			# poorly estimate using the range of the data or they can have the best estimate by
 			# using defined xlimits and ylimits of a graph. In order to produce accurate label positions
 			# it is recommended that xlimits and ylimits be defined
 			better.guess <- TRUE;
@@ -717,7 +722,7 @@ create.scatterplot <- function(
 			# final.y as they will not store NA's if variables are skipped
 			added.x <- vector();
 			added.y <- vector();
-				
+
 			# if xlimits and ylimits are defined, use these for range calculations
 			if (better.guess) {
 				range.x <- xlimits[2] - xlimits[1];
@@ -736,7 +741,7 @@ create.scatterplot <- function(
 
 			for (i in 1:length(guess.x)) {
 
-				# calculates the text width of each label. 
+				# calculates the text width of each label.
 				# used to check if points are in label position areas
 				unit.text.width <- strwidth(
 					s = guess.labels[i],
@@ -770,22 +775,22 @@ create.scatterplot <- function(
 				unit.buffer <- unit.buffer * guess.buffer.factor[i];
 
 				# produce 360 potential points around each (guess.x, guess.y)
-				angles <- 0:359 * pi/180;
+				angles <- 0:359 * pi / 180;
 
-				# Calculate the x axis radius of the ellipse for 
+				# Calculate the x axis radius of the ellipse for
 				radius.x <- guess.x[i] + (unit.radius * range.y * cos(angles));
-				buffer.x <- guess.x[i] + ((unit.radius + unit.buffer) * range.x * cos(angles));
+				buffer.x <- guess.x[i] + ( (unit.radius + unit.buffer) * range.x * cos(angles));
 
 				radius.y <- guess.y[i] + (unit.radius * range.y * sin(angles));
-				buffer.y <- guess.y[i] + ((unit.radius + unit.buffer) * range.y * sin(angles));
+				buffer.y <- guess.y[i] + ( (unit.radius + unit.buffer) * range.y * sin(angles));
 
 				# Determine the center positions of the text boxes
-				rect.x <- (guess.x[i] + ((unit.text.width / 2) + unit.radius) * range.x * cos(angles));
-				rect.y <- (guess.y[i] + ((unit.text.height / 2) + unit.radius) * range.y * sin(angles));
+				rect.x <- (guess.x[i] + ( (unit.text.width / 2) + unit.radius) * range.x * cos(angles));
+				rect.y <- (guess.y[i] + ( (unit.text.height / 2) + unit.radius) * range.y * sin(angles));
 
 				if (is.numeric(guess.label.position[i])) {
-					rect.x <- (guess.x[i] + ((unit.text.width / 2) + unit.radius) * range.x * cos(guess.label.position[i] * pi/180));
-					rect.y <- (guess.y[i] + ((unit.text.height / 2) + unit.radius) * range.y * sin(guess.label.position[i] * pi/180));
+					rect.x <- (guess.x[i] + ( (unit.text.width / 2) + unit.radius) * range.x * cos(guess.label.position[i] * pi / 180));
+					rect.y <- (guess.y[i] + ( (unit.text.height / 2) + unit.radius) * range.y * sin(guess.label.position[i] * pi / 180));
 					final.x[i] <- rect.x;
 					final.y[i] <- rect.y;
 					added.x <- c(added.x, final.x[i]);
@@ -798,9 +803,9 @@ create.scatterplot <- function(
 					# label positions.
 					valid.data.points <- !(data.x == guess.x[i] & data.y == guess.y[i]);
 
-					# This is a boolean for each potential label position around a single guess.x and guess.y. 
-					# During the algorithm, positions around an ellipse are determined to be suitable or not 
-					# suitable for label positioning. If they are sutiable they remain true, otherwise, they 
+					# This is a boolean for each potential label position around a single guess.x and guess.y.
+					# During the algorithm, positions around an ellipse are determined to be suitable or not
+					# suitable for label positioning. If they are sutiable they remain true, otherwise, they
 					# are false and are no longer available for labelling.
 					valid.labels <- rep(TRUE, 360);
 
@@ -808,13 +813,13 @@ create.scatterplot <- function(
 					if (!guess.ignore.radius[i]) {
 
 						in.ellipse <- as.vector(inside.ellipse(
-							ellipse.center.x = guess.x[i],
-							ellipse.center.y = guess.y[i],
-							ellipse.radii.x = (unit.radius + unit.buffer) * range.x,
-							ellipse.radii.y = (unit.radius + unit.buffer) * range.y,
-							data.x = data.x[valid.data.points],
-							data.y = data.y[valid.data.points]
-							));
+								ellipse.center.x = guess.x[i],
+								ellipse.center.y = guess.y[i],
+								ellipse.radii.x = (unit.radius + unit.buffer) * range.x,
+								ellipse.radii.y = (unit.radius + unit.buffer) * range.y,
+								data.x = data.x[valid.data.points],
+								data.y = data.y[valid.data.points]
+								));
 
 						if (any(in.ellipse)) {
 
@@ -823,12 +828,12 @@ create.scatterplot <- function(
 								tmp.x <- data.x[valid.data.points][j];
 								tmp.y <- data.y[valid.data.points][j];
 
-								line.slope <- (tmp.y - guess.y[i])/(tmp.x - guess.x[i]);
+								line.slope <- (tmp.y - guess.y[i]) / (tmp.x - guess.x[i]);
 								perp.line.slope <- -1 / line.slope;
 								vertical.shift <- guess.y[i] - (perp.line.slope * guess.x[i]);
 
 								other.x <- tmp.x + 1;
-								other.y <- (perp.line.slope * other.x) + vertical.shift; 
+								other.y <- (perp.line.slope * other.x) + vertical.shift;
 
 								if (!is.finite(perp.line.slope)) {
 									other.y <- guess.y + 1;
@@ -837,7 +842,7 @@ create.scatterplot <- function(
 
 								# INFORMATION PLEASE
 								position <- sign(
-									(other.x - guess.x[i]) * (buffer.y - guess.y[i]) - 
+									(other.x - guess.x[i]) * (buffer.y - guess.y[i]) -
 									(other.y - guess.y[i]) * (buffer.x - guess.x[i])
 									);
 
@@ -897,7 +902,7 @@ create.scatterplot <- function(
 								tail.arc <- vector();
 								last <- length(valid.labels) + 1;
 								index <- 0;
-								for(j in length(valid.labels.true.pos):1) {
+								for (j in length(valid.labels.true.pos):1) {
 									if (last == valid.labels.true.pos[j] + 1) {
 										tail.arc <- c(tail.arc, index);
 										index <- index - 1;
@@ -909,34 +914,34 @@ create.scatterplot <- function(
 									}
 								valid.labels.true.pos <- c(
 									rev(tail.arc),
-									valid.labels.true.pos[1:(length(valid.labels.true.pos)-length(tail.arc))]
+									valid.labels.true.pos[1:(length(valid.labels.true.pos) - length(tail.arc))]
 									);
 								}
 
 							arcs <- 0;
 							prev <- valid.labels.true.pos[1] - 1;
 							index <- 1;
-							arc_index <- vector();
+							arc.index <- vector();
 
 							for (j in 1:length(valid.labels.true.pos)) {
 								if (valid.labels.true.pos[j] == prev + 1) {
 									arcs[index] <- arcs[index] + 1;
 									if (j == length(valid.labels.true.pos)) {
-										arc_index <- c(arc_index, valid.labels.true.pos[j - arcs[index] / 2]);
+										arc.index <- c(arc.index, valid.labels.true.pos[j - arcs[index] / 2]);
 										}
 									}
 								else {
-									arc_index <- c(arc_index, valid.labels.true.pos[j - arcs[index] / 2]);
+									arc.index <- c(arc.index, valid.labels.true.pos[j - arcs[index] / 2]);
 									arcs <- c(arcs, 1);
 									index <- index + 1;
 									}
 								prev <- valid.labels.true.pos[j];
 								}
 							longest.arc <- max(arcs);
-							selected.arcs <- arc_index[arcs == longest.arc];
+							selected.arcs <- arc.index[arcs == longest.arc];
 
 							if (sum(selected.arcs) > 1) {
-								distance <- sqrt((rect.x[selected.arcs] - middle.x) ^ 2 + (rect.y[selected.arcs] - middle.y) ^ 2);
+								distance <- sqrt( (rect.x[selected.arcs] - middle.x) ^ 2 + (rect.y[selected.arcs] - middle.y) ^ 2);
 								selected.arcs <- selected.arcs[order(distance, decreasing = TRUE)][1];
 								}
 
@@ -953,7 +958,7 @@ create.scatterplot <- function(
 								final.y[i] <- NA;
 								}
 							else {
-								distance <- sqrt((rect.x - middle.x) ^ 2 + (rect.y - middle.y) ^ 2);
+								distance <- sqrt( (rect.x - middle.x) ^ 2 + (rect.y - middle.y) ^ 2);
 								selected.arcs <- order(distance, decreasing = TRUE)[1];
 								final.x[i] <- rect.x[selected.arcs];
 								final.y[i] <- rect.y[selected.arcs];
@@ -986,10 +991,10 @@ create.scatterplot <- function(
 		        # add background rectangle if requested
                         if (add.rectangle) {
                                 panel.rect(
-                                        xleft = rectangleInfo$xleft,
-                                        ybottom = rectangleInfo$ybottom,
-                                        xright = rectangleInfo$xright,
-                                        ytop = rectangleInfo$ytop,
+                                        xleft = rectangle.info$xleft,
+                                        ybottom = rectangle.info$ybottom,
+                                        xright = rectangle.info$xright,
+                                        ytop = rectangle.info$ytop,
                                         col = col.rectangle,
                                         alpha = alpha.rectangle,
                                         border = NA
@@ -1164,7 +1169,7 @@ create.scatterplot <- function(
 
 			# if requested, add point labels
 			if (any(!text.guess.labels) && add.text) {
-				 panel.text(
+				panel.text(
 					x = text.x,
 					y = text.y,
 					labels = text.labels,
@@ -1175,7 +1180,7 @@ create.scatterplot <- function(
 				}
 
 			if (any(text.guess.labels) && add.text && safe.to.guess) {
-				 panel.text(
+				panel.text(
 					x = final.x,
 					y = final.y,
 					labels = guess.labels,
@@ -1190,9 +1195,9 @@ create.scatterplot <- function(
 		pch = pch,
 		col = mapply(
 			function(point.pch, point.colours, point.border) {
-				if (point.pch %in% 0:20) { return(point.colours); } else 
-				if (point.pch %in% 21:25) { return(point.border); } else 
-				if (! point.pch %in% 0:25) { return(point.colours); } 
+				if (point.pch %in% 0:20) { return(point.colours); } else
+				if (point.pch %in% 21:25) { return(point.border); } else
+				if (! point.pch %in% 0:25) { return(point.colours); }
 				},
 			point.pch = pch,
 			point.colours = col,
@@ -1200,7 +1205,7 @@ create.scatterplot <- function(
 			),
 		fill = mapply(
 			function(point.pch, point.colours) {
-				if (point.pch %in% 0:20) { NA; } else 
+				if (point.pch %in% 0:20) { NA; } else
 				if (point.pch %in% 21:25) { return(point.colours); } else
 				if (! point.pch %in% 0:25) { return(point.colours); }
 				},
@@ -1349,9 +1354,9 @@ create.scatterplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -1361,13 +1366,14 @@ create.scatterplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.")
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.')
 		}
 
 	# Otherwise use the BL style if requested

@@ -11,7 +11,7 @@
 
 ### FUNCTION TO DISPLAY STATISTICAL RESULT ########################################################
 # Description:
-#	Produces an expression containing a statistical result in scientific notation, 
+#	Produces an expression containing a statistical result in scientific notation,
 #	ready to be displayed in a plot.
 # Input variables:
 #	- The number to be put in scientific notation
@@ -25,7 +25,7 @@ display.statistical.result <- function(
 	# simply as being smaller than lower.cutoff
 	if (lower.cutoff >= x) {
 		pvalue <- substitute(
-			expr = paste(statistic.type, ' < ', base %*% 10^exponent, phantom('|')[phantom('|')]),
+			expr = paste(statistic.type, ' < ', base %*% 10 ^ exponent, phantom('|')[phantom('|')]),
 			env = list(
 				base = unlist(
 					BoutrosLab.plotting.general::scientific.notation(
@@ -48,7 +48,7 @@ display.statistical.result <- function(
 		pvalue <- as.expression(pvalue);
 		}
 
-	# If x is greater or equal to scientific.cutoff, standard decimal notation is used in 
+	# If x is greater or equal to scientific.cutoff, standard decimal notation is used in
 	# the returned expression, rather than scientific notation
 	else if (scientific.cutoff <= x) {
 		pvalue <- as.expression(paste(statistic.type, symbol, signif(x, digits = digits), sep = ''));
@@ -59,7 +59,7 @@ display.statistical.result <- function(
 	# x will be displayed in scientific notation.
 	else {
 		pvalue <- substitute(
-			expr = paste(statistic.type, symbol, base %*% 10^exponent, phantom('|')[phantom('|')]),
+			expr = paste(statistic.type, symbol, base %*% 10 ^ exponent, phantom('|')[phantom('|')]),
 			env = list(
 				base = unlist(
 					BoutrosLab.plotting.general::scientific.notation(

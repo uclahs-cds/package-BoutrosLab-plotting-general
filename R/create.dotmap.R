@@ -10,23 +10,40 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE DOTMAPS #####################################################################
-create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x), yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 3, xlab.cex = 2, ylab.cex = 2, xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black',xlab.top.label = NULL,xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = "center",xlab.top.x = 0.5, xlab.top.y = 0, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1, axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, col.lwd = 1.5, row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', NA.spot.size = 7, NA.pch = 4, NA.spot.size.colour = 'black', grid.colour = NULL, colour.scheme = 'white', total.colours = 99, at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL, colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white', key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE, col.colour = 'black', row.colour = 'black', description = 'Created with BoutrosLab.plotting.general',add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',border.rectangle=NULL, lwd.rectangle = NULL, alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL, style = 'BoutrosLab',preload.default = 'custom',use.legacy.settings = FALSE) {
+create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.just = 'center',
+	main.x = 0.5, main.y = 0.5, pch = 19, pch.border.col = 'black', add.grid = TRUE, xaxis.lab = colnames(x),
+	yaxis.lab = rownames(x), xaxis.rot = 0, yaxis.rot = 0, main.cex = 3, xlab.cex = 2, ylab.cex = 2,
+	xlab.label = NULL, ylab.label = NULL, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
+	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
+	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
+	axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7,
+	right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, col.lwd = 1.5,
+	row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', na.spot.size = 7,
+	na.pch = 4, na.spot.size.colour = 'black', grid.colour = NULL, colour.scheme = 'white', total.colours = 99,
+	at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL,
+	colourkey.labels = NULL, colourkey.cex = 1, colour.alpha = 1, bg.alpha = 0.5, fill.colour = 'white',
+	key.top = 0.1, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	col.colour = 'black', row.colour = 'black', description = 'Created with BoutrosLab.plotting.general',
+	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
+	ytop.rectangle = NULL, col.rectangle = 'transparent', border.rectangle=NULL, lwd.rectangle = NULL,
+	alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL,
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE) {
 
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-        if(preload.default == 'paper'){
+	if (preload.default == 'paper') {
 
-                }
-        else if(preload.default == 'web'){
+		}
+	else if (preload.default == 'web') {
 
-                }
+		}
 	x <- as.data.frame(x);
 	temp <- x; # 'temp' used for column/row catagorization function
 
@@ -48,72 +65,71 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			}
 		}
 	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'discrete') {
-		if(length(unique(unlist(x))) > length(dot.colour.scheme)){
-			stop(paste("Not enough colours specified to use discrete function: need at least", length(unique(unlist(x))), "colours"));
+		if (length(unique(unlist(x))) > length(dot.colour.scheme)) {
+			stop(paste('Not enough colours specified to use discrete function: need at least', length(unique(unlist(x))), 'colours'));
 			}
 		spot.colour.function <- function(x) {
-			unique.values = unique(x);
+			unique.values <- unique(x);
 			colours <- rep('white', length(x));
-			for(i in c(1:length(unique.values))){
+			for (i in c(1:length(unique.values))) {
 				colours[x == unique.values[i]] <- dot.colour.scheme[i];
 				}
 			return(colours);
 			}
 		}
-	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'columns'){
-		spot.colour.function <- function(x){
+	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'columns') {
+		spot.colour.function <- function(x) {
 			# The following does not use the parameter 'x' and instead used the variable 'temp'
-			no.unique.columns = length(unique(colnames(temp)));
-			no.rows = length(rownames(temp));
+			no.unique.columns <- length(unique(colnames(temp)));
+			no.rows <- length(rownames(temp));
 
 			# Checks for repeated colnames and throws an error if there is
-			if(no.unique.columns != length(colnames(temp))){
-				stop(paste("Remove repeated column names"));
+			if (no.unique.columns != length(colnames(temp))) {
+				stop(paste('Remove repeated column names'));
 				}
 
-			new.colnames = seq(1, no.unique.columns, 1);
+			new.colnames <- seq(1, no.unique.columns, 1);
 			colnames(temp) <- new.colnames;
 			temp <- stack(temp);
 			temp$values <- temp$ind;
-			temp$ind = NULL;
+			temp$ind <- NULL;
 
-			index = 1;
-			colours <- rep('white', no.unique.columns*no.rows);
-			for(i in c(1:no.unique.columns)){
-				for(j in c(1:no.rows)){
-					colours[index] <- default.colours(12)[(i%%12)+1];
-					index = index + 1;
+			index <- 1;
+			colours <- rep('white', no.unique.columns * no.rows);
+			for (i in c(1:no.unique.columns)) {
+				for (j in c(1:no.rows)) {
+					colours[index] <- default.colours(12)[(i %% 12) + 1];
+					index <- index + 1;
 					}
 				}
 			return(colours);
 			}
 		}
-	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'rows'){
-		spot.colour.function <- function(x){
+	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'rows') {
+		spot.colour.function <- function(x) {
 			# The following does not use the parameter 'x' and instead used the variable 'temp'
-			no.columns = length(colnames(temp));
-			no.unique.rows = length(unique(rownames(temp)));
+			no.columns <- length(colnames(temp));
+			no.unique.rows <- length(unique(rownames(temp)));
 
 			# Checks for repeated rownames and throws an error if there is
-			if(no.unique.rows != length(rownames(temp))){
-				stop(paste("Remove repeated row names"));
+			if (no.unique.rows != length(rownames(temp))) {
+				stop(paste('Remove repeated row names'));
 				}
 
 			colour.per.column <- c(1:no.unique.rows);
-			for(i in 0:no.unique.rows){
-				colour.per.column[i+1] <- default.colours(12)[(i%%12)+1];
-			}
+			for (i in 0:no.unique.rows) {
+				colour.per.column[i + 1] <- default.colours(12)[(i %% 12) + 1];
+				}
 
 			temp <- stack(temp);
-			temp$ind = NULL;
+			temp$ind <- NULL;
 
-			max = nrow(temp);
-			index = 1;
+			index <- 1;
 
-			for(i in c(1:no.columns)){
-				for(j in c(1:no.unique.rows)){
+			for (i in c(1:no.columns)) {
+				for (j in c(1:no.unique.rows)) {
 					temp$values[index] <- colour.per.column[j];
-					index = index + 1;
+					index <- index + 1;
 					}
 				}
 			return(temp);
@@ -128,7 +144,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	# Ensure a bg.data value is provided
 	if (!is.null(bg.data)) {
 		if (length(colour.scheme) == 1 && colour.scheme == 'white') {
-			warning ("bg.data is set, but colour.scheme is set to default 'white'. No background colours will be displayed. Changing bg.data to NULL");
+			warning("bg.data is set, but colour.scheme is set to default 'white'. No background colours will be displayed. Changing bg.data to NULL");
 			bg.data <- NULL;
 			}
 		}
@@ -140,23 +156,23 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 
 		# Ensure 'fake' bg.data values are never displayed
 		if (colourkey) {
-			warning ('No bg.data set, but colourkey is set to TRUE. Changing colourkey to FALSE');
+			warning('No bg.data set, but colourkey is set to TRUE. Changing colourkey to FALSE');
 			colourkey <- FALSE;
 			}
 		if (length(colour.scheme) != 1 || colour.scheme != 'white') {
-			warning ("No bg.data set, but colour.scheme is set to non-default value. Changing colour.scheme to 'white'.");
+			warning("No bg.data set, but colour.scheme is set to non-default value. Changing colour.scheme to 'white'.");
 			colour.scheme <- 'white';
 			}
 		}
 
 	if (is.null(at)) {
 		min.value <- min(bg.data - colour.centering.value, na.rm = TRUE);
-		max.value <- max (bg.data - colour.centering.value, na.rm = TRUE);
-		at <- seq (from = min.value, to = max.value, length.out = total.colours);
+		max.value <- max(bg.data - colour.centering.value, na.rm = TRUE);
+		at <- seq(from = min.value, to = max.value, length.out = total.colours);
 		}
 	else {
-		min.value <- min((at) - colour.centering.value, na.rm = TRUE);
-		max.value <- max((at) - colour.centering.value, na.rm = TRUE);
+		min.value <- min(at - colour.centering.value, na.rm = TRUE);
+		max.value <- max(at - colour.centering.value, na.rm = TRUE);
 		min.at <- min(at);
 		max.at <- max(at);
 		if (min(bg.data, na.rm = TRUE) < min.at) {
@@ -205,13 +221,13 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 
 	# one-sided colour schemes
 	if (2 == length(colour.scheme)) {
-		ColourFunction <- colorRamp(colour.scheme, space = 'Lab');
-		my.palette <- rgb(ColourFunction(seq(0,1,1/total.colours)^colour.alpha), alpha = bg.alpha, maxColorValue = 255);
+		colour.function <- colorRamp(colour.scheme, space = 'Lab');
+		my.palette <- rgb(colour.function(seq(0, 1, 1 / total.colours) ^ colour.alpha), alpha = bg.alpha, maxColorValue = 255);
 		}
 
 	# two-sided colour schemes
 	else if (3 == length(colour.scheme)) {
-		
+
 		# warn user if they use three-colour scheme with one-sided data
 		is.twosided <- sign(min.value) != sign(max.value);
 		if (!is.twosided) {
@@ -219,13 +235,13 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			}
 
 		# create colour scheme
-		ColourFunctionLow <- colorRamp(colour.scheme[1:2], space = 'Lab');
-		ColourFunctionHigh <- colorRamp(colour.scheme[2:3], space = 'Lab');
+		colour.function.low <- colorRamp(colour.scheme[1:2], space = 'Lab');
+		colour.function.high <- colorRamp(colour.scheme[2:3], space = 'Lab');
 
 		# The number of negative colours is based on the fraction of the range that's below the center value
 		# The number of positive colours is based on the number of negatives
 		# Leave one colour free for the center value
-		neg.colours <- min.value/(max.value - min.value) * (total.colours - 1);
+		neg.colours <- min.value / (max.value - min.value) * (total.colours - 1);
 		neg.colours <- ceiling(abs(neg.colours));
 		pos.colours <- total.colours - neg.colours - 1;
 
@@ -239,30 +255,29 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			neg.colours <- round(total.colours / 2);
 			pos.colours <- round(total.colours / 2);
 			}
-		
+
 		# create colour palette
 		my.palette <- c(
-			rgb(ColourFunctionLow(seq(0, 1, 1/neg.colours)^colour.alpha), alpha = bg.alpha, maxColorValue = 255),
+			rgb(colour.function.low(seq(0, 1, 1 / neg.colours) ^ colour.alpha), alpha = bg.alpha, maxColorValue = 255),
 			colour.scheme[2],
-			rgb(ColourFunctionHigh(seq(0, 1, 1/pos.colours)^(1/colour.alpha)), alpha = bg.alpha, maxColorValue = 255)
+			rgb(colour.function.high(seq(0, 1, 1 / pos.colours) ^ (1 / colour.alpha)), alpha = bg.alpha, maxColorValue = 255)
 			);
 		}
 
 	else {
 		my.palette <- c();
 		for (n in 1:length(colour.scheme)) {
-			ColourFunction <- colorRamp(c('white', colour.scheme[n]), space = 'Lab');
-			my.palette <- c(my.palette, rgb(ColourFunction(1^colour.alpha), alpha = bg.alpha, maxColorValue = 255));
+			colour.function <- colorRamp(c('white', colour.scheme[n]), space = 'Lab');
+			my.palette <- c(my.palette, rgb(colour.function(1 ^ colour.alpha), alpha = bg.alpha, maxColorValue = 255));
 			}
 		}
 
 	# format bg.data
-	bg.size <- dim(x);
 	bg.data <- as.data.frame(bg.data);
 
 	# constructing coordinate system
 	# note that we're forcing the 'natural' ordering of rows here
-	y.coords <- rep(nrow(x):1, ncol(x)); 
+	y.coords <- rep(nrow(x):1, ncol(x));
 	x.coords <- c();
 
 	for (i in 1:ncol(x)) { x.coords <- c(x.coords, rep(i, nrow(x))); }
@@ -291,30 +306,30 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	if (!is.null(grid.colour)) {
 		row.colour <- grid.colour;
 		col.colour <- grid.colour;
-		cat(paste0("CAUTION: grid.colour is DEPRECATED!  Use row.colour/col.colour. Using: ",grid.colour,"\n"));
+		cat(paste0('CAUTION: grid.colour is DEPRECATED!  Use row.colour/col.colour. Using: ', grid.colour, '\n'));
 		}
-	
+
 	if (any(is.na(x))) {
 		tmp.pch <- pch;
-		pch[is.na(x)] <- NA.pch;
+		pch[is.na(x)] <- na.pch;
 		pch[!is.na(x)] <- tmp.pch;
-		spot.colours[is.na(x)] <- NA.spot.size.colour;
-		spot.sizes[is.na(x)] <- NA.spot.size;
+		spot.colours[is.na(x)] <- na.spot.size.colour;
+		spot.sizes[is.na(x)] <- na.spot.size;
 		rm(tmp.pch);
 		}
-	
-	if(is.null(lwd.rectangle) & !is.null(border.rectangle)){
-		lwd.rectangle = 1
-	}
-	
+
+	if (is.null(lwd.rectangle) & !is.null(border.rectangle)) {
+		lwd.rectangle <- 1;
+		}
+
 	trellis.object <- lattice::levelplot(
 		freq ~ x * y,
 		bg.data,
 		panel = function(...) {
 
-						panel.fill(col = fill.colour);
+			panel.fill(col = fill.colour);
 			panel.levelplot(...);
-			
+
 			# add rectangle if requested
 	#		if (add.rectangle) {
 	#			panel.rect(
@@ -328,7 +343,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	#				lwd = lwd.rectangle
 	#				);
 	#			}
-			
+
 			# add grid if requested
 			if (add.grid) {
 				panel.abline(
@@ -344,34 +359,34 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 					lwd = col.lwd
 					);
 				}
-			 if (add.rectangle) {
-                		panel.rect(
-                    			xleft = rectangleInfo$xleft,
-                    			ybottom = rectangleInfo$ybottom,
-                   			xright = rectangleInfo$xright,
-                    			ytop = rectangleInfo$ytop,
-                    			col = col.rectangle,
-                    			alpha = alpha.rectangle,
-                    			border = ifelse(is.null(border.rectangle),NA,border.rectangle),
-                    			lwd = lwd.rectangle
-                    		);
-                	}
-	
+			if (add.rectangle) {
+				panel.rect(
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
+					col = col.rectangle,
+					alpha = alpha.rectangle,
+					border = ifelse(is.null(border.rectangle), NA, border.rectangle),
+					lwd = lwd.rectangle
+					);
+				}
+
 			# NOTE: different ways to handle border and fill for pch < 21 and pch >= 21
 			panel.xyplot(
-				type = 'p', 
-				cex = spot.sizes, 
+				type = 'p',
+				cex = spot.sizes,
 				pch = pch,
 				col = mapply(
-					function(pch, spot.colours, spot.border){
-						if(pch %in% 0:20) { return(spot.colours); } else 
+					function(pch, spot.colours, spot.border) {
+						if (pch %in% 0:20) { return(spot.colours); } else
 						if (pch %in% 21:25) { return(spot.border); }
 						},
 					pch, spot.colours = spot.colours, spot.border = spot.border
 					),
 				fill = mapply(
-					function(pch, spot.colours){
-						if(pch %in% 0:20) { NA; } else 
+					function(pch, spot.colours) {
+						if (pch %in% 0:20) { NA; } else
 						if (pch %in% 21:25) { return(spot.colours); }
 						},
 					pch, spot.colours = spot.colours
@@ -387,11 +402,11 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		col.regions = my.palette,
 		colorkey = colourkey,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) {'plain'} else ('bold'),
 				cex = main.cex,
 				just = main.just,
 				x = main.x,
@@ -399,41 +414,41 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) {'plain'} else ('bold'),
 				cex = xlab.cex,
 				col = xlab.col
 				)
 			),
-                xlab.top = BoutrosLab.plotting.general::get.defaults(
-                        property = 'fontfamily',
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
-                        add.to.list = list(
-                                label = xlab.top.label,
-                                cex = xlab.top.cex,
-                                col = xlab.top.col,
-                                fontface = if('Nature' == style){'plain'}else{'bold'},
-                                just = xlab.top.just,
-                                x = xlab.top.x,
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) {'plain'} else {'bold'},
+				just = xlab.top.just,
+				x = xlab.top.x,
 				y = xlab.top.y
-                                )
-                        ),
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
-				fontface = if ('Nature' == style){'plain'} else('bold'),
+				fontface = if ('Nature' == style) {'plain'} else ('bold'),
 				cex = ylab.cex,
 				col = ylab.col
 				)
 			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
@@ -441,13 +456,13 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 					rot = xaxis.rot,
 					col = xaxis.col,
 					tck = xaxis.tck,
-					limits = c( min(bg.data$x, na.rm = TRUE) - 0.5, max(bg.data$x, na.rm = TRUE) + 0.5 ), 
+					limits = c( min(bg.data$x, na.rm = TRUE) - 0.5, max(bg.data$x, na.rm = TRUE) + 0.5 ),
 					at = min(bg.data$x, na.rm = TRUE):max(bg.data$x, na.rm = TRUE),
-										fontface = if ('Nature' == style){'plain'} else(xaxis.fontface)
+					fontface = if ('Nature' == style) {'plain'} else (xaxis.fontface)
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = rev(yaxis.lab),
@@ -455,9 +470,9 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 					rot = yaxis.rot,
 					col = yaxis.col,
 					tck = yaxis.tck,
-					limits = c( min(bg.data$y, na.rm = TRUE) - 0.5, max(bg.data$y, na.rm = TRUE) + 0.5 ), 
+					limits = c( min(bg.data$y, na.rm = TRUE) - 0.5, max(bg.data$y, na.rm = TRUE) + 0.5 ),
 					at = min(bg.data$y, na.rm = TRUE):max(bg.data$y, na.rm = TRUE),
-					fontface = if ('Nature' == style){'plain'} else(yaxis.fontface)
+					fontface = if ('Nature' == style) {'plain'} else (yaxis.fontface)
 					)
 				)
 			),
@@ -502,14 +517,15 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend')
+		}
 
 	else if ('BoutrosLab' == style) {
 		# Nothing happens
@@ -534,4 +550,3 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			)
 		);
 	}
-

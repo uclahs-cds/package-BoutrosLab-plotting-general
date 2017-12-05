@@ -12,7 +12,7 @@
 ### FUNCTION TO CREATE STRIPPLOTS #################################################################
 create.stripplot <- function(
 	formula, data, filename = NULL, groups = NULL, jitter.data = FALSE, jitter.factor = 1, jitter.amount = NULL,
-	main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3, 
+	main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3,
 	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
 	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
 	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
@@ -31,56 +31,56 @@ create.stripplot <- function(
 
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+        	xright = xright.rectangle,
+                xleft = xleft.rectangle,
+                ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
-	if(!is.null(yat) && length(yat) == 1){
-		if(yat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]))
-                	data[toString(formula[[2]])] = out$x
-			yat = out$at
-                	yaxis.lab = out$axis.lab
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
+                	data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
+
+        	else if (yat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
+
+        	else if (yat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 		}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
+	if (!is.null(xat) && length(xat) == 1) {
+        	if (xat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
 		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]))
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
 
 
 	# add preloaded defaults
@@ -97,14 +97,14 @@ create.stripplot <- function(
 		formula,
 		data,
 		panel = function(groups.local = groups.new, subscripts, ...) {
-			
+
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -123,14 +123,14 @@ create.stripplot <- function(
 
 			# if requested, add lines indicating the group median
 			if (add.median && is.null(median.values)) {
-				warning("median.values must be specified to median to be added.");
+				warning('median.values must be specified to median to be added.');
 				}
 			else if (add.median && !is.null(median.values)) {
 				meds <- median.values;
 				xlocs <- seq_along(meds);
 				panel.segments(
-					xlocs - 1/4, meds, xlocs + 1/4, meds,
-					lwd = 2, 
+					xlocs - 1 / 4, meds, xlocs + 1 / 4, meds,
+					lwd = 2,
 					col = 'red'
 					);
 				}
@@ -142,20 +142,20 @@ create.stripplot <- function(
 			function(pch, spot.colours, spot.border) {
 				if (pch %in% 0:20) { return(spot.colours); } else if (pch %in% 21:25) { return(spot.border); }
 				},
-			pch, 
-			spot.colours = col, 
+			pch,
+			spot.colours = col,
 			spot.border = col.border
 			),
 		fill = mapply(
-			function(pch, spot.colours){
+			function(pch, spot.colours) {
 				if (pch %in% 0:20) { NA; } else if (pch %in% 21:25) { return(spot.colours); }
 				},
-			pch, 
+			pch,
 			spot.colours = col
 			),
 		alpha = colour.alpha,
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
@@ -167,7 +167,7 @@ create.stripplot <- function(
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
@@ -190,7 +190,7 @@ create.stripplot <- function(
 				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
@@ -202,7 +202,7 @@ create.stripplot <- function(
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings || ('Nature' == style), 
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
@@ -216,7 +216,7 @@ create.stripplot <- function(
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = yaxis.lab,
@@ -232,9 +232,9 @@ create.stripplot <- function(
 				)
 			),
 		between = list(
-			x = x.spacing, 
+			x = x.spacing,
 			y = y.spacing
-			),	
+			),
 		par.settings = list(
 			axis.line = list(
 				lwd = lwd,
@@ -286,10 +286,10 @@ create.stripplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 
 			# Only draw axes on the left and bottom
-			if(side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -299,14 +299,15 @@ create.stripplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
-		} 
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend')
+		}
 
 	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {

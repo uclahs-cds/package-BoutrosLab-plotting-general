@@ -34,58 +34,58 @@ create.polygonplot <- function(
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	use.legacy.settings = FALSE
 	) {
-	
+
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+        	xright = xright.rectangle,
+                xleft = xleft.rectangle,
+                ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
-	if(!is.null(yat) && length(yat) == 1){
-		if(yat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]))
-                	data[toString(formula[[2]])] = out$x
-			yat = out$at
-                	yaxis.lab = out$axis.lab
-		}
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
+                	data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
+        	else if (yat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
+
+        	else if (yat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]))
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
+	if (!is.null(xat) && length(xat) == 1) {
+        	if (xat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+		}
 
 	# add preloaded defaults
 	if (preload.default == 'paper') {
@@ -103,54 +103,54 @@ create.polygonplot <- function(
 			minimum <- 0;
 			maximum <- length(data[[1]]);
 			difference <- maximum - minimum;
-			lognumber <- floor(log(difference,10));
+			lognumber <- floor(log(difference, 10));
 
 			# depending on difference, the labels will be multiples of 5,10 or 20
-			if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-			else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
-			else { factor <- (10**lognumber)*2; }
+			if (difference < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
+			else if (difference < (10 ** lognumber * 7)) { factor <- (10 ** lognumber); }
+			else { factor <- (10 ** lognumber) * 2; }
 
-			addition <- factor/2;
+			addition <- factor / 2;
 
 			# depending on minimum create a sequence of at locations with padding
-			at <- seq(0,factor*round(maximum/factor) + addition,factor);
+			at <- seq(0, factor * round(maximum / factor) + addition, factor);
 
-			xlimits <- c(minimum,maximum);
+			xlimits <- c(minimum, maximum);
 			xat <- at;
 			}
 		}
 
 	if (length(yat) == 1 && yat == TRUE && length(ylimits) == 0) {
-		
+
 		if (!is.null(data)) {
 			minimum <- min(min);
 			maximum <- max(max);
 
 			# if minimum is greater than 0 make sure to display 0
-			minimum <- min(minimum,0);
+			minimum <- min(minimum, 0);
 			difference <- maximum - minimum;
-			lognumber <- floor(log(difference,10));
+			lognumber <- floor(log(difference, 10));
 
 			# depending on difference, the labels will be multiples of 5,10 or 20
-			if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-			else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
-			else { factor <- (10**lognumber)*2; }
+			if (difference < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
+			else if (difference < (10 ** lognumber * 7)) { factor <- (10 ** lognumber); }
+			else { factor <- (10 ** lognumber) * 2; }
 
-			addition <- factor/2;
+			addition <- factor / 2;
 
 			# depending on minimum create a sequence of at locations with padding
 			if (minimum == 0) {
-				at <- seq(0, factor*round(maximum/factor) + addition, factor);
+				at <- seq(0, factor * round(maximum / factor) + addition, factor);
 				}
 			else {
-				at <- seq(factor*round(minimum/factor), factor*round(maximum/factor) + addition, factor);
+				at <- seq(factor * round(minimum / factor), factor * round(maximum / factor) + addition, factor);
 				# only add padding to minimum if it is not 0
 				minimum <- minimum - addition;
 				}
 
 			# add padding to max
 			maximum <- maximum + addition;
-			ylimits <- c(minimum,maximum);
+			ylimits <- c(minimum, maximum);
 			yat <- at;
 			}
 		}
@@ -169,10 +169,10 @@ create.polygonplot <- function(
 			#  => add first, outside of grouping if/else split
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -185,8 +185,10 @@ create.polygonplot <- function(
 				# draw polygon
 				panel.polygon(
 					x = c(x, rev(x)),
-					y = if (use.loess.border) { 
-						c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else {
+					y = if (use.loess.border) {
+						c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x))))
+						}
+					else {
 						c(max[subscripts], rev(min[subscripts]))
 						},
 					col = col,
@@ -272,7 +274,7 @@ create.polygonplot <- function(
 						col = abline.col
 						);
 					}
-				
+
 				# if requested, add text
 				if (add.text) {
 					panel.text(
@@ -284,8 +286,8 @@ create.polygonplot <- function(
 						fontface = text.fontface
 						);
 					}
-				}	
-				
+				}
+
 			else {
 				# Grouping variable exists - need to draw separate polygons for each level
 				# can't use ternary operator because need to return vectors
@@ -324,7 +326,9 @@ create.polygonplot <- function(
 						panel.polygon(
 							x = c(x, rev(x)),
 							y = if (use.loess.border) {
-								c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x)))) } else {
+								c(predict(loess(max[subscripts] ~ x)), rev(predict(loess(min[subscripts] ~ x))))
+								}
+							else {
 								c(max[subscripts], rev(min[subscripts]))
 								},
 							type,
@@ -344,7 +348,7 @@ create.polygonplot <- function(
 						if (add.median & !is.null(median)) {
 							panel.xyplot(
 								x = x,
-								y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] }, 
+								y = if (use.loess.median) { predict(loess(median[subscripts] ~ x)) } else { median[subscripts] },
 								type = 'l',
 								lwd =  median.lwd[subscripts],
 								col = median.col[subscripts],
@@ -422,11 +426,11 @@ create.polygonplot <- function(
 								);
 							}
 						},
-					alpha = alpha, 
+					alpha = alpha,
 					col = col,
 					border = 'white',
 					...
-					);				
+					);
 				}
 			},
 		type = type,
@@ -570,9 +574,9 @@ create.polygonplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -582,13 +586,14 @@ create.polygonplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

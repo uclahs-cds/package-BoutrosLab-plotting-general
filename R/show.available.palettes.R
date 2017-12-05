@@ -74,7 +74,7 @@ show.available.palettes <- function(
 			yaxis.fontface = 1,
 			height = height,
 			width = width,
-			resolution = resolution	
+			resolution = resolution
 			);
 		}
 
@@ -86,9 +86,9 @@ show.available.palettes <- function(
 		# sort by length, longest first
 		swapped <- TRUE;
 		while (TRUE == swapped) {
-			swapped = FALSE;
+			swapped <- FALSE;
 			for (i in 2:length(specific)) {
-				if (length(specific[[i-1]]$colours) < length(specific[[i]]$colours)) {
+				if (length(specific[[i - 1]]$colours) < length(specific[[i]]$colours)) {
 					temp			<- specific[i];
 					temp.name		<- names(specific)[i];
 					specific[i]		<- specific[i - 1];
@@ -117,7 +117,7 @@ show.available.palettes <- function(
 
 		for (i in 2:length(specific)) {
 
-			potential.length <- length(temp.col) + length(specific[[i-1]]$colours) + 2;
+			potential.length <- length(temp.col) + length(specific[[i - 1]]$colours) + 2;
 
 			if (potential.length <= display.height && i < length(specific)) {
 				temp.col <- c(temp.col, NA, 0, specific[[i]]$colours);
@@ -177,7 +177,7 @@ show.available.palettes <- function(
 				}
 			}
 
-		enumerated.data <- as.data.frame(apply(formatted.data, c(1,2), as.numeric));
+		enumerated.data <- as.data.frame(apply(formatted.data, c(1, 2), as.numeric));
 
 		# get labels
 		labels <- character();
@@ -189,8 +189,8 @@ show.available.palettes <- function(
 			offset <- c(offset, -0.5, rep(1, length(specific[[i]]$levels)));
 			}
 
-		label.col.positions <- which(!is.na(enumerated.data), arr.ind = TRUE)[,2];
-		label.row.positions <- which(!is.na(enumerated.data), arr.ind = TRUE)[,1];
+		label.col.positions <- which(!is.na(enumerated.data), arr.ind = TRUE)[, 2];
+		label.row.positions <- which(!is.na(enumerated.data), arr.ind = TRUE)[, 1];
 
 		# adding border around white swatches
 		border.matrix <- matrix(
@@ -249,11 +249,11 @@ show.available.palettes <- function(
 			symbols = symbol.locations,
 			height = height,
 			width = width,
-			resolution = resolution	
+			resolution = resolution
 			);
 		}
 
 	else {
-		stop("Invalid value supplied to type parameter.");
+		stop('Invalid value supplied to type parameter.');
 		}
 	}

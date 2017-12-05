@@ -23,16 +23,16 @@ default.colours <- default.colors <- function(
 
 	# Check if input combinations are valid
 	if (!is.null(palette.type) && is.venn == TRUE) {
-		warning("Do not specify a palette type if using a venn diagram. Setting palette type to NULL.");
+		warning('Do not specify a palette type if using a venn diagram. Setting palette type to NULL.');
 		palette.type <- NULL;
 		}
 
 	else if (is.null(palette.type) && is.venn == FALSE) {
-		stop("No palette type is specified.");
+		stop('No palette type is specified.');
 		}
 
 	else if (length(number.of.colours) > 1 && is.venn == TRUE) {
-		warning("Multiple venn diagram colour schemes is not supported. Setting number.of.colours to first number specified.");
+		warning('Multiple venn diagram colour schemes is not supported. Setting number.of.colours to first number specified.');
 		number.of.colours <- number.of.colours[1];
 		}
 
@@ -47,99 +47,105 @@ default.colours <- default.colors <- function(
 			palette.text <- venn4.text;
 			}
 		else {
-			stop("There is no venn diagram colour scheme consisting of more than 4 colours available.");
+			stop('There is no venn diagram colour scheme consisting of more than 4 colours available.');
 			}
 
 		return(list(palette, palette.text));
 		}
 
 	### CREATE ALL OTHER PALETTES ##################################################################
-	div_one <- rgb(179, 43, 43, maxColorValue = 255);
-	div_two <- rgb(221, 78, 78, maxColorValue = 255);
-	div_thr <- rgb(235, 124, 124, maxColorValue = 255);
-	div_fou <- rgb(247, 190, 190, maxColorValue = 255);
-	div_fiv <- rgb(190, 244, 247, maxColorValue = 255);
-	div_six <- rgb(128, 205, 209, maxColorValue = 255);
-	div_sev <- rgb(69, 180, 187, maxColorValue = 255);
-	div_eig <- rgb(24, 139, 145, maxColorValue = 255);
+	div.one <- rgb(179, 43, 43, maxColorValue = 255);
+	div.two <- rgb(221, 78, 78, maxColorValue = 255);
+	div.thr <- rgb(235, 124, 124, maxColorValue = 255);
+	div.fou <- rgb(247, 190, 190, maxColorValue = 255);
+	div.fiv <- rgb(190, 244, 247, maxColorValue = 255);
+	div.six <- rgb(128, 205, 209, maxColorValue = 255);
+	div.sev <- rgb(69, 180, 187, maxColorValue = 255);
+	div.eig <- rgb(24, 139, 145, maxColorValue = 255);
 
-	col_fiv <- rgb(255/255, 225/255, 238/255);
-	col_fou <- rgb(244/255, 224/255, 166/255);
-	col_thr <- rgb(177/255, 211/255, 154/255);
-	col_two <- rgb(101/255, 180/255, 162/255);
-	col_one <- rgb(51/255, 106/255, 144/255);
+	col.fiv <- rgb(255 / 255, 225 / 255, 238 / 255);
+	col.fou <- rgb(244 / 255, 224 / 255, 166 / 255);
+	col.thr <- rgb(177 / 255, 211 / 255, 154 / 255);
+	col.two <- rgb(101 / 255, 180 / 255, 162 / 255);
+	col.one <- rgb(51 / 255, 106 / 255, 144 / 255);
 
-	pastel_one <- rgb(250, 229, 161, maxColorValue = 255);
-	pastel_two <- rgb(153, 193, 154, maxColorValue = 255);
-	pastel_thr <- rgb(114, 95, 122, maxColorValue = 255);
-	pastel_fou <- rgb(180, 105, 112, maxColorValue = 255);
-	pastel_fiv <- rgb(253, 252, 183, maxColorValue = 255);
-	pastel_six <- rgb(135, 179, 196, maxColorValue = 255);
-	pastel_sev <- rgb(133, 161, 115, maxColorValue = 255);
-	pastel_eig <- rgb(192, 153, 104, maxColorValue = 255);
-	pastel_nin <- rgb(203, 116, 245, maxColorValue = 255);
-	pastel_ten <- rgb(140, 201, 174, maxColorValue = 255);
-	pastel_ele <- rgb(190, 123, 187, maxColorValue = 255);
-	pastel_twe <- rgb(172, 232, 233, maxColorValue = 255);
+	pastel.one <- rgb(250, 229, 161, maxColorValue = 255);
+	pastel.two <- rgb(153, 193, 154, maxColorValue = 255);
+	pastel.thr <- rgb(114, 95, 122, maxColorValue = 255);
+	pastel.fou <- rgb(180, 105, 112, maxColorValue = 255);
+	pastel.fiv <- rgb(253, 252, 183, maxColorValue = 255);
+	pastel.six <- rgb(135, 179, 196, maxColorValue = 255);
+	pastel.sev <- rgb(133, 161, 115, maxColorValue = 255);
+	pastel.eig <- rgb(192, 153, 104, maxColorValue = 255);
+	pastel.nin <- rgb(203, 116, 245, maxColorValue = 255);
+	pastel.ten <- rgb(140, 201, 174, maxColorValue = 255);
+	pastel.ele <- rgb(190, 123, 187, maxColorValue = 255);
+	pastel.twe <- rgb(172, 232, 233, maxColorValue = 255);
 
-	spiral.morning_one <- rgb(84, 42, 133, maxColorValue = 255);
-	spiral.morning_two <- rgb(185, 47, 90, maxColorValue = 255);
-	spiral.morning_thr <- rgb(217, 113, 62, maxColorValue = 255);
-	spiral.morning_fou <- rgb(225, 199, 93, maxColorValue = 255);
-	spiral.morning_fiv <- rgb(234, 255, 128, maxColorValue = 255);
-	spiral.morning_six <- rgb(204, 247, 210, maxColorValue = 255);
+	spiral.morning.one <- rgb(84, 42, 133, maxColorValue = 255);
+	spiral.morning.two <- rgb(185, 47, 90, maxColorValue = 255);
+	spiral.morning.thr <- rgb(217, 113, 62, maxColorValue = 255);
+	spiral.morning.fou <- rgb(225, 199, 93, maxColorValue = 255);
+	spiral.morning.fiv <- rgb(234, 255, 128, maxColorValue = 255);
+	spiral.morning.six <- rgb(204, 247, 210, maxColorValue = 255);
 
-	spiral.dusk_one <- rgb(60, 78, 176, maxColorValue = 255);
-	spiral.dusk_two <- rgb(130, 94, 188, maxColorValue = 255);
-	spiral.dusk_thr <- rgb(198, 129, 216, maxColorValue = 255);
-	spiral.dusk_fou <- rgb(248, 180, 227, maxColorValue = 255);
-	spiral.dusk_fiv <- rgb(255, 229, 226, maxColorValue = 255);
+	spiral.dusk.one <- rgb(60, 78, 176, maxColorValue = 255);
+	spiral.dusk.two <- rgb(130, 94, 188, maxColorValue = 255);
+	spiral.dusk.thr <- rgb(198, 129, 216, maxColorValue = 255);
+	spiral.dusk.fou <- rgb(248, 180, 227, maxColorValue = 255);
+	spiral.dusk.fiv <- rgb(255, 229, 226, maxColorValue = 255);
 
-	spiral.afternoon_one <- rgb(132, 58, 28, maxColorValue = 255);
-	spiral.afternoon_two <- rgb(164, 141, 35, maxColorValue = 255);
-	spiral.afternoon_thr <- rgb(91, 203, 142, maxColorValue = 255);
-	spiral.afternoon_fou <- rgb(137, 195, 208, maxColorValue = 255);
-	spiral.afternoon_fiv <- rgb(214, 222, 255, maxColorValue = 255);
+	spiral.afternoon.one <- rgb(132, 58, 28, maxColorValue = 255);
+	spiral.afternoon.two <- rgb(164, 141, 35, maxColorValue = 255);
+	spiral.afternoon.thr <- rgb(91, 203, 142, maxColorValue = 255);
+	spiral.afternoon.fou <- rgb(137, 195, 208, maxColorValue = 255);
+	spiral.afternoon.fiv <- rgb(214, 222, 255, maxColorValue = 255);
 
-	spiral.dawn_one <- rgb(143, 56, 185, maxColorValue = 255); 
-	spiral.dawn_two <- rgb(215, 99, 195, maxColorValue = 255);
-	spiral.dawn_thr <- rgb(224, 134, 150, maxColorValue = 255);
-	spiral.dawn_fou <- rgb(232, 190, 162, maxColorValue = 255);
-	spiral.dawn_fiv <- rgb(241, 235, 148, maxColorValue = 255);
+	spiral.dawn.one <- rgb(143, 56, 185, maxColorValue = 255);
+	spiral.dawn.two <- rgb(215, 99, 195, maxColorValue = 255);
+	spiral.dawn.thr <- rgb(224, 134, 150, maxColorValue = 255);
+	spiral.dawn.fou <- rgb(232, 190, 162, maxColorValue = 255);
+	spiral.dawn.fiv <- rgb(241, 235, 148, maxColorValue = 255);
 
-	spiral.noon_one <- rgb(19, 10, 102, maxColorValue = 255); 
-	spiral.noon_two <- rgb(13, 80, 140, maxColorValue = 255);
-	spiral.noon_thr <- rgb(90, 191, 87, maxColorValue = 255);
-	spiral.noon_fou <- rgb(230, 226, 92, maxColorValue = 255);
-	spiral.noon_fiv <- rgb(255, 193, 206, maxColorValue = 255);
+	spiral.noon.one <- rgb(19, 10, 102, maxColorValue = 255);
+	spiral.noon.two <- rgb(13, 80, 140, maxColorValue = 255);
+	spiral.noon.thr <- rgb(90, 191, 87, maxColorValue = 255);
+	spiral.noon.fou <- rgb(230, 226, 92, maxColorValue = 255);
+	spiral.noon.fiv <- rgb(255, 193, 206, maxColorValue = 255);
 
-	spiral.night_one <- rgb(67, 26, 44, maxColorValue = 255); 
-	spiral.night_two <- rgb(43, 35, 120, maxColorValue = 255);
-	spiral.night_thr <- rgb(21, 67, 137, maxColorValue = 255);
-	spiral.night_fou <- rgb(43, 185, 197, maxColorValue = 255);
-	spiral.night_fiv <- rgb(205, 231, 64, maxColorValue = 255);
+	spiral.night.one <- rgb(67, 26, 44, maxColorValue = 255);
+	spiral.night.two <- rgb(43, 35, 120, maxColorValue = 255);
+	spiral.night.thr <- rgb(21, 67, 137, maxColorValue = 255);
+	spiral.night.fou <- rgb(43, 185, 197, maxColorValue = 255);
+	spiral.night.fiv <- rgb(205, 231, 64, maxColorValue = 255);
 
 	### ORGANIZE PALETTES ##########################################################################
 	# Add new schemes to this list
 	schemes <- list(
 		dotmap = c('dodgerblue2', 'darkorange1'),
 		seq = BoutrosLab.plotting.general::colour.gradient('chartreuse4', 5),
-		div = c(div_one, div_two, div_thr, div_fou, div_fiv, div_six, div_sev, div_eig),
+		div = c(div.one, div.two, div.thr, div.fou, div.fiv, div.six, div.sev, div.eig),
 		survival = c('royalblue2', 'firebrick', 'chartreuse3', 'purple4', 'plum1', 'orange', 'maroon3', 'turquoise3', 'chocolate4', 'lightcoral'),
-		qual = c('orange', 'chartreuse4', 'darkorchid4', 'gold', 'dodgerblue', 'firebrick3', 'yellowgreen', 'darkorange1', 'slateblue4', 'seagreen3', 'violetred3', 'turquoise3'),
-		pastel = c(pastel_one, pastel_two, pastel_thr, pastel_fou, pastel_fiv, pastel_six, pastel_sev, pastel_eig, pastel_nin, pastel_ten, pastel_ele, pastel_twe),
-		spiral.dawn =  c(spiral.dawn_one, spiral.dawn_two, spiral.dawn_thr, spiral.dawn_fou, spiral.dawn_fiv),
-		spiral.sunrise = c(col_one, col_two, col_thr, col_fou, col_fiv),
-		spiral.morning = c(spiral.morning_one, spiral.morning_two, spiral.morning_thr, spiral.morning_fou, spiral.morning_fiv, spiral.morning_six),
-		spiral.noon = c(spiral.noon_one, spiral.noon_two, spiral.noon_thr, spiral.noon_fou, spiral.noon_fiv),
-		spiral.afternoon = c(spiral.afternoon_one, spiral.afternoon_two, spiral.afternoon_thr, spiral.afternoon_fou, spiral.afternoon_fiv),
-		spiral.dusk = c(spiral.dusk_one, spiral.dusk_two, spiral.dusk_thr, spiral.dusk_fou, spiral.dusk_fiv),
-		spiral.night = c(spiral.night_one, spiral.night_two, spiral.night_thr, spiral.night_fou, spiral.night_fiv),
+		qual = c('orange', 'chartreuse4', 'darkorchid4', 'gold', 'dodgerblue', 'firebrick3',
+			'yellowgreen', 'darkorange1', 'slateblue4', 'seagreen3', 'violetred3', 'turquoise3'),
+		pastel = c(pastel.one, pastel.two, pastel.thr, pastel.fou, pastel.fiv, pastel.six, pastel.sev,
+			pastel.eig, pastel.nin, pastel.ten, pastel.ele, pastel.twe),
+		spiral.dawn =  c(spiral.dawn.one, spiral.dawn.two, spiral.dawn.thr, spiral.dawn.fou, spiral.dawn.fiv),
+		spiral.sunrise = c(col.one, col.two, col.thr, col.fou, col.fiv),
+		spiral.morning = c(spiral.morning.one, spiral.morning.two, spiral.morning.thr, spiral.morning.fou, spiral.morning.fiv, spiral.morning.six),
+		spiral.noon = c(spiral.noon.one, spiral.noon.two, spiral.noon.thr, spiral.noon.fou, spiral.noon.fiv),
+		spiral.afternoon = c(spiral.afternoon.one, spiral.afternoon.two, spiral.afternoon.thr, spiral.afternoon.fou, spiral.afternoon.fiv),
+		spiral.dusk = c(spiral.dusk.one, spiral.dusk.two, spiral.dusk.thr, spiral.dusk.fou, spiral.dusk.fiv),
+		spiral.night = c(spiral.night.one, spiral.night.two, spiral.night.thr, spiral.night.fou, spiral.night.fiv),
 		old.seq = c('darkolivegreen3', 'darkolivegreen4', 'darkolivegreen', 'darkgreen', 'black'),
-		old.div = c('darkorange', 'darkolivegreen4', 'goldenrod1', 'darkgreen', 'darkolivegreen3', 'orange', 'darkolivegreen', 'darkorange3'),
+		old.div = c('darkorange', 'darkolivegreen4', 'goldenrod1', 'darkgreen', 'darkolivegreen3', 'orange',
+			'darkolivegreen', 'darkorange3'),
 		old.qual1 = c('orange', 'chartreuse4', 'darkorchid4', 'firebrick3', 'lightgrey', 'tan4', 'dodgerblue', 'orchid', 'black'),
-		old.qual2 = c('orange', 'chartreuse4', 'darkorchid4', 'firebrick3', 'gold', 'dodgerblue', 'yellowgreen', 'darkorange1', 'slateblue4', 'seagreen3', 'violetred3', 'turquoise3'),
-		chromosomes = c('darkred', 'firebrick1', 'pink1', 'darkorange3', 'darkorange', 'tan1', 'goldenrod3', 'gold', 'khaki', 'darkgreen', 'forestgreen', 'greenyellow', 'darkblue', 'dodgerblue', 'skyblue', 'darkslateblue', 'slateblue3', 'mediumpurple1', 'darkorchid4', 'orchid3', 'plum', 'violetred', 'grey31', 'grey0'),
+		old.qual2 = c('orange', 'chartreuse4', 'darkorchid4', 'firebrick3', 'gold', 'dodgerblue', 'yellowgreen',
+			'darkorange1', 'slateblue4', 'seagreen3', 'violetred3', 'turquoise3'),
+		chromosomes = c('darkred', 'firebrick1', 'pink1', 'darkorange3', 'darkorange', 'tan1', 'goldenrod3',
+			'gold', 'khaki', 'darkgreen', 'forestgreen', 'greenyellow', 'darkblue', 'dodgerblue', 'skyblue',
+			'darkslateblue', 'slateblue3', 'mediumpurple1', 'darkorchid4', 'orchid3', 'plum', 'violetred', 'grey31', 'grey0'),
 		seq.yellowgreen = c('lightyellow', 'darkolivegreen1', 'lawngreen', 'chartreuse3', 'green4', 'darkgreen'),
 		seq.green = c('mintcream', 'darkseagreen1', 'lightgreen', 'springgreen3', 'springgreen4', 'darkgreen'),
 		seq.greenblue = c('lightcyan', 'paleturquoise', 'turquoise1', 'darkturquoise', 'darkcyan', 'darkslategray'),
@@ -164,12 +170,12 @@ default.colours <- default.colors <- function(
 		seq.redorange = schemes$seq.redorange,
 		seq.orange = schemes$seq.orange
 		);
-		
-        
+
+
 	### CREATE PALETTE #############################################################################
 	# check if number of colour schemes requested equals number of palette types specified (else return error)
 	if (length(number.of.colours) != length(palette.type)) {
-		stop("The number of colours schemes requested must equal the number of palette types specified.");
+		stop('The number of colours schemes requested must equal the number of palette types specified.');
 		}
 
 	# Create palette
@@ -188,13 +194,13 @@ default.colours <- default.colors <- function(
 
 		# Checking if palette.types are available
 		if (length(schemes[[palette.type[i]]]) < 1 && 'binary' != palette.type[i]) {
-			stop(paste("Invalid palette type", palette.type[i], "is specified."));
+			stop(paste('Invalid palette type', palette.type[i], 'is specified.'));
 			}
 
 		# check that the scheme has not been repeated
 		if ('seq' != palette.type[i] && 'binary' != palette.type[i]) {
 			if (palette.type[i] %in% used.schemes) {
-				warning("Duplicate palettes will be returned.");
+				warning('Duplicate palettes will be returned.');
 				}
 			}
 
@@ -218,20 +224,22 @@ default.colours <- default.colors <- function(
 
 		# check if binary schemes requested
 		if (palette.type[i] == 'binary' && as.numeric(number.of.colours[i]) > 2) {
-			warning("Binary colour schemes only return white and one other colour.");
+			warning('Binary colour schemes only return white and one other colour.');
 			}
 
 		# warning if the duplicate scheme returned
 		if (9 <= seq.count) {
-			warning("Duplicate palettes will be returned.");
+			warning('Duplicate palettes will be returned.');
 			}
 
 		# check that the reqested number of colours exists for the palette
 		if (length(schemes[[palette.type[i]]]) > 1 && number.of.colours[i] > length(schemes[[palette.type[i]]])) {
-			stop(paste0("The requested ", palette.type[i], " colour scheme has a length of ", length(schemes[[palette.type[i]]]), " colours. You requested ", number.of.colours[i], "."));
+			stop(paste0('The requested ', palette.type[i], ' colour scheme has a length of ',
+					length(schemes[[palette.type[i]]]), ' colours. You requested ', number.of.colours[i], '.'));
 			}
 		else if (length(sequential.schemes[[palette.type[i]]]) > 1 && number.of.colours[i] > length(sequential.schemes[[palette.type[i]]])) {
-			stop(paste0("The requested ", palette.type[i], " colour scheme has a length of ", length(sequential.schemes[[palette.type[i]]]), " colours. You requested ", number.of.colours[i], "."));
+			stop(paste0('The requested ', palette.type[i], ' colour scheme has a length of ',
+					length(sequential.schemes[[palette.type[i]]]), ' colours. You requested ', number.of.colours[i], '.'));
 			}
 
 		# Add to the final palette
@@ -258,9 +266,9 @@ default.colours <- default.colors <- function(
 			i <- 0;
 
 			for (col in palette.to.check) {
-				rgbcol <- col2rgb(col); 
-				greyval <- (0.2989 * rgbcol[1,1]) + (0.5870 * rgbcol[2,1]) + (0.1140 * rgbcol[3,1]);
-				greyval <- greyval/2.55;
+				rgbcol <- col2rgb(col);
+				greyval <- (0.2989 * rgbcol[1, 1]) + (0.5870 * rgbcol[2, 1]) + (0.1140 * rgbcol[3, 1]);
+				greyval <- greyval / 2.55;
 				greyval <- round(greyval);
 				i <- i + 1;
 				grey.cols[i] <- greyval;
@@ -270,13 +278,13 @@ default.colours <- default.colors <- function(
 
 			# The cutoff value could be more scientifically chosen...
 			if (minimum.difference < 10) {
-				warning("Colour scheme may not be greyscale compatible.");
+				warning('Colour scheme may not be greyscale compatible.');
 				}
 			}
 
 		# run greyscale check (only if there is more than one colour selected)
 		if (is.greyscale && palette.type[i] != 'binary') {
-			if (1 == number.of.colours){ next; }
+			if (1 == number.of.colours) { next; }
 			else if (1 == length(number.of.colours)) { check.greyscale(palette); }
 			else { check.greyscale(palette[[i]]); }
 			}

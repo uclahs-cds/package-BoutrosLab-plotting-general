@@ -17,7 +17,7 @@ create.manhattanplot <- function(
 	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL,
 	ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA, xaxis.log = FALSE, yaxis.log = FALSE,
 	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.rot = 0, yaxis.rot = 0, xaxis.fontface = 'plain', yaxis.fontface = 'plain',
-	xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = c(1,1), horizontal = FALSE, type = 'p',
+	xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 0, yaxis.tck = c(1, 1), horizontal = FALSE, type = 'p',
 	cex = 2, pch = '.', col = 'black', lwd = 1, lty = 1, alpha = 1, strip.col = 'white', strip.cex = 1,
 	axes.lwd = 1, axes.lty = 'dashed', key = list(text = list(lab = c(''))), legend = NULL, layout = NULL,
 	as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same', y.relation = 'same', top.padding = 0,
@@ -26,61 +26,61 @@ create.manhattanplot <- function(
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
 	col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL,
 	points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE, text.labels = NULL, text.x = NULL,
-	text.y = NULL, text.col = 'black', text.cex = 1,text.fontface = 'bold', height = 6, width = 10, size.units = 'in',
+	text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', height = 6, width = 10, size.units = 'in',
 	resolution = 1600, enable.warnings = FALSE, style = 'BoutrosLab',
 	description = 'Created with BoutrosLab.plotting.general', preload.default = 'custom', use.legacy.settings = FALSE, ...
 	) {
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+                xright = xright.rectangle,
+                xleft = xleft.rectangle,
+        	ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
-	if(!is.null(yat) && length(yat) == 1){
-		if(yat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]))
-                	data[toString(formula[[2]])] = out$x
-			yat = out$at
-                	yaxis.lab = out$axis.lab
-		}
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
+                	data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
+        	else if (yat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
+
+        	else if (yat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]))
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
+	if (!is.null(xat) && length(xat) == 1) {
+        	if (xat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+		}
 	# add preloaded defaults
 	if (preload.default == 'paper') {
 		}
@@ -96,10 +96,10 @@ create.manhattanplot <- function(
 			# add rectangle
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -270,9 +270,9 @@ create.manhattanplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -282,13 +282,14 @@ create.manhattanplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

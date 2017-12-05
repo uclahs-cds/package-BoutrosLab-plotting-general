@@ -15,7 +15,7 @@ get.line.breaks <- function(x) {
 	v <- rep(NA, length(x));
 
 	for (i in 2:length(v)) {
-		v[i] <- ifelse(x[i] != x[i-1], TRUE, FALSE);
+		v[i] <- ifelse(x[i] != x[i - 1], TRUE, FALSE);
 		}
 
 	# find breaks and add padding

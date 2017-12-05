@@ -15,23 +15,23 @@ display.colours <- display.colors <- function(cols, names = cols) {
 	number.of.colours <- length(cols);
 
 	if (length(cols) != length(names)) {
-		stop("The number of colours and the number of names must be equal.");
+		stop('The number of colours and the number of names must be equal.');
 		}
 
 	plot.new();
-	par(mar = c(1,1,1,1));
+	par(mar = c(1, 1, 1, 1));
 
 	# set spacing
-	rect.y <- (par('usr')[4] - par('usr')[3])/number.of.colours;
-	starting.y <- par('usr')[4] - rect.y/2;
+	rect.y <- (par('usr')[4] - par('usr')[3]) / number.of.colours;
+	starting.y <- par('usr')[4] - rect.y / 2;
 
-	rect.x <- (par('usr')[2] - abs(par('usr')[1]))/3;
-	starting.x <- (par('usr')[2]- abs(par('usr')[1]))/3;
+	rect.x <- (par('usr')[2] - abs(par('usr')[1])) / 3;
+	starting.x <- (par('usr')[2] - abs(par('usr')[1])) / 3;
 
 	# Add the names of each colour
 	for (i in 1:length(names)) {
 		text(
-			x = starting.x/2,
+			x = starting.x / 2,
 			y = starting.y,
 			labels = names[i]
 			);
@@ -43,7 +43,7 @@ display.colours <- display.colors <- function(cols, names = cols) {
 	# draw coloured rectangles
 	for (i in 1:length(cols)) {
 		rect(
-			xleft = starting.x*2,
+			xleft = starting.x * 2,
 			ybottom = (starting.y - rect.y),
 			xright = rect.x,
 			ytop = starting.y,
@@ -57,7 +57,7 @@ display.colours <- display.colors <- function(cols, names = cols) {
 	# reset spacing variables to draw greyscale half
 	starting.y <- par('usr')[4];
 	# starting.x <- par('usr')[2];
-	ending.x <- (par('usr')[2] - abs(par('usr')[1]))/3;
+	ending.x <- (par('usr')[2] - abs(par('usr')[1])) / 3;
 
 	# draw greyscale rectangles
 	grey.cols <- vector(length = length(cols));
@@ -68,12 +68,12 @@ display.colours <- display.colors <- function(cols, names = cols) {
 		rgbcol <- col2rgb(col);
 
 		# convert rgb colour to greyscale
-		greyval <- (0.2989 * rgbcol[1,1]) + (0.5870 * rgbcol[2,1]) + (0.1140 * rgbcol[3,1]);
-		greyval <- greyval/2.55;
+		greyval <- (0.2989 * rgbcol[1, 1]) + (0.5870 * rgbcol[2, 1]) + (0.1140 * rgbcol[3, 1]);
+		greyval <- greyval / 2.55;
 
 		greyval <- round(greyval);
 		i <- i + 1;
-		grey.cols[i] <- paste("grey", greyval, sep="");
+		grey.cols[i] <- paste('grey', greyval, sep = '');
 		}
 
 	for (i in 1:length(grey.cols)) {

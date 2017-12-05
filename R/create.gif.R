@@ -10,15 +10,15 @@
 # credit be given to OICR scientists, as scientifically appropriate.
 
 ### FUNCTION TO CREATE GIF  #######################################################################
-create.gif <- function(execFunc, parameters, numberOfFrames, delay = 40, filename) {
-	png(filename="writeGifTemp%03d.png")
-	for (i in (1:numberOfFrames)){
-		print(do.call(execFunc,parameters[[i]]));
-	}
-	dev.off()
+create.gif <- function(exec.func, parameters, number.of.frames, delay = 40, filename) {
+	png(filename = 'writeGifTemp%03d.png')
+	for (i in (1:number.of.frames)) {
+		print(do.call(exec.func, parameters[[i]]));
+		}
+	dev.off();
 	# convert pngs to one gif using ImageMagick
-	system(paste(paste("convert -delay ",delay), paste(" writeGifTemp* ", filename)))
+	system(paste(paste('convert -delay ', delay), paste(' writeGifTemp* ', filename)));
 
 	# cleaning up
-	file.remove(list.files(pattern="writeGifTemp"))
-}
+	file.remove(list.files(pattern = 'writeGifTemp'));
+	}

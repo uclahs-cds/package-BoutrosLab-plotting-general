@@ -35,55 +35,55 @@ create.boxplot <- function(
 	) {
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-        if(!is.null(yat) && length(yat) == 1){
-        	if(yat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]))
-                	data[toString(formula[[2]])] = out$x
-			yat = out$at
-                	yaxis.lab = out$axis.lab
-		}
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]));
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
+		else if (yat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
+
+		else if (yat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]))
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
+	if (!is.null(xat) && length(xat) == 1) {
+		if (xat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]));
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		}
 
 	# add preloaded defaults
 	if (preload.default == 'paper') {
@@ -91,7 +91,7 @@ create.boxplot <- function(
 	else if (preload.default == 'web') {
 		}
 
-	# parameter check 
+	# parameter check
 	if (!is.numeric(text.anchor) && !(tolower(text.anchor) %in% c('centre', 'center', 'left', 'right'))) {
 		stop("Argument 'text.anchor' must be either numeric or one of 'left', 'right', and 'centre'.");
 		}
@@ -115,8 +115,8 @@ create.boxplot <- function(
 
 	# if pvalues were requested
 	pvalues <- list();
-	positionpVal <- list();
-	rotatePVals <- FALSE;
+	position.pval <- list();
+	rotate.pvals <- FALSE;
 
 	if (add.pvalues) {
 		col1 <- formula[3];
@@ -129,23 +129,23 @@ create.boxplot <- function(
 			col1 <- col2;
 			col2 <- temp;
 			names <- levels(mf[toString(col1)][[1]]);
-			rotatePVals <- TRUE;
+			rotate.pvals <- TRUE;
 			}
 
- 		factors <- as.vector(sapply(as.data.frame(mf)[toString(col1)], as.character));
-		maxVal <- max(mf[toString(col2)][[1]]);
+		factors <- as.vector(sapply(as.data.frame(mf)[toString(col1)], as.character));
+		max.val <- max(mf[toString(col2)][[1]]);
 
 		for (i in 1:length(names)) {
 			name <- toString(names[i]);
 			d <- mf[toString(col2)][[1]][factors == name];
 			t.value <- (mean(d) - 10) / (sd(d) / sqrt(length(d)));
-			pvalues[i] <- round(2*pt(-abs(t.value), df=length(d)-1),4);
+			pvalues[i] <- round(2 * pt(-abs(t.value), df = length(d) - 1), 4);
 
 			if (pvalues[i] == 0) {
 				pvalues[i] <- '<0.0001';
 				}
 
-			positionpVal[i] <- max(d) + maxVal * 0.03;
+			position.pval[i] <- max(d) + max.val * 0.03;
 			}
 		}
 
@@ -174,10 +174,10 @@ create.boxplot <- function(
 			if (add.rectangle) {
 
 				panel.rect(
-					xleft   = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright  = rectangleInfo$xright,
-					ytop    = rectangleInfo$ytop,
+					xleft   = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright  = rectangle.info$xright,
+					ytop    = rectangle.info$ytop,
 					col     = col.rectangle,
 					alpha   = alpha.rectangle,
 					border  = NA
@@ -204,7 +204,7 @@ create.boxplot <- function(
 			# Add text to plot
 			if (add.text) {
 
-				 panel.text(
+				panel.text(
 					x        = text.x,
 					y        = text.y,
 					labels   = text.labels,
@@ -219,13 +219,13 @@ create.boxplot <- function(
 			if (add.pvalues) {
 
 				panel.text(
-					x = if (rotatePVals) { positionpVal } else { c(1:length(pvalues)) },
-					y = if (rotatePVals) { 1:length(pvalues) } else { positionpVal },
+					x = if (rotate.pvals) { position.pval } else { c(1:length(pvalues)) },
+					y = if (rotate.pvals) { 1:length(pvalues) } else { position.pval },
 					labels = pvalues,
 					col = 'black',
 					cex = pvalues.cex,
 					fontface = 'bold',
-					srt = if (rotatePVals) { -90 } else { 0 }
+					srt = if (rotate.pvals) { -90 } else { 0 }
 					)
 				}
 			},
@@ -360,7 +360,7 @@ create.boxplot <- function(
 				col = border.col,
 				lty = 1
 				),
-			box.umbrella =list(
+			box.umbrella = list(
 				lwd = lwd,
 				col = border.col,
 				lty = 1
@@ -413,32 +413,32 @@ create.boxplot <- function(
 			ranks <- rank(values.to.sort.by, ties.method = 'random');
 
 			# swap the rankings if decreasing order is specified
-			if (sample.order == 'decreasing') { ranks <- rank(values.to.sort.by*(-1), ties.method = 'random'); }
+			if (sample.order == 'decreasing') { ranks <- rank(values.to.sort.by * ( -1 ), ties.method = 'random'); }
 
 			newlocations <- NULL;
 
 			# create a list of the newlocations each box 'level' will appear
 			for (i in c(1:length(num.boxes))) {
-				newlocations[[i]] <- grep(num.boxes[i],trellis.object$panel.args[[1]]$y);
+				newlocations[[i]] <- grep(num.boxes[i], trellis.object$panel.args[[1]]$y);
 				}
 
 			# replace the old values of the level with the new one based on rank
 			for (i in c(1:length(num.boxes))) {
-				trellis.object$panel.args[[1]]$y[newlocations[[i]]] = num.boxes[ranks[i]];
+				trellis.object$panel.args[[1]]$y[newlocations[[i]]] <- num.boxes[ranks[i]];
 				}
 
-			newPValues <- NULL;
-			newPositionPVal <- NULL;
+			new.p.values <- NULL;
+			new.position.pval <- NULL;
 
 			# if pvalues were requested
 			if (add.pvalues) {
 				for (i in c(1:length(num.boxes))) {
-					newPValues[ranks[i]] <- pvalues[i];
-					newPositionPVal[ranks[i]]<- positionpVal[i];
-		    			}
+					new.p.values[ranks[i]] <- pvalues[i];
+					new.position.pval[ranks[i]] <- position.pval;
+					}
 
-				pvalues <- newPValues;
-				positionpVal <- newPositionPVal;
+				pvalues <- new.p.values;
+				position.pval <- new.position.pval;
 				}
 
 			# if labels were not specified reorder the default ones
@@ -453,7 +453,7 @@ create.boxplot <- function(
 					newlabels[ranks[i]] <- trellis.object$y.scales$labels[i];
 					}
 				trellis.object$y.scales$labels <- newlabels;
-				warning("WARNING: the label order you specified has been reordered.");
+				warning('WARNING: the label order you specified has been reordered.');
 				}
 			}
 		else {
@@ -478,30 +478,30 @@ create.boxplot <- function(
 
 			ranks <- rank(values.to.sort.by, ties.method = 'random');
 
-			if (sample.order == 'decreasing') { ranks <- rank(values.to.sort.by*(-1), ties.method = 'random'); }
+			if (sample.order == 'decreasing') { ranks <- rank(values.to.sort.by * (-1), ties.method = 'random'); }
 
 			newlocations <- NULL;
 
 			for (i in c(1:length(num.boxes))) {
-				newlocations[[i]] <- grep(num.boxes[i],trellis.object$panel.args[[1]]$x);
+				newlocations[[i]] <- grep(num.boxes[i], trellis.object$panel.args[[1]]$x);
 				}
 
 			for (i in c(1:length(num.boxes))) {
 				trellis.object$panel.args[[1]]$x[newlocations[[i]]] <- num.boxes[ranks[i]];
 				}
 
-			newPValues <- NULL;
-			newPositionPVal <- NULL;
+			new.p.values <- NULL;
+			new.position.pval <- NULL;
 
 			# if pvalues were requested
 			if (add.pvalues) {
 				for (i in c(1:length(num.boxes))) {
-					newPValues[ranks[i]] <- pvalues[i];
-					newPositionPVal[ranks[i]] <- positionpVal[i];
+					new.p.values[ranks[i]] <- pvalues[i];
+					new.position.pval[ranks[i]] <- position.pval[i];
 					}
 
-				pvalues <- newPValues;
-				positionpVal <- newPositionPVal;
+				pvalues <- new.p.values;
+				position.pval <- new.position.pval;
 				}
 
 			if (length(xaxis.lab) == 1 && xaxis.lab) {
@@ -515,7 +515,7 @@ create.boxplot <- function(
 					newlabels[ranks[i]] <- trellis.object$x.scales$labels[i];
 					}
 				trellis.object$x.scales$labels <- newlabels;
-				warning("WARNING: the label order you specified has been reordered.");
+				warning('WARNING: the label order you specified has been reordered.');
 				}
 			}
 		}
@@ -524,9 +524,9 @@ create.boxplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -536,13 +536,14 @@ create.boxplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

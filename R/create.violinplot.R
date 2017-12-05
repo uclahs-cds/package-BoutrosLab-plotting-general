@@ -17,11 +17,11 @@ create.violinplot <- function(
 	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
 	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black',
 	yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0,
-	xaxis.tck = c(1,0), yaxis.tck = c(1,1), ylimits = NULL, yat = TRUE, col = 'black', lwd = 1,
+	xaxis.tck = c(1, 0), yaxis.tck = c(1, 1), ylimits = NULL, yat = TRUE, col = 'black', lwd = 1,
 	border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1, extra.points = NULL, extra.points.pch = 21,
-	extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1, start = NULL, 
-	end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7, 
-	left.padding = 0.5, right.padding = 0.3, key = NULL, legend = NULL, add.rectangle = FALSE, 
+	extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1, start = NULL,
+	end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7,
+	left.padding = 0.5, right.padding = 0.3, key = NULL, legend = NULL, add.rectangle = FALSE,
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
 	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
 	size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
@@ -32,12 +32,12 @@ create.violinplot <- function(
 
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+        	xright = xright.rectangle,
+                xleft = xleft.rectangle,
+                ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
 	# add preloaded defaults
 	if (preload.default == 'paper') {
@@ -48,7 +48,7 @@ create.violinplot <- function(
 	# Temp function to allow differential violin colour filling
 	# panel.violin() author has been emailed about issue in the
 	# original function preventing differential colouring.
-	.panel.violin.mod <- function (x, y, box.ratio = 1, box.width = box.ratio/(1 + box.ratio),
+	.panel.violin.mod <- function(x, y, box.ratio = 1, box.width = box.ratio / (1 + box.ratio),
 		horizontal = TRUE, alpha = plot.polygon$alpha, border = plot.polygon$border,
 		lty = plot.polygon$lty, lwd = plot.polygon$lwd, col = plot.polygon$col,
 		varwidth = FALSE, bw = bandwidth, adjust = bandwidth.adjust, kernel = NULL,
@@ -107,8 +107,8 @@ create.violinplot <- function(
 			if (is.na(match(aname, fnames))) {
 				if (is.na(match('...', fnames))) { FALSE; }
 				else {
-					dotsCall <- eval(quote(substitute(list(...))), sys.parent());
-					!is.na(match(aname, names(dotsCall)));
+					dots.call <- eval(quote(substitute(list(...))), sys.parent());
+					!is.na(match(aname, names(dots.call)));
 					}
 				}
 			else { FALSE; }
@@ -188,10 +188,10 @@ create.violinplot <- function(
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -200,10 +200,10 @@ create.violinplot <- function(
 
 			# update the plot parameters
 			if (is.null(from) || is.null(to)) {
-				.panel.violin.mod(varwidth = varwidth,...);
+				.panel.violin.mod(varwidth = varwidth, ...);
 				}
 			else {
-				.panel.violin.mod(from = from, to = to, varwidth = varwidth,...);
+				.panel.violin.mod(from = from, to = to, varwidth = varwidth, ...);
 				}
 
 			# add extra points if requested
@@ -353,7 +353,7 @@ create.violinplot <- function(
 				col = '#000000',
 				lty = 1
 				),
-			box.umbrella =list(
+			box.umbrella = list(
 				lwd = 2,
 				col = '#000000',
 				lty = 1
@@ -379,9 +379,9 @@ create.violinplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -391,13 +391,14 @@ create.violinplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

@@ -19,9 +19,9 @@ generate.at.final <- function(at.input, limits, data.vector) {
 		}
 	else {
 		if (is.null(limits)) {
-			# making the range slightly larger than the at range 
+			# making the range slightly larger than the at range
 			# this allows grid-lines to appear, rather than merge into the axes
-			extended.range <- range(data.vector) + 0.1 * (max(data.vector) - min(data.vector)) * c(-1,1);
+			extended.range <- range(data.vector) + 0.1 * (max(data.vector) - min(data.vector)) * c(-1, 1);
 			at.final <- pretty(lattice.options()$default.args$xscale.components(extended.range)$bottom$ticks$at);
 			}
 		else {

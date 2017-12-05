@@ -935,7 +935,8 @@ create.multipanelplot(
     layout.height = 4,
     layout.width = 4,
     top.legend.padding = 3,
-    layout.skip = c(FALSE, FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE),
+    layout.skip = c(FALSE, FALSE,FALSE,FALSE,FALSE,TRUE,
+		TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE),
     y.spacing = c(0,0,0),
     x.spacing = c(1,2,3),
     legend = list(

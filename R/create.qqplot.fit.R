@@ -29,56 +29,56 @@ create.qqplot.fit <- function(
 	) {
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+        	xright = xright.rectangle,
+                xleft = xleft.rectangle,
+                ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
-	if(!is.null(yat) && length(yat) == 1){
-        	if(yat == "auto"){
-                	out = auto.axis(unlist(x[[1]]))
-                	x[[1]] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
+	if (!is.null(yat) && length(yat) == 1) {
+        	if (yat == 'auto') {
+                	out <- auto.axis(unlist(x[[1]]));
+                	x[[1]] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(x[[1]]),log.scaled = FALSE)
-                	x[[1]] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
+        	else if (yat == 'auto.linear') {
+                	out <- auto.axis(unlist(x[[1]]), log.scaled = FALSE);
+                	x[[1]] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(x[[1]]),log.scaled = TRUE)
-                	x[[1]] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
+        	else if (yat == 'auto.log') {
+                	out <- auto.axis(unlist(x[[1]]), log.scaled = TRUE);
+                	x[[1]] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
+		}
 
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(x[[2]]))
-                	x[[2]] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(x[[2]]),log.scaled = FALSE)
-                	x[[2]] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(x[[2]]),log.scaled = TRUE)
-                	x[[2]] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
+	if (!is.null(xat) && length(xat) == 1) {
+        	if (xat == 'auto') {
+                	out <- auto.axis(unlist(x[[2]]));
+                	x[[2]] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.linear') {
+                	out <- auto.axis(unlist(x[[2]]), log.scaled = FALSE);
+                	x[[2]] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.log') {
+                	out <- auto.axis(unlist(x[[2]]), log.scaled = TRUE);
+                	x[[2]] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+		}
 
 	# add preloaded defaults
         if (preload.default == 'paper') {
@@ -122,17 +122,17 @@ create.qqplot.fit <- function(
 			distribution.local = distribution,
 			col.local = col.line,
 			col = col,
-			lwd = lwd, 
+			lwd = lwd,
 			...
 			) {
-	
+
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -219,22 +219,22 @@ create.qqplot.fit <- function(
 							alpha = 0.5
 							);
 
-					if (confidence.method == 'both') {
-						panel.lines(tmp.ci$z, tmp.ci$upper.pw, lty = 1, lwd = lwd, col = '#b5b5b5');
-						panel.lines(tmp.ci$z, tmp.ci$lower.pw, lty = 1, lwd = lwd, col = '#b5b5b5');
-						panel.lines(tmp.ci$z[tmp.ci$u], tmp.ci$upper.sim, lty = 1, lwd = lwd, col = '#e6e6e6');
-						panel.lines(tmp.ci$z[tmp.ci$l], tmp.ci$lower.sim, lty = 1, lwd = lwd, col = '#e6e6e6');
-						}
-					else {
-						if (confidence.method == 'simultaneous') {
+						if (confidence.method == 'both') {
+							panel.lines(tmp.ci$z, tmp.ci$upper.pw, lty = 1, lwd = lwd, col = '#b5b5b5');
+							panel.lines(tmp.ci$z, tmp.ci$lower.pw, lty = 1, lwd = lwd, col = '#b5b5b5');
 							panel.lines(tmp.ci$z[tmp.ci$u], tmp.ci$upper.sim, lty = 1, lwd = lwd, col = '#e6e6e6');
 							panel.lines(tmp.ci$z[tmp.ci$l], tmp.ci$lower.sim, lty = 1, lwd = lwd, col = '#e6e6e6');
 							}
-						if (confidence.method == 'pointwise') {
-							panel.lines(tmp.ci$z, tmp.ci$upper.pw, lty = 1, lwd = 2, col = '#b5b5b5');
-							panel.lines(tmp.ci$z, tmp.ci$lower.pw, lty = 1, lwd = 2, col = '#b5b5b5');
+						else {
+							if (confidence.method == 'simultaneous') {
+								panel.lines(tmp.ci$z[tmp.ci$u], tmp.ci$upper.sim, lty = 1, lwd = lwd, col = '#e6e6e6');
+								panel.lines(tmp.ci$z[tmp.ci$l], tmp.ci$lower.sim, lty = 1, lwd = lwd, col = '#e6e6e6');
+								}
+							if (confidence.method == 'pointwise') {
+								panel.lines(tmp.ci$z, tmp.ci$upper.pw, lty = 1, lwd = 2, col = '#b5b5b5');
+								panel.lines(tmp.ci$z, tmp.ci$lower.pw, lty = 1, lwd = 2, col = '#b5b5b5');
+								}
 							}
-						}
 
 						panel.polygon(
 							x = c(tmp.ci$z, rev(tmp.ci$z)),
@@ -247,11 +247,11 @@ create.qqplot.fit <- function(
 						draw.key(
 							list(
 								text = list(
-									lab = c('pointwise','simultaneous')
+									lab = c('pointwise', 'simultaneous')
 									),
 								points = list(
 									pch = 15,
-									col = c('#b5b5b5','#e6e6e6')
+									col = c('#b5b5b5', '#e6e6e6')
 									)
 								),
 							draw = TRUE,
@@ -325,11 +325,11 @@ create.qqplot.fit <- function(
 								draw.key(
 									list(
 										text = list(
-											lab = c('pointwise','simultaneous')
+											lab = c('pointwise', 'simultaneous')
 											),
 										points = list(
 											pch = 15,
-											col = c('#b5b5b5','#e6e6e6')
+											col = c('#b5b5b5', '#e6e6e6')
 											)
 										),
 									draw = TRUE,
@@ -500,9 +500,9 @@ create.qqplot.fit <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -512,13 +512,14 @@ create.qqplot.fit <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.")
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.')
 		}
 
 	# Otherwise use the BL style if requested

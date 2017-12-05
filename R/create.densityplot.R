@@ -22,62 +22,62 @@ create.densityplot <- function(
 	left.padding = 0.5, right.padding = 0.1, add.axes = FALSE, abline.h = NULL, abline.v = NULL, abline.lty = NULL,
 	abline.lwd = NULL, abline.col = 'black', add.rectangle = FALSE, xleft.rectangle = NULL,
 	ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent',
-	alpha.rectangle = 1,add.text = FALSE,text.labels = NULL,text.x = NULL,text.y = NULL,text.anchor = 'centre',text.col = 'black', 
-	text.cex = 1,text.fontface = 'bold', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	alpha.rectangle = 1, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.anchor = 'centre', text.col = 'black',
+	text.cex = 1, text.fontface = 'bold', height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE
 	) {
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-	if(!is.null(yat) && length(yat) == 1){
-		if(yat == "auto"){
-                	out = auto.axis(unlist(x[[1]]))
-                	x[[1]] = out$x
-			yat = out$at
-                	yaxis.lab = out$axis.lab
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+			out <- auto.axis(unlist(x[[1]]));
+			x[[1]] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
+
+		else if (yat == 'auto.linear') {
+			out <- auto.axis(unlist(x[[1]]), log.scaled = FALSE);
+			x[[1]] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
+
+		else if (yat == 'auto.log') {
+			out <- auto.axis(unlist(x[[1]]), log.scaled = TRUE);
+			x[[1]] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 		}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(x[[1]]),log.scaled = FALSE)
-                	x[[1]] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
+	if (!is.null(xat) && length(xat) == 1) {
+		if (xat == 'auto') {
+			out <- auto.axis(unlist(x[[2]]));
+			x[[2]] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.linear') {
+			out <- auto.axis(unlist(x[[2]]), log.scaled = FALSE);
+			x[[2]] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.log') {
+			out <- auto.axis(unlist(x[[2]]), log.scaled = TRUE);
+			x[[2]] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
 		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(x[[1]]),log.scaled = TRUE)
-                	x[[1]] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(x[[2]]))
-                	x[[2]] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(x[[2]]),log.scaled = FALSE)
-                	x[[2]] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(x[[2]]),log.scaled = TRUE)
-                	x[[2]] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
 
 	# add preloaded defaults
 	if (preload.default == 'paper') {
@@ -122,14 +122,14 @@ create.densityplot <- function(
 		lognumber <- floor(log(maximum, 10));
 
 		# depending on difference, the labels will be multiples of 5,10 or 20
-		if (maximum < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-		else if (maximum < (10**lognumber*7)) { factor <- (10**lognumber); }
-		else { factor <- (10**lognumber)*2; }
+		if (maximum < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
+		else if (maximum < (10 ** lognumber * 7)) { factor <- (10 ** lognumber); }
+		else { factor <- (10 ** lognumber) * 2; }
 
-		addition <- factor/2;
+		addition <- factor / 2;
 
 		# depending on minimum create a sequence of at locations with padding
-		at <- seq(0,factor*round(maximum/factor) + addition,factor);
+		at <- seq(0, factor * round(maximum / factor) + addition, factor);
 		maximum <- maximum + addition;
 		ylimits <- c(0, maximum);
 		yat <- at;
@@ -145,16 +145,16 @@ create.densityplot <- function(
 		lognumber <- floor(log(difference, 10));
 
 		# depending on difference, the labels will be multiples of 5,10 or 20
-		if (difference < (10**lognumber*4)) { factor <- (10**lognumber)/2; }
-		else if (difference < (10**lognumber*7)) { factor <- (10**lognumber); }
-		else { factor <- (10**lognumber)*2; }
+		if (difference < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
+		else if (difference < (10 ** lognumber * 7)) { factor <- (10 ** lognumber); }
+		else { factor <- (10 ** lognumber) * 2; }
 
-		addition <- factor/2;
+		addition <- factor / 2;
 
-		# depending on minimum create a sequence of at locations with padding 
-		if (minimum == 0) { at <- seq(0, factor*round(maximum/factor) + addition, factor); }
+		# depending on minimum create a sequence of at locations with padding
+		if (minimum == 0) { at <- seq(0, factor * round(maximum / factor) + addition, factor); }
 		else {
-			at <- seq(factor*round(minimum/factor), factor*round(maximum/factor) + addition, factor);
+			at <- seq(factor * round(minimum / factor), factor * round(maximum / factor) + addition, factor);
 			# only add padding to minium if it is not 0
 			minimum <- minimum - addition;
 			}
@@ -174,10 +174,10 @@ create.densityplot <- function(
 			# add rectangle
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -187,18 +187,18 @@ create.densityplot <- function(
 			panel.abline(h = abline.h, lty = abline.lty, lwd = abline.lwd, col = abline.col);
 			panel.abline(v = abline.v, lty = abline.lty, lwd = abline.lwd, col = abline.col);
 			# Add text to plot
-                        if (add.text) {
+			if (add.text) {
 
-                                 panel.text(
-                                        x        = text.x,
-                                        y        = text.y,
-                                        labels   = text.labels,
-                                        col      = text.col,
-                                        cex      = text.cex,
-                                        fontface = text.fontface,
-                                        adj      = text.anchor
-                                        );
-                                }
+				panel.text(
+					x        = text.x,
+					y        = text.y,
+					labels   = text.labels,
+					col      = text.col,
+					cex      = text.cex,
+					fontface = text.fontface,
+					adj      = text.anchor
+					);
+				}
 
 			# if requested, add x=0, y=0 lines
 			if (add.axes) {
@@ -229,7 +229,7 @@ create.densityplot <- function(
 
 				panel.xyplot(
 					groups = groups.local,
-					grid = FALSE, 
+					grid = FALSE,
 					subscripts = subscripts,
 					type = setdiff(type.local, 'g'),
 					...
@@ -366,9 +366,9 @@ create.densityplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -378,13 +378,14 @@ create.densityplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

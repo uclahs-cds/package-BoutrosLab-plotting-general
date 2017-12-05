@@ -11,7 +11,7 @@
 
 ### FUNCTION TO CREATE CORRELATION KEY ############################################################
 get.corr.key <- function(
-	x, y, label.items = c('spearman','spearman.p'), x.pos = 0.03, y.pos = 0.97, key.corner = NULL,
+	x, y, label.items = c('spearman', 'spearman.p'), x.pos = 0.03, y.pos = 0.97, key.corner = NULL,
 	key.cex = 1, key.title = NULL, title.cex = 1, alpha.background = 0, num.decimals = 2,
 	border = 'white') {
 
@@ -22,15 +22,14 @@ get.corr.key <- function(
 
 	# define the corner of the key used for the x.pos and y.pos
 	if (is.null(key.corner)) {
-		if (x.pos < .5 & y.pos < .5)	{ corner = c(0,0); }
-		if (x.pos < .5 & y.pos >= .5)	{ corner = c(0,1); }
-		if (x.pos >= .5 & y.pos < .5)	{ corner = c(1,0); }
-		if (x.pos >= .5 & y.pos >= .5)	{ corner = c(1,1); }
+		if (x.pos < .5 & y.pos < .5)	{ corner <- c(0, 0); }
+		if (x.pos < .5 & y.pos >= .5)	{ corner <- c(0, 1); }
+		if (x.pos >= .5 & y.pos < .5)	{ corner <- c(1, 0); }
+		if (x.pos >= .5 & y.pos >= .5)	{ corner <- c(1, 1); }
 		}
 
 	# define some variables
 	key.list <- NULL;
-	padding.text <- NULL;
 
 	# loop through each item label and add it to the key
 	for (i in label.items) {
@@ -44,7 +43,7 @@ get.corr.key <- function(
 		# calculate the correlation values
 		if (i %in% c('spearman', 'pearson', 'kendall')) {
 			key.item <- substitute(
-				corr.symbol == paste(correlation, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
+				corr.symbol == paste(correlation, phantom('|')[phantom('|')], phantom('|') ^ phantom('|')),
 				env = list(
 					correlation = format(
 						round(
@@ -65,7 +64,7 @@ get.corr.key <- function(
 		# calculate beta0 i.e. intercept
 		if (i == 'beta0') {
 			key.item <- substitute(
-				Beta[0] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
+				Beta[0] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|') ^ phantom('|')),
 				env = list(
 					beta.effect = format(round(coef(lm(y ~ x))[1], num.decimals), nsmall = num.decimals)
 					)
@@ -75,7 +74,7 @@ get.corr.key <- function(
 		# calculate beta1 i.e. slope
 		if (i == 'beta1') {
 			key.item <- substitute(
-				Beta[1] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
+				Beta[1] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|') ^ phantom('|')),
 				env = list(
 					beta.effect = format(round(coef(lm(y ~ x))[2], num.decimals), nsmall = num.decimals)
 					)
@@ -85,7 +84,7 @@ get.corr.key <- function(
 		# calculate robust beta0 i.e. intercept
 		if (i == 'beta0.robust') {
 			key.item <- substitute(
-				Beta[paste(0,',rob')] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
+				Beta[paste(0, ',rob')] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|') ^ phantom('|')),
 				env = list(
 					beta.effect = format(round(coef(rlm(y ~ x))[1], num.decimals), nsmall = num.decimals)
 					)
@@ -95,7 +94,7 @@ get.corr.key <- function(
 		# calculate robust beta1 i.e. slope
 		if (i == 'beta1.robust') {
 			key.item <- substitute(
-				Beta[paste(1, ',rob')] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|')^phantom('|')),
+				Beta[paste(1, ',rob')] == paste(beta.effect, phantom('|')[phantom('|')], phantom('|') ^ phantom('|')),
 				env = list(
 					beta.effect = format(round(coef(rlm(y ~ x))[2],  num.decimals), nsmall = num.decimals)
 					)
@@ -106,14 +105,14 @@ get.corr.key <- function(
 		if (i %in% c('spearman.p', 'pearson.p', 'kendall.p')) {
 			if (BoutrosLab.statistics.general::get.correlation.p.and.corr(x = x, y = y, method = gsub('.p', '', i, fixed = TRUE))[2] > 0) {
 				key.item <- substitute(
-					P[corr.symbol] == paste(base %*% 10^exponent, phantom('|')[phantom('|')] ),
+					P[corr.symbol] == paste(base %*% 10 ^ exponent, phantom('|')[phantom('|')] ),
 					env = list(
 						base = unlist(
 							BoutrosLab.plotting.general::scientific.notation(
 								x = BoutrosLab.statistics.general::get.correlation.p.and.corr(
 									x = x,
 									y = y,
-									method = gsub('.p','', i, fixed = TRUE)
+									method = gsub('.p', '', i, fixed = TRUE)
 									)[2],
 								digits = 2,
 								type = 'list'
@@ -124,7 +123,7 @@ get.corr.key <- function(
 								x = BoutrosLab.statistics.general::get.correlation.p.and.corr(
 									x = x,
 									y = y,
-									method = gsub('.p','', i, fixed = TRUE)
+									method = gsub('.p', '', i, fixed = TRUE)
 									)[2],
 								digits = 2,
 								type = 'list'
@@ -137,63 +136,63 @@ get.corr.key <- function(
 
 			# if the p.value is 0 set it the minimum value
 			else {
-				key.item <- expression(paste('P < 2.2 x', 10^-16, phantom('|')[phantom('|')]));
+				key.item <- expression(paste('P < 2.2 x', 10 ^ -16, phantom('|')[phantom('|')]));
 				}
 			}
 
 		# calculate the wald test for beta
 		if (i == 'beta1.p') {
-			if (coef(summary(lm(y ~ x)))[2,4] > 0) {
+			if (coef(summary(lm(y ~ x)))[2, 4] > 0) {
 				key.item <- substitute(
-					P[B[1]] == paste(base %*% 10^exponent, phantom('|')[phantom('|')]),
+					P[B[1]] == paste(base %*% 10 ^ exponent, phantom('|')[phantom('|')]),
 					env = list(
 						base = unlist(BoutrosLab.plotting.general::scientific.notation(
-							x = coef(summary(lm(y ~ x)))[2,4], 
-							digits = 2, 
-							type = 'list'
-							)[1]),
+								x = coef(summary(lm(y ~ x)))[2, 4],
+								digits = 2,
+								type = 'list'
+								)[1]),
 						exponent = unlist(BoutrosLab.plotting.general::scientific.notation(
-							x = coef(summary(lm(y ~ x)))[2,4], 
-							digits = 2, 
-							type = 'list'
-							)[2])
+								x = coef(summary(lm(y ~ x)))[2, 4],
+								digits = 2,
+								type = 'list'
+								)[2])
 						)
 					);
 				}
 
 			# if the p.value is 0 set it the minimum value
 			else {
-				key.item <- expression(paste('P < 2.2 x', 10^-16, phantom('|')[phantom('|')]));
+				key.item <- expression(paste('P < 2.2 x', 10 ^ -16, phantom('|')[phantom('|')]));
 				}
 			}
 
 		# calculate the wald test for beta
 		if (i == 'beta1.robust.p') {
-			if (coef(summary(lm(y ~ x)))[2,4] > 0) {
+			if (coef(summary(lm(y ~ x)))[2, 4] > 0) {
 				key.item <- substitute(
-					P[B[paste(1, ',rob')]] == paste(base %*% 10^exponent, phantom('|')[phantom('|')]),
+					P[B[paste(1, ',rob')]] == paste(base %*% 10 ^ exponent, phantom('|')[phantom('|')]),
 					env = list(
 						base = unlist(BoutrosLab.plotting.general::scientific.notation(
-							x = 2*pt(coef(summary(rlm(y ~ x)))[2,3],
-							df = summary(rlm(y ~ x))$df[2],
-							lower.tail = FALSE),
-							digits = 2,
-							type = 'list'
-							)[1]),
+								x = 2 * pt(coef(summary(rlm(y ~ x)))[2, 3],
+									df = summary(rlm(y ~ x))$df[2],
+									lower.tail = FALSE),
+								digits = 2,
+								type = 'list'
+								)[1]),
 						exponent = unlist(BoutrosLab.plotting.general::scientific.notation(
-							x = 2*pt(coef(summary(rlm(y ~ x)))[2,3],
-							df = summary(rlm(y ~ x))$df[2],
-							lower.tail = FALSE),
-							digits = 2,
-							type = 'list'
-							)[2])
+								x = 2 * pt(coef(summary(rlm(y ~ x)))[2, 3],
+									df = summary(rlm(y ~ x))$df[2],
+									lower.tail = FALSE),
+								digits = 2,
+								type = 'list'
+								)[2])
 						)
 					);
 				}
 
 			# if the p.value is 0 set it the minimum value
 			else {
-				key.item <- expression(paste(P[phantom(0)], '< 2.2 x', 10^-16, phantom('|')[phantom('|')] ));
+				key.item <- expression(paste(P[phantom(0)], '< 2.2 x', 10 ^ -16, phantom('|')[phantom('|')] ));
 				}
 			}
 
@@ -221,4 +220,3 @@ get.corr.key <- function(
 
 	return(key);
 	}
-

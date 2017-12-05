@@ -24,7 +24,7 @@ covariates.grob <- function(
 
 	# Calculate the scale for the covariate bars
 	native.xscale <- c(1, length(ord)) + c(-1, 1) * lattice.getOption('axis.padding')$factor;
-	native.unit <- 1/diff(native.xscale);
+	native.unit <- 1 / diff(native.xscale);
 
 	ncovariates <- length(covariates);
 	key.gf <- NULL;
@@ -72,7 +72,7 @@ covariates.grob <- function(
 			# Draw row grid lines
 			if (!is.null(grid.row)) {
 				if (!is.list(grid.row)) {
-					stop("Argument grid.row of covariates.grob must be a list of arguments to gpar.");
+					stop('Argument grid.row of covariates.grob must be a list of arguments to gpar.');
 					}
 
 				# By default, draw all row lines
@@ -82,7 +82,7 @@ covariates.grob <- function(
 
 				# Make sure user-specified lines are in bounds
 				else if (any(row.lines < 0) || any(row.lines > length(ord))) {
-					stop("Argument row.lines of covariates.grob out of bounds.");
+					stop('Argument row.lines of covariates.grob out of bounds.');
 					}
 
 				for (i in row.lines) {
@@ -90,8 +90,8 @@ covariates.grob <- function(
 					key.gf <- placeGrob(
 						frame = key.gf,
 						grob = linesGrob(
-							x = c(0,1),
-							y = if (i == 0) { c(0,0) } else { rep(index * native.unit, 2) },
+							x = c(0, 1),
+							y = if (i == 0) { c(0, 0) } else { rep(index * native.unit, 2) },
 							gp = do.call(gpar, grid.row)
 							),
 						row = 1,
@@ -103,7 +103,7 @@ covariates.grob <- function(
 			# Draw column grid lines
 			if (!is.null(grid.col)) {
 				if (!is.list(grid.col)) {
-					stop("Argument grid.col of covariates.grob must be a list of arguments to gpar.");
+					stop('Argument grid.col of covariates.grob must be a list of arguments to gpar.');
 					}
 
 				# By default, draw all column lines
@@ -113,15 +113,15 @@ covariates.grob <- function(
 
 				# Make sure user-specified lines are in bounds
 				else if (any(col.lines < 0) || any(col.lines > ncovariates)) {
-					stop("Argument col.lines of covariates.grob out of bounds.");
+					stop('Argument col.lines of covariates.grob out of bounds.');
 					}
 
 				for (i in col.lines) {
 					key.gf <- placeGrob(
 						frame = key.gf,
 						grob = linesGrob(
-							x = if (i == 0) { c(0,0) } else { c(1,1) },
-							y = c(0,1),
+							x = if (i == 0) { c(0, 0) } else { c(1, 1) },
+							y = c(0, 1),
 							gp = do.call(gpar, grid.col)
 							),
 						row = 1,
@@ -133,7 +133,7 @@ covariates.grob <- function(
 			# Draw border
 			if (!is.null(grid.border)) {
 				if (!is.list(grid.border)) {
-					stop("Argument grid.border of covariates.grob must be a list.");
+					stop('Argument grid.border of covariates.grob must be a list.');
 					}
 
 				grid.border[['fill']] <- 'transparent';
@@ -188,7 +188,7 @@ covariates.grob <- function(
 			# Draw column grid lines
 			if (!is.null(grid.col)) {
 				if (!is.list(grid.col)) {
-					stop("Argument grid.col of covariates.grob must be a list.");
+					stop('Argument grid.col of covariates.grob must be a list.');
 					}
 
 				# By default, draw all column lines
@@ -198,7 +198,7 @@ covariates.grob <- function(
 
 				# Make sure user-specified lines are in bounds
 				else if (any(col.lines < 0) || any(col.lines > length(ord))) {
-					stop("Argument col.lines of covariates.grob out of bounds.");
+					stop('Argument col.lines of covariates.grob out of bounds.');
 					}
 
 				for (i in col.lines) {
@@ -206,8 +206,8 @@ covariates.grob <- function(
 					key.gf <- placeGrob(
 						frame = key.gf,
 						grob = linesGrob(
-							x = if (i == 0) { c(0,0) } else { rep(index * native.unit, 2) },
-							y = c(0,1),
+							x = if (i == 0) { c(0, 0) } else { rep(index * native.unit, 2) },
+							y = c(0, 1),
 							gp = do.call(gpar, grid.col)
 							),
 						row = NULL,
@@ -219,7 +219,7 @@ covariates.grob <- function(
 			# Draw row grid lines
 			if (!is.null(grid.row)) {
 				if (!is.list(grid.row)) {
-					stop("Argument grid.row of covariates.grob must be a list.");
+					stop('Argument grid.row of covariates.grob must be a list.');
 					}
 
 				# By default, draw all row lines
@@ -229,15 +229,15 @@ covariates.grob <- function(
 
 				# Make sure user-specified lines are in bounds
 				else if (any(row.lines < 0) || any(row.lines > ncovariates)) {
-					stop("Argument row.lines of covariates.grob out of bounds.");
+					stop('Argument row.lines of covariates.grob out of bounds.');
 					}
 
 				for (i in row.lines) {
 					key.gf <- placeGrob(
 						frame = key.gf,
 						grob = linesGrob(
-							x = c(0,1),
-							y = if (i == 0) { c(0,0) } else { c(1,1) },
+							x = c(0, 1),
+							y = if (i == 0) { c(0, 0) } else { c(1, 1) },
 							gp = do.call(gpar, grid.row)
 							),
 						row = if (i == 0) { 1 } else { i },
@@ -249,7 +249,7 @@ covariates.grob <- function(
 			# Draw border
 			if (!is.null(grid.border)) {
 				if (!is.list(grid.border)) {
-					stop("Argument grid.border of covariates.grob must be a list.");
+					stop('Argument grid.border of covariates.grob must be a list.');
 					}
 
 				grid.border[['fill']] <- 'transparent';
@@ -269,8 +269,8 @@ covariates.grob <- function(
 	# Restore original lattice setting
 	lattice.options('axis.padding' = list(factor = lattice.old.factor));
 	# set x and y coordinates
-	key.gf$framevp$y = unit(y,"npc");
-	key.gf$framevp$x = unit(x,"npc");
+	key.gf$framevp$y <- unit(y, 'npc');
+	key.gf$framevp$x <- unit(x, 'npc');
 	# Return the grob
 	return(key.gf);
 	}

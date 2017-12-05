@@ -34,14 +34,14 @@ legend.grob <- function(
 	legend.grob.final <- NULL;
 
 	if (length(legends) > 0) {
-		if(is.null(font.family)){
-			font.family = BoutrosLab.plotting.general::get.defaults(property = 'fontfamily',use.legacy.settings = use.legacy.settings)
+		if (is.null(font.family)) {
+			font.family <- BoutrosLab.plotting.general::get.defaults(property = 'fontfamily', use.legacy.settings = use.legacy.settings)
 			}
 		num.legends <- length(legends);
 
 		# If user-specified layout is not the right size, use a default layout
 		if (layout[1] * layout[2] < num.legends) {
-			warning("User-specified legend layout is not large enough. Using default layout.");
+			warning('User-specified legend layout is not large enough. Using default layout.');
 			layout <- c(1, num.legends);
 			}
 
@@ -62,7 +62,7 @@ legend.grob <- function(
 			);
 
 		# Create a frame using this layout
-		legend.grob.final <- frameGrob(layout = legend.layout);
+		legend.grob.final <- frameGrob(layout = legend.layout, gp = gpar(fill = 'black', alpha = 1));
 
 		# Create each legend
 		for (i in 1:num.legends) {
@@ -102,7 +102,8 @@ legend.grob <- function(
 							gp = gpar(
 								cex = title.cex,
 								fontface = title.fontface,
-								fontfamily = font.family
+								fontfamily = font.family,
+								fill = 'black'
 								)
 							);
 
@@ -123,7 +124,8 @@ legend.grob <- function(
 								legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1],
 								unit(title.grob.height + 0.4, 'lines')
 								),
-							force.height = TRUE
+							force.height = TRUE,
+
 							);
 						}
 
@@ -137,13 +139,13 @@ legend.grob <- function(
 							space = 'right',
 							between = 0.5,
 							rep = TRUE,
-							tick.number = if (is.null(legendi[['tck.number']])) { 0 } else{ legendi[['tck.number']] },
+							tick.number = if (is.null(legendi[['tck.number']])) { 0 } else { legendi[['tck.number']] },
 							tck = if (is.null(legendi[['tck']])) { 0 } else { legendi[['tck']] },
 							at = do.breaks(c(0, legendi[['continuous.amount']]), legendi[['continuous.amount']]),
 							col = colorRamp,
 							width = if (is.null(legendi[['width']])) { 2 } else { legendi[['width']] },
 							labels = list(
-								labels = if (is.null(legendi[['labels']])) { c('') } else{ legendi[['labels']] },
+								labels = if (is.null(legendi[['labels']])) { c('') } else { legendi[['labels']] },
 								at = if (is.null(legendi[['at']])) { NULL } else { legendi[['at']] },
 								cex = if (is.null(legendi[['cex']])) { 0.8 } else { legendi[['cex']] },
 								rot =  if (is.null(legendi[['labels.rot']])) { 0 } else { legendi[['labels.rot']] }
@@ -160,12 +162,12 @@ legend.grob <- function(
 									x = if (is.null(legendi[['pos.x']])) { 0 } else { legendi[['pos.x']] },
 									y = if (is.null(legendi[['pos.y']])) { 0 } else { legendi[['pos.y']] },
 									angle = if (is.null(legendi[['angle']])) { 0 } else { legendi[['angle']] },
-									just = if(is.null(legendi[['just']])){ c("left", "bottom") } else { legendi[['just']] }
+									just = if (is.null(legendi[['just']])) { c('left', 'bottom') } else { legendi[['just']] }
 									)
 								),
 							row = 3 * (legend.row - 1) + 2,
 							col = 2 * (legend.col - 1) + 1,
-							height = if (is.null(legendi[['height']])) { unit(1, 'lines') } else { unit(legendi[['height']],'lines') },
+							height = if (is.null(legendi[['height']])) { unit(1, 'lines') } else { unit(legendi[['height']], 'lines') },
 							);
 						}
 					else {
@@ -202,7 +204,7 @@ legend.grob <- function(
 		if (!is.null(border)) {
 
 			if (!is.list(border)) {
-				stop("Argument border of legend.grob must be a list.");
+				stop('Argument border of legend.grob must be a list.');
 				}
 
 			border[['fill']] <- 'transparent';
@@ -263,7 +265,7 @@ legend.grob <- function(
 			}
 		}
 	# set x and y coordinates
-	legend.grob.final$framevp$y = unit(y,"npc");
-	legend.grob.final$framevp$x = unit(x,"npc");
+	legend.grob.final$framevp$y <- unit(y, 'npc');
+	legend.grob.final$framevp$x <- unit(x, 'npc');
 	return(legend.grob.final);
 	}

@@ -12,8 +12,8 @@
 ### FUNCTION TO WRITE PLOT  #######################################################################
 write.plot <- function(
 	trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL,
-	height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE, 
-	description = "Created with BoutrosLab.plotting.general"
+	height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE,
+	description = 'Created with BoutrosLab.plotting.general'
 	) {
 	# if requested create the image file
 	if (!is.null(filename)) {
@@ -26,7 +26,7 @@ write.plot <- function(
 			data.directory <- data.directories[order(file.checks, decreasing = TRUE)[1]];
 			}
 		else {
-			stop("Unable to find ext2function file.");
+			stop('Unable to find ext2function file.');
 			}
 
 		# read in the mapping table
@@ -60,7 +60,7 @@ write.plot <- function(
 
 			# grab the mapping object
 			if (!extension %in% rownames(mapping.object)) {
-				stop(paste("Unknown extension:", extension, "."));
+				stop(paste('Unknown extension:', extension, '.'));
 				}
 
 			call.param <- mapping.object[extension, , drop = FALSE];
@@ -90,18 +90,18 @@ write.plot <- function(
 
 			# MANY checks for correctness of additional plots to embedded and parameters
 			if (
-				(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
+				(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') ||
 				(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) != 'list')
 				) {
 				# checks if trellis objects and locations are provided in a list
-				stop("Additional trellis objects and their locations must be provided in a list.");
+				stop('Additional trellis objects and their locations must be provided in a list.');
 				}
 			else if (
 				(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
 				(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
 				) {
 				# checks if coordinates are specified in a list if trellis objects are provided
-				stop("If trellis objects are specified, their coordinates must be provided in a list.");
+				stop('If trellis objects are specified, their coordinates must be provided in a list.');
 				}
 			else if (
 				(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
@@ -113,12 +113,12 @@ write.plot <- function(
 				if (
 					!exists('xleft', where = additional.trellis.locations) ||
 					!exists('ybottom', where = additional.trellis.locations) ||
-					!exists('xright', where = additional.trellis.locations) || 
+					!exists('xright', where = additional.trellis.locations) ||
 					!exists('ytop', where = additional.trellis.locations)
 					) {
-					stop("Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop.");
+					stop('Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop.');
 					}
-				
+
 				# checking lengths of inputs
 				input.lengths <- list(
 					length(additional.trellis.objects),
@@ -130,11 +130,11 @@ write.plot <- function(
 
 				# only proceed if inputs are equal
 				if (length(unique(input.lengths)) != 1) {
-					stop("Lists of trellis objects and coordinates provided not equal in length.");
+					stop('Lists of trellis objects and coordinates provided not equal in length.');
 					}
 				else if (length(unique(input.lengths)) == 1) {
 					for (i in 1:length(additional.trellis.objects)) {
-						 print(
+						print(
 							x = additional.trellis.objects[[i]],
 							position = c(
 								additional.trellis.locations$xleft[i],
@@ -158,7 +158,7 @@ write.plot <- function(
 
 			# write image metadata
 			BoutrosLab.plotting.general::write.metadata(
-				filename = filename[i], 
+				filename = filename[i],
 				description = description
 				);
 			}
@@ -167,18 +167,18 @@ write.plot <- function(
 	else if (is.null(filename)) {
 		# MANY checks for correctness of additional plots to embedded and parameters
 		if (
-			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') || 
+			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) != 'list') ||
 			(!is.null(additional.trellis.locations) && typeof(additional.trellis.locations) != 'list')
 			) {
 			# checks if trellis objects and locations are provided in a list
-			stop("Additional trellis objects and their locations must be provided in a list.");
+			stop('Additional trellis objects and their locations must be provided in a list.');
 			}
 		else if (
 			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
 			(is.null(additional.trellis.locations) || typeof(additional.trellis.locations) != 'list')
 			) {
 			# checks if coordinates are specified in a list if trellis objects are provided
-			stop("If trellis objects are specified, their coordinates must be provided in a list.");
+			stop('If trellis objects are specified, their coordinates must be provided in a list.');
 			}
 		else if (
 			(!is.null(additional.trellis.objects) && typeof(additional.trellis.objects) == 'list') &&
@@ -190,10 +190,10 @@ write.plot <- function(
 			if (
 				!exists('xleft', where = additional.trellis.locations) ||
 				!exists('ybottom', where = additional.trellis.locations) ||
-				!exists('xright', where = additional.trellis.locations) || 
+				!exists('xright', where = additional.trellis.locations) ||
 				!exists('ytop', where = additional.trellis.locations)
 				) {
-				stop("Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop.");
+				stop('Locations for trellis objects must be specified using: xleft, ybottom, xright, ytop.');
 				}
 			# checking lengths of inputs
 			input.lengths <- list(
@@ -205,13 +205,13 @@ write.plot <- function(
 				);
 			# only proceed if inputs are equal
 			if (length(unique(input.lengths)) != 1) {
-				stop("Lists of trellis objects and coordinates provided not equal in length.");
+				stop('Lists of trellis objects and coordinates provided not equal in length.');
 				}
 			else if (length(unique(input.lengths)) == 1) {
 				# plot the object to the file
 				plot(trellis.object, newpage = TRUE);
 				for (i in 1:length(additional.trellis.objects)) {
-					 print(
+					print(
 						x = additional.trellis.objects[[i]],
 						position = c(
 							additional.trellis.locations$xleft[i],
@@ -236,6 +236,6 @@ write.plot <- function(
 
 	# check if graphics device is not set i-e 'null device'
 	if (enable.warnings && 1 == dev.cur()) {
-		warning("\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\").\n");
+		warning('\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\").\n');
 		}
 	}

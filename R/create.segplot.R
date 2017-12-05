@@ -20,7 +20,7 @@ create.segplot <- function(
 	yaxis.tck = 1, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, abline.h = NULL, abline.v = NULL,
 	abline.lty = 1, abline.lwd = 1, abline.col = 'black', segments.col = 'black', segments.lwd = 1,
 	layout = NULL, as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same', y.relation = 'same',
-	top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, 
+	top.padding = 0.5, bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0,
 	level = NULL, col.regions = NULL, centers = NULL, plot.horizontal = TRUE, draw.bands = FALSE, pch = 16,
 	symbol.col = 'black', symbol.cex = 1, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL,
 	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
@@ -31,12 +31,12 @@ create.segplot <- function(
 
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+        rectangle.info <- list(
+        	xright = xright.rectangle,
+                xleft = xleft.rectangle,
+                ytop = ytop.rectangle,
+                ybottom = ybottom.rectangle
+                );
 
 	# add preloaded defaults
         if (preload.default == 'paper') {
@@ -46,7 +46,7 @@ create.segplot <- function(
 
 	# add some error checking
 	if (!plot.horizontal) {
-		warning("Be aware that vertical segplots can not be used as the first plot in a multiplot. Consider using create.scatterplot instead.");
+		warning('Be aware that vertical segplots can not be used as the first plot in a multiplot. Consider using create.scatterplot instead.');
 		}
 
 	# Now make the actual plot object
@@ -59,10 +59,10 @@ create.segplot <- function(
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright = rectangleInfo$xright,
-					ytop = rectangleInfo$ytop,
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
 					col = col.rectangle,
 					alpha = alpha.rectangle,
 					border = NA
@@ -79,15 +79,15 @@ create.segplot <- function(
                                         col = segments.col,
                                         alpha = 1,
                                         border = NA
-                                        );	
+                                        );
 				}
 
 			else if (draw.bands == TRUE) {
 				panel.rect(
                                         xleft = data$min,
-                                        ybottom = seq(0.75,10,1),
+                                        ybottom = seq(0.75, 10, 1),
                                         xright = data$max,
-                                        ytop = seq(1.25,11,1),
+                                        ytop = seq(1.25, 11, 1),
                                         col = segments.col,
                                         alpha = 1,
                                         border = NA
@@ -126,10 +126,10 @@ create.segplot <- function(
 				draw.bands = FALSE,
 				...,
 				)
-			
+
 			},
 		main = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = main,
@@ -141,7 +141,7 @@ create.segplot <- function(
 				)
 			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.label,
@@ -164,7 +164,7 @@ create.segplot <- function(
                                 )
                         ),
 		ylab = BoutrosLab.plotting.general::get.defaults(
-			property = 'fontfamily', 
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = ylab.label,
@@ -174,13 +174,13 @@ create.segplot <- function(
 				)
 			),
 		between = list(
-			x = x.spacing, 
+			x = x.spacing,
 			y = y.spacing
-			),	
+			),
 		scales = list(
 			x = BoutrosLab.plotting.general::get.defaults(
 				property = 'fontfamily',
-				use.legacy.settings = use.legacy.settings || ('Nature' == style), 
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = xaxis.lab,
 					rot = xaxis.rot,
@@ -194,7 +194,7 @@ create.segplot <- function(
 					)
 				),
 			y = BoutrosLab.plotting.general::get.defaults(
-				property = 'fontfamily', 
+				property = 'fontfamily',
 				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
 					labels = yaxis.lab,
@@ -206,7 +206,7 @@ create.segplot <- function(
 					limits = ylimits,
 					at = yat,
 					relation = y.relation,
-					alternating = FALSE					
+					alternating = FALSE
 					)
 				),
 			alternating = 1
@@ -255,7 +255,7 @@ create.segplot <- function(
 			),
 		colorkey = FALSE,
 		layout = layout,
-		as.table = as.table,	
+		as.table = as.table,
 		pretty = TRUE,
 		key = key,
 		legend = legend
@@ -265,9 +265,9 @@ create.segplot <- function(
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -277,14 +277,15 @@ create.segplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
-		} 
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
+		}
 
 	# Otherwise use the BL style if requested
 	else if ('BoutrosLab' == style) {

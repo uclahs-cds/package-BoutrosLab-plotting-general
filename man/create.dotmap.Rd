@@ -51,9 +51,9 @@ create.dotmap(
 	row.lwd = 1.5, 
 	spot.size.function = 'default', 
 	spot.colour.function = 'default', 
-	NA.spot.size = 7, 
-	NA.pch = 4, 
-	NA.spot.size.colour = 'black',
+	na.spot.size = 7, 
+	na.pch = 4, 
+	na.spot.size.colour = 'black',
 	grid.colour = NULL, 
 	colour.scheme = 'white', 
 	total.colours = 99, 
@@ -140,9 +140,9 @@ create.dotmap(
     \item{row.lwd}{Thickness of row grid lines}
     \item{spot.size.function}{The function that translates values in x into dotmap spot-size. The default is 0.1 + (2 * abs(x))}
     \item{spot.colour.function}{The function that translates values in x into dotmap spot-colour. The default gives negative values blue, positive values red, and zero white. Parameter also accepts 'columns' and 'rows', which groups the dot colours by columns or rows (not both), respectively. For column/row grouping, there are 12 unique colours and these colours will start to repeat once there are more than 12 columns/rows.}
-    \item{NA.spot.size}{The size for plotting character for NA cells. Defaults to 7.}
-    \item{NA.pch}{The type of plotting character to represent NA cells. Defaults to 4 ('X').}
-    \item{NA.spot.size.colour}{Colour for plotting character representing NA cells. Defaults to black.}
+    \item{na.spot.size}{The size for plotting character for NA cells. Defaults to 7.}
+    \item{na.pch}{The type of plotting character to represent NA cells. Defaults to 4 ('X').}
+    \item{na.spot.size.colour}{Colour for plotting character representing NA cells. Defaults to black.}
     \item{grid.colour}{The colour for the grid lines. DEPRECATED}
     \item{colour.scheme}{Background colouring. Accepts a vector of colours. Vectors of two or three colours are gradiated to create the final palette. Defaults to \dQuote{white}.}
     \item{total.colours}{Total number of colours to plot for the Background colours}

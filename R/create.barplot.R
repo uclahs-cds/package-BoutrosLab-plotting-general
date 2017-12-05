@@ -27,117 +27,119 @@ create.barplot <- function(
 	box.ratio = 2, sample.order = 'none', group.labels = FALSE, key = list(text = list(lab = c(''))),
 	legend = NULL, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black',
 	text.cex = 1, text.fontface = 'bold', strip.col = 'white', strip.cex = 1, y.error.up = NULL,
-	y.error.down = y.error.up, y.error.bar.col = 'black', error.whisker.width = width/(nrow(data)*4),
+	y.error.down = y.error.up, y.error.bar.col = 'black', error.whisker.width = width / (nrow(data) * 4),
 	error.bar.lwd = 1, error.whisker.angle = 90, add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL,
 	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'grey85', alpha.rectangle = 1,
 	line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE,
 	text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
-	raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2/37, 'npc'),
+	raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2 / 37, 'npc'),
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom', 
+	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	use.legacy.settings = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions
-	rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-	
-	if(!is.null(yat) && length(yat)==1){       
-		if(yat == "auto"){
-			if(stack == TRUE){
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+			if (stack == TRUE) {
 				# run once to get data readjustment (in case log)
-				s = split(data, data[toString(formula[[3]])])
-				f = list()
-				for (x in 1:length(s))
-					f[[x]] = sum(s[[x]][toString(formula[[2]])])
-				out = auto.axis(f, log.scaled = FALSE)
-				yat = out$at
-			        yaxis.lab = out$axis.lab
+				s <- split(data, data[toString(formula[[3]])])
+				final.list <- list()
+				for (x in 1:length(s)) {
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])])
+					}
+				out <- auto.axis(final.list, log.scaled = FALSE)
+				yat <- out$at
+				yaxis.lab <- out$axis.lab
+				}
+			else {
+				out <- auto.axis(unlist(data[toString(formula[[2]])]))
+				data[toString(formula[[2]])] <- out$x
+				yat <- out$at
+				yaxis.lab <- out$axis.lab
+				}
 			}
-			else{
-                		out = auto.axis(unlist(data[toString(formula[[2]])]))
-                		data[toString(formula[[2]])] = out$x
-				yat = out$at
-                		yaxis.lab = out$axis.lab
+
+		else if (yat == 'auto.linear') {
+			if (stack == TRUE) {
+				# run once to get data readjustment (in case log)
+				s <- split(data, data[toString(formula[[3]])])
+				final.list <- list()
+				for (x in 1:length(s)) {
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])]);
+					}
+				out <- auto.axis(final.list, log.scaled = FALSE)
+				yat <- out$at
+				yaxis.lab <- out$axis.lab
+				}
+			else {
+				out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE)
+				data[toString(formula[[2]])] <- out$x
+				yat <- out$at
+				yaxis.lab <- out$axis.lab
+				}
+			}
+
+		else if (yat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE)
+			data[toString(formula[[2]])] <- out$x
+			yat <- out$at
+			yaxis.lab <- out$axis.lab
+			}
+		}
+	if (!is.null(xat) && length(xat) == 1) {
+		if (xat == 'auto') {
+			if (stack == TRUE) {
+				# run once to get data readjustment (in case log)
+				s <- split(data, data[toString(formula[[3]])])
+				final.list <- list()
+				for (x in 1:length(s)) {
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])])
+					}
+				out <- auto.axis(final.list, log.scaled = FALSE)
+				xat <- out$at
+				xaxis.lab <- out$axis.lab
+				}
+			else {
+				out <- auto.axis(unlist(data[toString(formula[[3]])]))
+				data[toString(formula[[3]])] <- out$x
+				xat <- out$at
+				xaxis.lab <- out$axis.lab
+				}
+			}
+		else if (xat == 'auto.linear') {
+			if (stack == TRUE) {
+				# run once to get data readjustment (in case log)
+				s <- split(data, data[toString(formula[[3]])])
+				final.list <- list()
+				for (x in 1:length(s)) {
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])])
+					}
+				out <- auto.axis(final.list, log.scaled = FALSE)
+				xat <- out$at
+				xaxis.lab <- out$axis.lab
+				}
+			else {
+				out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE)
+				data[toString(formula[[3]])] <- out$x
+				xat <- out$at
+				xaxis.lab <- out$axis.lab
+				}
+			}
+		else if (xat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE)
+			data[toString(formula[[3]])] <- out$x
+			xat <- out$at
+			xaxis.lab <- out$axis.lab
 			}
 		}
 
-        	else if(yat == "auto.linear"){
-                        if(stack == TRUE){
-                                # run once to get data readjustment (in case log)
-                                s = split(data, data[toString(formula[[3]])])
-                                f = list()
-                                for (x in 1:length(s))
-                                        f[[x]] = sum(s[[x]][toString(formula[[2]])])
-                                out = auto.axis(f,log.scaled = FALSE)
-                                yat = out$at
-                                yaxis.lab = out$axis.lab
-                        }
-			else{
-                		out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                		data[toString(formula[[2]])] = out$x
-                		yat = out$at
-                		yaxis.lab = out$axis.lab
-			}
-		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                        if(stack == TRUE){
-                                # run once to get data readjustment (in case log)
-				s = split(data, data[toString(formula[[3]])])
-                                f = list()
-                                for (x in 1:length(s))
-                                       	f[[x]] = sum(s[[x]][toString(formula[[2]])])
-                                out = auto.axis(f, log.scaled = FALSE)
-                                xat = out$at
-                                xaxis.lab = out$axis.lab
-				
-                        }
-			else{
-                		out = auto.axis(unlist(data[toString(formula[[3]])]))
-                		data[toString(formula[[3]])] = out$x
-                		xat = out$at
-                		xaxis.lab = out$axis.lab
-			}
-        	}
-        	else if(xat == "auto.linear"){
-                        if(stack == TRUE){
-                                # run once to get data readjustment (in case log)
-                                s = split(data, data[toString(formula[[3]])])
-                                f = list()
-                                for (x in 1:length(s))
-                                        f[[x]] = sum(s[[x]][toString(formula[[2]])])
-                                out = auto.axis(f, log.scaled = FALSE)
-                                xat = out$at
-                                xaxis.lab = out$axis.lab
-                        }
-			else{
-                		out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                		data[toString(formula[[3]])] = out$x
-                		xat = out$at
-                		xaxis.lab = out$axis.lab
-			}
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
-	
 	####### Error checking ########
 	tryCatch(
 		expr = {
@@ -145,10 +147,10 @@ create.barplot <- function(
 			as.formula(formula);
 			},
 		error = function(message) {
-			stop("Invalid formula.");
+			stop('Invalid formula.');
 			}
 		);
-   
+
 	# add preloaded defaults
 	if (preload.default == 'paper') {
 		}
@@ -170,19 +172,19 @@ create.barplot <- function(
 
 			# add rectangle
 			if (add.rectangle) {
-			       	panel.rect(
-				       	xleft = rectangleInfo$xleft,
-				       	ybottom = rectangleInfo$ybottom,
-				       	xright = rectangleInfo$xright,
-				       	ytop = rectangleInfo$ytop,
-				       	col = col.rectangle,
-				       	alpha = alpha.rectangle,
-				       	border = NA
-				       	);
+				panel.rect(
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
+					col = col.rectangle,
+					alpha = alpha.rectangle,
+					border = NA
+					);
 				}
 
 			if (!is.null(text.above.bars$labels)) {
-				if (!is.null(groups.new)) { 
+				if (!is.null(groups.new)) {
 					stop("Argument 'text.above.bars' does not work with grouped plots.");
 					}
 
@@ -191,15 +193,15 @@ create.barplot <- function(
 					panel.text(
 						x[text.above.bars$bar.locations] + text.above.bars$padding,
 						text.above.bars$bar.locations,
-						text.above.bars$labels, 
+						text.above.bars$labels,
 						srt = text.above.bars$rotation
 						);
 					}
 				else {
 					panel.text(
-						text.above.bars$bar.locations, 
+						text.above.bars$bar.locations,
 						y[text.above.bars$bar.locations] + text.above.bars$padding,
-						text.above.bars$labels, 
+						text.above.bars$labels,
 						srt = text.above.bars$rotation
 						);
 					}
@@ -298,25 +300,23 @@ create.barplot <- function(
 
 				# handle x-position offset due to groups
 				if (!is.null(groups)) {
-					
+
 					num.groups <- length(subscripts) / length(unique(groups));
 					group.num  <- (subscripts - 1) %/% num.groups;
-					if(length(unique(group.num)) %% 2 == 1){
-					  group.num = group.num - trunc(length(unique(group.num))/2)
-					  
-					}
-					else{
-					  ng = trunc(length(unique(group.num))/2)
-	
-					  subtr = 1 + 2*(ng-1)
-					  group.num = group.num*2 - subtr
-					}
-					offset <- (6/(nrow(data)*4)) * (group.num)*(1.75 - (0.85*(length(unique(groups))+1)%%2))
+					if (length(unique(group.num)) %% 2 == 1) {
+						group.num <- group.num - trunc(length(unique(group.num)) / 2)
+						}
+					else {
+						number.of.groups <- trunc(length(unique(group.num)) / 2)
+						subtr <- 1 + 2 * (number.of.groups - 1)
+						group.num <- group.num * 2 - subtr
+						}
+					offset <- (6 / (nrow(data) * 4)) * (group.num) * (1.75 - (0.85 * (length(unique(groups)) + 1) %% 2))
 					}
 				else {
 					offset <- 0;
-				}
-				if(!plot.horizontal){
+					}
+				if (!plot.horizontal) {
 					panel.arrows(
 						# convert to numeric to handle when x is a factor
 						x0 = as.numeric(x) + offset,
@@ -330,24 +330,24 @@ create.barplot <- function(
 						lwd = error.bar.lwd
 						);
 					}
-				else{
+				else {
 					panel.arrows(
-                                                # convert to numeric to handle when x is a factor
-                                                y0 = as.numeric(y) + offset,
-                                                x0 = x + y.error.up,
-                                                y1 = as.numeric(y) + offset,
-                                                x1 = x - y.error.down,
-                                                length = error.whisker.width,
-                                                angle = error.whisker.angle,
-                                                ends = 'both',
-                                                col = y.error.bar.col,
-                                                lwd = error.bar.lwd
-                                                );
+						# convert to numeric to handle when x is a factor
+						y0 = as.numeric(y) + offset,
+						x0 = x + y.error.up,
+						y1 = as.numeric(y) + offset,
+						x1 = x - y.error.down,
+						length = error.whisker.width,
+						angle = error.whisker.angle,
+						ends = 'both',
+						col = y.error.bar.col,
+						lwd = error.bar.lwd
+						);
 
 					}
 				}
 
-			# add raster fill 
+			# add raster fill
 			if (!is.null(raster)) {
 				if (raster.vert) {
 					grid.raster(
@@ -517,8 +517,8 @@ create.barplot <- function(
 
 	# add grouped labels
 	if (group.labels) {
-		numGroups <- length(trellis.object$panel.args[[1]]$x)/length(unique(trellis.object$panel.args[[1]]$x));
-		intialaddition <- (1/3)/numGroups;
+		num.groups <- length(trellis.object$panel.args[[1]]$x) / length(unique(trellis.object$panel.args[[1]]$x));
+		intialaddition <- (1 / 3) / num.groups;
 		additions <- intialaddition * 2;
 		newxat <- NULL;
 
@@ -527,8 +527,8 @@ create.barplot <- function(
 			}
 
 		for (i in trellis.object$x.scales$at) {
-			for (j in c(1:numGroups)) {
-				newxat <- c(newxat, i - 1/3 + intialaddition + additions*(j-1));
+			for (j in c(1:num.groups)) {
+				newxat <- c(newxat, i - 1 / 3 + intialaddition + additions * (j - 1));
 				}
 			}
 
@@ -571,9 +571,9 @@ create.barplot <- function(
 					newxat <- NULL;
 					for (j in rev(ordering)) {
 						if (length(which(xat == j) > 0)) {
-							newxat <- c(newxat,which(rev(ordering) == j));
+							newxat <- c(newxat, which(rev(ordering) == j));
 							}
-						else { newxat <- c(newxat,0); }
+						else { newxat <- c(newxat, 0); }
 						}
 
 					trellis.object$x.scales$at <- newxat;
@@ -583,24 +583,24 @@ create.barplot <- function(
 				if (length(xaxis.lab) == 1 && xaxis.lab) {
 					trellis.object$x.scales$labels <- rep(
 						trellis.object$panel.args[[i]]$x[rev(ordering)],
-						length(trellis.object$panel.args[[1]]$x)/num.bars
+						length(trellis.object$panel.args[[1]]$x) / num.bars
 						);
 					}
 
 				# if labels are specified reorder the specified ones
 				else {
 					trellis.object$x.scales$labels <- rev(trellis.object$x.scales$labels[rev(ordering)]);
-					warning("WARNING: the label order you specified has been reordered.");
+					warning('WARNING: the label order you specified has been reordered.');
 					}
 
-				for (j in 0:(length(trellis.object$panel.args[[1]]$x)/num.bars - 1)) {
+				for (j in 0:(length(trellis.object$panel.args[[1]]$x) / num.bars - 1)) {
 					# reorder values of bars
-					trellis.object$panel.args[[i]]$y[c((1+ j*num.bars):(num.bars*(j+1)))] <- rev(
-						trellis.object$panel.args[[i]]$y[ordering+num.bars*j]
+					trellis.object$panel.args[[i]]$y[c( (1 + j * num.bars) : (num.bars * (j + 1) ) )] <- rev(
+						trellis.object$panel.args[[i]]$y[ordering + num.bars * j]
 						);
 
 					# reorder values of x to order in logical order
-					trellis.object$panel.args[[i]]$x <- rep(1:length(ordering), length(trellis.object$panel.args[[1]]$x)/num.bars);
+					trellis.object$panel.args[[i]]$x <- rep(1:length(ordering), length(trellis.object$panel.args[[1]]$x) / num.bars);
 					}
 				}
 			else {
@@ -627,10 +627,10 @@ create.barplot <- function(
 					newyat <- NULL;
 					for (j in rev(ordering)) {
 						if (length(which(yat == j) > 0)) {
-							newyat <- c(newyat,which(rev(ordering) == j));
+							newyat <- c(newyat, which(rev(ordering) == j));
 							}
 						else {
-							newyat <- c(newyat,0);
+							newyat <- c(newyat, 0);
 							}
 						}
 
@@ -638,37 +638,37 @@ create.barplot <- function(
 					}
 
 				if (length(yaxis.lab) == 1 && yaxis.lab) {
-						trellis.object$y.scales$labels <- rep(
-							trellis.object$panel.args[[i]]$y[ordering],
-							length(trellis.object$panel.args[[1]]$y)/num.bars
-							);
-						}
+					trellis.object$y.scales$labels <- rep(
+						trellis.object$panel.args[[i]]$y[ordering],
+						length(trellis.object$panel.args[[1]]$y) / num.bars
+						);
+					}
 				else {
 					trellis.object$y.scales$labels <- rev(trellis.object$y.scales$labels[ordering]);
-					warning("WARNING: the label order you specified has been reordered.");
+					warning('WARNING: the label order you specified has been reordered.');
 					}
 
-				for (j in 0:(length(trellis.object$panel.args[[1]]$y)/num.bars - 1)) {
-					trellis.object$panel.args[[i]]$x[c((1+ j*num.bars):(num.bars*(j+1)))] <- rev(
-						trellis.object$panel.args[[i]]$x[ordering+num.bars*j]
+				for (j in 0:(length(trellis.object$panel.args[[1]]$y) / num.bars - 1)) {
+					trellis.object$panel.args[[i]]$x[c( (1 + j * num.bars) : (num.bars * (j + 1) ) )] <- rev(
+						trellis.object$panel.args[[i]]$x[ordering + num.bars * j]
 						);
 
-					trellis.object$panel.args[[i]]$y <- rep(1:length(ordering),length(trellis.object$panel.args[[1]]$y)/num.bars);
+					trellis.object$panel.args[[i]]$y <- rep(1:length(ordering), length(trellis.object$panel.args[[1]]$y) / num.bars);
 					}
 				}
 			}
 
-			y.error.up <- y.error.up[rev(ordering)];
-			y.error.down <- y.error.down[rev(ordering)];
+		y.error.up <- y.error.up[rev(ordering)];
+		y.error.down <- y.error.down[rev(ordering)];
 		}
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {
 
 		# Re-add bottom and left axes
-		trellis.object$axis = function(side, line.col = 'black', ...) {
+		trellis.object$axis <- function(side, line.col = 'black', ...) {
 			# Only draw axes on the left and bottom
-			if (side %in% c('bottom','left')) {
+			if (side %in% c('bottom', 'left')) {
 				axis.default(side = side, line.col = 'black', ...);
 				lims <- current.panel.limits();
 				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
@@ -678,13 +678,14 @@ create.barplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and
+			en-dashes for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.");
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

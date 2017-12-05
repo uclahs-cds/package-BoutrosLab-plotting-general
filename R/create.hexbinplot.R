@@ -20,7 +20,7 @@ create.hexbinplot <- function(
 	ylimits = NULL, xat = TRUE, yat = TRUE, xaxis.lab = NA, yaxis.lab = NA,	xaxis.cex = 1.5, yaxis.cex = 1.5,
 	xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
 	xaxis.fontface = 'bold', yaxis.fontface = 'bold', layout = NULL, as.table = FALSE, x.relation = 'same',
-	y.relation = 'same', x.spacing = 0, y.spacing = 0, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold', 
+	y.relation = 'same', x.spacing = 0, y.spacing = 0, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold',
 	add.grid = FALSE, abline.h = NULL, abline.v = NULL, abline.lty = NULL, abline.lwd = NULL,
 	abline.col = 'black', abline.front = FALSE, add.xyline = FALSE, xyline.col = 'black', xyline.lwd = 1,
 	xyline.lty = 1, add.curves = FALSE, curves.exprs = NULL, curves.from = min(data, na.rm = TRUE),
@@ -31,7 +31,7 @@ create.hexbinplot <- function(
 	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
 	background.col = 'transparent',	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in',
 	resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
-	style = 'BoutrosLab',preload.default = 'custom', use.legacy.settings = FALSE
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE
 	) {
 
 	# IMPORTANT NOTE:
@@ -47,57 +47,57 @@ create.hexbinplot <- function(
 	# - if 'maxcnt' is passed, make sure it is not smaller than the actual maximum count (value depends on nbins).
 	# - Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without
 	# - specifying the 'maxcnt' parameter using the desired number of bins.
-	
+
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangleInfo = list(
-                                xright = xright.rectangle,
-                                xleft = xleft.rectangle,
-                                ytop = ytop.rectangle,
-                                ybottom = ybottom.rectangle
-                        );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-        if(!is.null(yat) && length(yat) == 1){
-        	if(yat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]))
-                	data[toString(formula[[2]])] = out$x
-			yat = out$at
-                	yaxis.lab = out$axis.lab
-		}
+        if (!is.null(yat) && length(yat) == 1) {
+        	if (yat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
+                	data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
 
-        	else if(yat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = FALSE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
+        	else if (yat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+			}
+
+        	else if (yat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+                	data[toString(formula[[2]])] <- out$x;
+                	yat <- out$at;
+                	yaxis.lab <- out$axis.lab;
+        		}
 		}
-    
-        	else if(yat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[2]])]),log.scaled = TRUE)
-                	data[toString(formula[[2]])] = out$x
-                	yat = out$at
-                	yaxis.lab = out$axis.lab
-        	}
-	}
-	if(!is.null(xat) && length(xat) == 1){
-        	if(xat == "auto"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]))
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.linear"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = FALSE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-        	else if(xat == "auto.log"){
-                	out = auto.axis(unlist(data[toString(formula[[3]])]),log.scaled = TRUE)
-                	data[toString(formula[[3]])] = out$x
-                	xat = out$at
-                	xaxis.lab = out$axis.lab
-        	}
-	}
+	if (!is.null(xat) && length(xat) == 1) {
+        	if (xat == 'auto') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.linear') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+        	else if (xat == 'auto.log') {
+                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+                	data[toString(formula[[3]])] <- out$x;
+                	xat <- out$at;
+                	xaxis.lab <- out$axis.lab;
+        		}
+		}
 
 	# add preloaded defaults
         if (preload.default == 'paper') {
@@ -114,10 +114,10 @@ create.hexbinplot <- function(
 			# add rectangle if requested
 			if (add.rectangle) {
 				panel.rect(
-					xleft   = rectangleInfo$xleft,
-					ybottom = rectangleInfo$ybottom,
-					xright  = rectangleInfo$xright,
-					ytop    = rectangleInfo$ytop,
+					xleft   = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright  = rectangle.info$xright,
+					ytop    = rectangle.info$ytop,
 					col     = col.rectangle,
 					alpha   = alpha.rectangle,
 					border  = NA
@@ -209,7 +209,7 @@ create.hexbinplot <- function(
 
 			# Add text to plot
 			if (add.text) {
-				 panel.text(
+				panel.text(
 					x	 = text.x,
 					y	 = text.y,
 					labels   = text.labels,
@@ -253,8 +253,8 @@ create.hexbinplot <- function(
 			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
-	    			label = xlab.top.label,
-				cex = xlab.top.cex,
+				label = xlab.top.label,
+			        cex = xlab.top.cex,
 				col = xlab.top.col,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				just = xlab.top.just,
@@ -374,13 +374,14 @@ create.hexbinplot <- function(
 		# Ensure sufficient resolution for graphs
 		if (resolution < 1200) {
 			resolution <- 1200;
-			warning("Setting resolution to 1200 dpi.");
+			warning('Setting resolution to 1200 dpi.');
 			}
 
 		# Other required changes which are not accomplished here
-		warning("Nature also requires italicized single-letter variables and en-dashes for ranges and negatives. See example in documentation for how to do this.");
+		warning('Nature also requires italicized single-letter variables and en-dashes
+			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning("Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend")
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend')
 		}
 
 	# Otherwise use the BL style if requested
