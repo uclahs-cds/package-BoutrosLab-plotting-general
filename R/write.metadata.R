@@ -34,6 +34,7 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 		plotting.general.version 	<- packageVersion('BoutrosLab.plotting.general');
 		tryCatch(
 			plotting.survival.version <- packageVersion('BoutrosLab.plotting.survival'),
+
 			error = function(e) {
 				plotting.survival.version <- 'unknown';
 				}

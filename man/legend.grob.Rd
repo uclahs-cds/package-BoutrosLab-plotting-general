@@ -18,7 +18,9 @@ legend.grob(
 	between.row = 1,
 	use.legacy.settings = FALSE,
         x = 0.5,
-        y = 0.5
+        y = 0.5,
+	background.col = "white",
+	background.alpha = 0
 	);
 }
 \arguments{
@@ -38,6 +40,8 @@ The 'colours' component is a vector of fill colours to be used for the rectangle
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)} 
     \item{x}{x coordinate in npc coordinate system}
     \item{y}{y coordinate in npc coordinate system}
+    \item{background.col}{colour for the background of the legend grob}
+    \item{background.alpha}{alpha for the background of the legend grob}
 }
 \value{Returns an grob representing the legend(s)}
 \author{Lauren Chong}

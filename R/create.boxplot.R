@@ -226,7 +226,7 @@ create.boxplot <- function(
 					cex = pvalues.cex,
 					fontface = 'bold',
 					srt = if (rotate.pvals) { -90 } else { 0 }
-					)
+					);
 				}
 			},
 		fill = col,

@@ -519,7 +519,7 @@ create.qqplot.fit <- function(
 		warning('Nature also requires italicized single-letter variables and en-dashes
 			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.')
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested

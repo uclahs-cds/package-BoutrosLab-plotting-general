@@ -3,7 +3,18 @@
 
 print.multipanel <- function(x, ...) {
 	## set class to that of a grid object
-	class(x) <- c('gtable', 'gTree', 'grob', 'gDesc');
+	class(x) <- c('frame', 'gTree', 'grob', 'gDesc');
+	## close previous items if exist
+	if (!is.null(dev.list()) && length(unlist(grid.ls(print = FALSE))) > 0) {
+		grid.remove(grid.ls(print = FALSE)$name[1], redraw = TRUE);
+		}
+	## draw the plot like a grob
+  	grid.draw(x);
+	}
+
+plot.multipanel <- function(x, ...) {
+	## set class to that of a grid object
+	class(x) <- c('frame', 'gTree', 'grob', 'gDesc');
 	## close previous items if exist
 	if (!is.null(dev.list()) && length(unlist(grid.ls(print = FALSE))) > 0) {
 		grid.remove(grid.ls(print = FALSE)$name[1], redraw = TRUE);
@@ -377,6 +388,10 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
   	if (identical(legend$top$fun, draw.key) || identical(legend$top$fun, draw.colorkey)) {
 		legend$top$fun <- do.call(legend$top$fun, list(key = legend$top$args$key));
 		}
+  	if (identical(legend$inside$fun, draw.key) || identical(legend$inside$fun, draw.colorkey)) {
+		legend$inside$fun <- do.call(legend$inside$fun, list(key = legend$inside$args$key));
+		}
+
 
 	### LEFT,RIGHT,TOP,BOTTOM GROBS ############
 	### LEFT GROB
@@ -791,6 +806,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			col = 1
 			);
 		}
+
 	# create grob of all plots
 	grob <- arrangeGrob(
 		grobs = plot.objects,
@@ -803,9 +819,19 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		bottom = bottom.grob,
 		right = right.grob
 		);
-
 	## Add white background color
 	grob <- gtable_add_grob(grob, grobs = rectGrob(gp = gpar(fill = 'white', lwd = 0)), 1, 1, nrow(grob), ncol(grob), 0);
+	
+	grob.layout <- grid.layout(1,1);
+	grob.frame <- frameGrob(layout = grob.layout);
+	grob.frame <- placeGrob(grob.frame,grob);
+	#### INSIDE GROBS
+	if( !is.null(legend$inside$fun)) {
+		## add the inside legend to a frameGrob
+		grob.frame <- placeGrob(grob.frame,legend$inside$fun);
+		}
+	grob <- grob.frame;
+	
 
 
 	# If Nature style requested, change figure accordingly
@@ -824,9 +850,10 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
                 warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend');
                 }
 
-
+	class(grob) <- 'multipanel';
 	# return grob
 	if (!is.null(filename)) {
+                file.remove('temp');
 		BoutrosLab.plotting.general::write.plot(
 			trellis.object = grob,
 			filename = filename,
@@ -839,7 +866,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			);
 		}
 	else {
-		class(grob) <- 'multipanel';
+
 		# return grob itself
 		return(grob);
 		}
@@ -894,8 +921,7 @@ get.legend.height <- function(legend, filename, width, height, resolution) {
 		}
 
 	if (!is.null(filename)) {
-		dev.off();
-		file.remove('temp');
+		dev.off()
 		}
 
 	return(as.integer(height.legend));
@@ -951,7 +977,6 @@ get.legend.width <- function(legend, filename, width, height, resolution) {
 
 	if (!is.null(filename)) {
 		dev.off();
-		file.remove('temp');
 		}
 
 	return(as.integer(width.legend));
@@ -1003,7 +1028,6 @@ get.text.grob.width <- function(labels, cex, rot, filename, width, height, resol
 	### make sure to turn off the dev or we will have one open for every time this is called
 	if (!is.null(filename)) {
 		dev.off();
-		file.remove('temp');
 		}
 
 	return(width.grob);
@@ -1054,7 +1078,6 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 	### make sure to turn off the dev or we will have one open for every time this is called
 	if (!is.null(filename)) {
 		dev.off();
-		file.remove('temp');
 		}
 
 	return(height.grob);

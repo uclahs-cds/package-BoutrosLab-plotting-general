@@ -86,7 +86,7 @@ covariates.grob <- function(
 					}
 
 				for (i in row.lines) {
-					index <- if (reorder.grid.index) { order(ord)[i] } else { i }
+					index <- if (reorder.grid.index) { order(ord)[i] } else { i };
 					key.gf <- placeGrob(
 						frame = key.gf,
 						grob = linesGrob(

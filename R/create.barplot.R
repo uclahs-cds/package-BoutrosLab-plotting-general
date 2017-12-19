@@ -49,94 +49,94 @@ create.barplot <- function(
 		if (yat == 'auto') {
 			if (stack == TRUE) {
 				# run once to get data readjustment (in case log)
-				s <- split(data, data[toString(formula[[3]])])
-				final.list <- list()
+				s <- split(data, data[toString(formula[[3]])]);
+				final.list <- list();
 				for (x in 1:length(s)) {
-					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])])
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])]);
 					}
-				out <- auto.axis(final.list, log.scaled = FALSE)
-				yat <- out$at
-				yaxis.lab <- out$axis.lab
+				out <- auto.axis(final.list, log.scaled = FALSE);
+				yat <- out$at;
+				yaxis.lab <- out$axis.lab;
 				}
 			else {
-				out <- auto.axis(unlist(data[toString(formula[[2]])]))
-				data[toString(formula[[2]])] <- out$x
-				yat <- out$at
-				yaxis.lab <- out$axis.lab
+				out <- auto.axis(unlist(data[toString(formula[[2]])]));
+				data[toString(formula[[2]])] <- out$x;
+				yat <- out$at;
+				yaxis.lab <- out$axis.lab;
 				}
 			}
 
 		else if (yat == 'auto.linear') {
 			if (stack == TRUE) {
 				# run once to get data readjustment (in case log)
-				s <- split(data, data[toString(formula[[3]])])
-				final.list <- list()
+				s <- split(data, data[toString(formula[[3]])]);
+				final.list <- list();
 				for (x in 1:length(s)) {
 					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])]);
 					}
-				out <- auto.axis(final.list, log.scaled = FALSE)
-				yat <- out$at
-				yaxis.lab <- out$axis.lab
+				out <- auto.axis(final.list, log.scaled = FALSE);
+				yat <- out$at;
+				yaxis.lab <- out$axis.lab;
 				}
 			else {
-				out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE)
-				data[toString(formula[[2]])] <- out$x
-				yat <- out$at
-				yaxis.lab <- out$axis.lab
+				out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+				data[toString(formula[[2]])] <- out$x;
+				yat <- out$at;
+				yaxis.lab <- out$axis.lab;
 				}
 			}
 
 		else if (yat == 'auto.log') {
-			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE)
-			data[toString(formula[[2]])] <- out$x
-			yat <- out$at
-			yaxis.lab <- out$axis.lab
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
 			}
 		}
 	if (!is.null(xat) && length(xat) == 1) {
 		if (xat == 'auto') {
 			if (stack == TRUE) {
 				# run once to get data readjustment (in case log)
-				s <- split(data, data[toString(formula[[3]])])
-				final.list <- list()
+				s <- split(data, data[toString(formula[[3]])]);
+				final.list <- list();
 				for (x in 1:length(s)) {
-					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])])
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])]);
 					}
-				out <- auto.axis(final.list, log.scaled = FALSE)
-				xat <- out$at
-				xaxis.lab <- out$axis.lab
+				out <- auto.axis(final.list, log.scaled = FALSE);
+				xat <- out$at;
+				xaxis.lab <- out$axis.lab;
 				}
 			else {
-				out <- auto.axis(unlist(data[toString(formula[[3]])]))
-				data[toString(formula[[3]])] <- out$x
-				xat <- out$at
-				xaxis.lab <- out$axis.lab
+				out <- auto.axis(unlist(data[toString(formula[[3]])]));
+				data[toString(formula[[3]])] <- out$x;
+				xat <- out$at;
+				xaxis.lab <- out$axis.lab;
 				}
 			}
 		else if (xat == 'auto.linear') {
 			if (stack == TRUE) {
 				# run once to get data readjustment (in case log)
-				s <- split(data, data[toString(formula[[3]])])
-				final.list <- list()
+				s <- split(data, data[toString(formula[[3]])]);
+				final.list <- list();
 				for (x in 1:length(s)) {
-					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])])
+					final.list[[x]] <- sum(s[[x]][toString(formula[[2]])]);
 					}
-				out <- auto.axis(final.list, log.scaled = FALSE)
-				xat <- out$at
-				xaxis.lab <- out$axis.lab
+				out <- auto.axis(final.list, log.scaled = FALSE);
+				xat <- out$at;
+				xaxis.lab <- out$axis.lab;
 				}
 			else {
-				out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE)
-				data[toString(formula[[3]])] <- out$x
-				xat <- out$at
-				xaxis.lab <- out$axis.lab
+				out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+				data[toString(formula[[3]])] <- out$x;
+				xat <- out$at;
+				xaxis.lab <- out$axis.lab;
 				}
 			}
 		else if (xat == 'auto.log') {
-			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE)
-			data[toString(formula[[3]])] <- out$x
-			xat <- out$at
-			xaxis.lab <- out$axis.lab
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
 			}
 		}
 
@@ -304,14 +304,14 @@ create.barplot <- function(
 					num.groups <- length(subscripts) / length(unique(groups));
 					group.num  <- (subscripts - 1) %/% num.groups;
 					if (length(unique(group.num)) %% 2 == 1) {
-						group.num <- group.num - trunc(length(unique(group.num)) / 2)
+						group.num <- group.num - trunc(length(unique(group.num)) / 2);
 						}
 					else {
-						number.of.groups <- trunc(length(unique(group.num)) / 2)
-						subtr <- 1 + 2 * (number.of.groups - 1)
-						group.num <- group.num * 2 - subtr
+						number.of.groups <- trunc(length(unique(group.num)) / 2);
+						subtr <- 1 + 2 * (number.of.groups - 1);
+						group.num <- group.num * 2 - subtr;
 						}
-					offset <- (6 / (nrow(data) * 4)) * (group.num) * (1.75 - (0.85 * (length(unique(groups)) + 1) %% 2))
+					offset <- (6 / (nrow(data) * 4)) * (group.num) * (1.75 - (0.85 * (length(unique(groups)) + 1) %% 2));
 					}
 				else {
 					offset <- 0;

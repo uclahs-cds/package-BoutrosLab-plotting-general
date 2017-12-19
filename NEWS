@@ -1,4 +1,15 @@
-BoutrosLab.plotting.general 5.8.6 2017-11-15
+BoutrosLab.plotting.general 5.8.8 2017-12-19
+
+UPDATE
+* updated formatting to match coding standard
+* added inside legends to multipanel plot
+
+BUG
+* heatmap now accepts both x and y axis covariates
+
+--------------------------------------------------------------------------
+
+BoutrosLab.plotting.general 5.8.7 2017-11-15
 
 UPDATE
 * updated formatting to match coding standard

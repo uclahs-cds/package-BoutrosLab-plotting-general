@@ -67,3 +67,4 @@ importFrom("tools", "file_ext");
 importFrom("e1071","skewness");
 importFrom("gtable","gtable_add_grob");
 S3method(print, multipanel)
+S3method(plot, multipanel)

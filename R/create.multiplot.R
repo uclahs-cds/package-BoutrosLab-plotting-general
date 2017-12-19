@@ -73,7 +73,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			}
 		}
 	if (is.null(xaxis.top.idx)) {
-		xaxis.top.idx <- length(plot.objects)
+		xaxis.top.idx <- length(plot.objects);
 		}
 	# specify tck marks for different alternating settings
 	if (0 == xaxis.alternating) { xaxis.tck <- c(0, 0); }
@@ -179,7 +179,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 	xscale.components.new <- function(...) {
 
 		args <- xscale.components.default(...);
-        	packet <- which.packet()
+        	packet <- which.packet();
 		if (!is.null(packet)) {
 			if (packet == xaxis.top.idx) {
 				args$top <- args$bottom;
@@ -194,8 +194,8 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
         	return(args);
         	}
 	xscale.components.old <- function(...) {
-		args <- xscale.components.default(...)
-		return(args)
+		args <- xscale.components.default(...);
+		return(args);
 		}
 	xscale.list <- list(xscale.components.old, xscale.components.old, xscale.components.new);
 	trellis.object <- update(
@@ -304,7 +304,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		legend = if (print.new.legend) {legend} else {combined.plot.objects$legend}
 		);
 	if (!is.null(xaxis.top.tck.lab)) {
-		trellis.object <- update(trellis.object, xscale.components = xscale.components.new)
+		trellis.object <- update(trellis.object, xscale.components = xscale.components.new);
 		}
 	# update above doesn't seem to go through so force it here
 	trellis.object$x.limits <- xlimits;
@@ -514,7 +514,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 						}
 					)
 				)
-			)
+			);
        		}
 
 	# If Nature style requested, change figure accordingly
@@ -540,7 +540,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		warning('Nature also requires italicized single-letter variables and en-dashes
 			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend')
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend');
 		}
 	else if ('BoutrosLab' == style) {
 		# Nothing happens

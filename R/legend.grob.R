@@ -13,7 +13,7 @@
 legend.grob <- function(
 	legends, label.cex = 1, title.cex = 1, title.just = 'centre', title.fontface = 'bold',
 	font.family = NULL, size = 3, border = NULL, border.padding = 1, layout = c(1, length(legends)),
-	between.col = 1, between.row = 1, use.legacy.settings = FALSE, x = 0.5, y = 0.5
+	between.col = 1, between.row = 1, use.legacy.settings = FALSE, x = 0.5, y = 0.5, background.col = 'white', background.alpha = 0
 	) {
 
 	# NOTE: calls to 'draw.key' may open a device for drawing (even with 'draw = FALSE' set)
@@ -35,7 +35,7 @@ legend.grob <- function(
 
 	if (length(legends) > 0) {
 		if (is.null(font.family)) {
-			font.family <- BoutrosLab.plotting.general::get.defaults(property = 'fontfamily', use.legacy.settings = use.legacy.settings)
+			font.family <- BoutrosLab.plotting.general::get.defaults(property = 'fontfamily', use.legacy.settings = use.legacy.settings);
 			}
 		num.legends <- length(legends);
 
@@ -63,6 +63,12 @@ legend.grob <- function(
 
 		# Create a frame using this layout
 		legend.grob.final <- frameGrob(layout = legend.layout, gp = gpar(fill = 'black', alpha = 1));
+		legend.grob.final <- placeGrob(legend.grob.final,
+                	rectGrob(gp =
+                        	gpar(fill = background.col,
+                                	col = background.col,
+					alpha = background.alpha)),
+			row = NULL, col = NULL);
 
 		# Create each legend
 		for (i in 1:num.legends) {
@@ -127,6 +133,7 @@ legend.grob <- function(
 							force.height = TRUE,
 
 							);
+
 						}
 
 					# Create a key describing the content of the legend

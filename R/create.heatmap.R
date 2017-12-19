@@ -110,7 +110,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	xaxis.rot <- rep(xaxis.rot, length.out = nrow(x));
 	xaxis.col <- rep(xaxis.col, length.out = nrow(x));
 
-	xaxis.rot[2] <- xaxis.rot.top
+	xaxis.rot[2] <- xaxis.rot.top;
 	# vectorize all y-axis characteristics
 	yaxis.cex <- rep(yaxis.cex, length.out = ncol(x));
 	yaxis.col <- rep(yaxis.col, length.out = ncol(x));
@@ -264,7 +264,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 						}
 					return(n);
 					}
-				)
+				);
 			}
 		else {
 			dd.row <- BoutrosLab.plotting.general::create.dendrogram(
@@ -339,19 +339,19 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				dendrogram.top.grob$children[[1]]$children[[1]]$y0 <-
 				dendrogram.top.grob$children[[1]]$children[[1]]$y0[
 					c( (1 + length(stratified.clusters.cols) * 2):length(dendrogram.top.grob$children[[1]]$children[[1]]$y0))
-					]
+					];
 				dendrogram.top.grob$children[[1]]$children[[1]]$y1 <-
 				dendrogram.top.grob$children[[1]]$children[[1]]$y1[
 					c( (1 + length(stratified.clusters.cols) * 2):length(dendrogram.top.grob$children[[1]]$children[[1]]$y1))
-					]
+					];
 				dendrogram.top.grob$children[[1]]$children[[1]]$x0 <-
 				dendrogram.top.grob$children[[1]]$children[[1]]$x0[
 					c( (1 + length(stratified.clusters.cols) * 2):length(dendrogram.top.grob$children[[1]]$children[[1]]$x0))
-					]
+					];
 				dendrogram.top.grob$children[[1]]$children[[1]]$x1 <-
 				dendrogram.top.grob$children[[1]]$children[[1]]$x1[
 					c( (1 + length(stratified.clusters.cols) * 2):length(dendrogram.top.grob$children[[1]]$children[[1]]$x1))
-					]
+					];
 				}
 			}
 
@@ -405,7 +405,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
 
 	else if (clustering.method != 'none' && cluster.dimensions %in% c('both', 'row', 'rows')) {
-		dd.col <- NULL
+		dd.col <- NULL;
 		# loop through strata if stratified clusters have been specified
 		if (length(stratified.clusters.rows) > 0) {
 			for (i in c(1:length(stratified.clusters.rows))) {
@@ -442,7 +442,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 						}
 					return(node);
 					}
-				)
+				);
 			}
 		else {
 			dd.col <- BoutrosLab.plotting.general::create.dendrogram(
@@ -512,19 +512,19 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				dendrogram.right.grob$children[[1]]$children[[1]]$y0 <-
 				dendrogram.right.grob$children[[1]]$children[[1]]$y0[
 					c( (1 + length(stratified.clusters.rows) * 2):length(dendrogram.right.grob$children[[1]]$children[[1]]$y0))
-					]
+					];
 				dendrogram.right.grob$children[[1]]$children[[1]]$y1 <-
 				dendrogram.right.grob$children[[1]]$children[[1]]$y1[
 					c( (1 + length(stratified.clusters.rows) * 2):length(dendrogram.right.grob$children[[1]]$children[[1]]$y1))
-					]
+					];
 				dendrogram.right.grob$children[[1]]$children[[1]]$x0 <-
 				dendrogram.right.grob$children[[1]]$children[[1]]$x0[
 					c( (1 + length(stratified.clusters.rows) * 2):length(dendrogram.right.grob$children[[1]]$children[[1]]$x0))
-					]
+					];
 				dendrogram.right.grob$children[[1]]$children[[1]]$x1 <-
 				dendrogram.right.grob$children[[1]]$children[[1]]$x1[
 					c( (1 + length(stratified.clusters.rows) * 2):length(dendrogram.right.grob$children[[1]]$children[[1]]$x1))
-					]
+					];
 				}
 			}
 
@@ -617,9 +617,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	        if (is.null(legend.layout)) {
 			legend.layout <- c(1, length(covariate.legends));
 			}
-		legend.grob.left <- NULL
-		legend.grob.top <- NULL
-		legend.grob.right <- NULL
+		legend.grob.left <- NULL;
+		legend.grob.top <- NULL;
+		legend.grob.right <- NULL;
 		if (length(legend.side) > 1 && length(covariate.legends[legend.side == 'left']) > 0) {
                 	legend.grob.left <- BoutrosLab.plotting.general::legend.grob(
                         	legends = covariate.legends[legend.side == 'left'],
@@ -924,12 +924,26 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				side = 'right'
 				);
 			}
-
-		legend[['inside']] <- list(
-			fun = yaxis.covariate.grob,
-			x = yaxis.covariates.x,
-			y = 0.5
-			);
+		if (!is.null(xaxis.covariates)) {
+			grob.layout <- grid.layout(1,1);
+			grob.frame <- frameGrob(layout = grob.layout);
+			legend[['inside']]$fun$framevp$x <- unit(legend[['inside']]$x, "npc");
+			legend[['inside']]$fun$framevp$y <- unit(legend[['inside']]$y - 0.0185 * length(xaxis.covariates), "npc");
+			grob.frame <- placeGrob(grob.frame,legend[['inside']]$fun);
+			yaxis.covariate.grob$framevp$x <- unit(yaxis.covariates.x + 0.0185 * length(yaxis.covariates), "npc");
+			yaxis.covariate.grob$framevp$y <- unit(0.5, "npc");
+			grob.frame <- placeGrob(grob.frame,yaxis.covariate.grob);
+			legend[['inside']]$fun <- grob.frame;
+			legend[['inside']]$x <- 0.5;
+			legend[['inside']]$y <- 0.5;
+			}
+		else {
+			legend[['inside']] <- list(
+				fun = yaxis.covariate.grob,
+				x = yaxis.covariates.x,
+				y = 0.5
+				);
+			}
 
 		yaxis.cov.height.cm <- convertUnit(
 			grobWidth(yaxis.covariate.grob),
@@ -1238,7 +1252,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 							if (same.as.matrix == TRUE) {
 								borders[[i]]$x <- t(apply(borders[[i]]$x, 2, rev));
 								}
-							positions[[i]] <- which(borders[[i]]$x)
+							positions[[i]] <- which(borders[[i]]$x);
 
 							# gather all the necessary colours from those positions in the colour matrix
 							bordercolours <- c(bordercolours, as.vector(borders[[i]]$col[positions[[i]]]));
@@ -1537,7 +1551,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		warning('Nature also requires italicized single-letter variables and en-dashes
 			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend')
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend');
 		}
 
 	else if ('BoutrosLab' == style) {

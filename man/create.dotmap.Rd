@@ -45,6 +45,7 @@ create.dotmap(
 	bottom.padding = 0.7, 
 	right.padding = 0.1, 
 	left.padding = 0.5, 
+	key.ylab.padding = 0.1,
 	key = list(text = list(lab = c(''))), 
 	legend = NULL, 
 	col.lwd = 1.5, 
@@ -134,6 +135,7 @@ create.dotmap(
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 0.7}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 0.1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 0.5}
+    \item{key.ylab.padding}{a number specifying distance between key and left label}
     \item{key}{A list giving the key (legend). The default suppresses drawing. If the key has a \dQuote{space} component then extra space will be cleared on that side of the plot for the key}
     \item{legend}{Add a legend to the plot. Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{col.lwd}{Thickness of column grid lines}

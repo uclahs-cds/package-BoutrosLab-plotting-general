@@ -37,166 +37,166 @@ pcawg.colours <- function(
 
 	# Define all colours
 	# Coding SNV mutation subtypes & consequences
-	nonsynonymous <- '#698B69'
-	synonymous <- '#FFD700'
-	stop.gain <- '#8B4789'
-	stop.loss <- '#DA70D6'
-	indel.frameshift <- '#FF8C00'
-	indel.nonframeshift <- '#003366'
-	splicing <- '#00CED1'
+	nonsynonymous <- '#698B69';
+	synonymous <- '#FFD700';
+	stop.gain <- '#8B4789';
+	stop.loss <- '#DA70D6';
+	indel.frameshift <- '#FF8C00';
+	indel.nonframeshift <- '#003366';
+	splicing <- '#00CED1';
 	# Non-coding SNV mutation subtypes, consequences & gene types
-	non.coding <- '#A80015'
-	promoter <- '#4C191E'
-	enhancer <- '#7F000F'
-	operator <- '#A84955'
-	silencer <- '#E78A96'
-	insulator <- '#FFC1C9'
-	lnc.rna <- '#331900'
-	snc.rna <- '#594027'
-	t.rna <- '#A87849'
-	r.rna <- '#E7B98A'
-	mi.rna <- '#FFE0C1'
-	utr5.utr3 <- '#1A1A1A'
-	intronic <- '#4D4D4D'
-	intergenic <- '#7F7F7F'
-	telomeres <- '#B3B3B3'
+	non.coding <- '#A80015';
+	promoter <- '#4C191E';
+	enhancer <- '#7F000F';
+	operator <- '#A84955';
+	silencer <- '#E78A96';
+	insulator <- '#FFC1C9';
+	lnc.rna <- '#331900';
+	snc.rna <- '#594027';
+	t.rna <- '#A87849';
+	r.rna <- '#E7B98A';
+	mi.rna <- '#FFE0C1';
+	utr5.utr3 <- '#1A1A1A';
+	intronic <- '#4D4D4D';
+	intergenic <- '#7F7F7F';
+	telomeres <- '#B3B3B3';
 	# Structral variant mutation subtypes
-	cna.gain <- '#FF0000'
-	cna.loss <- '#0000FF'
-	inversion <- '#FFA500'
-	transposition <- '#7300E7'
-	translocation <- '#458B00'
-	insertion <- '#1BE7FF'
+	cna.gain <- '#FF0000';
+	cna.loss <- '#0000FF';
+	inversion <- '#FFA500';
+	transposition <- '#7300E7';
+	translocation <- '#458B00';
+	insertion <- '#1BE7FF';
 
 	# Chromosomes
-	chr1 <- '#DE47AB'
-	chr2 <- '#72BE97'
-	chr3 <- '#F7F797'
-	chr4 <- '#7C749B'
-	chr5 <- '#E85726'
-	chr6 <- '#B395F8'
-	chr7 <- '#DC8747'
-	chr8 <- '#96D53D'
-	chr9 <- '#DC85EE'
-	chr10 <- '#7D32B3'
-	chr11 <- '#88DB68'
-	chr12 <- '#78AAF1'
-	chr13 <- '#D9C6CA'
-	chr14 <- '#336C80'
-	chr15 <- '#F7CA44'
-	chr16 <- '#32C7C7'
-	chr17 <- '#D4C5F2'
-	chr18 <- '#995493'
-	chr19 <- '#F88B78'
-	chr20 <- '#475ECC'
-	chr21 <- '#E0BD8C'
-	chr22 <- '#9E2800'
-	chrx <- '#F2BBD2'
-	chry <- '#B6EBEA'
+	chr1 <- '#DE47AB';
+	chr2 <- '#72BE97';
+	chr3 <- '#F7F797';
+	chr4 <- '#7C749B';
+	chr5 <- '#E85726';
+	chr6 <- '#B395F8';
+	chr7 <- '#DC8747';
+	chr8 <- '#96D53D';
+	chr9 <- '#DC85EE';
+	chr10 <- '#7D32B3';
+	chr11 <- '#88DB68';
+	chr12 <- '#78AAF1';
+	chr13 <- '#D9C6CA';
+	chr14 <- '#336C80';
+	chr15 <- '#F7CA44';
+	chr16 <- '#32C7C7';
+	chr17 <- '#D4C5F2';
+	chr18 <- '#995493';
+	chr19 <- '#F88B78';
+	chr20 <- '#475ECC';
+	chr21 <- '#E0BD8C';
+	chr22 <- '#9E2800';
+	chrx <- '#F2BBD2';
+	chry <- '#B6EBEA';
 	# Sex
-	male <- '#B6EBEA'
-	female <- '#F2BBD2'
-	# Tumour stage
-	st.one <- '#FFFFFF'
-	st.two <- '#FFFF00'
-	st.three <- '#FFA500'
-	st.four <- '#FF0000'
-	st.one.two <- '#FFE4B5'
-	st.one.three <- '#EEE8AA'
-	st.two.one <- '#FFD700'
-	st.two.three <- '#F4A460'
+	male <- '#B6EBEA';
+	female <- '#F2BBD2';
+	# Tumour stage;
+	st.one <- '#FFFFFF';
+	st.two <- '#FFFF00';
+	st.three <- '#FFA500';
+	st.four <- '#FF0000';
+	st.one.two <- '#FFE4B5';
+	st.one.three <- '#EEE8AA';
+	st.two.one <- '#FFD700';
+	st.two.three <- '#F4A460';
 	# TNM Cat
-	tnm.zero <- '#FFFFFF'
-	tn.one <- '#FFD399'
-	tn.two <- '#FFAE45'
-	tn.three <- '#B87217'
-	tn.four <- '#774607'
-	m.one <- '#000000'
-	tnm.x <- '#708090'
+	tnm.zero <- '#FFFFFF';
+	tn.one <- '#FFD399';
+	tn.two <- '#FFAE45';
+	tn.three <- '#B87217';
+	tn.four <- '#774607';
+	m.one <- '#000000';
+	tnm.x <- '#708090';
 	# Grade
-	gr.one <- '#FFFFFF'
-	gr.two <- '#9CF0FC'
-	gr.three <- '#335FE5'
-	gr.four <- '#003366'
-	gr.well <- '#FFFFFF'
-	gr.mod <- '#9CE750'
-	gr.poor <- '#00CC00'
-	gr.un <- '#005900'
-	pr.three.three <- '#FFFFFF'
-	pr.three.four <- '#FFFF00'
-	pr.three.five <- '#CD2990'
-	pr.four.three <- '#FFA500'
-	pr.four.four <- '#FF0000'
-	pr.four.five <- '#A52A2A'
-	pr.five.three <- '#8B008B'
-	pr.five.four <- '#0000CD'
-	pr.five.five <- '#000000'
+	gr.one <- '#FFFFFF';
+	gr.two <- '#9CF0FC';
+	gr.three <- '#335FE5';
+	gr.four <- '#003366';
+	gr.well <- '#FFFFFF';
+	gr.mod <- '#9CE750';
+	gr.poor <- '#00CC00';
+	gr.un <- '#005900';
+	pr.three.three <- '#FFFFFF';
+	pr.three.four <- '#FFFF00';
+	pr.three.five <- '#CD2990';
+	pr.four.three <- '#FFA500';
+	pr.four.four <- '#FF0000';
+	pr.four.five <- '#A52A2A';
+	pr.five.three <- '#8B008B';
+	pr.five.four <- '#0000CD';
+	pr.five.five <- '#000000';
 	# Primary or Met
-	primary <- '#FFFFFF'
-	metastatic <- '#7217A5'
+	primary <- '#FFFFFF';
+	metastatic <- '#7217A5';
 	# Generic
-	other <- '#E5E5E5'
-	unknown <- '#708090'
+	other <- '#E5E5E5';
+	unknown <- '#708090';
 	# Tumour Subtype
-	biliary.adenoca <- '#00CD66'
-	bladder.tcc <- '#EEAD0E'
-	bone.osteosarc <- '#FFD700'
-	bone.leiomyo <- '#FFEC8B'
+	biliary.adenoca <- '#00CD66';
+	bladder.tcc <- '#EEAD0E';
+	bone.osteosarc <- '#FFD700';
+	bone.leiomyo <- '#FFEC8B';
 		# New naming for tumour types
-	softtissue.leiomyo <- '#FFEC8B'
-	softtissue.liposarc <- '#CDCB50'
-	bone.epith  <- '#ADAC44'
-	breast.adenoca <- '#CD6090'
-	cervix.scc <- '#79CDCD'
-	cns.medullo <- '#D8BFD8'
-	cns.piloastro <- '#B0B0B0'
-	cns.gbm <- '#3D3D3D'
-	cns.gbm.alt <- '#4A4A4A'
-	cns.oligo  <- '#787878'
-	colorect.adenoca <- '#191970'
-	eso.adenoca <- '#1E90FF'
-	head.scc  <- '#8B2323'
-	kidney.rcc <- '#FF4500'
-	kidney.chrcc <- '#B32F0B'
-	liver.hcc <- '#006400'
-	lung.scc <- '#FDF5E6'
-	lung.adenoca <- '#FFFFFF'
-	lymph.bnhl <- '#698B22'
-	lymph.cll <- '#698B22'
-	myeloid.mpn <- '#FFC100'
-	myeloid.aml <- '#CD6600'
-	ovary.adenoca <- '#008B8B'
-	panc.adenoca <- '#7A378B'
-	panc.endocrine <- '#E066FF'
-	prost.adenoca <- '#87CEFA'
-	skin.melanoma <- '#000000'
-	stomach.adenoca <- '#BFEFFF'
-	thy.adenoca <- '#9370DB'
-	uterus.adenoca <- '#FF8C69'
-	bone.cart <- '#DDCDCD'
-	bone.cart.alt <- '#F0EE60'
-	breast.lobularca <- '#DDCDCD'
-	breast.lobularca.alt <- '#F095BD'
-	breast.dcis <- '#DDCDCD'
-	lymph.nos <- '#DDCDCD'
-	lymph.nos.alt <- '#698B22'
-	myeloid.mds <- '#DDCDCD'
-	cervix.adenoca <- '#DDCDCD'
+	softtissue.leiomyo <- '#FFEC8B';
+	softtissue.liposarc <- '#CDCB50';
+	bone.epith  <- '#ADAC44';
+	breast.adenoca <- '#CD6090';
+	cervix.scc <- '#79CDCD';
+	cns.medullo <- '#D8BFD8';
+	cns.piloastro <- '#B0B0B0';
+	cns.gbm <- '#3D3D3D';
+	cns.gbm.alt <- '#4A4A4A';
+	cns.oligo  <- '#787878';
+	colorect.adenoca <- '#191970';
+	eso.adenoca <- '#1E90FF';
+	head.scc  <- '#8B2323';
+	kidney.rcc <- '#FF4500';
+	kidney.chrcc <- '#B32F0B';
+	liver.hcc <- '#006400';
+	lung.scc <- '#FDF5E6';
+	lung.adenoca <- '#FFFFFF';
+	lymph.bnhl <- '#698B22';
+	lymph.cll <- '#698B22';
+	myeloid.mpn <- '#FFC100';
+	myeloid.aml <- '#CD6600';
+	ovary.adenoca <- '#008B8B';
+	panc.adenoca <- '#7A378B';
+	panc.endocrine <- '#E066FF';
+	prost.adenoca <- '#87CEFA';
+	skin.melanoma <- '#000000';
+	stomach.adenoca <- '#BFEFFF';
+	thy.adenoca <- '#9370DB';
+	uterus.adenoca <- '#FF8C69';
+	bone.cart <- '#DDCDCD';
+	bone.cart.alt <- '#F0EE60';
+	breast.lobularca <- '#DDCDCD';
+	breast.lobularca.alt <- '#F095BD';
+	breast.dcis <- '#DDCDCD';
+	lymph.nos <- '#DDCDCD';
+	lymph.nos.alt <- '#698B22';
+	myeloid.mds <- '#DDCDCD';
+	cervix.adenoca <- '#DDCDCD';
 
 	#-----------------------------------------------------------------------------------------------
 	# Some input checking & processing
 	if (class(x) == 'factor') {
-		stop('x cannot be a factor: please coerce to character before passing')
+		stop('x cannot be a factor: please coerce to character before passing');
 		}
 	# Some parameters override provided input x.
 	if ( (scheme == 'all' || return.scheme) && length(x) != 0) {
-		warning('Input x ignored when scheme = \'all\' OR return.scheme = TRUE. Returning all schemes')
+		warning('Input x ignored when scheme = \'all\' OR return.scheme = TRUE. Returning all schemes');
 		}
-	scheme <- tolower(scheme)
-	x.input <- tolower(x)
-	x.input <- gsub('-', '.', x.input)
+	scheme <- tolower(scheme);
+	x.input <- tolower(x);
+	x.input <- gsub('-', '.', x.input);
 	if (return.scheme || scheme == 'all') {
-		x.input <- NULL
+		x.input <- NULL;
 		}
 
 	colour.schemes <- list(
@@ -713,27 +713,27 @@ pcawg.colours <- function(
 
 	# Error if wanted scheme doesn't match existing schemes
 	if (is.null(colour.schemes[[scheme]]) && scheme != 'all') {
-		stop('Scheme not found!')
+		stop('Scheme not found!');
 		}
 	# Return full specified schemes if return.scheme is TRUE
 	if (return.scheme & 'all' == scheme) {
-		return(colour.schemes)
+		return(colour.schemes);
 		}
 	else if (return.scheme & 'all' != scheme) {
-		return(colour.schemes[[scheme]])
+		return(colour.schemes[[scheme]]);
 		}
 	else if (!return.scheme & 'all' == scheme) {
-		return(names(colour.schemes))
+		return(names(colour.schemes));
 		}
 
 	# Form output colours
 	matched <- match(x.input, colour.schemes[[scheme]]$levels);
-	x.colours <- colour.schemes[[scheme]]$colours[matched]
-	names(x.colours) <- colour.schemes[[scheme]]$levels[matched]
+	x.colours <- colour.schemes[[scheme]]$colours[matched];
+	names(x.colours) <- colour.schemes[[scheme]]$levels[matched];
 
 	# Deal with unrecognized input by setting to fill colour (slategray by default)
 	if (any(is.na(x.colours))) {
-		warning('Unrecognized input value for x. Default to fill.colour.')
+		warning('Unrecognized input value for x. Default to fill.colour.');
 		}
 	x.colours[which(is.na(x.colours))] <- fill.colour;
 

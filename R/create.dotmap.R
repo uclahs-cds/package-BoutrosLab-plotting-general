@@ -17,7 +17,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
 	xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black', yaxis.col = 'black', xaxis.tck = 1, yaxis.tck = 1,
 	axis.top = 1, axis.bottom = 1, axis.left = 1, axis.right = 1, top.padding = 0.1, bottom.padding = 0.7,
-	right.padding = 0.1, left.padding = 0.5, key = list(text = list(lab = c(''))), legend = NULL, col.lwd = 1.5,
+	right.padding = 0.1, left.padding = 0.5, key.ylab.padding = 0.1, key = list(text = list(lab = c(''))), legend = NULL, col.lwd = 1.5,
 	row.lwd = 1.5, spot.size.function = 'default', spot.colour.function = 'default', na.spot.size = 7,
 	na.pch = 4, na.spot.size.colour = 'black', grid.colour = NULL, colour.scheme = 'white', total.colours = 99,
 	at = NULL, colour.centering.value = 0, colourkey = FALSE, colourkey.labels.at = NULL,
@@ -499,7 +499,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			layout.widths = list(
 				left.padding = left.padding,
 				key.left = 1,
-				key.ylab.padding = 0.1,
+				key.ylab.padding = key.ylab.padding,
 				ylab = if (is.null(yaxis.lab)) {0.1} else {1},
 				ylab.axis.padding = 1,
 				axis.left = axis.left,
@@ -524,7 +524,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		warning('Nature also requires italicized single-letter variables and en-dashes
 			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend')
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend');
 		}
 
 	else if ('BoutrosLab' == style) {

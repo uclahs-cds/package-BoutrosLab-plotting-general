@@ -45,7 +45,7 @@ inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, 
 
 	# ensure the lengths of the variables defining all the ellipses are the same
 	if (!(length(ellipse.center.x) == length(ellipse.center.y) && length(ellipse.radii.x) == length(ellipse.radii.y) &&
-		length(ellipse.center.x) == length(ellipse.radii.x))) {
+			length(ellipse.center.x) == length(ellipse.radii.x))) {
 		warning('In inside ellipse: The length of ellipse.center.x, ellipse.radii.x, ellipse.center.y and ellipse.radii.y are not all the same.');
 		}
 
@@ -1373,7 +1373,7 @@ create.scatterplot <- function(
 		warning('Nature also requires italicized single-letter variables and en-dashes
 			for ranges and negatives. See example in documentation for how to do this.');
 
-		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.')
+		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
 		}
 
 	# Otherwise use the BL style if requested
