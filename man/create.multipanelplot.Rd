@@ -92,8 +92,6 @@ If this function is called without capturing the return value, or specifying a f
     }
 }
 \examples{
-
-
 # begin by creating the individual plots which will be combined into a multiplot
 dist <- data.frame(
     a = rnorm(100, 1), 
@@ -149,7 +147,7 @@ simple.heatmap <- create.heatmap(
 create.multipanelplot(
     filename = 'Multipanelplot_Simple.tiff',
     plot.objects = list(simple.boxplot,simple.heatmap), 
-    y.spacing = 2,  
+    y.spacing = 1,  
     ylab.axis.padding = 2, 
     main = 'Simple', 
     top.padding = 2
@@ -175,7 +173,7 @@ simple.heatmap.with.legends <- create.heatmap(
 create.multipanelplot(
     filename = 'Multipanelplot_Simple_Legends.tiff',
     plot.objects = list(simple.boxplot,simple.heatmap.with.legends),
-    y.spacing = 2,
+    y.spacing = 1,
     ylab.axis.padding = 2,
     main = 'Simple',
     top.padding = 2
@@ -241,8 +239,8 @@ create.multipanelplot(
     main = 'Simple Layout', 
     top.padding = 2, 
     plot.objects.heights = c(3,1), 
-    x.spacing = 2, 
-    y.spacing = 2
+    x.spacing = 1, 
+    y.spacing = 1
     );
 
 all.data <- data.frame(
@@ -289,7 +287,7 @@ create.multipanelplot(
     filename = 'Multipanelplot_Formatting.tiff',
     plot.objects = list(barplot.formatted, heatmap.formatted), 
     plot.objects.heights = c(1,3), 
-    y.spacing = 2, 
+    y.spacing = 1, 
     main = 'Formatted', 
     top.padding = 2
     );
@@ -407,7 +405,7 @@ create.multipanelplot(
     ylab.label = 'Response to Treatment', 
     main = 'Bar Chart',
     x.spacing = 0, 
-    y.spacing = 1
+    y.spacing = 0.1
     );
 
 # Set up plots for complex example
@@ -561,7 +559,7 @@ create.multipanelplot(
     filename = 'Multipanelplot_with_heatmap.tiff',
     plot.objects = list(dotmap,covariates), 
     plot.objects.heights = c(1,0.2), 
-    y.spacing = 0, 
+    y.spacing = -0.8, 
     main = 'Dotmap', 
     top.padding = 2,
     layout.height = 2,
@@ -727,7 +725,7 @@ create.multipanelplot(
     x.spacing = 0.2,
     left.padding = 0,
     layout.skip = c(FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE),
-    y.spacing = c(0,0,-0.5),
+    y.spacing = c(-1,-1,-0.85),
     ylab.axis.padding = c(1,0),
     legend = list(
         left = list(
@@ -902,7 +900,7 @@ create.multipanelplot(
     layout.height = 3,
     layout.width = 2,
     layout.skip = c(FALSE, FALSE,FALSE,TRUE,FALSE,TRUE),
-    y.spacing = 1,
+    y.spacing = -0.1,
     x.spacing = 0.5,
     legend = list(
         left = list(
@@ -937,7 +935,7 @@ create.multipanelplot(
     top.legend.padding = 3,
     layout.skip = c(FALSE, FALSE,FALSE,FALSE,FALSE,TRUE,
 		TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE),
-    y.spacing = c(0,0,0),
+    y.spacing = c(-1,-1,-1),
     x.spacing = c(1,2,3),
     legend = list(
         left = list(
@@ -948,6 +946,7 @@ create.multipanelplot(
     width = 12
     # This parameter must be set for the legend to appear
     );
+
 }
 \keyword{hplot}
 
