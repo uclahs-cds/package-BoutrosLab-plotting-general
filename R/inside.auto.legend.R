@@ -519,7 +519,7 @@
 			data.to.use.polygon <- subset(data, ( (x.data - min.x) * points.per.x <= (x.val + width.grob)) & ( (x.data - min.x) * points.per.x >= x.val) &
 				( ( (min.vals - min.y) * points.per.y <= y.val) & ( (min.vals - min.y) * points.per.y >= (y.val - height.grob)) |
 					( (max.vals - min.y) * points.per.y <= y.val) & ( (max.vals - min.y) * points.per.y >= (y.val - height.grob))));
-			if(!is.null(extra.points)) {
+			if (!is.null(extra.points)) {
 				data.to.use.extra.points <- subset(extra.points, ( (extra.points$x - min.x) * points.per.x <= (x.val + width.grob)) &
 					( (extra.points$x - min.x) * points.per.x >= x.val) & ( (extra.points$y - min.y) * points.per.y <= y.val) &
 					( (extra.points$y - min.y) * points.per.y >= (y.val - height.grob)));

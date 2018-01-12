@@ -495,8 +495,9 @@ create.qqplot.fit <- function(
 				)
 			)
 		);
-        if(inside.legend.auto) {
-                extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+        if (inside.legend.auto) {
+                extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 
+			'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
 		coords <- c();
 		coords <- .inside.auto.legend('create.qqplot.fit', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];

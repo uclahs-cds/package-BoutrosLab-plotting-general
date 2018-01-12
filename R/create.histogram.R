@@ -223,11 +223,10 @@ create.histogram <- function(
 		key = key,
 		legend = legend
 		);
-	if(inside.legend.auto) {
+	if (inside.legend.auto) {
 
-		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits, 'breaks' = breaks, 'nint' =  
-			trellis.object$panel.args.common$nint, 'type' = type);
-
+		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'ylimits' = trellis.object$y.limits,
+			'xlimits' = trellis.object$x.limits, 'breaks' = breaks, 'nint' = trellis.object$panel.args.common$nint, 'type' = type);
                 coords <- c();
 		coords <- .inside.auto.legend('create.histogram', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];

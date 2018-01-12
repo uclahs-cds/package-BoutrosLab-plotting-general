@@ -362,12 +362,12 @@ create.densityplot <- function(
 				)
 			)
 		);
-	if(inside.legend.auto) {
+	if (inside.legend.auto) {
 		extra.parameters <- list('data' = data.to.plot, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
                 coords <- c();
 		coords <- .inside.auto.legend('create.densityplot', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];
-                trellis.object$legend$inside$y <- coords[2];		
+                trellis.object$legend$inside$y <- coords[2];
 		}
 
 	# If Nature style requested, change figure accordingly

@@ -569,9 +569,9 @@ create.polygonplot <- function(
 		key = key,
 		legend = legend
 		);
-	if(inside.legend.auto) {
-		extra.parameters <- list('formula' = formula, 'data' = data, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits, 'extra.points' = extra.points, 'max' = max, 'min' = min);
-			#}
+	if (inside.legend.auto) {
+		extra.parameters <- list('formula' = formula, 'data' = data, 'ylimits' = trellis.object$y.limits,
+			'xlimits' = trellis.object$x.limits, 'extra.points' = extra.points, 'max' = max, 'min' = min);
 		coords <- c();
 		coords <- .inside.auto.legend('create.polygonplot', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];

@@ -514,8 +514,9 @@ create.barplot <- function(
 		reference = reference,
 		box.ratio = box.ratio
 		);
-	if(inside.legend.auto) {
-		extra.parameters <- list('data' = data, 'plot.horizontal' = plot.horizontal, 'formula' = formula, 'groups' = groups, 'stack' = stack, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+	if (inside.legend.auto) {
+		extra.parameters <- list('data' = data, 'plot.horizontal' = plot.horizontal, 'formula' = formula, 'groups' = groups,
+			'stack' = stack, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
 		coords <- c();
 		coords <- .inside.auto.legend('create.barplot', filename, trellis.object, height, width, extra.parameters);
 		trellis.object$legend$inside$x <- coords[1];

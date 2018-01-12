@@ -1350,8 +1350,9 @@ create.scatterplot <- function(
 		legend = legend
 		);
 
-	if(inside.legend.auto) {
-                extra.parameters <- list('data' = data, 'formula' = formula, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+	if (inside.legend.auto) {
+                extra.parameters <- list('data' = data, 'formula' = formula, 'ylimits' = trellis.object$y.limits,
+			'xlimits' = trellis.object$x.limits);
 		coords <- c();
 		coords <- .inside.auto.legend('create.scatterplot', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];

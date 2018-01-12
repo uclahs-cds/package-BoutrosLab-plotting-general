@@ -260,9 +260,10 @@ create.segplot <- function(
 		key = key,
 		legend = legend
 		);
-	if(inside.legend.auto) {
+	if (inside.legend.auto) {
 
-		extra.parameters <- list('x' = trellis.object$panel.args.common$x, 'y' = trellis.object$panel.args.common$y, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+		extra.parameters <- list('x' = trellis.object$panel.args.common$x, 'y' = trellis.object$panel.args.common$y,
+			'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
 		coords <- c();
 		coords <- .inside.auto.legend('create.segplot', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];

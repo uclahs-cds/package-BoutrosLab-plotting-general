@@ -367,8 +367,9 @@ create.hexbinplot <- function(
 		what = 'hexbinplot',
 		args = parameter.list
 		);
-	if(inside.legend.auto) {
-		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits, 'xbins' = xbins, 'aspect.ratio' = trellis.object$panel.args.common$.aspect.ratio);
+	if (inside.legend.auto) {
+		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits,
+			'xlimits' = trellis.object$x.limits, 'xbins' = xbins, 'aspect.ratio' = trellis.object$panel.args.common$.aspect.ratio);
 		coords <- c();
 		coords <- .inside.auto.legend('create.hexbinplot', filename, trellis.object, height, width, extra.parameters);
                 trellis.object$legend$inside$x <- coords[1];
