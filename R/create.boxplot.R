@@ -41,7 +41,7 @@ create.boxplot <- function(
 		ybottom = ybottom.rectangle
 		);
 
-	points.info <- list( 
+	points.info <- list(
 		pch = points.pch,
                 col = points.col,
                 cex = points.cex,

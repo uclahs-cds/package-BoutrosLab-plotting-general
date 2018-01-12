@@ -268,7 +268,7 @@ create.manhattanplot <- function(
 		);
 
 	if (inside.legend.auto) {
-		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 
+		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y,
 			'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
 		coords <- c();
 		coords <- .inside.auto.legend('create.manhattanplot', filename, trellis.object, height, width, extra.parameters);
