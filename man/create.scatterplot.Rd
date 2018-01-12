@@ -146,6 +146,7 @@ create.scatterplot(
 	preload.default = 'custom',
 	group.specific.colouring = TRUE,
 	use.legacy.settings = FALSE,
+	inside.legend.auto = FALSE,
 	...
 	);
 }
@@ -292,6 +293,7 @@ create.scatterplot(
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{group.specific.colouring}{Variable to specify if group specific multi colouring for error bars is enforced}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{inside.legend.auto}{boolean specifying whether or not to use the automatic inside legend function}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

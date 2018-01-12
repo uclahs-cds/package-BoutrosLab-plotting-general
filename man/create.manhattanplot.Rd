@@ -103,6 +103,7 @@ create.manhattanplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	preload.default = 'custom',
         use.legacy.settings = FALSE,
+        inside.legend.auto = FALSE,
 	...
 	);
     }
@@ -206,6 +207,7 @@ create.manhattanplot(
     \item{description}{Short description of image/plot; default NULL}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{inside.legend.auto}{boolean specifying whether or not to use the automatic inside legend function}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}

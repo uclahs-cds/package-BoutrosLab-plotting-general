@@ -28,7 +28,8 @@ create.manhattanplot <- function(
 	points.pch = 19, points.col = 'black', points.cex = 1, add.text = FALSE, text.labels = NULL, text.x = NULL,
 	text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', height = 6, width = 10, size.units = 'in',
 	resolution = 1600, enable.warnings = FALSE, style = 'BoutrosLab',
-	description = 'Created with BoutrosLab.plotting.general', preload.default = 'custom', use.legacy.settings = FALSE, ...
+	description = 'Created with BoutrosLab.plotting.general', preload.default = 'custom', use.legacy.settings = FALSE,
+	inside.legend.auto = FALSE, ...
 	) {
 
 	### needed to copy in case using variable to define rectangles dimensions
@@ -265,6 +266,14 @@ create.manhattanplot <- function(
 		key = key,
 		legend = legend
 		);
+
+	if(inside.legend.auto) {
+		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+		coords <- c();
+		coords <- .inside.auto.legend('create.manhattanplot', filename, trellis.object, height, width, extra.parameters);
+                trellis.object$legend$inside$x <- coords[1];
+                trellis.object$legend$inside$y <- coords[2];
+                }
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {

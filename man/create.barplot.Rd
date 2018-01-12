@@ -122,7 +122,8 @@ create.barplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
 	preload.default = 'custom',
-	use.legacy.settings = FALSE
+	use.legacy.settings = FALSE,
+	inside.legend.auto = FALSE
 	);
 }
 \arguments{
@@ -241,6 +242,7 @@ create.barplot(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{inside.legend.auto}{boolean specifying whether or not to use the automatic inside legend function}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Mehrdad Shamsi}
@@ -688,6 +690,30 @@ create.barplot(
     description = 'Barplot created by BoutrosLab.plotting.general'
     );
 
+create.barplot(
+    filename = 'Barplot_Auto_legend.tiff',
+    formula = values ~ samples,
+    data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
+    main = 'Covariates',
+    ylab.lab = 'Mutations',
+    ylimits = c(0,30),
+    yat = seq(0,30,5),
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    yaxis.fontface = 1,
+    # removing x-axis formatting to give space to covariates
+    xaxis.tck = 0,
+    xaxis.lab = rep('',15),
+    xaxis.cex = 0,
+    # covariates
+    legend = list(
+        inside = list(fun = covariate.legend.grob)
+        ),
+    bottom.padding = 4,
+    inside.legend.auto = TRUE,
+    description = 'Barplot created by BoutrosLab.plotting.general'
+    );
 # Horizontal orientation
 create.barplot(
     filename = 'Barplot_Horizontal.tiff',
@@ -697,6 +723,11 @@ create.barplot(
     main = 'Plot horizontally',
     # Adjusting the panel layout
     plot.horizontal = TRUE,
+    # covariates
+    legend = list(
+        inside = list(fun = covariate.legend.grob)
+        ),
+    inside.legend.auto = TRUE,
     description = 'Barplot created by BoutrosLab.plotting.general'
     );
 

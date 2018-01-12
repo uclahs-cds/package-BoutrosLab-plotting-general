@@ -25,7 +25,7 @@ create.qqplot.comparison <- function(
 	top.padding = 3, bottom.padding = 0.7, left.padding = 0.5, right.padding = 0.1,
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
-	use.legacy.settings = FALSE
+	use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
@@ -318,6 +318,13 @@ create.qqplot.comparison <- function(
 				)
 			)
 		);
+	if(inside.legend.auto) {
+		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+		coords <- c();
+		coords <- .inside.auto.legend('create.qqplot.comparison', filename, trellis.object, height, width, extra.parameters);
+                trellis.object$legend$inside$x <- coords[1];
+                trellis.object$legend$inside$y <- coords[2];
+                }
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {

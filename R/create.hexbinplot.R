@@ -31,7 +31,7 @@ create.hexbinplot <- function(
 	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
 	background.col = 'transparent',	key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in',
 	resolution = 1600, enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
-	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
 
 	# IMPORTANT NOTE:
@@ -367,6 +367,13 @@ create.hexbinplot <- function(
 		what = 'hexbinplot',
 		args = parameter.list
 		);
+	if(inside.legend.auto) {
+		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits, 'xbins' = xbins, 'aspect.ratio' = trellis.object$panel.args.common$.aspect.ratio);
+		coords <- c();
+		coords <- .inside.auto.legend('create.hexbinplot', filename, trellis.object, height, width, extra.parameters);
+                trellis.object$legend$inside$x <- coords[1];
+                trellis.object$legend$inside$y <- coords[2];
+                }
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {

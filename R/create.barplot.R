@@ -35,7 +35,7 @@ create.barplot <- function(
 	raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2 / 37, 'npc'),
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
-	use.legacy.settings = FALSE
+	use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
@@ -514,6 +514,13 @@ create.barplot <- function(
 		reference = reference,
 		box.ratio = box.ratio
 		);
+	if(inside.legend.auto) {
+		extra.parameters <- list('data' = data, 'plot.horizontal' = plot.horizontal, 'formula' = formula, 'groups' = groups, 'stack' = stack, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);
+		coords <- c();
+		coords <- .inside.auto.legend('create.barplot', filename, trellis.object, height, width, extra.parameters);
+		trellis.object$legend$inside$x <- coords[1];
+		trellis.object$legend$inside$y <- coords[2];
+		}
 
 	# add grouped labels
 	if (group.labels) {

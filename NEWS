@@ -1,3 +1,13 @@
+BoutrosLab.plotting.general 5.8.9 2018-01-12
+
+FEATURE
+* added inside legend auto finder code
+
+BUG
+* boxplot addstriplot colour was having issue with multiple boxplots, now works properly 
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.8.8 2017-12-19
 
 UPDATE

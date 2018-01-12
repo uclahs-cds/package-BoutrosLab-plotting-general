@@ -33,13 +33,19 @@ create.boxplot <- function(
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	use.legacy.settings = FALSE
 	) {
-
-	### needed to copy in case using variable to define rectangles dimensions
+	### needed to copy in case using variable to define rectangles dimensions -- wont carry through after change
 	rectangle.info <- list(
 		xright = xright.rectangle,
 		xleft = xleft.rectangle,
 		ytop = ytop.rectangle,
 		ybottom = ybottom.rectangle
+		);
+
+	points.info <- list(                                        
+		pch = points.pch,
+                col = points.col,
+                cex = points.cex,
+                alpha = points.alpha
 		);
 
 	if (!is.null(yat) && length(yat) == 1) {
@@ -162,10 +168,10 @@ create.boxplot <- function(
 					jitter.data = TRUE,
 					factor      = jitter.factor,
 					amount      = jitter.amount,
-					pch         = points.pch,
-					col         = points.col,
-					cex         = points.cex,
-					alpha       = points.alpha,
+					pch         = points.info$pch,
+					col         = points.info$col,
+					cex         = points.info$cex,
+					alpha       = points.info$alpha,
 					...
 					);
 				}

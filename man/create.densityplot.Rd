@@ -84,7 +84,8 @@ create.densityplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
 	preload.default = 'custom',
-        use.legacy.settings = FALSE
+        use.legacy.settings = FALSE,
+	inside.legend.auto = FALSE
 	);
 }
 \arguments{
@@ -169,6 +170,7 @@ create.densityplot(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{inside.legend.auto}{boolean specifying whether or not to use the automatic inside legend function}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
