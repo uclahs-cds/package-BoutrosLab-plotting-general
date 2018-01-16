@@ -175,7 +175,7 @@ Note that the confidence band only works for a single panel qq plot, not for gro
 }
 \seealso{\code{\link[lattice]{qqmath}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
-
+set.seed(12345);
 create.qqplot.fit(
     filename = 'QQfit_Simple.tiff',
     x = rnorm(300),

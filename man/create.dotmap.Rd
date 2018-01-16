@@ -204,6 +204,7 @@ If this function is called without capturing the return value, or specifying a f
 }
 \seealso{\code{\link[lattice]{xyplot}}, \code{\link[lattice]{levelplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
+set.seed(12345);
 simple.data <- data.frame(
     'A' = runif(n = 15, min = -1, max = 1),
     'B' = runif(n = 15, min = -1, max = 1),

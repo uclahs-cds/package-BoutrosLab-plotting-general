@@ -222,6 +222,7 @@ If this function is called without capturing the return value, or specifying a f
 }
 \seealso{\code{\link[lattice]{xyplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
+set.seed(12345);
 simple.data <- data.frame(
     x = runif(20000, 0, 1),
     y = 1:20000

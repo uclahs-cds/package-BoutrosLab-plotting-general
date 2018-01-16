@@ -92,6 +92,7 @@ If this function is called without capturing the return value, or specifying a f
     }
 }
 \examples{
+set.seed(12345);
 # begin by creating the individual plots which will be combined into a multiplot
 dist <- data.frame(
     a = rnorm(100, 1), 

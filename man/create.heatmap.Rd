@@ -306,6 +306,7 @@ Note that we would very much like to be able to pass \code{xaxis.cex} and \code{
 https://r-forge.r-project.org/tracker/index.php?func=detail&aid=1702&group_id=638&atid=2567
 }
 \examples{
+set.seed(12345);
 simple.data <- data.frame(
     x <- rnorm(n = 15),
     y <- rnorm(n = 15),
@@ -356,7 +357,7 @@ simple.data.col <- data.frame(
     );
 
 create.heatmap(
-    filename="Heatmap_Simple_Using_Colours.tiff",
+    filename = 'Heatmap_Simple_Using_Colours.tiff',
     x=simple.data.col, 
     clustering.method='none',
     input.colours = TRUE
