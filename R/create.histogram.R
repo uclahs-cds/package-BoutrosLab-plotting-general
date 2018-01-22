@@ -17,7 +17,7 @@ create.histogram <- function(
 	xat = TRUE, yat = TRUE, xaxis.rot = 0, yaxis.rot = 0, xaxis.col = 'black', yaxis.col = 'black',
 	xaxis.tck = 1, yaxis.tck = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xlab.top.label = NULL,
 	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
-	type = 'percent', breaks = NULL, col = 'white', lwd = 2, lty = 1, layout = NULL, x.spacing = 0, y.spacing = 0,
+	type = 'percent', breaks = NULL, col = 'white', border.col = 'black', lwd = 2, lty = 1, layout = NULL, x.spacing = 0, y.spacing = 0,
 	x.relation = 'same', y.relation = 'same', strip.col = 'white', strip.cex = 1, top.padding = 0.1,
 	bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, ylab.axis.padding = 0, abline.h = NULL,
 	abline.v = NULL, abline.col = 'black', abline.lwd = 1, abline.lty = 1, key = NULL, legend = NULL,
@@ -56,7 +56,7 @@ create.histogram <- function(
 			# turn warnings back on
 			options(warn = 0);
 
-			panel.histogram(...);
+			panel.histogram(border = border.col, ...);
 
 			# add rectangle if requested
 			if (add.rectangle) {

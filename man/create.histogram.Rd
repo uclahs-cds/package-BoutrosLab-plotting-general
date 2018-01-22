@@ -43,6 +43,7 @@ create.histogram(
 	type = 'percent',
 	breaks = NULL,
 	col = 'white',
+	border.col = 'black',
 	lwd = 2,
 	lty = 1,
 	layout = NULL,
@@ -123,6 +124,7 @@ create.histogram(
     \item{type}{Should the plot be of the \dQuote{percent} (default), \dQuote{density} or \dQuote{count}}
     \item{breaks}{A vector listing the break-points of the histogram, or an integer specifying the desired number of breaks.}
     \item{col}{Fill colour for the histograms}
+    \item{border.col}{Specify border colour (defaults to black)}
     \item{lwd}{Specifies line width}
     \item{lty}{Specifies line style}
     \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
