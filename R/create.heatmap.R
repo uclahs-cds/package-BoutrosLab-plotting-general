@@ -927,11 +927,11 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		if (!is.null(xaxis.covariates)) {
 			grob.layout <- grid.layout(1,1);
 			grob.frame <- frameGrob(layout = grob.layout);
-			legend[['inside']]$fun$framevp$x <- unit(legend[['inside']]$x, "npc");
-			legend[['inside']]$fun$framevp$y <- unit(legend[['inside']]$y - 0.0185 * length(xaxis.covariates), "npc");
+			legend[['inside']]$fun$framevp$x <- unit(legend[['inside']]$x, 'npc');
+			legend[['inside']]$fun$framevp$y <- unit(legend[['inside']]$y - 0.0185 * length(xaxis.covariates), 'npc');
 			grob.frame <- placeGrob(grob.frame,legend[['inside']]$fun);
-			yaxis.covariate.grob$framevp$x <- unit(yaxis.covariates.x + 0.0185 * length(yaxis.covariates), "npc");
-			yaxis.covariate.grob$framevp$y <- unit(0.5, "npc");
+			yaxis.covariate.grob$framevp$x <- unit(yaxis.covariates.x + 0.0185 * length(yaxis.covariates), 'npc');
+			yaxis.covariate.grob$framevp$y <- unit(0.5, 'npc');
 			grob.frame <- placeGrob(grob.frame,yaxis.covariate.grob);
 			legend[['inside']]$fun <- grob.frame;
 			legend[['inside']]$x <- 0.5;
