@@ -32,7 +32,6 @@ create.manhattanplot <- function(
 	inside.legend.auto = FALSE, ...
 	) {
 
-
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
                 xright = xright.rectangle,
