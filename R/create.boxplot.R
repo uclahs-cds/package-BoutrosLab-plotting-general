@@ -26,8 +26,8 @@ create.boxplot <- function(
 	yaxis.rot = 0, xaxis.tck = 1, yaxis.tck = 1, layout = NULL, as.table = FALSE, x.spacing = 0, y.spacing = 0,
 	x.relation = 'same', y.relation = 'same', top.padding = 0.5, bottom.padding = 2, right.padding = 1,
 	left.padding = 2, ylab.axis.padding = 0, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL,
-	text.anchor = 'centre', text.col = 'black', text.cex = 1, text.fontface = 'bold', add.pvalues = FALSE,
-	pvalues.cex = c(1), key = NULL, legend = NULL, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold',
+	text.anchor = 'centre', text.col = 'black', text.cex = 1, text.fontface = 'bold',
+	key = NULL, legend = NULL, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold',
 	line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE,
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
@@ -119,41 +119,6 @@ create.boxplot <- function(
 		outliers <- FALSE;
 		}
 
-	# if pvalues were requested
-	pvalues <- list();
-	position.pval <- list();
-	rotate.pvals <- FALSE;
-
-	if (add.pvalues) {
-		col1 <- formula[3];
-		col2 <- formula[2];
-		mf <- model.frame(formula, as.data.frame(data));
-		names <-  levels(mf[toString(col1)][[1]]);
-
-		if (is.null(names)) {
-			temp <- col1;
-			col1 <- col2;
-			col2 <- temp;
-			names <- levels(mf[toString(col1)][[1]]);
-			rotate.pvals <- TRUE;
-			}
-
-		factors <- as.vector(sapply(as.data.frame(mf)[toString(col1)], as.character));
-		max.val <- max(mf[toString(col2)][[1]]);
-
-		for (i in 1:length(names)) {
-			name <- toString(names[i]);
-			d <- mf[toString(col2)][[1]][factors == name];
-			t.value <- (mean(d) - 10) / (sd(d) / sqrt(length(d)));
-			pvalues[i] <- round(2 * pt(-abs(t.value), df = length(d) - 1), 4);
-
-			if (pvalues[i] == 0) {
-				pvalues[i] <- '<0.0001';
-				}
-
-			position.pval[i] <- max(d) + max.val * 0.03;
-			}
-		}
 
 	# Now make the actual plot object
 	trellis.object <- lattice::bwplot(
@@ -222,18 +187,6 @@ create.boxplot <- function(
 				}
 
 			# Add pvalues if requested
-			if (add.pvalues) {
-
-				panel.text(
-					x = if (rotate.pvals) { position.pval } else { c(1:length(pvalues)) },
-					y = if (rotate.pvals) { 1:length(pvalues) } else { position.pval },
-					labels = pvalues,
-					col = 'black',
-					cex = pvalues.cex,
-					fontface = 'bold',
-					srt = if (rotate.pvals) { -90 } else { 0 }
-					);
-				}
 			},
 		fill = col,
 		main = BoutrosLab.plotting.general::get.defaults(
@@ -433,19 +386,7 @@ create.boxplot <- function(
 				trellis.object$panel.args[[1]]$y[newlocations[[i]]] <- num.boxes[ranks[i]];
 				}
 
-			new.p.values <- NULL;
-			new.position.pval <- NULL;
 
-			# if pvalues were requested
-			if (add.pvalues) {
-				for (i in c(1:length(num.boxes))) {
-					new.p.values[ranks[i]] <- pvalues[i];
-					new.position.pval[ranks[i]] <- position.pval;
-					}
-
-				pvalues <- new.p.values;
-				position.pval <- new.position.pval;
-				}
 
 			# if labels were not specified reorder the default ones
 			if (length(yaxis.lab) == 1 && yaxis.lab) {
@@ -496,19 +437,6 @@ create.boxplot <- function(
 				trellis.object$panel.args[[1]]$x[newlocations[[i]]] <- num.boxes[ranks[i]];
 				}
 
-			new.p.values <- NULL;
-			new.position.pval <- NULL;
-
-			# if pvalues were requested
-			if (add.pvalues) {
-				for (i in c(1:length(num.boxes))) {
-					new.p.values[ranks[i]] <- pvalues[i];
-					new.position.pval[ranks[i]] <- position.pval[i];
-					}
-
-				pvalues <- new.p.values;
-				position.pval <- new.position.pval;
-				}
 
 			if (length(xaxis.lab) == 1 && xaxis.lab) {
 				for (i in c(1:length(num.boxes))) {

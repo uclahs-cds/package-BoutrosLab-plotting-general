@@ -86,8 +86,6 @@ create.boxplot(
 	text.col = 'black',
 	text.cex = 1,
 	text.fontface = 'bold',
-	add.pvalues = FALSE,
-	pvalues.cex = c(1),
 	key = NULL,
 	legend = NULL,
 	strip.col = 'white',
@@ -192,8 +190,6 @@ create.boxplot(
     \item{text.col}{The colour of additional text}
     \item{text.cex}{The size of additional text}
     \item{text.fontface}{The fontface for additional text}
-    \item{add.pvalues}{logical determining if p-values should appear above boxes (t-test for whether group mean equals 10)}
-    \item{pvalues.cex}{size of pvalues text},
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
@@ -539,25 +535,6 @@ create.boxplot(
     description = 'Boxplot created by BoutrosLab.plotting.general'
     );
 
-create.boxplot(
-    filename = 'Boxplot_pvals.tiff',
-    formula = y ~ x,
-    data = reformatted.data,
-    main = 'Sorting',
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    ylab.label = 'Gene',
-    xlimits = c(0,13),
-    xat = seq(0,12,2),
-    # Reordered by median
-    sample.order = 'increasing',
-    order.by = 'mean',
-    description = 'Boxplot created by BoutrosLab.plotting.general',
-    add.pvalues = TRUE,
-    pvalues.cex = 0.5
-    );
 
 # Adding text to plot
 # Generate normally distributed variables with two different means

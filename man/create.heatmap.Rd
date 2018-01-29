@@ -320,7 +320,7 @@ simple.1D.data <- data.frame(x = rnorm(n = 15));
 
 create.heatmap(
     filename = "Heatmap_1D_Inside_Legend.tiff",
-    x=simple.1D.data, 
+    x = simple.1D.data, 
     clustering.method='none',
     inside.legend = list(fun = draw.key,
         args = list(
@@ -358,8 +358,8 @@ simple.data.col <- data.frame(
 
 create.heatmap(
     filename = 'Heatmap_Simple_Using_Colours.tiff',
-    x=simple.data.col, 
-    clustering.method='none',
+    x = simple.data.col, 
+    clustering.method = 'none',
     input.colours = TRUE
     )
 # Minimal Input
