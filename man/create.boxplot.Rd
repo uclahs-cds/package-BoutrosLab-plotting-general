@@ -222,6 +222,7 @@ If this function is called without capturing the return value, or specifying a f
 }
 \seealso{\code{\link[lattice]{bwplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
+
 set.seed(12345);
 
 simple.data <- data.frame(
