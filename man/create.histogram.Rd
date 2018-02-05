@@ -185,6 +185,14 @@ create.histogram(
     description = 'Histogram created by BoutrosLab.plotting.general'
     );
 
+create.histogram(
+    filename = 'Histogram_Simple_Count.tiff',
+    x = rnorm(5000),
+    main = 'Simple Count',
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    type = 'count'
+    );
+
 # Minimal Input
 create.histogram(
     filename = 'Histogram_Minimal_Input.tiff',

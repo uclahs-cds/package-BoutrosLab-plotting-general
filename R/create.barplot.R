@@ -35,8 +35,9 @@ create.barplot <- function(
 	raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2 / 37, 'npc'),
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
-	use.legacy.settings = FALSE, inside.legend.auto = FALSE
+	use.legacy.settings = FALSE, inside.legend.auto = FALSE, disable.factor.sorting = FALSE
 	) {
+	
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
 		xright = xright.rectangle,
@@ -514,6 +515,45 @@ create.barplot <- function(
 		reference = reference,
 		box.ratio = box.ratio
 		);
+
+	if (disable.factor.sorting == TRUE) {
+		
+		sorting.param <- '';
+
+		if(plot.horizontal) {
+			sorting.param <- 'y';
+			if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+				default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
+				trellis.object$y.scales$labels <- default.labels;
+				}
+			} 
+		else {
+			sorting.param <- 'x';
+			if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+                        	default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
+				trellis.object$x.scales$labels <- default.labels;
+				}
+			}
+		
+                uniqueMapping <- list();
+                count <- 1;
+                for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
+                        if(is.null(uniqueMapping[[as.character(x)]])) {
+                                uniqueMapping[as.character(x)] <- count;
+                                count <- count + 1;
+                                }
+                        }
+                print(uniqueMapping);
+                temp.data <- as.character(trellis.object$panel.args[[1]][[sorting.param]]);
+                print(temp.data);
+                for (x in 1:length(temp.data)) {
+                        temp.data[x] <- as.character(uniqueMapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);
+                        }
+                print(temp.data);
+                trellis.object$panel.args[[1]][[sorting.param]] <- as.numeric(temp.data);
+	
+		}
+
 	if (inside.legend.auto) {
 		extra.parameters <- list('data' = data, 'plot.horizontal' = plot.horizontal, 'formula' = formula, 'groups' = groups,
 			'stack' = stack, 'ylimits' = trellis.object$y.limits, 'xlimits' = trellis.object$x.limits);

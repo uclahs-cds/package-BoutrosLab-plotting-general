@@ -26,7 +26,8 @@ create.segplot <- function(
 	xright.rectangle = NULL, ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1,
 	axes.lwd = 1, key = NULL, legend = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600,
 	enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
-	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, inside.legend.auto = FALSE
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, inside.legend.auto = FALSE,
+        disable.factor.sorting = FALSE 
 	) {
 
 
@@ -260,6 +261,45 @@ create.segplot <- function(
 		key = key,
 		legend = legend
 		);
+
+	if (disable.factor.sorting == TRUE) {
+		
+		sorting.param <- 'z';
+
+		if(plot.horizontal) {
+			if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+				default.labels <- unique(as.character(trellis.object$panel.args.common[[sorting.param]]));
+				trellis.object$y.scales$labels <- default.labels;
+				}
+			} 
+		else {
+			if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+                        	default.labels <-unique(as.character(trellis.object$panel.args.common[[sorting.param]])); 
+				trellis.object$x.scales$labels <- default.labels;
+				trellis.object$x.scales$at <- seq(1,length(default.labels),1);
+				trellis.object$x.limits <- c(0, length(default.labels) + 1);
+				}
+			}
+		
+                uniqueMapping <- list();
+                count <- 1;
+                for (x in trellis.object$panel.args.common[[sorting.param]]) {
+                        if(is.null(uniqueMapping[[as.character(x)]])) {
+                                uniqueMapping[as.character(x)] <- count;
+                                count <- count + 1;
+                                }
+                        }
+                print(uniqueMapping);
+                temp.data <- as.character(trellis.object$panel.args.common[[sorting.param]]);
+                print(temp.data);
+                for (x in 1:length(temp.data)) {
+                        temp.data[x] <- as.character(uniqueMapping[as.character(trellis.object$panel.args.common[[sorting.param]][[x]])][[1]]);
+                        }
+                print(temp.data);
+                trellis.object$panel.args.common[[sorting.param]] <- as.numeric(temp.data);
+	
+		}
+
 	if (inside.legend.auto) {
 
 		extra.parameters <- list('x' = trellis.object$panel.args.common$x, 'y' = trellis.object$panel.args.common$y,

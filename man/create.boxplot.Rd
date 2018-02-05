@@ -104,7 +104,8 @@ create.boxplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
 	preload.default = 'custom',
-        use.legacy.settings = FALSE
+        use.legacy.settings = FALSE,
+	disable.factor.sorting = FALSE
 	);
 }
 \arguments{
@@ -209,6 +210,7 @@ create.boxplot(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{disable.factor.sorting}{Disable barplot auto sorting factors alphabetically/numerically}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Maud H.W. Starmans}
@@ -260,6 +262,16 @@ create.boxplot(
     formula = y ~ x,
     data = reformatted.data,
     main = 'Minimal input',
+    description = 'Boxplot created by BoutrosLab.plotting.general'
+    );
+
+# Minimal Input
+create.boxplot(
+    filename = 'Boxplot_Disable_Factor_Sorting_Input.tiff',
+    formula = y ~ x,
+    data = reformatted.data,
+    main = 'No Factor Sorting',
+    disable.factor.sorting = TRUE,
     description = 'Boxplot created by BoutrosLab.plotting.general'
     );
 

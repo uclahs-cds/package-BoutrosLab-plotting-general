@@ -31,7 +31,7 @@ create.boxplot <- function(
 	line.func = NULL, line.from = 0, line.to = 0, line.col = 'transparent', line.infront = TRUE,
 	height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
-	use.legacy.settings = FALSE
+	use.legacy.settings = FALSE, disable.factor.sorting = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions -- wont carry through after change
 	rectangle.info <- list(
@@ -345,6 +345,44 @@ create.boxplot <- function(
 		legend = legend,
 		box.ratio = box.ratio
 		);
+
+	if (disable.factor.sorting == TRUE) {
+
+                sorting.param <- '';
+
+                if(is.factor(trellis.object$panel.args[[1]][['y']])) {
+                        sorting.param <- 'y';
+                        if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+                                default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
+                                trellis.object$y.scales$labels <- default.labels;
+                                }
+                        }
+                else {
+                        sorting.param <- 'x';
+                        if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+                                default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
+                                trellis.object$x.scales$labels <- default.labels;
+                                }
+                        }
+
+                uniqueMapping <- list();
+                count <- 1;
+                for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
+                        if(is.null(uniqueMapping[[as.character(x)]])) {
+                                uniqueMapping[as.character(x)] <- count;
+                                count <- count + 1;
+                                }
+                        }
+                print(uniqueMapping);
+                temp.data <- as.character(trellis.object$panel.args[[1]][[sorting.param]]);
+                print(temp.data);
+                for (x in 1:length(temp.data)) {
+                        temp.data[x] <- as.character(uniqueMapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);
+                        }
+                print(temp.data);
+                trellis.object$panel.args[[1]][[sorting.param]] <- as.numeric(temp.data);
+
+                }
 
 	# reorder by median
 	if (sample.order == 'increasing' | sample.order == 'decreasing') {

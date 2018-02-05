@@ -85,7 +85,8 @@ create.segplot(
 	style = 'BoutrosLab',
 	preload.default = 'custom',
 	use.legacy.settings = FALSE,
-	inside.legend.auto = FALSE
+	inside.legend.auto = FALSE,
+	disable.factor.sorting = FALSE
 	)
 }
 \arguments{
@@ -171,6 +172,7 @@ create.segplot(
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{inside.legend.auto}{boolean specifying whether or not to use the automatic inside legend function}
+    \item{disable.factor.sorting}{Disable barplot auto sorting factors alphabetically/numerically}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}

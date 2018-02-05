@@ -73,7 +73,8 @@ create.violinplot(
 	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
 	preload.default = 'custom',
-	use.legacy.settings = FALSE
+	use.legacy.settings = FALSE,
+	disable.factor.sorting = FALSE
 	)
 }
 \arguments{
@@ -147,6 +148,7 @@ create.violinplot(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{disable.factor.sorting}{Disable barplot auto sorting factors alphabetically/numerically}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
