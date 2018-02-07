@@ -197,6 +197,7 @@ create.scatterplot <- function(
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
 
+
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
         	xright = xright.rectangle,
