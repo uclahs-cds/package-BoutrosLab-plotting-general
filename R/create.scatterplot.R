@@ -193,7 +193,7 @@ create.scatterplot <- function(
 	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	group.specific.colouring = TRUE, use.legacy.settings = FALSE, inside.legend.auto = FALSE, lollipop.plot = FALSE,
-	regions.labels = c(), regions.start = c(), regions.stop = c(), regions.color = c('red'), regions.cex = 1, 
+	regions.labels = c(), regions.start = c(), regions.stop = c(), regions.color = c('red'), regions.cex = 1,
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
 
@@ -973,7 +973,7 @@ create.scatterplot <- function(
 				}
 			}
 		}
-	
+
 
 	# create a scatterplot and save it as a trellis object
 	trellis.object <- lattice::xyplot(
@@ -1003,27 +1003,27 @@ create.scatterplot <- function(
                                         border = NA
                                         );
                                 }
-			if(lollipop.plot) {
-		
+			if (lollipop.plot) {
+
         			# min and max values for lollipop plot
-        			max.x <- if(is.null(xlimits)){max(x) + (max(x) - min(x))*0.07}else{xlimits[2]};
-        			min.x <- if(is.null(xlimits)){min(x) - (max(x) - min(x))*0.07}else{xlimits[1]};
-        			max.y <- if(is.null(ylimits)){max(y) + (max(y) - min(y))*0.07}else{ylimits[2]};
-        			min.y <- if(is.null(ylimits)){min(y) - (max(y) - min(y))*0.07}else{ylimits[1]};
+        			max.x <- if (is.null(xlimits)) {max(x) + (max(x) - min(x)) * 0.07} else { xlimits[2] };
+        			min.x <- if (is.null(xlimits)) {min(x) - (max(x) - min(x)) * 0.07} else { xlimits[1] };
+        			max.y <- if (is.null(ylimits)) {max(y) + (max(y) - min(y)) * 0.07} else { ylimits[2] };
+        			min.y <- if (is.null(ylimits)) {min(y) - (max(y) - min(y)) * 0.07} else { ylimits[1] };
 
-				bar.y.top <- if(is.null(lollipop.bar.y)) {min.y + (max.y - min.y)*0.06 } else { lollipop.bar.y + (max.y - min.y)*0.06 };
-				bar.y.bottom <- if(is.null(lollipop.bar.y)) {min.y + (max.y - min.y)*0.01 } else { lollipop.bar.y + (max.y - min.y)*0.01 };
+				bar.y.top <- if (is.null(lollipop.bar.y)) {min.y + (max.y - min.y) * 0.06 } else { lollipop.bar.y + (max.y - min.y) * 0.06 };
+				bar.y.bottom <- if (is.null(lollipop.bar.y)) {min.y + (max.y - min.y) * 0.01 } else { lollipop.bar.y + (max.y - min.y) * 0.01 };
 
-				region.y.top <- if(is.null(lollipop.bar.y)) {min.y + (max.y - min.y)*0.065 } else { lollipop.bar.y + (max.y - min.y)*0.065 };
-				region.y.bottom <- if(is.null(lollipop.bar.y)) {min.y + (max.y - min.y)*0.005 } else { lollipop.bar.y + (max.y - min.y)*0.005 };
+				region.y.top <- if (is.null(lollipop.bar.y)) {min.y + (max.y - min.y) * 0.065 } else { lollipop.bar.y + (max.y - min.y) * 0.065 };
+				region.y.bottom <- if (is.null(lollipop.bar.y)) {min.y + (max.y - min.y) * 0.005 } else { lollipop.bar.y + (max.y - min.y) * 0.005 };
 
-				bar.x.left <- min.x + (max.x - min.x)*0.01;
-				bar.x.right <- min.x + (max.x - min.x)*0.99;
-				for( i in c(1:length(x))){
+				bar.x.left <- min.x + (max.x - min.x) * 0.01;
+				bar.x.right <- min.x + (max.x - min.x) * 0.99;
+				for (i in c(1:length(x))) {
                                		panel.xyplot(
-                                		x = c(x[i],x[i]),
+                                		x = c(x[i], x[i]),
                                        		y = c(bar.y.top, y[i]),
-						type = "l",
+						type = 'l',
                                         	col.line = 'black',
                                         	lwd = 1.5
                                         	);
@@ -1039,7 +1039,7 @@ create.scatterplot <- function(
                                 	border = NA
                                 	);
 
-				if(length(regions.start) > 0 && length(regions.stop) > 0) {
+				if (length(regions.start) > 0 && length(regions.stop) > 0) {
 					panel.rect(
                                         	xleft = regions.start,
                                         	ybottom = region.y.bottom,
@@ -1050,12 +1050,12 @@ create.scatterplot <- function(
                                        		border = NA
                                         	);
                                 	panel.text(
-                                        	x = (regions.start + regions.stop)/2,
+                                        	x = (regions.start + regions.stop) / 2,
                                         	y = (bar.y.top + bar.y.bottom) / 2,
                                         	labels = regions.labels,
-                                        	col = "black",
+                                        	col = 'black',
                                         	cex = regions.cex,
-                                        	fontface = "bold"
+                                        	fontface = 'bold'
                                         	);
 					}
 				}
