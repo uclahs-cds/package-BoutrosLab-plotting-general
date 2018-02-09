@@ -27,6 +27,7 @@ export(
 	"create.heatmap",
 	"create.hexbinplot",
 	"create.histogram",
+	"create.lollipopplot",
 	"create.manhattanplot",
 	"create.multiplot",
 	"create.multipanelplot",

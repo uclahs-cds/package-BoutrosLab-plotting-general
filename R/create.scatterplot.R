@@ -163,7 +163,7 @@ inside.rectangle <- function(rectangle.center.x, rectangle.center.y, rectangle.w
 	}
 
 ### FUNCTION TO CREATE SCATTERPLOTS ###############################################################
-create.scatterplot <- function(
+create.lollipopplot <- create.scatterplot <- function(
 	formula, data, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5,
 	main.y = 0.5, main.cex = 3, xlab.label = tail(sub('~', '', formula[-2]), 1),
 	ylab.label = tail(sub('~', '', formula[-3]), 1), xlab.cex = 2, ylab.cex = 2, xlab.col = 'black',
@@ -192,12 +192,18 @@ create.scatterplot <- function(
 	text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, height = 6,
 	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
-	group.specific.colouring = TRUE, use.legacy.settings = FALSE, inside.legend.auto = FALSE, lollipop.plot = FALSE,
+	group.specific.colouring = TRUE, use.legacy.settings = FALSE, inside.legend.auto = FALSE, 
 	regions.labels = c(), regions.start = c(), regions.stop = c(), regions.color = c('red'), regions.cex = 1,
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
 
+	function.name = match.call()[[1]];
 
+	lollipop.plot = FALSE;
+	if(function.name == 'create.lollipopplot') {
+
+		lollipop.plot = TRUE;
+		}
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
         	xright = xright.rectangle,

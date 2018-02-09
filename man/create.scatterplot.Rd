@@ -1,5 +1,6 @@
 \name{create.scatterplot}
 \alias{create.scatterplot}
+\alias{create.lollipopplot}
 \title{Make a scatterplot}
 \description{Takes a data.frame and creates a scatterplot}
 \usage{
@@ -147,6 +148,14 @@ create.scatterplot(
 	group.specific.colouring = TRUE,
 	use.legacy.settings = FALSE,
 	inside.legend.auto = FALSE,
+	regions.labels = c(),
+        regions.start = c(), 
+	regions.stop = c(), 
+	regions.color = c("red"), 
+	regions.cex = 1, 
+	regions.alpha = 1,
+        lollipop.bar.y = NULL, 
+	lollipop.bar.color = "gray",
 	...
 	);
 }
@@ -294,6 +303,14 @@ create.scatterplot(
     \item{group.specific.colouring}{Variable to specify if group specific multi colouring for error bars is enforced}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{inside.legend.auto}{boolean specifying whether or not to use the automatic inside legend function}
+    \item{regions.labels}{Labels for each of the regions on the lollipop plots bars}
+    \item{regions.start}{start x value of each of the regions}
+    \item{regions.stop}{stop value for each of the regions}
+    \item{regions.color}{color of each of the regions}
+    \item{regions.cex}{size of the text of each of the regions}
+    \item{regions.alpha}{alpha of each of the regions}
+    \item{lollipop.bar.y}{y location of top of the lollipop plot bar -- defaults to right above the bottom y axis}
+    \item{lollipop.bar.color}{color of the lollipop plot bar}
     \item{...}{Additional arguments to be passed to xyplot}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
@@ -973,6 +990,33 @@ create.scatterplot(
 	),
     line.col = list('red','blue','green'),
     line.lwd = list(3,3,3)
+    );
+
+lollipop.data <- data.frame(
+    y = seq(1,100,1),
+    x = rnorm(100)
+    );
+
+create.lollipopplot(
+    filename = "Lollipop_Simple.tiff",
+    formula = x ~ y,
+    data = lollipop.data,
+    main = 'Lollipop plot',
+    xaxis.cex = 1,
+    xlimits = c(-1,102),
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    pch = 21,
+    col = 'black',
+    fill = 'transparent',
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    regions.start = c(1,26,48),
+    regions.stop = c(15,35,72),
+    regions.labels = c("test 1", "test2", "test 3"),
+    regions.color = c("#66b3ff", "#5cd65c", "#ff3333")
     );
 }
 \keyword{hplot}
