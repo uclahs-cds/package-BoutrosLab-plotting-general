@@ -1,6 +1,5 @@
 \name{create.scatterplot}
 \alias{create.scatterplot}
-\alias{create.lollipopplot}
 \title{Make a scatterplot}
 \description{Takes a data.frame and creates a scatterplot}
 \usage{
