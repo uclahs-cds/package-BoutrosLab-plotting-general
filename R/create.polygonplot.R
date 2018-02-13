@@ -179,9 +179,19 @@ create.polygonplot <- function(
 					);
 		  		}
 
+			# if requested, add y=x line
+                        if (add.xyline) {
+                        	panel.abline(
+                                	a = 0,
+                                        b = 1,
+                                        lwd = xyline.lwd,
+                                        lty = xyline.lty,
+                                        col = xyline.col
+                                        );
+                                }
+
 			# if no grouping variable, draw a single polygon
 			if (is.null(groups.new)) {
-
 				# draw polygon
 				panel.polygon(
 					x = c(x, rev(x)),
@@ -320,8 +330,14 @@ create.polygonplot <- function(
 					y,
 					groups = groups.new,
 					subscripts,
-					panel.groups = function(x, y, max, min, groups = groups.new, subscripts, type, ..., font, fontface) {
-
+					panel.groups = function(x, y, max, min, groups = groups.new, subscripts, type, add.xy.plot = add.xy.plot, ..., font, fontface) {
+						group.num <- 1;
+						for( i in 1:length(unique(groups))) {
+							if(groups[subscripts[1]] == unique(groups)[i]) {
+								group.num = i;
+								break;
+								}
+							}
 						# draw polygon
 						panel.polygon(
 							x = c(x, rev(x)),
@@ -336,13 +352,15 @@ create.polygonplot <- function(
 							);
 
 						# draw polygon borders
-						panel.xyplot(
-							x = c(x, rev(x), x[1]),
-							y = c(max[subscripts], rev(min[subscripts]), max[subscripts][1]),
-							type = 'l',
-							col = border.col[subscripts],
-							lwd = lwd
-							);
+						if (length(add.xy.border) == 1 || add.xy.border[group.num]) {
+							panel.xyplot(
+								x = c(x, rev(x), x[1]),
+								y = c(max[subscripts], rev(min[subscripts]), max[subscripts][1]),
+								type = 'l',
+								col = border.col[subscripts],
+								lwd = lwd
+								);
+						}
 
 						# draw median line
 						if (add.median & !is.null(median)) {
@@ -359,8 +377,8 @@ create.polygonplot <- function(
 						# add extra points, assuming same grouping as original data
 						if (!is.null(extra.points)) {
 							panel.xyplot(
-								x = x,
-								y = extra.points$y[subscripts],
+								x = extra.points$x,
+								y = extra.points$y,
 								groups = groups,
 								subscripts = subscripts,
 								type = extra.points.type,
@@ -383,16 +401,6 @@ create.polygonplot <- function(
 								);
 							}
 
-						# if requested, add y=x line
-						if (add.xyline) {
-							panel.abline(
-								a = 0,
-								b = 1,
-								lwd = xyline.lwd,
-								lty = xyline.lty,
-								col = xyline.col
-								);
-							}
 
 						# if requested, add user-defined horizontal line
 						if (!is.null(abline.h)) {
