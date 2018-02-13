@@ -1,8 +1,16 @@
+BoutrosLab.plotting.general 5.8.13 2018-02-13
+
+FEATURE
+* adjusted polygon plot to work well with roc plot
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 5.8.12 2018-02-08
 
 FEATURE
 * added lollipop plot as an extension of scatterplot
 
+--------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.8.11 2018-02-05
 
