@@ -39,7 +39,7 @@ create.manhattanplot <- function(
                                 dir.create(dir.name);
                                 }
 
-			funcname = 'create.manhattanplot';
+			funcname <- 'create.manhattanplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {

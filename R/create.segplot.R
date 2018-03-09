@@ -36,7 +36,7 @@ create.segplot <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.segplot';
+			funcname <- 'create.segplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {

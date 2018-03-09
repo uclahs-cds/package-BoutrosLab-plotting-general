@@ -203,7 +203,7 @@ create.lollipopplot <- create.scatterplot <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.scatterplot';
+			funcname <- 'create.scatterplot';
                         print.to.file(dir.name,funcname,data);
                         },
                 warning = function(w) {

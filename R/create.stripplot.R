@@ -36,7 +36,7 @@ create.stripplot <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.stripplot';
+			funcname <- 'create.stripplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {

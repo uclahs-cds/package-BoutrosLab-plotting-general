@@ -35,7 +35,7 @@ create.violinplot <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.violinplot';
+			funcname <- 'create.violinplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {

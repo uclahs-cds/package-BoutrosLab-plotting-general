@@ -34,7 +34,7 @@ create.qqplot.comparison <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.qqplot.comparison';
+			funcname <- 'create.qqplot.comparison';
                         print.to.file(dir.name,funcname,x,filename);
                         },
                 warning = function(w) {

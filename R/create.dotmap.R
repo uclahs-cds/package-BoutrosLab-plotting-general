@@ -35,7 +35,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.dotmap';
+			funcname <- 'create.dotmap';
                         print.to.file(dir.name,funcname,x,filename);
                         },
                 warning = function(w) {

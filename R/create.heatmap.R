@@ -48,7 +48,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }
-                        funcname = 'create.heatmap';
+                        funcname <- 'create.heatmap';
                         print.to.file(dir.name,funcname,x,filename);
                         },
                 warning = function(w) {

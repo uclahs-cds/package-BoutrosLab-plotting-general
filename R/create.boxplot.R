@@ -40,7 +40,7 @@ create.boxplot <- function(
                         if(!dir.exists(dir.name)) {
 				dir.create(dir.name);
 				}
-                        funcname = 'create.boxplot';
+                        funcname <- 'create.boxplot';
                         print.to.file(dir.name,funcname,data, filename);
                         },
                 warning = function(w) {

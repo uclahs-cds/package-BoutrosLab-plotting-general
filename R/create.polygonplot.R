@@ -42,7 +42,7 @@ create.polygonplot <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.polygonplot';
+			funcname <- 'create.polygonplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {

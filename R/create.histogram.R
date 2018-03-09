@@ -34,7 +34,7 @@ create.histogram <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.histogram';
+			funcname <- 'create.histogram';
                         print.to.file(dir.name,funcname,x,filename);
                         },
                 warning = function(w) {

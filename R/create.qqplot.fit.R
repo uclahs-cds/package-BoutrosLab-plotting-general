@@ -34,7 +34,7 @@ create.qqplot.fit <- function(
                         if(!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
-			funcname = 'create.qqplot.fit';
+			funcname <- 'create.qqplot.fit';
                         print.to.file(dir.name,funcname,x,filename);
                         },
                 warning = function(w) {
