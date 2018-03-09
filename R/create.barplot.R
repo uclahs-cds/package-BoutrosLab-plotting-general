@@ -47,10 +47,8 @@ create.barplot <- function(
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {
-			print(w);
                         },
                 error = function(e) {
-			print(e);
                 })
 	
 	### needed to copy in case using variable to define rectangles dimensions
