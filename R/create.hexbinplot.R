@@ -49,8 +49,8 @@ create.hexbinplot <- function(
 	# - specifying the 'maxcnt' parameter using the desired number of bins.
         ### store data on mount
         tryCatch({
-			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
-                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+			dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private/BPGRecords", paste("Objects", Sys.Date(), sep = "_")));
                         funcname = 'create.hexbinplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
