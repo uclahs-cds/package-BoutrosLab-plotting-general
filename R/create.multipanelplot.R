@@ -116,7 +116,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 
 			plot.objects[[i]]$par.settings$layout.widths$left.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$key.left <- 1;
-			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 1;
+			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 0.1;
 			plot.objects[[i]]$par.settings$layout.widths$ylab <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.left <- 0;
@@ -879,7 +879,6 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	}
 
 get.legend.height <- function(legend, filename, width, height, resolution) {
-
 	if (class(legend$fun) == 'function') {
 		legend$fun <- do.call(legend$fun, legend$args);
 		}
@@ -929,7 +928,6 @@ get.legend.height <- function(legend, filename, width, height, resolution) {
 	if (!is.null(filename)) {
 		dev.off()
 		}
-
 	return(as.integer(height.legend));
 
 	}

@@ -197,6 +197,18 @@ create.lollipopplot <- create.scatterplot <- function(
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
 
+	### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.scatterplot';
+                        print.to.file(dir.name,funcname,data);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
+
 	function.name = match.call()[[1]];
 
 	lollipop.plot = FALSE;
@@ -212,6 +224,15 @@ create.lollipopplot <- create.scatterplot <- function(
                 ybottom = ybottom.rectangle
                 );
 
+        text.info <- list(
+                labels = text.labels,
+                x = text.x,
+                y = text.y,
+                col = text.col,
+                cex = text.cex,
+                fontface = text.fontface
+                );
+	
 	if (!is.null(yat) && length(yat) == 1) {
         	if (yat == 'auto') {
                 	out <- auto.axis(unlist(data[toString(formula[[2]])]));
@@ -980,7 +1001,6 @@ create.lollipopplot <- create.scatterplot <- function(
 			}
 		}
 
-
 	# create a scatterplot and save it as a trellis object
 	trellis.object <- lattice::xyplot(
 		formula,
@@ -1234,12 +1254,12 @@ create.lollipopplot <- create.scatterplot <- function(
 			# if requested, add point labels
 			if (any(!text.guess.labels) && add.text) {
 				panel.text(
-					x = text.x,
-					y = text.y,
-					labels = text.labels,
-					col = text.col,
-					cex = text.cex,
-					fontface = text.fontface
+					x = text.info$x,
+					y = text.info$y,
+					labels = text.info$labels,
+					col = text.info$col,
+					cex = text.info$cex,
+					fontface = text.info$fontface
 					);
 				}
 
@@ -1458,6 +1478,8 @@ create.lollipopplot <- create.scatterplot <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+	
+	
 
 	# output the object
 	return(

@@ -42,6 +42,17 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	input.colours = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, stratified.clusters.cols = NULL,
 	inside.legend = NULL, style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE) {
 
+        ### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.heatmap';
+                        print.to.file(dir.name,funcname,x,filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
 
 	### PARAMETER CHECKING #########################################################################
 	if (preload.default == 'paper') {
@@ -1561,6 +1572,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+
+
+
 
 	# output the object
 	return(

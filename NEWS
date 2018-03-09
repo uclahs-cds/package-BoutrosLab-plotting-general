@@ -1,3 +1,14 @@
+BoutrosLab.plotting.general 5.8.14 2018-03-09
+
+FEATURE
+* now stores data on the mount
+
+BUG 
+* text now passed to panel in seperate list, stopping it from being reset in between plots
+
+--------------------------------------------------------------------------
+
+
 BoutrosLab.plotting.general 5.8.13 2018-02-13
 
 FEATURE

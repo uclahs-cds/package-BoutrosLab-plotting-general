@@ -30,6 +30,17 @@ create.segplot <- function(
         disable.factor.sorting = FALSE 
 	) {
 
+        ### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.segplot';
+                        print.to.file(dir.name,funcname,data,filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
 
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
@@ -345,6 +356,7 @@ create.segplot <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+	
 
 	# output the object
 	return(

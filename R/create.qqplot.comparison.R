@@ -27,6 +27,19 @@ create.qqplot.comparison <- function(
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
+	
+	### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.qqplot.comparison';
+                        print.to.file(dir.name,funcname,x,filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
+
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
         	xright = xright.rectangle,
@@ -362,6 +375,8 @@ create.qqplot.comparison <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+
+
 
 	# output the object
 	return(

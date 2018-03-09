@@ -8,14 +8,12 @@
 # nature, which may arise from your Institution's respective use, handling or storage of the SOFTWARE.
 # If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
 # credit be given to OICR scientists, as scientifically appropriate.
-
 ### FUNCTION TO WRITE PLOT  #######################################################################
 write.plot <- function(
 	trellis.object, filename = NULL, additional.trellis.objects = NULL, additional.trellis.locations = NULL,
 	height = 6, width = 6, size.units = 'in', resolution = 1000, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general'
 	) {
-	# if requested create the image file
 	if (!is.null(filename)) {
 
 		# check all potential locations for the extension->functionname mapping file

@@ -32,12 +32,33 @@ create.manhattanplot <- function(
 	inside.legend.auto = FALSE, ...
 	) {
 
+	### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.manhattanplot';
+                        print.to.file(dir.name,funcname,data,filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
+
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
                 xright = xright.rectangle,
                 xleft = xleft.rectangle,
         	ytop = ytop.rectangle,
                 ybottom = ybottom.rectangle
+                );
+
+        text.info <- list(
+                labels = text.labels,
+                x = text.x,
+                y = text.y,
+                col = text.col,
+                cex = text.cex,
+                fontface = text.fontface
                 );
 
 	if (!is.null(yat) && length(yat) == 1) {
@@ -125,6 +146,18 @@ create.manhattanplot <- function(
 				horizontal = horizontal,
 				...
 				);
+
+						# Add text to plot
+			if (add.text) {
+				panel.text(
+					x	 = text.info$x,
+					y	 = text.info$y,
+					labels   = text.info$labels,
+					col      = text.info$col,
+					cex      = text.info$cex,
+					fontface = text.info$fontface
+					);
+				}
 			},
 		type = type,
 		cex = cex,
@@ -311,7 +344,6 @@ create.manhattanplot <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 	# output the object
 	return(
 		BoutrosLab.plotting.general::write.plot(

@@ -29,6 +29,17 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL,
 	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE) {
 
+	### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.dotmap';
+                        print.to.file(dir.name,funcname,x,filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
 
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
@@ -534,6 +545,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+
 
 
 	# output the object

@@ -67,5 +67,6 @@ importFrom("utils", "packageVersion", "read.table", "stack", "tail");
 importFrom("tools", "file_ext");
 importFrom("e1071","skewness");
 importFrom("gtable","gtable_add_grob");
+importFrom("utils", "capture.output")
 S3method(print, multipanel)
 S3method(plot, multipanel)

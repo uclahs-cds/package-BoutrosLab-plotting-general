@@ -37,6 +37,17 @@ create.barplot <- function(
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE, disable.factor.sorting = FALSE
 	) {
+	### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+			funcname <- 'create.barplot';
+                        print.to.file(dir.name,funcname,data,filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                })
 	
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
@@ -45,6 +56,15 @@ create.barplot <- function(
 		ytop = ytop.rectangle,
 		ybottom = ybottom.rectangle
 		);
+
+        text.info <- list(
+                labels = text.labels,
+                x = text.x,
+                y = text.y,
+                col = text.col,
+                cex = text.cex,
+                fontface = text.fontface
+                );
 
 	if (!is.null(yat) && length(yat) == 1) {
 		if (yat == 'auto') {
@@ -287,12 +307,12 @@ create.barplot <- function(
 			# Add text to plot
 			if (add.text) {
 				panel.text(
-					x        = text.x,
-					y        = text.y,
-					labels   = text.labels,
-					col      = text.col,
-					cex      = text.cex,
-					fontface = text.fontface
+					x        = text.info$x,
+					y        = text.info$y,
+					labels   = text.info$labels,
+					col      = text.info$col,
+					cex      = text.info$cex,
+					fontface = text.info$fontface
 					);
 				}
 
@@ -745,6 +765,7 @@ create.barplot <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+
 
 	# output the object
 	return(

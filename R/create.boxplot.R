@@ -34,6 +34,18 @@ create.boxplot <- function(
 	use.legacy.settings = FALSE, disable.factor.sorting = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions -- wont carry through after change
+	        ### store data on mount
+        tryCatch({
+			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
+                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
+                        funcname = 'create.boxplot';
+                        print.to.file(dir.name,funcname,data, filename);
+                        },
+                warning = function(w) {
+                        },
+                error = function(e) {
+                });
+
 	rectangle.info <- list(
 		xright = xright.rectangle,
 		xleft = xleft.rectangle,
@@ -46,6 +58,16 @@ create.boxplot <- function(
                 col = points.col,
                 cex = points.cex,
                 alpha = points.alpha
+		);
+
+	text.info <- list(
+		labels = text.labels,
+		x = text.x,
+		y = text.y,
+		anchor = text.anchor,
+		col = text.col,
+		cex = text.cex,
+		fontface = text.fontface
 		);
 
 	if (!is.null(yat) && length(yat) == 1) {
@@ -176,13 +198,13 @@ create.boxplot <- function(
 			if (add.text) {
 
 				panel.text(
-					x        = text.x,
-					y        = text.y,
-					labels   = text.labels,
-					col      = text.col,
-					cex      = text.cex,
-					fontface = text.fontface,
-					adj      = text.anchor
+					x        = text.info$x,
+					y        = text.info$y,
+					labels   = text.info$labels,
+					col      = text.info$col,
+					cex      = text.info$cex,
+					fontface = text.info$fontface,
+					adj      = text.info$anchor
 					);
 				}
 
@@ -523,10 +545,12 @@ create.boxplot <- function(
 		# Nothing happens
 		}
 
-	# if neither of the above is requested, give a warning
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
+
+
+
 
 	# output the object
 	return(
