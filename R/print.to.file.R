@@ -53,5 +53,4 @@ print.to.file <- function(dirname, funcname,data, filename) {
         		cat(capture.output(cat(paste0('min:', min.numeric, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
 			cat(capture.output(cat(paste0('median:', median(numeric.data, na.rm = T), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
 			}
-		close(paste(dirname,out.filename, sep="/"));
 	}

@@ -37,6 +37,7 @@ create.barplot <- function(
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE, disable.factor.sorting = FALSE
 	) {
+
 	### store data on mount
         tryCatch({
 			dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
@@ -47,8 +48,10 @@ create.barplot <- function(
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {
+			print(w);
                         },
                 error = function(e) {
+			print(e);
                 })
 	
 	### needed to copy in case using variable to define rectangles dimensions
