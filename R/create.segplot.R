@@ -32,17 +32,17 @@ create.segplot <- function(
 
         ### store data on mount
         tryCatch({
-                        dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
-                        if(!dir.exists(dir.name)) {
+                        dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
+                        if( !dir.exists(dir.name) ) {
                                 dir.create(dir.name);
                                 }                        
 			funcname <- 'create.segplot';
-                        print.to.file(dir.name,funcname,data,filename);
+                        print.to.file(dir.name, funcname, data, filename);
                         },
                 warning = function(w) {
                         },
                 error = function(e) {
-                })
+                	});
 
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
