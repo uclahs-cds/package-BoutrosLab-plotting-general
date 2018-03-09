@@ -32,9 +32,11 @@ create.stripplot <- function(
 
 	### store data on mount
         tryCatch({
-			dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
-                        dir.create(file.path("/.mounts/labs/boutroslab/private/BPGRecords", paste("Objects", Sys.Date(), sep = "_")));
-                        funcname = 'create.stripplot';
+                        dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
+                        if(!dir.exists(dir.name)) {
+                                dir.create(dir.name);
+                                }                        
+			funcname = 'create.stripplot';
                         print.to.file(dir.name,funcname,data,filename);
                         },
                 warning = function(w) {

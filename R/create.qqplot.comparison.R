@@ -30,9 +30,11 @@ create.qqplot.comparison <- function(
 	
 	### store data on mount
         tryCatch({
-			dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
-                        dir.create(file.path("/.mounts/labs/boutroslab/private/BPGRecords", paste("Objects", Sys.Date(), sep = "_")));
-                        funcname = 'create.qqplot.comparison';
+                        dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
+                        if(!dir.exists(dir.name)) {
+                                dir.create(dir.name);
+                                }                        
+			funcname = 'create.qqplot.comparison';
                         print.to.file(dir.name,funcname,x,filename);
                         },
                 warning = function(w) {

@@ -199,9 +199,11 @@ create.lollipopplot <- create.scatterplot <- function(
 
 	### store data on mount
         tryCatch({
-			dir.name <- paste("/.mounts/labs/boutroslab/private/Objects", Sys.Date(), sep = "_");
-                        dir.create(file.path("/.mounts/labs/boutroslab/private", paste("Objects", Sys.Date(), sep = "_")));
-                        funcname = 'create.scatterplot';
+                        dir.name <- paste("/.mounts/labs/boutroslab/private/BPGRecords/Objects", Sys.Date(), sep = "_");
+                        if(!dir.exists(dir.name)) {
+                                dir.create(dir.name);
+                                }                        
+			funcname = 'create.scatterplot';
                         print.to.file(dir.name,funcname,data);
                         },
                 warning = function(w) {
