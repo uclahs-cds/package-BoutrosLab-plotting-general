@@ -20,11 +20,9 @@ print.to.file <- function(dirname, funcname,data, filename) {
 			if(class(data[,i]) == 'numeric') {
 				if(is.null(max.numeric)) {
 					max.numeric <- max(data[,i], na.rm = T);
-					print(max.numeric);
 					}
 				if(is.null(min.numeric)){ 
 					min.numeric <- min(data[,i], na.rm = T); 
-					print(min.numeric);
 					}
 			        num.numeric = num.numeric + 1;	
 				max.numeric <- max(max.numeric, max(data[,i]), na.rm = T);
