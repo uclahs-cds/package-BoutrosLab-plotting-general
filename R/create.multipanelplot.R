@@ -116,8 +116,8 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 
 			plot.objects[[i]]$par.settings$layout.widths$left.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$key.left <- 1;
-			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 0.1;
-			plot.objects[[i]]$par.settings$layout.widths$ylab <- 0;
+			plot.objects[[i]]$par.settings$layout.widths$key.ylab.padding <- 1;
+			plot.objects[[i]]$par.settings$layout.widths$ylab <- 1;
 			plot.objects[[i]]$par.settings$layout.widths$ylab.axis.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.left <- 0;
 			plot.objects[[i]]$par.settings$layout.widths$axis.right <- 0;
@@ -128,11 +128,11 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			plot.objects[[i]]$par.settings$layout.heights$main <- 0;
  			plot.objects[[i]]$par.settings$layout.heights$main.key.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$key.top <- 1;
-			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <-  1;
+			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$axis.top <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.bottom <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$axis.xlab.padding <- 0;
-			plot.objects[[i]]$par.settings$layout.heights$xlab <- 0;
+			plot.objects[[i]]$par.settings$layout.heights$xlab <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$xlab.key.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$key.bottom <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$key.sub.padding <- 0;
@@ -220,11 +220,11 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			bottom.ticks[i] <- plot.objects[[i]]$x.scales$tck[1] * tick.to.padding.ratio;
 		 	### Labels can get a bit weird because they come in many shapes and forms
 			### (i.e, expressions, NA, NULL....) --- this is intended to check for all those
-
 			if (is.expression(plot.objects[[i]]$y.scales$labels[1])) {
 				y.axis.labs <- plot.objects[[i]]$y.scales$labels;
 				}
-			else if (is.null(plot.objects[[i]]$y.scales$labels) || is.na(plot.objects[[i]]$y.scales$labels) || plot.objects[[i]]$y.scales$labels == TRUE ) {
+			else if (is.null(plot.objects[[i]]$y.scales$labels) || is.na(plot.objects[[i]]$y.scales$labels) || (length(plot.objects[[i]]$y.scales$labels) == 1 && 
+				plot.objects[[i]]$y.scales$labels == TRUE)) {
 				if (!is.null(plot.objects[[i]]$panel.args[[1]]$y)) {
 					if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))) {
                                        		y.axis.labs <- levels(plot.objects[[i]]$panel.args[[1]]$y);
@@ -247,7 +247,8 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			if (is.expression(plot.objects[[i]]$x.scales$labels[1])) {
 				x.axis.labs <- plot.objects[[i]]$x.scales$labels;
 				}
-			else if (is.null(plot.objects[[i]]$x.scales$labels) || is.na(plot.objects[[i]]$x.scales$labels) || plot.objects[[i]]$x.scales$labels == TRUE) {
+			else if (is.null(plot.objects[[i]]$x.scales$labels) || is.na(plot.objects[[i]]$x.scales$labels) || ( length(plot.objects[[i]]$x.scales$labels) == 1 && 
+				plot.objects[[i]]$x.scales$labels) == TRUE) {
 				if (!is.null(plot.objects[[i]]$panel.args[[1]]$x)) {
                                 	if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$x))) {
                                        		x.axis.labs <- levels(plot.objects[[i]]$panel.args[[1]]$x);
@@ -298,17 +299,18 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		max.left.legend <- max(unlist(left.legend[seq(i, length(plot.objects), layout.width)]));
 
 		for (j in seq(i, length(plot.objects), layout.width)) {
-
-			to.add <- (max.axis + max.labels) / padding.text.to.padding.ratio + max.ticks + additional.padding;
+			diff.max.labels <- abs(max.labels - y.label.size[[j]]);
+			to.add <- (max.axis + diff.max.labels + max.labels/2) / padding.text.to.padding.ratio + max.ticks + additional.padding;
 
 			if (!is.null(plot.objects[[j]]$par.settings)) {
 
 				diff.right.legend <- abs(right.legend[j] - max.right.legend) / padding.text.to.padding.ratio;
 				diff.left.legend <- abs(left.legend[j] - max.left.legend) / padding.text.to.padding.ratio;
+				
+				#if(diff.right.legend != 0) {diff.right.legend <- diff.right.legend + 1 / padding.text.to.padding.ratio}
+				if(diff.left.legend != 0) {diff.left.legend <- diff.left.legend + 1 / padding.text.to.padding.ratio}
 
 				### if has legend, must account for minor key padding
-				if (0 != diff.right.legend) {diff.right.legend <- diff.right.legend + 1 / padding.text.to.padding.ratio}
-				if (0 != diff.left.legend) {diff.left.legend <- diff.left.legend + 1 / padding.text.to.padding.ratio}
 
 				plot.objects[[j]]$par.settings$layout.widths$ylab.axis.padding <- ylab.axis.padding[ceiling(i / 2)] + to.add;
 				plot.objects[[j]]$par.settings$layout.widths$left.padding <- plot.objects[[j]]$par.settings$layout.widths$left.padding + diff.left.legend;
@@ -330,17 +332,18 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		max.bottom.legend <- max(unlist(bottom.legend[seq(i, i + layout.width - 1, 1)]));
 
 		for (j in c(i:(i + layout.width - 1))) {
-
-			to.add <- (max.axis + max.labels) / padding.text.to.padding.ratio + max.ticks + additional.padding;
+			diff.max.labels <- abs(max.labels - x.label.size[[j]]);
+			to.add <- (max.axis + diff.max.labels + max.labels/2) / padding.text.to.padding.ratio + max.ticks + additional.padding;
 
 			if (j <= length(plot.objects) && !is.null(plot.objects[[j]]$par.settings)) {
 
 				diff.top.legend <- abs(top.legend[j] - max.top.legend) / padding.text.to.padding.ratio;
 				diff.bottom.legend <- abs(bottom.legend[j] - max.bottom.legend) / padding.text.to.padding.ratio;
+				
+				#if(diff.top.legend != 0) {diff.top.legend <- diff.top.legend + 1 / padding.text.to.padding.ratio}
+                                if(diff.bottom.legend != 0) {diff.bottom.legend <- diff.bottom.legend + 1 / padding.text.to.padding.ratio}
 
 				### if has legend, must account for minor key padding
-				if (0 != diff.top.legend) {diff.top.legend <- diff.top.legend + 1 / padding.text.to.padding.ratio}
-				if (0 != diff.bottom.legend) {diff.bottom.legend <- diff.bottom.legend + 1 / padding.text.to.padding.ratio}
 
 				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding[ceiling(i / (layout.width * 2))] + to.add;
 
@@ -989,7 +992,7 @@ get.legend.width <- function(legend, filename, width, height, resolution) {
 
 ### function to get the grob width given the text and specification parameters##
 get.text.grob.width <- function(labels, cex, rot, filename, width, height, resolution) {
-
+	
 	#grob size depends on image type and size -- must simulate opening the device
 	if (is.null(labels)) {
 		return(0);
@@ -1016,7 +1019,7 @@ get.text.grob.width <- function(labels, cex, rot, filename, width, height, resol
                         }
                 }
         # if not an empty label or all blank, create the grob, and get its width
-	if (0 < length(labels)  && !(all('' == toString(labels)))) {
+	if (0 < length(labels)  && !(all('' == as.character(labels)))) {
 		grob <- textGrob(labels, gp = gpar(cex = cex, lineheight = 1), rot = rot, x = c(rep(0.5, length(labels))), y = c(rep(0.5, length(labels))));
 		width.grob <- convertUnit(
 			grobWidth(grob),
@@ -1066,7 +1069,7 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 			}
 		}
 	# if not an empty label or all blank, create the grob, and get its height
-	if (0 < length(labels) && !(all('' == toString(labels)))) {
+	if (0 < length(labels) && !(all('' == as.character(labels)))) {
 		grob <- textGrob(labels, gp = gpar(cex = cex, lineheight = 1), rot = rot, x = c(rep(0.5, length(labels))), y = c(rep(0.5, length(labels))));
 		height.grob <- convertUnit(
 			grobHeight(grob),
