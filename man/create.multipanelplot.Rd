@@ -269,6 +269,7 @@ barplot.formatted <- create.barplot(
     yaxis.cex = 1.5
     );
 
+
 heatmap.formatted <- create.heatmap(
     x = all.data[,1:6],
     clustering.method = 'none',
@@ -276,6 +277,7 @@ heatmap.formatted <- create.heatmap(
     print.colour.key = FALSE,
     xlab.label = '',
     yaxis.tck = c(1,0),
+    xaxis.tck = c(1,0),
     xat = c(1:25),
     yaxis.lab = c("BRCA1", "BRCA2", "APC", "TIN", "ARG", "FOO"),
     yat = c(1,2,3,4,5,6),
@@ -285,12 +287,12 @@ heatmap.formatted <- create.heatmap(
     ); 
 
 create.multipanelplot(
-    filename = 'Multipanelplot_Formatting.tiff',
+    filename = 'Multipanelplot_formatted.tiff',
     plot.objects = list(barplot.formatted, heatmap.formatted), 
     plot.objects.heights = c(1,3), 
-    y.spacing = 1, 
+    y.spacing = -3.75, 
     main = 'Formatted', 
-    top.padding = 2
+    top.padding = 0
     );
 
 data.bars <- data.frame(
@@ -718,7 +720,7 @@ create.multipanelplot(
     main.x = 0.47,
     main.y = 0.5,
     plot.objects = plots,
-    plot.objects.heights = c(0.4, 0.3, 1, 0.1),
+    plot.objects.heights = c(0.3, 0.3, 1, 0.15),
     plot.objects.widths = c(1,0.2),
     filename = "Multipanelplot_Complex.tiff",
     layout.height = 4,
@@ -726,7 +728,7 @@ create.multipanelplot(
     x.spacing = 0.2,
     left.padding = 0,
     layout.skip = c(FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,TRUE),
-    y.spacing = c(-1,-1,-0.85),
+    y.spacing = c(-1.35,-1.35,-1.5),
     ylab.axis.padding = c(1,0),
     legend = list(
         left = list(
@@ -739,13 +741,12 @@ create.multipanelplot(
                     )
                 )
             )
-	),
+    ),
     height = 12,
     width = 12,
     main = 'Complex', 
     top.padding = 2
     );
-
 # Create a multiplot with a heatmap, key like legend and barplot
 
 # First create a heatmap object

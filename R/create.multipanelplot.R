@@ -218,54 +218,9 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 				0, filename, width, height, resolution);
 			left.ticks[i] <- plot.objects[[i]]$y.scales$tck[1] * tick.to.padding.ratio;
 			bottom.ticks[i] <- plot.objects[[i]]$x.scales$tck[1] * tick.to.padding.ratio;
-		 	### Labels can get a bit weird because they come in many shapes and forms
-			### (i.e, expressions, NA, NULL....) --- this is intended to check for all those
-			if (is.expression(plot.objects[[i]]$y.scales$labels[1])) {
-				y.axis.labs <- plot.objects[[i]]$y.scales$labels;
-				}
-			else if (is.null(plot.objects[[i]]$y.scales$labels) || is.na(plot.objects[[i]]$y.scales$labels) || (length(plot.objects[[i]]$y.scales$labels) == 1 && 
-				plot.objects[[i]]$y.scales$labels == TRUE)) {
-				if (!is.null(plot.objects[[i]]$panel.args[[1]]$y)) {
-					if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$y))) {
-                                       		y.axis.labs <- levels(plot.objects[[i]]$panel.args[[1]]$y);
-                                       		}
-					else {
-						yvals <- as.numeric(plot.objects[[i]]$panel.args[[1]]$y);
-						y.axis.labs <-  pretty(yvals[is.finite(yvals)]);
-						}
-					}
-				else {
-					y.axis.labs <- '';
-					}
-				}
-			else {
-				y.axis.labs <- plot.objects[[i]]$y.scales$labels;
-				}
-
-
-
-			if (is.expression(plot.objects[[i]]$x.scales$labels[1])) {
-				x.axis.labs <- plot.objects[[i]]$x.scales$labels;
-				}
-			else if (is.null(plot.objects[[i]]$x.scales$labels) || is.na(plot.objects[[i]]$x.scales$labels) || ( length(plot.objects[[i]]$x.scales$labels) == 1 && 
-				plot.objects[[i]]$x.scales$labels) == TRUE) {
-				if (!is.null(plot.objects[[i]]$panel.args[[1]]$x)) {
-                                	if (!is.null(levels(plot.objects[[i]]$panel.args[[1]]$x))) {
-                                       		x.axis.labs <- levels(plot.objects[[i]]$panel.args[[1]]$x);
-                                       		}
-					else {
-						xvals <- as.numeric(plot.objects[[i]]$panel.args[[1]]$x);
-						x.axis.labs <-  pretty(xvals[is.finite(xvals)]);
-						}
-					}
-				else {
-					x.axis.labs <- '';
-					}
-				}
-			else {
-				x.axis.labs <- plot.objects[[i]]$x.scales$labels;
-				}
-
+			## from data and labels -- get the actual labels that will be in plot as strings
+			y.axis.labs <- reformat.labels(plot.objects[[i]]$y.scales$labels, plot.objects[[i]]$panel.args[[1]]$y);
+			x.axis.labs <- reformat.labels(plot.objects[[i]]$x.scales$labels, plot.objects[[i]]$panel.args[[1]]$x);
 
 			largest.y.axis[i] <- get.text.grob.width(
 				y.axis.labs,
@@ -289,7 +244,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		}
 
 
-	# add the correct amount to each plot based on the column (use ylab axis)
+	# add the correct amount of padding to each plot based on the column (use ylab axis)
 	for (i in c(1:layout.width)) {
 
 		max.axis <- max(unlist(largest.y.axis[seq(i, length(plot.objects), layout.width)]));
@@ -321,7 +276,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		}
 
 
-	# add the correct amount to each plot based on the row (use xlab axis)
+	# add the correct amount of padding to each plot based on the row (use xlab axis)
 	for (i in seq(1, length(plot.objects), layout.width)) {
 
 		max.axis <- max(unlist(largest.x.axis[seq(i, i + layout.width - 1, 1)]));
@@ -880,6 +835,38 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		return(grob);
 		}
 	}
+
+
+### Labels can get a bit weird because they come in many shapes and forms
+### (i.e, expressions, NA, NULL....) --- this is intended to check for all those
+## from data and labels -- get the actual labels that will be in plot as strings
+reformat.labels <- function(labels, data.values) {
+
+	if (is.expression(labels[1])) {
+        	y.axis.labs <- labels;
+                }
+        else if (is.null(labels) || is.na(labels) || (length(labels) == 1 && labels == TRUE)) {
+                if (!is.null(data.values)) {
+                	if (!is.null(levels(data.values))) {
+                        	y.axis.labs <- levels(data.values);
+                                }
+                        else {
+                        	yvals <- as.numeric(data.values);
+                        	y.axis.labs <-  pretty(yvals[is.finite(yvals)]);
+                                }
+                        }
+                    else {
+                            y.axis.labs <- '';
+                            }
+                    }
+	else {
+        	y.axis.labs <- labels;
+        	}
+
+	return(y.axis.labs);
+
+
+}
 
 get.legend.height <- function(legend, filename, width, height, resolution) {
 	if (class(legend$fun) == 'function') {
