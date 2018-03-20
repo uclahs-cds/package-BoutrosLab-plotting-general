@@ -1,7 +1,7 @@
 print.to.file <- function(dirname, funcname,data, filename) {
-	out.filename <- 'data.txt';
+	user <- system("whoami",intern = T);
+	out.filename <- paste0('data-',user,sep = '.txt');
 	if(class(data) == 'data.frame' || class(data) == 'matrix') {
-		user <- system("whoami",intern = T)
 		cat(capture.output(cat(paste0('user:', user, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
                 cat(capture.output(cat(paste0('filename:', filename[1], sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
 		cat(capture.output(cat(paste0('func.name:', funcname, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
