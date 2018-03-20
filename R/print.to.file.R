@@ -3,7 +3,7 @@ print.to.file <- function(dirname, funcname,data, filename) {
 	if(class(data) == 'data.frame' || class(data) == 'matrix') {
 		user <- system("whoami",intern = T)
 		cat(capture.output(cat(paste0('user:', user, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-                cat(capture.output(cat(paste0('filename:', filename, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
+                cat(capture.output(cat(paste0('filename:', filename[1], sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
 		cat(capture.output(cat(paste0('func.name:', funcname, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
 		cat(capture.output(cat(paste0('data.type:', class(data), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
 		cat(capture.output(cat(paste0('nrow:', nrow(data), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
