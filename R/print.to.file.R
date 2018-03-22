@@ -1,13 +1,11 @@
 print.to.file <- function(dirname, funcname,data, filename) {
 	user <- system("whoami",intern = T);
-	out.filename <- paste0('data-',user,sep = '.txt');
+	out.filename <- 'data-df.tsv';
+	if(is.null(filename)) {
+		filename = 'None';
+		}
 	if(class(data) == 'data.frame' || class(data) == 'matrix') {
-		cat(capture.output(cat(paste0('user:', user, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-                cat(capture.output(cat(paste0('filename:', filename[1], sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-		cat(capture.output(cat(paste0('func.name:', funcname, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-		cat(capture.output(cat(paste0('data.type:', class(data), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-		cat(capture.output(cat(paste0('nrow:', nrow(data), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-        	cat(capture.output(cat(paste0('ncol:', ncol(data), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
+
                 data.types <- c();
                 max.numeric <- NULL;
                 min.numeric <- NULL;
@@ -36,19 +34,26 @@ print.to.file <- function(dirname, funcname,data, filename) {
 				num.factor = num.factor + 1;
 				}
 			}
-		
-		}	
-		cat(capture.output(cat(paste0('numeric:', num.numeric, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-		cat(capture.output(cat(paste0('factor:', num.factor, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-		cat(capture.output(cat(paste0('integer:', num.integer, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
+			
+		df.to.add <- NULL;
 		if(is.null(max.numeric) || is.null(min.numeric)) {
-			cat(capture.output(cat(paste0('max:', 0, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-                        cat(capture.output(cat(paste0('min:', 0, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-                        cat(capture.output(cat(paste0('median:', 0, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
+                        df.to.add <- data.frame(user = c(user), filename = c(filename), func.name = c(funcname),
+                        	data.type = c(class(data)), nrow = c(nrow(data)), ncol = c(ncol(data)), numeric = c(num.numeric),
+                        	factor = c(num.factor), integer = c(num.integer), max = c(0), min = c(0), median = c(0))
 			}
 		else {
-			cat(capture.output(cat(paste0('max:', max.numeric, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-        		cat(capture.output(cat(paste0('min:', min.numeric, sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
-			cat(capture.output(cat(paste0('median:', median(numeric.data, na.rm = T), sep = '\n')), file=paste(dirname,out.filename, sep="/"), append = T));
+			df.to.add <- data.frame(user = c(user), filename = c(filename), func.name = c(funcname),
+                                data.type = c(class(data)), nrow = c(nrow(data)), ncol = c(ncol(data)), numeric = c(num.numeric),
+                                factor = c(num.factor), integer = c(num.integer), max = c(max(numeric.data,na.rm = T)), min = c(min(numeric.data,na.rm=T)), median = c(median(numeric.data, na.rm = T)));
 			}
+		if(!is.null(df.to.add)) {
+			if(!file.exists(paste(dirname,out.filename, sep="/"))) {
+				write.table(df.to.add,paste(dirname,out.filename, sep="/"), sep = '\t', row.names = F, col.names = T);
+				}
+			else {
+				write.table(df.to.add,paste(dirname,out.filename, sep="/"), sep = '\t', row.names = F, col.names = F, append = T);
+				}
+			}
+		}
 	}
+
