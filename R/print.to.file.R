@@ -57,3 +57,71 @@ print.to.file <- function(dirname, funcname,data, filename) {
 		}
 	}
 
+print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
+	user <- system("whoami",intern = T);
+        out.filename <- 'data-df.tsv';
+        if(is.null(filename)) {
+                filename = 'None';
+                }
+	
+	xaxis.labels.cex <- trellis.object$x.scales$cex[1];
+	xaxis.labels.num.at <- length(trellis.object$x.scales$at);
+	xaxis.labels.at.start <- trellis.object$x.scales$at[1];
+	xaxis.labels.at.stop <- trellis.object$x.scales$at[length(trellis.object$x.scales$at)];
+	xaxis.labels.rot <- trellis.object$x.scales$rot[1];
+	xaxis.labels.tck <- trellis.object$x.scales$tck[1];
+	xaxis.labels.tick.number <- trellis.object$x.scales$tick.number;
+	
+        yaxis.labels.cex <- trellis.object$y.scales$cex[1];
+        yaxis.labels.num.at <- length(trellis.object$y.scales$at);
+        yaxis.labels.at.start <- trellis.object$y.scales$at[1];
+        yaxis.labels.at.stop <- trellis.object$y.scales$at[length(trellis.object$y.scales$at)];
+        yaxis.labels.rot <- trellis.object$y.scales$rot[1];
+        yaxis.labels.tck <- trellis.object$y.scales$tck[1];
+        yaxis.labels.tick.number <- trellis.object$y.scales$tick.number;
+	
+	num.xlimits <- length(trellis.object$x.limits);
+	xlimits.start <- trellis.object$x.limits[1];
+	xlimits.end <- trellis.object$x.limits[length(trellis.object$x.limits)];
+	
+        num.ylimits <- length(trellis.object$y.limits);
+        ylimits.start <- trellis.object$y.limits[1];
+        ylimits.end <- trellis.object$y.limits[length(trellis.object$y.limits)];
+	
+
+	df.to.add <- data.frame(
+		user = c(user), 
+		filename = c(filename), 
+		xaxis.labels.cex = c(xaxis.labels.cex), 
+		xaxis.labels.num.at = c(xaxis.labels.num.at),
+		xaxis.labels.at.start = c(xaxis.labels.at.start), 
+		xaxis.labels.at.stop = c(xaxis.labels.at.stop), 
+		xaxis.labels.rot = c(xaxis.labels.rot),
+		xaxis.labels.tck = c(xaxis.labels.tck), 
+		xaxis.labels.tick.number = c(xaxis.labels.tick.number), 
+		yaxis.labels.cex = c(yaxis.labels.cex), 
+		yaxis.labels.num.at = c(yaxis.labels.num.at), 
+		yaxis.labels.at.start = c(yaxis.labels.at.start), 
+		yaxis.labels.at.stop = c(yaxis.labels.at.stop), 
+		yaxis.labels.rot = c(yaxis.labels.rot), 
+		yaxis.labels.tck = c(yaxis.labels.tck), 
+		yaxis.labels.tick.number = c(yaxis.labels.tick.number),
+		num.xlimits = c(num.xlimits), 
+		xlimits.start = c(xlimits.start), 
+		xlimits.end = c(xlimits.end), 
+		num.ylimits = c(num.ylimits), 
+		ylimits.start = c(ylimits.start),
+		ylimits.end = c(ylimits.end)
+		);
+	
+	if(!is.null(df.to.add)) {
+        	if(!file.exists(paste(dirname,out.filename, sep="/"))) {
+                	write.table(df.to.add,paste(dirname,out.filename, sep="/"), sep = '\t', row.names = F, col.names = T);
+                        }
+                else {
+                        write.table(df.to.add,paste(dirname,out.filename, sep="/"), sep = '\t', row.names = F, col.names = F, append = T);
+                        } 
+                }
+
+	}
+
