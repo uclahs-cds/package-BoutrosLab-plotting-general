@@ -32,7 +32,7 @@ create.violinplot <- function(
 	### store data on mount
         tryCatch({
                         dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        if( !dir.exists(dir.name) ) {
+                        if (!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }                        
 			funcname <- 'create.violinplot';
@@ -392,16 +392,16 @@ create.violinplot <- function(
 		
 		sorting.param <- '';
 
-		if(plot.horizontal) {
+		if (plot.horizontal) {
 			sorting.param <- 'y';
-			if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+			if (is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
 				default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
 				trellis.object$y.scales$labels <- default.labels;
 				}
 			} 
 		else {
 			sorting.param <- 'x';
-			if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+			if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
                         	default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
 				trellis.object$x.scales$labels <- default.labels;
 				}
@@ -410,7 +410,7 @@ create.violinplot <- function(
                 unique.mapping <- list();
                 count <- 1;
                 for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
-                        if(is.null(unique.mapping[[as.character(x)]])) {
+                        if (is.null(unique.mapping[[as.character(x)]])) {
                                 unique.mapping[as.character(x)] <- count;
                                 count <- count + 1;
                                 }
@@ -462,15 +462,15 @@ create.violinplot <- function(
         ### store trellis data data on mount
         tryCatch({
                         dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        dir.name <- paste(dir.name, 'create.violinplot',sep='/');
-                        if( !dir.exists(dir.name) ) {
+                        dir.name <- paste(dir.name, 'create.violinplot', sep = '/');
+                        if (!dir.exists(dir.name)) {
                                 dir.create(dir.name);
                                 }
-                        print.to.file.trellis.object(dir.name,trellis.object, filename);
+                        print.to.file.trellis.object(dir.name, trellis.object, filename);
                         },
                 warning = function(w) {
                         },
-                error = function(e) { 
+                error = function(e) {
                         });
 
 	

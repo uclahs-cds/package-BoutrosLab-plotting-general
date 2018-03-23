@@ -302,15 +302,16 @@ create.stripplot <- function(
 
                 if (is.factor(trellis.object$panel.args[[1]][['y']])) {
                         sorting.param <- 'y';
-                        if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && 
-				trellis.object$y.scales$labels[1]  == TRUE)) {
+                        if (is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && 
+					trellis.object$y.scales$labels[1]  == TRUE)) {
                                 default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
                                 trellis.object$y.scales$labels <- default.labels;
                                 }
                         }
                 else {
                         sorting.param <- 'x';
-                        if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+                        if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && 
+					trellis.object$x.scales$labels[1]  == TRUE)) {
                                 default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
                                 trellis.object$x.scales$labels <- default.labels;
                                 }
@@ -388,7 +389,7 @@ create.stripplot <- function(
                         },
                 warning = function(w) {
                         },
-                error = function(e) { 
+                error = function(e) {
                         });
 
 	# output the object
