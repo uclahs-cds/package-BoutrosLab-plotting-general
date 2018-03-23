@@ -558,21 +558,18 @@ create.barplot <- function(
 				}
 			}
 		
-                uniqueMapping <- list();
+                unique.mapping <- list();
                 count <- 1;
                 for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
-                        if(is.null(uniqueMapping[[as.character(x)]])) {
-                                uniqueMapping[as.character(x)] <- count;
+                        if(is.null(unique.mapping[[as.character(x)]])) {
+                                unique.mapping[as.character(x)] <- count;
                                 count <- count + 1;
                                 }
                         }
-                print(uniqueMapping);
                 temp.data <- as.character(trellis.object$panel.args[[1]][[sorting.param]]);
-                print(temp.data);
                 for (x in 1:length(temp.data)) {
-                        temp.data[x] <- as.character(uniqueMapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);
+                        temp.data[x] <- as.character(unique.mapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);
                         }
-                print(temp.data);
                 trellis.object$panel.args[[1]][[sorting.param]] <- as.numeric(temp.data);
 	
 		}

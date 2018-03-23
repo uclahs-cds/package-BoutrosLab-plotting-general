@@ -33,7 +33,7 @@ create.segplot <- function(
         ### store data on mount
         tryCatch({
                         dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        if( !dir.exists(dir.name) ) {
+                        if ( !dir.exists(dir.name) ) {
                                 dir.create(dir.name);
                                 }                        
 			funcname <- 'create.segplot';
@@ -279,36 +279,33 @@ create.segplot <- function(
 		
 		sorting.param <- 'z';
 
-		if(plot.horizontal) {
-			if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+		if (plot.horizontal) {
+			if (is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
 				default.labels <- unique(as.character(trellis.object$panel.args.common[[sorting.param]]));
 				trellis.object$y.scales$labels <- default.labels;
 				}
 			} 
 		else {
-			if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+			if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
                         	default.labels <-unique(as.character(trellis.object$panel.args.common[[sorting.param]])); 
 				trellis.object$x.scales$labels <- default.labels;
-				trellis.object$x.scales$at <- seq(1,length(default.labels),1);
+				trellis.object$x.scales$at <- seq(1, length(default.labels), 1);
 				trellis.object$x.limits <- c(0, length(default.labels) + 1);
 				}
 			}
 		
-                uniqueMapping <- list();
+                unique.mapping <- list();
                 count <- 1;
                 for (x in trellis.object$panel.args.common[[sorting.param]]) {
-                        if(is.null(uniqueMapping[[as.character(x)]])) {
-                                uniqueMapping[as.character(x)] <- count;
+                        if(is.null(unique.mapping[[as.character(x)]])) {
+                                unique.mapping[as.character(x)] <- count;
                                 count <- count + 1;
                                 }
                         }
-                print(uniqueMapping);
                 temp.data <- as.character(trellis.object$panel.args.common[[sorting.param]]);
-                print(temp.data);
                 for (x in 1:length(temp.data)) {
-                        temp.data[x] <- as.character(uniqueMapping[as.character(trellis.object$panel.args.common[[sorting.param]][[x]])][[1]]);
+                        temp.data[x] <- as.character(unique.mapping[as.character(trellis.object$panel.args.common[[sorting.param]][[x]])][[1]]);
                         }
-                print(temp.data);
                 trellis.object$panel.args.common[[sorting.param]] <- as.numeric(temp.data);
 	
 		}
@@ -362,11 +359,11 @@ create.segplot <- function(
         ### store trellis data data on mount
         tryCatch({
                         dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        dir.name <- paste(dir.name, 'create.segplot',sep='/');
-                        if( !dir.exists(dir.name) ) {
+                        dir.name <- paste(dir.name, 'create.segplot', sep='/');
+                        if ( !dir.exists(dir.name) ) {
                                 dir.create(dir.name);
                                 }
-                        print.to.file.trellis.object(dir.name,trellis.object, filename);
+                        print.to.file.trellis.object(dir.name, trellis.object, filename);
                         },
                 warning = function(w) {
                         },
