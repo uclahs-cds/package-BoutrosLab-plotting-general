@@ -72,6 +72,14 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
 	xaxis.labels.num.at <- length(trellis.object$x.scales$at);
 	xaxis.labels.at.start <- trellis.object$x.scales$at[1];
 	xaxis.labels.at.stop <- trellis.object$x.scales$at[length(trellis.object$x.scales$at)];
+        
+	if(xaxis.labels.num.at == 1 && is.logical(xaxis.labels.at.start) && is.logical(xaxis.labels.at.stop)) {
+                labels = pretty(trellis.object$panel.args[[1]]$x);
+                xaxis.labels.num.at <- length(labels);
+                xaxis.labels.at.start <- labels[1];
+                xaxis.labels.at.stop <- labels[length(labels)];
+                }
+
 	xaxis.labels.rot <- trellis.object$x.scales$rot[1];
 	xaxis.labels.tck <- trellis.object$x.scales$tck[1];
 	xaxis.labels.tick.number <- trellis.object$x.scales$tick.number;
@@ -80,7 +88,15 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
         yaxis.labels.num.at <- length(trellis.object$y.scales$at);
         yaxis.labels.at.start <- trellis.object$y.scales$at[1];
         yaxis.labels.at.stop <- trellis.object$y.scales$at[length(trellis.object$y.scales$at)];
-        yaxis.labels.rot <- trellis.object$y.scales$rot[1];
+	
+	if(yaxis.labels.num.at == 1 && is.logical(yaxis.labels.at.start) && is.logical(yaxis.labels.at.stop)) {
+                labels = pretty(trellis.object$panel.args[[1]]$y);
+                yaxis.labels.num.at <- length(labels);
+                yaxis.labels.at.start <- labels[1];
+                yaxis.labels.at.stop <- labels[length(labels)];
+                }
+        
+	yaxis.labels.rot <- trellis.object$y.scales$rot[1];
         yaxis.labels.tck <- trellis.object$y.scales$tck[1];
         yaxis.labels.tick.number <- trellis.object$y.scales$tick.number;
 	
@@ -88,10 +104,20 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
 	xlimits.start <- trellis.object$x.limits[1];
 	xlimits.end <- trellis.object$x.limits[length(trellis.object$x.limits)];
 	
-        num.ylimits <- length(trellis.object$y.limits);
+	if(num.xlimits > 2) {
+                xlimits.start <- 0;
+                xlimits.end <- num.xlimits + 1;
+                }	
+        
+	num.ylimits <- length(trellis.object$y.limits);
         ylimits.start <- trellis.object$y.limits[1];
         ylimits.end <- trellis.object$y.limits[length(trellis.object$y.limits)];
 	
+
+	if(num.ylimits > 2) {
+                ylimits.start <- 0;
+                ylimits.end <- num.ylimits + 1;
+                }
 
 	df.to.add <- data.frame(
 		user = c(user), 
