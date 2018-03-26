@@ -63,7 +63,11 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
         if(is.null(filename)) {
                 filename = 'None';
                 }
+
 	
+	datainfo.dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
+        datainfo.dataframe <- read.table(paste(datainfo.dir.name, out.filename, sep="/"), header = T);
+        parent.id <- nrow(datainfo.dataframe);	
 	xaxis.labels.cex <- trellis.object$x.scales$cex[1];
 	xaxis.labels.num.at <- length(trellis.object$x.scales$at);
 	xaxis.labels.at.start <- trellis.object$x.scales$at[1];
@@ -91,7 +95,8 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
 
 	df.to.add <- data.frame(
 		user = c(user), 
-		filename = c(filename), 
+		filename = c(filename),
+		parent.id = c(parent.id), 
 		xaxis.labels.cex = c(xaxis.labels.cex), 
 		xaxis.labels.num.at = c(xaxis.labels.num.at),
 		xaxis.labels.at.start = c(xaxis.labels.at.start), 
