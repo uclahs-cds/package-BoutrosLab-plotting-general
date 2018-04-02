@@ -74,7 +74,7 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
 	xaxis.labels.at.stop <- trellis.object$x.scales$at[length(trellis.object$x.scales$at)];
         
 	if(xaxis.labels.num.at == 1 && is.logical(xaxis.labels.at.start) && is.logical(xaxis.labels.at.stop)) {
-                labels = pretty(trellis.object$panel.args[[1]]$x);
+                labels = pretty(as.numeric(trellis.object$panel.args[[1]]$x));
                 xaxis.labels.num.at <- length(labels);
                 xaxis.labels.at.start <- labels[1];
                 xaxis.labels.at.stop <- labels[length(labels)];
@@ -90,7 +90,7 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
         yaxis.labels.at.stop <- trellis.object$y.scales$at[length(trellis.object$y.scales$at)];
 	
 	if(yaxis.labels.num.at == 1 && is.logical(yaxis.labels.at.start) && is.logical(yaxis.labels.at.stop)) {
-                labels = pretty(trellis.object$panel.args[[1]]$y);
+                labels = pretty(as.numeric(trellis.object$panel.args[[1]]$y));
                 yaxis.labels.num.at <- length(labels);
                 yaxis.labels.at.start <- labels[1];
                 yaxis.labels.at.stop <- labels[length(labels)];
