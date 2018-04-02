@@ -137,10 +137,8 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
 		yaxis.labels.rot = c(yaxis.labels.rot), 
 		yaxis.labels.tck = c(yaxis.labels.tck), 
 		yaxis.labels.tick.number = c(yaxis.labels.tick.number),
-		num.xlimits = c(num.xlimits), 
 		xlimits.start = c(xlimits.start), 
 		xlimits.end = c(xlimits.end), 
-		num.ylimits = c(num.ylimits), 
 		ylimits.start = c(ylimits.start),
 		ylimits.end = c(ylimits.end)
 		);
