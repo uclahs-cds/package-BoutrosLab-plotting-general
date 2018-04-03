@@ -64,41 +64,13 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
                 filename = 'None';
                 }
 
-	
+		
 	datainfo.dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-        datainfo.dataframe <- read.table(paste(datainfo.dir.name, out.filename, sep="/"), header = T);
+        datainfo.dataframe <- read.table(paste(datainfo.dir.name, out.filename, sep="/"), header = T, fill = T);
         parent.id <- nrow(datainfo.dataframe);	
 	xaxis.labels.cex <- trellis.object$x.scales$cex[1];
-	xaxis.labels.num.at <- length(trellis.object$x.scales$at);
-	xaxis.labels.at.start <- trellis.object$x.scales$at[1];
-	xaxis.labels.at.stop <- trellis.object$x.scales$at[length(trellis.object$x.scales$at)];
-        
-	if(xaxis.labels.num.at == 1 && is.logical(xaxis.labels.at.start) && is.logical(xaxis.labels.at.stop)) {
-                labels = pretty(as.numeric(trellis.object$panel.args[[1]]$x));
-                xaxis.labels.num.at <- length(labels);
-                xaxis.labels.at.start <- labels[1];
-                xaxis.labels.at.stop <- labels[length(labels)];
-                }
 
-	xaxis.labels.rot <- trellis.object$x.scales$rot[1];
-	xaxis.labels.tck <- trellis.object$x.scales$tck[1];
-	xaxis.labels.tick.number <- trellis.object$x.scales$tick.number;
-	
         yaxis.labels.cex <- trellis.object$y.scales$cex[1];
-        yaxis.labels.num.at <- length(trellis.object$y.scales$at);
-        yaxis.labels.at.start <- trellis.object$y.scales$at[1];
-        yaxis.labels.at.stop <- trellis.object$y.scales$at[length(trellis.object$y.scales$at)];
-	
-	if(yaxis.labels.num.at == 1 && is.logical(yaxis.labels.at.start) && is.logical(yaxis.labels.at.stop)) {
-                labels = pretty(as.numeric(trellis.object$panel.args[[1]]$y));
-                yaxis.labels.num.at <- length(labels);
-                yaxis.labels.at.start <- labels[1];
-                yaxis.labels.at.stop <- labels[length(labels)];
-                }
-        
-	yaxis.labels.rot <- trellis.object$y.scales$rot[1];
-        yaxis.labels.tck <- trellis.object$y.scales$tck[1];
-        yaxis.labels.tick.number <- trellis.object$y.scales$tick.number;
 	
 	num.xlimits <- length(trellis.object$x.limits);
 	xlimits.start <- trellis.object$x.limits[1];
@@ -118,29 +90,17 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
                 ylimits.start <- 0;
                 ylimits.end <- num.ylimits + 1;
                 }
-
+	
 	df.to.add <- data.frame(
-		user = c(user), 
-		filename = c(filename),
-		parent.id = c(parent.id), 
-		xaxis.labels.cex = c(xaxis.labels.cex), 
-		xaxis.labels.num.at = c(xaxis.labels.num.at),
-		xaxis.labels.at.start = c(xaxis.labels.at.start), 
-		xaxis.labels.at.stop = c(xaxis.labels.at.stop), 
-		xaxis.labels.rot = c(xaxis.labels.rot),
-		xaxis.labels.tck = c(xaxis.labels.tck), 
-		xaxis.labels.tick.number = c(xaxis.labels.tick.number), 
-		yaxis.labels.cex = c(yaxis.labels.cex), 
-		yaxis.labels.num.at = c(yaxis.labels.num.at), 
-		yaxis.labels.at.start = c(yaxis.labels.at.start), 
-		yaxis.labels.at.stop = c(yaxis.labels.at.stop), 
-		yaxis.labels.rot = c(yaxis.labels.rot), 
-		yaxis.labels.tck = c(yaxis.labels.tck), 
-		yaxis.labels.tick.number = c(yaxis.labels.tick.number),
-		xlimits.start = c(xlimits.start), 
-		xlimits.end = c(xlimits.end), 
-		ylimits.start = c(ylimits.start),
-		ylimits.end = c(ylimits.end)
+		user = user, 
+		filename = filename,
+		parent.id = parent.id, 
+		xaxis.labels.cex = xaxis.labels.cex, 
+       		yaxis.labels.cex = yaxis.labels.cex, 
+		xlimits.start = xlimits.start, 
+		xlimits.end = xlimits.end, 
+		ylimits.start = ylimits.start,
+		ylimits.end = ylimits.end
 		);
 	
 	if(!is.null(df.to.add)) {
@@ -153,4 +113,3 @@ print.to.file.trellis.object <- function(dirname,trellis.object,filename) {
                 }
 
 	}
-
