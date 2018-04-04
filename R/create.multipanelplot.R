@@ -125,7 +125,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			plot.objects[[i]]$par.settings$layout.widths$key.right <- 1;
 			plot.objects[[i]]$par.settings$layout.widths$right.padding <- 0;
 			plot.objects[[i]]$par.settings$layout.heights$top.padding <- 0;
-			plot.objects[[i]]$par.settings$layout.heights$main <- 0;
+			plot.objects[[i]]$par.settings$layout.heights$main <- 1;
  			plot.objects[[i]]$par.settings$layout.heights$main.key.padding <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$key.top <- 1;
 			plot.objects[[i]]$par.settings$layout.heights$key.axis.padding <- 1;
@@ -175,6 +175,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	### X AND Y PLOT AXIS LABELS
 	largest.y.axis <- list();
 	largest.x.axis <- list();
+	largest.top.x.axis <- list();
 	### TICKS
 	left.ticks <- list();
 	bottom.ticks <- list();
@@ -202,7 +203,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		right.legend[i] <- 0;
 		top.legend[i] <- 0;
 		bottom.legend[i] <- 0;
-		### TO DO -- CLEAN THIS UP
+		largest.top.x.axis[i] <- 0;
     		# set variables for each plot according to their respective plot values
 		if (!is.null(plot.objects[[i]]$par.settings)) {
 			### GET GROB INFO FOR SIMPLE VARS
@@ -221,7 +222,8 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			## from data and labels -- get the actual labels that will be in plot as strings
 			y.axis.labs <- reformat.labels(plot.objects[[i]]$y.scales$labels, plot.objects[[i]]$panel.args[[1]]$y);
 			x.axis.labs <- reformat.labels(plot.objects[[i]]$x.scales$labels, plot.objects[[i]]$panel.args[[1]]$x);
-
+			x.axis.top.labs <- reformat.labels(plot.objects[[i]]$xlab.top$label, NULL);
+			
 			largest.y.axis[i] <- get.text.grob.width(
 				y.axis.labs,
 				plot.objects[[i]]$y.scales$cex,
@@ -240,9 +242,17 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 				height,
 				resolution
 				);
+			largest.top.x.axis[i] <- get.text.grob.height(
+                                x.axis.top.labs,
+				plot.objects[[i]]$xlab.top$cex,
+                                0,
+                                filename,
+                                width,
+                                height,
+                                resolution
+                                );
 			}
 		}
-
 
 	# add the correct amount of padding to each plot based on the column (use ylab axis)
 	for (i in c(1:layout.width)) {
@@ -285,15 +295,17 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		max.main <- max(unlist(main.size[seq(i, i + layout.width - 1, 1)])) / 2;
 		max.top.legend <- max(unlist(top.legend[seq(i, i + layout.width - 1, 1)]));
 		max.bottom.legend <- max(unlist(bottom.legend[seq(i, i + layout.width - 1, 1)]));
+		max.axis.top <- max(unlist(largest.top.x.axis[seq(i, i + layout.width - 1, 1)]));
 
 		for (j in c(i:(i + layout.width - 1))) {
 			diff.max.labels <- abs(max.labels - x.label.size[[j]]);
 			to.add <- (max.axis + diff.max.labels + max.labels/2) / padding.text.to.padding.ratio + max.ticks + additional.padding;
-
+			
 			if (j <= length(plot.objects) && !is.null(plot.objects[[j]]$par.settings)) {
 
 				diff.top.legend <- abs(top.legend[j] - max.top.legend) / padding.text.to.padding.ratio;
 				diff.bottom.legend <- abs(bottom.legend[j] - max.bottom.legend) / padding.text.to.padding.ratio;
+				diff.axis.top <- abs(largest.top.x.axis[[j]] - max.axis.top) / padding.text.to.padding.ratio;
 				
 				#if(diff.top.legend != 0) {diff.top.legend <- diff.top.legend + 1 / padding.text.to.padding.ratio}
                                 if(diff.bottom.legend != 0) {diff.bottom.legend <- diff.bottom.legend + 1 / padding.text.to.padding.ratio}
@@ -306,7 +318,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 					plot.objects[[j]]$main$label <- '\t'; #make sure it thinks a label is there
 					}
 
-				plot.objects[[j]]$par.settings$layout.heights$top.padding <- plot.objects[[j]]$par.settings$layout.heights$top.padding + diff.top.legend;
+				plot.objects[[j]]$par.settings$layout.heights$top.padding <- plot.objects[[j]]$par.settings$layout.heights$top.padding + diff.top.legend + diff.axis.top;
 				plot.objects[[j]]$par.settings$layout.heights$bottom.padding <-
 					plot.objects[[j]]$par.settings$layout.heights$bottom.padding + diff.bottom.legend;
 				plot.objects[[j]]$par.settings$layout.heights$main.key.padding <-
