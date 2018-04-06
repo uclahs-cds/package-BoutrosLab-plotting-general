@@ -143,9 +143,10 @@ legend.grob <- function(
 
 						colorRamp <- colorRampPalette(legendi[['colours']]);
 						legend.key <- list(
-							space = 'right',
+							space = if (is.null(legendi[['angle']])) { 'right' } else { 'bottom' },
 							between = 0.5,
 							rep = TRUE,
+							just = c('left', 'top'),
 							tick.number = if (is.null(legendi[['tck.number']])) { 0 } else { legendi[['tck.number']] },
 							tck = if (is.null(legendi[['tck']])) { 0 } else { legendi[['tck']] },
 							at = do.breaks(c(0, legendi[['continuous.amount']]), legendi[['continuous.amount']]),
@@ -159,22 +160,25 @@ legend.grob <- function(
 								)
 							);
 
+
+						color.key.grob <- draw.colorkey(
+								key = legend.key,
+								draw = FALSE
+								);
+						color.key.grob$framevp$layout$valid.just <- c(0,1);
+						color.key.grob$framevp$x <- color.key.grob$framevp$x + unit(1.69, 'points');
+
+						legendi[['height']] <- if (is.null(legendi[['height']])) { 1 } else { legendi[['height']] };
+						legendi[['width']] <- if (is.null(legendi[['width']])) { 2 } else { legendi[['width']] };
+
+						height.to.use <- if (is.null(legendi[['angle']])) { legendi[['height']] } else { legendi[['width']] };
 						# Add the legend to the frame
 						legend.grob.final <- packGrob(
 							frame = legend.grob.final,
-							grob = draw.colorkey(
-								key = legend.key,
-								draw = FALSE,
-								vp = viewport(
-									x = if (is.null(legendi[['pos.x']])) { 0 } else { legendi[['pos.x']] },
-									y = if (is.null(legendi[['pos.y']])) { 0 } else { legendi[['pos.y']] },
-									angle = if (is.null(legendi[['angle']])) { 0 } else { legendi[['angle']] },
-									just = if (is.null(legendi[['just']])) { c('left', 'bottom') } else { legendi[['just']] }
-									)
-								),
+							grob = color.key.grob,
 							row = 3 * (legend.row - 1) + 2,
 							col = 2 * (legend.col - 1) + 1,
-							height = if (is.null(legendi[['height']])) { unit(1, 'lines') } else { unit(legendi[['height']], 'lines') },
+							height = unit(height.to.use, 'lines'),
 							);
 						}
 					else {

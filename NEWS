@@ -1,4 +1,11 @@
-BoutrosLab.plotting.general 5.9.0 2018-04-04
+BoutrosLab.plotting.general 5.9.2 2018-04-09
+
+FEATURE
+* Legend grob for continous legends now auto place themselves -- x and y pos dont do anything anymore
+
+--------------------------------------------------------------------------
+
+BoutrosLab.plotting.general 5.9.1 2018-04-04
 
 FEATURE
 * Multipanel plot now uses tob axis labels too for lining up plots
