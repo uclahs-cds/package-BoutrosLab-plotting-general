@@ -1,4 +1,4 @@
-BoutrosLab.plotting.general 5.9.2 2018-04-09
+BoutrosLab.plotting.general 5.9.2 2018-04-10
 
 FEATURE
 * Legend grob for continous legends now auto place themselves -- x and y pos dont do anything anymore

@@ -1055,8 +1055,7 @@ cov_legends <- list(
         border = 'grey',
         title = 'Tumour Mass (kg)',
         continuous = TRUE,
-	height = 3,
-	pos.x = 0.23
+	height = 3
         ),
     legend = list(
         colours = cov.colours[8:9],
@@ -1082,14 +1081,12 @@ cov_legends <- list(
         border = 'grey',
         title = 'CAGT',
 	continuous = TRUE,
-	height = 3,
-	pos.x = 0.3,
-	pos.y = 0.55,
+	height = 2,
+        width = 2.5,
 	angle = -90,
 	tck = 1,
 	tck.number = 2,
-	at = c(0,100),
-  labels.rot = 90
+	at = c(0,100)
         )
     );
 

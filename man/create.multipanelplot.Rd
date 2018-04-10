@@ -848,8 +848,7 @@ cov.legends <- list(
         border = 'grey',
         title = 'Tumour Mass (kg)',
         continuous = TRUE,
-    height = 3,
-    pos.x = -0.25
+        height = 3
         ),
     legend = list(
         colours = cov.colours[8:9],
@@ -876,13 +875,11 @@ cov.legends <- list(
         title = 'CAGT',
         continuous = TRUE,
         height = 3,
-        pos.x = 0,
-        pos.y = 1.25,
+        width = 2.5,
         angle = -90,
         tck = 1,
         tck.number = 2,
-        at = c(0,100),
-        labels.rot = 90
+        at = c(0,100)
         )
     );
 
@@ -911,7 +908,8 @@ create.multipanelplot(
         ),
     main = 'Continous Legend', 
     top.legend.padding = 4,
-    top.padding = -2
+    top.padding = -2,
+    left.padding = 1 
     # This parameter must be set for the legend to appear
     );
 
