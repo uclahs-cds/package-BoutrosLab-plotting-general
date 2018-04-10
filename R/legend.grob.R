@@ -142,8 +142,8 @@ legend.grob <- function(
 					# the second column is the corresponding text labels
 					if (!is.null(legendi[['continuous']]) && legendi[['continuous']] == TRUE) {
 
-						legendi[['height']] <- if (is.null(legendi[['height']])) { 2.5 } else { legendi[['height']] };
-						legendi[['width']] <- if (is.null(legendi[['width']])) { 2.5 } else { legendi[['width']] };
+						legendi[['height']] <- if (is.null(legendi[['height']])) { 2 } else { legendi[['height']] };
+						legendi[['width']] <- if (is.null(legendi[['width']])) { 2 } else { legendi[['width']] };
 
 						colorRamp <- colorRampPalette(legendi[['colours']]);
 						legend.key <- list(
@@ -155,7 +155,7 @@ legend.grob <- function(
 							tck = if (is.null(legendi[['tck']])) { 0 } else { legendi[['tck']] },
 							at = do.breaks(c(0, legendi[['continuous.amount']]), legendi[['continuous.amount']]),
 							col = colorRamp,
-							width = legendi[['width']],
+							width = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { legendi[['height']] } else { legendi[['width']] },
 							labels = list(
 								labels = if (is.null(legendi[['labels']])) { c('') } else { legendi[['labels']] },
 								at = if (is.null(legendi[['at']])) { NULL } else { legendi[['at']] },
@@ -172,8 +172,14 @@ legend.grob <- function(
 
 						# adjust justification to line up with key style legends
 						color.key.grob$framevp$layout$valid.just <- c(0,1);
-
+						color.key.grob$framevp$valid.just <- c(0,0.5);
+						
+						# need padding to line up with key style legends
+						color.key.grob$framevp$x = unit(0,'npc') + unit(1.69,'points');
+						
+						# set sizes
 						color.key.grob$framevp$height <- unit(legendi[['height']], 'lines');
+						color.key.grob$framevp$width <- unit(legendi[['width']], 'lines');
 
 						if(!is.null(legendi[['pos.x']])) {
 							color.key.grob$framevp$x <- unit(legendi[['pos.x']],'npc');
@@ -183,9 +189,6 @@ legend.grob <- function(
 							color.key.grob$framevp$y <- unit(legendi[['pos.y']],'npc');
 							}
 
-						# add these points to line up properly with normal legends
-						color.key.grob$framevp$x <- color.key.grob$framevp$x + unit(1.69, 'points');
-
 						# Add the legend to the frame
 						legend.grob.final <- packGrob(
 							frame = legend.grob.final,
@@ -194,10 +197,7 @@ legend.grob <- function(
 							col = 2 * (legend.col - 1) + 1,
 							height = max(unit(legendi[['height']], 'lines'),
 									legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1]),
-							width = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { unit(legendi[['height']], 'lines')} 
-								else { legend.grob.final$framevp$layout$widths[1] },
 							force.height = TRUE,
-							force.width = TRUE
 							);
 						}
 					else {

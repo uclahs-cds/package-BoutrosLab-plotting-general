@@ -1082,7 +1082,7 @@ cov_legends <- list(
         title = 'CAGT',
 	continuous = TRUE,
 	height = 2,
-        width = 2.5,
+        width = 3,
 	angle = -90,
 	tck = 1,
 	tck.number = 2,
@@ -1144,6 +1144,7 @@ create.multiplot(
             fun = cov_legend.grob
             )
         ),
+    left.padding = 2.5,
     # This parameter must be set for the legend to appear
     print.new.legend = TRUE,
     );
