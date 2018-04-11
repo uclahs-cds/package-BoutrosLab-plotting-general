@@ -1270,8 +1270,7 @@ discrete.covariate.legend <- list(
         labels = c('want key like','legend here'),
         title = expression(underline('one')),
 	continuous = TRUE,
-	height=3,
-	pos.x = -0.1
+	height=3
         ),
     legend = list(
         colours = c('grey0', 'grey100'),
@@ -1283,13 +1282,11 @@ discrete.covariate.legend <- list(
         labels = c(0,10),
         title = expression(underline('three')),
 	continuous = TRUE,
-        height = 3,
-        pos.y = 0.5,
-        angle = -90,
+        width = 3,
         tck = 1,
         tck.number = 3,
         at = c(0,100),
-        labels.rot = 90,
+	angle = -90,
 	just = c("center","bottom")
         )
    );
