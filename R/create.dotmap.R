@@ -548,20 +548,6 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
 
-        ### store trellis data data on mount
-        tryCatch({
-                        dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        dir.name <- paste(dir.name, 'create.dotmap',sep='/');
-                        if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }
-                        print.to.file.trellis.object(dir.name,trellis.object, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) { 
-                        });
-
 
 	# output the object
 	return(
