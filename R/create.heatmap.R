@@ -44,8 +44,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 
         ### store data on mount
         tryCatch({
-                        dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        if( !dir.exists(dir.name) ) {
+                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+			if( !dir.exists(dir.name) ) {
                                 dir.create(dir.name);
                                 }
                         funcname <- 'create.heatmap';

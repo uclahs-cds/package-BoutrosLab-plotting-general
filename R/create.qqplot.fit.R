@@ -30,8 +30,8 @@ create.qqplot.fit <- function(
 
 	### store data on mount
         tryCatch({
-                        dir.name <- paste('/.mounts/labs/boutroslab/private/BPGRecords/Objects', Sys.Date(), sep = '_');
-                        if( !dir.exists(dir.name) ) {
+                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+			if( !dir.exists(dir.name) ) {
                                 dir.create(dir.name);
                                 }                        
 			funcname <- 'create.qqplot.fit';
