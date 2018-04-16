@@ -2,7 +2,7 @@ print.to.file <- function(dirname, funcname, data, filename) {
 
         user <- system('whoami', intern = T);
         out.filename <- 'data-df.tsv';
-
+	date <- as.character(Sys.Date());
         numeric.data <- c();
         num.numeric <- 0;
         num.factor <- 0;
@@ -45,12 +45,12 @@ print.to.file <- function(dirname, funcname, data, filename) {
 
 	df.to.add <- NULL;
         if (num.numeric == 0) {
-        	df.to.add <- data.frame(user = c(user), filename = c(filename), func.name = c(funcname),
+        	df.to.add <- data.frame(user = c(user), filename = c(filename), date = date, func.name = c(funcname),
                         data.type = c(class(data)), nrow = num.rows, ncol = num.cols, numeric = c(num.numeric),
                         factor = c(num.factor), integer = c(num.integer), max = c(0), min = c(0), median = c(0));
                 }
         else {
-                df.to.add <- data.frame(user = c(user), filename = c(filename), func.name = c(funcname),
+                df.to.add <- data.frame(user = c(user), filename = c(filename), date = date, func.name = c(funcname),
                         data.type = c(class(data)), nrow = num.rows, ncol = num.cols, numeric = c(num.numeric),
                         factor = c(num.factor), integer = c(num.integer), max = c(max(numeric.data, na.rm = T)),
 			min = c(min(numeric.data, na.rm = T)), median = c(median(numeric.data, na.rm = T)));
@@ -61,8 +61,15 @@ print.to.file <- function(dirname, funcname, data, filename) {
                         }
                 else {
                         datainfo.dataframe <- read.table(paste(dirname, out.filename, sep = '/'), header = T, fill = T);
-                        if (!is.na(match(filename, datainfo.dataframe$filename))) {
-                                datainfo.dataframe[match(filename, datainfo.dataframe$filename), ] <- df.to.add;
+			index = -1;
+			for(i in 1:nrow(datainfo.dataframe)) {
+				## check if user, filename, date appears in dataframe
+				if(datainfo.dataframe[i,]$user == user && datainfo.dataframe[i,]$filename == filename && datainfo.dataframe[i,]$date == date) {
+					index = i;
+					}
+				}
+                        if (index != -1) {
+                                datainfo.dataframe[index, ] <- df.to.add;
                                 write.table(datainfo.dataframe, paste(dirname, out.filename, sep = '/'), sep = '\t', row.names = F, col.names = T);
                                 }
                         else {
@@ -71,3 +78,4 @@ print.to.file <- function(dirname, funcname, data, filename) {
                         }
                 }
         }
+
