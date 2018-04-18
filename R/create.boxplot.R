@@ -49,7 +49,8 @@ create.boxplot <- function(
                         if(file.exists(param.data.filename)) {
                                 load(param.data.filename);
                                 }
-                        data.list[[length(data.list) + 1]] <- list(formula = formula, main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex, add.stripplot = add.stripplot,
+                        data.list[[length(data.list) + 1]] <- list(formula = formula, filename = filename, main = main, main.just = main.just, main.x = main.x, main.y = main.y, 
+				main.cex = main.cex, add.stripplot = add.stripplot,
                                 jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch, points.col = points.col, points.cex = points.cex,
                                 points.alpha = points.alpha, abline.h = abline.h, abline.v = abline.v, adline.lty = abline.lty, abline.lwd = abline.lwd, abline.col = abline.col,
                                 add.rectangle = add.rectangle, xleft.rectangle = xleft.rectangle, ybottom.rectangle = ybottom.rectangle, xright.rectangle = xright.rectangle,
