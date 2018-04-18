@@ -53,11 +53,11 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			
 			## save all the parameters input (minus data) for later use
 			param.data.filename <- paste(dir.name, "data.RData", sep = "/Heatmap-");
-			data.list <- list();
+			data.list.heatmap <- list();
                         if(file.exists(param.data.filename)) {
                                 load(param.data.filename);
                                 }
-                        data.list[[length(data.list) + 1]] <- list(filename = filename, clustering.method = clustering.method,
+                        data.list.heatmap[[length(data.list.heatmap) + 1]] <- list(filename = filename, clustering.method = clustering.method,
 				cluster.dimensions = cluster.dimensions, row.dendrogram = row.dendrogram, col.dendrogram = col.dendrogram,
 				plot.dendrograms = plot.dendrograms, force.clustering = force.clustering, criteria.list = criteria.list,
 				covariates = covariates, covariates.grid.row = covariates.grid.row, covariates.grid.col = covariates.grid.col,
@@ -96,7 +96,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				xaxis.covariates.y = xaxis.covariates.y, yaxis.covariates = yaxis.covariates, yaxis.covariates.x = yaxis.covariates.x,
 				xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, symbols = symbols, same.as.matrix = same.as.matrix,
 				input.colours = input.colours, axis.xlab.padding = axis.xlab.padding); 
-                        save(data.list, file = param.data.filename);
+                        save(data.list.heatmap, file = param.data.filename);
 
                         },
                 warning = function(w) {
