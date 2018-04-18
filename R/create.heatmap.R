@@ -58,7 +58,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
                                 load(param.data.filename);
                                 }
                         data.list[[length(data.list) + 1]] <- list(filename = filename, clustering.method = clustering.method,
-				cluster.dimensions = cluster.demensions, row.dendrogram = row.dendrogram, col.dendrogram = col.dendrogram,
+				cluster.dimensions = cluster.dimensions, row.dendrogram = row.dendrogram, col.dendrogram = col.dendrogram,
 				plot.dendrograms = plot.dendrograms, force.clustering = force.clustering, criteria.list = criteria.list,
 				covariates = covariates, covariates.grid.row = covariates.grid.row, covariates.grid.col = covariates.grid.col,
 				covariates.grid.border = covariates.grid.border, covariates.row.lines = covariates.row.lines,
