@@ -34,7 +34,7 @@ create.boxplot <- function(
 	use.legacy.settings = FALSE, disable.factor.sorting = FALSE
 	) {
 	### needed to copy in case using variable to define rectangles dimensions -- wont carry through after change
-	        ### store data on mount
+	### store data on mount
         tryCatch({
                         dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
 			if( !dir.exists(dir.name) ) {
@@ -42,6 +42,30 @@ create.boxplot <- function(
 				}
                         funcname <- 'create.boxplot';
                         print.to.file(dir.name, funcname, data, filename);
+
+			## save all the parameters input (minus data) for later use
+			data.list <- list();
+                        if(file.exists("data.RData")) {
+                                load("data.RData");
+                                }
+                        data.list[[length(data.list) + 1]] <- list(formula = formula, main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex, add.stripplot = add.stripplot,
+                                jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch, points.col = points.col, points.cex = points.cex,
+                                points.alpha = points.alpha, abline.h = abline.h, abline.v = abline.v, adline.lty = abline.lty, abline.lwd = abline.lwd, abline.col = abline.col,
+                                add.rectangle = add.rectangle, xleft.rectangle = xleft.rectangle, ybottom.rectangle = ybottom.rectangle, xright.rectangle = xright.rectangle,
+                                ytop.rectangle = ytop.rectangle, col.rectangle = col.rectangle, alpha.rectangle = alpha.rectangle, box.ratio = box.ratio, col = col,
+                                border.col = border.col, symbol.cex = symbol.cex, lwd = lwd, outliers = outliers, sample.order = sample.order, order.by = order.by,
+                                xlab.label = xlab.label, ylab.label = ylab.label, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.col = xlab.col, ylab.col = ylab.col,
+                                xlab.top.label = xlab.top.label, xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
+                                xlab.top.just = xlab.top.just, xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xlimits = xlimits, ylimits = ylimits, xat = xat, yat = yat,
+                                xaxis.lab = xaxis.lab, yaxis.lab = yaxis.lab, xaxis.cex = xaxis.cex, xaxis.col = xaxis.col, yaxis.col = yaxis.col, xaxis.fontface = xaxis.fontface,
+                                yaxis.fontface = yaxis.fontface, xaxis.rot = xaxis.rot, yaxis.rot = yaxis.rot, xaxis.tck = xaxis.tck, yaxis.tck = yaxis.tck, layout = layout,
+                                as.table = as.table, x.spacing = x.spacing, y.spacing = y.spacing, x.relation = x.relation, y.relation = y.relation, top.padding = top.padding,
+                                bottom.padding = bottom.padding, right.padding = right.padding, left.padding = left.padding, ylab.axis.padding = ylab.axis.padding,
+                                add.text = add.text, text.labels = text.labels, text.x = text.x, text.y = text.y, text.anchor = text.anchor, text.col = text.col,
+                                text.cex = text.cex, text.fontface = text.fontface, key = key, legend = legend, strip.col = strip.col, strip.cex = strip.cex,
+                                strip.fontface = strip.fontface, line.func = line.func, line.from = line.from, line.to = line.to, line.col = line.col,
+                                line.infront = line.infront, height = height, width = width, size.units = size.units, resolution = resolution);
+                        save(data.list, file = paste(dir.name, "data.RData", sep = "/Boxplot-"));
                         },
                 warning = function(w) {
                         },

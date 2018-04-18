@@ -284,7 +284,7 @@ default.colours <- default.colors <- function(
 
 		# run greyscale check (only if there is more than one colour selected)
 		if (is.greyscale && palette.type[i] != 'binary') {
-			if (1 == number.of.colours) { next; }
+			if (1 == number.of.colours[i]) { next; }
 			else if (1 == length(number.of.colours)) { check.greyscale(palette); }
 			else { check.greyscale(palette[[i]]); }
 			}

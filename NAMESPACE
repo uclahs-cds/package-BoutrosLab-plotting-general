@@ -8,8 +8,7 @@ import(
 	"hexbin", 
 	"lattice",
   	"latticeExtra",
-	"grid",
-	"gridExtra"
+	"grid"
 	);
 export(
 	"append.footnote",
@@ -67,5 +66,6 @@ importFrom("utils", "packageVersion", "read.table", "stack", "tail", "write.tabl
 importFrom("tools", "file_ext");
 importFrom("e1071","skewness");
 importFrom("gtable","gtable_add_grob");
+importFrom("gridExtra", "arrangeGrob");
 S3method(print, multipanel)
 S3method(plot, multipanel)
