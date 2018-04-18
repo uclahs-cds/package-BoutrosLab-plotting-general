@@ -44,9 +44,10 @@ create.boxplot <- function(
                         print.to.file(dir.name, funcname, data, filename);
 
 			## save all the parameters input (minus data) for later use
+			param.data.filename <- paste(dir.name, "data.RData", sep = "/Boxplot-");
 			data.list <- list();
-                        if(file.exists("data.RData")) {
-                                load("data.RData");
+                        if(file.exists(param.data.filename)) {
+                                load(param.data.filename);
                                 }
                         data.list[[length(data.list) + 1]] <- list(formula = formula, main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex, add.stripplot = add.stripplot,
                                 jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch, points.col = points.col, points.cex = points.cex,
@@ -65,7 +66,7 @@ create.boxplot <- function(
                                 text.cex = text.cex, text.fontface = text.fontface, key = key, legend = legend, strip.col = strip.col, strip.cex = strip.cex,
                                 strip.fontface = strip.fontface, line.func = line.func, line.from = line.from, line.to = line.to, line.col = line.col,
                                 line.infront = line.infront, height = height, width = width, size.units = size.units, resolution = resolution);
-                        save(data.list, file = paste(dir.name, "data.RData", sep = "/Boxplot-"));
+                        save(data.list, file = param.data.filename);
                         },
                 warning = function(w) {
                         },
