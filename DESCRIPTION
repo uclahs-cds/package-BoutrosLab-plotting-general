@@ -3,12 +3,18 @@ Version: 5.9.3
 Type: Package
 Title: Functions to Create Publication-Quality Plots
 Date: 2018-04-18
-Author: Paul C. Boutros
+Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "Paul.Boutros@oicr.on.ca"),
+             person("Jennifer Aguiar", role = c("ctb")),
+             person("Ontario Institute for Cancer Research", role = "cph"),
+             person("The R Core Team", role = "cph"),
+             person("The R Foundation",role = "cph"),
+             person("Robert Gentleman", role = "ctb"),
+             person("Ross Ihaka", role = "ctb"))
 Maintainer: Paul Boutros <Paul.Boutros@oicr.on.ca>
 Depends: R (>= 3.0.2), lattice (>= 0.20-27), latticeExtra (>= 0.6-26), cluster (>= 1.14.4), hexbin (>= 1.26.3), BoutrosLab.utilities (>= 1.9.5), BoutrosLab.statistics.general (>= 2.1.1), BoutrosLab.dist.overload (>= 1.0.1), grid
 Imports: gridExtra,  tools, gtable, e1071, MASS(>= 7.3-29)
 Suggests: Cairo (>= 1.5-1), knitr
-Description: Contains publication-quality plotting functions.
+Description: This package contains several plotting functions such as barplots, boxplots, qqplots, scatterplots, hexbinplots, dotmaps, heatmaps, as well as functions to combine plots and assist in the creation of these plots. All functions within this package are capable of producing plots that are of the quality to be presented in scientific publications and journals. 
 License: GPL-2
 LazyLoad: yes
 LazyData: yes
