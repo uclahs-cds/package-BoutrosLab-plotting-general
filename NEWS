@@ -2,7 +2,8 @@ BoutrosLab.plotting.general 5.9.3 2018-04-18
 
 FEATURE
 * updated dependencies to not include as many
-* boxplot now saves all its data (for later use) 
+* boxplot now saves all its data (for later use)
+* multipanelplot now saves temp plots to temp dir 
 
 BUG
 * Default.colours no longer references wrong grey scale colour

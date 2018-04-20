@@ -829,7 +829,6 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	class(grob) <- 'multipanel';
 	# return grob
 	if (!is.null(filename)) {
-                file.remove('temp-multipanel');
 		BoutrosLab.plotting.general::write.plot(
 			trellis.object = grob,
 			filename = filename,
@@ -888,16 +887,16 @@ get.legend.height <- function(legend, filename, width, height, resolution) {
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
                 if ('tiff' == extension) {
-                        tiff(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
                         }
                 else if ('png' == extension) {
-                        png(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
                         }
                 else if ('pdf' == extension) {
-                        cairo_pdf(filename = 'temp-multipanel', height = height, width = width);
+                        cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
                         }
                 else if ('svg' == extension) {
-                        svg(filename = 'temp-multipanel', height = height, width = width);
+                        svg(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
                         }
                 else if ('eps' == extension) {
                         postscript(height = height, width = width);
@@ -942,16 +941,16 @@ get.legend.width <- function(legend, filename, width, height, resolution) {
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
                 if ('tiff' == extension) {
-                        tiff(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
                         }
                 else if ('png' == extension) {
-                        png(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
                         }
                 else if ('pdf' == extension) {
-                        cairo_pdf(filename = 'temp-multipanel', height = height, width = width);
+                        cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
                         }
                 else if ('svg' == extension) {
-                        svg(filename = 'temp-multipanel', height = height, width = width);
+                        svg(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
                         }
                 else if ('eps' == extension) {
                         postscript(height = height, width = width);
@@ -999,16 +998,16 @@ get.text.grob.width <- function(labels, cex, rot, filename, width, height, resol
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
                 if ('tiff' == extension) {
-                        tiff(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
                         }
                 else if ('png' == extension) {
-                        png(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
                         }
                 else if ('pdf' == extension) {
-                        cairo_pdf(filename = 'temp-multipanel', height = height, width = width);
+                        cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
                         }
                 else if ('svg' == extension) {
-                        svg(filename = 'temp-multipanel', height = height, width = width);
+                        svg(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
                         }
                 else if ('eps' == extension) {
                         postscript(height = height, width = width);
@@ -1049,16 +1048,16 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
 		if ('tiff' == extension) {
-			tiff(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+			tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
 			}
 		else if ('png' == extension) {
-			png(filename = 'temp-multipanel', type = 'cairo', height = height, width = width, res = resolution);
+			png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
 			}
 		else if ('pdf' == extension) {
-			cairo_pdf(filename = 'temp-multipanel', height = height, width = width);
+			cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
 			}
 		else if ('svg' == extension) {
-			svg(filename = 'temp-multipanel', height = height, width = width);
+			svg(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
 			}
 		else if ('eps' == extension) {
 			postscript(height = height, width = width);
