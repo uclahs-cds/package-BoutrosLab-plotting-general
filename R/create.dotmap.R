@@ -27,7 +27,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
 	ytop.rectangle = NULL, col.rectangle = 'transparent', border.rectangle=NULL, lwd.rectangle = NULL,
 	alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL,
-	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE) {
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, remove.symmetric = FALSE, lwd = 2) {
 
 	### store data on mount
         tryCatch({
@@ -57,6 +57,25 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	else if (preload.default == 'web') {
 
 		}
+	data.subset <- TRUE;
+	if (remove.symmetric == TRUE) {
+		if (ncol(x) != nrow(x)) {
+			stop('can only use remove.symmetric with matrices of same length and width');
+			}
+		data.subset <- c();
+		for (i in c(1:nrow(x))) {
+			for (j in c(1:nrow(x))) {
+				if(j > i) {
+					data.subset <- c(data.subset, T);
+					}
+                                else {
+                                        data.subset <- c(data.subset, F);
+                                        }
+
+				}
+			}
+		}        
+
 	x <- as.data.frame(x);
 	temp <- x; # 'temp' used for column/row catagorization function
 
@@ -338,6 +357,7 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	trellis.object <- lattice::levelplot(
 		freq ~ x * y,
 		bg.data,
+		subset = data.subset,
 		panel = function(...) {
 
 			panel.fill(col = fill.colour);
@@ -359,18 +379,28 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 
 			# add grid if requested
 			if (add.grid) {
-				panel.abline(
-					h = min(bg.data$y):max(bg.data$y) - 0.5,
-					v = 0,
-					col.line = row.colour,
-					lwd = row.lwd
-					);
-				panel.abline(
-					v = min(bg.data$x):max(bg.data$x) - 0.5,
-					h = 0,
-					col.line = col.colour,
-					lwd = col.lwd
-					);
+				if(remove.symmetric == TRUE) {
+					for(i in c(1:max(bg.data$y))) {
+						panel.lines(x = c(0,max(bg.data$x) - (i)) + 0.5, y = i + 0.5, col=col.colour, lwd = col.lwd);
+						}
+					for(i in c(1:max(bg.data$x))) {
+						panel.lines(x = i + 0.5, y = c(0,max(bg.data$y) - (i)) + 0.5, col=row.colour, lwd = row.lwd);
+						}
+					}
+				else {
+					panel.abline(
+						h = min(bg.data$y):max(bg.data$y) - 0.5,
+						v = 0,
+						col.line = row.colour,
+						lwd = row.lwd
+						);
+					panel.abline(
+						v = min(bg.data$x):max(bg.data$x) - 0.5,
+						h = 0,
+						col.line = col.colour,
+						lwd = col.lwd
+						);
+					}
 				}
 			if (add.rectangle) {
 				panel.rect(
@@ -491,7 +521,8 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 			),
 		par.settings = list(
 			axis.line = list(
-				lwd = 2
+				lwd = lwd,
+				col = if(remove.symmetric == TRUE) { 'transparent'; } else { 'black'; }
 				),
 			layout.heights = list(
 				top.padding = top.padding,
@@ -523,7 +554,18 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 				)
 			)
 		);
-
+	
+	if (remove.symmetric == TRUE) {
+		# Re-add bottom and left axes
+                trellis.object$axis <- function(side, line.col = 'black', ...) {
+                        # Only draw axes on the left and bottom
+                        if (side %in% c('bottom', 'left')) {
+                                axis.default(side = side, line.col = 'black', ...);
+                                lims <- current.panel.limits();
+                                panel.abline(h = lims$ylim[1], v = lims$xlim[1], lwd = lwd);
+                                }
+                        }
+		}
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {
 

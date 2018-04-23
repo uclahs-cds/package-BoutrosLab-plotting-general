@@ -1,6 +1,16 @@
 BoutrosLab.plotting.general 5.9.3 2018-04-18
 
 FEATURE
+* dotmap can now do symmetrical removing of top left half of dotmap 
+
+BUG
+* top covariates in heatmap now have proper defaults
+
+--------------------------------------------------------------------------
+
+BoutrosLab.plotting.general 5.9.3 2018-04-18
+
+FEATURE
 * updated dependencies to not include as many
 * boxplot now saves all its data (for later use)
 * multipanelplot now saves temp plots to temp dir 

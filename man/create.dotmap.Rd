@@ -90,7 +90,9 @@ create.dotmap(
 	dot.colour.scheme = NULL, 
 	style = 'BoutrosLab',
 	preload.default = 'custom',
-        use.legacy.settings = FALSE
+        use.legacy.settings = FALSE,
+	remove.symmetric = FALSE,
+        lwd = 2
 );
 }
 \arguments{
@@ -181,6 +183,8 @@ create.dotmap(
     \item{style}{defaults to \dQuote{BoutrosLab}, also accepts \dQuote{Nature}, which changes parameters according to Nature formatting requirements}
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
+    \item{remove.symmetric}{boolean to set whether or not to remove the top left half of a symettrically sized matrix}
+    \item{lwd}{line width for the axis lines}
     }
 \details{It would be nice to have a library of suitable spot.size and spot.colour functions. 
     \preformatted{
@@ -726,6 +730,26 @@ create.dotmap(
   
     # demonstrating how to create en-dashes
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
+    );
+
+
+simple.data.sym <- data.frame(
+    '1' = runif(n = 7, min = -1, max = 1),
+    '2' = runif(n = 7, min = -1, max = 1),
+    '3' = runif(n = 7, min = -1, max = 1),
+    '4' = runif(n = 7, min = -1, max = 1),
+    '5' = runif(n = 7, min = -1, max = 1),
+    '6' = runif(n = 7, min = -1, max = 1),
+    '7' = runif(n = 7, min = -1, max = 1)
+    );
+
+create.dotmap(
+    filename = "Dotmap_remove_symmetric.tiff",
+    x = simple.data.sym,
+    main = 'Simple',
+    xaxis.lab = seq(1,7,1),
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    remove.symmetric = TRUE
     );
 
 }

@@ -283,7 +283,7 @@ force.colour.scheme(
         \item{MT-OL*}
         }
 
-    gleason.group
+    isup.grade 
     \itemize{
         \item{1}
         \item{2}

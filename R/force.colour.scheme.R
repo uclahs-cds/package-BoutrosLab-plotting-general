@@ -286,12 +286,12 @@ force.colour.scheme <- force.color.scheme <- function(
 	mt.annotation.7 <- '#FFFF78';
 	mt.annotation.8 <- 'white';
 	
-	#Gleason Group
-	gleason.group.1 <- 'cornsilk';
-        gleason.group.2 <- 'yellow';
-        gleason.group.3 <- 'orange';
-        gleason.group.4 <- 'maroon3';
-        gleason.group.5 <- 'red';
+	#ISUP Grade
+	isup.grade.1 <- 'cornsilk';
+        isup.grade.2 <- 'yellow';
+        isup.grade.3 <- 'orange';
+        isup.grade.4 <- 'maroon3';
+        isup.grade.5 <- 'red';
 
 	# irregular spacing is used here to allow for visual mapping between colours and corresponding values
 	avail.schemes <- list(
@@ -424,9 +424,9 @@ force.colour.scheme <- force.color.scheme <- function(
 				mt.annotation.6, mt.annotation.6, mt.annotation.6, mt.annotation.7, mt.annotation.7, mt.annotation.7,
 				mt.annotation.5, mt.annotation.8, mt.annotation.8)
 			),
-                gleason.group = list(
+                isup.grade = list(
 			levels = c('1','2','3','4','5'),
-			colours = c(gleason.group.1, gleason.group.2, gleason.group.3, gleason.group.4, gleason.group.5)
+			colours = c(isup.grade.1, isup.grade.2, isup.grade.3, isup.grade.4, isup.grade.5)
 			)
 		);
 

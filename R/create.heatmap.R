@@ -220,7 +220,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	# specifying top covariate
 	if (length(covariates.top) > 0) {
 		for (i in c(1:length(covariates.top))) {
-			if (covariates.top[[i]]$col != 'transparent') {
+			if (!is.null(covariates.top[[i]]$col) && covariates.top[[i]]$col != 'transparent') {
 				break;
 				}
 			if (i == length(covariates.top)) {
