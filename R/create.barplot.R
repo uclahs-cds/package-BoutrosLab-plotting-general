@@ -117,6 +117,7 @@ create.barplot <- function(
 			yaxis.lab <- out$axis.lab;
 			}
 		}
+
 	if (!is.null(xat) && length(xat) == 1) {
 		if (xat == 'auto') {
 			if (stack == TRUE) {
@@ -137,6 +138,7 @@ create.barplot <- function(
 				xaxis.lab <- out$axis.lab;
 				}
 			}
+
 		else if (xat == 'auto.linear') {
 			if (stack == TRUE) {
 				# run once to get data readjustment (in case log)
@@ -156,6 +158,7 @@ create.barplot <- function(
 				xaxis.lab <- out$axis.lab;
 				}
 			}
+
 		else if (xat == 'auto.log') {
 			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
 			data[toString(formula[[3]])] <- out$x;
@@ -186,6 +189,16 @@ create.barplot <- function(
 
 	if (!is.null(groups.new) && 1 == length(col) && col == 'grey') {
 		col <- grey(1:nlevels(as.factor(groups.new)) / nlevels(as.factor(groups.new)));
+		}
+
+	# check class of conditioning variable
+	if ('|' %in% all.names(formula)) {
+
+		cond.class <- class(data[,trim.leading.trailing.whitespace(unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		if (cond.class %in% c('integer','numeric')) {
+			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
+			}
+		rm(cond.class);
 		}
 
 	# Now make the actual plot object

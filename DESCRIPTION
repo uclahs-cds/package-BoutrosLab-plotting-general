@@ -1,10 +1,12 @@
 Package: BoutrosLab.plotting.general
-Version: 5.9.4
+Version: 5.9.5
 Type: Package
 Title: Functions to Create Publication-Quality Plots
-Date: 2018-04-23
+Date: 2018-06-05
 Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "Paul.Boutros@oicr.on.ca"),
-             person("Jennifer Aguiar", role = c("ctb")),
+             person("Christine P'ng", role = "ctb"),
+             person("Jeff Green", role = "ctb"),
+             person("Stephenie Prokopec", role = "ctb"),
              person("Ontario Institute for Cancer Research", role = "cph"),
              person("The R Core Team", role = "cph"),
              person("The R Foundation",role = "cph"),

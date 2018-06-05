@@ -211,13 +211,13 @@ create.lollipopplot <- create.scatterplot <- function(
                 error = function(e) {
                 	});
 
-	function.name = match.call()[[1]];
+	function.name <- match.call()[[1]];
 
-	lollipop.plot = FALSE;
-	if(function.name == 'create.lollipopplot') {
-
+	lollipop.plot <- FALSE;
+	if (function.name == 'create.lollipopplot') {
 		lollipop.plot = TRUE;
 		}
+
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
         	xright = xright.rectangle,
@@ -234,6 +234,16 @@ create.lollipopplot <- create.scatterplot <- function(
                 cex = text.cex,
                 fontface = text.fontface
                 );
+
+	# check class of conditioning variable
+	if ('|' %in% all.names(formula)) {
+
+		cond.class <- class(data[,trim.leading.trailing.whitespace(unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		if (cond.class %in% c('integer','numeric')) {
+			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
+			}
+		rm(cond.class);
+		}
 	
 	if (!is.null(yat) && length(yat) == 1) {
         	if (yat == 'auto') {
@@ -257,6 +267,7 @@ create.lollipopplot <- create.scatterplot <- function(
                 	yaxis.lab <- out$axis.lab;
         		}
 		}
+
 	if (!is.null(xat) && length(xat) == 1) {
         	if (xat == 'auto') {
                 	out <- auto.axis(unlist(data[toString(formula[[3]])]));
@@ -339,8 +350,22 @@ create.lollipopplot <- create.scatterplot <- function(
 
 			# if minimum is greater than 0 make sure to display 0
 			minimum <- min(minimum, 0);
+
+			# special case, if all y are the same value, and that value is 0
+			if ((minimum == 0) & (maximum == 0)) {
+				minimum <- -1;
+				maximum <- 1;
+				}
+
 			difference <- maximum - minimum;
 			lognumber <- floor(log(difference, 10));
+
+			# special case, if all y are the same value, and that value is < 0
+			if ((difference == 0) & (minimum < 0)) {
+				maximum <- max(maximum, 0);
+				difference <- maximum - minimum;
+				lognumber <- floor(log(difference, 10));
+				}
 
 			# depending on difference, the labels will be multiples of 5,10 or 20
 			if (difference < (10 ** lognumber * 4)) { factor <- (10 ** lognumber) / 2; }
@@ -1480,7 +1505,6 @@ create.lollipopplot <- create.scatterplot <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-	
 
 	# output the object
 	return(

@@ -47,19 +47,19 @@ create.hexbinplot <- function(
 	# - if 'maxcnt' is passed, make sure it is not smaller than the actual maximum count (value depends on nbins).
 	# - Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without
 	# - specifying the 'maxcnt' parameter using the desired number of bins.
-        ### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+	### store data on mount
+	tryCatch({
+			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
 			if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }                        
+				dir.create(dir.name);
+				}			
 			funcname <- 'create.hexbinplot';
-                        print.to.file(dir.name, funcname, data, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
+			print.to.file(dir.name, funcname, data, filename);
+			},
+		warning = function(w) {
+			},
+		error = function(e) {
+			});
 
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
@@ -69,63 +69,74 @@ create.hexbinplot <- function(
 		ybottom = ybottom.rectangle
 		);
 
-        text.info <- list(
-                labels = text.labels,
-                x = text.x,
-                y = text.y,
-                col = text.col,
-                cex = text.cex,
-                fontface = text.fontface
-                );
+	text.info <- list(
+		labels = text.labels,
+		x = text.x,
+		y = text.y,
+		col = text.col,
+		cex = text.cex,
+		fontface = text.fontface
+		);
 
-        if (!is.null(yat) && length(yat) == 1) {
-        	if (yat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
-                	data[toString(formula[[2]])] <- out$x;
+	if (!is.null(yat) && length(yat) == 1) {
+		if (yat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]));
+			data[toString(formula[[2]])] <- out$x;
 			yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
+			yaxis.lab <- out$axis.lab;
 			}
 
-        	else if (yat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
+		else if (yat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
 			}
 
-        	else if (yat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-        		}
+		else if (yat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 		}
+
 	if (!is.null(xat) && length(xat) == 1) {
-        	if (xat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
+		if (xat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]));
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		}
+
+	# check class of conditioning variable
+	if ('|' %in% all.names(formula)) {
+
+		cond.class <- class(data[,trim.leading.trailing.whitespace(unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		if (cond.class %in% c('integer','numeric')) {
+			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
+			}
+		rm(cond.class);
 		}
 
 	# add preloaded defaults
-        if (preload.default == 'paper') {
-                }
-        else if (preload.default == 'web') {
-                }
+	if (preload.default == 'paper') {
+		}
+	else if (preload.default == 'web') {
+		}
 
 	# fill in the defined parameters
 	parameter.list <- list(
@@ -276,13 +287,13 @@ create.hexbinplot <- function(
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
 			add.to.list = list(
 				label = xlab.top.label,
-			        cex = xlab.top.cex,
+				cex = xlab.top.cex,
 				col = xlab.top.col,
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
 				just = xlab.top.just,
 				x = xlab.top.x,
 				y = xlab.top.y
-        		        )
+				)
 			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
@@ -389,14 +400,15 @@ create.hexbinplot <- function(
 		what = 'hexbinplot',
 		args = parameter.list
 		);
+
 	if (inside.legend.auto) {
 		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits,
 			'xlimits' = trellis.object$x.limits, 'xbins' = xbins, 'aspect.ratio' = trellis.object$panel.args.common$.aspect.ratio);
 		coords <- c();
 		coords <- .inside.auto.legend('create.hexbinplot', filename, trellis.object, height, width, extra.parameters);
-                trellis.object$legend$inside$x <- coords[1];
-                trellis.object$legend$inside$y <- coords[2];
-                }
+		trellis.object$legend$inside$x <- coords[1];
+		trellis.object$legend$inside$y <- coords[2];
+		}
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {
@@ -423,8 +435,6 @@ create.hexbinplot <- function(
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
-
 
 	# output the object
 	return(

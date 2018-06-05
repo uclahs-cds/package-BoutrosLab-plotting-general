@@ -65,7 +65,7 @@ create.boxplot(
 	yaxis.fontface = 'bold',
 	xaxis.rot = 0,
 	yaxis.rot = 0,
-	xaxis.tck = 1,
+	xaxis.tck = c(1,0),
 	yaxis.tck = 1,
 	layout = NULL,
 	as.table = FALSE,
@@ -170,7 +170,7 @@ create.boxplot(
     \item{yaxis.fontface}{Fontface for the y-axis scales}
     \item{xaxis.rot}{Rotation of x-axis tick labels; defaults to 0}
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
-    \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
+    \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1 (bottom) and 0 (top)}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
     \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
@@ -228,8 +228,8 @@ If this function is called without capturing the return value, or specifying a f
 set.seed(12345);
 
 simple.data <- data.frame(
-    x <- rnorm(1000),
-    y <- rep('A',1000)
+    x = rnorm(1000),
+    y = rep('A',1000)
     );
 
 create.boxplot(
@@ -252,8 +252,9 @@ create.boxplot(
 
 # format data
 reformatted.data <- data.frame(
-    x <- as.vector(t(microarray[1:10,1:58])),
-    y <- as.factor(rep(rownames(microarray[1:10,1:58]),each = 58))
+    x = as.vector(t(microarray[1:10,1:58])),
+    y = as.factor(rep(rownames(microarray[1:10,1:58]),each = 58)),
+    z = sample(1:10, 580, replace = TRUE)
     );
 
 # Minimal Input
@@ -495,7 +496,23 @@ create.boxplot(
 
 # Panel Organization
 create.boxplot(
-    filename = 'Boxplot_Panels.tiff',
+    filename = 'Boxplot_Panels_numeric_conditioning.tiff',
+    formula = ~ x | z,
+    data = reformatted.data,
+    main = 'Panels',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    # Setting up the layout
+    layout = c(2,5),
+    x.relation = 'free',
+    x.spacing = 1,
+    description = 'Boxplot created by BoutrosLab.plotting.general'
+    );
+
+create.boxplot(
+    filename = 'Boxplot_Panels_factor_conditioning.tiff',
     formula = ~ x | y,
     data = reformatted.data,
     main = 'Panels',

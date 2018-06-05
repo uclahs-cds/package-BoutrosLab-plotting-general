@@ -567,8 +567,36 @@ create.scatterplot(
 
 # Panel Organization
 create.scatterplot(
-    filename = 'Scatterplot_Panel.tiff',
+    filename = 'Scatterplot_Panel_numeric_conditional.tiff',
     formula = sample.two ~ sample.one | chr,
+    data = scatter.data,
+    main = 'Panel',
+    xlab.label = colnames(microarray[1]),
+    ylab.label = colnames(microarray[2]),
+    xat = seq(0, 16, 2),
+    yat = seq(0, 16, 2),
+    xlimits = c(0, 15),
+    ylimits = c(0, 15),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    pch = 21,
+    col = 'black',
+    fill = 'transparent',
+    # set up panel layout
+    layout = c(1,3),
+    yrelation = 'free',
+    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    );
+
+scatter.data$chromosome <- as.character(scatter.data$chr);
+
+create.scatterplot(
+    filename = 'Scatterplot_Panel_character_conditional.tiff',
+    formula = sample.two ~ sample.one | chromosome,
     data = scatter.data,
     main = 'Panel',
     xlab.label = colnames(microarray[1]),

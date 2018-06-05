@@ -42,75 +42,74 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	input.colours = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, stratified.clusters.cols = NULL,
 	inside.legend = NULL, style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE) {
 
-        ### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }
-                        funcname <- 'create.heatmap';
-                        print.to.file(dir.name, funcname, x, filename);
+	### store data on mount
+	tryCatch({
+		dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+		if (!dir.exists(dir.name)) {
+			dir.create(dir.name);
+			}
+		funcname <- 'create.heatmap';
+		print.to.file(dir.name, funcname, x, filename);
 			
-			## save all the parameters input (minus data) for later use
-			param.data.filename <- paste(dir.name, "data.RData", sep = "/Heatmap-");
-			data.list.heatmap <- list();
-                        if(file.exists(param.data.filename)) {
-                                load(param.data.filename);
-                                }
-                        data.list.heatmap[[length(data.list.heatmap) + 1]] <- list(filename = filename, clustering.method = clustering.method,
-				cluster.dimensions = cluster.dimensions, row.dendrogram = row.dendrogram, col.dendrogram = col.dendrogram,
-				plot.dendrograms = plot.dendrograms, force.clustering = force.clustering, criteria.list = criteria.list,
-				covariates = covariates, covariates.grid.row = covariates.grid.row, covariates.grid.col = covariates.grid.col,
-				covariates.grid.border = covariates.grid.border, covariates.row.lines = covariates.row.lines,
-				covariates.col.lines = covariates.col.lines, covariates.reorder.grid.index = covariates.reorder.grid.index,
-				covariates.padding = covariates.padding, covariates.top = covariates.top,
-				covariates.top.grid.row = covariates.top.grid.row, covariates.top.grid.col = covariates.top.grid.col,
-				covariates.top.grid.border = covariates.top.grid.border, covariates.top.row.lines = covariates.top.row.lines,
-				covariates.top.col.lines = covariates.top.col.lines, covariates.top.reorder.grid.index = covariates.top.reorder.grid.index,
-				covariates.top.padding = covariates.top.padding, covariate.legends = covariate.legends, legend.cex = legend.cex,
-				legend.title.cex = legend.title.cex, legend.title.just = legend.title.just, legend.title.fontface = legend.title.fontface,
-				legend.border = legend.border, legend.border.padding = legend.border.padding, legend.layout = legend.layout,
-				legend.between.col = legend.between.col, legend.between.row = legend.between.row, legend.side = legend.side,
-				main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex,
-				right.size.add = right.size.add, top.size.add = top.size.add, right.dendrogram.size = right.dendrogram.size,
-				top.dendrogram.size = top.dendrogram.size, scale.data = scale.data, yaxis.lab = yaxis.lab,
-				xaxis.lab = xaxis.lab, xaxis.lab.top = xaxis.lab.top, xaxis.cex = xaxis.cex, xaxis.top.cex = xaxis.top.cex,
-				yaxis.cex = yaxis.cex, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.top.label = xlab.top.label,
-				xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
-				xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xat = xat, xat.top = xat.top, yat = yat, xaxis.tck = xaxis.tck,
-				xaxis.top.tck = xaxis.top.tck, yaxis.tck = yaxis.tck, xaxis.col = xaxis.col, yaxis.col = yaxis.col,
-				col.pos = col.pos, row.pos = row.pos, cell.text = cell.text, text.fontface = text.fontface, text.cex = text.cex,
-				text.col = text.col, text.position = text.position, text.offset = text.offset,
-				text.use.grid.coordinates = text.use.grid.coordinates, colourkey.cex = colourkey.cex, xaxis.rot = xaxis.rot,
-				xaxis.rot.top = xaxis.rot.top, yaxis.rot = yaxis.rot, xlab.label = xlab.label, ylab.label = ylab.label,
-				xlab.col = xlab.col, ylab.col = ylab.col, axes.lwd = axes.lwd, gridline.order = gridline.order,
-				grid.row = grid.row, grid.col = grid.col, force.grid.row = force.grid.row, force.grid.col = force.grid.col,
-				grid.limit = grid.limit, row.lines = row.lines, col.lines = col.lines, colour.scheme = colour.scheme,
-				total.colours = total.colours, colour.centering.value = colour.centering.value, colour.alpha = colour.alpha,
-				fill.colour = fill.colour, at = at, print.colour.key = print.colour.key,
-				colourkey.labels.at = colourkey.labels.at, colourkey.labels = colourkey.labels, top.padding = top.padding,
-				bottom.padding = bottom.padding, right.padding = right.padding, left.padding = left.padding,
-				x.alternating = x.alternating, shrink = shrink, row.colour = row.colour, col.colour = col.colour,
-				row.lwd = row.lwd, col.lwd = col.lwd, grid.colour = grid.colour, grid.lwd = grid.lwd, width = width,
-				height = height, size.units = size.units, resolution = resolution, xaxis.covariates = xaxis.covariates,
-				xaxis.covariates.y = xaxis.covariates.y, yaxis.covariates = yaxis.covariates, yaxis.covariates.x = yaxis.covariates.x,
-				xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, symbols = symbols, same.as.matrix = same.as.matrix,
-				input.colours = input.colours, axis.xlab.padding = axis.xlab.padding); 
-                        save(data.list.heatmap, file = param.data.filename);
-
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
+		## save all the parameters input (minus data) for later use
+		param.data.filename <- paste(dir.name, "data.RData", sep = "/Heatmap-");
+		data.list.heatmap <- list();
+		if (file.exists(param.data.filename)) {
+			load(param.data.filename);
+			}
+		data.list.heatmap[[length(data.list.heatmap) + 1]] <- list(filename = filename, clustering.method = clustering.method,
+			cluster.dimensions = cluster.dimensions, row.dendrogram = row.dendrogram, col.dendrogram = col.dendrogram,
+			plot.dendrograms = plot.dendrograms, force.clustering = force.clustering, criteria.list = criteria.list,
+			covariates = covariates, covariates.grid.row = covariates.grid.row, covariates.grid.col = covariates.grid.col,
+			covariates.grid.border = covariates.grid.border, covariates.row.lines = covariates.row.lines,
+			covariates.col.lines = covariates.col.lines, covariates.reorder.grid.index = covariates.reorder.grid.index,
+			covariates.padding = covariates.padding, covariates.top = covariates.top,
+			covariates.top.grid.row = covariates.top.grid.row, covariates.top.grid.col = covariates.top.grid.col,
+			covariates.top.grid.border = covariates.top.grid.border, covariates.top.row.lines = covariates.top.row.lines,
+			covariates.top.col.lines = covariates.top.col.lines, covariates.top.reorder.grid.index = covariates.top.reorder.grid.index,
+			covariates.top.padding = covariates.top.padding, covariate.legends = covariate.legends, legend.cex = legend.cex,
+			legend.title.cex = legend.title.cex, legend.title.just = legend.title.just, legend.title.fontface = legend.title.fontface,
+			legend.border = legend.border, legend.border.padding = legend.border.padding, legend.layout = legend.layout,
+			legend.between.col = legend.between.col, legend.between.row = legend.between.row, legend.side = legend.side,
+			main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex,
+			right.size.add = right.size.add, top.size.add = top.size.add, right.dendrogram.size = right.dendrogram.size,
+			top.dendrogram.size = top.dendrogram.size, scale.data = scale.data, yaxis.lab = yaxis.lab,
+			xaxis.lab = xaxis.lab, xaxis.lab.top = xaxis.lab.top, xaxis.cex = xaxis.cex, xaxis.top.cex = xaxis.top.cex,
+			yaxis.cex = yaxis.cex, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.top.label = xlab.top.label,
+			xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
+			xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xat = xat, xat.top = xat.top, yat = yat, xaxis.tck = xaxis.tck,
+			xaxis.top.tck = xaxis.top.tck, yaxis.tck = yaxis.tck, xaxis.col = xaxis.col, yaxis.col = yaxis.col,
+			col.pos = col.pos, row.pos = row.pos, cell.text = cell.text, text.fontface = text.fontface, text.cex = text.cex,
+			text.col = text.col, text.position = text.position, text.offset = text.offset,
+			text.use.grid.coordinates = text.use.grid.coordinates, colourkey.cex = colourkey.cex, xaxis.rot = xaxis.rot,
+			xaxis.rot.top = xaxis.rot.top, yaxis.rot = yaxis.rot, xlab.label = xlab.label, ylab.label = ylab.label,
+			xlab.col = xlab.col, ylab.col = ylab.col, axes.lwd = axes.lwd, gridline.order = gridline.order,
+			grid.row = grid.row, grid.col = grid.col, force.grid.row = force.grid.row, force.grid.col = force.grid.col,
+			grid.limit = grid.limit, row.lines = row.lines, col.lines = col.lines, colour.scheme = colour.scheme,
+			total.colours = total.colours, colour.centering.value = colour.centering.value, colour.alpha = colour.alpha,
+			fill.colour = fill.colour, at = at, print.colour.key = print.colour.key,
+			colourkey.labels.at = colourkey.labels.at, colourkey.labels = colourkey.labels, top.padding = top.padding,
+			bottom.padding = bottom.padding, right.padding = right.padding, left.padding = left.padding,
+			x.alternating = x.alternating, shrink = shrink, row.colour = row.colour, col.colour = col.colour,
+			row.lwd = row.lwd, col.lwd = col.lwd, grid.colour = grid.colour, grid.lwd = grid.lwd, width = width,
+			height = height, size.units = size.units, resolution = resolution, xaxis.covariates = xaxis.covariates,
+			xaxis.covariates.y = xaxis.covariates.y, yaxis.covariates = yaxis.covariates, yaxis.covariates.x = yaxis.covariates.x,
+			xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, symbols = symbols, same.as.matrix = same.as.matrix,
+			input.colours = input.colours, axis.xlab.padding = axis.xlab.padding); 
+			save(data.list.heatmap, file = param.data.filename);
+			},
+		warning = function(w) {
+			},
+		error = function(e) {
+			}
+		);
 
 	### PARAMETER CHECKING #########################################################################
 	if (preload.default == 'paper') {
-
 		}
 	else if (preload.default == 'web') {
-
 		}
+
 	# check that the resolution and size are sufficient for the dimensions of the data
 	# using a conservative estimate that the heatmap is 50% of the plot
 	# try to set default for xaxis.covariates.y value, if levelplot is resized user will have to input own value
@@ -126,8 +125,9 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			warning('HEATMAP: There are probably not enough pixels to represent all the rows in the heatmap.  Try increasing the resolution or height.');
 			}
 		}
-        # if you only have one column, you start to get weird behaviour, duplicating it fixes that.
-        if (ncol(x) == 1) {
+
+	# if you only have one column, you start to get weird behaviour, duplicating it fixes that.
+	if (ncol(x) == 1) {
 		x <- t(cbind(x, x));
 		}
 	# transpose matrix to keep original form
@@ -170,8 +170,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	xaxis.cex <- rep(xaxis.cex, length.out = nrow(x));
 	xaxis.rot <- rep(xaxis.rot, length.out = nrow(x));
 	xaxis.col <- rep(xaxis.col, length.out = nrow(x));
-
 	xaxis.rot[2] <- xaxis.rot.top;
+
 	# vectorize all y-axis characteristics
 	yaxis.cex <- rep(yaxis.cex, length.out = ncol(x));
 	yaxis.col <- rep(yaxis.col, length.out = ncol(x));
@@ -190,25 +190,19 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		no = 0
 		);
 
-	# try to recover memory
-
-
 	### SUBSET DATA ################################################################################
 	# Extract a subset of data to work with
-
 	x <- x[criteria.list, ];
 	x <- as.matrix(x);
 	if (TRUE == input.colours) {
-        	s <- unique(unlist(as.list(x)));
-        	for (i in c(1:length(s))) {
-        		x[x == s[i]] <- i;
-        		}
-	        storage.mode(x) <- 'numeric';
+		s <- unique(unlist(as.list(x)));
+		for (i in c(1:length(s))) {
+			x[x == s[i]] <- i;
+			}
+		storage.mode(x) <- 'numeric';
 		total.colours <- length(s) + 1;
 		colour.scheme <- s;
 		}
-
-
 
 	# Scale the data if necessary
 	if (scale.data) {
@@ -269,7 +263,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			stop('Invalid row.dendrogram: should be of size ', ncol(x));
 			}
 		}
-
 
 	### CLUSTERING & COVARIATES ###################################################################
 	legend <- list();
@@ -675,102 +668,102 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		font.family <- 'sans';
 
 		# create grob representing the legend
-	        if (is.null(legend.layout)) {
+		if (is.null(legend.layout)) {
 			legend.layout <- c(1, length(covariate.legends));
 			}
 		legend.grob.left <- NULL;
 		legend.grob.top <- NULL;
 		legend.grob.right <- NULL;
 		if (length(legend.side) > 1 && length(covariate.legends[legend.side == 'left']) > 0) {
-                	legend.grob.left <- BoutrosLab.plotting.general::legend.grob(
-                        	legends = covariate.legends[legend.side == 'left'],
-                        	label.cex = legend.cex,
-                        	title.cex = legend.title.cex,
-                        	title.just = legend.title.just,
-                        	title.fontface = legend.title.fontface,
-                        	font.family = font.family,
-                        	border = legend.border,
-                        	border.padding = legend.border.padding,
-                        	layout = legend.layout,
-                        	between.col = legend.between.col,
-                        	between.row = legend.between.row
-                        	);
+			legend.grob.left <- BoutrosLab.plotting.general::legend.grob(
+				legends = covariate.legends[legend.side == 'left'],
+				label.cex = legend.cex,
+				title.cex = legend.title.cex,
+				title.just = legend.title.just,
+				title.fontface = legend.title.fontface,
+				font.family = font.family,
+				border = legend.border,
+				border.padding = legend.border.padding,
+				layout = legend.layout,
+				between.col = legend.between.col,
+				between.row = legend.between.row
+				);
 			}
 		else if (length(legend.side) == 1 && legend.side == 'left') {
 			legend.grob.left <- BoutrosLab.plotting.general::legend.grob(
-                                legends = covariate.legends,
-                                label.cex = legend.cex,
-                                title.cex = legend.title.cex,
-                                title.just = legend.title.just,
-                                title.fontface = legend.title.fontface,
-                                font.family = font.family,
-                                border = legend.border,
-                                border.padding = legend.border.padding,
-                                layout = legend.layout,
-                                between.col = legend.between.col,
-                                between.row = legend.between.row
-                                );
+				legends = covariate.legends,
+				label.cex = legend.cex,
+				title.cex = legend.title.cex,
+				title.just = legend.title.just,
+				title.fontface = legend.title.fontface,
+				font.family = font.family,
+				border = legend.border,
+				border.padding = legend.border.padding,
+				layout = legend.layout,
+				between.col = legend.between.col,
+				between.row = legend.between.row
+				);
 			}
 		if (length(legend.side) > 1 && length(covariate.legends[legend.side == 'top']) > 0) {
-                	legend.grob.top <- BoutrosLab.plotting.general::legend.grob(
-                        	legends = covariate.legends[legend.side == 'top'],
-                        	label.cex = legend.cex,
-                        	title.cex = legend.title.cex,
-                        	title.just = legend.title.just,
-                        	title.fontface = legend.title.fontface,
-                        	font.family = font.family,
-                        	border = legend.border,
-                        	border.padding = legend.border.padding,
-                        	layout = c(length(covariate.legends), 1),
-                        	between.col = legend.between.col,
-                        	between.row = legend.between.row
-                        	);
+			legend.grob.top <- BoutrosLab.plotting.general::legend.grob(
+				legends = covariate.legends[legend.side == 'top'],
+				label.cex = legend.cex,
+				title.cex = legend.title.cex,
+				title.just = legend.title.just,
+				title.fontface = legend.title.fontface,
+				font.family = font.family,
+				border = legend.border,
+				border.padding = legend.border.padding,
+				layout = c(length(covariate.legends), 1),
+				between.col = legend.between.col,
+				between.row = legend.between.row
+				);
 			}
 		else if (length(legend.side) == 1 && legend.side == 'top') {
 			legend.grob.top <- BoutrosLab.plotting.general::legend.grob(
-                                legends = covariate.legends,
-                                label.cex = legend.cex,
-                                title.cex = legend.title.cex,
-                                title.just = legend.title.just,
-                                title.fontface = legend.title.fontface,
-                                font.family = font.family,
-                                border = legend.border,
-                                border.padding = legend.border.padding,
-                                layout = c(length(covariate.legends), 1),
-                                between.col = legend.between.col,
-                                between.row = legend.between.row
-                                );
+				legends = covariate.legends,
+				label.cex = legend.cex,
+				title.cex = legend.title.cex,
+				title.just = legend.title.just,
+				title.fontface = legend.title.fontface,
+				font.family = font.family,
+				border = legend.border,
+				border.padding = legend.border.padding,
+				layout = c(length(covariate.legends), 1),
+				between.col = legend.between.col,
+				between.row = legend.between.row
+				);
 			}
 		if (length(legend.side) > 1 && length(covariate.legends[legend.side == 'right']) > 0) {
-                	legend.grob.right <- BoutrosLab.plotting.general::legend.grob(
-                        	legends = covariate.legends[legend.side == 'right'],
-                        	label.cex = legend.cex,
-                        	title.cex = legend.title.cex,
-                        	title.just = legend.title.just,
-                        	title.fontface = legend.title.fontface,
-                        	font.family = font.family,
-                        	border = legend.border,
-                        	border.padding = legend.border.padding,
-                        	layout = legend.layout,
-                        	between.col = legend.between.col,
-                        	between.row = legend.between.row
-                        	);
+			legend.grob.right <- BoutrosLab.plotting.general::legend.grob(
+				legends = covariate.legends[legend.side == 'right'],
+				label.cex = legend.cex,
+				title.cex = legend.title.cex,
+				title.just = legend.title.just,
+				title.fontface = legend.title.fontface,
+				font.family = font.family,
+				border = legend.border,
+				border.padding = legend.border.padding,
+				layout = legend.layout,
+				between.col = legend.between.col,
+				between.row = legend.between.row
+				);
 			}
 		else if (length(legend.side) == 1 && legend.side == 'right') {
 			legend.grob.right <- BoutrosLab.plotting.general::legend.grob(
-                                legends = covariate.legends,
-                                label.cex = legend.cex,
-                                title.cex = legend.title.cex,
-                                title.just = legend.title.just,
-                                title.fontface = legend.title.fontface,
-                                font.family = font.family,
-                                border = legend.border,
-                                border.padding = legend.border.padding,
-                                layout = legend.layout,
-                                between.col = legend.between.col,
-                                between.row = legend.between.row
-                                );
-                        }
+				legends = covariate.legends,
+				label.cex = legend.cex,
+				title.cex = legend.title.cex,
+				title.just = legend.title.just,
+				title.fontface = legend.title.fontface,
+				font.family = font.family,
+				border = legend.border,
+				border.padding = legend.border.padding,
+				layout = legend.layout,
+				between.col = legend.between.col,
+				between.row = legend.between.row
+				);
+			}
 
 		#legend.grob <- BoutrosLab.plotting.general::legend.grob(
 		#	legends = covariate.legends,
@@ -1024,8 +1017,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	# restore original lattice setting
 	lattice.options('axis.padding' = list(factor = lattice.old.factor));
 
-	# try to recover memory
-
 	### AUTOMATIC COLOUR-KEY HANDLING ##############################################################
 	# work out data ranges, break point locations, and colour-number from input parameters
 	if (is.null(at)) {
@@ -1182,14 +1173,15 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
 
 	### HEATMAP GENERATION #########################################################################
-        if (is.null(xlab.top.label)) {
+	if (is.null(xlab.top.label)) {
 
-	# if x-labels are on top, put xlabel on top too
+		# if x-labels are on top, put xlabel on top too
 		if (2 == x.alternating) {
 			xlab.top.label <- xlab.label;
 			xlab.label <- '';
 			}
 		}
+
 	# determine length of tck marks
 	# tick lengths depend on xaxis.tck and x.alternating
 	x.tck <- c(0, 0);
@@ -1259,6 +1251,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		return(args);
 		}
 	if (is.null(xaxis.top.cex)) {xaxis.top.cex <- xaxis.cex;}
+
 	# look at nrow and ncol and if exceed limit (for now, default limit = 50), turn off grid lines
 	if ( (ncol(x) > grid.limit & grid.row == TRUE) & force.grid.row != TRUE) {
 		grid.row <- FALSE;
@@ -1270,6 +1263,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		cat(paste0('Warning: number of colum ns exceeded limit (', grid.limit, '), column lines are turned off.
 				Please set "force.grid.col" to TRUE to override this\n'));
 		}
+
 	# create heatmap
 	trellis.object <- lattice::levelplot(
 		x,
@@ -1561,18 +1555,18 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 				)
 			),
 		xlab.top = BoutrosLab.plotting.general::get.defaults(
-		        property = 'fontfamily',
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
-        		add.to.list = list(
-                		label = xlab.top.label,
-                		cex = xlab.top.cex,
-                		col = xlab.top.col,
-                		fontface = if ('Nature' == style) {'plain'} else {'bold'},
-                		just = xlab.top.just,
-                		x = xlab.top.x,
-                		y = xlab.top.y
-                		)
-        		),
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) {'plain'} else {'bold'},
+				just = xlab.top.just,
+				x = xlab.top.x,
+				y = xlab.top.y
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
@@ -1622,7 +1616,6 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	else {
 		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
 		}
-
 
 	# output the object
 	return(

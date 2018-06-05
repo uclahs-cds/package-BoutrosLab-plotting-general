@@ -172,8 +172,6 @@ scientific.notation(c(1234,1234), 1);
 # This returns the same thing as when type = 'expression' - should something be changed?
 scientific.notation(c(1234,1234), 1, type = 'list');
 
-append.footnote();
-
 display.statistical.result(1234);
 
 ### COLOUR FUNCTIONS ###############################################################################

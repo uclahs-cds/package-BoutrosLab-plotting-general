@@ -11,7 +11,6 @@ import(
 	"grid"
 	);
 export(
-	"append.footnote",
 	"auto.axis",
 	"colour.gradient",
 	"covariates.grob",

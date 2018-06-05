@@ -1,4 +1,18 @@
-BoutrosLab.plotting.general 5.9.3 2018-04-18
+BoutrosLab.plotting.general 5.9.5 2018-06-05
+
+FEATURE
+* added warnings when a formula contains a conditioning variable that is an integer/numeric (barplot, boxplot, hexbinplot, scatterplot)
+* changed default xaxis.tck for boxplot to prevent automatic ticks from appearing at top of plot
+
+BUG
+* force.colour.scheme no longer requires 'x' when return.scheme = TRUE
+* fixed an error in create.scatterplot preventing automatic axis determination when all y == 0 or all y == -N
+
+REMOVED
+* removed append.footnote.R as it was non-functional with no plans to fix
+
+--------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.9.4 2018-04-18
 
 FEATURE
 * dotmap can now do symmetrical removing of top left half of dotmap 

@@ -285,6 +285,7 @@ other.mutations <- total.counts - nonsynonymous.SNV;
 barplot.data <- data.frame(
     samples = rep(1:15, 2),
     mutation = c(rep('nonsynonymous', 15), rep('other',15)),
+    type = c(rep(1, 15), rep(2,15)),
     values = c(nonsynonymous.SNV, other.mutations),
     sex = rep(patient$sex[1:15], 2),
     stage = rep(patient$stage[1:15], 2),
@@ -546,7 +547,26 @@ create.barplot(
 
 # Panel organization
 create.barplot(
-    filename = 'Barplot_Panel_Layout.tiff',
+    filename = 'Barplot_Panel_Layout_numeric_conditioning.tiff',
+    # Setting the panel layout
+    formula = values ~ samples | type,
+    data = barplot.data,
+    main = 'Panel layout',
+    xlab.lab = 'Samples',
+    ylab.lab = 'Mutations',
+    ylimits = c(0,30),
+    yat = seq(0,30,5),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    description = 'Barplot created by BoutrosLab.plotting.general'
+    );
+
+create.barplot(
+    filename = 'Barplot_Panel_Layout_character_conditioning.tiff',
     # Setting the panel layout
     formula = values ~ samples | mutation,
     data = barplot.data,

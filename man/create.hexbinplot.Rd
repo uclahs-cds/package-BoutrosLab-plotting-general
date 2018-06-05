@@ -233,8 +233,8 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 set.seed(12345);
 
 simple.data <- data.frame(
-    x <- rnorm(10000),
-    y <- rnorm(10000)
+    x = rnorm(10000),
+    y = rnorm(10000)
     );
 
 create.hexbinplot(
@@ -545,12 +545,24 @@ create.hexbinplot(
 
 # Multiplot different groups
 set.seed(73);
+
 # Randomly generate groups
-groups <- sample(1:2, 10000, replace = TRUE);
+simple.data$groups <- sample(1:2, 10000, replace = TRUE);
+simple.data$group.labels <- as.factor(simple.data$groups);
 
 create.hexbinplot(
 	formula = y ~ x | groups,
-	filename = 'stratified_hexbinplot.tiff',
+	filename = 'stratified_hexbinplot_numeric_conditioning.tiff',
+	data = simple.data,
+	description = 'Hexbinplot created by BoutrosLab.plotting.general',
+	strip.col = 'white',
+	strip.cex = 0.8,
+	strip.fontface = 'bold'
+	);
+
+create.hexbinplot(
+	formula = y ~ x | group.labels,
+	filename = 'stratified_hexbinplot_factor_conditioning.tiff',
 	data = simple.data,
 	description = 'Hexbinplot created by BoutrosLab.plotting.general',
 	strip.col = 'white',
