@@ -50,7 +50,7 @@ create.hexbinplot <- function(
 	### store data on mount
 	tryCatch({
 			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if( !dir.exists(dir.name) ) {
+			if ( !dir.exists(dir.name) ) {
 				dir.create(dir.name);
 				}			
 			funcname <- 'create.hexbinplot';
@@ -59,7 +59,8 @@ create.hexbinplot <- function(
 		warning = function(w) {
 			},
 		error = function(e) {
-			});
+			}
+		);
 
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
@@ -125,8 +126,8 @@ create.hexbinplot <- function(
 	# check class of conditioning variable
 	if ('|' %in% all.names(formula)) {
 
-		cond.class <- class(data[,trim.leading.trailing.whitespace(unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
-		if (cond.class %in% c('integer','numeric')) {
+		cond.class <- class(data[, sub("^\\s+", "", unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		if (cond.class %in% c('integer', 'numeric')) {
 			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
 			}
 		rm(cond.class);

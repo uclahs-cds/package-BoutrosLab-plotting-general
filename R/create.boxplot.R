@@ -23,7 +23,7 @@ create.boxplot <- function(
 	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL,
 	ylimits = NULL,	xat = TRUE, yat = TRUE, xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5,
 	xaxis.col = 'black', yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0,
-	yaxis.rot = 0, xaxis.tck = c(1,0), yaxis.tck = 1, layout = NULL, as.table = FALSE, x.spacing = 0, y.spacing = 0,
+	yaxis.rot = 0, xaxis.tck = c(1, 0), yaxis.tck = 1, layout = NULL, as.table = FALSE, x.spacing = 0, y.spacing = 0,
 	x.relation = 'same', y.relation = 'same', top.padding = 0.5, bottom.padding = 2, right.padding = 1,
 	left.padding = 2, ylab.axis.padding = 0, add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL,
 	text.anchor = 'centre', text.col = 'black', text.cex = 1, text.fontface = 'bold',
@@ -37,37 +37,40 @@ create.boxplot <- function(
 	### needed to copy in case using variable to define rectangles dimensions -- wont carry through after change
 	### store data on mount
 	tryCatch({
-		dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-		if (!dir.exists(dir.name)) {
-			dir.create(dir.name);
-			}
-		funcname <- 'create.boxplot';
-		print.to.file(dir.name, funcname, data, filename);
+			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+			if (!dir.exists(dir.name)) {
+				dir.create(dir.name);
+				}
+			funcname <- 'create.boxplot';
+			print.to.file(dir.name, funcname, data, filename);
 
-		## save all the parameters input (minus data) for later use
-		param.data.filename <- paste(dir.name, "data.RData", sep = "/Boxplot-");
-		data.list.boxplot <- list();
-		if (file.exists(param.data.filename)) {
-			load(param.data.filename);
-			}
-		data.list.boxplot[[length(data.list.boxplot) + 1]] <- list(formula = formula, filename = filename, main = main, main.just = main.just, main.x = main.x, 
-			main.y = main.y, main.cex = main.cex, add.stripplot = add.stripplot,
-			jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch, points.col = points.col, points.cex = points.cex,
-			points.alpha = points.alpha, abline.h = abline.h, abline.v = abline.v, adline.lty = abline.lty, abline.lwd = abline.lwd, abline.col = abline.col,
-			add.rectangle = add.rectangle, xleft.rectangle = xleft.rectangle, ybottom.rectangle = ybottom.rectangle, xright.rectangle = xright.rectangle,
-			ytop.rectangle = ytop.rectangle, col.rectangle = col.rectangle, alpha.rectangle = alpha.rectangle, box.ratio = box.ratio, col = col,
-			border.col = border.col, symbol.cex = symbol.cex, lwd = lwd, outliers = outliers, sample.order = sample.order, order.by = order.by,
-			xlab.label = xlab.label, ylab.label = ylab.label, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.col = xlab.col, ylab.col = ylab.col,
-			xlab.top.label = xlab.top.label, xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
-			xlab.top.just = xlab.top.just, xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xlimits = xlimits, ylimits = ylimits, xat = xat, yat = yat,
-			xaxis.lab = xaxis.lab, yaxis.lab = yaxis.lab, xaxis.cex = xaxis.cex, xaxis.col = xaxis.col, yaxis.col = yaxis.col,
-			xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, xaxis.rot = xaxis.rot, yaxis.rot = yaxis.rot, xaxis.tck = xaxis.tck,
-			yaxis.tck = yaxis.tck, layout = layout, as.table = as.table, x.spacing = x.spacing, y.spacing = y.spacing, x.relation = x.relation,
-			y.relation = y.relation, top.padding = top.padding, bottom.padding = bottom.padding, right.padding = right.padding, left.padding = left.padding,
-			ylab.axis.padding = ylab.axis.padding, add.text = add.text, text.labels = text.labels, text.x = text.x, text.y = text.y,
-			text.anchor = text.anchor, text.col = text.col, text.cex = text.cex, text.fontface = text.fontface, key = key, legend = legend,
-			strip.col = strip.col, strip.cex = strip.cex, strip.fontface = strip.fontface, line.func = line.func, line.from = line.from, line.to = line.to,
-			line.col = line.col, line.infront = line.infront, height = height, width = width, size.units = size.units, resolution = resolution);
+			## save all the parameters input (minus data) for later use
+			param.data.filename <- paste(dir.name, 'data.RData', sep = '/Boxplot-');
+			data.list.boxplot <- list();
+			if (file.exists(param.data.filename)) {
+				load(param.data.filename);
+				}
+			data.list.boxplot[[length(data.list.boxplot) + 1]] <- list(
+				formula = formula, filename = filename, main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex, 
+				add.stripplot = add.stripplot, jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch, 
+				points.col = points.col, points.cex = points.cex, points.alpha = points.alpha, abline.h = abline.h, abline.v = abline.v, 
+				adline.lty = abline.lty, abline.lwd = abline.lwd, abline.col = abline.col, add.rectangle = add.rectangle, 
+				xleft.rectangle = xleft.rectangle, ybottom.rectangle = ybottom.rectangle, xright.rectangle = xright.rectangle,
+				ytop.rectangle = ytop.rectangle, col.rectangle = col.rectangle, alpha.rectangle = alpha.rectangle, box.ratio = box.ratio, col = col,
+				border.col = border.col, symbol.cex = symbol.cex, lwd = lwd, outliers = outliers, sample.order = sample.order, order.by = order.by,
+				xlab.label = xlab.label, ylab.label = ylab.label, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.col = xlab.col, ylab.col = ylab.col,
+				xlab.top.label = xlab.top.label, xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
+				xlab.top.just = xlab.top.just, xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xlimits = xlimits, ylimits = ylimits, xat = xat, 
+				yat = yat, xaxis.lab = xaxis.lab, yaxis.lab = yaxis.lab, xaxis.cex = xaxis.cex, xaxis.col = xaxis.col, yaxis.col = yaxis.col,
+				xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, xaxis.rot = xaxis.rot, yaxis.rot = yaxis.rot, xaxis.tck = xaxis.tck,
+				yaxis.tck = yaxis.tck, layout = layout, as.table = as.table, x.spacing = x.spacing, y.spacing = y.spacing, x.relation = x.relation,
+				y.relation = y.relation, top.padding = top.padding, bottom.padding = bottom.padding, right.padding = right.padding, 
+				left.padding = left.padding, ylab.axis.padding = ylab.axis.padding, add.text = add.text, text.labels = text.labels, text.x = text.x, 
+				text.y = text.y, text.anchor = text.anchor, text.col = text.col, text.cex = text.cex, text.fontface = text.fontface, key = key, 
+				legend = legend, strip.col = strip.col, strip.cex = strip.cex, strip.fontface = strip.fontface, line.func = line.func, 
+				line.from = line.from, line.to = line.to, line.col = line.col, line.infront = line.infront, height = height, width = width, 
+				size.units = size.units, resolution = resolution
+				);
 			save(data.list.boxplot, file = param.data.filename);
 			},
 		warning = function(w) {
@@ -175,8 +178,8 @@ create.boxplot <- function(
 	# check class of conditioning variable
 	if ('|' %in% all.names(formula)) {
 
-		cond.class <- class(data[,trim.leading.trailing.whitespace(unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
-		if (cond.class %in% c('integer','numeric')) {
+		cond.class <- class(data[, sub("^\\s+", "", unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		if (cond.class %in% c('integer', 'numeric')) {
 			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
 			}
 		rm(cond.class);
@@ -412,16 +415,16 @@ create.boxplot <- function(
 
 		sorting.param <- '';
 
-		if(is.factor(trellis.object$panel.args[[1]][['y']])) {
+		if (is.factor(trellis.object$panel.args[[1]][['y']])) {
 			sorting.param <- 'y';
-			if(is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+			if (is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
 				default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
 				trellis.object$y.scales$labels <- default.labels;
 				}
 			}
 		else {
 			sorting.param <- 'x';
-			if(is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+			if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
 				default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
 				trellis.object$x.scales$labels <- default.labels;
 				}
@@ -435,6 +438,7 @@ create.boxplot <- function(
 				count <- count + 1;
 				}
 			}
+
 		temp.data <- as.character(trellis.object$panel.args[[1]][[sorting.param]]);
 		for (x in 1:length(temp.data)) {
 			temp.data[x] <- as.character(unique.mapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);

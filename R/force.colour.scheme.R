@@ -431,7 +431,7 @@ force.colour.scheme <- force.color.scheme <- function(
 				mt.annotation.5, mt.annotation.8, mt.annotation.8)
 			),
                 isup.grade = list(
-			levels = c('1','2','3','4','5'),
+			levels = c('1', '2', '3', '4', '5'),
 			colours = c(isup.grade.1, isup.grade.2, isup.grade.3, isup.grade.4, isup.grade.5)
 			)
 		);

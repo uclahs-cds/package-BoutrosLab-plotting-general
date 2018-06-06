@@ -32,19 +32,19 @@ covariate.colours1[covariate.colours1 == 'B'] <- default.colours(2)[2];
 
 # create an object to draw the covariates from
 covariates1 <- list(
-    rect = list(
-        col = 'black',
-        fill = covariate.colours1,
-        lwd = 1.5
-        )
-    );
+	rect = list(
+		col = 'black',
+		fill = covariate.colours1,
+		lwd = 1.5
+		)
+	);
 
 covariates.grob1 <- covariates.grob(
-    covariates = covariates1,
-    ord = c(1:10),
-    side = 'top',
-    size = .8
-    );
+	covariates = covariates1,
+	ord = c(1:10),
+	side = 'top',
+	size = .8
+	);
 
 barplot <- create.barplot(
 	formula = y ~ x,
@@ -62,7 +62,7 @@ barplot <- create.barplot(
 				key = get.corr.key(
 					x = test.data$x,
 					y = test.data$y,
-					label.items = c('spearman','spearman.p','kendall','beta1')
+					label.items = c('spearman', 'spearman.p', 'kendall', 'beta1')
 					)
 				),
 			x = 0.5,
@@ -98,7 +98,7 @@ density <- create.densityplot(
 		a = test.data$x, 
 		b = test.data$z
 		),
-	xat = c(0,1.1,1.5,1,6,4),
+	xat = c(0, 1.1, 1.5, 1, 6, 4),
 	yat = c(0.34, 0.38, 0.7),
 	type = c('g', 'l'),
 	resolution = 100
@@ -114,8 +114,8 @@ polygonplot <- create.polygonplot(
 	data = test.data,
 	max = test.data$x,
 	min = test.data$z,
-	xlimits = c(0,10),
-	ylimits = c(-2,10)
+	xlimits = c(0, 10),
+	ylimits = c(-2, 10)
 	);
 
 qqcomp <- create.qqplot.comparison(
@@ -168,9 +168,10 @@ get.line.breaks(1:10);
 
 scientific.notation(1234, 2, type = 'list');
 scientific.notation(0, 2);
-scientific.notation(c(1234,1234), 1);
+scientific.notation(c(1234, 1234), 1);
+
 # This returns the same thing as when type = 'expression' - should something be changed?
-scientific.notation(c(1234,1234), 1, type = 'list');
+scientific.notation(c(1234, 1234), 1, type = 'list');
 
 display.statistical.result(1234);
 
@@ -178,10 +179,9 @@ display.statistical.result(1234);
 default.colours(12, is.greyscale = FALSE);
 default.colours(5, palette.type = 'chromosomes', is.greyscale = FALSE);
 default.colours(5, palette.type = 'seq');
-default.colours(c(4,4), palette.type = c('seq','div'));
+default.colours(c(4, 4), palette.type = c('seq', 'div'));
 
 # display.colours(default.colours(3));
 # display.colours(grey(0.5));
 
 force.colour.scheme(c('stopgain snv', 'splicing'), 'annovar.annotation');
-

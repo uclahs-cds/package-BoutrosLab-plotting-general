@@ -44,8 +44,11 @@ inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, 
 		}
 
 	# ensure the lengths of the variables defining all the ellipses are the same
-	if (!(length(ellipse.center.x) == length(ellipse.center.y) && length(ellipse.radii.x) == length(ellipse.radii.y) &&
-			length(ellipse.center.x) == length(ellipse.radii.x))) {
+	if (!(
+		length(ellipse.center.x) == length(ellipse.center.y) &&
+		length(ellipse.radii.x) == length(ellipse.radii.y) &&
+		length(ellipse.center.x) == length(ellipse.radii.x)
+		)) {
 		warning('In inside ellipse: The length of ellipse.center.x, ellipse.radii.x, ellipse.center.y and ellipse.radii.y are not all the same.');
 		}
 
@@ -198,102 +201,103 @@ create.lollipopplot <- create.scatterplot <- function(
 	) {
 
 	### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }                        
+	tryCatch({
+			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+			if ( !dir.exists(dir.name) ) {
+				dir.create(dir.name);
+				}			
 			funcname <- 'create.scatterplot';
-                        print.to.file(dir.name, funcname, data, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
+			print.to.file(dir.name, funcname, data, filename);
+			},
+		warning = function(w) {
+			},
+		error = function(e) {
+			}
+		);
 
 	function.name <- match.call()[[1]];
 
 	lollipop.plot <- FALSE;
 	if (function.name == 'create.lollipopplot') {
-		lollipop.plot = TRUE;
+		lollipop.plot <- TRUE;
 		}
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangle.info <- list(
-        	xright = xright.rectangle,
-                xleft = xleft.rectangle,
-                ytop = ytop.rectangle,
-                ybottom = ybottom.rectangle
-                );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-        text.info <- list(
-                labels = text.labels,
-                x = text.x,
-                y = text.y,
-                col = text.col,
-                cex = text.cex,
-                fontface = text.fontface
-                );
+	text.info <- list(
+		labels = text.labels,
+		x = text.x,
+		y = text.y,
+		col = text.col,
+		cex = text.cex,
+		fontface = text.fontface
+		);
 
 	# check class of conditioning variable
 	if ('|' %in% all.names(formula)) {
 
-		cond.class <- class(data[,trim.leading.trailing.whitespace(unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
-		if (cond.class %in% c('integer','numeric')) {
+		cond.class <- class(data[, sub("^\\s+", "", unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		if (cond.class %in% c('integer', 'numeric')) {
 			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
 			}
 		rm(cond.class);
 		}
 	
 	if (!is.null(yat) && length(yat) == 1) {
-        	if (yat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-        		}
+		if (yat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]));
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 
-        	else if (yat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-        		}
+		else if (yat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 
-        	else if (yat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-        		}
+		else if (yat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 		}
 
 	if (!is.null(xat) && length(xat) == 1) {
-        	if (xat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
+		if (xat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]));
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
 		}
 
 	# add preloaded defaults
-        if (preload.default == 'paper') {
-                }
-        else if (preload.default == 'web') {
-                }
+	if (preload.default == 'paper') {
+		}
+	else if (preload.default == 'web') {
+		}
 
 	# update groups function
 	groups.new <- eval(substitute(groups), data, parent.frame());
@@ -1044,25 +1048,25 @@ create.lollipopplot <- create.scatterplot <- function(
 			...
 			) {
 
-		        # add background rectangle if requested
-                        if (add.rectangle) {
-                                panel.rect(
-                                        xleft = rectangle.info$xleft,
-                                        ybottom = rectangle.info$ybottom,
-                                        xright = rectangle.info$xright,
-                                        ytop = rectangle.info$ytop,
-                                        col = col.rectangle,
-                                        alpha = alpha.rectangle,
-                                        border = NA
-                                        );
-                                }
+			# add background rectangle if requested
+			if (add.rectangle) {
+				panel.rect(
+					xleft = rectangle.info$xleft,
+					ybottom = rectangle.info$ybottom,
+					xright = rectangle.info$xright,
+					ytop = rectangle.info$ytop,
+					col = col.rectangle,
+					alpha = alpha.rectangle,
+					border = NA
+					);
+				}
 			if (lollipop.plot) {
 
-        			# min and max values for lollipop plot
-        			max.x <- if (is.null(xlimits)) {max(x) + (max(x) - min(x)) * 0.07} else { xlimits[2] };
-        			min.x <- if (is.null(xlimits)) {min(x) - (max(x) - min(x)) * 0.07} else { xlimits[1] };
-        			max.y <- if (is.null(ylimits)) {max(y) + (max(y) - min(y)) * 0.07} else { ylimits[2] };
-        			min.y <- if (is.null(ylimits)) {min(y) - (max(y) - min(y)) * 0.07} else { ylimits[1] };
+				# min and max values for lollipop plot
+				max.x <- if (is.null(xlimits)) {max(x) + (max(x) - min(x)) * 0.07} else { xlimits[2] };
+				min.x <- if (is.null(xlimits)) {min(x) - (max(x) - min(x)) * 0.07} else { xlimits[1] };
+				max.y <- if (is.null(ylimits)) {max(y) + (max(y) - min(y)) * 0.07} else { ylimits[2] };
+				min.y <- if (is.null(ylimits)) {min(y) - (max(y) - min(y)) * 0.07} else { ylimits[1] };
 
 				bar.y.top <- if (is.null(lollipop.bar.y)) {min.y + (max.y - min.y) * 0.06 } else { lollipop.bar.y + (max.y - min.y) * 0.06 };
 				bar.y.bottom <- if (is.null(lollipop.bar.y)) {min.y + (max.y - min.y) * 0.01 } else { lollipop.bar.y + (max.y - min.y) * 0.01 };
@@ -1073,43 +1077,43 @@ create.lollipopplot <- create.scatterplot <- function(
 				bar.x.left <- min.x + (max.x - min.x) * 0.01;
 				bar.x.right <- min.x + (max.x - min.x) * 0.99;
 				for (i in c(1:length(x))) {
-                               		panel.xyplot(
-                                		x = c(x[i], x[i]),
-                                       		y = c(bar.y.top, y[i]),
+			       		panel.xyplot(
+						x = c(x[i], x[i]),
+				       		y = c(bar.y.top, y[i]),
 						type = 'l',
-                                        	col.line = 'black',
-                                        	lwd = 1.5
-                                        	);
+						col.line = 'black',
+						lwd = 1.5
+						);
 					}
 
-                        	panel.rect(
-                        		xleft = bar.x.left,
-                                	ybottom = bar.y.bottom,
-                                	xright = bar.x.right,
-                                	ytop = bar.y.top,
-                                	col = lollipop.bar.color,
-                                	alpha = 1,
-                                	border = NA
-                                	);
+				panel.rect(
+					xleft = bar.x.left,
+					ybottom = bar.y.bottom,
+					xright = bar.x.right,
+					ytop = bar.y.top,
+					col = lollipop.bar.color,
+					alpha = 1,
+					border = NA
+					);
 
 				if (length(regions.start) > 0 && length(regions.stop) > 0) {
 					panel.rect(
-                                        	xleft = regions.start,
-                                        	ybottom = region.y.bottom,
-                                       		xright = regions.stop,
-                                        	ytop = region.y.top,
-                                        	col = regions.color,
-                                        	alpha = regions.alpha,
-                                       		border = NA
-                                        	);
-                                	panel.text(
-                                        	x = (regions.start + regions.stop) / 2,
-                                        	y = (bar.y.top + bar.y.bottom) / 2,
-                                        	labels = regions.labels,
-                                        	col = 'black',
-                                        	cex = regions.cex,
-                                        	fontface = 'bold'
-                                        	);
+						xleft = regions.start,
+						ybottom = region.y.bottom,
+				       		xright = regions.stop,
+						ytop = region.y.top,
+						col = regions.color,
+						alpha = regions.alpha,
+				       		border = NA
+						);
+					panel.text(
+						x = (regions.start + regions.stop) / 2,
+						y = (bar.y.top + bar.y.bottom) / 2,
+						labels = regions.labels,
+						col = 'black',
+						cex = regions.cex,
+						fontface = 'bold'
+						);
 					}
 				}
 			# if requested, add x=0, y=0 lines
@@ -1347,19 +1351,19 @@ create.lollipopplot <- create.scatterplot <- function(
 				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
 				)
 			),
-                xlab.top = BoutrosLab.plotting.general::get.defaults(
-                        property = 'fontfamily',
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
-                        add.to.list = list(
-                                label = xlab.top.label,
-                                cex = xlab.top.cex,
-                                col = xlab.top.col,
-                                fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
-                                just = xlab.top.just,
-                                x = xlab.top.x,
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
+				just = xlab.top.just,
+				x = xlab.top.x,
 				y = xlab.top.y
-                                )
-                        ),
+				)
+			),
 		ylab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
@@ -1462,13 +1466,13 @@ create.lollipopplot <- create.scatterplot <- function(
 		);
 
 	if (inside.legend.auto) {
-                extra.parameters <- list('data' = data, 'formula' = formula, 'ylimits' = trellis.object$y.limits,
+		extra.parameters <- list('data' = data, 'formula' = formula, 'ylimits' = trellis.object$y.limits,
 			'xlimits' = trellis.object$x.limits);
 		coords <- c();
 		coords <- .inside.auto.legend('create.scatterplot', filename, trellis.object, height, width, extra.parameters);
-                trellis.object$legend$inside$x <- coords[1];
-                trellis.object$legend$inside$y <- coords[2];
-                }
+		trellis.object$legend$inside$x <- coords[1];
+		trellis.object$legend$inside$y <- coords[2];
+		}
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {
