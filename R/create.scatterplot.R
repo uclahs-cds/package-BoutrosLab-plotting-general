@@ -45,9 +45,9 @@ inside.ellipse <- function(ellipse.center.x, ellipse.center.y, ellipse.radii.x, 
 
 	# ensure the lengths of the variables defining all the ellipses are the same
 	if (!(
-		length(ellipse.center.x) == length(ellipse.center.y) &&
-		length(ellipse.radii.x) == length(ellipse.radii.y) &&
-		length(ellipse.center.x) == length(ellipse.radii.x)
+			length(ellipse.center.x) == length(ellipse.center.y) &&
+			length(ellipse.radii.x) == length(ellipse.radii.y) &&
+			length(ellipse.center.x) == length(ellipse.radii.x)
 		)) {
 		warning('In inside ellipse: The length of ellipse.center.x, ellipse.radii.x, ellipse.center.y and ellipse.radii.y are not all the same.');
 		}
@@ -242,7 +242,7 @@ create.lollipopplot <- create.scatterplot <- function(
 	# check class of conditioning variable
 	if ('|' %in% all.names(formula)) {
 
-		cond.class <- class(data[, sub("^\\s+", "", unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		cond.class <- class(data[, sub('^\\s+', '', unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
 		if (cond.class %in% c('integer', 'numeric')) {
 			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
 			}

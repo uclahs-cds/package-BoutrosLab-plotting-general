@@ -178,7 +178,7 @@ create.boxplot <- function(
 	# check class of conditioning variable
 	if ('|' %in% all.names(formula)) {
 
-		cond.class <- class(data[, sub("^\\s+", "", unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		cond.class <- class(data[, sub('^\\s+', '', unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
 		if (cond.class %in% c('integer', 'numeric')) {
 			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
 			}
@@ -433,7 +433,7 @@ create.boxplot <- function(
 		unique.mapping <- list();
 		count <- 1;
 		for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
-			if(is.null(unique.mapping[[as.character(x)]])) {
+			if (is.null(unique.mapping[[as.character(x)]])) {
 				unique.mapping[as.character(x)] <- count;
 				count <- count + 1;
 				}

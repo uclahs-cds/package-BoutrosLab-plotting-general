@@ -194,7 +194,7 @@ create.barplot <- function(
 	# check class of conditioning variable
 	if ('|' %in% all.names(formula)) {
 
-		cond.class <- class(data[, sub("^\\s+", "", unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
+		cond.class <- class(data[, sub('^\\s+', '', unlist(strsplit(toString(formula[length(formula)]), '\\|'))[2])]);
 		if (cond.class %in% c('integer', 'numeric')) {
 			warning('Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.');
 			}
