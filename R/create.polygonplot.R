@@ -35,79 +35,90 @@ create.polygonplot <- function(
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
 
-
 	### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
+	tryCatch({
+			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
 			if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }                        
+				dir.create(dir.name);
+				}			
 			funcname <- 'create.polygonplot';
-                        print.to.file(dir.name, funcname, data, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
+			print.to.file(dir.name, funcname, data, filename);
+			},
+		warning = function(w) {
+			},
+		error = function(e) {
+			}
+		);
 
 	### needed to copy in case using variable to define rectangles dimensions
-        rectangle.info <- list(
-        	xright = xright.rectangle,
-                xleft = xleft.rectangle,
-                ytop = ytop.rectangle,
-                ybottom = ybottom.rectangle
-                );
+	rectangle.info <- list(
+		xright = xright.rectangle,
+		xleft = xleft.rectangle,
+		ytop = ytop.rectangle,
+		ybottom = ybottom.rectangle
+		);
 
-        text.info <- list(
-                labels = text.labels,
-                x = text.x,
-                y = text.y,
-                col = text.col,
-                cex = text.cex,
-                fontface = text.fontface
-                );
+	text.info <- list(
+		labels = text.labels,
+		x = text.x,
+		y = text.y,
+		col = text.col,
+		cex = text.cex,
+		fontface = text.fontface
+		);
+
+	extra.points.info <- list(
+		x = extra.points$x,
+		y = extra.points$y,
+		type = extra.points.type,
+		pch = extra.points.pch,
+		col = extra.points.col,
+		cex = extra.points.cex,
+		fill = extra.points.fill
+		);
 
 	if (!is.null(yat) && length(yat) == 1) {
 		if (yat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
-                	data[toString(formula[[2]])] <- out$x;
+			out <- auto.axis(unlist(data[toString(formula[[2]])]));
+			data[toString(formula[[2]])] <- out$x;
 			yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
+			yaxis.lab <- out$axis.lab;
 			}
 
-        	else if (yat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
+		else if (yat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
 			}
 
-        	else if (yat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-        		}
+		else if (yat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
+			data[toString(formula[[2]])] <- out$x;
+			yat <- out$at;
+			yaxis.lab <- out$axis.lab;
+			}
 		}
+
 	if (!is.null(xat) && length(xat) == 1) {
-        	if (xat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
+		if (xat == 'auto') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]));
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.linear') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
+		else if (xat == 'auto.log') {
+			out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
+			data[toString(formula[[3]])] <- out$x;
+			xat <- out$at;
+			xaxis.lab <- out$axis.lab;
+			}
 		}
 
 	# add preloaded defaults
@@ -203,15 +214,15 @@ create.polygonplot <- function(
 		  		}
 
 			# if requested, add y=x line
-                        if (add.xyline) {
-                        	panel.abline(
-                                	a = 0,
-                                        b = 1,
-                                        lwd = xyline.lwd,
-                                        lty = xyline.lty,
-                                        col = xyline.col
-                                        );
-                                }
+			if (add.xyline) {
+				panel.abline(
+					a = 0,
+					b = 1,
+					lwd = xyline.lwd,
+					lty = xyline.lty,
+					col = xyline.col
+					);
+				}
 
 			# if no grouping variable, draw a single polygon
 			if (is.null(groups.new)) {
@@ -253,15 +264,15 @@ create.polygonplot <- function(
 				# draw extra points
 				if (!is.null(extra.points)) {
 					panel.xyplot(
-						x = extra.points$x,
-						y = extra.points$y,
+						x = extra.points.info$x,
+						y = extra.points.info$y,
 						groups = groups,
 						subscripts = subscripts,
-						type = extra.points.type,
-						pch = extra.points.pch,
-						col = extra.points.col,
-						cex = extra.points.cex,
-						fill = extra.points.fill
+						type = extra.points.info$type,
+						pch = extra.points.info$pch,
+						col = extra.points.info$col,
+						cex = extra.points.info$cex,
+						fill = extra.points.info$fill
 						);
 					}
 
@@ -337,15 +348,6 @@ create.polygonplot <- function(
 					as.character(factor(x = groups, labels = median.lty));
 					}
 
-				extra.points.col <- if (length(extra.points.col) == 1) { rep(extra.points.col, length(subscripts)); } else {
-					as.character(factor(x = groups, labels = extra.points.col));
-					}
-
-				# need to cast twice to retrieve integer pch values
-				extra.points.pch <- if (length(extra.points.pch) == 1) { rep(extra.points.pch, length(subscripts)); } else {
-					as.integer(as.character(factor(x = groups, labels = extra.points.pch)));
-					}
-
 				# Plot polygons
 				# this is plotted with different graphical parameters for each distinct value of the grouping variable
 				panel.superpose(
@@ -355,12 +357,13 @@ create.polygonplot <- function(
 					subscripts,
 					panel.groups = function(x, y, max, min, groups = groups.new, subscripts, type, add.xy.plot = add.xy.plot, ..., font, fontface) {
 						group.num <- 1;
-						for( i in 1:length(unique(groups))) {
-							if(groups[subscripts[1]] == unique(groups)[i]) {
+						for (i in 1:length(unique(groups))) {
+							if (groups[subscripts[1]] == unique(groups)[i]) {
 								group.num = i;
 								break;
 								}
 							}
+
 						# draw polygon
 						panel.polygon(
 							x = c(x, rev(x)),
@@ -383,7 +386,7 @@ create.polygonplot <- function(
 								col = border.col[subscripts],
 								lwd = lwd
 								);
-						}
+							}
 
 						# draw median line
 						if (add.median & !is.null(median)) {
@@ -400,15 +403,15 @@ create.polygonplot <- function(
 						# add extra points, assuming same grouping as original data
 						if (!is.null(extra.points)) {
 							panel.xyplot(
-								x = extra.points$x,
-								y = extra.points$y,
-								groups = groups,
-								subscripts = subscripts,
-								type = extra.points.type,
-								pch = extra.points.pch[subscripts],
-								col = extra.points.col[subscripts],
-								cex = extra.points.cex,
-								fill = extra.points.fill
+								x = extra.points.info$x,
+								y = extra.points.info$y,
+								#groups = groups,
+								#subscripts = subscripts,
+								type = extra.points.info$type,
+								pch = extra.points.info$pch,
+								col = extra.points.info$col,
+								cex = extra.points.info$cex,
+								fill = extra.points.info$fill
 								);
 							}
 
@@ -605,9 +608,9 @@ create.polygonplot <- function(
 			'xlimits' = trellis.object$x.limits, 'extra.points' = extra.points, 'max' = max, 'min' = min);
 		coords <- c();
 		coords <- .inside.auto.legend('create.polygonplot', filename, trellis.object, height, width, extra.parameters);
-                trellis.object$legend$inside$x <- coords[1];
-                trellis.object$legend$inside$y <- coords[2];
-                }
+		trellis.object$legend$inside$x <- coords[1];
+		trellis.object$legend$inside$y <- coords[2];
+		}
 
 	# If Nature style requested, change figure accordingly
 	if ('Nature' == style) {
