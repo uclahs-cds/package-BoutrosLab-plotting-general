@@ -38,7 +38,7 @@ create.polygonplot <- function(
 	### store data on mount
 	tryCatch({
 			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if( !dir.exists(dir.name) ) {
+			if (!dir.exists(dir.name)) {
 				dir.create(dir.name);
 				}			
 			funcname <- 'create.polygonplot';
@@ -359,7 +359,7 @@ create.polygonplot <- function(
 						group.num <- 1;
 						for (i in 1:length(unique(groups))) {
 							if (groups[subscripts[1]] == unique(groups)[i]) {
-								group.num = i;
+								group.num <- i;
 								break;
 								}
 							}
