@@ -1,4 +1,10 @@
 --------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.9.7 2018-09-19
+
+BUG
+# fixed an issue regarding warning detection for class of conditioning variable that didn't recognize character input (barplot, boxplot, hexbinplot, scatterplot)
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.9.6 2018-07-24
 
 BUG
