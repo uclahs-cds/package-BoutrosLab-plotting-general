@@ -13,7 +13,7 @@
 create.hexbinplot <- function(
 	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
 	main.cex = 3, aspect = 'xy', trans = NULL, inv = NULL, colour.scheme = NULL, colourkey = TRUE,
-	colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, xbins = 30,
+	colourcut = seq(0, 1, length = 11), mincnt = 1, maxcnt = NULL, xbins = 30, legend.title = NULL, 
 	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
 	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
 	xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0, xlimits = NULL,
@@ -141,6 +141,29 @@ create.hexbinplot <- function(
 	if (preload.default == 'paper') {
 		}
 	else if (preload.default == 'web') {
+		}
+
+	# update/modify legend title if desired
+	if (!is.null(legend.title) & !is.null(key)) {
+		stop('ERROR: cannot modify default title while additional key is being supplied; please use legend to specify additional keys.');
+		}
+
+	if (!is.null(legend.title) & is.null(key)) {
+		if (!is.list(legend.title)) {
+			legend.title <- list(lab = legend.title, x = 1, y = 1.1);
+			}
+		else if (is.null(legend.title$lab) || is.null(legend.title$x) || is.null(legend.title$y)) {
+			stop('ERROR: if supplying modified legend title as a list, must provide all of list(lab, x, y) components.');
+			}
+
+		key <- list(
+			text = list(
+				lab = legend.title$lab,
+				cex = 1.5
+				),
+			x = legend.title$x,
+			y = legend.title$y
+			);
 		}
 
 	# fill in the defined parameters
@@ -405,6 +428,11 @@ create.hexbinplot <- function(
 		what = 'hexbinplot',
 		args = parameter.list
 		);
+
+	# update/modify legend title if desired
+	if (!is.null(legend.title)) {
+		trellis.object$legend$right$args$cex.title = 0;
+		}
 
 	if (inside.legend.auto) {
 		extra.parameters <- list('x' = trellis.object$panel.args[[1]]$x, 'y' = trellis.object$panel.args[[1]]$y, 'ylimits' = trellis.object$y.limits,

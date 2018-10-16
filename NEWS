@@ -1,4 +1,10 @@
 --------------------------------------------------------------------------
+BoutrosLab.plotting.general 5.9.8 2018-10-16
+
+FEATURE
+# create.hexbinplot: added option to modify the default legend title
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.9.7 2018-09-19
 
 BUG

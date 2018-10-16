@@ -21,6 +21,7 @@ create.hexbinplot(
 	mincnt = 1,
 	maxcnt = NULL,
 	xbins = 30,
+	legend.title = NULL,
 	xlab.label = tail(sub('~', '', formula[-2]), 1),
 	ylab.label = tail(sub('~', '', formula[-3]), 1),
 	xlab.cex = 2,
@@ -128,6 +129,7 @@ create.hexbinplot(
     \item{mincnt}{Cells with fewer counts are ignored}
     \item{maxcnt}{Cells with more counts are ignored, defaults to auto-generation}
     \item{xbins}{Number of bins to use in x, defaults to 30}
+    \item{legend.title}{character/expression to use in place of default legend title or a named list with elements: lab, x, y; defaults to NULL}
     \item{xlab.label}{X-axis label}
     \item{ylab.label}{Y-axis label}
     \item{xlab.cex}{Size of x-axis label}
@@ -242,6 +244,15 @@ create.hexbinplot(
     formula = y ~ x,
     data = simple.data,
     main = 'Simple',
+    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    );
+
+create.hexbinplot(
+    filename = 'Hexbinplot_Simple_underlined_legend_title.tiff',
+    formula = y ~ x,
+    data = simple.data,
+    legend.title = list(lab = expression(bold(underline('Counts'))), x = 1, y = 1.1),
+    right.padding = 4,
     description = 'Hexbinplot created by BoutrosLab.plotting.general'
     );
 
