@@ -177,25 +177,27 @@ Note that the confidence band only works for a single panel qq plot, not for gro
 \examples{
 set.seed(12345);
 create.qqplot.fit(
-    filename = 'QQfit_Simple.tiff',
+    filename = tempfile(pattern = 'QQfit_Simple', fileext = '.tiff'),
     x = rnorm(300),
     # choosing to compare against a uniform distribution
-    distribution = qunif
+    distribution = qunif,
+    resolution = 100
     );
 
 # Minimal Input
 create.qqplot.fit(
-    filename = 'QQfit_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'QQfit_Minimal_Input', fileext = '.tiff'),
     x = microarray[1:500,1],
     # choosing to compare against a uniform distribution
     distribution = qunif,
     main = 'Minimal input',
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Axes and Labels
 create.qqplot.fit(
-    filename = 'QQfit_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'QQfit_Axes_Labels', fileext = '.tiff'),
     x = microarray[1:500,1],
     distribution = qunif,
     main = 'Axes & labels',
@@ -209,12 +211,13 @@ create.qqplot.fit(
     xaxis.cex = 1,
     yaxis.cex = 1,
     add.grid = TRUE,
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Confidence bands 
 create.qqplot.fit(
-    filename = 'QQfit_Confidence_Bands.tiff',
+    filename = tempfile(pattern = 'QQfit_Confidence_Bands', fileext = '.tiff'),
     x = microarray[1:500,1],
     distribution = qunif,
     main = 'Confidence bands',
@@ -230,9 +233,11 @@ create.qqplot.fit(
     # Adding confidence bands (auto-generates legend)
     confidence.bands = TRUE,
     confidence.method = 'both',
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Multiple qq plot conditioned on a variable
 # 'Formula' format of data
 chr.locations <- microarray$Chr[1:500];
@@ -245,7 +250,7 @@ qqplot.data <- data.frame(
     );
 
 create.qqplot.fit(
-    filename = 'QQfit_Multiple.tiff',
+    filename = tempfile(pattern = 'QQfit_Multiple', fileext = '.tiff'),
     x = ~ value | chr,
     data = qqplot.data,
     distribution = qunif,
@@ -261,12 +266,13 @@ create.qqplot.fit(
     add.grid = TRUE,
     confidence.bands = TRUE,
     confidence.method = 'simultaneous',
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Grouped qq plot
 create.qqplot.fit(
-    filename = 'QQfit_Grouped.tiff',
+    filename = tempfile(pattern = 'QQfit_Grouped', fileext = '.tiff'),
     x = ~ value,
     data = qqplot.data,
     # Adding groups
@@ -304,12 +310,13 @@ create.qqplot.fit(
         y = 0.95,
         padding.text = 2
         ),
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Correlation Key
 create.qqplot.fit(
-    filename = 'QQfit_Correlation_Key.tiff',
+    filename = tempfile(pattern = 'QQfit_Correlation_Key', fileext = '.tiff'),
     x = ~ value,
     data = qqplot.data,
     groups = qqplot.data$chr,
@@ -366,12 +373,13 @@ create.qqplot.fit(
             corner = c(0,1)
             )
         ),
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Nature style
 create.qqplot.fit(
-    filename = 'QQfit_Nature_style.tiff',
+    filename = tempfile(pattern = 'QQfit_Nature_style', fileext = '.tiff'),
     x = microarray[1:500,1],
     distribution = qunif,
     main = 'Nature style',
@@ -394,9 +402,9 @@ create.qqplot.fit(
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
-    description = 'QQplot fit created by BoutrosLab.plotting.general'
+    description = 'QQplot fit created by BoutrosLab.plotting.general',
+    resolution = 1200
     );
-
-
+}
 }
 \keyword{hplot}

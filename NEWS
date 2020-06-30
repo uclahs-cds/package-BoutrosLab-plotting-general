@@ -1,4 +1,34 @@
 --------------------------------------------------------------------------
+BoutrosLab.plotting.general 6.0.0 2020-04-01
+
+UPDATE
+* Updated contact email
+* Included source code previously imported from BoutrosLab.dist.overload
+  and BoutrosLab.statistics.general
+* Fixed resolutions for examples to reduce running time
+* Added \donttest{} to examples that took >5 seconds to run
+* Examples now output plots to tempdir()
+
+BUG
+* Fixed errors in create.multiplot and create.multipanel that wasn't
+  passing CRAN's check by changing 'is.na' to 'anyNA'
+* Fixed errors in create.multiplot that was only checking the first
+  element in a list by using 'is.element' instead of '=='
+* Fixed spacing issue in PlottingGuide
+* Added stringsAsFactors = TRUE to data.frame() calls in examples
+  (Changes to R-devel in 2020-03-04 changed the defaults)
+* Fixed thousands.splits to return a vector instead of a list
+* Fixed write.metadata to use double quotes on system calls, correctly
+  show BL.plotting.survival version and consolidate exiftool calls
+  to speed things up
+* Fixed CRAN error misuse of package= for PACKAGE=
+
+REMOVED
+* Removed BoutrosLab.utilities::recode.vector calls in examples
+* Removed requirements for BoutrosLab.utilities, BoutrosLab.dist.overload,
+  BoutrosLab.statistics.general
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.9.8 2018-10-16
 
 FEATURE

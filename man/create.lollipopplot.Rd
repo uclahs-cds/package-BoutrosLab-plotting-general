@@ -331,7 +331,7 @@ lollipop.data <- data.frame(
     );
 
 create.lollipopplot(
-    filename = "Lollipop_Simple.tiff",
+    filename = tempfile(pattern = 'Lollipop_Simple', fileext = '.tiff'),
     formula = x ~ y,
     data = lollipop.data,
     main = 'Lollipop plot',

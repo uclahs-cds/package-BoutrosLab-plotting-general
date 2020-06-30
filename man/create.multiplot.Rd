@@ -221,7 +221,7 @@ simple.heatmap <- create.heatmap(
 # Simple example of multiplot
 # This example uses the defaults set in simple.heatmap and simple.boxplot 
 create.multiplot(
-    filename = 'Multiplot_Simple.tiff',
+    filename = tempfile(pattern = 'Multiplot_Simple', fileext = '.tiff'),
         plot.objects = list(simple.heatmap, simple.boxplot),
         main = "Simple",
         xlab.label = c("Patient Group"),
@@ -230,12 +230,13 @@ create.multiplot(
         ylab.padding = 7,
         # Parameters set in the multiplot will override settings in individual plots
         xaxis.cex = 0.7,
-        yaxis.cex = 0.7
+        yaxis.cex = 0.7,
+	resolution = 100
         );
 
 # Simple example of multiplot with adjusted plot sizes
 create.multiplot(
-    filename = 'Multiplot_Simple_Plot_Sizes.tiff',
+    filename = tempfile(pattern = 'Multiplot_Simple_Plot_Sizes', fileext = '.tiff'),
         plot.objects = list(simple.heatmap, simple.boxplot),
         main = "Simple plot sizes",
         xlab.label = c("Patient Group"),
@@ -245,7 +246,8 @@ create.multiplot(
         xaxis.cex = 0.7,
         yaxis.cex = 0.7,
         # Set the relative heights of the plots
-        panel.heights = c(3,1)
+        panel.heights = c(3,1),
+	resolution = 100
         );
 
 simple.violin <- create.violinplot(
@@ -256,7 +258,7 @@ simple.violin <- create.violinplot(
 
 # Simple example of multiplot with custom layout
 create.multiplot(
-    filename = 'Multiplot_Simple_Layout.tiff',
+    filename = tempfile(pattern = 'Multiplot_Simple_Layout', fileext = '.tiff'),
     plot.objects = list(simple.heatmap, simple.boxplot, simple.violin),
     main = "Simple layout",
     xlab.label = c("Patient Group"),
@@ -276,7 +278,8 @@ create.multiplot(
         seq(1,3,1),
         seq(-2, 8, 2),
         c()
-        )
+        ),
+    resolution = 100
     );
 
 # Example of how to take parameter values from individual plots
@@ -373,7 +376,7 @@ all_plots <- lapply(
     );
 
 create.multiplot(
-    filename = "Multiplot_Formatting",
+    filename = tempfile(pattern = 'Multiplot_Formatting', fileext = '.tiff'),
     main = "Formatting",
     plot.objects = lapply(all_plots, function(aPlot) aPlot$the_plot),
     panel.heights = c(1,3),
@@ -383,9 +386,9 @@ create.multiplot(
     yat = lapply(all_plots,function(aPlot) aPlot$visuals$yat),
     xlab.label = lapply(all_plots,function(aPlot) aPlot$visuals$xlab.label),
     ylab.label = rev(lapply(all_plots,function(aPlot) aPlot$visuals$ylab.label)),
-    yaxis.labels = lapply(all_plots,function(aPlot) aPlot$visuals$yaxis.labels)
+    yaxis.labels = lapply(all_plots,function(aPlot) aPlot$visuals$yaxis.labels),
+    resolution = 100
     );
-
 
 data_bars <- data.frame(
     x = sample(x = 5:35, size = 10),
@@ -484,7 +487,7 @@ legend <- legend.grob(
 
 # Assemble plot using multiplot function
 create.multiplot(
-    filename = "Multiplot_Barchart.tiff",
+    filename = tempfile(pattern = 'Multiplot_Barchart', fileext = '.tiff'),
     main = 'Multiplot with bar chart',
     plot.objects = list(cov_3, cov_2, cov_1, bars),
     ylab.label = c("\t", "Response to treatment","\t"),
@@ -501,9 +504,11 @@ create.multiplot(
     xlab.cex = 1,
     xlab.to.xaxis.padding = -2,
     yaxis.cex = 1,
-    description = "Multiplot example created by BoutrosLab.plotting.general"
+    description = "Multiplot example created by BoutrosLab.plotting.general",
+    resolution = 200
     );
 
+\donttest{
 gene_data <- data.frame(
     x = rnorm(n = 25, mean = 0, sd = 0.75),
     y = rnorm(n = 25, mean = 0, sd = 0.75),
@@ -577,7 +582,7 @@ side <- create.barplot(
 
 # assembling final figure
 create.multiplot(
-    filename = "Multiplot_with_heatmap.tiff",
+    filename = tempfile(pattern = 'Multiplot_with_heatmap', fileext = '.tiff'),
     main = 'Multiplot with heatmap',
     plot.objects = list(key, main, side, top),
     panel.heights = c(0.25, 1, 0.05),
@@ -610,7 +615,6 @@ create.multiplot(
     xaxis.fontface = 1,
     yaxis.fontface = 1
     );
-
 
 # Set up plots for complex example
 
@@ -744,7 +748,7 @@ cov_legend.grob <- legend.grob(
 
 # Multiplot of dotmap and covariates
 create.multiplot(
-    filename = 'Multiplot_Dotmap_Cov.tiff',
+    filename = tempfile(pattern = 'Multiplot_Dotmap_Cov', fileext = '.tiff'),
     plot.objects = list(covariates, dotmap),
     main = 'Dotmap & covariates',
     panel.heights = c(1,0.1),
@@ -876,7 +880,7 @@ segplot <- create.segplot(
 plots <- list(covariates, dotmap, segplot, stacked_barplot, grouped_barplot);
 
 create.multiplot(
-    filename = 'Multiplot_Complex.tiff',
+    filename = tempfile(pattern = 'Multiplot_Complex', fileext = '.tiff'),
     main = 'Complex',
     # These dimensions make the plot look much more proportional
     width = 12,
@@ -951,12 +955,13 @@ create.multiplot(
                 )
             )
         ),
-    print.new.legend = TRUE
+    print.new.legend = TRUE,
+    resolution = 200
     );
 
 # Nature style
 create.multiplot(
-    filename = 'Multiplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Multiplot_Nature_style', fileext = '.tiff'),
     plot.objects = list(simple.heatmap, simple.boxplot),
     main = "Nature style",
     ylab.padding = 7,
@@ -971,9 +976,9 @@ create.multiplot(
     expression(paste('italicized ', italic('b')))),
   
     # demonstrating how to create en-dashes
-    xlab.label = c(expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)))
+    xlab.label = c(expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))),
+    resolution = 200
     );
-
 
 # Create a multiplot with a heatmap, key like legend and barplot
 
@@ -1101,7 +1106,7 @@ cov_legend.grob <- legend.grob(
 create.multiplot(
     main = 'multiplot with colour key legend',
     main.cex = 1,
-    filename = "MultiPlot_With_ColorKey_Legend.tiff",
+    filename = tempfile(pattern = 'MultiPlot_With_ColorKey_Legend', fileext = '.tiff'),
     plot.objects = list(covariates, covariates2, simple.heatmap, simple.bar),
     panel.heights = c(1,0.1,0.35),
     panel.widths = c(1,0.25),
@@ -1146,7 +1151,7 @@ create.multiplot(
         ),
     left.padding = 2.5,
     # This parameter must be set for the legend to appear
-    print.new.legend = TRUE,
+    print.new.legend = TRUE
     );
 
 BarPlotDataRetLabels <- data.frame(x = c("test1","test2","test3","test4"), 
@@ -1167,7 +1172,7 @@ hmRet <- create.heatmap(
 	);
 
 create.multiplot(
-	filename = "Multiplot_RetrievePlotLabels.tiff",
+	filename = tempfile(pattern = 'Multiplot_RetrievePlotLabels', fileext = '.tiff'),
 	plot.objects = list(hmRet,bpRet,bpRet), 
 	print.new.legend = TRUE,
 	xlab.label = c('Samples'),
@@ -1177,9 +1182,8 @@ create.multiplot(
 	plot.labels.to.retrieve = c(1,2,3)
 	);
 
-
 create.multiplot(
-    filename = 'Multiplot_Retrieve_Specefic_Labels.tiff',
+    filename = tempfile(pattern = 'Multiplot_Retrieve_Specefic_Labels', fileext = '.tiff'),
         plot.objects = list(simple.heatmap, simple.boxplot),
         main = "Simple",
         xlab.label = c("Patient Group"),
@@ -1197,7 +1201,7 @@ create.multiplot(
 	xlimits = list(NULL,c("A","B","C")),
 	ylimits = list(NULL,c(-3,10))
         );
-        
+
 # Dendrogram provided
 dist <- data.frame(
     a = rnorm(100, 1), 
@@ -1282,7 +1286,7 @@ legend <- legend.grob(
     title.just = 'left'
     );
 create.multiplot(
-        filename = "MultiPlot_getDendrograms.tiff",
+        filename = tempfile(pattern = 'MultiPlot_getDendrograms', fileext = '.tiff'),
         plot.objects = list(simple.heatmap, simple.boxplot),
         main = "Simple",
         xlab.label = c("Patient Group"),
@@ -1306,6 +1310,7 @@ create.multiplot(
 	dendrogram.right.size = 0.40, dendrogram.right.x = 29, dendrogram.right.y = 67,
 	dendrogram.top.size = 1, dendrogram.top.x = 110, dendrogram.top.y = -180
         );
+}
 }
 \keyword{hplot}
 

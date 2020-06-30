@@ -21,16 +21,16 @@
 \author{Christine P'ng}
 
 \examples{
-
 data(CNA);
 create.dotmap(
-    filename = 'Using_CNA_dataset.tiff',
+    filename = tempfile(pattern = 'Using_CNA_dataset', fileext = '.tiff'),
     x = CNA[1:15, 1:15],
     main = 'CNA data',
     xaxis.cex = 0.8,
     yaxis.cex = 0.8,
     xaxis.rot = 90,
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 }
 

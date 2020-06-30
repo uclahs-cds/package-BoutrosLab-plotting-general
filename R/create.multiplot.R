@@ -119,10 +119,10 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			x.relation);
 		}
 
-	if (!is.null(xat) && !is.na(xat) && 1 == length(xat) && xat == TRUE) {
+	if (!is.null(xat) && !anyNA(xat) && 1 == length(xat) && xat == TRUE) {
 		xat <- if ('same' == x.relation) {xat.plots[[plot.for.carry.over.when.same]]} else {xat.plots};
 		}
-	if (!is.null(xaxis.labels) && !is.na(xaxis.labels) && 1 == length(xaxis.labels) && xaxis.labels == TRUE) {
+	if (!is.null(xaxis.labels) && !anyNA(xaxis.labels) && 1 == length(xaxis.labels) && xaxis.labels == TRUE) {
 		xaxis.labels <- if ('same' == x.relation) {xaxis.labels.plots[[plot.for.carry.over.when.same]]} else {xaxis.labels.plots};
 		}
 
@@ -144,10 +144,10 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 			y.relation);
 		}
 
-	if (!is.null(yat) && !is.na(yat) && 1 == length(yat) && yat == TRUE) {
+	if (!is.null(yat) && !anyNA(yat) && 1 == length(yat) && yat == TRUE) {
 		yat <- if ('same' == y.relation) {yat.plots[[plot.for.carry.over.when.same]]} else {yat.plots};
 		}
-	if (!is.null(yaxis.labels) && !is.na(yaxis.labels) && 1 == length(yaxis.labels) && yaxis.labels == TRUE) {
+	if (!is.null(yaxis.labels) && !anyNA(yaxis.labels) && 1 == length(yaxis.labels) && yaxis.labels == TRUE) {
 		yaxis.labels <- if ('same' == y.relation) {yaxis.labels.plots[[plot.for.carry.over.when.same]]} else {yaxis.labels.plots};
 		}
 

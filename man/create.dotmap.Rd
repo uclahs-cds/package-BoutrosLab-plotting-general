@@ -218,10 +218,11 @@ simple.data <- data.frame(
     );
 
 create.dotmap(
-    filename = 'Dotmap_Simple.tiff',
+    filename = tempfile(pattern = 'Dotmap_Simple', fileext = '.tiff'),
     x = simple.data,
     main = 'Simple',
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # create a function to determine the spot sizes (default function works best with values < 1)
@@ -229,19 +230,20 @@ spot.size.med <- function(x) {abs(x)/3;}
 
 # Minimal Input
 create.dotmap(
-    filename = 'Dotmap_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Dotmap_Minimal_Input', fileext = '.tiff'),
     x = microarray[1:5,1:5],
     main = 'Minimal input',
     spot.size.function = spot.size.med,
     xaxis.rot = 90,
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Axes & Labels
 spot.size.small <- function(x) {abs(x)/5;}
 
 create.dotmap(
-    filename = 'Dotmap_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Dotmap_Axes_Labels', fileext = '.tiff'),
     x = microarray[1:15,1:15],
     main = 'Axes & labels',
     spot.size.function = spot.size.small,
@@ -253,14 +255,15 @@ create.dotmap(
     ylab.label = 'Gene',
     xlab.cex = 1,
     ylab.cex = 1,
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Legend
 key.sizes <- seq(2,12,2);
 
 create.dotmap(
-    filename = 'Dotmap_Legend.tiff',
+    filename = tempfile(pattern = 'Dotmap_Legend', fileext = '.tiff'),
     x = microarray[1:15,1:15],
     main = 'Legend',
     spot.size.function = spot.size.small,
@@ -288,9 +291,11 @@ create.dotmap(
         background = 'white'
         ),
     key.top = 1,
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Cluster by dots and add dendrogram
 plot.data <- microarray[1:15,1:15];
 
@@ -313,7 +318,7 @@ dendrogram.grob <- latticeExtra::dendrogramGrob(
 # create dotmap
 create.dotmap(
     x = plot.data,
-    filename = 'Dotmap_clustered_dendrogram.tiff',
+    filename = tempfile(pattern = 'Dotmap_clustered_dendrogram', fileext = '.tiff'),
     main = 'Clustered & dendrogram',
     spot.size.function = spot.size.small,
     # Adjusting the font sizes and labels
@@ -328,7 +333,8 @@ create.dotmap(
         right = list(fun = dendrogram.grob)
         ),
     right.padding = 4,
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Add background data
@@ -343,7 +349,7 @@ CNA.colour.function <- function(x){
     }
 
 create.dotmap(
-    filename = 'Dotmap_with_Background.tiff',
+    filename = tempfile(pattern = 'Dotmap_with_Background', fileext = '.tiff'),
     # added new data for the dots
     x = CNA[1:15,1:15],
     # Moving the dot-data to be background data
@@ -378,12 +384,13 @@ create.dotmap(
     # Adding colourkey for background data
     colourkey = TRUE,
     key.top = 1,
-    description = 'Dotmap created by BoutrosLab.plotting.general'
+    description = 'Dotmap created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Discrete background colours
 create.dotmap(
-    filename = 'Dotmap_Discrete_Background.tiff',
+    filename = tempfile(pattern = 'Dotmap_Discrete_Background', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Discrete background',
@@ -432,7 +439,7 @@ border.colours <- function(x){
     }
 
 create.dotmap(
-    filename = 'Dotmap_Outlined_Dots.tiff',
+    filename = tempfile(pattern = 'Dotmap_Outlined_Dots', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Dot outlines',
@@ -508,7 +515,7 @@ cov.legend <- legend.grob(
     );
 
 create.dotmap(
-    filename = 'Dotmap_Covariates.tiff',
+    filename = tempfile(pattern = 'Dotmap_Covariates', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Covariates',
@@ -631,7 +638,7 @@ right.grob <- packGrob(
     );
 
 temp <- create.dotmap(
-    filename = 'Dotmap_Covariates_Side.tiff',
+    filename = tempfile(pattern = 'Dotmap_Covariates_Side', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Both covariates',
@@ -682,7 +689,7 @@ dev.off();
 
 # Nature style
 create.dotmap(
-    filename = 'Dotmap_Nature_style.tiff',
+    filename = tempfile(pattern = 'Dotmap_Nature_style', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Nature style',
@@ -729,9 +736,10 @@ create.dotmap(
     ylab.lab = expression(paste('italicized ', italic('a'))),
   
     # demonstrating how to create en-dashes
-    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+    
+    resolution = 200
     );
-
 
 simple.data.sym <- data.frame(
     '1' = runif(n = 7, min = -1, max = 1),
@@ -744,13 +752,15 @@ simple.data.sym <- data.frame(
     );
 
 create.dotmap(
-    filename = "Dotmap_remove_symmetric.tiff",
+    filename = tempfile(pattern = 'Dotmap_remove_symmetric', fileext = '.tiff'),
     x = simple.data.sym,
     main = 'Simple',
     xaxis.lab = seq(1,7,1),
     description = 'Dotmap created by BoutrosLab.plotting.general',
-    remove.symmetric = TRUE
+    remove.symmetric = TRUE,
+    resolution = 200
     );
 
+}
 }
 \keyword{hplot}

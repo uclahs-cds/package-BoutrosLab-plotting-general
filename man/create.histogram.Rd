@@ -179,26 +179,29 @@ If this function is called without capturing the return value, or specifying a f
 set.seed(12345);
 
 create.histogram(
-    filename = 'Histogram_Simple.tiff',
+    filename = tempfile(pattern = 'Histogram_Simple', fileext = '.tiff'),
     x = rnorm(5000),
     main = 'Simple',
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 create.histogram(
-    filename = 'Histogram_Simple_Count.tiff',
+    filename = tempfile(pattern = 'Histogram_Simple_Count', fileext = '.tiff'),
     x = rnorm(5000),
     main = 'Simple Count',
     description = 'Histogram created by BoutrosLab.plotting.general',
-    type = 'count'
+    type = 'count',
+    resolution = 50
     );
 
 # Minimal Input
 create.histogram(
-    filename = 'Histogram_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Histogram_Minimal_Input', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Minimal input',
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Formula Input - dividing by chromosome
@@ -208,16 +211,17 @@ chr.data <- data.frame(
     );
 
 create.histogram(
-    filename = 'Histogram_Formula_Input.tiff',
+    filename = tempfile(pattern = 'Histogram_Formula_Input', fileext = '.tiff'),
     x = y ~ x,
     data = chr.data,
     main = 'Formula input',
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Axes and Labels
 create.histogram(
-    filename = 'Histogram_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Histogram_Axes_Labels', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Axes & labels',
     # Customizing the axes and labels
@@ -227,12 +231,14 @@ create.histogram(
     xat = seq(0,15,5),
     # set break points for bins
     breaks = seq(floor(min(microarray[,1])), ceiling(max(microarray[,1])), 1),
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Colour change
 create.histogram(
-    filename = 'Histogram_Colours.tiff',
+    filename = tempfile(pattern = 'Histogram_Colours', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Colours',
     xlab.label = 'Bins',
@@ -242,12 +248,13 @@ create.histogram(
     breaks = seq(floor(min(microarray[,1])), ceiling(max(microarray[,1])), 1),
     # Colours
     col = 'lightgrey',
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Line type
 create.histogram(
-    filename = 'Histogram_Line_Type.tiff',
+    filename = tempfile(pattern = 'Histogram_Line_Type', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Line type',
     xlab.label = 'Bins',
@@ -258,12 +265,13 @@ create.histogram(
     col = 'lightgrey',
     # Changing the line type
     lty = 2,
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Nature style
 create.histogram(
-    filename = 'Histogram_Nature_style.tiff',
+    filename = tempfile(pattern = 'Histogram_Nature_style', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Nature style',
     xlimits = c(0, 16),
@@ -280,8 +288,9 @@ create.histogram(
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
-    description = 'Histogram created by BoutrosLab.plotting.general'
+    description = 'Histogram created by BoutrosLab.plotting.general',
+    resolution = 200
     );
-
+}
 }
 \keyword{hplot}

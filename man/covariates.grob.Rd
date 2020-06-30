@@ -78,7 +78,7 @@ covariates.grob1 <- covariates.grob(
     side = 'right'
     );
 tiff(
-    'covariates_grob1.tiff', 
+    filename = tempfile(pattern = 'covariates_grob1', fileext = '.tiff'), 
     type = 'cairo', 
     width = 6, 
     height = 6, 
@@ -111,7 +111,7 @@ covariates.grob2 <- covariates.grob(
     size = 2
     );
 tiff(
-    'covariates_grob2.tiff', 
+    filename = tempfile(pattern = 'covariates_grob2', fileext = '.tiff'), 
     type = 'cairo', 
     width = 6, 
     height = 6, 
@@ -130,7 +130,7 @@ covariates.grob3 <- covariates.grob(
     grid.border = list(col = 'red', lwd = 1.5)
     );
 tiff(
-    'covariates_grob3.tiff', 
+    filename = tempfile(pattern = 'covariates_grob3', fileext = '.tiff'), 
     type = 'cairo', 
     width = 6, 
     height = 6, 
@@ -164,7 +164,7 @@ covariates.grob4 <- covariates.grob(
     grid.border = list()
     );
 tiff(
-    'covariates_grob4.tiff', 
+    filename = tempfile(pattern = 'covariates_grob4', fileext = '.tiff'), 
     type = 'cairo', 
     width = 6, 
     height = 6, 
@@ -187,7 +187,7 @@ covariates.grob5 <- covariates.grob(
     col.lines = c(0,1)
     );
 tiff(
-    'covariates_grob5.tiff', 
+    filename = tempfile(pattern = 'covariates_grob5', fileext = '.tiff'),
     type = 'cairo', 
     width = 6, 
     height = 6, 

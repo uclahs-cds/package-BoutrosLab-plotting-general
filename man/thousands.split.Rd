@@ -26,7 +26,7 @@ scatter.data <- data.frame(
     );
 
 create.scatterplot(
-    filename = "Test_Divide_Thousands.tiff",
+    filename = tempfile(pattern = 'Test_Divide_Thousands', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Axes & Labels',

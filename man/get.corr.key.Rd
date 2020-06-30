@@ -56,7 +56,7 @@ tmp.data <- data.frame(
 BoutrosLab.plotting.general::create.scatterplot(
     formula = y ~ x,
     data = tmp.data,
-    filename = 'get.corr.key-scatterplot.tiff',
+    filename = tempfile(pattern = 'get.corr.key-scatterplot', fileext = '.tiff'),
     xlab.label = 'X Axis Title',
     ylab.label = 'Y Axis Title',
     xlimits = c(0,100),
@@ -71,6 +71,7 @@ BoutrosLab.plotting.general::create.scatterplot(
         )
     );
 
+\donttest{
 # compare beta1 vs a robust estimate of the slope
 
 # add an outlier
@@ -79,7 +80,7 @@ tmp.data <- rbind(tmp.data, c(2000,100));
 BoutrosLab.plotting.general::create.scatterplot(
     formula = y ~ x,
     data = tmp.data,
-    filename = 'get.corr.key.robust-scatterplot.tiff',
+    filename = tempfile(pattern = 'get.corr.key.robust-scatterplot', fileext = '.tiff'),
     xlab.label = 'X Axis Title',
     ylab.label = 'Y Axis Title',
     xlimits = c(0,100),
@@ -95,4 +96,5 @@ BoutrosLab.plotting.general::create.scatterplot(
     );
 
 # see create.scatterplot for an example of creating multiple keys using legends
+}
 }

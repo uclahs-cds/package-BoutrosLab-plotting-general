@@ -233,21 +233,23 @@ simple.data <- data.frame(
     );
 
 create.boxplot(
-    filename = 'Boxplot_Simple.tiff',
+    filename = tempfile(pattern = 'Boxplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     main = 'Simple',
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # add stripplot behind boxplot
 create.boxplot(
-    filename = 'Boxplot_with_Stripplot.tiff',
+    filename = tempfile(pattern = 'Boxplot_with_Stripplot', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     main = 'With Stripplot',
     add.stripplot = TRUE,
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # format data
@@ -259,26 +261,28 @@ reformatted.data <- data.frame(
 
 # Minimal Input
 create.boxplot(
-    filename = 'Boxplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Boxplot_Minimal_Input', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Minimal input',
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Minimal Input
 create.boxplot(
-    filename = 'Boxplot_Disable_Factor_Sorting_Input.tiff',
+    filename = tempfile(pattern = 'Boxplot_Disable_Factor_Sorting_Input', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'No Factor Sorting',
     disable.factor.sorting = TRUE,
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Axes and labels
 create.boxplot(
-    filename = 'Boxplot_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Boxplot_Axes_Labels', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Axes & labels',
@@ -292,12 +296,14 @@ create.boxplot(
     # setting axes limits
     xlimits = c(0,13),
     xat = seq(0,12,2),
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Sorting
 create.boxplot(
-    filename = 'Boxplot_Sorted.tiff',
+    filename = tempfile(pattern = 'Boxplot_Sorted', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Sorting',
@@ -310,20 +316,17 @@ create.boxplot(
     xat = seq(0,12,2),
     # Reordered by median
     sample.order = 'increasing',
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Colour change
-sex.colour <- recode.vector(
-    patient$sex,
-    list(
-        dodgerblue = 'male',
-        pink = 'female'
-        )
-    );
+sex.colour <- as.character(patient$sex);
+sex.colour[sex.colour == 'male'] <- 'dodgerblue';
+sex.colour[sex.colour == 'female'] <- 'pink';
 
 create.boxplot(
-    filename = 'Boxplot_Colour_Change.tiff',
+    filename = tempfile(pattern = 'Boxplot_Colour_Change', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Colour change',
@@ -336,12 +339,13 @@ create.boxplot(
     xat = seq(0,12,2),
     # Colour change
     col = sex.colour,
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Legend
 create.boxplot(
-    filename = 'Boxplot_Legend.tiff',
+    filename = tempfile(pattern = 'Boxplot_Legend', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Legend',
@@ -377,12 +381,13 @@ create.boxplot(
             draw = FALSE
             )
         ),
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Orientation
 create.boxplot(
-    filename = 'Boxplot_Orientation.tiff',
+    filename = tempfile(pattern = 'Boxplot_Orientation', fileext = '.tiff'),
     # switch the order
     formula = x ~ y,
     data = reformatted.data,
@@ -421,12 +426,13 @@ create.boxplot(
             draw = FALSE
             )
         ),
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Background rectangle
 create.boxplot(
-    filename = 'Boxplot_BG_Rect.tiff',
+    filename = tempfile(pattern = 'Boxplot_BG_Rect', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Bg rectangle',
@@ -470,12 +476,13 @@ create.boxplot(
             draw = FALSE
             )
         ),
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Line
 create.boxplot(
-    filename = 'Boxplot_Line.tiff',
+    filename = tempfile(pattern = 'Boxplot_Line', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Line',
@@ -491,12 +498,13 @@ create.boxplot(
     line.from = 11,
     line.to = 11,
     line.col = 'grey',
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Panel Organization
 create.boxplot(
-    filename = 'Boxplot_Panels_numeric_conditioning.tiff',
+    filename = tempfile(pattern = 'Boxplot_Panels_numeric_conditioning', fileext = '.tiff'),
     formula = ~ x | z,
     data = reformatted.data,
     main = 'Panels',
@@ -508,11 +516,12 @@ create.boxplot(
     layout = c(2,5),
     x.relation = 'free',
     x.spacing = 1,
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 create.boxplot(
-    filename = 'Boxplot_Panels_factor_conditioning.tiff',
+    filename = tempfile(pattern = 'Boxplot_Panels_factor_conditioning', fileext = '.tiff'),
     formula = ~ x | y,
     data = reformatted.data,
     main = 'Panels',
@@ -524,12 +533,13 @@ create.boxplot(
     layout = c(2,5),
     x.relation = 'free',
     x.spacing = 1,
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Nature format
 create.boxplot(
-    filename = 'Boxplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Boxplot_Nature_style', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Nature style',
@@ -543,12 +553,16 @@ create.boxplot(
     ylab.lab = expression(paste('italicized ', italic('a'))),
 
     # demonstrating how to create en-dashes
-    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+    resolution = 1200
     );
 
 # Sorting by mean and multiple filenames
 create.boxplot(
-    filename = c('Boxplot_Sorted1.tiff','Boxplot_Sorted2.tiff'),
+    filename = c(
+        tempfile(pattern = 'Boxplot_Sorted1', fileext = '.tiff'),
+        tempfile(pattern = 'Boxplot_Sorted2', fileext = '.tiff')
+        ),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Sorting',
@@ -562,7 +576,8 @@ create.boxplot(
     # Reordered by median
     sample.order = 'increasing',
     order.by = 'mean',
-    description = 'Boxplot created by BoutrosLab.plotting.general'
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 
@@ -587,7 +602,7 @@ diff.mean <- round(mean(groupB) - mean(groupA), 2);
 # Plot and display difference
 create.boxplot(
 	formula = x ~ y,
-	filename = 'boxplot_with_text.tiff',
+	filename = tempfile(pattern = 'boxplot_with_text', fileext = '.tiff'),
 	data = to.plot,
 	add.stripplot = TRUE,
 	add.text = TRUE,
@@ -600,8 +615,9 @@ create.boxplot(
 	ylimits = c(
 		min(to.plot$x) - abs(min(to.plot$x) * 0.1),
 		max(to.plot$x) + abs(max(to.plot$x) * 0.1)
-		)
+		),
+	resolution = 200
     );
-
+}
 }
 \keyword{hplot}

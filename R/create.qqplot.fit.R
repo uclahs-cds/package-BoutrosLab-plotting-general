@@ -197,7 +197,7 @@ create.qqplot.fit <- function(
 				}
 
 			if (reference.line.method == 'robust' & !confidence.bands) {
-				tmp.data <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(
+				tmp.data <- BoutrosLab.plotting.general::create.qqplot.fit.confidence.interval(
 					x = x,
 					distribution = distribution,
 					conf = conf,
@@ -217,7 +217,7 @@ create.qqplot.fit <- function(
 				if (is.null(groups)) {
 
 					# store the value to create the confidence bands
-					tmp.ci <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(
+					tmp.ci <- BoutrosLab.plotting.general::create.qqplot.fit.confidence.interval(
 						x = x,
 						distribution = distribution,
 						conf = conf,
@@ -310,7 +310,7 @@ create.qqplot.fit <- function(
 					for (k in 1:number.groups) {
 
 						# store the value to create the confidence bands for each group
-						tmp.ci <- BoutrosLab.statistics.general::create.qqplot.fit.confidence.interval(
+						tmp.ci <- BoutrosLab.plotting.general::create.qqplot.fit.confidence.interval(
 							x = grouped.data[[groups.names[k]]],
 							distribution = distribution,
 							conf = conf,

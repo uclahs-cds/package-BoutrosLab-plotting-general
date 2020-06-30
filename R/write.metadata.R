@@ -27,17 +27,27 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 
 		# retrieve software versions
 		R.version <- getRversion();
-		plotting.survival.version <- '';
 
 		lattice.version			<- packageVersion('lattice');
 		lattice.extra.version		<- packageVersion('latticeExtra');
 		plotting.general.version 	<- packageVersion('BoutrosLab.plotting.general');
-		tryCatch(
-			plotting.survival.version <- packageVersion('BoutrosLab.plotting.survival'),
+		plotting.survival.version <- tryCatch({
+			packageVersion('BoutrosLab.plotting.survival');
+			}, error = function(e) {
+			'unknown';
+			});
 
-			error = function(e) {
-				plotting.survival.version <- 'unknown';
-				}
+		software.versions = paste0(
+			'R ',
+			R.version,
+			' | lattice ',
+			lattice.version,
+			' | latticeExtra ',
+			lattice.extra.version,
+			' | BL.plotting.general ',
+			plotting.general.version,
+			' | BL.plotting.survival ',
+			plotting.survival.version
 			);
 
 		# retrieve computer information
@@ -47,69 +57,22 @@ write.metadata <- function(filename = NULL, description = NULL, verbose = FALSE)
 		# retrieve username
 		author <- Sys.info()[['user']];
 
-		# write author of plot
+		# write author, software, description of figure,
+		# os info & hardware info
 		system2(
 			'exiftool',
 			args = paste0(
-				" -Author='",
+				'-Author="',
 				author,
-				"' -overwrite_original ",
-				filename
-				),
-			stdout = standard.out
-			);
-
-		# write R version used to make plot
-		system2(
-			'exiftool',
-			args = paste0(
-				" -Software='R ",
-				R.version,
-				' | lattice ',
-				lattice.version,
-				' | latticeExtra ',
-				lattice.extra.version,
-				' | BL.plotting.general ',
-				plotting.general.version,
-				' | BL.plotting.survival ',
-				plotting.survival.version,
-				"' -overwrite_original ",
-				filename
-				),
-			stdout = standard.out
-			);
-
-		# description of figure
-		system2(
-			'exiftool',
-			args = paste0(
-				"-ImageDescription='",
+				'" -Software="',
+				software.versions,
+				'" -ImageDescription="',
 				description,
-				"' -overwrite_original ",
-				filename
-				),
-			stdout = standard.out
-			);
-
-		# operating system
-		system2(
-			'exiftool',
-			args = paste0(
-				" -SoftwareVersion='",
+				'" -HostComputer="',
 				operating.system,
-				"' -overwrite_original ",
-				filename
-				),
-			stdout = standard.out
-			);
-
-		# hardware
-		system2(
-			'exiftool',
-			args = paste0(
-				" -Make='",
+				'" -Make="',
 				machine,
-				"' -overwrite_original ",
+				'" -overwrite_original ',
 				filename
 				),
 			stdout = standard.out

@@ -192,7 +192,7 @@ simple.data <- data.frame(
     );
 
 create.densityplot(
-    filename = 'Densityplot_Simple.tiff',
+    filename = tempfile(pattern = 'Densityplot_Simple', fileext = '.tiff'),
     x = simple.data,
     main = 'Simple',
     description = 'Barplot created by BoutrosLab.plotting.general'
@@ -204,25 +204,27 @@ format.data <- as.data.frame(t(format.data));
 
 # Minimal Input
 create.densityplot(
-    filename = 'Densityplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Densityplot_Minimal_Input', fileext = '.tiff'),
     x = format.data,
     main = 'Minimal input',
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Line type
 create.densityplot(
-    filename = 'Densityplot_Line_Type.tiff',
+    filename = tempfile(pattern = 'Densityplot_Line_Type', fileext = '.tiff'),
     x = format.data,
     main = 'Line type',
     # Line type
     lty = c('solid','dashed','dotted'),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Axes & Labels
 create.densityplot(
-    filename = 'Densityplot_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Densityplot_Axes_Labels', fileext = '.tiff'),
     x = format.data,
     main = 'Axes & labels',
     lty = c('solid','dashed','dotted'),
@@ -230,12 +232,14 @@ create.densityplot(
     ylimits = c(-0.1, 2.5),
     ylab.cex = 1.5,
     xat = seq(0, 13, 1),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
+\donttest{
 # Colour change & Legend
 create.densityplot(
-    filename = 'Densityplot_Colour_Legend.tiff',
+    filename = tempfile(pattern = 'Densityplot_Colour_Legend', fileext = '.tiff'),
     x = format.data,
     main = 'Colour & legend',
     lty = c('solid','dashed','dotted'),
@@ -267,12 +271,13 @@ create.densityplot(
             draw = FALSE
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Correlation key
 create.densityplot(
-    filename = 'Densityplot_Correlation_Key.tiff',
+    filename = tempfile(pattern = 'Densityplot_Correlation_Key', fileext = '.tiff'),
     x = format.data[,1:2],
     main = 'Correlation key',
     lty = c('solid','dotted'),
@@ -318,12 +323,13 @@ create.densityplot(
             corner = c(0,1)
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Gridlines
 create.densityplot(
-    filename = 'Densityplot_Gridlines_1.tiff',
+    filename = tempfile(pattern = 'Densityplot_Gridlines_1', fileext = '.tiff'),
     x = format.data,
     main = 'Gridlines',
     lty = c('solid','dashed','dotted'),
@@ -355,12 +361,13 @@ create.densityplot(
         ),
     # Grid lines
     type = c('l','g'),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Gridlines
 create.densityplot(
-    filename = 'Densityplot_Gridlines_2.tiff',
+    filename = tempfile(pattern = 'Densityplot_Gridlines_2', fileext = '.tiff'),
     x = format.data,
     main = 'Gridlines',
     lty = c('solid','dashed','dotted'),
@@ -394,12 +401,13 @@ create.densityplot(
     type = c('l','g'),
     xgrid.at = seq(0,14,1),
     ygrid.at = seq(0,2.5,0.25),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Nature style
 create.densityplot(
-    filename = 'Densityplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Densityplot_Nature_style', fileext = '.tiff'),
     x = format.data,
     main = 'Nature style',
     lty = c('solid','dashed','dotted'),
@@ -437,8 +445,9 @@ create.densityplot(
     ylab.lab = expression(paste('italicized ', italic('a'))),
   
     # demonstrating how to create en-dashes
-    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+    resolution = 200
     );
-
+}
 }
 \keyword{hplot}

@@ -71,7 +71,7 @@ legend.grob1 <- legend.grob(
     legends = legends1
     );
 tiff(
-    'legend_grob1.tiff', 
+    filename = tempfile(pattern = 'legend_grob1', fileext = '.tiff'), 
     type = 'cairo', 
     width = 5, 
     height = 5, 
@@ -94,7 +94,7 @@ legend.grob2 <- legend.grob(
     layout = c(2,1)
     );
 tiff(
-    'legend_grob2.tiff', 
+    filename = tempfile(pattern = 'legend_grob2', fileext = '.tiff'),
     type = 'cairo', 
     width = 5, 
     height = 5, 
@@ -126,7 +126,7 @@ legend.grob3 <- legend.grob(
     between.row = 3
     );
 tiff(
-    'legend_grob3.tiff', 
+    filename = tempfile(pattern = 'legend_grob3', fileext = '.tiff'),
     type = 'cairo', 
     width = 5, 
     height = 5, 
@@ -157,7 +157,7 @@ legend.grob4 <- legend.grob(
     legends = legends3
     );
 tiff(
-    'legend_grob4.tiff', 
+    filename = tempfile(pattern = 'legend_grob4', fileext = '.tiff'), 
     type = 'cairo', 
     width = 5, 
     height = 5, 

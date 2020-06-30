@@ -331,9 +331,10 @@ simple.data <- data.frame(
     y = rnorm(800)
     );
 create.scatterplot(
-    filename = 'Scatterplot_Simple.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
-    data = simple.data
+    data = simple.data,
+    resolution = 50
     );
 
 scatter.data <- data.frame(
@@ -344,16 +345,17 @@ scatter.data <- data.frame(
 
 # Minimal Input
 create.scatterplot(
-    filename = 'Scatterplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Minimal_Input', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Minimal Input',
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Axes & Labels
 create.scatterplot(
-    filename = 'Scatterplot_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Axes_Labels', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Axes & Labels',
@@ -370,12 +372,13 @@ create.scatterplot(
     yaxis.fontface = 1,
     xlab.cex = 1.5,
     ylab.cex = 1.5,
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Plotting space
 create.scatterplot(
-    filename = 'Scatterplot_Plotting_Space.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Plotting_Space', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Plotting Space',
@@ -403,12 +406,13 @@ create.scatterplot(
     ylab.cex = 1.5,
     # Transform the x-axis into log-2 space
     xaxis.log = 2,
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Colour & Plotting Character
 create.scatterplot(
-    filename = 'Scatterplot_Colour_Pch.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Colour_Pch', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Colour & Pch',
@@ -429,7 +433,8 @@ create.scatterplot(
     # setting the plotting character type & size
     pch = 21,
     cex = 1.5,
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Colour depth
@@ -437,7 +442,7 @@ create.scatterplot(
 chr.palette <- colour.gradient(default.colours(2)[2], 800);
 
 create.scatterplot(
-    filename = 'Scatterplot_Colour_Depth.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Colour_Depth', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Colour Depth',
@@ -481,12 +486,13 @@ create.scatterplot(
                 )
             )
         ),
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Groups & Legend
 create.scatterplot(
-    filename = 'Scatterplot_Groups_Legend.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Groups_Legend', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Groups & Legend',
@@ -521,12 +527,14 @@ create.scatterplot(
         y = 0.95,
         padding.text = 2
         ),
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Correlation Key
 create.scatterplot(
-    filename = 'Scatterplot_Correlation_Key.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Correlation_Key', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Correlation Key',
@@ -562,12 +570,13 @@ create.scatterplot(
             corner = c(0,1)
             )
         ),
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Panel Organization
 create.scatterplot(
-    filename = 'Scatterplot_Panel_numeric_conditional.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Panel_numeric_conditional', fileext = '.tiff'),
     formula = sample.two ~ sample.one | chr,
     data = scatter.data,
     main = 'Panel',
@@ -589,13 +598,14 @@ create.scatterplot(
     # set up panel layout
     layout = c(1,3),
     yrelation = 'free',
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 scatter.data$chromosome <- as.character(scatter.data$chr);
 
 create.scatterplot(
-    filename = 'Scatterplot_Panel_character_conditional.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Panel_character_conditional', fileext = '.tiff'),
     formula = sample.two ~ sample.one | chromosome,
     data = scatter.data,
     main = 'Panel',
@@ -617,7 +627,8 @@ create.scatterplot(
     # set up panel layout
     layout = c(1,3),
     yrelation = 'free',
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Covariates
@@ -654,7 +665,7 @@ cov.legend.grob <- legend.grob(
     );
 
 create.scatterplot(
-    filename = 'Scatterplot_Covariates.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Covariates', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Covariates',
@@ -680,7 +691,8 @@ create.scatterplot(
         ),
     # Ensuring sufficient spacing for covariate
     key.top = 3,
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Error bars
@@ -691,7 +703,7 @@ error.data <- data.frame(
     );
 
 create.scatterplot(
-    filename = 'Scatterplot_Error_Bars.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Error_Bars', fileext = '.tiff'),
     formula = values ~ chr,
     data = error.data,
     main = 'Error Bars',
@@ -727,11 +739,12 @@ create.scatterplot(
     error.whisker.angle = 120,
     y.error.up = error.data$error,
     y.error.bar.col = 'black',
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 create.scatterplot(
-    filename = 'Scatterplot_Error_Bars_MultiColor.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Error_Bars_MultiColor', fileext = '.tiff'),
     formula = values ~ chr,
     data = error.data,
     main = 'Error Bars',
@@ -768,13 +781,14 @@ create.scatterplot(
     y.error.up = error.data$error,
     y.error.bar.col = c('black','red','blue'),
     description = 'Scatter plot created by BoutrosLab.plotting.general',
-    group.specific.colouring = FALSE
+    group.specific.colouring = FALSE,
+    resolution = 200
     );
 
 
 # Gridlines
 create.scatterplot(
-    filename = 'Scatterplot_Gridlines.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Gridlines', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Gridlines',
@@ -795,12 +809,13 @@ create.scatterplot(
     fill = 'transparent',
     # Adding gridlines
     type = c('p','g'),
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # lines & background rectangle
 create.scatterplot(
-    filename = 'Scatterplot_Lines_BG.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Lines_BG', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Lines & BG rectangle',
@@ -833,12 +848,13 @@ create.scatterplot(
     ytop.rectangle = 15,
     col.rectangle = 'grey',
     alpha.rectangle = 0.5,
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # attach lines to points
 create.scatterplot(
-    filename = 'Scatterplot_Lines.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Lines', fileext = '.tiff'),
     formula = sample.two ~ sample.one | chr,
     data = scatter.data,
     main = 'Lines',
@@ -860,7 +876,8 @@ create.scatterplot(
     # attach lines
     type = c('h','p'),
     layout = c(1,3),
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # ROC curve
@@ -889,7 +906,7 @@ points.x <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), 'FPR'];
 points.y <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), 'TPR'];
 
 create.scatterplot(
-    filename = 'Scatterplot_ROC.tiff',
+    filename = tempfile(pattern = 'Scatterplot_ROC', fileext = '.tiff'),
     formula = TPR ~ FPR,
     data = roc.data,
     main = 'ROC',
@@ -918,7 +935,8 @@ create.scatterplot(
     text.guess.labels = TRUE,
     text.guess.label.position = 155,
     text.guess.radius.factor = 2.5,
-    description = 'Scatter plot created by BoutrosLab.plotting.general'
+    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Volcano Plots
@@ -944,7 +962,7 @@ volcano.data <- data.frame(
     );
 
 create.scatterplot(
-    filename = 'Scatterplot_Volcano_Plot.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Volcano_Plot', fileext = '.tiff'),
     formula = p.values ~ fold.change,
     data = volcano.data,
     col = dot.colours,
@@ -957,7 +975,8 @@ create.scatterplot(
     xlab.label = 'foldChange',
     ylab.label = 'pValues',
     xlab.cex = 1.75,
-    ylab.cex = 1.75
+    ylab.cex = 1.75,
+    resolution = 200
     );
 
 # Automatic Labeling
@@ -970,7 +989,7 @@ text.y <- (-log10(p.values.adjusted))[interesting.points];
 text.labels <- rownames(microarray)[interesting.points];
 
 create.scatterplot(
-    filename = 'Scatterplot_Volcano_Plot_With_Labels.tiff',
+    filename = tempfile(pattern = 'Scatterplot_Volcano_Plot_With_Labels', fileext = '.tiff'),
     formula = p.values ~ fold.change,
     data = volcano.data,
     alpha = .5,
@@ -988,7 +1007,8 @@ create.scatterplot(
     text.x = text.x,
     text.y = text.y,
     text.labels = text.labels,
-    text.guess.labels = TRUE
+    text.guess.labels = TRUE,
+    resolution = 200
     );
 
 # With line segments
@@ -1002,7 +1022,7 @@ line.data <- data.frame(
 create.scatterplot(
     (x+y+z) ~ group,
     line.data,
-    filename = 'Scatterplot_with_LineSegments.tiff',
+    filename = tempfile(pattern = 'Scatterplot_with_LineSegments', fileext = '.tiff'),
     cex = 0,
     add.line.segments = TRUE,
     line.start = list(
@@ -1016,7 +1036,8 @@ create.scatterplot(
 	c(line.data$x + line.data$y + line.data$z)
 	),
     line.col = list('red','blue','green'),
-    line.lwd = list(3,3,3)
+    line.lwd = list(3,3,3),
+    resolution = 200
     );
 
 lollipop.data <- data.frame(
@@ -1025,7 +1046,7 @@ lollipop.data <- data.frame(
     );
 
 create.lollipopplot(
-    filename = "Lollipop_Simple.tiff",
+    filename = tempfile(pattern = 'Lollipop_Simple', fileext = '.tiff'),
     formula = x ~ y,
     data = lollipop.data,
     main = 'Lollipop plot',
@@ -1043,7 +1064,9 @@ create.lollipopplot(
     regions.start = c(1,26,48),
     regions.stop = c(15,35,72),
     regions.labels = c("test 1", "test2", "test 3"),
-    regions.color = c("#66b3ff", "#5cd65c", "#ff3333")
+    regions.color = c("#66b3ff", "#5cd65c", "#ff3333"),
+    resolution = 200
     );
+}
 }
 \keyword{hplot}

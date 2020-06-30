@@ -240,20 +240,22 @@ simple.data <- data.frame(
     );
 
 create.hexbinplot(
-    filename = 'Hexbinplot_Simple.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     main = 'Simple',
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 create.hexbinplot(
-    filename = 'Hexbinplot_Simple_underlined_legend_title.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Simple_underlined_legend_title', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     legend.title = list(lab = expression(bold(underline('Counts'))), x = 1, y = 1.1),
     right.padding = 4,
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Set up data
@@ -264,7 +266,7 @@ hexbin.data <- data.frame(
 
 # Minimal Input
 create.hexbinplot(
-    filename = 'Hexbinplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Minimal_Input', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Minimal input',
@@ -272,12 +274,13 @@ create.hexbinplot(
     colourcut = seq(0, 1, length = 11),
     # this sets the maximum value plotted -- values greater than this will not appear
     maxcnt = 50,
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Axes & Labels
 create.hexbinplot(
-    filename = 'Hexbinplot_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Axes_Labels', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Axes & labels',
@@ -296,12 +299,14 @@ create.hexbinplot(
     ylimits = c(0,16),
     xat = seq(0,16,2),
     yat = seq(0,16,2),
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Aspect Ratio
 create.hexbinplot(
-    filename = 'Hexbinplot_Aspect_Ratio.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Aspect_Ratio', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Aspect ratio',
@@ -321,12 +326,13 @@ create.hexbinplot(
     maxcnt = 50,
     # Set the aspect ratio to control plot dimensions
     aspect = 2,
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Colour scheme
 create.hexbinplot(
-    filename = 'Hexbinplot_Colour_Change.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Colour_Change', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Colour change',
@@ -348,12 +354,13 @@ create.hexbinplot(
     # Specify colour scheme
     colour.scheme = colorRampPalette(c('dodgerblue','paleturquoise','chartreuse','yellow',
         'orange','red')),
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Bin sizes
 create.hexbinplot(
-    filename = 'Hexbinplot_Bin_Sizes.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Bin_Sizes', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Bin sizes',
@@ -374,12 +381,13 @@ create.hexbinplot(
         'orange','red')),
     # Specify bin sizes
     colourcut = seq(0,1,length = 6),
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Correlation Key
 create.hexbinplot(
-    filename = 'Hexbinplot_Correlation.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Correlation', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Correlation',
@@ -416,12 +424,13 @@ create.hexbinplot(
             draw = FALSE
             )
         ),
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Grid lines and diagonal
 create.hexbinplot(
-    filename = 'Hexbinplot_Gridlines.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Gridlines', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Gridlines',
@@ -443,7 +452,8 @@ create.hexbinplot(
     # Grid & diagonal
     add.grid = TRUE,
     add.xyline = TRUE,
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Large range
@@ -460,7 +470,7 @@ fake.data <- data.frame(
     );
 
 create.hexbinplot(
-    filename = 'Hexbinplot_Range.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Range', fileext = '.tiff'),
     formula = z ~ x,
     data = fake.data,
     main = 'Range',
@@ -479,7 +489,8 @@ create.hexbinplot(
     # Change the colour scheme
     colour.scheme = function(n){BTC(n, beg=1, end=256)},
     background.col = 'grey',
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Outliers
@@ -496,7 +507,7 @@ fake.data.outlier <- data.frame(
     );
 
 create.hexbinplot(
-    filename = 'Hexbinplot_Outlier.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Outlier', fileext = '.tiff'),
     formula = z ~ x,
     data = fake.data.outlier,
     main = 'Outlier',
@@ -516,12 +527,13 @@ create.hexbinplot(
     # Change the colour scheme
     colour.scheme = function(n){BTC(n, beg=1, end=256)},
     background.col = 'grey',
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Nature style
 create.hexbinplot(
-    filename = 'Hexbinplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Hexbinplot_Nature_style', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Nature style',
@@ -551,7 +563,8 @@ create.hexbinplot(
     # demonstrating how to create en-dashes
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
-    description = 'Hexbinplot created by BoutrosLab.plotting.general'
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Multiplot different groups
@@ -563,23 +576,32 @@ simple.data$group.labels <- as.factor(simple.data$groups);
 
 create.hexbinplot(
 	formula = y ~ x | groups,
-	filename = 'stratified_hexbinplot_numeric_conditioning.tiff',
+	filename = tempfile(
+        pattern = 'stratified_hexbinplot_numeric_conditioning',
+        fileext = '.tiff'
+        ),
 	data = simple.data,
 	description = 'Hexbinplot created by BoutrosLab.plotting.general',
 	strip.col = 'white',
 	strip.cex = 0.8,
-	strip.fontface = 'bold'
+	strip.fontface = 'bold',
+	resolution = 200
 	);
 
 create.hexbinplot(
 	formula = y ~ x | group.labels,
-	filename = 'stratified_hexbinplot_factor_conditioning.tiff',
+	filename = tempfile(
+        pattern = 'stratified_hexbinplot_factor_conditioning',
+        fileext = '.tiff'
+        ),
 	data = simple.data,
 	description = 'Hexbinplot created by BoutrosLab.plotting.general',
 	strip.col = 'white',
 	strip.cex = 0.8,
-	strip.fontface = 'bold'
+	strip.fontface = 'bold',
+	resolution = 200
 	);
 
+}
 }
 \keyword{hplot}

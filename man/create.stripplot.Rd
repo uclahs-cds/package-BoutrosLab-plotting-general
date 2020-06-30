@@ -190,30 +190,33 @@ simple.data <- data.frame(
     );
 
 create.stripplot(
-    filename = 'Stripplot_simple.tiff',
+    filename = tempfile(pattern = 'Stripplot_simple', fileext = '.tiff'),
     formula = x ~ y,
-    data = simple.data
+    data = simple.data,
+    resolution = 50
     );
 
 # load real datasets
 stripplot.data <- data.frame(
     values = c(t(microarray[1:10, 1:58])),
     genes = rep(rownames(microarray)[1:10], each = 58),
-    sex = patient$sex 
+    sex = patient$sex,
+    stringsAsFactors = TRUE
     );
 
 # Minimal Input using real data
 create.stripplot(
-    filename = 'Stripplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Stripplot_Minimal_Input', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Minimal input',
-    description = 'Stripplot created by BoutrosLab.plotting.general'
+    description = 'Stripplot created by BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # Axes & Labels
 create.stripplot(
-    filename = 'Stripplot_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Stripplot_Axes_Labels', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Axes & labels',
@@ -228,12 +231,13 @@ create.stripplot(
     yaxis.fontface = 1,
     xlimits = c(0,13),
     xat = seq(0,12,2),
-    description = 'Stripplot created by BoutrosLab.plotting.general'
+    description = 'Stripplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Colour & Legend
 create.stripplot(
-    filename = 'Stripplot_Colour_Legend.tiff',
+    filename = tempfile(pattern = 'Stripplot_Colour_Legend', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Colour & legend',
@@ -269,12 +273,14 @@ create.stripplot(
             ),
         padding.text = 3
         ),
-    description = 'Stripplot created by BoutrosLab.plotting.general'
+    description = 'Stripplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Jitter
 create.stripplot(
-    filename = 'Stripplot_Jitter.tiff',
+    filename = tempfile(pattern = 'Stripplot_Jitter', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Low Jitter',
@@ -310,12 +316,13 @@ create.stripplot(
         ),
     # Custom jitter
     jitter.data = TRUE,
-    description = 'Stripplot created by BoutrosLab.plotting.general'
+    description = 'Stripplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Jitter
 create.stripplot(
-    filename = 'Stripplot_High_Jitter.tiff',
+    filename = tempfile(pattern = 'Stripplot_High_Jitter', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'High Jitter',
@@ -353,12 +360,13 @@ create.stripplot(
     jitter.data = TRUE,
     jitter.factor = 0.5,
     jitter.amount = 0.33,
-    description = 'Stripplot created by BoutrosLab.plotting.general'
+    description = 'Stripplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Nature style
 create.stripplot(
-    filename = 'Stripplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Stripplot_Nature_style', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Nature style',
@@ -403,8 +411,9 @@ create.stripplot(
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
-    description = 'Stripplot created by BoutrosLab.plotting.general'
+    description = 'Stripplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
-
+}
 }
 \keyword{hplot}

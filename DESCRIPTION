@@ -1,9 +1,9 @@
 Package: BoutrosLab.plotting.general
-Version: 5.9.8
-Type: Package
+Version: 6.0.0
+#Type: Package
 Title: Functions to Create Publication-Quality Plots
-Date: 2018-09-19
-Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "Paul.Boutros@oicr.on.ca"),
+Date: 2020-04-01
+Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "PBoutros@mednet.ucla.edu"),
              person("Christine P'ng", role = "ctb"),
              person("Jeff Green", role = "ctb"),
              person("Stephenie Prokopec", role = "ctb"),
@@ -11,11 +11,15 @@ Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "Paul.Boutro
              person("The R Core Team", role = "cph"),
              person("The R Foundation",role = "cph"),
              person("Robert Gentleman", role = "ctb"),
-             person("Ross Ihaka", role = "ctb"))
-Maintainer: Paul Boutros <Paul.Boutros@oicr.on.ca>
-Depends: R (>= 3.0.2), lattice (>= 0.20-27), latticeExtra (>= 0.6-26), cluster (>= 1.14.4), hexbin (>= 1.26.3), BoutrosLab.utilities (>= 1.9.5), BoutrosLab.statistics.general (>= 2.1.1), BoutrosLab.dist.overload (>= 1.0.1), grid
+             person("Ross Ihaka", role = "ctb"),
+             person("Caden Bugh", role = "ctb"))
+Maintainer: Paul Boutros <PBoutros@mednet.ucla.edu>
+Depends: R (>= 3.0.2), lattice (>= 0.20-27), latticeExtra (>= 0.6-26), cluster (>= 1.14.4), hexbin (>= 1.26.3), grid
 Imports: gridExtra,  tools, gtable, e1071, MASS(>= 7.3-29)
-Suggests: Cairo (>= 1.5-1), knitr
+Suggests: 
+    Cairo (>= 1.5-1),
+    knitr,
+    testthat
 Description: Contains several plotting functions such as barplots, scatterplots, heatmaps, as well as functions to combine plots and assist in the creation of these plots. These functions will give users great ease of use and customization options in broad use for biomedical applications, as well as general purpose plotting. Each of the functions also provides valid default settings to make plotting data more efficient and producing high quality plots with standard colour schemes simpler. All functions within this package are capable of producing plots that are of the quality to be presented in scientific publications and journals.
 License: GPL-2
 LazyLoad: yes

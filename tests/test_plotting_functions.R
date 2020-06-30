@@ -10,7 +10,8 @@ test.data <- data.frame(
 	x = 1:10,
 	y = LETTERS[1:10],
 	z = rnorm(10),
-	type = rep(LETTERS[1:2], 5)
+	type = rep(LETTERS[1:2], 5),
+	stringsAsFactors = TRUE
 	);
 
 # testing legend.grob

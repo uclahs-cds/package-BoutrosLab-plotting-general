@@ -48,7 +48,7 @@ create.gif(
 	parameters = p, 
 	number.of.frames = 3, 
 	delay = 20, 
-	filename='test.gif'
+	filename = tempfile(pattern = 'test', fileext = '.gif')
 	) 
 
 }

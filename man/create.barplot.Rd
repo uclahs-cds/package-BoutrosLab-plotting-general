@@ -261,16 +261,17 @@ If this function is called without capturing the return value, or specifying a f
 set.seed(12345);
 
 simple.data <- data.frame(
-    x = sample(1:15, 10),
-    y = LETTERS[1:10]
+    x = sample(1:15, 5),
+    y = LETTERS[1:5]
     );
 
 # Simple example
 create.barplot(
-    filename = 'Barplot_Simple.tiff',
+    filename = tempfile(pattern = 'Barplot_Simple', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
-    yat = seq(0,16,2)
+    yat = seq(0,16,2),
+    resolution = 30
     );
 
 # set up the data
@@ -294,17 +295,18 @@ barplot.data <- data.frame(
 
 # Minimal input
 create.barplot(
-    filename = 'Barplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Barplot_Minimal_Input', fileext = '.tiff'),
     formula = values ~ samples ,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Minimal input',
     # Editing the metadata
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Axes labels & limits
 create.barplot(
-    filename = 'Barplot_Custom_Axes.tiff',
+    filename = tempfile(pattern = 'Barplot_Custom_Axes', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Axes labels & limits',
@@ -314,12 +316,13 @@ create.barplot(
     # Setting y-axis limits and tick-mark locations
     ylimits = c(0,30),
     yat = seq(0,30,5),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Font size and font face
 create.barplot(
-    filename = 'Barplot_Font_Changes.tiff',
+    filename = tempfile(pattern = 'Barplot_Font_Changes', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Font changes',
@@ -335,12 +338,14 @@ create.barplot(
     # Changing font type
     xaxis.fontface = 1,
     yaxis.fontface = 1,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Sorting data
 create.barplot(
-    filename = 'Barplot_Sorted.tiff',
+    filename = tempfile(pattern = 'Barplot_Sorted', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Sorted bars',
@@ -356,7 +361,8 @@ create.barplot(
     yaxis.fontface = 1,
     # Order bars either by 'increasing' or 'decreasing'
     sample.order = 'decreasing',
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Colour changes
@@ -364,7 +370,7 @@ sex.colours <- replace(as.vector(barplot.data$sex), which(barplot.data$sex == 'm
 sex.colours <- replace(sex.colours, which(barplot.data$sex == 'female'), 'pink');
 
 create.barplot(
-    filename = 'Barplot_Colour_Changes.tiff',
+    filename = tempfile(pattern = 'Barplot_Colour_Changes', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Colour changes',
@@ -380,12 +386,13 @@ create.barplot(
     yaxis.fontface = 1,
     # Colour bars based on sex
     col = sex.colours,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Legend
 create.barplot(
-    filename = 'Barplot_Legend.tiff',
+    filename = tempfile(pattern = 'Barplot_Legend', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Legend',
@@ -424,13 +431,13 @@ create.barplot(
                 y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
-
 
 # Grouped barplot
 create.barplot(
-    filename = 'Barplot_Grouped.tiff',
+    filename = tempfile(pattern = 'Barplot_Grouped', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data,
     main = 'Grouped bar chart',
@@ -469,12 +476,13 @@ create.barplot(
             y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Grouped labels
 create.barplot(
-    filename = 'Barplot_Grouped_Labels.tiff',
+    filename = tempfile(pattern = 'Barplot_Grouped_Labels', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data,
     main = 'Grouped labels',
@@ -495,12 +503,13 @@ create.barplot(
     xaxis.lab = rep(c('nonsynonymous', 'other'), 15),
     xaxis.rot = 90,
     group.labels = TRUE,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Stacked barplot
 create.barplot(
-    filename = 'Barplot_Stacked.tiff',
+    filename = tempfile(pattern = 'Barplot_Stacked', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data,
     main = 'Stacked bar chart',
@@ -542,12 +551,13 @@ create.barplot(
         ),
     # Changing the plot from a grouped plot to a stacked plot
     stack = TRUE,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Panel organization
 create.barplot(
-    filename = 'Barplot_Panel_Layout_numeric_conditioning.tiff',
+    filename = tempfile(pattern = 'Barplot_Panel_Layout_numeric_conditioning', fileext = '.tiff'),
     # Setting the panel layout
     formula = values ~ samples | type,
     data = barplot.data,
@@ -562,11 +572,12 @@ create.barplot(
     ylab.cex = 1.5,
     xaxis.fontface = 1,
     yaxis.fontface = 1,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 create.barplot(
-    filename = 'Barplot_Panel_Layout_character_conditioning.tiff',
+    filename = tempfile(pattern = 'Barplot_Panel_Layout_character_conditioning', fileext = '.tiff'),
     # Setting the panel layout
     formula = values ~ samples | mutation,
     data = barplot.data,
@@ -581,12 +592,13 @@ create.barplot(
     ylab.cex = 1.5,
     xaxis.fontface = 1,
     yaxis.fontface = 1,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Panel organization 2
 create.barplot(
-    filename = 'Barplot_Panel_Layout_2.tiff',
+    filename = tempfile(pattern = 'Barplot_Panel_Layout_2', fileext = '.tiff'),
     formula = values ~ samples | mutation,
     data = barplot.data,
     main = 'Panel layout',
@@ -603,7 +615,8 @@ create.barplot(
     # Adjusting the panel layout
     layout = c(1,2),
     y.spacing = 1,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Covariates
@@ -680,7 +693,7 @@ covariate.legend.grob <- legend.grob(
     );
 
 create.barplot(
-    filename = 'Barplot_Covariates.tiff',
+    filename = tempfile(pattern = 'Barplot_Covariates', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Covariates',
@@ -709,11 +722,12 @@ create.barplot(
         padding.text = 1
         ),
     bottom.padding = 4,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 create.barplot(
-    filename = 'Barplot_Auto_legend.tiff',
+    filename = tempfile(pattern = 'Barplot_Auto_legend', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Covariates',
@@ -734,11 +748,13 @@ create.barplot(
         ),
     bottom.padding = 4,
     inside.legend.auto = TRUE,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
+
 # Horizontal orientation
 create.barplot(
-    filename = 'Barplot_Horizontal.tiff',
+    filename = tempfile(pattern = 'Barplot_Horizontal', fileext = '.tiff'),
     # switch formula order
     formula = samples ~ values,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
@@ -750,12 +766,13 @@ create.barplot(
         inside = list(fun = covariate.legend.grob)
         ),
     inside.legend.auto = TRUE,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Change bar thickness and add text labels
 create.barplot(
-    filename = 'Barplot_Text_Labels.tiff',
+    filename = tempfile(pattern = 'Barplot_Text_Labels', fileext = '.tiff'),
     # switch formula order
     formula = samples ~ values,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
@@ -769,7 +786,8 @@ create.barplot(
     text.labels = barplot.data[barplot.data$mutation == 'nonsynonymous','values'],
     text.cex = 0.8,
     text.fontface = 'italic',
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Error bars
@@ -780,7 +798,7 @@ error.data <- data.frame(
     );
 
 create.barplot(
-    filename = 'Barplot_Error_Bars.tiff',
+    filename = tempfile(pattern = 'Barplot_Error_Bars', fileext = '.tiff'),
     # needs sequential x-axis
     formula = values ~ 1:15,
     data = error.data,
@@ -798,12 +816,13 @@ create.barplot(
     ylab.cex = 1.5,
     xaxis.fontface = 1,
     yaxis.fontface = 1,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 
 create.barplot(
-    filename = 'Barplot_Error_Bars_Horizontal.tiff',
+    filename = tempfile(pattern = 'Barplot_Error_Bars_Horizontal', fileext = '.tiff'),
     # needs sequential x-axis
     formula = values ~ 1:15,
     data = error.data,
@@ -820,12 +839,13 @@ create.barplot(
     ylab.cex = 1.5,
     xaxis.fontface = 1,
     yaxis.fontface = 1,
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Grid lines
 create.barplot(
-    filename = 'Barplot_Gridlines.tiff',
+    filename = tempfile(pattern = 'Barplot_Gridlines', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Gridlines',
@@ -866,12 +886,13 @@ create.barplot(
                 y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Grid lines 2
 create.barplot(
-    filename = 'Barplot_Gridlines_GreyBG.tiff',
+    filename = tempfile(pattern = 'Barplot_Gridlines_GreyBG', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Gridlines & grey background',
@@ -913,12 +934,13 @@ create.barplot(
                 y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Labels
 create.barplot(
-    filename = 'Barplot_Labels.tiff',
+    filename = tempfile(pattern = 'Barplot_Labels', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Labels',
@@ -963,12 +985,13 @@ create.barplot(
                 y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # lines
 create.barplot(
-    filename = 'Barplot_Lines.tiff',
+    filename = tempfile(pattern = 'Barplot_Lines', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Lines',
@@ -1014,12 +1037,13 @@ create.barplot(
                 y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Background rectangle
 create.barplot(
-    filename = 'Barplot_Bg_Rectangle.tiff',
+    filename = tempfile(pattern = 'Barplot_Bg_Rectangle', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Background rectangle',
@@ -1065,12 +1089,13 @@ create.barplot(
                 y = 0.95
             )
         ),
-    description = 'Barplot created by BoutrosLab.plotting.general'
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Raster
 create.barplot(
-    filename = 'Barplot_with_raster.tiff',
+    filename = tempfile(pattern = 'Barplot_with_raster', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Raster fill',
@@ -1087,12 +1112,13 @@ create.barplot(
     # filling bars with raster
     raster = 1:10/10,
     raster.just = 'bottom',
-    description = 'Description of image here'
+    description = 'Description of image here',
+    resolution = 200
     );
 
 # Nature format
 create.barplot(
-    filename = 'Barplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Barplot_Nature_style', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     yat = seq(0,16,2),
@@ -1105,12 +1131,14 @@ create.barplot(
     ylab.lab = expression(paste('italicized ', italic('a'))),
   
     # demonstrating how to create en-dashes
-    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3))
+    xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
+
+    resolution = 200
     );
 
 # Left Justified Example
 create.barplot(
-    filename = 'Barplot_TwoTopLabelsLeftJustified.tiff',
+    filename = tempfile(pattern = 'Barplot_TwoTopLabelsLeftJustified', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     yat = seq(0,16,2),
@@ -1126,7 +1154,9 @@ create.barplot(
     main.just = 'left',
     main.x = 0,
     main.y = 0.6,
-    top.padding = 1
+    top.padding = 1,
+    resolution = 200
     );
+}
 }
 \keyword{hplot}

@@ -13,7 +13,7 @@
 \usepackage{sectsty}
 \usepackage{graphicx}
 \usepackage{titlesec}
-\titlespacing{\subsubsection}{0pt}{\parskip}{-\parskip}
+\titlespacing{\subsubsection}{0pt}{\parskip}{\parskip}
 
 \sectionfont{\LARGE}
 \usepackage[super,comma]{natbib}

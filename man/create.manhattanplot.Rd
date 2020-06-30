@@ -229,11 +229,12 @@ simple.data <- data.frame(
     );
 
 create.manhattanplot(
-    filename = 'Manhattan_Simple.tiff',
+    filename = tempfile(pattern = 'Manhattan_Simple', fileext = '.tiff'),
     formula = -log10(x) ~ y,
     data = simple.data,
     main = 'Simple',
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 50
     );
 
 # set up chromosome covariate colours to use for chr covariate, below
@@ -266,16 +267,17 @@ microarray$ind <- 1:nrow(microarray);
 
 # Minimal input
 create.manhattanplot(
-    filename = 'Manhattan_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Manhattan_Minimal_Input', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Minimal input',
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Custom Axes
 create.manhattanplot(
-    filename = 'Manhattan_Custom_Axes.tiff',
+    filename = tempfile(pattern = 'Manhattan_Custom_Axes', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Custom axes',
@@ -294,12 +296,13 @@ create.manhattanplot(
         expression(10^-3),
         expression(10^-4)
         ),
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Colour scheme
 create.manhattanplot(
-    filename = 'Manhattan_Colour_Scheme.tiff',
+    filename = tempfile(pattern = 'Manhattan_Colour_Scheme', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Colour scheme',
@@ -319,12 +322,13 @@ create.manhattanplot(
         expression(10^-4)
         ),
     col = chr.colours,
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Plotting Character
 create.manhattanplot(
-    filename = 'Manhattan_Plotting_Character.tiff',
+    filename = tempfile(pattern = 'Manhattan_Plotting_Character', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Plotting character',
@@ -347,12 +351,14 @@ create.manhattanplot(
     # Change plotting character and size of plotting character
     pch = 18,
     cex = 0.75,
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 200
     );
 
+\donttest{
 # Line
 create.manhattanplot(
-    filename = 'Manhattan_Added_Line.tiff',
+    filename = tempfile(pattern = 'Manhattan_Added_Line', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Line',
@@ -379,12 +385,13 @@ create.manhattanplot(
     abline.lty = 2,
     abline.lwd = 1,
     abline.col = 'black',
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Background shading
 create.manhattanplot(
-    filename = 'Manhattan_BG.tiff',
+    filename = tempfile(pattern = 'Manhattan_BG', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Bg rectangles',
@@ -418,12 +425,13 @@ create.manhattanplot(
     ytop.rectangle = 4.5,
     col.rectangle = 'grey',
     alpha.rectangle = 0.5,
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 200
     );
 
 # Nature style
 create.manhattanplot(
-    filename = 'Manhattan_Nature_style.tiff',
+    filename = tempfile(pattern = 'Manhattan_Nature_style', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Nature style',
@@ -465,7 +473,9 @@ create.manhattanplot(
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
-    description = 'Manhattan plot created using BoutrosLab.plotting.general'
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 1200
     );
+}
 }
 \keyword{hplot}

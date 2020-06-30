@@ -856,7 +856,7 @@ reformat.labels <- function(labels, data.values) {
 	if (is.expression(labels[1])) {
         	y.axis.labs <- labels;
                 }
-        else if (is.null(labels) || is.na(labels) || (length(labels) == 1 && labels == TRUE)) {
+        else if (is.null(labels) || anyNA(labels) || (length(labels) == 1 && labels == TRUE)) {
                 if (!is.null(data.values)) {
                 	if (!is.null(levels(data.values))) {
                         	y.axis.labs <- levels(data.values);
@@ -880,7 +880,8 @@ reformat.labels <- function(labels, data.values) {
 }
 
 get.legend.height <- function(legend, filename, width, height, resolution) {
-	if (class(legend$fun) == 'function') {
+	if (is.element('function', class(legend$fun))) {
+	#if (class(legend$fun) == 'function') {
 		legend$fun <- do.call(legend$fun, legend$args);
 		}
 	#grob size depends on image type and size -- must simulate opening the device
@@ -934,7 +935,7 @@ get.legend.height <- function(legend, filename, width, height, resolution) {
 	}
 
 get.legend.width <- function(legend, filename, width, height, resolution) {
-	if (class(legend$fun) == 'function') {
+	if (is.element('function', class(legend$fun))) {
 		legend$fun <- do.call(legend$fun, legend$args);
 		}
 	#grob size depends on image type and size -- must simulate opening the device

@@ -47,7 +47,7 @@ get.corr.key <- function(
 				env = list(
 					correlation = format(
 						round(
-							BoutrosLab.statistics.general::get.correlation.p.and.corr(
+							BoutrosLab.plotting.general::get.correlation.p.and.corr(
 								x = x,
 								y = y,
 								method = i
@@ -103,13 +103,13 @@ get.corr.key <- function(
 
 		# calculate the correlation pvalues
 		if (i %in% c('spearman.p', 'pearson.p', 'kendall.p')) {
-			if (BoutrosLab.statistics.general::get.correlation.p.and.corr(x = x, y = y, method = gsub('.p', '', i, fixed = TRUE))[2] > 0) {
+			if (BoutrosLab.plotting.general::get.correlation.p.and.corr(x = x, y = y, method = gsub('.p', '', i, fixed = TRUE))[2] > 0) {
 				key.item <- substitute(
 					P[corr.symbol] == paste(base %*% 10 ^ exponent, phantom('|')[phantom('|')] ),
 					env = list(
 						base = unlist(
 							BoutrosLab.plotting.general::scientific.notation(
-								x = BoutrosLab.statistics.general::get.correlation.p.and.corr(
+								x = BoutrosLab.plotting.general::get.correlation.p.and.corr(
 									x = x,
 									y = y,
 									method = gsub('.p', '', i, fixed = TRUE)
@@ -120,7 +120,7 @@ get.corr.key <- function(
 							),
 						exponent = unlist(
 							BoutrosLab.plotting.general::scientific.notation(
-								x = BoutrosLab.statistics.general::get.correlation.p.and.corr(
+								x = BoutrosLab.plotting.general::get.correlation.p.and.corr(
 									x = x,
 									y = y,
 									method = gsub('.p', '', i, fixed = TRUE)

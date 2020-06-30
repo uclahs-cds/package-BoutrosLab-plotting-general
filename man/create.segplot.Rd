@@ -195,9 +195,10 @@ simple.data <- data.frame(
     );
 
 create.segplot(
-    filename = 'Segplot_simple.tiff',
+    filename = tempfile(pattern = 'Segplot_simple', fileext = '.tiff'),
     formula = labels ~ min + max,
-    data = simple.data
+    data = simple.data,
+    resolution = 50
     );
 
 # load some data
@@ -218,16 +219,17 @@ segplot.data <- data.frame(
 
 # Minimal Input using real data
 create.segplot(
-    filename = 'Segplot_Minimal_Input.tiff',
+    filename = tempfile(pattern = 'Segplot_Minimal_Input', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Minimal input',
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Axes & Labels
 create.segplot(
-    filename = 'Segplot_Axes_Labels.tiff',
+    filename = tempfile(pattern = 'Segplot_Axes_Labels', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Axes & labels',
@@ -240,12 +242,14 @@ create.segplot(
     ylab.cex = 1.5,
     xlimits = c(0,13),
     xat = seq(0, 12, 2),
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
+\donttest{
 # Bands
 create.segplot(
-    filename = 'Segplot_Bands.tiff',
+    filename = tempfile(pattern = 'Segplot_Bands', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Bands',
@@ -259,12 +263,13 @@ create.segplot(
     xat = seq(0, 12, 2),
     # drawing rectangles instead of lines
     draw.bands = TRUE,
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Colours
 create.segplot(
-    filename = 'Segplot_Colours.tiff',
+    filename = tempfile(pattern = 'Segplot_Colours', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Colours',
@@ -280,12 +285,13 @@ create.segplot(
     # Changing the colours based on a covariate ('level' parameter)
     level = segplot.data$length,
     col.regions = default.colours(3),
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Median
 create.segplot(
-    filename = 'Segplot_Median.tiff',
+    filename = tempfile(pattern = 'Segplot_Median', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Medians',
@@ -302,12 +308,13 @@ create.segplot(
     col.regions = default.colours(3),
     # Adding center values
     centers = segplot.data$median,
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Reorder by center value
 create.segplot(
-    filename = 'Segplot_Reorder.tiff',
+    filename = tempfile(pattern = 'Segplot_Reorder', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Reordered',
@@ -323,12 +330,13 @@ create.segplot(
     centers = segplot.data$median,
     level = segplot.data$length,
     col.regions = default.colours(3),
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Legend
 create.segplot(
-    filename = 'Segplot_Legend.tiff',
+    filename = tempfile(pattern = 'Segplot_Legend', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Legend',
@@ -367,12 +375,13 @@ create.segplot(
             corner = c(0,1)
             )
         ),
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Background
 create.segplot(
-    filename = 'Segplot_Background.tiff',
+    filename = tempfile(pattern = 'Segplot_Background', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Background rectangle',
@@ -419,12 +428,13 @@ create.segplot(
     ytop.rectangle = seq(1.5, 9.5, 2),
     col.rectangle = 'grey',
     alpha.rectangle = 0.5,
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # Nature style
 create.segplot(
-    filename = 'Segplot_Nature_style.tiff',
+    filename = tempfile(pattern = 'Segplot_Nature_style', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Nature style',
@@ -477,16 +487,18 @@ create.segplot(
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
-    description = 'Segplot created by BoutrosLab.plotting.general'
+    description = 'Segplot created by BoutrosLab.plotting.general',
+    resolution = 100
     );
 
 # example of bands and lines
 create.segplot(
-    filename = 'Segplot_BandsAndLines.tiff',
+    filename = tempfile(pattern = 'Segplot_BandsAndLines', fileext = '.tiff'),
     formula = labels ~ min + max,
     data = simple.data,
-    draw.bands = c(1,3,5,7,9)
+    draw.bands = c(1,3,5,7,9),
+    resolution = 200
     );
-
+}
 }
 \keyword{hplot}
