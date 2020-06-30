@@ -1,0 +1,26 @@
+Category: tool
+Description: Contains several plotting functions such as barplots, scatterplots, heatmaps, as well as functions to combine plots and assist in the creation of these plots.
+Maintainers: Paul Boutros
+Contributors:
+  - Paul Boutros
+  - Christine P'ng
+  - Jeff Green
+  - Stephenie Prokopec
+  - Robert Gentleman
+  - Ross Ihaka
+  - Caden Bugh
+Languages:
+  - R
+  - C
+Dependencies:
+  - R (>= 3.0.2)
+  - lattice (>= 0.20-27)
+  - latticeExtra (>= 0.6-26)
+  - cluster (>= 1.14.4)
+  - hexbin (>= 1.26.3)
+  - grid
+  - Cairo (>= 1.5-1)
+  - knitr
+  - testthat
+References: https://doi.org/10.1186/s12859-019-2610-2
+Version : 6.0.0
