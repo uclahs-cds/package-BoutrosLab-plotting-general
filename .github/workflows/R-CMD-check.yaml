@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: blcdsdockerregistry/bl-r-devel:latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: BoutrosLab.plotting.general
+      - run: R CMD build --compact-vignettes="gs+qpdf" BoutrosLab.plotting.general
+      - run: R CMD check --as-cran --run-donttest BoutrosLab.plotting.general_*.tar.gz

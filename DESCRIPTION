@@ -1,6 +1,6 @@
 Package: BoutrosLab.plotting.general
 Version: 6.0.0
-#Type: Package
+Type: Package
 Title: Functions to Create Publication-Quality Plots
 Date: 2020-04-01
 Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "PBoutros@mednet.ucla.edu"),
