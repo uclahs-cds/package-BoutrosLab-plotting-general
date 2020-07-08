@@ -1,9 +1,9 @@
-name: CI
+name: R-CMD-check
 
 on: [push]
 
 jobs:
-  build:
+  R-CMD-check:
     runs-on: ubuntu-latest
 
     container:
