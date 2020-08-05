@@ -531,7 +531,6 @@ create.scatterplot(
     resolution = 100
     );
 
-\donttest{
 # Correlation Key
 create.scatterplot(
     filename = tempfile(pattern = 'Scatterplot_Correlation_Key', fileext = '.tiff'),
@@ -574,6 +573,7 @@ create.scatterplot(
     resolution = 100
     );
 
+\donttest{
 # Panel Organization
 create.scatterplot(
     filename = tempfile(pattern = 'Scatterplot_Panel_numeric_conditional', fileext = '.tiff'),
