@@ -5,8 +5,8 @@
 
 \usepackage[parfill]{parskip}
 \usepackage[margin=1in]{geometry}
-\usepackage{tocstyle}
-\setcounter{tocdepth}{5}
+%\usepackage{tocbasic}
+%\setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 \renewcommand*\thesection{\arabic{section}.0 }
 \renewcommand*\thesubsection{\arabic{section}.\arabic{subsection}}
