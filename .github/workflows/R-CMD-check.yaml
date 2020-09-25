@@ -1,6 +1,9 @@
+---
 name: R-CMD-check
 
-on: [push]
+on:
+  - push
+  - pull_request
 
 jobs:
   R-CMD-check:

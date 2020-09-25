@@ -1,3 +1,4 @@
+---
 Category: tool
 Description: Contains several plotting functions such as barplots, scatterplots, heatmaps, as well as functions to combine plots and assist in the creation of these plots.
 Maintainers: Paul Boutros
@@ -23,4 +24,4 @@ Dependencies:
   - knitr
   - testthat
 References: https://doi.org/10.1186/s12859-019-2610-2
-Version : 6.0.0
+Version: 6.0.1
