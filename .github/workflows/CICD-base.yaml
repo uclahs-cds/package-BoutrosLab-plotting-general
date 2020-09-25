@@ -20,3 +20,4 @@ jobs:
         uses: docker://blcdsdockerregistry/cicd-base:latest
         env:
           VALIDATE_R: false
+          VALIDATE_CPP: false
