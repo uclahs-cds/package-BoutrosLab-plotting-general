@@ -7,11 +7,17 @@
 		}
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
+		# cairo is not available on M1 Macs, so fallback to default if necessary
+		bitmap.type <- getOption('bitmapType')
+		if (capabilities('cairo')) {
+			bitmap.type <- 'cairo'
+			}
+
                 if ('tiff' == extension) {
-                        tiff(filename = 'temp', type = 'cairo', units = 'in', height = height, width = width, res = 92);
+                        tiff(filename = 'temp', type = bitmap.type, units = 'in', height = height, width = width, res = 92);
                         }
                 else if ('png' == extension) {
-                        png(filename = 'temp', type = 'cairo', units = 'in', height = height, width = width, res = 1000);
+                        png(filename = 'temp', type = bitmap.type, units = 'in', height = height, width = width, res = 1000);
                         }
                 else if ('pdf' == extension) {
                         cairo_pdf(filename = 'temp', height = height, width = width);
