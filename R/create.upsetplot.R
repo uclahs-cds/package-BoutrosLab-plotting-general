@@ -12,8 +12,8 @@
 ### FUNCTION TO CREATE UPSETPLOTS #################################################################
 create.upsetplot <- function(
 	# upset plot specific parameters
-	x, force.unique = TRUE, hierarchical = FALSE, sorting = 'frequency', sorting.reverse = FALSE, set.order = NULL, membership.order = NULL,
-	include.set.barplot = TRUE, return.list = FALSE, include.zeros = TRUE, minimum.set.size = NULL, minimum.degree = NULL,
+	x, force.unique = TRUE, hierarchical = FALSE, sorting = 'frequency', sorting.reverse = FALSE, set.order = NULL, membership.order = NULL, set.sorting.reverse = FALSE,
+	include.set.barplot = TRUE, return.list = FALSE, include.zeros = TRUE, minimum.intersection.size = NULL, minimum.degree = NULL, minimum.set.size = NULL,
 	# plot.horizontal = FALSE,
 	# intersection barplot
 	ylab.label = 'Intersection Size', ylab.cex = 2, ylab.col = 'black',
@@ -39,14 +39,14 @@ create.upsetplot <- function(
 	set.ytop.rectangle = NULL, set.col.rectangle = 'grey85', set.alpha.rectangle = 1,
 	set.text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
 	# membership scatterplot
-	dot.fill.col = 'grey85', dot.col = 'black', dot.add.grid = FALSE, dot.grid.colour = 'grey85',
-	dot.fill.col.border = 'grey85', dot.col.border = 'black', axes.lty = 'dashed', add.axes = FALSE,
+	dot.fill.col = 'grey70', dot.col = 'black', dot.add.grid = FALSE, dot.grid.colour = 'grey85',
+	dot.fill.col.border = 'grey70', dot.col.border = 'black', axes.lty = 'dashed', add.axes = FALSE,
 	dot.yaxis.col = 'black', dot.yaxis.fontface = 'bold', dot.yaxis.cex = 1.5, dot.yaxis.rot = 0, dot.yaxis.tck = c(1, 0),
 	cex = 5, pch = 19, alpha = 1, line.col = 'black', line.lwd = 10,
 	dot.abline.h = NULL, dot.abline.v = NULL, dot.abline.lty = 1, dot.abline.lwd = NULL, dot.abline.col = 'black',
 	dot.add.rectangle = FALSE, dot.xleft.rectangle = NULL, dot.ybottom.rectangle = NULL, dot.xright.rectangle = NULL,
 	dot.ytop.rectangle = NULL, dot.col.rectangle = 'grey85', dot.alpha.rectangle = 1,
-	dot.background.rectangles = 'none',
+	dot.background.rectangles = 'row',
 	# shared by all
 	axes.lwd = 1, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold',
 	raster = NULL, raster.vert = TRUE, raster.just = 'center', raster.width.dim = unit(2 / 37, 'npc'),
@@ -57,8 +57,8 @@ create.upsetplot <- function(
 	plot.objects.heights = c(2, 1), plot.objects.widths = c(2, 1),
 	filename = NULL, main = '', main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3,
 	x.spacing = 0, y.spacing = 0,
-	legend = NULL, left.legend.padding = 2, right.legend.padding = 2, bottom.legend.padding = 2, top.legend.padding = 2,
-	top.padding = 0.5, bottom.padding = 1, right.padding = 1, left.padding = 1,
+	legend = NULL, left.legend.padding = 0, right.legend.padding = 0, bottom.legend.padding = 0, top.legend.padding = 0,
+	top.padding = 0.5, bottom.padding = 0.5, right.padding = 0.5, left.padding = 0.5,
 	height = 10, width = 10, size.units = 'in'
 	) {
 
@@ -80,6 +80,11 @@ create.upsetplot <- function(
 	### FOR FURTHER CUSTOMIZATION, PLEASE CREATE EACH COMPONENT SEPARATELY
 
 	### set information from x
+
+	if (!is.null(minimum.set.size)){
+		x <- x[sapply(x, length) >= minimum.set.size]
+	}
+
 	x.partitions <- VennDiagram::get.venn.partitions(
 						x = x,
 						force.unique = force.unique,
@@ -87,7 +92,10 @@ create.upsetplot <- function(
 						# for now, not interested in the partitions of x
 						keep.elements = FALSE);
 	if (is.null(set.order)){
-		set.order <- colnames(x.partitions)[1:(ncol(x.partitions) - 2)]
+		set.order <- names(sort(-sapply(x, length)))
+		if (set.sorting.reverse){
+			set.order <- names(sort(sapply(x, length)))
+			}
 		}
 
 	### order by set names of x
@@ -101,8 +109,8 @@ create.upsetplot <- function(
 		x.partitions <- x.partitions[x.partitions$..count.. > 0, ]
 	}
 
-	if (!is.null(minimum.set.size)){
-		x.partitions <- x.partitions[x.partitions$..count.. >= minimum.set.size, ];
+	if (!is.null(minimum.intersection.size)){
+		x.partitions <- x.partitions[x.partitions$..count.. >= minimum.intersection.size, ];
 	}
 
 	if (!is.null(minimum.degree)){
@@ -300,14 +308,16 @@ create.upsetplot <- function(
 		membership.scatterplot.data$col[membership.scatterplot.data$mem] <- dot.col
 		}
 	else {
-		membership.scatterplot.data$col[membership.scatterplot.data$mem] <- dot.col[membership.scatterplot.data$group[membership.scatterplot.data$mem]]
+		# TODO
+		# membership.scatterplot.data$col[membership.scatterplot.data$mem] <- dot.col[membership.scatterplot.data$group[membership.scatterplot.data$mem]]
 		}
 
 	if (1 == length(dot.col.border)){
-		membership.scatterplot.data$col[membership.scatterplot.data$mem] <- dot.col.border
+		membership.scatterplot.data$col.border[membership.scatterplot.data$mem] <- dot.col.border
 		}
 	else {
-		membership.scatterplot.data$col[membership.scatterplot.data$mem] <- dot.col.border[membership.scatterplot.data$group[membership.scatterplot.data$mem]]
+		# TODO
+		# membership.scatterplot.data$col.border[membership.scatterplot.data$mem] <- dot.col.border[membership.scatterplot.data$group[membership.scatterplot.data$mem]]
 		}
 
 	membership.scatterplot.data$y <- nrow(membership.scatterplot.matrix) - membership.scatterplot.data$y + 1
@@ -329,17 +339,46 @@ create.upsetplot <- function(
 
 	if (!dot.add.rectangle){
 		if (dot.background.rectangles == 'row'){
-
+			dot.add.rectangle <- TRUE;
+			background.rectangles = data.frame(
+				xleft.rectangle = rep(0.5, nrow(membership.scatterplot.matrix)),
+				xright.rectangle = rep(ncol(membership.scatterplot.matrix) + 0.5, nrow(membership.scatterplot.matrix)),
+				ybottom.rectangle = seq(0.5, nrow(membership.scatterplot.matrix) - 0.5, 1),
+				ytop.rectangle = seq(1.5, nrow(membership.scatterplot.matrix) + 0.5, 1)
+				);
+			background.rectangles$col.rectangle <- 'transparent';
+			background.rectangles$col.rectangle[seq(1, nrow(background.rectangles), 2)] <- dot.col.rectangle;
+			background.rectangles$alpha.rectangle <- dot.alpha.rectangle;
 			}
 		else if (dot.background.rectangles == 'column'){
-
+			dot.add.rectangle <- TRUE;
+			background.rectangles = data.frame(
+				xleft.rectangle = seq(0.5, ncol(membership.scatterplot.matrix) - 0.5, 1),
+				xright.rectangle = seq(1.5, ncol(membership.scatterplot.matrix) + 0.5, 1),
+				ybottom.rectangle = rep(0.5, ncol(membership.scatterplot.matrix)),
+				ytop.rectangle = rep(nrow(membership.scatterplot.matrix) + 0.5, ncol(membership.scatterplot.matrix))
+				);
+			background.rectangles$col.rectangle <- 'transparent';
+			background.rectangles$col.rectangle[seq(1, nrow(background.rectangles), 2)] <- dot.col.rectangle;
+			background.rectangles$alpha.rectangle <- dot.alpha.rectangle;
 			}
 		else if (dot.background.rectangles == 'none'){
-			# do nothing
+			dot.add.rectangle <- FALSE;
 			}
 		else {
-			warning('The dot.background.rectangles option only supports row and column options, overwritten by dot.add.rectangle.')
+			dot.add.rectangle <- FALSE;
+			warning('The dot.background.rectangles option only supports row and column options, overwritten by dot.add.rectangle.');
 			}
+		}
+	else {
+		background.rectangles = data.frame(
+			xleft.rectangle = dot.xleft.rectangle,
+			ybottom.rectangle = dot.ybottom.rectangle,
+			xright.rectangle = dot.xright.rectangle,
+			ytop.rectangle = dot.ytop.rectangle,
+			col.rectangle = dot.col.rectangle,
+			alpha.rectangle = dot.alpha.rectangle,
+			)
 		}
 
 	plots.list[['membership.scatterplot']] <- create.scatterplot(
@@ -364,10 +403,10 @@ create.upsetplot <- function(
 		# xlab.top.just = 'center',
 		# xlab.top.x = 0.5,
 		# xlab.top.y = 0,
-		xlimits = c(0.5, nrow(x.partitions) + 0.5),
-		ylimits = c(0.5, length(set.order) + 0.5),
+		xlimits = c(0.5, ncol(membership.scatterplot.matrix) + 0.5),
+		ylimits = c(0.5, nrow(membership.scatterplot.matrix) + 0.5),
 		xat = 1:length(unique(membership.scatterplot.data$group)),
-		yat = 1:length(set.order),
+		yat = 1:nrow(membership.scatterplot.matrix),
 		xaxis.lab = NA,
 		yaxis.lab = rev(set.order),
 		xaxis.log = FALSE,
@@ -384,7 +423,7 @@ create.upsetplot <- function(
 		yaxis.tck = dot.yaxis.tck,
 		add.grid = dot.add.grid,
 		xgrid.at = 1:length(unique(membership.scatterplot.data$group)),
-		ygrid.at = 1:length(set.order),
+		ygrid.at = 1:nrow(membership.scatterplot.matrix),
 		grid.colour = dot.grid.colour,
 		horizontal = FALSE,
 		type = 'p',
@@ -443,12 +482,12 @@ create.upsetplot <- function(
 		# curves.lwd = 2,
 		# curves.lty = 1,
 		add.rectangle = dot.add.rectangle,
-		xleft.rectangle = dot.xleft.rectangle,
-		ybottom.rectangle = dot.ybottom.rectangle,
-		xright.rectangle = dot.xright.rectangle,
-		ytop.rectangle = dot.ytop.rectangle,
-		col.rectangle = dot.col.rectangle,
-		alpha.rectangle = dot.alpha.rectangle,
+		xleft.rectangle = background.rectangles$xleft.rectangle,
+		ybottom.rectangle = background.rectangles$ybottom.rectangle,
+		xright.rectangle = background.rectangles$xright.rectangle,
+		ytop.rectangle = background.rectangles$ytop.rectangle,
+		col.rectangle = background.rectangles$col.rectangle,
+		alpha.rectangle = background.rectangles$alpha.rectangle,
 		# add.points = FALSE,
 		# points.x = NULL,
 		# points.y = NULL,
@@ -498,6 +537,7 @@ create.upsetplot <- function(
 		);
 
 	### data for set barplot (all x axis settings)
+	x <- x[set.order]
 	set.barplot.data <- data.frame(value = sapply(x, length), order = length(set.order):1);
 
 	plots.list[['set.barplot']] <- create.barplot(
@@ -671,9 +711,6 @@ create.upsetplot <- function(
 			style = style,
 			use.legacy.settings = use.legacy.settings
 			);
-
-		return(upset.multipanelplot)
-
 		}
 	else {
 		plot.objects.widths <- plot.objects.widths[1]
@@ -716,7 +753,10 @@ create.upsetplot <- function(
 			style = style,
 			use.legacy.settings = use.legacy.settings
 			);
-		return(upset.multipanelplot)
 		}
+
+	if (is.null(filename)){
+		return(upset.multipanelplot)
+	}
 
 	}
