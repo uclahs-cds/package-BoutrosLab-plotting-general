@@ -13,7 +13,7 @@
 create.upsetplot <- function(
 	# upset plot specific parameters
 	x, force.unique = TRUE, hierarchical = FALSE, sorting = 'frequency', sorting.reverse = FALSE, set.order = NULL, membership.order = NULL,
-	include.set.barplot = TRUE, return.list = FALSE,
+	include.set.barplot = TRUE, return.list = FALSE, include.zeros = TRUE, minimum.set.size = NULL, minimum.degree = NULL,
 	# plot.horizontal = FALSE,
 	# intersection barplot
 	ylab.label = 'Intersection Size', ylab.cex = 2, ylab.col = 'black',
@@ -21,28 +21,31 @@ create.upsetplot <- function(
 	ylimits = NULL, yat = TRUE,
 	xlab.top.label = NULL, xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
 	int.abline.h = NULL, int.abline.v = NULL, int.abline.lty = 1, int.abline.lwd = NULL, int.abline.col = 'black',
-	int.col = 'black', int.border.col = 'black', int.border.lwd = 1, int.background.col = 'transparent', int.box.ratio = 2, int.reference = TRUE,
+	int.col = 'black', int.border.col = 'black', int.border.lwd = 1, int.background.col = 'transparent', int.box.ratio = 2, int.reference = FALSE,
 	int.add.grid = FALSE, int.xgrid.at = TRUE, int.ygrid.at = yat, int.grid.lwd = 5, int.grid.col = NULL,
-	int.add.text = FALSE, int.text.labels = NULL, int.text.x = NULL, int.text.y = NULL, int.text.col = 'black', int.text.cex = 1, int.text.fontface = 'bold',
-	int.add.rectangle = FALSE, int.xleft.rectangle = NULL, int.ybottom.rectangle = NULL, int.xright.rectangle = NULL, int.ytop.rectangle = NULL, int.col.rectangle = 'grey85', int.alpha.rectangle = 1,
+	int.add.text = FALSE, int.text.labels = NULL, int.text.x = NULL, int.text.y = NULL, int.text.col = 'black', int.text.cex = 1,
+	int.text.fontface = 'bold', int.add.rectangle = FALSE, int.xleft.rectangle = NULL, int.ybottom.rectangle = NULL, int.xright.rectangle = NULL,
+	int.ytop.rectangle = NULL, int.col.rectangle = 'grey85', int.alpha.rectangle = 1,
 	int.text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
 	# set barplot
 	xlab.label = 'Set Size', xlab.cex = 2, xlab.col = 'black',
 	xaxis.lab = TRUE, xaxis.col = 'black', xaxis.fontface = 'bold', xaxis.cex = 1.5, xaxis.rot = 0, xaxis.tck = c(1, 0),
 	xlimits = NULL, xat = TRUE,
 	set.abline.h = NULL, set.abline.v = NULL, set.abline.lty = 1, set.abline.lwd = NULL, set.abline.col = 'black',
-	set.col = 'black', set.border.col = 'black', set.border.lwd = 1, set.background.col = 'transparent', set.box.ratio = 2, set.reference = TRUE,
+	set.col = 'black', set.border.col = 'black', set.border.lwd = 1, set.background.col = 'transparent', set.box.ratio = 2, set.reference = FALSE,
 	set.add.grid = FALSE, set.xgrid.at = xat, set.ygrid.at = TRUE, set.grid.lwd = 5, set.grid.col = NULL,
-	set.add.text = FALSE, set.text.labels = NULL, set.text.x = NULL, set.text.y = NULL, set.text.col = 'black', set.text.cex = 1, set.text.fontface = 'bold',
-	set.add.rectangle = FALSE, set.xleft.rectangle = NULL, set.ybottom.rectangle = NULL, set.xright.rectangle = NULL, set.ytop.rectangle = NULL, set.col.rectangle = 'grey85', set.alpha.rectangle = 1,
+	set.add.text = FALSE, set.text.labels = NULL, set.text.x = NULL, set.text.y = NULL, set.text.col = 'black', set.text.cex = 1,
+	set.text.fontface = 'bold', set.add.rectangle = FALSE, set.xleft.rectangle = NULL, set.ybottom.rectangle = NULL, set.xright.rectangle = NULL,
+	set.ytop.rectangle = NULL, set.col.rectangle = 'grey85', set.alpha.rectangle = 1,
 	set.text.above.bars = list(labels = NULL, padding = NULL, bar.locations = NULL, rotation = 0),
 	# membership scatterplot
-	dot.fill.col = 'grey85', dot.col = 'black', dot.add.grid = TRUE, dot.grid.colour = 'grey85',
+	dot.fill.col = 'grey85', dot.col = 'black', dot.add.grid = FALSE, dot.grid.colour = 'grey85',
 	dot.fill.col.border = 'grey85', dot.col.border = 'black', axes.lty = 'dashed', add.axes = FALSE,
 	dot.yaxis.col = 'black', dot.yaxis.fontface = 'bold', dot.yaxis.cex = 1.5, dot.yaxis.rot = 0, dot.yaxis.tck = c(1, 0),
-	cex = 5, pch = 19, alpha = 1, line.col = 'black', line.lwd = 3,
+	cex = 5, pch = 19, alpha = 1, line.col = 'black', line.lwd = 10,
 	dot.abline.h = NULL, dot.abline.v = NULL, dot.abline.lty = 1, dot.abline.lwd = NULL, dot.abline.col = 'black',
-	dot.add.rectangle = FALSE, dot.xleft.rectangle = NULL, dot.ybottom.rectangle = NULL, dot.xright.rectangle = NULL, dot.ytop.rectangle = NULL, dot.col.rectangle = 'grey85', dot.alpha.rectangle = 1,
+	dot.add.rectangle = FALSE, dot.xleft.rectangle = NULL, dot.ybottom.rectangle = NULL, dot.xright.rectangle = NULL,
+	dot.ytop.rectangle = NULL, dot.col.rectangle = 'grey85', dot.alpha.rectangle = 1,
 	dot.background.rectangles = 'none',
 	# shared by all
 	axes.lwd = 1, strip.col = 'white', strip.cex = 1, strip.fontface = 'bold',
@@ -51,11 +54,12 @@ create.upsetplot <- function(
 	use.legacy.settings = FALSE, enable.warnings = FALSE,
 	resolution = 1600, ylab.axis.padding = 0.5, xlab.axis.padding = 0.5,
 	# multipanel plot
-	filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3,
+	plot.objects.heights = c(2, 1), plot.objects.widths = c(2, 1),
+	filename = NULL, main = '', main.just = 'center', main.x = 0.5, main.y = 0.5, main.cex = 3,
 	x.spacing = 0, y.spacing = 0,
-	key = list(text = list(lab = c(''))), legend = NULL, key.bottom = 0.1,
+	legend = NULL, left.legend.padding = 2, right.legend.padding = 2, bottom.legend.padding = 2, top.legend.padding = 2,
 	top.padding = 0.5, bottom.padding = 1, right.padding = 1, left.padding = 1,
-	height = 6, width = 6, size.units = 'in'
+	height = 10, width = 10, size.units = 'in'
 	) {
 
 	### store data on mount
@@ -82,7 +86,7 @@ create.upsetplot <- function(
 						hierarchical = hierarchical,
 						# for now, not interested in the partitions of x
 						keep.elements = FALSE);
-	if (!is.null(set.order)){
+	if (is.null(set.order)){
 		set.order <- colnames(x.partitions)[1:(ncol(x.partitions) - 2)]
 		}
 
@@ -93,34 +97,59 @@ create.upsetplot <- function(
 	x.partitions <- x.partitions[do.call(order, x.partitions.reverse), ];
 	x.partitions[, '..degree..'] <- rowSums(x.partitions[, set.order]);
 
+	if (!include.zeros){
+		x.partitions <- x.partitions[x.partitions$..count.. > 0, ]
+	}
+
+	if (!is.null(minimum.set.size)){
+		x.partitions <- x.partitions[x.partitions$..count.. >= minimum.set.size, ];
+	}
+
+	if (!is.null(minimum.degree)){
+		x.partitions <- x.partitions[x.partitions$..degree.. >= minimum.degree, ];
+	}
+
 	### sorting x for plotting
 	if (!is.null(membership.order)){
 		x.partitions <- x.partitions[match(membership.order, x.partitions$..set..),];
 		}
-	else if ('frequency' == sorting){
-		x.partitions <- x.partitions[order(-x.partitions$..count..), ];
-		if (sorting.reverse){
-			x.partitions <- x.partitions[order(x.partitions$..count..), ];
+	else if (1 == length(sorting)){
+		if ('set' == sorting){
+			x.partitions <- x.partitions
 			}
-		}
-	else if ('degree' == sorting) {
-		x.partitions <- x.partitions[order(-x.partitions$..degree..), ];
-		if (sorting.reverse){
-			x.partitions <- x.partitions[order(x.partitions$..degree..), ];
+		else if ('frequency' == sorting){
+			x.partitions <- x.partitions[order(-x.partitions$..count..), ];
+			if (sorting.reverse){
+				x.partitions <- x.partitions[order(x.partitions$..count..), ];
+				}
 			}
-		}
-	else if (c('frequency', 'degree') == sorting) {
-		x.partitions <- x.partitions[order(-x.partitions$..count.., -x.partitions$..degree..), ];
-		if (sorting.reverse){
-			x.partitions <- x.partitions[order(x.partitions$..count.., x.partitions$..degree..), ];
+		else if ('degree' == sorting) {
+			x.partitions <- x.partitions[order(-x.partitions$..degree..), ];
+			if (sorting.reverse){
+				x.partitions <- x.partitions[order(x.partitions$..degree..), ];
+				}
 			}
-		}
-	else if (c('degree', 'frequency') == sorting) {
-		x.partitions <- x.partitions[order(-x.partitions$..degree.., -x.partitions$..count..), ];
-		if (sorting.reverse){
-			x.partitions <- x.partitions[order(x.partitions$..degree.., x.partitions$..count..), ];
+		else {
+			warning("The sorting parameter only accepts 'set', or 'frequency', 'degree' or the latter two in a vector, overwritten by membership.order.");
 			}
-		}
+	}
+	else if (2 == length(sorting)){
+		if (all(c('frequency', 'degree') == sorting)) {
+			x.partitions <- x.partitions[order(-x.partitions$..count.., -x.partitions$..degree..), ];
+			if (sorting.reverse){
+				x.partitions <- x.partitions[order(x.partitions$..count.., x.partitions$..degree..), ];
+				}
+			}
+		else if (all(c('degree', 'frequency') == sorting)) {
+			x.partitions <- x.partitions[order(-x.partitions$..degree.., -x.partitions$..count..), ];
+			if (sorting.reverse){
+				x.partitions <- x.partitions[order(x.partitions$..degree.., x.partitions$..count..), ];
+				}
+			}
+		else {
+			warning("The sorting parameter only accepts 'frequency', 'degree' or both in a vector, overwritten by membership.order.");
+			}
+	}
 	else {
 		warning("The sorting parameter only accepts 'frequency', 'degree' or both in a vector, overwritten by membership.order.");
 		}
@@ -131,7 +160,6 @@ create.upsetplot <- function(
 	### data for intersection barplot (all y axis settings)
 	intersection.barplot.data <- x.partitions;
 	intersection.barplot.data$order <- 1:nrow(intersection.barplot.data);
-	print(intersection.barplot.data)
 
 	plots.list[['intersection.barplot']] <- create.barplot(
 		formula = ..count.. ~ order,
@@ -179,9 +207,9 @@ create.upsetplot <- function(
 		yaxis.rot = yaxis.rot,
 		xaxis.tck = 0,
 		yaxis.tck = yaxis.tck,
-		# xlimits = NULL,
+		xlimits = c(0.5, nrow(x.partitions) + 0.5),
 		ylimits = ylimits,
-		# xat = TRUE,
+		xat = 1:nrow(x.partitions),
 		yat = yat,
 		# layout = NULL,
 		# as.table = FALSE,
@@ -253,130 +281,6 @@ create.upsetplot <- function(
 		# disable.factor.sorting = FALSE
 		);
 
-	### data for set barplot (all x axis settings)
-	set.barplot.data <- data.frame(value = colSums(x.partitions[, set.order]), order = length(set.order):1);
-	print(set.barplot.data)
-
-	plots.list[['set.barplot']] <- create.barplot(
-		formula = order ~ value,
-		data = set.barplot.data,
-		# groups = NULL,
-		# stack = FALSE,
-		# filename = NULL,
-		# main = NULL,
-		# main.just = 'center',
-		# main.x = 0.5,
-		# main.y = 0.5,
-		# main.cex = 3,
-		xlab.label = xlab.label,
-		ylab.label = '',
-		xlab.cex = xlab.cex,
-		ylab.cex = 0,
-		xlab.col = xlab.col,
-		# ylab.col = 'black',
-		# xlab.top.label = NULL,
-		# xlab.top.cex = 2,
-		# xlab.top.col = 'black',
-		# xlab.top.just = 'center',
-		# xlab.top.x = 0.5,
-		# xlab.top.y = 0,
-		abline.h = set.abline.h,
-		abline.v = set.abline.v,
-		abline.lty = set.abline.lty,
-		abline.lwd = set.abline.lwd,
-		abline.col = set.abline.col,
-		axes.lwd = axes.lwd,
-		add.grid = set.add.grid,
-		xgrid.at = set.xgrid.at,
-		ygrid.at = set.ygrid.at,
-		grid.lwd = set.grid.lwd,
-		grid.col = set.grid.col,
-		xaxis.lab = xaxis.lab,
-		yaxis.lab = FALSE,
-		xaxis.col = xaxis.col,
-		# yaxis.col = 'black',
-		xaxis.fontface = xaxis.fontface,
-		# yaxis.fontface = 'bold',
-		xaxis.cex = xaxis.cex,
-		yaxis.cex = 0,
-		xaxis.rot = xaxis.rot,
-		# yaxis.rot = 0,
-		xaxis.tck = xaxis.tck,
-		yaxis.tck = 0,
-		xlimits = xlimits,
-		# ylimits = NULL,
-		xat = xat,
-		# yat = TRUE,
-		# layout = NULL,
-		# as.table = FALSE,
-		# x.spacing = 0,
-		# y.spacing = 0,
-		# x.relation = 'same',
-		# y.relation = 'same',
-		# top.padding = 0.5,
-		# bottom.padding = 1,
-		# right.padding = 1,
-		# left.padding = 1,
-		# key.bottom = 0.1,
-		ylab.axis.padding = 0,
-		xlab.axis.padding = xlab.axis.padding,
-		col = set.col,
-		border.col = set.border.col,
-		border.lwd = set.border.lwd,
-		plot.horizontal = TRUE,
-		background.col = set.background.col,
-		# origin = 0,
-		reference = set.reference,
-		box.ratio = set.box.ratio,
-		# sample.order = 'none',
-		# group.labels = FALSE,
-		# key = list(text = list(lab = c(''))),
-		# legend = NULL,
-		add.text = set.add.text,
-		text.labels = set.text.labels,
-		text.x = set.text.x,
-		text.y = set.text.y,
-		text.col = set.text.col,
-		text.cex = set.text.cex,
-		text.fontface = set.text.fontface,
-		strip.col = strip.col,
-		strip.cex = strip.cex,
-		# y.error.up = NULL,
-		# y.error.down = y.error.up,
-		# y.error.bar.col = 'black',
-		# error.whisker.width = width/(nrow(data)*4),
-		# error.bar.lwd = 1,
-		# error.whisker.angle = 90,
-		add.rectangle = set.add.rectangle,
-		xleft.rectangle = set.xleft.rectangle,
-		ybottom.rectangle = set.ybottom.rectangle,
-		xright.rectangle = set.xright.rectangle,
-		ytop.rectangle = set.ytop.rectangle,
-		col.rectangle = set.col.rectangle,
-		alpha.rectangle = set.alpha.rectangle,
-		# line.func = NULL,
-		# line.from = 0,
-		# line.to = 0,
-		# line.col = 'transparent',
-		# line.infront = TRUE,
-		text.above.bars = set.text.above.bars,
-		raster = raster,
-		raster.vert = raster.vert,
-		raster.just = raster.just,
-		raster.width.dim = raster.width.dim,
-		# height = 6,
-		# width = 6,
-		size.units = size.units,
-		resolution = resolution,
-		enable.warnings = enable.warnings,
-		description = description,
-		style = style,
-		preload.default = preload.default,
-		use.legacy.settings = use.legacy.settings,
-		# inside.legend.auto = FALSE,
-		# disable.factor.sorting = FALSE
-		);
-
 	### data for membership scatterplot
 	membership.scatterplot.matrix <- t(x.partitions[, set.order])
 	colnames(membership.scatterplot.matrix) <- NULL
@@ -430,16 +334,19 @@ create.upsetplot <- function(
 		else if (dot.background.rectangles == 'column'){
 
 			}
+		else if (dot.background.rectangles == 'none'){
+			# do nothing
+			}
 		else {
 			warning('The dot.background.rectangles option only supports row and column options, overwritten by dot.add.rectangle.')
 			}
 		}
 
-	create.scatterplot(
+	plots.list[['membership.scatterplot']] <- create.scatterplot(
 		formula = y ~ x,
 		data = membership.scatterplot.data,
 		# filename = NULL,
-		groups = membership.scatterplot.data$group,
+		# groups = NULL,
 		# main = NULL,
 		# main.just = 'center',
 		# main.x = 0.5,
@@ -457,10 +364,10 @@ create.upsetplot <- function(
 		# xlab.top.just = 'center',
 		# xlab.top.x = 0.5,
 		# xlab.top.y = 0,
-		xlimits = NULL,
-		ylimits = NULL,
-		xat = TRUE,
-		yat = TRUE,
+		xlimits = c(0.5, nrow(x.partitions) + 0.5),
+		ylimits = c(0.5, length(set.order) + 0.5),
+		xat = 1:length(unique(membership.scatterplot.data$group)),
+		yat = 1:length(set.order),
 		xaxis.lab = NA,
 		yaxis.lab = rev(set.order),
 		xaxis.log = FALSE,
@@ -476,8 +383,8 @@ create.upsetplot <- function(
 		xaxis.tck = c(0,0),
 		yaxis.tck = dot.yaxis.tck,
 		add.grid = dot.add.grid,
-		xgrid.at = TRUE,
-		ygrid.at = TRUE,
+		xgrid.at = 1:length(unique(membership.scatterplot.data$group)),
+		ygrid.at = 1:length(set.order),
 		grid.colour = dot.grid.colour,
 		horizontal = FALSE,
 		type = 'p',
@@ -550,10 +457,10 @@ create.upsetplot <- function(
 		# points.col.border = 'black',
 		# points.cex = 1,
 		add.line.segments = TRUE,
-		line.start = membership.scatterplot.data$start,
-		line.end = membership.scatterplot.data$end,
-		line.col = membership.scatterplot.data$line.col,
-		line.lwd = membership.scatterplot.data$line.lwd,
+		line.start = list(membership.scatterplot.data$start),
+		line.end = list(membership.scatterplot.data$end),
+		line.col = list(membership.scatterplot.data$line.col),
+		line.lwd = list(membership.scatterplot.data$line.lwd),
 		# add.text = FALSE,
 		# text.labels = NULL,
 		# text.x = NULL,
@@ -590,6 +497,129 @@ create.upsetplot <- function(
 		# ...
 		);
 
+	### data for set barplot (all x axis settings)
+	set.barplot.data <- data.frame(value = sapply(x, length), order = length(set.order):1);
+
+	plots.list[['set.barplot']] <- create.barplot(
+		formula = order ~ value,
+		data = set.barplot.data,
+		# groups = NULL,
+		# stack = FALSE,
+		# filename = NULL,
+		# main = NULL,
+		# main.just = 'center',
+		# main.x = 0.5,
+		# main.y = 0.5,
+		# main.cex = 3,
+		xlab.label = xlab.label,
+		ylab.label = '',
+		xlab.cex = xlab.cex,
+		ylab.cex = 0,
+		xlab.col = xlab.col,
+		# ylab.col = 'black',
+		# xlab.top.label = NULL,
+		# xlab.top.cex = 2,
+		# xlab.top.col = 'black',
+		# xlab.top.just = 'center',
+		# xlab.top.x = 0.5,
+		# xlab.top.y = 0,
+		abline.h = set.abline.h,
+		abline.v = set.abline.v,
+		abline.lty = set.abline.lty,
+		abline.lwd = set.abline.lwd,
+		abline.col = set.abline.col,
+		axes.lwd = axes.lwd,
+		add.grid = set.add.grid,
+		xgrid.at = set.xgrid.at,
+		ygrid.at = set.ygrid.at,
+		grid.lwd = set.grid.lwd,
+		grid.col = set.grid.col,
+		xaxis.lab = xaxis.lab,
+		yaxis.lab = FALSE,
+		xaxis.col = xaxis.col,
+		# yaxis.col = 'black',
+		xaxis.fontface = xaxis.fontface,
+		# yaxis.fontface = 'bold',
+		xaxis.cex = xaxis.cex,
+		yaxis.cex = 0,
+		xaxis.rot = xaxis.rot,
+		# yaxis.rot = 0,
+		xaxis.tck = xaxis.tck,
+		yaxis.tck = 0,
+		xlimits = xlimits,
+		ylimits = c(0.5, length(set.order) + 0.5),
+		xat = xat,
+		yat = 1:length(set.order),
+		# layout = NULL,
+		# as.table = FALSE,
+		# x.spacing = 0,
+		# y.spacing = 0,
+		# x.relation = 'same',
+		# y.relation = 'same',
+		# top.padding = 0.5,
+		# bottom.padding = 1,
+		# right.padding = 1,
+		# left.padding = 1,
+		# key.bottom = 0.1,
+		ylab.axis.padding = 0,
+		xlab.axis.padding = xlab.axis.padding,
+		col = set.col,
+		border.col = set.border.col,
+		border.lwd = set.border.lwd,
+		plot.horizontal = TRUE,
+		background.col = set.background.col,
+		# origin = 0,
+		reference = set.reference,
+		box.ratio = set.box.ratio,
+		# sample.order = 'none',
+		# group.labels = FALSE,
+		# key = list(text = list(lab = c(''))),
+		# legend = NULL,
+		add.text = set.add.text,
+		text.labels = set.text.labels,
+		text.x = set.text.x,
+		text.y = set.text.y,
+		text.col = set.text.col,
+		text.cex = set.text.cex,
+		text.fontface = set.text.fontface,
+		strip.col = strip.col,
+		strip.cex = strip.cex,
+		# y.error.up = NULL,
+		# y.error.down = y.error.up,
+		# y.error.bar.col = 'black',
+		# error.whisker.width = width/(nrow(data)*4),
+		# error.bar.lwd = 1,
+		# error.whisker.angle = 90,
+		add.rectangle = set.add.rectangle,
+		xleft.rectangle = set.xleft.rectangle,
+		ybottom.rectangle = set.ybottom.rectangle,
+		xright.rectangle = set.xright.rectangle,
+		ytop.rectangle = set.ytop.rectangle,
+		col.rectangle = set.col.rectangle,
+		alpha.rectangle = set.alpha.rectangle,
+		# line.func = NULL,
+		# line.from = 0,
+		# line.to = 0,
+		# line.col = 'transparent',
+		# line.infront = TRUE,
+		text.above.bars = set.text.above.bars,
+		raster = raster,
+		raster.vert = raster.vert,
+		raster.just = raster.just,
+		raster.width.dim = raster.width.dim,
+		# height = 6,
+		# width = 6,
+		size.units = size.units,
+		resolution = resolution,
+		enable.warnings = enable.warnings,
+		description = description,
+		style = style,
+		preload.default = preload.default,
+		use.legacy.settings = use.legacy.settings,
+		# inside.legend.auto = FALSE,
+		# disable.factor.sorting = FALSE
+		);
+
 	if (!include.set.barplot){
 		plots.list[['set.barplot']] <- NULL;
 		}
@@ -602,9 +632,91 @@ create.upsetplot <- function(
 	# return multipanel plot or write plot based on filename
 	if (include.set.barplot){
 
+		upset.multipanelplot <- create.multipanelplot(
+			plot.objects = plots.list,
+			filename = filename,
+			height = height,
+			width = width,
+			resolution = resolution,
+			plot.objects.heights = plot.objects.heights,
+			plot.objects.widths = plot.objects.widths,
+			layout.width = 2,
+			layout.height = 2,
+			main = main,
+			main.x = main.x,
+			main.y = main.y,
+			x.spacing = x.spacing,
+			y.spacing = y.spacing,
+			xlab.label = '',
+			xlab.cex = 0,
+			ylab.label = '',
+			ylab.label.right = '',
+			ylab.cex = 0,
+			main.cex = main.cex,
+			legend = legend,
+			left.padding = left.padding,
+			ylab.axis.padding = c(ylab.axis.padding, ylab.axis.padding),
+			xlab.axis.padding = c(0, xlab.axis.padding),
+			bottom.padding = bottom.padding,
+			top.padding = top.padding,
+			right.padding = right.padding,
+			layout.skip = c(FALSE, TRUE, FALSE, FALSE),
+			left.legend.padding = left.legend.padding,
+			right.legend.padding = right.legend.padding,
+			bottom.legend.padding = bottom.legend.padding,
+			top.legend.padding = top.legend.padding,
+			description = description,
+			size.units = size.units,
+			enable.warnings = enable.warnings,
+			style = style,
+			use.legacy.settings = use.legacy.settings
+			);
+
+		return(upset.multipanelplot)
+
 		}
 	else {
-
+		plot.objects.widths <- plot.objects.widths[1]
+		upset.multipanelplot <- create.multipanelplot(
+			plot.objects = plots.list,
+			filename = filename,
+			height = height,
+			width = width,
+			resolution = resolution,
+			plot.objects.heights = plot.objects.heights,
+			plot.objects.widths = plot.objects.widths,
+			layout.width = 1,
+			layout.height = 2,
+			main = main,
+			main.x = main.x,
+			main.y = main.y,
+			x.spacing = x.spacing,
+			y.spacing = y.spacing,
+			xlab.label = '',
+			xlab.cex = 0,
+			ylab.label = '',
+			ylab.label.right = '',
+			ylab.cex = 0,
+			main.cex = main.cex,
+			legend = legend,
+			left.padding = left.padding,
+			ylab.axis.padding = c(ylab.axis.padding, ylab.axis.padding),
+			xlab.axis.padding = c(0),
+			bottom.padding = bottom.padding,
+			top.padding = top.padding,
+			right.padding = right.padding,
+			layout.skip = c(FALSE, FALSE),
+			left.legend.padding = left.legend.padding,
+			right.legend.padding = right.legend.padding,
+			bottom.legend.padding = bottom.legend.padding,
+			top.legend.padding = top.legend.padding,
+			description = description,
+			size.units = size.units,
+			enable.warnings = enable.warnings,
+			style = style,
+			use.legacy.settings = use.legacy.settings
+			);
+		return(upset.multipanelplot)
 		}
 
 	}
