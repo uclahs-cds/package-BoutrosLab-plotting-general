@@ -39,7 +39,9 @@ write.plot <- function(
 
 		# set the graphics driver
 		old.type <- getOption('bitmapType');
-		options(bitmapType = 'cairo');
+		if (capabilities('cairo')) {
+			options(bitmapType = 'cairo');
+			}
 
 		for (i in c(1:length(filename))) {
 

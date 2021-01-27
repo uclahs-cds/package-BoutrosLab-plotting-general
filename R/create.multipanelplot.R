@@ -887,11 +887,17 @@ get.legend.height <- function(legend, filename, width, height, resolution) {
 	#grob size depends on image type and size -- must simulate opening the device
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
+		# cairo is not available on M1 Macs, so fallback to default if necessary
+		bitmap.type <- getOption('bitmapType')
+		if (capabilities('cairo')) {
+			bitmap.type <- 'cairo'
+			}
+
                 if ('tiff' == extension) {
-                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
                         }
                 else if ('png' == extension) {
-                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
                         }
                 else if ('pdf' == extension) {
                         cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
@@ -941,11 +947,17 @@ get.legend.width <- function(legend, filename, width, height, resolution) {
 	#grob size depends on image type and size -- must simulate opening the device
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
+		# cairo is not available on M1 Macs, so fallback to default if necessary
+		bitmap.type <- getOption('bitmapType')
+		if (capabilities('cairo')) {
+			bitmap.type <- 'cairo'
+			}
+
                 if ('tiff' == extension) {
-                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
                         }
                 else if ('png' == extension) {
-                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
                         }
                 else if ('pdf' == extension) {
                         cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
@@ -998,11 +1010,17 @@ get.text.grob.width <- function(labels, cex, rot, filename, width, height, resol
 		}
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
+		# cairo is not available on M1 Macs, so fallback to default if necessary
+		bitmap.type <- getOption('bitmapType')
+		if (capabilities('cairo')) {
+			bitmap.type <- 'cairo'
+			}
+
                 if ('tiff' == extension) {
-                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+                        tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
                         }
                 else if ('png' == extension) {
-                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+                        png(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
                         }
                 else if ('pdf' == extension) {
                         cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);
@@ -1048,11 +1066,17 @@ get.text.grob.height <- function(labels, cex, rot, filename, width, height, reso
 		}
 	extension <- file_ext(filename);
 	if (!is.null(filename)) {
+		# cairo is not available on M1 Macs, so fallback to default if necessary
+		bitmap.type <- getOption('bitmapType')
+		if (capabilities('cairo')) {
+			bitmap.type <- 'cairo'
+			}
+
 		if ('tiff' == extension) {
-			tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+			tiff(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
 			}
 		else if ('png' == extension) {
-			png(filename = paste0(tempdir(),'/temp-multipanel'), type = 'cairo', height = height, width = width, res = resolution);
+			png(filename = paste0(tempdir(),'/temp-multipanel'), type = bitmap.type, height = height, width = width, res = resolution);
 			}
 		else if ('pdf' == extension) {
 			cairo_pdf(filename = paste0(tempdir(),'/temp-multipanel'), height = height, width = width);

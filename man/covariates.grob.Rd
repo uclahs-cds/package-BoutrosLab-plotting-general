@@ -41,6 +41,12 @@ This code is an adaptation of the \code{dendrogramGrob} function in the \code{la
 By default, the covariate bar grid is drawn via borders around individual rectangles using the parameters specified in the \code{covariates} argument (col, lwd, etc.). If \code{grid.row}, \code{grid.col}, or \code{grid.border} are specified by the user, additional grid lines are drawn over any existing ones using the parameters in these lists.
 }
 \examples{
+# The 'cairo' graphics is preferred but on M1 Macs this is not available
+bitmap.type = getOption('bitmapType')
+if (capabilities('cairo')) {
+	bitmap.type <- 'cairo';
+	}
+
 # create temp data
 set.seed(1234567890);
 
@@ -79,7 +85,7 @@ covariates.grob1 <- covariates.grob(
     );
 tiff(
     filename = tempfile(pattern = 'covariates_grob1', fileext = '.tiff'), 
-    type = 'cairo', 
+    type = bitmap.type, 
     width = 6, 
     height = 6, 
     units = 'in', 
@@ -112,7 +118,7 @@ covariates.grob2 <- covariates.grob(
     );
 tiff(
     filename = tempfile(pattern = 'covariates_grob2', fileext = '.tiff'), 
-    type = 'cairo', 
+    type = bitmap.type, 
     width = 6, 
     height = 6, 
     units = 'in', 
@@ -131,7 +137,7 @@ covariates.grob3 <- covariates.grob(
     );
 tiff(
     filename = tempfile(pattern = 'covariates_grob3', fileext = '.tiff'), 
-    type = 'cairo', 
+    type = bitmap.type, 
     width = 6, 
     height = 6, 
     units = 'in', 
@@ -165,7 +171,7 @@ covariates.grob4 <- covariates.grob(
     );
 tiff(
     filename = tempfile(pattern = 'covariates_grob4', fileext = '.tiff'), 
-    type = 'cairo', 
+    type = bitmap.type, 
     width = 6, 
     height = 6, 
     units = 'in', 
@@ -188,7 +194,7 @@ covariates.grob5 <- covariates.grob(
     );
 tiff(
     filename = tempfile(pattern = 'covariates_grob5', fileext = '.tiff'),
-    type = 'cairo', 
+    type = bitmap.type, 
     width = 6, 
     height = 6, 
     units = 'in', 
