@@ -205,11 +205,6 @@ legend.grob <- function(
 							just = c('left', 'top'),
 							between = 0.5,
 							rep = FALSE,
-							text = list(
-							    legendi[['labels']],
-							    cex = label.cex,
-							    fontfamily = font.family
-							    ),
 							if (typei %in% c('rect', 'legend')) {
 							    legend.key$rectangles = list(
 							        col = legendi[['colours']], 
@@ -228,7 +223,12 @@ legend.grob <- function(
 							    }
 							else {
 							    stop('type ', typei, ' unknown');
-							    }
+							    },
+							text = list(
+								legendi[['labels']],
+								cex = label.cex,
+								fontfamily = font.family
+								)
 							);
 
 						# Add the legend to the frame
