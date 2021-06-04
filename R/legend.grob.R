@@ -206,7 +206,7 @@ legend.grob <- function(
 							between = 0.5,
 							rep = FALSE,
 							if (typei %in% c('rect', 'legend')) {
-							    legend.key$rectangles <- list(
+							    rectangles = list(
 							        col = legendi[['colours']], 
 							        size = if (is.null(legendi[['size']])) { size } else { legendi[['size']] },
 							        height = 1,
@@ -214,7 +214,7 @@ legend.grob <- function(
 							        );
 							    }
 							else if ('point' == typei) {
-							    legend.key$points <- list(
+							    points = list(
 							        col = if (!is.null(legendi[['col']])) { legendi[['col']] } else { legendi[['colours']] }, 
 							        cex = if (is.null(legendi[['cex']])) { size } else { legendi[['cex']] },
 							        fill = legendi[['fill']],
