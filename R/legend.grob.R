@@ -205,8 +205,13 @@ legend.grob <- function(
 							just = c('left', 'top'),
 							between = 0.5,
 							rep = FALSE,
+							text = list(
+							    legendi[['labels']],
+							    cex = label.cex,
+							    fontfamily = font.family
+							    ),
 							if (typei %in% c('rect', 'legend')) {
-							    rectangles = list(
+							    legend.key$rectangles = list(
 							        col = legendi[['colours']], 
 							        size = if (is.null(legendi[['size']])) { size } else { legendi[['size']] },
 							        height = 1,
@@ -214,7 +219,7 @@ legend.grob <- function(
 							        );
 							    }
 							else if ('point' == typei) {
-							    points = list(
+							    legend.key$points = list(
 							        col = if (!is.null(legendi[['col']])) { legendi[['col']] } else { legendi[['colours']] }, 
 							        cex = if (is.null(legendi[['cex']])) { size } else { legendi[['cex']] },
 							        fill = legendi[['fill']],
@@ -223,12 +228,7 @@ legend.grob <- function(
 							    }
 							else {
 							    stop('type ', typei, ' unknown');
-							    },
-							text = list(
-								legendi[['labels']],
-								cex = label.cex,
-								fontfamily = font.family
-								)
+							    }
 							);
 
 						# Add the legend to the frame
