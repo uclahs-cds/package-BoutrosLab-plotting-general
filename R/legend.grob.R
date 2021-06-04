@@ -221,7 +221,7 @@ legend.grob <- function(
 							    )
 							} else {
 							    stop('type ', typei, ' unknown')
-							}
+							},
 							text = list(
 								legendi[['labels']],
 								cex = label.cex,
