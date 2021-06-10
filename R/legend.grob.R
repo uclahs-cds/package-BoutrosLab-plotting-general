@@ -80,167 +80,163 @@ legend.grob <- function(
 				legendi[['continuous.amount']] <- 100;
 				}
 
-			switch(
-				typei,
-				legend = {
-					# Figure out where this legend should go in the layout (ordered row-wise)
-					legend.row <- if (i %% layout[1] == 0) { i / layout[1] } else { floor(i / layout[1]) + 1 }
-					legend.col <- if (i %% layout[1] == 0) { layout[1] } else { i %% layout[1] }
+			# Figure out where this legend should go in the layout (ordered row-wise)
+			legend.row <- if (i %% layout[1] == 0) { i / layout[1] } else { floor(i / layout[1]) + 1 }
+			legend.col <- if (i %% layout[1] == 0) { layout[1] } else { i %% layout[1] }
 
-					# Create the title of this legend
-					if (!is.null(legendi[['title']])) {
+			# Create the title of this legend
+			if (!is.null(legendi[['title']])) {
 
-						# Draw a grob representing the title
-						title.x.coord <- 0.5;
+				# Draw a grob representing the title
+				title.x.coord <- 0.5;
 
-						if (title.just == 'left') {
-							title.x.coord <- 0;
-							}
-						else if (title.just == 'right') {
-							title.x.coord <- 1;
-							}
-
-						title.grob <- textGrob(
-							label = legendi[['title']],
-							just = c(title.just, 'top'),
-							x = title.x.coord,
-							y = 1,
-							gp = gpar(
-								cex = title.cex,
-								fontface = title.fontface,
-								fontfamily = font.family,
-								fill = 'black'
-								)
-							);
-
-						# Get the height of this grob so we can add white space around it
-						title.grob.height <- convertHeight(
-							grobHeight(title.grob),
-							unitTo = 'lines',
-							valueOnly = TRUE
-							);
-
-
-						# Add the title to the frame
-						legend.grob.final <- packGrob(
-							frame = legend.grob.final,
-							grob = title.grob,
-							row = 3 * (legend.row - 1) + 1,
-							col = 2 * (legend.col - 1) + 1,
-							height = max(
-								legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1],
-								unit(title.grob.height + 0.4, 'lines')
-								),
-							force.height = TRUE,
-
-							);
-
-						}
-
-					# Create a key describing the content of the legend
-					# The first column is the coloured rectangles and
-					# the second column is the corresponding text labels
-					if (!is.null(legendi[['continuous']]) && legendi[['continuous']] == TRUE) {
-
-						legendi[['height']] <- if (is.null(legendi[['height']])) { 2 } else { legendi[['height']] };
-						legendi[['width']] <- if (is.null(legendi[['width']])) { 2 } else { legendi[['width']] };
-
-						colorRamp <- colorRampPalette(legendi[['colours']]);
-						legend.key <- list(
-							space = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { 'bottom' } else { 'right' },
-							between = 0.5,
-							rep = TRUE,
-							just = c('left', 'top'),
-							tick.number = if (is.null(legendi[['tck.number']])) { 0 } else { legendi[['tck.number']] },
-							tck = if (is.null(legendi[['tck']])) { 0 } else { legendi[['tck']] },
-							at = do.breaks(c(0, legendi[['continuous.amount']]), legendi[['continuous.amount']]),
-							col = colorRamp,
-							width = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { legendi[['height']] } else { legendi[['width']] },
-							labels = list(
-								labels = if (is.null(legendi[['labels']])) { c('') } else { legendi[['labels']] },
-								at = if (is.null(legendi[['at']])) { NULL } else { legendi[['at']] },
-								cex = if (is.null(legendi[['cex']])) { 0.8 } else { legendi[['cex']] },
-								rot =  if (is.null(legendi[['labels.rot']])) { 0 } else { legendi[['labels.rot']] }
-								)
-							);
-
-
-						color.key.grob <- draw.colorkey(
-								key = legend.key,
-								draw = FALSE
-								);
-
-						# adjust justification to line up with key style legends
-						color.key.grob$framevp$layout$valid.just <- c(0,1);
-						color.key.grob$framevp$valid.just <- c(0,0.5);
-						
-						# need padding to line up with key style legends
-						color.key.grob$framevp$x = unit(0,'npc') + unit(1.69,'points');
-						
-						# set sizes
-						color.key.grob$framevp$height <- unit(legendi[['height']], 'lines');
-						color.key.grob$framevp$width <- unit(legendi[['width']], 'lines');
-
-						if(!is.null(legendi[['pos.x']])) {
-							color.key.grob$framevp$x <- unit(legendi[['pos.x']],'npc');
-							}
-
-						if(!is.null(legendi[['pos.y']])) {
-							color.key.grob$framevp$y <- unit(legendi[['pos.y']],'npc');
-							}
-
-						# Add the legend to the frame
-						legend.grob.final <- packGrob(
-							frame = legend.grob.final,
-							grob = color.key.grob,
-							row = 3 * (legend.row - 1) + 2,
-							col = 2 * (legend.col - 1) + 1,
-							height = max(unit(legendi[['height']], 'lines'),
-									legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1]),
-							force.height = TRUE,
-							);
-						}
-					else {
-						legend.key <- list(
-							just = c('left', 'top'),
-							between = 0.5,
-							rep = FALSE,
-							if (typei %in% c('rect', 'legend')) {
-							    legend.key$rectangles = list(
-							        col = legendi[['colours']], 
-							        size = if (is.null(legendi[['size']])) { size } else { legendi[['size']] },
-							        height = 1,
-							        border = legendi[['border']]
-							        );
-							    }
-							else if ('point' == typei) {
-							    legend.key$points = list(
-							        col = if (!is.null(legendi[['col']])) { legendi[['col']] } else { legendi[['colours']] }, 
-							        cex = if (is.null(legendi[['cex']])) { size } else { legendi[['cex']] },
-							        fill = legendi[['fill']],
-							        pch = if (is.null(legendi[['pch']])) { 19 } else { legendi[['pch']] }
-							        );
-							    }
-							else {
-							    stop('type ', typei, ' unknown');
-							    },
-							text = list(
-								legendi[['labels']],
-								cex = label.cex,
-								fontfamily = font.family
-								)
-							);
-
-						# Add the legend to the frame
-						legend.grob.final <- packGrob(
-							frame = legend.grob.final,
-							grob = draw.key(key = legend.key, draw = FALSE),
-							row = 3 * (legend.row - 1) + 2,
-							col = 2 * (legend.col - 1) + 1
-							);
-						}
+				if (title.just == 'left') {
+					title.x.coord <- 0;
 					}
-				);
+				else if (title.just == 'right') {
+					title.x.coord <- 1;
+					}
+
+				title.grob <- textGrob(
+					label = legendi[['title']],
+					just = c(title.just, 'top'),
+					x = title.x.coord,
+					y = 1,
+					gp = gpar(
+						cex = title.cex,
+						fontface = title.fontface,
+						fontfamily = font.family,
+						fill = 'black'
+						)
+					);
+
+				# Get the height of this grob so we can add white space around it
+				title.grob.height <- convertHeight(
+					grobHeight(title.grob),
+					unitTo = 'lines',
+					valueOnly = TRUE
+					);
+
+
+				# Add the title to the frame
+				legend.grob.final <- packGrob(
+					frame = legend.grob.final,
+					grob = title.grob,
+					row = 3 * (legend.row - 1) + 1,
+					col = 2 * (legend.col - 1) + 1,
+					height = max(
+						legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1],
+						unit(title.grob.height + 0.4, 'lines')
+						),
+					force.height = TRUE,
+
+					);
+
+				}
+
+			# Create a key describing the content of the legend
+			# The first column is the coloured rectangles and
+			# the second column is the corresponding text labels
+			if (!is.null(legendi[['continuous']]) && legendi[['continuous']] == TRUE) {
+
+				legendi[['height']] <- if (is.null(legendi[['height']])) { 2 } else { legendi[['height']] };
+				legendi[['width']] <- if (is.null(legendi[['width']])) { 2 } else { legendi[['width']] };
+
+				colorRamp <- colorRampPalette(legendi[['colours']]);
+				legend.key <- list(
+					space = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { 'bottom' } else { 'right' },
+					between = 0.5,
+					rep = TRUE,
+					just = c('left', 'top'),
+					tick.number = if (is.null(legendi[['tck.number']])) { 0 } else { legendi[['tck.number']] },
+					tck = if (is.null(legendi[['tck']])) { 0 } else { legendi[['tck']] },
+					at = do.breaks(c(0, legendi[['continuous.amount']]), legendi[['continuous.amount']]),
+					col = colorRamp,
+					width = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { legendi[['height']] } else { legendi[['width']] },
+					labels = list(
+						labels = if (is.null(legendi[['labels']])) { c('') } else { legendi[['labels']] },
+						at = if (is.null(legendi[['at']])) { NULL } else { legendi[['at']] },
+						cex = if (is.null(legendi[['cex']])) { 0.8 } else { legendi[['cex']] },
+						rot =  if (is.null(legendi[['labels.rot']])) { 0 } else { legendi[['labels.rot']] }
+						)
+					);
+
+
+				color.key.grob <- draw.colorkey(
+						key = legend.key,
+						draw = FALSE
+						);
+
+				# adjust justification to line up with key style legends
+				color.key.grob$framevp$layout$valid.just <- c(0,1);
+				color.key.grob$framevp$valid.just <- c(0,0.5);
+				
+				# need padding to line up with key style legends
+				color.key.grob$framevp$x = unit(0,'npc') + unit(1.69,'points');
+				
+				# set sizes
+				color.key.grob$framevp$height <- unit(legendi[['height']], 'lines');
+				color.key.grob$framevp$width <- unit(legendi[['width']], 'lines');
+
+				if(!is.null(legendi[['pos.x']])) {
+					color.key.grob$framevp$x <- unit(legendi[['pos.x']],'npc');
+					}
+
+				if(!is.null(legendi[['pos.y']])) {
+					color.key.grob$framevp$y <- unit(legendi[['pos.y']],'npc');
+					}
+
+				# Add the legend to the frame
+				legend.grob.final <- packGrob(
+					frame = legend.grob.final,
+					grob = color.key.grob,
+					row = 3 * (legend.row - 1) + 2,
+					col = 2 * (legend.col - 1) + 1,
+					height = max(unit(legendi[['height']], 'lines'),
+							legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1]),
+					force.height = TRUE,
+					);
+				}
+			else {
+				legend.key <- list(
+					just = c('left', 'top'),
+					between = 0.5,
+					rep = FALSE
+				    );
+				if (typei %in% c('rect', 'legend')) {
+				    legend.key$rectangles <- list(
+				        col = legendi[['colours']],
+				        size = if (is.null(legendi[['size']])) size else legendi[['size']],
+				        height = 1,
+				        border = legendi[['border']]
+				        );
+				} else if ('point' == typei) {
+				    legend.key$points <- list(
+				        col = if (!is.null(legendi[['col']])) legendi[['col']] else legendi[['colours']],
+				        cex = if (is.null(legendi[['cex']])) size else legendi[['cex']],
+				        fill = legendi[['fill']],
+				        pch = if (is.null(legendi[['pch']])) 19 else legendi[['pch']]
+				        );
+				} else {
+				    stop('type ', typei, ' unknown')
+				}
+				if (!is.null(legendi[['padding.text']])) {
+				    legend.key$padding.text <- legendi[['padding.text']];
+				}
+				legend.key$text = list(
+					legendi[['labels']],
+					cex = label.cex,
+					fontfamily = font.family
+					);
+
+				# Add the legend to the frame
+				legend.grob.final <- packGrob(
+					frame = legend.grob.final,
+					grob = draw.key(key = legend.key, draw = FALSE),
+					row = 3 * (legend.row - 1) + 2,
+					col = 2 * (legend.col - 1) + 1
+					);
+				}
 			}
 
 		# Draw border if specified
