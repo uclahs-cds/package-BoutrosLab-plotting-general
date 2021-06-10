@@ -206,19 +206,19 @@ legend.grob <- function(
 				if (typei %in% c('rect', 'legend')) {
 				    legend.key$rectangles <- list(
 				        col = legendi[['colours']],
-				        size = if (is.null(legendi[['size']])) size else legendi[['size']],
+				        size = if (is.null(legendi[['size']])) { size } else { legendi[['size']] },
 				        height = 1,
 				        border = legendi[['border']]
-				        );
+				    );
 				} else if ('point' == typei) {
 				    legend.key$points <- list(
-				        col = if (!is.null(legendi[['col']])) legendi[['col']] else legendi[['colours']],
-				        cex = if (is.null(legendi[['cex']])) size else legendi[['cex']],
+				        col = if (!is.null(legendi[['col']])) { legendi[['col']] } else { legendi[['colours']] },
+				        cex = if (is.null(legendi[['cex']])) { size } else { legendi[['cex']] },
 				        fill = legendi[['fill']],
-				        pch = if (is.null(legendi[['pch']])) 19 else legendi[['pch']]
-				        );
+				        pch = if (is.null(legendi[['pch']])) { 19 } else { legendi[['pch']] }
+				    );
 				} else {
-				    stop('type ', typei, ' unknown')
+				    stop('type ', typei, ' unknown');
 				}
 				if (!is.null(legendi[['padding.text']])) {
 				    legend.key$padding.text <- legendi[['padding.text']];
