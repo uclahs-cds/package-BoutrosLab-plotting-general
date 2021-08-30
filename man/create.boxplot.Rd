@@ -121,7 +121,8 @@ create.boxplot(
     \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
     \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
     \item{points.pch}{pch value to use for stripplot}
-    \item{points.col}{colour to use for stripplot}
+    \item{points.col}{colour to use for stripplot. (This can be a single colour or
+    a vector of colour values corresponding to each point)}
     \item{points.cex}{cex value to use for stripplot}
     \item{points.alpha}{alpha value to use for stripplot}
     \item{abline.h}{Specify the horizontal superimpose line}
