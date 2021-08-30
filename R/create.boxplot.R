@@ -90,7 +90,8 @@ create.boxplot <- function(
 		pch = points.pch,
 		col = points.col,
 		cex = points.cex,
-		alpha = points.alpha
+		alpha = points.alpha,
+		groups = if (length(points.col) > 1) points.col else NULL
 		);
 
 	text.info <- list(
@@ -193,19 +194,21 @@ create.boxplot <- function(
 	trellis.object <- lattice::bwplot(
 		x = formula,
 		data,
-		panel = function(...) {
+		panel = function(subscripts, ...) {
 
 			# add stripplot in background if requested
 			if (add.stripplot) {
 
 				panel.stripplot(
 					jitter.data = TRUE,
-					factor      = jitter.factor,
-					amount      = jitter.amount,
+					factor = jitter.factor,
+					amount = jitter.amount,
 					pch	 = points.info$pch,
 					col	 = points.info$col,
+					groups = points.info$groups,
+					subscripts = if (!is.null(points.info$groups)) subscripts else NULL,
 					cex	 = points.info$cex,
-					alpha       = points.info$alpha,
+					alpha  = points.info$alpha,
 					...
 					);
 				}
