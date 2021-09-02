@@ -94,7 +94,7 @@ create.boxplot <- function(
 		col = points.col,
 		cex = points.cex,
 		alpha = points.alpha,
-		groups = if (formula.is.split) data[, parsed.formula[2]] else NULL
+		groups = if (formula.is.split) { data[, parsed.formula[2]]; } else { NULL; }
 		);
 		
 	text.info <- list(
@@ -208,7 +208,7 @@ create.boxplot <- function(
 					pch	 = points.info$pch,
 					col	 = points.info$col,
 					groups = points.info$groups,
-					subscripts = if (!is.null(points.info$groups)) subscripts else NULL,
+					subscripts = if (!is.null(points.info$groups)) { subscripts; } else { NULL; },
 					cex	 = points.info$cex,
 					alpha  = points.info$alpha,
 					...
