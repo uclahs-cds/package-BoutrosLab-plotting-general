@@ -243,11 +243,11 @@ create.boxplot <- function(
 
 			# Add text to plot
 			if (add.text) {
-
+				which.packet <- parent.frame(2)$which.packet;
 				panel.text(
 					x	= text.info$x,
 					y	= text.info$y,
-					labels   = text.info$labels,
+					labels   = text.info$labels[which.packet],
 					col      = text.info$col,
 					cex      = text.info$cex,
 					fontface = text.info$fontface,
