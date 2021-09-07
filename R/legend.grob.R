@@ -105,7 +105,7 @@ legend.grob <- function(
 					gp = gpar(
 						cex = title.cex,
 						fontface = title.fontface,
-						fontfamily = font.family,
+						fontfamily = font.family
 						)
 					);
 

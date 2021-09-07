@@ -126,7 +126,8 @@ legends2 <- list(
         cex = 1.5,
         # More row spacing needed with dots
         padding.text = 3
-        );
+        )
+    );
 
 # create the new legend and use more complex border
 legend.grob3 <- legend.grob(
