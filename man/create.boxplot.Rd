@@ -121,7 +121,8 @@ create.boxplot(
     \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
     \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
     \item{points.pch}{pch value to use for stripplot}
-    \item{points.col}{colour to use for stripplot}
+    \item{points.col}{colour(s) to use for stripplot (either a single colour 
+    or a vector)}
     \item{points.cex}{cex value to use for stripplot}
     \item{points.alpha}{alpha value to use for stripplot}
     \item{abline.h}{Specify the horizontal superimpose line}
@@ -184,7 +185,7 @@ create.boxplot(
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 2}
     \item{ylab.axis.padding}{A number specifying the distance of y-axis label to the y-axis, defaults to 0},
     \item{add.text}{Allow additional text to be drawn, default is FALSE}
-    \item{text.labels}{Labels for additional text}
+    \item{text.labels}{Labels for additional text. If the formula contains group, the length of this argument should match with the number of groups.}
     \item{text.x}{The x co-ordinates where additional text should be placed}
     \item{text.y}{The y co-ordinates where additional text should be placed}
     \item{text.anchor}{Part of text that should be anchored to x/y coordinates. Defaults to 'centre'. Use 'left' or 'right' to left or right-align text.}
@@ -251,6 +252,25 @@ create.boxplot(
     description = 'Boxplot created by BoutrosLab.plotting.general',
     resolution = 50
     );
+
+# Multi-coloured stripplot
+strip.data <- data.frame(
+    score = c(rnorm(30, 15, 3), rnorm(50, 20, 4)),
+    sex = sample(c('male', 'female'), 80, replace = TRUE),
+    gene = sample(c('a', 'b'), 80, replace = TRUE)
+    );
+
+create.boxplot(
+    filename = NULL,
+    formula = score ~ sex | gene,
+    data = strip.data,
+    main = 'Multi-Coloured Stripplot',
+    add.stripplot = TRUE,
+    points.col = c('pink', 'dodgerblue'),
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
+
 
 # format data
 reformatted.data <- data.frame(
