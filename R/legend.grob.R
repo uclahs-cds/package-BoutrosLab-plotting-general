@@ -127,9 +127,7 @@ legend.grob <- function(
 						unit(title.grob.height + 0.4, 'lines')
 						),
 					force.height = TRUE,
-
 					);
-
 				}
 
 			# Create a key describing the content of the legend
@@ -213,13 +211,14 @@ legend.grob <- function(
     				        fill = legendi[['fill']],
     				        pch = if (is.null(legendi[['pch']])) { 19 } else { legendi[['pch']] }
     				        );
-    				    } else {
-        				    stop('type ', typei, ' unknown');
-        				    }
+				    } else {
+				    	stop('type ', typei, ' unknown');
+				    	}
 				
 				if (!is.null(legendi[['padding.text']])) {
 				    legend.key$padding.text <- legendi[['padding.text']];
-				}
+					}
+				
 				legend.key$text = list(
 					legendi[['labels']],
 					cex = label.cex,
