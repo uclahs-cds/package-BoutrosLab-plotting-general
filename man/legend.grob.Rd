@@ -123,9 +123,7 @@ legends2 <- list(
         colours = c('firebrick3', 'lightgrey'),
         labels = c('A label', 'A longer label'),
         # Set dot size
-        cex = 1.5,
-        # More row spacing needed with dots
-        padding.text = 3
+        cex = 1.5
         )
     );
 

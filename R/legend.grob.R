@@ -131,7 +131,7 @@ legend.grob <- function(
 				}
 
 			# Create a key describing the content of the legend
-			# The first column is the coloured rectangles and
+			# The first column is the coloured shapes and
 			# the second column is the corresponding text labels
 			if (!is.null(legendi[['continuous']]) && legendi[['continuous']] == TRUE) {
 
@@ -211,6 +211,9 @@ legend.grob <- function(
     				        fill = legendi[['fill']],
     				        pch = if (is.null(legendi[['pch']])) { 19 } else { legendi[['pch']] }
     				        );
+    				    
+    				    # Add extra row spacing for points by default
+    				    legend.key$padding.text <- legend.key$points$cex * 2;
 				    } else {
 				    	stop('type ', typei, ' unknown');
 				    	}
