@@ -118,9 +118,12 @@ legends2 <- list(
         labels = c('Group 1', 'Group 2', 'Group 3'),
         title = expression(underline('Legend #1'))
         ),
-    legend = list(
+    # Use dots instead of rectangles
+    point = list(
         colours = c('firebrick3', 'lightgrey'),
-        labels = c('A label', 'A longer label')
+        labels = c('A label', 'A longer label'),
+        # Set dot size
+        cex = 1.5
         )
     );
 

@@ -1,3 +1,8 @@
+BoutrosLab.plotting.general 6.0.5 2021-10-11
+
+UPDATE
+* Add option to use dots in a legend instead of default rectangles
+
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 6.0.4 2021-08-30
 
