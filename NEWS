@@ -1,10 +1,8 @@
-BoutrosLab.plotting.general 6.0.5 2021-10-11
+BoutrosLab.plotting.general 6.1.0 2021-10-15
 
 UPDATE
 * Add option to use dots in a legend instead of default rectangles
-
---------------------------------------------------------------------------
-BoutrosLab.plotting.general 6.0.4 2021-08-30
+* Enable create.boxplot to print different text label on each panel
 
 BUG
 * Fixed inconsistent grouping of point colours in create.boxplot
