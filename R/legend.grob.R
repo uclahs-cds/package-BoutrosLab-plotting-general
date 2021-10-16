@@ -48,16 +48,19 @@ legend.grob <- function(
 		# Create a layout for the legends
 		# Each legend gets an extra row for its title
 		# There is also an extra empty row/column inserted between each of the legends to allow for nicer spacing
+		row.buffer <- 3;
+		col.buffer <- 2;
+		
 		legend.layout <- grid.layout(
-			ncol = layout[1] * 2 - 1,
-			nrow = layout[2] * 3 - 1,
+			ncol = layout[1] * col.buffer - 1,
+			nrow = layout[2] * row.buffer - 1,
 			heights = unit(
 				c(0, 0, rep(c(between.row, 0, 0), layout[2] - 1)),
-				c(rep('lines', layout[2] * 3 - 1))
+				c(rep('lines', layout[2] * row.buffer - 1))
 				),
 			widths = unit(
 				c(rep(c(0, between.col), layout[1] - 1), 0),
-				c(rep('lines', layout[1] * 2 - 1))
+				c(rep('lines', layout[1] * col.buffer - 1))
 				)
 			);
 
@@ -120,10 +123,10 @@ legend.grob <- function(
 				legend.grob.final <- packGrob(
 					frame = legend.grob.final,
 					grob = title.grob,
-					row = 3 * (legend.row - 1) + 1,
-					col = 2 * (legend.col - 1) + 1,
+					row = row.buffer * (legend.row - 1) + 1,
+					col = col.buffer * (legend.col - 1) + 1,
 					height = max(
-						legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1],
+						legend.grob.final$framevp$layout$heights[row.buffer * (legend.row - 1) + 1],
 						unit(title.grob.height + 0.4, 'lines')
 						),
 					force.height = TRUE,
@@ -181,11 +184,11 @@ legend.grob <- function(
 				legend.grob.final <- packGrob(
 					frame = legend.grob.final,
 					grob = color.key.grob,
-					row = 3 * (legend.row - 1) + 2,
-					col = 2 * (legend.col - 1) + 1,
+					row = row.buffer * (legend.row - 1) + 2,
+					col = col.buffer * (legend.col - 1) + 1,
 					height = max(
 					    unit(legendi[['height']], 'lines'),
-					    legend.grob.final$framevp$layout$heights[3 * (legend.row - 1) + 1]
+					    legend.grob.final$framevp$layout$heights[row.buffer * (legend.row - 1) + 1]
 					    ),
 					force.height = TRUE,
 					);
@@ -232,8 +235,8 @@ legend.grob <- function(
 				legend.grob.final <- packGrob(
 					frame = legend.grob.final,
 					grob = draw.key(key = legend.key, draw = FALSE),
-					row = 3 * (legend.row - 1) + 2,
-					col = 2 * (legend.col - 1) + 1
+					row = row.buffer * (legend.row - 1) + 2,
+					col = col.buffer * (legend.col - 1) + 1
 					);
 				}
 			}
