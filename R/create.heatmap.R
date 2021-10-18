@@ -1035,7 +1035,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		max.value <- max(x - colour.centering.value, na.rm = TRUE);
 		at <- seq(from = min.value, to = max.value, length.out = total.colours);
 		if (all(1 == at)) { # handle cases with a single colour/value of x
-			at <- c(1:2);  # all value of x are 1, the 2 prevents an error since duplicate values of at are not permitted
+			at <- c(1:2);  # all values of x are 1. The 2 prevents an error, since duplicate values of at are not permitted
 			# create the colour scheme
 			my.palette <- c(colour.scheme);
 			}
