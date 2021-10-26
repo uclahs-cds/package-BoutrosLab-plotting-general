@@ -4,145 +4,145 @@
 \description{Takes a data.frame and creates a heatmap}
 \usage{
 create.heatmap(
-	x, 
-	filename = NULL, 
-	clustering.method = 'diana', 
-	cluster.dimensions = 'both', 
-	rows.distance.method = 'correlation', 
-	cols.distance.method = 'correlation', 
-	cor.method = 'pearson', 
-	row.dendrogram = list(), 
-	col.dendrogram = list(), 
-	plot.dendrograms = 'both', 
-	force.clustering = FALSE, 
-	criteria.list = TRUE, 
-	covariates = list(), 
-	covariates.grid.row = NULL, 
-	covariates.grid.col = NULL, 
-	covariates.grid.border = NULL, 
-	covariates.row.lines = NULL, 
-	covariates.col.lines = NULL, 
-	covariates.reorder.grid.index = FALSE, 	
-	covariates.padding = 0.25, 
-	covariates.top = list(), 
-	covariates.top.grid.row = NULL, 
-	covariates.top.grid.col = NULL, 
-	covariates.top.grid.border = NULL, 
-	covariates.top.row.lines = NULL, 
-	covariates.top.col.lines = NULL, 
-	covariates.top.reorder.grid.index = FALSE, 
-	covariates.top.padding = 0.25, 
-	covariate.legends = list(), 
-	legend.cex = 1, 
-	legend.title.cex = 1, 
-	legend.title.just = 'centre', 
-	legend.title.fontface = 'bold', 
-	legend.border = NULL, 
-	legend.border.padding = 1, 
-	legend.layout = NULL, 
-	legend.between.col = 1, 
-	legend.between.row = 1, 
-	legend.side = 'left', 
+	x,
+	filename = NULL,
+	clustering.method = 'diana',
+	cluster.dimensions = 'both',
+	rows.distance.method = 'correlation',
+	cols.distance.method = 'correlation',
+	cor.method = 'pearson',
+	row.dendrogram = list(),
+	col.dendrogram = list(),
+	plot.dendrograms = 'both',
+	force.clustering = FALSE,
+	criteria.list = TRUE,
+	covariates = list(),
+	covariates.grid.row = NULL,
+	covariates.grid.col = NULL,
+	covariates.grid.border = NULL,
+	covariates.row.lines = NULL,
+	covariates.col.lines = NULL,
+	covariates.reorder.grid.index = FALSE,
+	covariates.padding = 0.25,
+	covariates.top = list(),
+	covariates.top.grid.row = NULL,
+	covariates.top.grid.col = NULL,
+	covariates.top.grid.border = NULL,
+	covariates.top.row.lines = NULL,
+	covariates.top.col.lines = NULL,
+	covariates.top.reorder.grid.index = FALSE,
+	covariates.top.padding = 0.25,
+	covariate.legends = list(),
+	legend.cex = 1,
+	legend.title.cex = 1,
+	legend.title.just = 'centre',
+	legend.title.fontface = 'bold',
+	legend.border = NULL,
+	legend.border.padding = 1,
+	legend.layout = NULL,
+	legend.between.col = 1,
+	legend.between.row = 1,
+	legend.side = 'left',
 	main = list(label = ''),
-	main.just = "center", 
-	main.x = 0.5, 
+	main.just = "center",
+	main.x = 0.5,
 	main.y = 0.5,
-	main.cex = 3, 
-	right.size.add = 1, 
-	top.size.add = 1, 
-	right.dendrogram.size = 2.5, 
-	top.dendrogram.size = 2.5, 
-	scale.data = FALSE, 
-	yaxis.lab = NULL, 
-	xaxis.lab = NULL, 
-	xaxis.lab.top = NULL, 
+	main.cex = 3,
+	right.size.add = 1,
+	top.size.add = 1,
+	right.dendrogram.size = 2.5,
+	top.dendrogram.size = 2.5,
+	scale.data = FALSE,
+	yaxis.lab = NULL,
+	xaxis.lab = NULL,
+	xaxis.lab.top = NULL,
 	xaxis.cex = 1.5,
 	xaxis.top.cex = NULL,
 	yaxis.cex = 1.5,
-	xlab.cex = 2, 
-	ylab.cex = 2, 
-	xlab.top.label = NULL,  
+	xlab.cex = 2,
+	ylab.cex = 2,
+	xlab.top.label = NULL,
         xlab.top.cex = 2,
 	xlab.top.col = 'black',
-	xlab.top.just = "center", 
-	xlab.top.x = 0.5, 
-	xlab.top.y = 0, 
-	xat = TRUE, 
-	xat.top = NULL, 
-	yat = TRUE, 
+	xlab.top.just = "center",
+	xlab.top.x = 0.5,
+	xlab.top.y = 0,
+	xat = TRUE,
+	xat.top = NULL,
+	yat = TRUE,
 	xaxis.tck = NULL,
 	xaxis.top.tck = NULL,
-	yaxis.tck = NULL, 
-	xaxis.col = 'black', 
-	yaxis.col = 'black', 
-	col.pos = NULL, 
-	row.pos = NULL, 
-	cell.text = '', 
-	text.fontface = 1, 
-	text.cex = 1, 
-	text.col = 'black', 
-	text.position = NULL, 
+	yaxis.tck = NULL,
+	xaxis.col = 'black',
+	yaxis.col = 'black',
+	col.pos = NULL,
+	row.pos = NULL,
+	cell.text = '',
+	text.fontface = 1,
+	text.cex = 1,
+	text.col = 'black',
+	text.position = NULL,
 	text.offset = 0,
-	text.use.grid.coordinates = TRUE, 
-	colourkey.cex = 3.6, 
-	xaxis.rot = 90, 
+	text.use.grid.coordinates = TRUE,
+	colourkey.cex = 3.6,
+	xaxis.rot = 90,
 	xaxis.rot.top = 90,
-	yaxis.rot = 0, 
-	xlab.label = '' , 
-	ylab.label = '', 
-	xlab.col = 'black', 
+	yaxis.rot = 0,
+	xlab.label = '' ,
+	ylab.label = '',
+	xlab.col = 'black',
 	ylab.col = 'black',
-	axes.lwd = 2, 
-	gridline.order = 'h', 
-	grid.row = FALSE, 
-	grid.col = FALSE, 
-	force.grid.row = FALSE, 
-	force.grid.col = FALSE, 
-	grid.limit = 50, 
-	row.lines = seq(0, ncol(x), 1) + 0.5, 
-	col.lines = seq(0, nrow(x), 1) + 0.5, 
-	colour.scheme = c(), 
-	total.colours = 99, 
-	colour.centering.value = 0, 
-	colour.alpha = 1, 
-	fill.colour = 'darkgray', 
-	at = NULL, 
-	print.colour.key = TRUE, 
-	colourkey.labels.at = NULL, 
-	colourkey.labels = NULL, 
-	top.padding = 0.1, 
-	bottom.padding = 0.5, 
-	right.padding = 0.5, 
-	left.padding = 0.5, 
-	x.alternating = 1, 
-	shrink = 1, 
-	row.colour = 'black', 
-	col.colour = 'black', 
-	row.lwd = 1, 
-	col.lwd = 1, 
-	grid.colour = NULL, 
-	grid.lwd = NULL, 
-	width = 6, 
-	height = 6, 
-	size.units = 'in', 
-	resolution = 1600, 
-	enable.warnings = FALSE, 
-	xaxis.covariates = NULL, 
-	xaxis.covariates.y = 0, 
-	yaxis.covariates = NULL, 
+	axes.lwd = 2,
+	gridline.order = 'h',
+	grid.row = FALSE,
+	grid.col = FALSE,
+	force.grid.row = FALSE,
+	force.grid.col = FALSE,
+	grid.limit = 50,
+	row.lines = seq(0, ncol(x), 1) + 0.5,
+	col.lines = seq(0, nrow(x), 1) + 0.5,
+	colour.scheme = c(),
+	total.colours = 99,
+	colour.centering.value = 0,
+	colour.alpha = 1,
+	fill.colour = 'darkgray',
+	at = NULL,
+	print.colour.key = TRUE,
+	colourkey.labels.at = NULL,
+	colourkey.labels = NULL,
+	top.padding = 0.1,
+	bottom.padding = 0.5,
+	right.padding = 0.5,
+	left.padding = 0.5,
+	x.alternating = 1,
+	shrink = 1,
+	row.colour = 'black',
+	col.colour = 'black',
+	row.lwd = 1,
+	col.lwd = 1,
+	grid.colour = NULL,
+	grid.lwd = NULL,
+	width = 6,
+	height = 6,
+	size.units = 'in',
+	resolution = 1600,
+	enable.warnings = FALSE,
+	xaxis.covariates = NULL,
+	xaxis.covariates.y = 0,
+	yaxis.covariates = NULL,
 	yaxis.covariates.x = NULL,
-	description = 'Created with BoutrosLab.plotting.general', 
-	xaxis.fontface = 'bold', 
-	yaxis.fontface = 'bold', 
-	symbols = list(borders = NULL, 
-	squares = NULL, 
-	circles = NULL), 
+	description = 'Created with BoutrosLab.plotting.general',
+	xaxis.fontface = 'bold',
+	yaxis.fontface = 'bold',
+	symbols = list(borders = NULL,
+	squares = NULL,
+	circles = NULL),
 	same.as.matrix = FALSE,
-	input.colours = FALSE, 
-	axis.xlab.padding = 0.1, 
-	stratified.clusters.rows = NULL, 
+	input.colours = FALSE,
+	axis.xlab.padding = 0.1,
+	stratified.clusters.rows = NULL,
 	stratified.clusters.cols = NULL,
-        inside.legend = NULL, 
+        inside.legend = NULL,
 	style = 'BoutrosLab',
 	preload.default = 'custom',
         use.legacy.settings = FALSE
@@ -228,7 +228,7 @@ create.heatmap(
     \item{xaxis.top.tck}{Size of top x-axis tick marks. Defaults to NULL for intelligent choice based on covariate size.}
     \item{yaxis.tck}{Size of y-axis tick marks. Defaults to NULL for intelligent choice based on covariate size.}
     \item{col.pos}{Vector of column positions for adding text to cell, defaults to NULL}
-    \item{row.pos}{Vector of row positions for adding text to cell, defaults to NULL} 
+    \item{row.pos}{Vector of row positions for adding text to cell, defaults to NULL}
     \item{cell.text}{Text to add to cell, defaults to an empty string}
     \item{text.fontface}{1 = Plain, 2 = Bold, 3 = Italic, default is 1}
     \item{text.cex}{Text size, default is 1}
@@ -315,12 +315,12 @@ simple.data <- data.frame(
     w <- rnorm(n = 15)
     );
 
-simple.1D.data <- data.frame(x = rnorm(n = 15)); 
+simple.1D.data <- data.frame(x = rnorm(n = 15));
 
 
 create.heatmap(
     filename = tempfile(pattern = 'Heatmap_1D_Inside_Legend', fileext = '.tiff'),
-    x = simple.1D.data, 
+    x = simple.1D.data,
     clustering.method='none',
     inside.legend = list(fun = draw.key,
         args = list(
@@ -357,9 +357,19 @@ simple.data.col <- data.frame(
     w <- rep('purple',10)
     );
 
+# Input Colours Provided
 create.heatmap(
     filename = tempfile(pattern = 'Heatmap_Simple_Using_Colours', fileext = '.tiff'),
-    x = simple.data.col, 
+    x = simple.data.col,
+    clustering.method = 'none',
+    input.colours = TRUE,
+    resolution = 100
+    );
+
+# Single Input Colour Provided
+create.heatmap(
+    filename = tempfile(pattern = 'Heatmap_Simple_Using_Single_Colour', fileext = '.tiff'),
+    x = simple.data.col[, ncol(simple.data.col), drop = FALSE],
     clustering.method = 'none',
     input.colours = TRUE,
     resolution = 100
@@ -379,7 +389,7 @@ create.heatmap(
     filename = tempfile(pattern = 'Heatmap_Axes_Labels', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Axes & labels',
-    # Changing axes 
+    # Changing axes
     xlab.label = 'Genes',
     ylab.label = 'Samples',
     # Turning on default row and column labels
@@ -398,7 +408,7 @@ create.heatmap(
     );
 
 \donttest{
-# Custom Axes 
+# Custom Axes
 create.heatmap(
     filename = tempfile(pattern = 'Heatmap_Custom_Axes', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
@@ -777,7 +787,7 @@ create.heatmap(
     row.lwd = 1.5,
     col.lwd = 1.5,
     clustering.method = 'none',
-    # conditionally labelling cells 
+    # conditionally labelling cells
     # flipping rows and columns because the heatmap function does so
     row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
     col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
@@ -809,7 +819,7 @@ create.heatmap(
     col.lwd = 1.5,
     clustering.method = 'none',
     text.use.grid.coordinates = FALSE,
-    # conditionally labelling cells 
+    # conditionally labelling cells
     # flipping rows and columns because the heatmap function does so
     cell.text = c("text1","text2"),
     text.col = 'white',
@@ -840,7 +850,7 @@ create.heatmap(
     colourkey.labels.at = seq(2,12,1),
     colour.alpha = 'automatic',
     clustering.method = 'none',
-    # conditionally adding points to cells 
+    # conditionally adding points to cells
     # flipping rows and columns because the heatmap function does so
     row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
     col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
@@ -854,56 +864,56 @@ create.heatmap(
 # Method 2 of Adding Symbols
 # Create matrices to describe the symbols
 circle.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = FALSE
     );
 
 circle.colour.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = 'pink'
     );
 
 circle.size.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = 20
     );
 
 border.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = FALSE
     );
 
 border.colour.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = 'black'
     );
 
 border.size.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = 4
     );
 
 square.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = FALSE
     );
 
 square.colour.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = 'pink'
     );
 
 square.size.matrix <- matrix(
-    nrow = 20, 
-    ncol = 20, 
+    nrow = 20,
+    ncol = 20,
     data = 10
     );
 
@@ -1204,18 +1214,18 @@ create.heatmap(
     total.colours = 11,
     colour.scheme = default.colours(10),
 
-    # set style to Nature 
+    # set style to Nature
     style = 'Nature',
-    
+
     # demonstrating how to italicize character variables
     ylab.label = expression(paste('italicized ', italic('a'))),
-  
+
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
     description = 'Heatmap created using BoutrosLab.plotting.general',
     resolution = 200
-    );    
+    );
 
 # create heatmap with key like legend - used to show range of continuous variables
 
