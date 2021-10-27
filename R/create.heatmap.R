@@ -264,6 +264,17 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			}
 		}
 
+	#error checking for input.colours = TRUE
+	if (input.colours == TRUE) {
+
+		if (clustering.method != 'none') {
+			stop('Cannot cluster data if input.colours == TRUE');
+			}
+		if (!is.null(at)) {
+			stop('at should not be specificed if input.colours == TRUE');
+			}
+		}
+
 	### CLUSTERING & COVARIATES ###################################################################
 	legend <- list();
 
@@ -1023,6 +1034,11 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		min.value <- min(x - colour.centering.value, na.rm = TRUE);
 		max.value <- max(x - colour.centering.value, na.rm = TRUE);
 		at <- seq(from = min.value, to = max.value, length.out = total.colours);
+		if (all(1 == at)) { # handle cases with a single colour/value of x
+			at <- c(1:2);  # all values of x are 1. The 2 prevents an error, since duplicate values of at are not permitted
+			# create the colour scheme
+			my.palette <- c(colour.scheme);
+			}
 		}
 	else {
 		min.value <- min(at - colour.centering.value, na.rm = TRUE);
@@ -1084,7 +1100,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 		}
 
 	# colour-handling: first handle legacy cases
-	if (1 == length(colour.scheme)) {
+	if (1 == length(colour.scheme) && FALSE == input.colours) {
 		if (colour.scheme == 'RedWhiteBlue')	 { colour.scheme <- c('red', 'white', 'blue'); }
 		else if (colour.scheme == 'WhiteBlack')      { colour.scheme <- c('white', 'black'); }
 		else if (colour.scheme == 'BlueWhiteYellow') { colour.scheme <- c('blue', 'white', 'yellow'); }
