@@ -1,4 +1,4 @@
-BoutrosLab.plotting.general 6.1.0 2021-10-15
+BoutrosLab.plotting.general 6.1.0 2021-10-26
 
 UPDATE
 * Add option to use dots in a legend instead of default rectangles
@@ -6,6 +6,7 @@ UPDATE
 
 BUG
 * Fixed inconsistent grouping of point colours in create.boxplot
+* Account for case where only one colour is passed to create.heatmap
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 6.0.3 2021-01-24
