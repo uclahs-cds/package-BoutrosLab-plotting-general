@@ -79,7 +79,7 @@ create.qqplot.fit.confidence.interval <- function(x, distribution = qnorm, conf 
 		# Note that this statistics should follow a kolmogorov distribution when the sample size is large
 
 		# the critical value from the Kolmogorov-Smirnov Test
-		critical.value <- BoutrosLab.plotting.general::ks.test.critical.value(length(sorted.sample), conf);
+		critical.value <- BoutrosLab.plotting.general::critical.value.ks.test(length(sorted.sample), conf);
 	
 		# under the null hypothesis, get the CI for the probabilities
 		# the probabilities of the fitted value under the empirical cdf

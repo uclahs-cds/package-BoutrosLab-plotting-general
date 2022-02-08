@@ -9,7 +9,7 @@
 # If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
 # credit be given to OICR scientists, as scientifically appropriate.
 
-ks.test.critical.value <- function(n, conf, alternative = "two.sided") {
+critical.value.ks.test <- function(n, conf, alternative = "two.sided") {
 	
 	if(alternative == "one-sided") conf <- 1- (1-conf)*2;
 
