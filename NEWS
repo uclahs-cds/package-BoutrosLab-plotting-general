@@ -5,6 +5,7 @@ UPDATE
   to resolve naming conflict with S3 generic ks.test() from base R stats
   package.
 
+-------------------------------------------------------------------------- 
 BoutrosLab.plotting.general 6.1.0 2021-10-26
 
 UPDATE
