@@ -1,9 +1,9 @@
-\name{ks.test.critical.value}
-\alias{ks.test.critical.value}
+\name{critical.value.ks.test}
+\alias{critical.value.ks.test}
 \title{Critical Value for Kolmogorov-Smirnov Test}
 \description{Takes a sample size and a confidence level and computes the corresponding critical value basing on the kolmogorov-smirnov test}
 \usage{
-ks.test.critical.value(n, conf, alternative = "two.sided");
+critical.value.ks.test(n, conf, alternative = "two.sided");
 }
 \arguments{
   \item{n}{The sample size}
@@ -13,7 +13,7 @@ ks.test.critical.value(n, conf, alternative = "two.sided");
 \value{The corresponding critical value}
 \author{Ying Wu}
 \examples{
-ks.test.critical.value(10, 0.95);
-ks.test.critical.value(100, 0.95, alternative = "one-sided");
+critical.value.ks.test(10, 0.95);
+critical.value.ks.test(100, 0.95, alternative = "one-sided");
 }
 \keyword{htest}

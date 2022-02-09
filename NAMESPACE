@@ -46,7 +46,7 @@ export(
 	"get.correlation.p.and.corr",
 	"get.defaults",
 	"get.line.breaks",
-	"ks.test.critical.value",
+	"critical.value.ks.test",
 	"legend.grob",
 	"pcawg.colours",
 	"scientific.notation",
