@@ -343,9 +343,12 @@ create.polygonplot <- function(
 					as.character(factor(x = groups, labels = median.col));
 					}
 
-				median.lty <- if (length(median.lty) == 1) { rep(median.lty, length(subscripts)); }
+				median.lty <- if (length(median.lty) == 1) { rep(median.lty, length(subscripts)); } else {
+					as.numeric(factor(x = groups, labels = median.lty));
+				}
+				
 				median.lwd <- if (length(median.lwd) == 1) { rep(median.lwd, length(subscripts)); } else {
-					as.character(factor(x = groups, labels = median.lty));
+					as.character(factor(x = groups, labels = median.lwd));
 					}
 
 				# Plot polygons
