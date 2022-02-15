@@ -1,9 +1,12 @@
-BoutrosLab.plotting.general 7.0.0 2022-02-08
+BoutrosLab.plotting.general 7.0.0 2022-02-15
 
 UPDATE
 * Renamed ks.test.critical.value() function to critical.value.ks.test()
   to resolve naming conflict with S3 generic ks.test() from base R stats
   package.
+
+BUG
+* Fix issue when specifying multiple line-widths in create.polygonplot()
 
 -------------------------------------------------------------------------- 
 BoutrosLab.plotting.general 6.1.0 2021-10-26
