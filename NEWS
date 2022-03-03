@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 7.0.1 2022-03-03
+
+BUG
+* Fix object protection issue in distance.c
+
+-------------------------------------------------------------------------- 
 BoutrosLab.plotting.general 7.0.0 2022-02-15
 
 UPDATE
