@@ -10,6 +10,7 @@ Contributors:
   - Robert Gentleman
   - Ross Ihaka
   - Caden Bugh
+  - Dan Knight
 Languages:
   - R
   - C
@@ -24,4 +25,4 @@ Dependencies:
   - knitr
   - testthat
 References: https://doi.org/10.1186/s12859-019-2610-2
-Version: 6.0.1
+Version: 7.0.1
