@@ -185,7 +185,7 @@ pcawg.colours <- function(
 
 	#-----------------------------------------------------------------------------------------------
 	# Some input checking & processing
-	if (class(x) == 'factor') {
+	if (as.character(class(x)) == 'factor') {
 		stop('x cannot be a factor: please coerce to character before passing');
 		}
 	# Some parameters override provided input x.

@@ -106,7 +106,7 @@ create.qqplot.comparison <- function(
                 }
 
 	# x should be a formula or a list of data whose length is 2
-	if (class(x) == 'list') {
+	if (as.character(class(x) == 'list')) {
 
 		# create an object to store the data, since the function qq can only handle formula method
 		data.to.plot <- data.frame(
