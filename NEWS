@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 7.0.2 2022-03-07
+
+BUG
+* Add type comparisons for class name comparisons
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.1 2022-03-03
 
 BUG

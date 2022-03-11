@@ -80,92 +80,102 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	temp <- x; # 'temp' used for column/row catagorization function
 
 	# determine size/colour functions
-	if (class(spot.size.function) == 'character' && spot.size.function == 'default') {
-		spot.size.function <- function(x) { 0.1 + (2 * abs(x)); }
-		}
-	else if (class(spot.size.function) == 'numeric') {
-		returnval <- spot.size.function;
-		spot.size.function <- function(x) { returnval; }
-		}
-
-	if (class(spot.colour.function) == 'character' && spot.colour.function == 'default') {
-		spot.colour.function <- function(x) {
-			colours <- rep('white', length(x));
-			colours[sign(x) == -1] <- BoutrosLab.plotting.general::default.colours(2, palette.type = 'dotmap')[1];
-			colours[sign(x) ==  1] <- BoutrosLab.plotting.general::default.colours(2, palette.type = 'dotmap')[2];
-			return(colours);
+	switch(
+		as.character(class(spot.size.function)),
+		'character' = {
+			if (spot.size.function == 'default') {
+				spot.size.function <- function(x) { 0.1 + (2 * abs(x)); }
 			}
-		}
-	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'discrete') {
-		if (length(unique(unlist(x))) > length(dot.colour.scheme)) {
-			stop(paste('Not enough colours specified to use discrete function: need at least', length(unique(unlist(x))), 'colours'));
+		},
+		'numeric' = {
+			returnval <- spot.size.function;
+			spot.size.function <- function(x) { returnval; }
 			}
-		spot.colour.function <- function(x) {
-			unique.values <- unique(x);
-			colours <- rep('white', length(x));
-			for (i in c(1:length(unique.values))) {
-				colours[x == unique.values[i]] <- dot.colour.scheme[i];
-				}
-			return(colours);
-			}
-		}
-	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'columns') {
-		spot.colour.function <- function(x) {
-			# The following does not use the parameter 'x' and instead used the variable 'temp'
-			no.unique.columns <- length(unique(colnames(temp)));
-			no.rows <- length(rownames(temp));
+		);
 
-			# Checks for repeated colnames and throws an error if there is
-			if (no.unique.columns != length(colnames(temp))) {
-				stop(paste('Remove repeated column names'));
-				}
-
-			new.colnames <- seq(1, no.unique.columns, 1);
-			colnames(temp) <- new.colnames;
-			temp <- stack(temp);
-			temp$values <- temp$ind;
-			temp$ind <- NULL;
-
-			index <- 1;
-			colours <- rep('white', no.unique.columns * no.rows);
-			for (i in c(1:no.unique.columns)) {
-				for (j in c(1:no.rows)) {
-					colours[index] <- default.colours(12)[(i %% 12) + 1];
-					index <- index + 1;
+	if (as.character(class(spot.colour.function) == 'character')) {
+		switch(
+			spot.colour.function,
+			'default' = {
+				spot.colour.function <- function(x) {
+					colours <- rep('white', length(x));
+					colours[sign(x) == -1] <- BoutrosLab.plotting.general::default.colours(2, palette.type = 'dotmap')[1];
+					colours[sign(x) ==  1] <- BoutrosLab.plotting.general::default.colours(2, palette.type = 'dotmap')[2];
+					return(colours);
+					}
+				},
+			'discrete' = {
+				if (length(unique(unlist(x))) > length(dot.colour.scheme)) {
+					stop(paste('Not enough colours specified to use discrete function: need at least', length(unique(unlist(x))), 'colours'));
+					}
+				spot.colour.function <- function(x) {
+					unique.values <- unique(x);
+					colours <- rep('white', length(x));
+					for (i in c(1:length(unique.values))) {
+						colours[x == unique.values[i]] <- dot.colour.scheme[i];
+						}
+					return(colours);
+					}
+				},
+			'columns' = {
+				spot.colour.function <- function(x) {
+					# The following does not use the parameter 'x' and instead used the variable 'temp'
+					no.unique.columns <- length(unique(colnames(temp)));
+					no.rows <- length(rownames(temp));
+		
+					# Checks for repeated colnames and throws an error if there is
+					if (no.unique.columns != length(colnames(temp))) {
+						stop(paste('Remove repeated column names'));
+						}
+		
+					new.colnames <- seq(1, no.unique.columns, 1);
+					colnames(temp) <- new.colnames;
+					temp <- stack(temp);
+					temp$values <- temp$ind;
+					temp$ind <- NULL;
+		
+					index <- 1;
+					colours <- rep('white', no.unique.columns * no.rows);
+					for (i in c(1:no.unique.columns)) {
+						for (j in c(1:no.rows)) {
+							colours[index] <- default.colours(12)[(i %% 12) + 1];
+							index <- index + 1;
+							}
+						}
+					return(colours);
+					}
+				},
+			'rows' = {
+				spot.colour.function <- function(x) {
+					# The following does not use the parameter 'x' and instead used the variable 'temp'
+					no.columns <- length(colnames(temp));
+					no.unique.rows <- length(unique(rownames(temp)));
+		
+					# Checks for repeated rownames and throws an error if there is
+					if (no.unique.rows != length(rownames(temp))) {
+						stop(paste('Remove repeated row names'));
+						}
+		
+					colour.per.column <- c(1:no.unique.rows);
+					for (i in 0:no.unique.rows) {
+						colour.per.column[i + 1] <- default.colours(12)[(i %% 12) + 1];
+						}
+		
+					temp <- stack(temp);
+					temp$ind <- NULL;
+		
+					index <- 1;
+		
+					for (i in c(1:no.columns)) {
+						for (j in c(1:no.unique.rows)) {
+							temp$values[index] <- colour.per.column[j];
+							index <- index + 1;
+							}
+						}
+					return(temp);
 					}
 				}
-			return(colours);
-			}
-		}
-	else if (class(spot.colour.function) == 'character' && spot.colour.function == 'rows') {
-		spot.colour.function <- function(x) {
-			# The following does not use the parameter 'x' and instead used the variable 'temp'
-			no.columns <- length(colnames(temp));
-			no.unique.rows <- length(unique(rownames(temp)));
-
-			# Checks for repeated rownames and throws an error if there is
-			if (no.unique.rows != length(rownames(temp))) {
-				stop(paste('Remove repeated row names'));
-				}
-
-			colour.per.column <- c(1:no.unique.rows);
-			for (i in 0:no.unique.rows) {
-				colour.per.column[i + 1] <- default.colours(12)[(i %% 12) + 1];
-				}
-
-			temp <- stack(temp);
-			temp$ind <- NULL;
-
-			index <- 1;
-
-			for (i in c(1:no.columns)) {
-				for (j in c(1:no.unique.rows)) {
-					temp$values[index] <- colour.per.column[j];
-					index <- index + 1;
-					}
-				}
-			return(temp);
-			}
+			);
 		}
 
 	# set spot size/colour

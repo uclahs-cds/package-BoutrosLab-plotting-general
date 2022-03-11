@@ -15,7 +15,7 @@ force.colour.scheme <- force.color.scheme <- function(
 	) {
 
 	# some error checking
-	if (class(x) == 'factor') {
+	if (as.character(class(x) == 'factor')) {
 		stop("Argument 'x' cannot be a factor: please coerce to character before passing.");
 		}
 

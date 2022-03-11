@@ -14,34 +14,40 @@ print.to.file <- function(dirname, funcname, data, filename) {
                 filename <- 'None';
                 }
 
-	if (class(data) == 'list') {
-		num.numeric <- length(data);
-                numeric.data <- unlist(data);
-                num.rows <- length(data[[1]]);
-                num.cols <- length(data);
-		}
-	else if (class(data) == 'numeric') {
-		num.numeric <- 1;
-		numeric.data <- data;
-		num.rows <- length(data);
-		num.cols <- 1;
-		}
-        else if (class(data) == 'data.frame' || class(data) == 'matrix') {
-		num.rows <- nrow(data);
-		num.cols <- ncol(data);
+	switch(
+		as.character(class(data)),
+		'list' = {
+			num.numeric <- length(data);
+	                numeric.data <- unlist(data);
+	                num.rows <- length(data[[1]]);
+	                num.cols <- length(data);
+			},
+		'numeric' = {
+			num.numeric <- 1;
+			numeric.data <- data;
+			num.rows <- length(data);
+			num.cols <- 1;
+			},
+		'data.frame' =, 'matrix' = {
+			num.rows <- nrow(data);
+			num.cols <- ncol(data);
                 for (i in 1:num.cols) {
-                        if (class(data[, i]) == 'numeric') {
-                                num.numeric <- num.numeric + 1;
-                                numeric.data <- c(numeric.data, data[, i]);
-                                }
-                        else if (class(data[, i]) == 'integer') {
-                                num.integer <- num.integer + 1;
-                                }
-                        else if (class(data[, i]) == 'factor') {
-                                num.factor <- num.factor + 1;
-                                }
-                        }
+                    switch(
+                    	as.character(class(data[, i])),
+                    	'numeric' = {
+                            num.numeric <- num.numeric + 1;
+                            numeric.data <- c(numeric.data, data[, i]);
+                            },
+                    	'integer' = {
+                            num.integer <- num.integer + 1;
+                            },
+                    	'factor' = {
+                            num.factor <- num.factor + 1;
+                            }
+                    	);
+                	}
                 }
+			);
 
 	df.to.add <- NULL;
         if (num.numeric == 0) {
