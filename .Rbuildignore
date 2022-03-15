@@ -1,2 +1,4 @@
 ^\.github$
 ^metadata\.yaml$
+^.*\.Rproj$
+^\.Rproj\.user$
