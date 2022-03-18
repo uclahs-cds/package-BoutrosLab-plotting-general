@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 7.0.3 2022-03-15
+
+UPDATE
+* Update .Rbuildignore to match lab R standards
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.2 2022-03-07
 
 BUG
