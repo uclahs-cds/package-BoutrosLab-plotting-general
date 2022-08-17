@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 7.0.4 2022-08-17
+
+UPDATE
+* Fix border specification in create.polygonplot
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.3 2022-03-15
 
 UPDATE
@@ -15,7 +21,7 @@ BoutrosLab.plotting.general 7.0.1 2022-03-03
 BUG
 * Fix object protection issue in distance.c
 
--------------------------------------------------------------------------- 
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.0 2022-02-15
 
 UPDATE
@@ -26,7 +32,7 @@ UPDATE
 BUG
 * Fix issue when specifying multiple line-widths in create.polygonplot()
 
--------------------------------------------------------------------------- 
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 6.1.0 2021-10-26
 
 UPDATE
@@ -41,7 +47,7 @@ BUG
 BoutrosLab.plotting.general 6.0.3 2021-01-24
 
 UPDATE
-* Only use cairo in the examples for covariates.grob and legend.grob 
+* Only use cairo in the examples for covariates.grob and legend.grob
   if capabilities('cairo') is true.
 
 --------------------------------------------------------------------------
@@ -129,7 +135,7 @@ REMOVED
 BoutrosLab.plotting.general 5.9.4 2018-04-18
 
 FEATURE
-* dotmap can now do symmetrical removing of top left half of dotmap 
+* dotmap can now do symmetrical removing of top left half of dotmap
 
 BUG
 * top covariates in heatmap now have proper defaults
@@ -141,7 +147,7 @@ BoutrosLab.plotting.general 5.9.3 2018-04-18
 FEATURE
 * updated dependencies to not include as many
 * boxplot now saves all its data (for later use)
-* multipanelplot now saves temp plots to temp dir 
+* multipanelplot now saves temp plots to temp dir
 
 BUG
 * Default.colours no longer references wrong grey scale colour
@@ -163,7 +169,7 @@ FEATURE
 * Multipanel plot now uses tob axis labels too for lining up plots
 
 BUG
-* Multipanel plot now correctly positions plot main labels 
+* Multipanel plot now correctly positions plot main labels
 
 --------------------------------------------------------------------------
 
@@ -194,7 +200,7 @@ BoutrosLab.plotting.general 5.8.14 2018-03-09
 FEATURE
 * now stores data on the mount
 
-BUG 
+BUG
 * text now passed to panel in seperate list, stopping it from being reset in between plots
 
 --------------------------------------------------------------------------
@@ -234,7 +240,7 @@ FEATURE
 * added inside legend auto finder code
 
 BUG
-* boxplot addstriplot colour was having issue with multiple boxplots, now works properly 
+* boxplot addstriplot colour was having issue with multiple boxplots, now works properly
 
 --------------------------------------------------------------------------
 
@@ -308,7 +314,7 @@ FEATURE
 BoutrosLab.plotting.general 5.8.2 2017-08-11
 
 BUG FIX
-* Completely reworked how spacing works in multipanel plot -- now creates rectangular grobs instead of using top/left/right/bottom padding 
+* Completely reworked how spacing works in multipanel plot -- now creates rectangular grobs instead of using top/left/right/bottom padding
 
 
 --------------------------------------------------------------------------
@@ -382,7 +388,7 @@ BoutrosLab.plotting.general 5.7.4 2017-07-19
 BUG FIX
 * Automatic labels not working for stacked barplots
 * removed log scaling from stacked barplots
-* fixed 1 D heatmap issues 
+* fixed 1 D heatmap issues
 
 ADDITIONS
 * search metadata function
@@ -405,7 +411,7 @@ FEATURE UPDATE
 * Issues around multiplot reseting labels on y axis when x asis labels added solved
 
 ADDITIONS
-* create.gif for creating animated plots 
+* create.gif for creating animated plots
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.7.1 2017-05-17
@@ -447,21 +453,21 @@ MINOR (FORMATTING) CHANGES
 BoutrosLab.plotting.general 5.6.24 2017-04-20
 
 FEATURE UPDATE
-*create.multiplot: Added functionality to add top x-axis tick labels. Has not been extensively tested. 
+*create.multiplot: Added functionality to add top x-axis tick labels. Has not been extensively tested.
 
 --------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.6.23 2017-02-09
 
-BUG FIX 
-*pcawg.colours: fixed bug that prevented project code colours from being returned. 
+BUG FIX
+*pcawg.colours: fixed bug that prevented project code colours from being returned.
 
 --------------------------------------------------------------------------
 
 BoutrosLab.plotting.general 5.6.22 2017-02-09
 
 FEATURE UPDATE
-*create.dotmap: addition of parameters for rectangle border thickness, rectangle border colour. 
+*create.dotmap: addition of parameters for rectangle border thickness, rectangle border colour.
 
 --------------------------------------------------------------------------
 
