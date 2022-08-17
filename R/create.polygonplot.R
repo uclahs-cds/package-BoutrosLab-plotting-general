@@ -343,6 +343,10 @@ create.polygonplot <- function(
 					as.character(factor(x = groups, labels = border.col));
 					}
 
+				add.border <- if (length(add.border) == 1) { rep(add.border, length(subscripts)); } else {
+					as.character(factor(x = groups, labels = add.border));
+					}
+
 				median.col <- if (length(median.col) == 1) { rep(median.col, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = median.col));
 					}
