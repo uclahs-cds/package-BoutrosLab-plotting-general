@@ -12,7 +12,7 @@
 ### FUNCTION TO CREATE POLYGONPLOT ################################################################
 create.polygonplot <- function(
 	formula, data, filename = NULL, groups = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
-	main.cex = 3, max, min, col = 'white', alpha = 0.5, border.col = 'black', xy.col = 'black',
+	main.cex = 3, max, min, col = 'white', alpha = 0.5, border.col = 'black',
 	strip.col = 'white', strip.cex = 1, type = 'p', cex = 0.75, pch = 19, lwd = 1, lty = 1, axes.lwd = 1,
 	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
 	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
@@ -21,7 +21,7 @@ create.polygonplot <- function(
 	yaxis.log = FALSE, xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.col = 'black', yaxis.col = 'black',
 	xaxis.tck = 1, yaxis.tck = 1, xlimits = NULL, ylimits = NULL, xat = TRUE, yat = TRUE, layout = NULL,
 	as.table = FALSE, x.spacing = 0, y.spacing = 0, x.relation = 'same', y.relation = 'same', top.padding = 0.5,
-	bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, add.xy.border = FALSE,
+	bottom.padding = 2, right.padding = 1, left.padding = 2, ylab.axis.padding = 0, add.border = FALSE, add.xy.border = NULL,
 	add.median = FALSE, median.lty = 3, median.lwd = 1.5, use.loess.border = FALSE, use.loess.median = FALSE,
 	median = NULL, median.col = 'black', extra.points = NULL, extra.points.pch = 21, extra.points.type = 'p',
 	extra.points.col = 'black', extra.points.fill = 'white', extra.points.cex = 1, add.rectangle = FALSE,
@@ -40,7 +40,7 @@ create.polygonplot <- function(
 			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
 			if (!dir.exists(dir.name)) {
 				dir.create(dir.name);
-				}			
+				}
 			funcname <- 'create.polygonplot';
 			print.to.file(dir.name, funcname, data, filename);
 			},
@@ -49,6 +49,11 @@ create.polygonplot <- function(
 		error = function(e) {
 			}
 		);
+
+	if (!missing(add.xy.border)) {
+		add.border <- add.xy.border;
+		warning('add.xy.border is deprecated. Use add.border instead');
+		}
 
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
@@ -197,7 +202,6 @@ create.polygonplot <- function(
 		min = min,
 		median = median,
 		panel = function(x, y, col = col, border = border.col, groups = groups.new, subscripts, ...) {
-
 			# add rectangle if requested
 			# want rectangle in the background, and only plotted once
 			#  => add first, outside of grouping if/else split
@@ -211,7 +215,7 @@ create.polygonplot <- function(
 					alpha = alpha.rectangle,
 					border = NA
 					);
-		  		}
+				}
 
 			# if requested, add y=x line
 			if (add.xyline) {
@@ -240,12 +244,12 @@ create.polygonplot <- function(
 					);
 
 				# draw xy points along border of polygon
-				if (add.xy.border) {
+				if (add.border) {
 					panel.xyplot(
 						x = c(x, rev(x)),
 						y = c(max[subscripts], rev(min[subscripts])),
-						type = 'p',
-						col = xy.col
+						type = 'l',
+						col = border.col
 						);
 					}
 
@@ -339,6 +343,10 @@ create.polygonplot <- function(
 					as.character(factor(x = groups, labels = border.col));
 					}
 
+				add.border <- if (length(add.border) == 1) { rep(add.border, length(subscripts)); } else {
+					as.character(factor(x = groups, labels = add.border));
+					}
+
 				median.col <- if (length(median.col) == 1) { rep(median.col, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = median.col));
 					}
@@ -346,7 +354,7 @@ create.polygonplot <- function(
 				median.lty <- if (length(median.lty) == 1) { rep(median.lty, length(subscripts)); } else {
 					as.numeric(factor(x = groups, labels = median.lty));
 				}
-				
+
 				median.lwd <- if (length(median.lwd) == 1) { rep(median.lwd, length(subscripts)); } else {
 					as.character(factor(x = groups, labels = median.lwd));
 					}
@@ -380,16 +388,20 @@ create.polygonplot <- function(
 							...
 							);
 
+						if ((length(add.border) == 1 && add.border) || add.border[group.num]) {
+							polygon.border <- border.col[subscripts];
+							} else {
+							polygon.border <- 'black';
+							}
+
 						# draw polygon borders
-						if (length(add.xy.border) == 1 || add.xy.border[group.num]) {
-							panel.xyplot(
+						panel.xyplot(
 								x = c(x, rev(x), x[1]),
 								y = c(max[subscripts], rev(min[subscripts]), max[subscripts][1]),
 								type = 'l',
-								col = border.col[subscripts],
+								col = polygon.border,
 								lwd = lwd
 								);
-							}
 
 						# draw median line
 						if (add.median & !is.null(median)) {
