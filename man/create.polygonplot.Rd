@@ -18,7 +18,6 @@ create.polygonplot(
 	col = 'white',
 	alpha = 0.5,
 	border.col = 'black',
-	xy.col = 'black',
 	strip.col = 'white',
 	strip.cex = 1,
 	type = 'p',
@@ -66,9 +65,9 @@ create.polygonplot(
 	top.padding = 0.5,
 	bottom.padding = 2,
 	right.padding = 1,
-	left.padding = 2,	
+	left.padding = 2,
 	ylab.axis.padding = 0,
-	add.xy.border = FALSE,
+	add.border = FALSE,
 	add.median = FALSE,
 	median.lty = 3,
 	median.lwd = 1.5,
@@ -117,7 +116,7 @@ create.polygonplot(
 	size.units = 'in',
 	resolution = 1600,
 	enable.warnings = FALSE,
-	description = 'Created with BoutrosLab.plotting.general', 
+	description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab',
 	preload.default = 'custom',
 	use.legacy.settings = FALSE,
@@ -139,7 +138,6 @@ create.polygonplot(
     \item{col}{Fill colour of polygon, defaults to white}
     \item{alpha}{Transparency of polygons when several are plotted, defaults to 0.5.}
     \item{border.col}{Border colour(s) of polygon(s), defaults to black}
-    \item{xy.col}{Colour of xy coordinates, defaults to black}
     \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
     \item{strip.cex}{Strip title character expansion}
     \item{type}{Plot type}
@@ -174,11 +172,11 @@ create.polygonplot(
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to \dQuote{black}}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
-    \item{xlimits}{Two-element vector giving the x-axis limits} 
-    \item{ylimits}{Two-element vector giving the y-axis limits} 
+    \item{xlimits}{Two-element vector giving the x-axis limits}
+    \item{ylimits}{Two-element vector giving the y-axis limits}
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
@@ -188,8 +186,8 @@ create.polygonplot(
     \item{bottom.padding}{A number specifying the distance to the bottom margin, defaults to 2}
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 2}
-    \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 0}, 
-    \item{add.xy.border}{Add xy border to polygon, default is FALSE}
+    \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 0},
+    \item{add.border}{Add xy border to polygon, default is FALSE}
     \item{add.median}{Add median line, default is FALSE}
     \item{median.lty}{Median line type}
     \item{median.lwd}{Median line width, defaults to 1.5}
@@ -252,7 +250,7 @@ If this function is called without capturing the return value, or specifying a f
     Error in grid.Call.graphics("L_text", as.graphicsAnnot(x$label), x$x,  )
         Invalid font type
     Calls: print ... drawDetails.text -> grid.Call.graphics -> .Call.graphics
-    }       
+    }
 }
 \seealso{\code{\link[lattice]{xyplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
@@ -293,7 +291,7 @@ fill.matrix <- function(x, gene, data){
         gene[i, i:58] <- rep(as.numeric(data[i]), 58-i+1);
         }
     return(gene);
-    }; 
+    };
 
 gene1 <- fill.matrix(1:58, gene1, data1);
 gene1 <- t(matrix(unlist(gene1), ncol = 58, byrow = TRUE));
@@ -413,7 +411,7 @@ create.polygonplot(
     yat = seq(0, 10, 2),
     col = default.colours(1),
     # border points
-    add.xy.border = TRUE,
+    add.border = TRUE,
     description = 'Polygon created by BoutrosLab.plotting.general',
     resolution = 100
     );
@@ -616,12 +614,12 @@ create.polygonplot(
         columns = 1
         ),
 
-    # set style to Nature 
+    # set style to Nature
     style = 'Nature',
-    
+
     # demonstrating how to italicize character variables
     ylab.label = expression(paste('italicized ', italic('a'))),
-  
+
     # demonstrating how to create en-dashes
     xlab.label = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
