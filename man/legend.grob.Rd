@@ -77,7 +77,7 @@ legend.grob1 <- legend.grob(
     legends = legends1
     );
 tiff(
-    filename = tempfile(pattern = 'legend_grob1', fileext = '.tiff'), 
+    # filename = tempfile(pattern = 'legend_grob1', fileext = '.tiff'), 
     type = bitmap.type, 
     width = 5, 
     height = 5, 
@@ -100,7 +100,7 @@ legend.grob2 <- legend.grob(
     layout = c(2,1)
     );
 tiff(
-    filename = tempfile(pattern = 'legend_grob2', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'legend_grob2', fileext = '.tiff'),
     type = bitmap.type, 
     width = 5, 
     height = 5, 
@@ -135,7 +135,7 @@ legend.grob3 <- legend.grob(
     between.row = 3
     );
 tiff(
-    filename = tempfile(pattern = 'legend_grob3', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'legend_grob3', fileext = '.tiff'),
     type = bitmap.type, 
     width = 5, 
     height = 5, 
@@ -166,7 +166,7 @@ legend.grob4 <- legend.grob(
     legends = legends3
     );
 tiff(
-    filename = tempfile(pattern = 'legend_grob4', fileext = '.tiff'), 
+    # filename = tempfile(pattern = 'legend_grob4', fileext = '.tiff'), 
     type = bitmap.type, 
     width = 5, 
     height = 5, 

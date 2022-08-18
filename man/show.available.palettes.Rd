@@ -22,13 +22,13 @@ show.available.palettes(
 \author{Christine P'ng}
 \examples{
 show.available.palettes(
-	filename = tempfile(pattern = 'show_case_specific_schemes', fileext = '.tiff'),
+	# filename = tempfile(pattern = 'show_case_specific_schemes', fileext = '.tiff'),
 	type = 'specific',
 	width = 10
 	);
 
 show.available.palettes(
-	filename = tempfile(pattern = 'default_schemes', fileext = '.tiff'),
+	# filename = tempfile(pattern = 'default_schemes', fileext = '.tiff'),
 	type = 'general',
 	height = 6,
 	width = 8

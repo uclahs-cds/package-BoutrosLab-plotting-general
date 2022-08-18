@@ -190,7 +190,7 @@ simple.data <- data.frame(
     );
 
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_simple', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     resolution = 50
@@ -206,7 +206,7 @@ stripplot.data <- data.frame(
 
 # Minimal Input using real data
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_Minimal_Input', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Minimal input',
@@ -216,7 +216,7 @@ create.stripplot(
 
 # Axes & Labels
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_Axes_Labels', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Axes & labels',
@@ -237,7 +237,7 @@ create.stripplot(
 
 # Colour & Legend
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_Colour_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_Colour_Legend', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Colour & legend',
@@ -280,7 +280,7 @@ create.stripplot(
 \donttest{
 # Jitter
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_Jitter', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_Jitter', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Low Jitter',
@@ -322,7 +322,7 @@ create.stripplot(
 
 # Jitter
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_High_Jitter', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_High_Jitter', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'High Jitter',
@@ -366,7 +366,7 @@ create.stripplot(
 
 # Nature style
 create.stripplot(
-    filename = tempfile(pattern = 'Stripplot_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Stripplot_Nature_style', fileext = '.tiff'),
     formula = genes ~ values,
     data = stripplot.data,
     main = 'Nature style',
