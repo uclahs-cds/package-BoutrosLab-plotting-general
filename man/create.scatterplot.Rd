@@ -82,7 +82,7 @@ create.scatterplot(
 	layout = NULL,
 	as.table = FALSE,
 	x.spacing = 0,
-	y.spacing = 0,	
+	y.spacing = 0,
 	x.relation = 'same',
 	y.relation = 'same',
 	add.axes = FALSE,
@@ -148,12 +148,12 @@ create.scatterplot(
 	use.legacy.settings = FALSE,
 	inside.legend.auto = FALSE,
 	regions.labels = c(),
-        regions.start = c(), 
-	regions.stop = c(), 
-	regions.color = c("red"), 
-	regions.cex = 1, 
+        regions.start = c(),
+	regions.stop = c(),
+	regions.color = c("red"),
+	regions.cex = 1,
 	regions.alpha = 1,
-        lollipop.bar.y = NULL, 
+        lollipop.bar.y = NULL,
 	lollipop.bar.color = "gray",
 	...
 	);
@@ -234,7 +234,7 @@ create.scatterplot(
     \item{key.left.padding}{Amount of padding to go onto any legend on the left}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}
     \item{axis.key.padding}{A number specifying the distance from the y-axis to the key, defaults to 1}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
@@ -331,7 +331,7 @@ simple.data <- data.frame(
     y = rnorm(800)
     );
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Simple', fileext = '.tiff'),
+#    filename = tempfile(pattern = 'Scatterplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     resolution = 50
@@ -384,7 +384,7 @@ create.scatterplot(
     main = 'Plotting Space',
     xlab.label = colnames(microarray[1]),
     ylab.label = colnames(microarray[2]),
-    # change axes accordingly 
+    # change axes accordingly
     xat = 2 ** (0:4),
     yat = seq(0, 16, 2),
     # change axes range accordingly
@@ -1026,12 +1026,12 @@ create.scatterplot(
     cex = 0,
     add.line.segments = TRUE,
     line.start = list(
-	rep(0,nrow(line.data)), 
+	rep(0,nrow(line.data)),
 	line.data$x,
 	c(line.data$x + line.data$y)
 	),
     line.end = list(
-	line.data$x, 
+	line.data$x,
 	c(line.data$x + line.data$y),
 	c(line.data$x + line.data$y + line.data$z)
 	),
