@@ -37,7 +37,7 @@ The 'colours' component is a vector of fill colours to be used for the rectangle
     \item{layout}{Numeric vector of length 2 specifying the number of columns and rows for the legend layout. Defaults to a 1-column layout. Note that legends are added to the layout in a row-wise order.}
     \item{between.col}{Amount of space to add between columns in the layout, in 'lines' units. Defaults to 0.5.}
     \item{between.row}{Amount of space to add between rows in the layout, in 'lines' units. Defaults to 0.5.}
-    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)} 
+    \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{x}{x coordinate in npc coordinate system}
     \item{y}{y coordinate in npc coordinate system}
     \item{background.col}{colour for the background of the legend grob}
@@ -77,12 +77,12 @@ legend.grob1 <- legend.grob(
     legends = legends1
     );
 tiff(
-    # filename = tempfile(pattern = 'legend_grob1', fileext = '.tiff'), 
-    type = bitmap.type, 
-    width = 5, 
-    height = 5, 
-    units = 'in', 
-    res = 800, 
+    filename = tempfile(pattern = 'legend_grob1', fileext = '.tiff'),
+    type = bitmap.type,
+    width = 5,
+    height = 5,
+    units = 'in',
+    res = 800,
     compression = 'lzw'
     );
 grid.draw(legend.grob1);
@@ -100,12 +100,12 @@ legend.grob2 <- legend.grob(
     layout = c(2,1)
     );
 tiff(
-    # filename = tempfile(pattern = 'legend_grob2', fileext = '.tiff'),
-    type = bitmap.type, 
-    width = 5, 
-    height = 5, 
-    units = 'in', 
-    res = 800, 
+    filename = tempfile(pattern = 'legend_grob2', fileext = '.tiff'),
+    type = bitmap.type,
+    width = 5,
+    height = 5,
+    units = 'in',
+    res = 800,
     compression = 'lzw'
     );
 grid.draw(legend.grob2);
@@ -135,12 +135,12 @@ legend.grob3 <- legend.grob(
     between.row = 3
     );
 tiff(
-    # filename = tempfile(pattern = 'legend_grob3', fileext = '.tiff'),
-    type = bitmap.type, 
-    width = 5, 
-    height = 5, 
-    units = 'in', 
-    res = 800, 
+    filename = tempfile(pattern = 'legend_grob3', fileext = '.tiff'),
+    type = bitmap.type,
+    width = 5,
+    height = 5,
+    units = 'in',
+    res = 800,
     compression = 'lzw'
     );
 grid.draw(legend.grob3);
@@ -166,12 +166,12 @@ legend.grob4 <- legend.grob(
     legends = legends3
     );
 tiff(
-    # filename = tempfile(pattern = 'legend_grob4', fileext = '.tiff'), 
-    type = bitmap.type, 
-    width = 5, 
-    height = 5, 
-    units = 'in', 
-    res = 800, 
+    filename = tempfile(pattern = 'legend_grob4', fileext = '.tiff'),
+    type = bitmap.type,
+    width = 5,
+    height = 5,
+    units = 'in',
+    res = 800,
     compression = 'lzw'
     );
 grid.draw(legend.grob4);
