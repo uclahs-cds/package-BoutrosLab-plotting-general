@@ -2,3 +2,6 @@
 url: ~
 template:
   bootstrap: 5
+figures:
+  dev: grDevices::jpeg
+  fig.ext: jpeg
