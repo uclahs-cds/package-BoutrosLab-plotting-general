@@ -188,6 +188,7 @@ create.polygonplot(
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 2}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 0},
     \item{add.border}{Add xy border to polygon, default is FALSE}
+    \item{add.xy.border}{DEPRECATED: Use `add.border` argument instead}
     \item{add.median}{Add median line, default is FALSE}
     \item{median.lty}{Median line type}
     \item{median.lwd}{Median line width, defaults to 1.5}
