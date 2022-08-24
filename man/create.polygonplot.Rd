@@ -68,6 +68,7 @@ create.polygonplot(
 	left.padding = 2,
 	ylab.axis.padding = 0,
 	add.border = FALSE,
+	add.xy.border = NULL,
 	add.median = FALSE,
 	median.lty = 3,
 	median.lwd = 1.5,
