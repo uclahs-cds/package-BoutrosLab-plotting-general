@@ -5,4 +5,4 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-.*.{png,gif,tiff}$
+^.*\.{jpeg,png,gif,tiff}$
