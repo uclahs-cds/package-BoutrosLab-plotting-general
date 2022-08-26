@@ -1,0 +1,8 @@
+---
+extends: default
+
+rules:
+  line-length: disable
+
+  # Github Action's YAML config uses 'on' as a key to trigger runs
+  truthy: disable
