@@ -140,7 +140,7 @@ create.boxplot(
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{box.ratio}{ability to change the box width, defaults to 1}
     \item{col}{The colour to fill the interior of the boxplot, defaults to white}
-    \item{alpha}{The alpha of the interior boxplot color specified in `col`. Defaults to 1 (opaque)}
+    \item{alpha}{The alpha of the interior boxplot colour specified in `col`. Defaults to 1 (opaque)}
     \item{border.col}{Colour of the boxplot, defaults to black}
     \item{symbol.cex}{Size of the boxplot outlier-symbol}
     \item{lwd}{Line width, defaults to 1}
