@@ -23,7 +23,7 @@
 \examples{
 data(CNA);
 create.dotmap(
-    filename = tempfile(pattern = 'Using_CNA_dataset', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Using_CNA_dataset', fileext = '.tiff'),
     x = CNA[1:15, 1:15],
     main = 'CNA data',
     xaxis.cex = 0.8,

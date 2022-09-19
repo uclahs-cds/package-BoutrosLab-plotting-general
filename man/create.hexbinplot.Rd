@@ -240,7 +240,7 @@ simple.data <- data.frame(
     );
 
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     main = 'Simple',
@@ -249,7 +249,7 @@ create.hexbinplot(
     );
 
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Simple_underlined_legend_title', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Simple_underlined_legend_title', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     legend.title = list(lab = expression(bold(underline('Counts'))), x = 1, y = 1.1),
@@ -266,7 +266,7 @@ hexbin.data <- data.frame(
 
 # Minimal Input
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Minimal_Input', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Minimal input',
@@ -280,7 +280,7 @@ create.hexbinplot(
 
 # Axes & Labels
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Axes_Labels', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Axes & labels',
@@ -306,7 +306,7 @@ create.hexbinplot(
 \donttest{
 # Aspect Ratio
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Aspect_Ratio', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Aspect_Ratio', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Aspect ratio',
@@ -332,7 +332,7 @@ create.hexbinplot(
 
 # Colour scheme
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Colour_Change', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Colour_Change', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Colour change',
@@ -360,7 +360,7 @@ create.hexbinplot(
 
 # Bin sizes
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Bin_Sizes', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Bin_Sizes', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Bin sizes',
@@ -387,7 +387,7 @@ create.hexbinplot(
 
 # Correlation Key
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Correlation', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Correlation', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Correlation',
@@ -430,7 +430,7 @@ create.hexbinplot(
 
 # Grid lines and diagonal
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Gridlines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Gridlines', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Gridlines',
@@ -470,7 +470,7 @@ fake.data <- data.frame(
     );
 
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Range', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Range', fileext = '.tiff'),
     formula = z ~ x,
     data = fake.data,
     main = 'Range',
@@ -507,7 +507,7 @@ fake.data.outlier <- data.frame(
     );
 
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Outlier', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Outlier', fileext = '.tiff'),
     formula = z ~ x,
     data = fake.data.outlier,
     main = 'Outlier',
@@ -533,7 +533,7 @@ create.hexbinplot(
 
 # Nature style
 create.hexbinplot(
-    filename = tempfile(pattern = 'Hexbinplot_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Hexbinplot_Nature_style', fileext = '.tiff'),
     formula = y ~ x,
     data = hexbin.data,
     main = 'Nature style',
@@ -576,10 +576,10 @@ simple.data$group.labels <- as.factor(simple.data$groups);
 
 create.hexbinplot(
 	formula = y ~ x | groups,
-	filename = tempfile(
-        pattern = 'stratified_hexbinplot_numeric_conditioning',
-        fileext = '.tiff'
-        ),
+	# filename = tempfile(
+  #      pattern = 'stratified_hexbinplot_numeric_conditioning',
+  #      fileext = '.tiff'
+  #      ),
 	data = simple.data,
 	description = 'Hexbinplot created by BoutrosLab.plotting.general',
 	strip.col = 'white',
@@ -590,10 +590,10 @@ create.hexbinplot(
 
 create.hexbinplot(
 	formula = y ~ x | group.labels,
-	filename = tempfile(
-        pattern = 'stratified_hexbinplot_factor_conditioning',
-        fileext = '.tiff'
-        ),
+	# filename = tempfile(
+  #      pattern = 'stratified_hexbinplot_factor_conditioning',
+  #      fileext = '.tiff'
+  #      ),
 	data = simple.data,
 	description = 'Hexbinplot created by BoutrosLab.plotting.general',
 	strip.col = 'white',

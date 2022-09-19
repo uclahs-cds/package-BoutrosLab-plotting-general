@@ -229,7 +229,7 @@ simple.data <- data.frame(
     );
 
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Simple', fileext = '.tiff'),
     formula = -log10(x) ~ y,
     data = simple.data,
     main = 'Simple',
@@ -267,7 +267,7 @@ microarray$ind <- 1:nrow(microarray);
 
 # Minimal input
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Minimal_Input', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Minimal input',
@@ -277,7 +277,7 @@ create.manhattanplot(
 
 # Custom Axes
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Custom_Axes', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Custom_Axes', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Custom axes',
@@ -302,7 +302,7 @@ create.manhattanplot(
 
 # Colour scheme
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Colour_Scheme', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Colour_Scheme', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Colour scheme',
@@ -328,7 +328,7 @@ create.manhattanplot(
 
 # Plotting Character
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Plotting_Character', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Plotting_Character', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Plotting character',
@@ -358,7 +358,7 @@ create.manhattanplot(
 \donttest{
 # Line
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Added_Line', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Added_Line', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Line',
@@ -391,7 +391,7 @@ create.manhattanplot(
 
 # Background shading
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_BG', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_BG', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Bg rectangles',
@@ -431,7 +431,7 @@ create.manhattanplot(
 
 # Nature style
 create.manhattanplot(
-    filename = tempfile(pattern = 'Manhattan_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Manhattan_Nature_style', fileext = '.tiff'),
     formula = -log10(pval) ~ ind,
     data = microarray,
     main = 'Nature style',

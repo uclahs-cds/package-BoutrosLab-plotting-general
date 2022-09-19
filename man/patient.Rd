@@ -36,7 +36,7 @@ sex.colours <- replace(sex.colours, which(patient$sex == 'female'), 'pink');
 len <- apply(SNV[1:15], 2, function(x){mutation.count <- length(which(x == 1))});
 
 create.barplot(
-    filename = tempfile(pattern = 'Using_patient_dataset', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Using_patient_dataset', fileext = '.tiff'),
     formula = len ~ colnames(SNV[1:15]) ,
     data = SNV,
     main = 'patient dataset',

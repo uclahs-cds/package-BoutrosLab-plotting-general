@@ -267,7 +267,7 @@ simple.data <- data.frame(
 
 # Simple example
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Simple', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     yat = seq(0,16,2),
@@ -295,7 +295,7 @@ barplot.data <- data.frame(
 
 # Minimal input
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Minimal_Input', fileext = '.tiff'),
     formula = values ~ samples ,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Minimal input',
@@ -306,7 +306,7 @@ create.barplot(
 
 # Axes labels & limits
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Custom_Axes', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Custom_Axes', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Axes labels & limits',
@@ -322,7 +322,7 @@ create.barplot(
 
 # Font size and font face
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Font_Changes', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Font_Changes', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Font changes',
@@ -345,7 +345,7 @@ create.barplot(
 \donttest{
 # Sorting data
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Sorted', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Sorted', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Sorted bars',
@@ -370,7 +370,7 @@ sex.colours <- replace(as.vector(barplot.data$sex), which(barplot.data$sex == 'm
 sex.colours <- replace(sex.colours, which(barplot.data$sex == 'female'), 'pink');
 
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Colour_Changes', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Colour_Changes', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Colour changes',
@@ -392,7 +392,7 @@ create.barplot(
 
 # Legend
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Legend', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Legend',
@@ -437,7 +437,7 @@ create.barplot(
 
 # Grouped barplot
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Grouped', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Grouped', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data,
     main = 'Grouped bar chart',
@@ -482,7 +482,7 @@ create.barplot(
 
 # Grouped labels
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Grouped_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Grouped_Labels', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data,
     main = 'Grouped labels',
@@ -509,7 +509,7 @@ create.barplot(
 
 # Stacked barplot
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Stacked', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Stacked', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data,
     main = 'Stacked bar chart',
@@ -557,7 +557,7 @@ create.barplot(
 
 # Panel organization
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Panel_Layout_numeric_conditioning', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Panel_Layout_numeric_conditioning', fileext = '.tiff'),
     # Setting the panel layout
     formula = values ~ samples | type,
     data = barplot.data,
@@ -577,7 +577,7 @@ create.barplot(
     );
 
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Panel_Layout_character_conditioning', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Panel_Layout_character_conditioning', fileext = '.tiff'),
     # Setting the panel layout
     formula = values ~ samples | mutation,
     data = barplot.data,
@@ -598,7 +598,7 @@ create.barplot(
 
 # Panel organization 2
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Panel_Layout_2', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Panel_Layout_2', fileext = '.tiff'),
     formula = values ~ samples | mutation,
     data = barplot.data,
     main = 'Panel layout',
@@ -693,7 +693,7 @@ covariate.legend.grob <- legend.grob(
     );
 
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Covariates', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Covariates', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Covariates',
@@ -727,7 +727,7 @@ create.barplot(
     );
 
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Auto_legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Auto_legend', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Covariates',
@@ -754,7 +754,7 @@ create.barplot(
 
 # Horizontal orientation
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Horizontal', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Horizontal', fileext = '.tiff'),
     # switch formula order
     formula = samples ~ values,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
@@ -772,7 +772,7 @@ create.barplot(
 
 # Change bar thickness and add text labels
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Text_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Text_Labels', fileext = '.tiff'),
     # switch formula order
     formula = samples ~ values,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
@@ -798,7 +798,7 @@ error.data <- data.frame(
     );
 
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Error_Bars', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Error_Bars', fileext = '.tiff'),
     # needs sequential x-axis
     formula = values ~ 1:15,
     data = error.data,
@@ -822,7 +822,7 @@ create.barplot(
 
 
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Error_Bars_Horizontal', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Error_Bars_Horizontal', fileext = '.tiff'),
     # needs sequential x-axis
     formula = values ~ 1:15,
     data = error.data,
@@ -845,7 +845,7 @@ create.barplot(
 
 # Grid lines
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Gridlines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Gridlines', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Gridlines',
@@ -892,7 +892,7 @@ create.barplot(
 
 # Grid lines 2
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Gridlines_GreyBG', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Gridlines_GreyBG', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Gridlines & grey background',
@@ -940,7 +940,7 @@ create.barplot(
 
 # Labels
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Labels', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Labels',
@@ -991,7 +991,7 @@ create.barplot(
 
 # lines
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Lines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Lines', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Lines',
@@ -1043,7 +1043,7 @@ create.barplot(
 
 # Background rectangle
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Bg_Rectangle', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Bg_Rectangle', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Background rectangle',
@@ -1095,7 +1095,7 @@ create.barplot(
 
 # Raster
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_with_raster', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_with_raster', fileext = '.tiff'),
     formula = values ~ samples,
     data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
     main = 'Raster fill',
@@ -1118,7 +1118,7 @@ create.barplot(
 
 # Nature format
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_Nature_style', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     yat = seq(0,16,2),
@@ -1138,7 +1138,7 @@ create.barplot(
 
 # Left Justified Example
 create.barplot(
-    filename = tempfile(pattern = 'Barplot_TwoTopLabelsLeftJustified', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Barplot_TwoTopLabelsLeftJustified', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     yat = seq(0,16,2),

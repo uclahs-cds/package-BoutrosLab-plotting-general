@@ -6,8 +6,8 @@
 create.gif(
 	exec.func,
 	parameters,
-	number.of.frames, 
-	delay = 40, 
+	number.of.frames,
+	delay = 40,
 	filename)
 }
 \arguments{
@@ -44,11 +44,11 @@ p = list(
 	)
 
 create.gif(
-	exec.func = create.barplot, 
-	parameters = p, 
-	number.of.frames = 3, 
-	delay = 20, 
+	exec.func = create.barplot,
+	parameters = p,
+	number.of.frames = 3,
+	delay = 20,
 	filename = tempfile(pattern = 'test', fileext = '.gif')
-	) 
+	)
 
 }

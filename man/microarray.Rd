@@ -23,7 +23,7 @@
 
 \examples{
 create.dotmap(
-    filename = tempfile(pattern = 'Using_microarray_dataset', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Using_microarray_dataset', fileext = '.tiff'),
     x = microarray[1:5,1:5],
     main = 'microarray data',
     spot.size.function = function(x) {abs(x)/3;},
