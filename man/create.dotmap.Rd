@@ -218,7 +218,7 @@ simple.data <- data.frame(
     );
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Simple', fileext = '.tiff'),
     x = simple.data,
     main = 'Simple',
     description = 'Dotmap created by BoutrosLab.plotting.general',
@@ -230,7 +230,7 @@ spot.size.med <- function(x) {abs(x)/3;}
 
 # Minimal Input
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Minimal_Input', fileext = '.tiff'),
     x = microarray[1:5,1:5],
     main = 'Minimal input',
     spot.size.function = spot.size.med,
@@ -243,7 +243,7 @@ create.dotmap(
 spot.size.small <- function(x) {abs(x)/5;}
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Axes_Labels', fileext = '.tiff'),
     x = microarray[1:15,1:15],
     main = 'Axes & labels',
     spot.size.function = spot.size.small,
@@ -263,7 +263,7 @@ create.dotmap(
 key.sizes <- seq(2,12,2);
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Legend', fileext = '.tiff'),
     x = microarray[1:15,1:15],
     main = 'Legend',
     spot.size.function = spot.size.small,
@@ -318,7 +318,7 @@ dendrogram.grob <- latticeExtra::dendrogramGrob(
 # create dotmap
 create.dotmap(
     x = plot.data,
-    filename = tempfile(pattern = 'Dotmap_clustered_dendrogram', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_clustered_dendrogram', fileext = '.tiff'),
     main = 'Clustered & dendrogram',
     spot.size.function = spot.size.small,
     # Adjusting the font sizes and labels
@@ -349,7 +349,7 @@ CNA.colour.function <- function(x){
     }
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_with_Background', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_with_Background', fileext = '.tiff'),
     # added new data for the dots
     x = CNA[1:15,1:15],
     # Moving the dot-data to be background data
@@ -390,7 +390,7 @@ create.dotmap(
 
 # Discrete background colours
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Discrete_Background', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Discrete_Background', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Discrete background',
@@ -439,7 +439,7 @@ border.colours <- function(x){
     }
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Outlined_Dots', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Outlined_Dots', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Dot outlines',
@@ -515,7 +515,7 @@ cov.legend <- legend.grob(
     );
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Covariates', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Covariates', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Covariates',
@@ -638,7 +638,7 @@ right.grob <- packGrob(
     );
 
 temp <- create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Covariates_Side', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Covariates_Side', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Both covariates',
@@ -689,7 +689,7 @@ dev.off();
 
 # Nature style
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_Nature_style', fileext = '.tiff'),
     x = CNA[1:15,1:15],
     bg.data = microarray[1:15,1:15],
     main = 'Nature style',
@@ -752,7 +752,7 @@ simple.data.sym <- data.frame(
     );
 
 create.dotmap(
-    filename = tempfile(pattern = 'Dotmap_remove_symmetric', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Dotmap_remove_symmetric', fileext = '.tiff'),
     x = simple.data.sym,
     main = 'Simple',
     xaxis.lab = seq(1,7,1),

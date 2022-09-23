@@ -66,7 +66,7 @@ barplot1 <- create.barplot(
 
 create.multiplot(
     plot.objects = list(heatmap1, barplot1),
-    filename = tempfile(pattern = 'multiplot_with_colourkey', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'multiplot_with_colourkey', fileext = '.tiff'),
     plot.layout = c(2,1),
     panel.widths = c(2,1),
     yat = list(1:nrow(y), NULL),

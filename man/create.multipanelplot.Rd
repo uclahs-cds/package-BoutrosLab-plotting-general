@@ -146,7 +146,7 @@ simple.heatmap <- create.heatmap(
     );
 
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_Simple', fileext = '.tiff'),
     plot.objects = list(simple.boxplot,simple.heatmap), 
     y.spacing = 1,  
     ylab.axis.padding = 2, 
@@ -173,7 +173,7 @@ simple.heatmap.with.legends <- create.heatmap(
     );
 
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_Simple_Legends', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_Simple_Legends', fileext = '.tiff'),
     plot.objects = list(simple.boxplot,simple.heatmap.with.legends),
     y.spacing = 1,
     ylab.axis.padding = 2,
@@ -233,7 +233,7 @@ simple.heatmap2 <- create.heatmap(
 
 
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_Simple_Layout', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_Simple_Layout', fileext = '.tiff'),
     plot.objects = list(simple.boxplot2, 
     simple.violin2,simple.heatmap2), 
     layout.width = 2, 
@@ -289,7 +289,7 @@ heatmap.formatted <- create.heatmap(
     ); 
 
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_formatted', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_formatted', fileext = '.tiff'),
     plot.objects = list(barplot.formatted, heatmap.formatted), 
     plot.objects.heights = c(1,3), 
     y.spacing = -3.75, 
@@ -403,7 +403,7 @@ legendG <- legend.grob(
     	);
 
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_Barchart', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_Barchart', fileext = '.tiff'),
     plot.objects = list(bars, cov.3, cov.2, cov.1 ), 	
     plot.objects.heights = c(1, 0.1,0.1,0.1), 
     legend = list(right = list(fun = legendG)), 
@@ -561,7 +561,7 @@ cov.legend.grob <- legend.grob(
 
 
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_with_heatmap', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_with_heatmap', fileext = '.tiff'),
     plot.objects = list(dotmap,covariates), 
     plot.objects.heights = c(1,0.2), 
     y.spacing = -0.8, 
@@ -725,7 +725,7 @@ create.multipanelplot(
     plot.objects = plots,
     plot.objects.heights = c(0.3, 0.3, 1, 0.15),
     plot.objects.widths = c(1,0.2),
-    filename = tempfile(pattern = 'Multipanelplot_Complex', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_Complex', fileext = '.tiff'),
     layout.height = 4,
     layout.width = 2,
     x.spacing = 0.2,
@@ -895,7 +895,7 @@ cov.legend.grob <- legend.grob(
 
 # Now bring it was together using multiplot
 create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_continousLegend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_continousLegend', fileext = '.tiff'),
     plot.objects = list(simple.heatmap, simple.bar,covariates2,covariates),
     plot.objects.heights = c(1,0.1,0.35),
     plot.objects.widths = c(1,0.25),
@@ -917,7 +917,7 @@ create.multipanelplot(
     );
 
  create.multipanelplot(
-    filename = tempfile(pattern = 'Multipanelplot_manyPlots', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Multipanelplot_manyPlots', fileext = '.tiff'),
     main = 'Large Scale',
     plot.objects = list(
 	simple.boxplot,

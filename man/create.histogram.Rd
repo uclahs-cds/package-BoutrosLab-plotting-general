@@ -179,7 +179,7 @@ If this function is called without capturing the return value, or specifying a f
 set.seed(12345);
 
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Simple', fileext = '.tiff'),
     x = rnorm(5000),
     main = 'Simple',
     description = 'Histogram created by BoutrosLab.plotting.general',
@@ -187,7 +187,7 @@ create.histogram(
     );
 
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Simple_Count', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Simple_Count', fileext = '.tiff'),
     x = rnorm(5000),
     main = 'Simple Count',
     description = 'Histogram created by BoutrosLab.plotting.general',
@@ -197,7 +197,7 @@ create.histogram(
 
 # Minimal Input
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Minimal_Input', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Minimal input',
     description = 'Histogram created by BoutrosLab.plotting.general',
@@ -211,7 +211,7 @@ chr.data <- data.frame(
     );
 
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Formula_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Formula_Input', fileext = '.tiff'),
     x = y ~ x,
     data = chr.data,
     main = 'Formula input',
@@ -221,7 +221,7 @@ create.histogram(
 
 # Axes and Labels
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Axes_Labels', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Axes & labels',
     # Customizing the axes and labels
@@ -238,7 +238,7 @@ create.histogram(
 \donttest{
 # Colour change
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Colours', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Colours', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Colours',
     xlab.label = 'Bins',
@@ -254,7 +254,7 @@ create.histogram(
 
 # Line type
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Line_Type', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Line_Type', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Line type',
     xlab.label = 'Bins',
@@ -271,7 +271,7 @@ create.histogram(
 
 # Nature style
 create.histogram(
-    filename = tempfile(pattern = 'Histogram_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Histogram_Nature_style', fileext = '.tiff'),
     x = microarray[,1],
     main = 'Nature style',
     xlimits = c(0, 16),

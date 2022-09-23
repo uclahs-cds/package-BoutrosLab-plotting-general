@@ -68,6 +68,7 @@ create.polygonplot(
 	left.padding = 2,
 	ylab.axis.padding = 0,
 	add.border = FALSE,
+	add.xy.border = NULL,
 	add.median = FALSE,
 	median.lty = 3,
 	median.lwd = 1.5,
@@ -188,6 +189,7 @@ create.polygonplot(
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 2}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 0},
     \item{add.border}{Add xy border to polygon, default is FALSE}
+    \item{add.xy.border}{DEPRECATED: Use `add.border` argument instead}
     \item{add.median}{Add median line, default is FALSE}
     \item{median.lty}{Median line type}
     \item{median.lwd}{Median line width, defaults to 1.5}
@@ -265,7 +267,7 @@ simple.data <- data.frame(
     );
 
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Simple', fileext = '.tiff'),
     formula = NA ~ x,
     data = simple.data,
     max = simple.data$max,
@@ -323,7 +325,7 @@ polygon.data.two.genes <- rbind(
 
 # Minimal Input
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Minimal_Input', fileext = '.tiff'),
     formula = NA ~ x,
     data = polygon.data.gene1,
     max = polygon.data.gene1$max,
@@ -337,7 +339,7 @@ create.polygonplot(
 
 # Axes & Labels
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Axes_Labels', fileext = '.tiff'),
     formula = NA ~ x,
     data = polygon.data.gene1,
     max = polygon.data.gene1$max,
@@ -362,7 +364,7 @@ create.polygonplot(
 
 # Colour
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Colour', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Colour', fileext = '.tiff'),
     formula = NA ~ x,
     data = polygon.data.gene1,
     max = polygon.data.gene1$max,
@@ -388,7 +390,7 @@ create.polygonplot(
 
 # Add median line and points
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Median_Points', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Median_Points', fileext = '.tiff'),
     formula = NA ~ x,
     data = polygon.data.gene1,
     max = polygon.data.gene1$max,
@@ -419,7 +421,7 @@ create.polygonplot(
 \donttest{
 # Additional Data
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Extra_Data', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Extra_Data', fileext = '.tiff'),
     formula = NA ~ x,
     # divide data
     groups = set,
@@ -449,7 +451,7 @@ create.polygonplot(
 
 # Legend
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Legend', fileext = '.tiff'),
     formula = NA ~ x,
     groups = set,
     data = polygon.data.two.genes,
@@ -494,7 +496,7 @@ create.polygonplot(
 
 # Panel Organiation
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Panel', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Panel', fileext = '.tiff'),
     # divide data
     formula = NA ~ x | set,
     data = polygon.data.two.genes,
@@ -522,7 +524,7 @@ create.polygonplot(
 
 # Extra Points
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Extra_Points', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Extra_Points', fileext = '.tiff'),
     formula = NA ~ x,
     groups = set,
     data = polygon.data.two.genes,
@@ -576,7 +578,7 @@ create.polygonplot(
 
 # Nature style
 create.polygonplot(
-    filename = tempfile(pattern = 'Polygon_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Polygon_Nature_style', fileext = '.tiff'),
     formula = NA ~ x,
     groups = set,
     data = polygon.data.two.genes,

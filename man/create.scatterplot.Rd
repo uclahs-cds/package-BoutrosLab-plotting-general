@@ -82,7 +82,7 @@ create.scatterplot(
 	layout = NULL,
 	as.table = FALSE,
 	x.spacing = 0,
-	y.spacing = 0,	
+	y.spacing = 0,
 	x.relation = 'same',
 	y.relation = 'same',
 	add.axes = FALSE,
@@ -148,12 +148,12 @@ create.scatterplot(
 	use.legacy.settings = FALSE,
 	inside.legend.auto = FALSE,
 	regions.labels = c(),
-        regions.start = c(), 
-	regions.stop = c(), 
-	regions.color = c("red"), 
-	regions.cex = 1, 
+        regions.start = c(),
+	regions.stop = c(),
+	regions.color = c("red"),
+	regions.cex = 1,
 	regions.alpha = 1,
-        lollipop.bar.y = NULL, 
+        lollipop.bar.y = NULL,
 	lollipop.bar.color = "gray",
 	...
 	);
@@ -234,7 +234,7 @@ create.scatterplot(
     \item{key.left.padding}{Amount of padding to go onto any legend on the left}
     \item{ylab.axis.padding}{A number specifying the distance of ylabel to the y-axis, defaults to 1}
     \item{axis.key.padding}{A number specifying the distance from the y-axis to the key, defaults to 1}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}  
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
@@ -331,7 +331,7 @@ simple.data <- data.frame(
     y = rnorm(800)
     );
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Simple', fileext = '.tiff'),
+#    # filename = tempfile(pattern = 'Scatterplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     resolution = 50
@@ -345,7 +345,7 @@ scatter.data <- data.frame(
 
 # Minimal Input
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Minimal_Input', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Minimal Input',
@@ -355,7 +355,7 @@ create.scatterplot(
 
 # Axes & Labels
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Axes_Labels', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Axes & Labels',
@@ -378,13 +378,13 @@ create.scatterplot(
 
 # Plotting space
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Plotting_Space', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Plotting_Space', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Plotting Space',
     xlab.label = colnames(microarray[1]),
     ylab.label = colnames(microarray[2]),
-    # change axes accordingly 
+    # change axes accordingly
     xat = 2 ** (0:4),
     yat = seq(0, 16, 2),
     # change axes range accordingly
@@ -412,7 +412,7 @@ create.scatterplot(
 
 # Colour & Plotting Character
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Colour_Pch', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Colour_Pch', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Colour & Pch',
@@ -442,7 +442,7 @@ create.scatterplot(
 chr.palette <- colour.gradient(default.colours(2)[2], 800);
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Colour_Depth', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Colour_Depth', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Colour Depth',
@@ -492,7 +492,7 @@ create.scatterplot(
 
 # Groups & Legend
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Groups_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Groups_Legend', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Groups & Legend',
@@ -533,7 +533,7 @@ create.scatterplot(
 
 # Correlation Key
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Correlation_Key', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Correlation_Key', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Correlation Key',
@@ -576,7 +576,7 @@ create.scatterplot(
 \donttest{
 # Panel Organization
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Panel_numeric_conditional', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Panel_numeric_conditional', fileext = '.tiff'),
     formula = sample.two ~ sample.one | chr,
     data = scatter.data,
     main = 'Panel',
@@ -605,7 +605,7 @@ create.scatterplot(
 scatter.data$chromosome <- as.character(scatter.data$chr);
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Panel_character_conditional', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Panel_character_conditional', fileext = '.tiff'),
     formula = sample.two ~ sample.one | chromosome,
     data = scatter.data,
     main = 'Panel',
@@ -665,7 +665,7 @@ cov.legend.grob <- legend.grob(
     );
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Covariates', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Covariates', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Covariates',
@@ -703,7 +703,7 @@ error.data <- data.frame(
     );
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Error_Bars', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Error_Bars', fileext = '.tiff'),
     formula = values ~ chr,
     data = error.data,
     main = 'Error Bars',
@@ -744,7 +744,7 @@ create.scatterplot(
     );
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Error_Bars_MultiColor', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Error_Bars_MultiColor', fileext = '.tiff'),
     formula = values ~ chr,
     data = error.data,
     main = 'Error Bars',
@@ -788,7 +788,7 @@ create.scatterplot(
 
 # Gridlines
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Gridlines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Gridlines', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Gridlines',
@@ -815,7 +815,7 @@ create.scatterplot(
 
 # lines & background rectangle
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Lines_BG', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Lines_BG', fileext = '.tiff'),
     formula = sample.two ~ sample.one,
     data = scatter.data,
     main = 'Lines & BG rectangle',
@@ -854,7 +854,7 @@ create.scatterplot(
 
 # attach lines to points
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Lines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Lines', fileext = '.tiff'),
     formula = sample.two ~ sample.one | chr,
     data = scatter.data,
     main = 'Lines',
@@ -906,7 +906,7 @@ points.x <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), 'FPR'];
 points.y <- roc.data[match(c(0.25, 0.5, 0.75), roc.data$cutoff), 'TPR'];
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_ROC', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_ROC', fileext = '.tiff'),
     formula = TPR ~ FPR,
     data = roc.data,
     main = 'ROC',
@@ -962,7 +962,7 @@ volcano.data <- data.frame(
     );
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Volcano_Plot', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Volcano_Plot', fileext = '.tiff'),
     formula = p.values ~ fold.change,
     data = volcano.data,
     col = dot.colours,
@@ -989,7 +989,7 @@ text.y <- (-log10(p.values.adjusted))[interesting.points];
 text.labels <- rownames(microarray)[interesting.points];
 
 create.scatterplot(
-    filename = tempfile(pattern = 'Scatterplot_Volcano_Plot_With_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_Volcano_Plot_With_Labels', fileext = '.tiff'),
     formula = p.values ~ fold.change,
     data = volcano.data,
     alpha = .5,
@@ -1022,16 +1022,16 @@ line.data <- data.frame(
 create.scatterplot(
     (x+y+z) ~ group,
     line.data,
-    filename = tempfile(pattern = 'Scatterplot_with_LineSegments', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Scatterplot_with_LineSegments', fileext = '.tiff'),
     cex = 0,
     add.line.segments = TRUE,
     line.start = list(
-	rep(0,nrow(line.data)), 
+	rep(0,nrow(line.data)),
 	line.data$x,
 	c(line.data$x + line.data$y)
 	),
     line.end = list(
-	line.data$x, 
+	line.data$x,
 	c(line.data$x + line.data$y),
 	c(line.data$x + line.data$y + line.data$z)
 	),
@@ -1046,7 +1046,7 @@ lollipop.data <- data.frame(
     );
 
 create.lollipopplot(
-    filename = tempfile(pattern = 'Lollipop_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Lollipop_Simple', fileext = '.tiff'),
     formula = x ~ y,
     data = lollipop.data,
     main = 'Lollipop plot',

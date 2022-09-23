@@ -195,7 +195,7 @@ simple.data <- data.frame(
     );
 
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_simple', fileext = '.tiff'),
     formula = labels ~ min + max,
     data = simple.data,
     resolution = 50
@@ -219,7 +219,7 @@ segplot.data <- data.frame(
 
 # Minimal Input using real data
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Minimal_Input', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Minimal input',
@@ -229,7 +229,7 @@ create.segplot(
 
 # Axes & Labels
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Axes_Labels', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Axes & labels',
@@ -249,7 +249,7 @@ create.segplot(
 \donttest{
 # Bands
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Bands', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Bands', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Bands',
@@ -269,7 +269,7 @@ create.segplot(
 
 # Colours
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Colours', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Colours', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Colours',
@@ -291,7 +291,7 @@ create.segplot(
 
 # Median
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Median', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Median', fileext = '.tiff'),
     formula = gene ~ min + max,
     data = segplot.data,
     main = 'Medians',
@@ -314,7 +314,7 @@ create.segplot(
 
 # Reorder by center value
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Reorder', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Reorder', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Reordered',
@@ -336,7 +336,7 @@ create.segplot(
 
 # Legend
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Legend', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Legend',
@@ -381,7 +381,7 @@ create.segplot(
 
 # Background
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Background', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Background', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Background rectangle',
@@ -434,7 +434,7 @@ create.segplot(
 
 # Nature style
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_Nature_style', fileext = '.tiff'),
     formula = reorder(gene, median) ~ min + max,
     data = segplot.data,
     main = 'Nature style',
@@ -493,7 +493,7 @@ create.segplot(
 
 # example of bands and lines
 create.segplot(
-    filename = tempfile(pattern = 'Segplot_BandsAndLines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Segplot_BandsAndLines', fileext = '.tiff'),
     formula = labels ~ min + max,
     data = simple.data,
     draw.bands = c(1,3,5,7,9),

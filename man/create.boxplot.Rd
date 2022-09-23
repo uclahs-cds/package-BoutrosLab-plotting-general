@@ -33,6 +33,7 @@ create.boxplot(
 	alpha.rectangle = 1,
 	box.ratio = 1,
 	col = 'transparent',
+	alpha = 1,
 	border.col = 'black',
 	symbol.cex = 0.8,
 	lwd = 1,
@@ -121,7 +122,7 @@ create.boxplot(
     \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
     \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
     \item{points.pch}{pch value to use for stripplot}
-    \item{points.col}{colour(s) to use for stripplot (either a single colour 
+    \item{points.col}{colour(s) to use for stripplot (either a single colour
     or a vector)}
     \item{points.cex}{cex value to use for stripplot}
     \item{points.alpha}{alpha value to use for stripplot}
@@ -139,6 +140,7 @@ create.boxplot(
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{box.ratio}{ability to change the box width, defaults to 1}
     \item{col}{The colour to fill the interior of the boxplot, defaults to white}
+    \item{alpha}{The alpha of the interior boxplot colour specified in `col`. Defaults to 1 (opaque)}
     \item{border.col}{Colour of the boxplot, defaults to black}
     \item{symbol.cex}{Size of the boxplot outlier-symbol}
     \item{lwd}{Line width, defaults to 1}
@@ -234,7 +236,7 @@ simple.data <- data.frame(
     );
 
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Simple', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     main = 'Simple',
@@ -244,7 +246,7 @@ create.boxplot(
 
 # add stripplot behind boxplot
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_with_Stripplot', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_with_Stripplot', fileext = '.tiff'),
     formula = y ~ x,
     data = simple.data,
     main = 'With Stripplot',
@@ -281,7 +283,7 @@ reformatted.data <- data.frame(
 
 # Minimal Input
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Minimal_Input', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Minimal input',
@@ -291,7 +293,7 @@ create.boxplot(
 
 # Minimal Input
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Disable_Factor_Sorting_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Disable_Factor_Sorting_Input', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'No Factor Sorting',
@@ -302,7 +304,7 @@ create.boxplot(
 
 # Axes and labels
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Axes_Labels', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Axes & labels',
@@ -323,7 +325,7 @@ create.boxplot(
 \donttest{
 # Sorting
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Sorted', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Sorted', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Sorting',
@@ -346,7 +348,7 @@ sex.colour[sex.colour == 'male'] <- 'dodgerblue';
 sex.colour[sex.colour == 'female'] <- 'pink';
 
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Colour_Change', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Colour_Change', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Colour change',
@@ -365,7 +367,7 @@ create.boxplot(
 
 # Legend
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Legend', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Legend',
@@ -407,7 +409,7 @@ create.boxplot(
 
 # Orientation
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Orientation', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Orientation', fileext = '.tiff'),
     # switch the order
     formula = x ~ y,
     data = reformatted.data,
@@ -452,7 +454,7 @@ create.boxplot(
 
 # Background rectangle
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_BG_Rect', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_BG_Rect', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Bg rectangle',
@@ -502,7 +504,7 @@ create.boxplot(
 
 # Line
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Line', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Line', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Line',
@@ -524,7 +526,7 @@ create.boxplot(
 
 # Panel Organization
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Panels_numeric_conditioning', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Panels_numeric_conditioning', fileext = '.tiff'),
     formula = ~ x | z,
     data = reformatted.data,
     main = 'Panels',
@@ -541,7 +543,7 @@ create.boxplot(
     );
 
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Panels_factor_conditioning', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Panels_factor_conditioning', fileext = '.tiff'),
     formula = ~ x | y,
     data = reformatted.data,
     main = 'Panels',
@@ -559,7 +561,7 @@ create.boxplot(
 
 # Nature format
 create.boxplot(
-    filename = tempfile(pattern = 'Boxplot_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Boxplot_Nature_style', fileext = '.tiff'),
     formula = y ~ x,
     data = reformatted.data,
     main = 'Nature style',
@@ -622,7 +624,7 @@ diff.mean <- round(mean(groupB) - mean(groupA), 2);
 # Plot and display difference
 create.boxplot(
 	formula = x ~ y,
-	filename = tempfile(pattern = 'boxplot_with_text', fileext = '.tiff'),
+	# filename = tempfile(pattern = 'boxplot_with_text', fileext = '.tiff'),
 	data = to.plot,
 	add.stripplot = TRUE,
 	add.text = TRUE,

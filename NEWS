@@ -1,6 +1,7 @@
-BoutrosLab.plotting.general 7.0.5 2022-09-19
+BoutrosLab.plotting.general 7.0.5 2022-09-23
 
 UPDATE
+* Add alpha parameter to create.boxplot
 * Added GitHub repo to package description
 
 --------------------------------------------------------------------------
