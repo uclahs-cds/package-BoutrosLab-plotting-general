@@ -577,7 +577,6 @@ create.barplot(
     );
 
 create.barplot(
-    # filename = tempfile(pattern = 'Barplot_Panel_Layout_character_conditioning', fileext = '.tiff'),
     # Setting the panel layout
     formula = values ~ samples | mutation,
     data = barplot.data,
