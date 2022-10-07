@@ -17,7 +17,7 @@ Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "PBoutros@me
              person("Stefan Eng", role = "ctb"))
 Maintainer: Paul Boutros <PBoutros@mednet.ucla.edu>
 Depends: R (>= 3.5.0), lattice (>= 0.20-35), latticeExtra (>= 0.6-27), cluster (>= 2.0.0), hexbin (>= 1.27.0), grid
-Imports: gridExtra,  tools, gtable, e1071, MASS(>= 7.3-29)
+Imports: gridExtra, tools, methods, gtable, e1071, MASS(>= 7.3-29)
 Suggests: 
     Cairo (>= 1.5-1),
     knitr,

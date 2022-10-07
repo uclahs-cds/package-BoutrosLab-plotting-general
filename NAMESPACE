@@ -65,6 +65,7 @@ importFrom("stats", "as.dendrogram", "as.dist", "as.formula",
              "order.dendrogram", "ppoints", "predict", "pt", "qnorm", "quantile", "uniroot", "update", "sd");
 importFrom("utils", "packageVersion", "read.table", "stack", "tail", "write.table");
 importFrom("tools", "file_ext");
+importFrom("methods", "is");
 importFrom("e1071","skewness");
 importFrom("gtable","gtable_add_grob");
 importFrom("gridExtra", "arrangeGrob");

@@ -39,7 +39,7 @@ create.multiplot <- function(plot.objects, filename = NULL, panel.heights = c(1,
 		}
 	# check that plots are trellis objects
 	for (i in 1:length(plot.objects)) {
-		if (class(plot.objects[[i]]) != 'trellis') {
+		if (!inherits(plot.objects[[i]], 'trellis')) {
 			stop('Please only use trellis objects for this function');
 			}
 		}
