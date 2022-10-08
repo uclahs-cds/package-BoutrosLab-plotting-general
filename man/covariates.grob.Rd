@@ -83,17 +83,6 @@ covariates.grob1 <- covariates.grob(
     ord = c(1:ncol(x)),
     side = 'right'
     );
-tiff(
-    # filename = tempfile(pattern = 'covariates_grob1', fileext = '.tiff'), 
-    type = bitmap.type, 
-    width = 6, 
-    height = 6, 
-    units = 'in', 
-    res = 1000, 
-    compression = 'lzw'
-    );
-grid.draw(covariates.grob1);
-dev.off();
 
 # create a dendrogram for x
 cov.dendrogram <- BoutrosLab.plotting.general::create.dendrogram(
@@ -116,17 +105,6 @@ covariates.grob2 <- covariates.grob(
     side = 'top',
     size = 2
     );
-tiff(
-    # filename = tempfile(pattern = 'covariates_grob2', fileext = '.tiff'), 
-    type = bitmap.type, 
-    width = 6, 
-    height = 6, 
-    units = 'in', 
-    res = 1000, 
-    compression = 'lzw'
-    );
-grid.draw(covariates.grob2);
-dev.off();
 
 # add a border of a different colour
 covariates.grob3 <- covariates.grob(
@@ -135,17 +113,6 @@ covariates.grob3 <- covariates.grob(
     side = 'right',
     grid.border = list(col = 'red', lwd = 1.5)
     );
-tiff(
-    # filename = tempfile(pattern = 'covariates_grob3', fileext = '.tiff'), 
-    type = bitmap.type, 
-    width = 6, 
-    height = 6, 
-    units = 'in', 
-    res = 1000, 
-    compression = 'lzw'
-    );
-grid.draw(covariates.grob3);
-dev.off();
 
 # create covariates with transparent rectangle borders
 covariates3 <- list(
@@ -169,17 +136,6 @@ covariates.grob4 <- covariates.grob(
     grid.col = list(col = 'black', lty = 3),
     grid.border = list()
     );
-tiff(
-    # filename = tempfile(pattern = 'covariates_grob4', fileext = '.tiff'), 
-    type = bitmap.type, 
-    width = 6, 
-    height = 6, 
-    units = 'in', 
-    res = 1000, 
-    compression = 'lzw'
-    );
-grid.draw(covariates.grob4);
-dev.off();
 
 # draw a subset of row/column lines
 covariates.grob5 <- covariates.grob(
@@ -192,15 +148,4 @@ covariates.grob5 <- covariates.grob(
     grid.col = list(lty = 2),
     col.lines = c(0,1)
     );
-tiff(
-    # filename = tempfile(pattern = 'covariates_grob5', fileext = '.tiff'),
-    type = bitmap.type, 
-    width = 6, 
-    height = 6, 
-    units = 'in', 
-    res = 1000, 
-    compression = 'lzw'
-    );
-grid.draw(covariates.grob5);
-dev.off();
 }
