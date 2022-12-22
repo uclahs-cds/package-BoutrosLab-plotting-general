@@ -26,4 +26,4 @@ Dependencies:
   - knitr
   - testthat
 References: https://doi.org/10.1186/s12859-019-2610-2
-Version: 7.0.3
+Version: 7.0.5
