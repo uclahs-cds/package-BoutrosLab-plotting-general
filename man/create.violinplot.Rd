@@ -133,7 +133,7 @@ create.violinplot(
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
-    \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
+    \item{xleft.rectangle}{Specifies the left x coordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
     \item{xright.rectangle}{Specifies the right x coordinate of the rectangle to be drawn}
     \item{ytop.rectangle}{Specifies the top y coordinate of the rectangle to be drawn}
