@@ -1,6 +1,7 @@
-BoutrosLab.plotting.general 7.0.5 2022-10-03
+BoutrosLab.plotting.general 7.0.5 2022-12-22
 
 UPDATE
+* Fix typo in man/create.violinplot.Rd
 * Add alpha parameter to create.boxplot
 * Added GitHub repo to package description
 
