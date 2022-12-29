@@ -12,4 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: r-lib/actions/setup-tinytex@v2
+      - name: Install LaTeX packages
+        run: |
+          tlmgr install \
+          parskip \
+          geometry \
+          tocbasic \
+          sectsty \
+          graphicx \
+          titlesec \
+          natbib \
+          lastpage  
       - uses: uclahs-cds/tool-R-CMD-check-action@stable
