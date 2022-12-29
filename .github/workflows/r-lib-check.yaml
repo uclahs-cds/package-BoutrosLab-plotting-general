@@ -22,5 +22,6 @@ jobs:
           graphicx \
           titlesec \
           natbib \
-          lastpage  
+          lastpage \
+          hyperref  
       - uses: uclahs-cds/tool-R-CMD-check-action@stable
