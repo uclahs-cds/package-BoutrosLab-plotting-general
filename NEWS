@@ -1,9 +1,10 @@
-BoutrosLab.plotting.general 7.0.5 2022-12-29
+BoutrosLab.plotting.general 7.0.5 2023-01-03
 
 UPDATE
 * Fix typo in man/create.violinplot.Rd
 * Add alpha parameter to create.boxplot
 * Added GitHub repo to package description
+* Correctly sort horizontal barplot
 * Remove Makefile
 
 --------------------------------------------------------------------------

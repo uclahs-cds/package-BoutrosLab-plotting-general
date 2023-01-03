@@ -173,11 +173,11 @@ create.barplot(
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to 1}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
-    \item{xlimits}{Two-element vector giving the x-axis limits. Useful when plot.horizontal = TRUE}  
-    \item{ylimits}{Two-element vector giving the y-axis limits}  
+    \item{xlimits}{Two-element vector giving the x-axis limits. Useful when plot.horizontal = TRUE}
+    \item{ylimits}{Two-element vector giving the y-axis limits}
     \item{xat}{Vector listing where the x-axis labels should be drawn. Useful when plot.horizontal = TRUE}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
-    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.  
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
     \item{y.spacing}{A number specifying the distance between panels along the y-axis, defaults to 0}
@@ -188,7 +188,7 @@ create.barplot(
     \item{right.padding}{A number specifying the distance to the right margin, defaults to 1}
     \item{left.padding}{A number specifying the distance to the left margin, defaults to 1}
     \item{key.bottom}{A number specifying how much space should be left for the key at the bottom, defaults to 0.1}
-    \item{ylab.axis.padding}{A number specifying the distance of y-axis label to the y-axis, defaults to 0}, 
+    \item{ylab.axis.padding}{A number specifying the distance of y-axis label to the y-axis, defaults to 0},
     \item{xlab.axis.padding}{A number specifying the distance of x-axis label to the x-axis, defaults to 0.5. Named differently than ylab.axis.padding because these are lattice's internal names for these values}
     \item{col}{Filling colour of bars, defaults to black, does a grey-scale spectrum if !is.null(groups)}
     \item{border.col}{Specify border colour (defaults to black)}
@@ -365,6 +365,27 @@ create.barplot(
     resolution = 100
     );
 
+# Sorting data with horizontal barplot
+create.barplot(
+    formula = samples ~ values,
+    data = barplot.data[barplot.data$mutation == 'nonsynonymous',],
+    main = 'Sorted bars',
+    xlab.lab = 'Samples',
+    ylab.lab = 'Nonsynonymous SNVs',
+    xlimits = c(0,30),
+    xat = seq(0,30,5),
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    xaxis.fontface = 1,
+    yaxis.fontface = 1,
+    # Order bars either by 'increasing' or 'decreasing'
+    sample.order = 'decreasing',
+    plot.horizontal = TRUE,
+    resolution = 100
+    )
+
 # Colour changes
 sex.colours <- replace(as.vector(barplot.data$sex), which(barplot.data$sex == 'male'),'dodgerblue');
 sex.colours <- replace(sex.colours, which(barplot.data$sex == 'female'), 'pink');
@@ -464,7 +485,7 @@ create.barplot(
                         pch = 22,
                         cex = 2,
                         fill = default.colours(12, is.greyscale = FALSE)[11:12]
-                        ),  
+                        ),
                     text = list(
                         lab = c('Nonsynonymous SNV','Other SNV')
                         ),
@@ -686,7 +707,7 @@ covariates.legends <- list(
         )
     );
 
-# see BoutrosLab.plotting.general::legend.grob() for more information 
+# see BoutrosLab.plotting.general::legend.grob() for more information
 covariate.legend.grob <- legend.grob(
     legends = covariates.legends,
     title.just = 'left'
@@ -956,9 +977,9 @@ create.barplot(
     yaxis.fontface = 1,
     # Labels
     text.above.bars = list(
-        labels = c('*','27','15','*'), 
-        padding = 0.75, 
-        bar.locations = c(1, 3, 12, 14), 
+        labels = c('*','27','15','*'),
+        padding = 0.75,
+        bar.locations = c(1, 3, 12, 14),
         rotation = 0
         ),
     col = sex.colours,
@@ -1124,12 +1145,12 @@ create.barplot(
     yat = seq(0,16,2),
     main = 'Nature style',
 
-    # set style to Nature 
+    # set style to Nature
     style = 'Nature',
-    
+
     # demonstrating how to italicize character variables
     ylab.lab = expression(paste('italicized ', italic('a'))),
-  
+
     # demonstrating how to create en-dashes
     xlab.lab = expression(paste('en dashs: 1','\u2013', '10'^'\u2013', ''^3)),
 
