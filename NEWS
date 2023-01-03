@@ -1,15 +1,9 @@
-BoutrosLab.plotting.general 7.0.6 2022-12-08
-
-UPDATE
-* Correctly sort horizontal barplot
-
---------------------------------------------------------------------------
-
 BoutrosLab.plotting.general 7.0.5 2022-10-03
 
 UPDATE
 * Add alpha parameter to create.boxplot
 * Added GitHub repo to package description
+* Correctly sort horizontal barplot
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.4 2022-08-17
