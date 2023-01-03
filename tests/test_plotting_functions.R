@@ -159,7 +159,7 @@ qqfit <- create.qqplot.fit(
 
 # Plot everything in one plot for quicker running time
 create.multiplot(
-	file = 'multiplot_test.tiff',
+	file = NULL,
 	plot.objects = list(polygonplot, manhattanplot, hexbin, dotmap, density, qqcomp, scatter, seg, violin, barplot, strip, boxplot)
 	);
 

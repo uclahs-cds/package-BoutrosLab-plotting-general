@@ -238,7 +238,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			stop('Cannot provide a column dendrogram and also perform column-wise clustering');
 			}
 		# ensure dendrogram is correct class
-		if (class(col.dendrogram) != 'dendrogram') {
+		if (!is(col.dendrogram, 'dendrogram')) {
 			stop('Invalid col.dendrogram parameter -- must be a dendrogram object');
 			}
 		# ensure dendrogram is correct size
@@ -255,7 +255,7 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 			stop('Cannot provide a row dendrogram and also perform row-wise clustering');
 			}
 		# ensure dendrogram is correct class
-		if (class(row.dendrogram) != 'dendrogram') {
+		if (!is(row.dendrogram, 'dendrogram')) {
 			stop('Invalid row.dendrogram parameter -- must be a dendrogram object');
 			}
 		# ensure dendrogram is correct size
