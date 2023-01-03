@@ -5,6 +5,9 @@ UPDATE
 * Add alpha parameter to create.boxplot
 * Added GitHub repo to package description
 * Remove Makefile
+* Fixed NEWS format
+* Replaced string class comparison with is()
+* Fixed bug with persisted plotting function output in examples
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.4 2022-08-17
