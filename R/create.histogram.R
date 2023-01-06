@@ -219,7 +219,7 @@ create.histogram <- function(
 				key.left = 0.1,
 				key.ylab.padding = 0.1,
 				ylab = 1,
-				ylab.axis.padding = 1,
+				ylab.axis.padding = ylab.axis.padding,
 				axis.left = 1,
 				axis.right = 1,
 				axis.key.padding = 0.1,
