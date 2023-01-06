@@ -1,4 +1,10 @@
-BoutrosLab.plotting.general 7.0.5 2023-01-05
+BoutrosLab.plotting.general 7.0.6 2023-01-05
+
+BUG
+* Fix ylab.axis.padding parameter in create.histogram
+
+--------------------------------------------------------------------------
+BoutrosLab.plotting.general 7.0.5 2023-01-03
 
 UPDATE
 * Fix typo in man/create.violinplot.Rd
@@ -7,7 +13,6 @@ UPDATE
 * Correctly sort horizontal barplot
 * Remove Makefile
 * Replaced string class comparison with is()
-* Fix ylab.axis.padding parameter in create.histogram
 
 BUG
 * Fix NEWS format
