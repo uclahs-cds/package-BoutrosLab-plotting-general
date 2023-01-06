@@ -151,6 +151,14 @@ create.boxplot <- function(
 			}
 		}
 
+	# Workaround so that setting yaxis.lab = NULL will remove the yaxis label
+	# This is a bug (?) in lattice that has an issue open here
+	# https://github.com/deepayan/lattice/issues/26
+	if (is.null(yaxis.lab)) {
+		num.yaxis.labels <- length(unique(data[[parsed.formula[1]]]))
+		yaxis.lab <- rep('', num.yaxis.labels)
+		}
+	
 	# add preloaded defaults
 	if (preload.default == 'paper') {
 		}
