@@ -163,8 +163,8 @@ create.boxplot(
     \item{ylimits}{Two-element vector giving the y-axis limits}
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic (TRUE). Set to NULL to remove x-axis labels.}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic (TRUE). Set to NULL to remove y-axis labels.}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 2}
     \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
