@@ -1,5 +1,8 @@
 BoutrosLab.plotting.general 7.0.6 2023-01-05
 
+UPDATE
+* Remove axis labels with axis.lab = NULL in create.boxplot for consistent behavior with other plot types
+
 BUG
 * Fix ylab.axis.padding parameter in create.histogram
 
