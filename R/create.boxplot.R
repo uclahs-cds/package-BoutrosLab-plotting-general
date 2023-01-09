@@ -150,14 +150,6 @@ create.boxplot <- function(
 			xaxis.lab <- out$axis.lab;
 			}
 		}
-
-	# Workaround so that setting yaxis.lab = NULL will remove the yaxis label
-	# This is a bug (?) in lattice that has an issue open here
-	# https://github.com/deepayan/lattice/issues/26
-	if (is.null(yaxis.lab)) {
-		num.yaxis.labels <- length(unique(data[[parsed.formula[1]]]))
-		yaxis.lab <- rep('', num.yaxis.labels)
-		}
 	
 	# add preloaded defaults
 	if (preload.default == 'paper') {
@@ -284,6 +276,17 @@ create.boxplot <- function(
 				y = main.y
 				)
 			),
+		# Workaround so that setting yaxis.lab = NULL will remove the yaxis label
+		# This is a bug (?) in lattice that has an issue open here
+		# https://github.com/deepayan/lattice/issues/26
+		default.scales = list(
+			x = list(
+				labels = xaxis.lab
+				),
+			y = list(
+				labels = yaxis.lab
+				)
+			),
 		xlab = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),
@@ -326,7 +329,6 @@ create.boxplot <- function(
 				property = 'fontfamily',
 				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
-					labels = xaxis.lab,
 					rot = xaxis.rot,
 					limits = xlimits,
 					cex = xaxis.cex,
@@ -341,7 +343,6 @@ create.boxplot <- function(
 				property = 'fontfamily',
 				use.legacy.settings = use.legacy.settings || ('Nature' == style),
 				add.to.list = list(
-					labels = yaxis.lab,
 					rot = yaxis.rot,
 					limits = ylimits,
 					cex = yaxis.cex,
