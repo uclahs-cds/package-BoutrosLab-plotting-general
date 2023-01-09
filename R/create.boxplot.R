@@ -277,7 +277,6 @@ create.boxplot <- function(
 				)
 			),
 		# Workaround so that setting yaxis.lab = NULL will remove the yaxis label
-		# This is a bug (?) in lattice that has an issue open here
 		# https://github.com/deepayan/lattice/issues/26
 		default.scales = list(
 			x = list(
