@@ -364,6 +364,25 @@ create.boxplot(
     description = 'Boxplot created by BoutrosLab.plotting.general',
     resolution = 100
     );
+    
+# Remove y-axis labels
+create.boxplot(
+    formula = y ~ x,
+    data = reformatted.data,
+    main = 'Remove y-axis labels',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    ylab.label = 'Gene',
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    yaxis.lab = NULL, # Remove labels with NULL
+    # Colour change
+    col = sex.colour,
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
 
 # Legend
 create.boxplot(
