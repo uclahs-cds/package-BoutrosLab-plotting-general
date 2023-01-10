@@ -6,6 +6,9 @@ Software package for generating publication-quality, customizable plots.
 
 Contains several plotting functions such as barplots, scatterplots, heatmaps, as well as functions to combine plots and assist in the creation of these plots. These functions will give users great ease of use and customization options in broad use for biomedical applications, as well as general purpose plotting. Each of the functions also provides valid default settings to make plotting data more efficient and producing high quality plots with standard colour schemes simpler. All functions within this package are capable of producing plots that are of the quality to be presented in scientific publications and journals. P'ng et al.; BPG: Seamless, automated and interactive visualization of scientific data; BMC Bioinformatics 2019 <doi:10.1186/s12859-019-2610-2>.
 
+## Contributors
+Please see list of [Contributors](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) at GitHub
+
 ## License
 
 Author: Paul C. Boutros (PBoutros@mednet.ucla.edu)
