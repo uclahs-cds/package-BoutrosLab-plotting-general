@@ -10,6 +10,15 @@ Each of the functions also provides valid default settings to make plotting data
 All functions within this package are capable of producing plots that are of the quality to be presented in scientific publications and journals. 
 P'ng et al.; [BPG: Seamless, automated and interactive visualization of scientific data](doi:10.1186/s12859-019-2610-2); BMC Bioinformatics 2019.
 
+## Installation
+To install the latest public release of BoutrosLab.plotting.general from CRAN:
+
+`install.packages("Boutros.plotting.general")`
+
+Or to install the latest development version from Github:
+
+`devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")`
+
 ## Contributors
 Please see list of [Contributors](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) at GitHub
 
