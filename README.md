@@ -13,11 +13,16 @@ P'ng et al.; [BPG: Seamless, automated and interactive visualization of scientif
 ## Installation
 To install the latest public release of BoutrosLab.plotting.general from CRAN:
 
-`install.packages("Boutros.plotting.general")`
+```
+install.packages("Boutros.plotting.general")
+```
 
 Or to install the latest development version from Github:
+```
+# install.packages("devtools")
 
-`devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")`
+devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
+```
 
 ## Contributors
 Please see list of [Contributors](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) at GitHub
