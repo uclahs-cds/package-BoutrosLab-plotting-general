@@ -31,6 +31,9 @@ Submit bugs, suggest new features or see current works at our [Issues](https://g
 ## Contributors
 Please see list of [Contributors](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) at GitHub
 
+## Citation Information
+P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interactive visualization of scientific data. *BMC Bioinformatics* **20**, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
+
 ## License
 
 Author: Paul C. Boutros (PBoutros@mednet.ucla.edu)
