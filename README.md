@@ -23,6 +23,10 @@ Or to install the latest development version from Github:
 
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
+## Getting help
+Looking for guidance or support with Boutros.plotting.general? Check out our [Discussions](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/discussions) page.
+
+Submit bugs, suggest new features or see current works at our [Issues](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/issues) page.
 
 ## Contributors
 Please see list of [Contributors](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) at GitHub
