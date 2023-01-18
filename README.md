@@ -48,13 +48,13 @@ P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interacti
 
 ## License
 
-Author: Paul C. Boutros (PBoutros@mednet.ucla.edu)
+Authors: Christine P’ng, Jeffrey Green, Lauren C. Chong, Daryl Waggott, Stephenie D. Prokopec, Mehrdad Shamsi, Francis Nguyen, Denise Y. F. Mak, Felix Lam, Marco A. Albuquerque, Ying Wu, Esther H. Jung, Maud H. W. Starmans, Michelle A. Chan-Seng-Yue, Cindy Q. Yao, Bianca Liang, Emilie Lalonde, Syed Haider, Nicole A. Simone, Dorota Sendorek, Kenneth C. Chu, Nathalie C. Moon, Natalie S. Fox, Michal R. Grzadkowski, Nicholas J. Harding, Clement Fung, Amanda R. Murdoch, Kathleen E. Houlahan, Jianxin Wang, David R. Garcia, Richard de Borja, Ren X. Sun, Xihui Lin, Gregory M. Chen, Aileen Lu, Yu-Jia Shiah, Amin Zia, Ryan Kearns & Paul C. Boutros (PBoutros@mednet.ucla.edu)
 
 BoutrosLab.plotting.general is licensed under the GNU General Public License version 2. See the file LICENSE.md for the terms of the GNU GPL license.
 
 BoutrosLab.plotting.general is a software package for generating publication-quality, customizable plots.
 
-Copyright (C) 2018-2023 University of California Los Angeles ("Boutros Lab") All rights reserved.
+Copyright (C) 2014-2018 Ontario Institute for Cancer Research and 2018-2023 University of California Los Angeles ("Boutros Lab") All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
