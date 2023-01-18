@@ -1,6 +1,6 @@
 # BoutrosLab.plotting.general
 
-Software package for generating publication-quality, customizable plots. 
+BoutrosLab.plotting.general (BPG) is a software package for generating publication-quality, customizable plots. 
 
 ## Description
 
@@ -9,6 +9,15 @@ These functions will give users great ease of use and customization options in b
 Each of the functions also provides valid default settings to make plotting data more efficient and producing high quality plots with standard colour schemes simpler. 
 All functions within this package are capable of producing plots that are of the quality to be presented in scientific publications and journals. 
 P'ng et al.; [BPG: Seamless, automated and interactive visualization of scientific data](doi:10.1186/s12859-019-2610-2); BMC Bioinformatics 2019.
+
+## Included plots
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12859-019-2610-2/MediaObjects/12859_2019_2610_Fig1_HTML.png?as=webp)
+
+Available chart-types. The basic chart-types available in BPG: **a** density plot, **b** boxplot, **c** violin plot, **d** segplot, **e** strip plot, **f** barplot, **g** scatterplot, **h** histogram, **i** qqplot fit, **j** qqplot comparison, **k** Manhattan plot, **l** polygon plot, **m** heatmap, **n** dotmap and **o** hexbinplot.
+
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12859-019-2610-2/MediaObjects/12859_2019_2610_Fig2_HTML.png?as=webp)
+
+Multiplot example. BPG's create.multiplot function is able to combine multiple chart-types together into a single figure as shown above.
 
 ## Installation
 To install the latest public release of BoutrosLab.plotting.general from CRAN:
@@ -23,13 +32,16 @@ Or to install the latest development version from Github:
 
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
+
 ## Getting help
 Looking for guidance or support with Boutros.plotting.general? Check out our [Discussions](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/discussions) page.
 
 Submit bugs, suggest new features or see current works at our [Issues](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/issues) page.
 
+[Pull requests](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/pulls) are also open for discussion.
+
 ## Contributors
-Please see list of [Contributors](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) at GitHub
+For lists of contributors please visit [here](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) and [here](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/graphs/contributors) at GitHub
 
 ## Citation Information
 P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interactive visualization of scientific data. *BMC Bioinformatics* **20**, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
@@ -42,7 +54,7 @@ BoutrosLab.plotting.general is licensed under the GNU General Public License ver
 
 BoutrosLab.plotting.general is a software package for generating publication-quality, customizable plots.
 
-Copyright (C) 2023 University of California Los Angeles ("Boutros Lab") All rights reserved.
+Copyright (C) 2018-2023 University of California Los Angeles ("Boutros Lab") All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
