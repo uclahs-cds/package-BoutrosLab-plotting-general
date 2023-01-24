@@ -1,0 +1,26 @@
+---
+name: R-CMD-check (r-lib)
+'on':
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  R-CMD-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: r-lib/actions/setup-tinytex@v2
+      - name: Install LaTeX packages
+        run: |
+          tlmgr install \
+          parskip \
+          geometry \
+          koma-script \
+          sectsty \
+          titlesec \
+          natbib \
+          lastpage \
+          hyperref
+      - uses: uclahs-cds/tool-R-CMD-check-action@stable
