@@ -33,6 +33,9 @@ Or to install the latest development version from Github:
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
 
+## Resources
+Available resources on BPG usage can be found at the package [CRAN page](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/index.html), [reference manual](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/BoutrosLab.plotting.general.pdf), or [vignette](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/vignettes/PlottingGuide.pdf).
+
 ## Getting help
 Looking for guidance or support with Boutros.plotting.general? Check out our [Discussions](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/discussions) page.
 
@@ -43,7 +46,7 @@ Submit bugs, suggest new features or see current works at our [Issues](https://g
 ## Contributors
 For lists of contributors please visit [here](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) and [here](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/graphs/contributors) at GitHub
 
-## Citation Information
+## Citation information
 P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interactive visualization of scientific data. *BMC Bioinformatics* **20**, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
 
 ## License
