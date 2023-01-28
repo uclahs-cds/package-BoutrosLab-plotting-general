@@ -1,13 +1,13 @@
 # BoutrosLab.plotting.general
 
-1. [Description](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Description)
-2. [Included plots](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Included-plots)
-3. [Installation](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Installation)
-4. [Function reference](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Function-reference)
-5. [Resources](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Resources)
-6. [Getting help](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Getting-help)
-7. [Contributors](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Contributors)
-8. [Citation information](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general#Citation-information)
+1. [Description](#description)
+2. [Included plots](#included-plots)
+3. [Installation](#installation)
+4. [Function reference](#function-reference)
+5. [Resources](#resources)
+6. [Getting help](#getting-help)
+7. [Contributors](#contributors)
+8. [Citation information](#citation-information)
 
 ## Description
 
@@ -40,153 +40,57 @@ Or to install the latest development version from Github:
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
 ## Function reference
-### All Functions
-[`BoutrosLab.plotting.general-package`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html) [`BoutrosLab.plotting.general`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html)
-Boutros Lab general plotting functions
-
-[`CNA`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/CNA.html)
-Copy number aberration (CNA) data from colon cancer patients
-
-[`SNV`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/SNV.html)
-Single nucleotide variant (SNV) data from colon cancer patients
-
-[`auto.axis()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/auto.axis.html)
-Create ideal labels and values for a given dataset (detects log scales)
-
-[`colour.gradient()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/colour.gradient.html)
-Creates a colour gradient
-
-[`covariates.grob()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/covariates.grob.html)
-Create one or more covariate bars
-
-[`create.barplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.barplot.html)
-Make a barplot
-
-[`create.boxplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.boxplot.html)
-Make a boxplot
-
-[`create.colourkey()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.colourkey.html)
-Create Colourkey
-
-[`create.dendrogram()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.dendrogram.html)
-Generate a dendrogram
-
-[`create.densityplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.densityplot.html)
-Make a density plot
-
-[`create.dotmap()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.dotmap.html)
-Make a dotmap with coloured background
-
-[`create.gif()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.gif.html)
-Make a gif
-
-[`create.heatmap()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.heatmap.html)
-Make a heatmap
-
-[`create.hexbinplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.hexbinplot.html)
-Make a hexagonally binned plot
-
-[`create.histogram()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.histogram.html)
-Make a histogram
-
-[`create.lollipopplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.lollipopplot.html)
-Make a lollipopplot
-
-[`create.manhattanplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.manhattanplot.html)
-Make a Manhattan plot
-
-[`create.multipanelplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.multipanelplot.html)
-Joins plots together
-
-[`create.multiplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.multiplot.html)
-Joins plots together
-
-[`create.polygonplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.polygonplot.html)
-Make a polygonplot
-
-[`create.qqplot.comparison()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.qqplot.comparison.html)
-Make a quantile-quantile plot of two samples
-
-[`create.qqplot.fit()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.qqplot.fit.html)
-Make a quantile-quantile plot of a sample
-
-[`create.qqplot.fit.confidence.interval()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.qqplot.fit.confidence.interval.html)
-Create the confidence bands for a one-sample qq plot
-
-[`create.scatterplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.scatterplot.html)
-Make a scatterplot
-
-[`create.segplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.segplot.html)
-Make a segplot
-
-[`create.stripplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.stripplot.html)
-Make a strip-plot
-
-[`create.violinplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.violinplot.html)
-Make a violin plot
-
-[`critical.value.ks.test()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/critical.value.ks.test.html)
-Critical Value for Kolmogorov-Smirnov Test
-
-[`default.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/default.colours.html)
-Provides default colour schemes.
-
-[`display.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/display.colours.html)
-Function to display R colors, as well as corresponding R grey colours.
-
-[`display.statistical.result()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/display.statistical.result.html)
-Utility function to display statistical result in a plot
-
-[`dist()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/dist.html)
-Distance Matrix Computation
-
-[`force.colour.scheme()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/force.colour.scheme.html)
-Based on predefined colour schemes, returns a vector of corresponding colours.
-
-[`generate.at.final()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/generate.at.final.html)
-Generates alternative default tick mark locations for create.densityplot() and create.scatterplot()
-
-[`get.corr.key()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.corr.key.html)
-Correlation Key
-
-[`get.correlation.p.and.corr()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.correlation.p.and.corr.html)
-Calculate a correlation and its statistical significance
-
-[`get.defaults()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.defaults.html)
-Get operating system specific default properties
-
-[`get.line.breaks()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.line.breaks.html)
-Get line breaks
-
-[`legend.grob()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/legend.grob.html)
-Generate a legend grob
-
-[`microarray`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/microarray.html)
-Microarray dataset of colon cancer patients
-
-[`panel.BL.bwplot`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/panel.BL.bwplot.html)
-A lattice::panel.bwplot replacement that fixes colouring issues
-
-[`patient`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/patient.html)
-Dataset describing qualities of 58 colon cancer patients
-
-[`pcawg.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/pcawg.colours.html)
-Return standard PCAWG colour palettes.
-
-[`scientific.notation()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/scientific.notation.html)
-Use scientific notation in plots
-
-[`show.available.palettes()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/show.available.palettes.html)
-Display the available colour palettes
-
-[`thousands.split()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/thousands.split.html)
-Divide strings into groups of thousands
-
-[`write.metadata()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/write.metadata.html)
-Writes Metadata
-
-[`write.plot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/write.plot.html)
-Simplifies plotting by standardizing and centralizing all output-handling
+| **Functions** | **Description** |
+|-----------|---------|
+|[`BoutrosLab.plotting.general-package`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html) [`BoutrosLab.plotting.general`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html)|Boutros Lab general plotting functions|
+|[`CNA`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/CNA.html)|Copy number aberration (CNA) data from colon cancer patients|
+|[`SNV`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/SNV.html)|Single nucleotide variant (SNV) data from colon cancer patients|
+|[`auto.axis()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/auto.axis.html)|Create ideal labels and values for a given dataset (detects log scales)|
+|[`colour.gradient()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/colour.gradient.html)|Creates a colour gradient|
+|[`covariates.grob()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/covariates.grob.html)|Create one or more covariate bars|
+|[`create.barplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.barplot.html)|Make a barplot|
+|[`create.boxplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.boxplot.html)|Make a boxplot|
+|[`create.colourkey()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.colourkey.html)|Create Colourkey|
+|[`create.dendrogram()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.dendrogram.html)|Generate a dendrogram|
+|[`create.densityplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.densityplot.html)|Make a density plot|
+|[`create.dotmap()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.dotmap.html)|Make a dotmap with coloured background|
+|[`create.gif()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.gif.html)|Make a gif|
+[`create.heatmap()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.heatmap.html)|Make a heatmap|
+|[`create.hexbinplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.hexbinplot.html)|Make a hexagonally binned plot|
+|[`create.histogram()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.histogram.html)|Make a histogram|
+|[`create.lollipopplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.lollipopplot.html)|Make a lollipopplot|
+|[`create.manhattanplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.manhattanplot.html)|Make a Manhattan plot|
+|[`create.multipanelplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.multipanelplot.html)|Joins plots together|
+|[`create.multiplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.multiplot.html)|Joins plots together|
+|[`create.polygonplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.polygonplot.html)|Make a polygonplot|
+|[`create.qqplot.comparison()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.qqplot.comparison.html)|Make a quantile-quantile plot of two samples|
+|[`create.qqplot.fit()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.qqplot.fit.html)|Make a quantile-quantile plot of a sample|
+|[`create.qqplot.fit.confidence.interval()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.qqplot.fit.confidence.interval.html)|Create the confidence bands for a one-sample qq plot|
+|[`create.scatterplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.scatterplot.html)|Make a scatterplot|
+|[`create.segplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.segplot.html)|Make a segplot|
+|[`create.stripplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.stripplot.html)|Make a strip-plot|
+|[`create.violinplot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/create.violinplot.html)|Make a violin plot|
+|[`critical.value.ks.test()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/critical.value.ks.test.html)|Critical Value for Kolmogorov-Smirnov Test|
+|[`default.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/default.colours.html)|Provides default colour schemes.|
+|[`display.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/display.colours.html)|Function to display R colors, as well as corresponding R grey colours.|
+|[`display.statistical.result()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/display.statistical.result.html)|Utility function to display statistical result in a plot|
+|[`dist()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/dist.html)|Distance Matrix Computation|
+|[`force.colour.scheme()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/force.colour.scheme.html)|Based on predefined colour schemes, returns a vector of corresponding colours.|
+|[`generate.at.final()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/generate.at.final.html)|Generates alternative default tick mark locations for create.densityplot() and create.|scatterplot()
+|[`get.corr.key()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.corr.key.html)|Correlation Key|
+|[`get.correlation.p.and.corr()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.correlation.p.and.corr.html)|Calculate a correlation and its statistical significance|
+|[`get.defaults()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.defaults.html)|Get operating system specific default properties|
+|[`get.line.breaks()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.line.breaks.html)|Get line breaks|
+|[`legend.grob()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/legend.grob.html)|Generate a legend grob|
+|[`microarray`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/microarray.html)|Microarray dataset of colon cancer patients|
+|[`panel.BL.bwplot`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/panel.BL.bwplot.html)|A lattice::panel.bwplot replacement that fixes colouring issues|
+|[`patient`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/patient.html)|Dataset describing qualities of 58 colon cancer patients|
+|[`pcawg.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/pcawg.colours.html)|Return standard PCAWG colour palettes.|
+|[`scientific.notation()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/scientific.notation.html)|Use scientific notation in plots|
+|[`show.available.palettes()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/show.available.palettes.html)|Display the available colour palettes|
+|[`thousands.split()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/thousands.split.html)|Divide strings into groups of thousands|
+|[`write.metadata()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/write.metadata.html)|Writes Metadata|
+|[`write.plot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/write.plot.html)|Simplifies plotting by standardizing and centralizing all output-handling|
 
 ## Resources
 Available resources on BPG usage can be found at the package [CRAN page](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/index.html), [reference manual](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/BoutrosLab.plotting.general.pdf), or [vignette](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/vignettes/PlottingGuide.pdf).
