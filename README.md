@@ -27,6 +27,8 @@ Available chart-types. The basic chart-types available in BPG: **a** density plo
 
 Multiplot example. BPG's create.multiplot function is able to combine multiple chart-types together into a single figure as shown above.
 
+> **Note**: Both `create.multipanelplot` and `create.multiplot` are currently supported, however `create.multipanelplot` is preferable to `create.multiplot`. In the medium-term `create.multiplot` will be deprecated.
+
 ## Installation
 To install the latest public release of BoutrosLab.plotting.general from CRAN:
 
