@@ -8,6 +8,7 @@
 6. [Getting help](#getting-help)
 7. [Contributors](#contributors)
 8. [Citation information](#citation-information)
+9. [License](#license)
 
 ## Description
 
@@ -40,6 +41,7 @@ Or to install the latest development version from Github:
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
 ## Function reference
+For further  details on usage, parameters or to see an example, see function links.
 | **Functions** | **Description** |
 |-----------|---------|
 |[`BoutrosLab.plotting.general-package`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html) [`BoutrosLab.plotting.general`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html)|Boutros Lab general plotting functions|
