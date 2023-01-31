@@ -36,14 +36,14 @@ To install the latest public release of BoutrosLab.plotting.general from CRAN:
 install.packages("Boutros.plotting.general")
 ```
 
-Or to install the latest development version from Github:
+Or to install the latest development version from GitHub:
 ```
 # install.packages("devtools")
 
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
 ## Function reference
-For further  details on usage, parameters or to see an example, see function links.
+For further details on usage, parameters or to see an example, see function links.
 | **Functions** | **Description** |
 |-----------|---------|
 |[`BoutrosLab.plotting.general-package`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html) [`BoutrosLab.plotting.general`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html)|Boutros Lab general plotting functions|
@@ -114,7 +114,7 @@ P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interacti
 
 ## License
 
-Authors: Christine P’ng, Jeffrey Green, Lauren C. Chong, Daryl Waggott, Stephenie D. Prokopec, Mehrdad Shamsi, Francis Nguyen, Denise Y. F. Mak, Felix Lam, Marco A. Albuquerque, Ying Wu, Esther H. Jung, Maud H. W. Starmans, Michelle A. Chan-Seng-Yue, Cindy Q. Yao, Bianca Liang, Emilie Lalonde, Syed Haider, Nicole A. Simone, Dorota Sendorek, Kenneth C. Chu, Nathalie C. Moon, Natalie S. Fox, Michal R. Grzadkowski, Nicholas J. Harding, Clement Fung, Amanda R. Murdoch, Kathleen E. Houlahan, Jianxin Wang, David R. Garcia, Richard de Borja, Ren X. Sun, Xihui Lin, Gregory M. Chen, Aileen Lu, Yu-Jia Shiah, Amin Zia, Ryan Kearns & Paul C. Boutros (PBoutros@mednet.ucla.edu)
+Authors: Christine P’ng, Jeffrey Green, Lauren C. Chong, Daryl Waggott, Stephenie D. Prokopec, Mehrdad Shamsi, Francis Nguyen, Denise Y. F. Mak, Felix Lam, Marco A. Albuquerque, Ying Wu, Esther H. Jung, Maud H. W. Starmans, Michelle A. Chan-Seng-Yue, Cindy Q. Yao, Bianca Liang, Emilie Lalonde, Syed Haider, Nicole A. Simone, Dorota Sendorek, Kenneth C. Chu, Nathalie C. Moon, Natalie S. Fox, Michal R. Grzadkowski, Nicholas J. Harding, Clement Fung, Amanda R. Murdoch, Kathleen E. Houlahan, Jianxin Wang, David R. Garcia, Richard de Borja, Ren X. Sun, Xihui Lin, Gregory M. Chen, Aileen Lu, Yu-Jia Shiah, Amin Zia, Ryan Kearns, Stefan Eng, Dan Knight, Julie Livingstone, Chase Bakkeby, Rupert Hugh-White, Adriana Salcedo, Takafumi Yamaguchi, Mohammed Faizal Eeman Mootor, Chenghao Zhu, Caden Bugh & Paul C. Boutros (PBoutros@mednet.ucla.edu)
 
 BoutrosLab.plotting.general is licensed under the GNU General Public License version 2. See the file LICENSE.md for the terms of the GNU GPL license.
 
