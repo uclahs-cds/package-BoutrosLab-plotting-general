@@ -212,7 +212,7 @@ segplot.data <- data.frame(
     min = apply(microarray[1:10,1:58], 1, min),
     max = apply(microarray[1:10,1:58], 1, max),
     median = apply(microarray[1:10,1:58], 1, median),
-    gene = rownames(microarray)[1:10],
+    gene = as.factor(rownames(microarray)[1:10]),
     # approximating length of gene 
     length = as.factor(bin.length)
     );

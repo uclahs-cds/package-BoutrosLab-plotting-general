@@ -1,3 +1,24 @@
+BoutrosLab.plotting.general 7.0.6 2023-01-05
+
+BUG
+* Fix ylab.axis.padding parameter in create.histogram
+
+--------------------------------------------------------------------------
+BoutrosLab.plotting.general 7.0.5 2023-01-03
+
+UPDATE
+* Fix typo in man/create.violinplot.Rd
+* Add alpha parameter to create.boxplot
+* Added GitHub repo to package description
+* Correctly sort horizontal barplot
+* Remove Makefile
+* Replaced string class comparison with is()
+
+BUG
+* Fix NEWS format
+* Fix bug with persisted plotting function output in examples
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.4 2022-08-17
 
 UPDATE
@@ -103,13 +124,13 @@ REMOVED
 BoutrosLab.plotting.general 5.9.8 2018-10-16
 
 FEATURE
-# create.hexbinplot: added option to modify the default legend title
+* create.hexbinplot: added option to modify the default legend title
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.9.7 2018-09-19
 
 BUG
-# fixed an issue regarding warning detection for class of conditioning variable that didn't recognize character input (barplot, boxplot, hexbinplot, scatterplot)
+* fixed an issue regarding warning detection for class of conditioning variable that didn't recognize character input (barplot, boxplot, hexbinplot, scatterplot)
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.9.6 2018-07-24
@@ -475,7 +496,7 @@ BoutrosLab.plotting.general 5.6.21 2017-01-30
 
 BUG FIX
 * create.scatterplot: adding conditional for when pch is not referring
-to a point (this is in reference to KM plots)
+  to a point (this is in reference to KM plots)
 
 --------------------------------------------------------------------------
 
@@ -483,7 +504,7 @@ BoutrosLab.plotting.general 5.6.20 2017-01-28
 
 FEATURE UPDATE
 * create.scatterplot: addition of parameter "col.border".
-This allows customizable border colours when pch >= 21.
+  This allows customizable border colours when pch >= 21.
 
 --------------------------------------------------------------------------
 
@@ -616,17 +637,17 @@ FEATURE UPDATE
 BoutrosLab.plotting.general 5.4.3 2016-01-04
 
 BUG FIXES:
-Inconsitency in dotmap/heatmap grid lines location fixed -> everything follows heatmaps spec now
-fixed bug where sample.order would reorde barplots incorrectly when horizontal
-default font sizes are consistent now
-default font sizes are more porportional
+* Inconsitency in dotmap/heatmap grid lines location fixed -> everything follows heatmaps spec now
+  fixed bug where sample.order would reorde barplots incorrectly when horizontal
+* default font sizes are consistent now
+* default font sizes are more proportional
 
 FEATURE UPDATES:
-ability to add multiple violin fill colours
-able to completely remove borders from heatmaps
-add p values automatically to box plots
-ability to set a sperate set of defaults based on type of publication ( default sets still need to be added)
-ability to pick what plots to retrieve plot labels from in create.multiplot
+* ability to add multiple violin fill colours
+* able to completely remove borders from heatmaps
+* add p values automatically to box plots
+* ability to set a sperate set of defaults based on type of publication ( default sets still need to be added)
+* ability to pick what plots to retrieve plot labels from in create.multiplot
 
 --------------------------------------------------------------------------
 
@@ -647,27 +668,28 @@ FEATURE UPDATE:
 BoutrosLab.plotting.general 5.3.7
 
 BUG FIXES:
-same.as.matrix will now correcting readjust label specifications
-when combining scatterplots, they will no longer only use error bars from one scatter plot
-yaxis.covariates parameter can now allow specific location specification so it does not overlap the heatmap
-xgrid.at and ygrid.at now properly update for all functions
-background rectangles are now drawn in the background instead of foreground
-when combining scatterplots, they will no longer only use the text specified from one scatter plot
-removed circular definitions from Rd files
-standardized parameter defaults
+* same.as.matrix will now correcting readjust label specifications
+* when combining scatterplots, they will no longer only use error bars from one scatter plot
+* yaxis.covariates parameter can now allow specific location specification so it does not overlap the heatmap
+* xgrid.at and ygrid.at now properly update for all functions
+* background rectangles are now drawn in the background instead of foreground
+* when combining scatterplots, they will no longer only use the text specified from one scatter plot
+* removed circular definitions from Rd files
+* standardized parameter defaults
 
 FEATURE UPDATES:
-Can now add subtitles through use of xaxis.top parameters
-Can now input a vector of files to be output to
-Can now sort boxes in create.boxplot by max, min, mean and median (defaults to median if not set)
-Can now draw both bands and lines on segplots
-Polygon plot will now auto-calculate x and y limits if not specified
-Can now vertically align labels and adjust there coordinates manually
+* Can now add subtitles through use of xaxis.top parameters
+* Can now input a vector of files to be output to
+* Can now sort boxes in create.boxplot by max, min, mean and median (defaults to median if not set)
+* Can now draw both bands and lines on segplots
+* Polygon plot will now auto-calculate x and y limits if not specified
+* Can now vertically align labels and adjust there coordinates manually
 
 BoutrosLab.plotting.general 5.3.4 2015-07-31
 
 MINOR UPDATE:
 * create.scatterplot: updated ROC example to use auto-label placement
+
 ---------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.3.3 2015-07-28
 
@@ -830,11 +852,11 @@ BoutrosLab.plotting.general 5.1.0 2014-08-12
 
 MINOR UPDATE
 * create.scatterplot: NEW ARGUMENTS text.guess.* now allows users to specify data points so that
-associated label positions can be automatically determined
+  associated label positions can be automatically determined
 * inside.rectangle: NEW FUNCTION which determines if a set of data points are inside a set of defined
-rectangles
+  rectangles
 * inside.ellipse: NEW FUNCTION which determines if a set of data points are inside a set of defined
-ellipses
+  ellipses
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.0.28 2014-08-08
 
@@ -855,7 +877,7 @@ BoutrosLab.plotting.general 5.0.25 2014-07-31
 
 MINOR UPDATE
 * create.heatmap: NEW ARGUMENT gridline.order now allows user to specify in which order
-gridlines should be drawn (horizontal or vertical first)
+  gridlines should be drawn (horizontal or vertical first)
 ---------------------------------------------------------------------------------------------------
 BoutrosLab.plotting.general 5.0.24 2014-07-31
 
@@ -3550,4 +3572,5 @@ MAJOR UPDATES
 * Initialized package for plotting functions
 * create.violin.plot: Added function to create violin plots
 ---------------------------------------------------------------------------------------------------
+
 

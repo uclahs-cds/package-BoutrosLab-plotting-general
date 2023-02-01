@@ -16,7 +16,7 @@ create.boxplot <- function(
 	points.col = 'darkgrey', points.cex = 0.5, points.alpha = 1, abline.h = NULL, abline.v = NULL,
 	abline.lty = NULL, abline.lwd = NULL, abline.col = 'black', add.rectangle = FALSE,
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
-	col.rectangle = 'transparent', alpha.rectangle = 1, box.ratio = 1, col = 'transparent',
+	col.rectangle = 'transparent', alpha.rectangle = 1, box.ratio = 1, col = 'transparent', alpha = 1,
 	border.col = 'black', symbol.cex = 0.8, lwd = 1, outliers = TRUE, sample.order = 'none', order.by = 'median',
 	xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
 	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL, xlab.top.cex = 2,
@@ -51,24 +51,24 @@ create.boxplot <- function(
 				load(param.data.filename);
 				}
 			data.list.boxplot[[length(data.list.boxplot) + 1]] <- list(
-				formula = formula, filename = filename, main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex, 
-				add.stripplot = add.stripplot, jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch, 
-				points.col = points.col, points.cex = points.cex, points.alpha = points.alpha, abline.h = abline.h, abline.v = abline.v, 
-				adline.lty = abline.lty, abline.lwd = abline.lwd, abline.col = abline.col, add.rectangle = add.rectangle, 
+				formula = formula, filename = filename, main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex,
+				add.stripplot = add.stripplot, jitter.factor = jitter.factor, jitter.amount = jitter.amount, points.pch = points.pch,
+				points.col = points.col, points.cex = points.cex, points.alpha = points.alpha, abline.h = abline.h, abline.v = abline.v,
+				adline.lty = abline.lty, abline.lwd = abline.lwd, abline.col = abline.col, add.rectangle = add.rectangle,
 				xleft.rectangle = xleft.rectangle, ybottom.rectangle = ybottom.rectangle, xright.rectangle = xright.rectangle,
 				ytop.rectangle = ytop.rectangle, col.rectangle = col.rectangle, alpha.rectangle = alpha.rectangle, box.ratio = box.ratio, col = col,
 				border.col = border.col, symbol.cex = symbol.cex, lwd = lwd, outliers = outliers, sample.order = sample.order, order.by = order.by,
 				xlab.label = xlab.label, ylab.label = ylab.label, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.col = xlab.col, ylab.col = ylab.col,
 				xlab.top.label = xlab.top.label, xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
-				xlab.top.just = xlab.top.just, xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xlimits = xlimits, ylimits = ylimits, xat = xat, 
+				xlab.top.just = xlab.top.just, xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xlimits = xlimits, ylimits = ylimits, xat = xat,
 				yat = yat, xaxis.lab = xaxis.lab, yaxis.lab = yaxis.lab, xaxis.cex = xaxis.cex, xaxis.col = xaxis.col, yaxis.col = yaxis.col,
 				xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, xaxis.rot = xaxis.rot, yaxis.rot = yaxis.rot, xaxis.tck = xaxis.tck,
 				yaxis.tck = yaxis.tck, layout = layout, as.table = as.table, x.spacing = x.spacing, y.spacing = y.spacing, x.relation = x.relation,
-				y.relation = y.relation, top.padding = top.padding, bottom.padding = bottom.padding, right.padding = right.padding, 
-				left.padding = left.padding, ylab.axis.padding = ylab.axis.padding, add.text = add.text, text.labels = text.labels, text.x = text.x, 
-				text.y = text.y, text.anchor = text.anchor, text.col = text.col, text.cex = text.cex, text.fontface = text.fontface, key = key, 
-				legend = legend, strip.col = strip.col, strip.cex = strip.cex, strip.fontface = strip.fontface, line.func = line.func, 
-				line.from = line.from, line.to = line.to, line.col = line.col, line.infront = line.infront, height = height, width = width, 
+				y.relation = y.relation, top.padding = top.padding, bottom.padding = bottom.padding, right.padding = right.padding,
+				left.padding = left.padding, ylab.axis.padding = ylab.axis.padding, add.text = add.text, text.labels = text.labels, text.x = text.x,
+				text.y = text.y, text.anchor = text.anchor, text.col = text.col, text.cex = text.cex, text.fontface = text.fontface, key = key,
+				legend = legend, strip.col = strip.col, strip.cex = strip.cex, strip.fontface = strip.fontface, line.func = line.func,
+				line.from = line.from, line.to = line.to, line.col = line.col, line.infront = line.infront, height = height, width = width,
 				size.units = size.units, resolution = resolution
 				);
 			save(data.list.boxplot, file = param.data.filename);
@@ -78,10 +78,10 @@ create.boxplot <- function(
 		error = function(e) {
 			}
 		);
-    
+
     parsed.formula <- unlist(strsplit(deparse(formula), ' [~|] '));
     formula.is.split <- '|' %in% all.names(formula);
-    
+
 	rectangle.info <- list(
 		xright = xright.rectangle,
 		xleft = xleft.rectangle,
@@ -96,7 +96,7 @@ create.boxplot <- function(
 		alpha = points.alpha,
 		groups = if (formula.is.split) { data[, parsed.formula[2]]; } else { NULL; }
 		);
-		
+
 	text.info <- list(
 		labels = text.labels,
 		x = text.x,
@@ -262,7 +262,7 @@ create.boxplot <- function(
 
 			# Add pvalues if requested
 			},
-		fill = col,
+		fill = grDevices::adjustcolor(col, alpha),
 		main = BoutrosLab.plotting.general::get.defaults(
 			property = 'fontfamily',
 			use.legacy.settings = use.legacy.settings || ('Nature' == style),

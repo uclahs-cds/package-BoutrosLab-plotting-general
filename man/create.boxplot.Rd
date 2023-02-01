@@ -33,6 +33,7 @@ create.boxplot(
 	alpha.rectangle = 1,
 	box.ratio = 1,
 	col = 'transparent',
+	alpha = 1,
 	border.col = 'black',
 	symbol.cex = 0.8,
 	lwd = 1,
@@ -121,7 +122,7 @@ create.boxplot(
     \item{jitter.factor}{Numeric value to apply to jitter, default is 1}
     \item{jitter.amount}{Numeric; amount of noise to add, default is NULL}
     \item{points.pch}{pch value to use for stripplot}
-    \item{points.col}{colour(s) to use for stripplot (either a single colour 
+    \item{points.col}{colour(s) to use for stripplot (either a single colour
     or a vector)}
     \item{points.cex}{cex value to use for stripplot}
     \item{points.alpha}{alpha value to use for stripplot}
@@ -139,6 +140,7 @@ create.boxplot(
     \item{alpha.rectangle}{Specifies the colour bias of the rectangle to be drawn}
     \item{box.ratio}{ability to change the box width, defaults to 1}
     \item{col}{The colour to fill the interior of the boxplot, defaults to white}
+    \item{alpha}{The alpha of the interior boxplot colour specified in `col`. Defaults to 1 (opaque)}
     \item{border.col}{Colour of the boxplot, defaults to black}
     \item{symbol.cex}{Size of the boxplot outlier-symbol}
     \item{lwd}{Line width, defaults to 1}

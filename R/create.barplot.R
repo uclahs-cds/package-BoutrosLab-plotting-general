@@ -51,7 +51,7 @@ create.barplot <- function(
                         },
                 error = function(e) {
                 	});
-	
+
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
 		xright = xright.rectangle,
@@ -557,7 +557,7 @@ create.barplot <- function(
 		);
 
 	if (disable.factor.sorting == TRUE) {
-		
+
 		sorting.param <- '';
 
 		if (plot.horizontal) {
@@ -566,7 +566,7 @@ create.barplot <- function(
 				default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
 				trellis.object$y.scales$labels <- default.labels;
 				}
-			} 
+			}
 		else {
 			sorting.param <- 'x';
 			if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
@@ -574,7 +574,7 @@ create.barplot <- function(
 				trellis.object$x.scales$labels <- default.labels;
 				}
 			}
-		
+
                 unique.mapping <- list();
                 count <- 1;
                 for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
@@ -588,7 +588,7 @@ create.barplot <- function(
                         temp.data[x] <- as.character(unique.mapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);
                         }
                 trellis.object$panel.args[[1]][[sorting.param]] <- as.numeric(temp.data);
-	
+
 		}
 
 	if (inside.legend.auto) {
@@ -640,15 +640,17 @@ create.barplot <- function(
 					}
 
 				if (length(sample.order) == 1) {
-					if (sample.order == 'decreasing') {
-						# order is the new order the bars will appear in
-						ordering <- order(trellis.object$panel.args[[1]]$y[c(1:num.bars)]);
+					if(! sample.order %in% c('decreasing', 'increasing')) {
+						stop('sample.order should be `decreasing` or `increasing`');
 						}
 
-					# reverse order if increasing
-					if (sample.order == 'increasing') {
-						ordering <- rev(order(trellis.object$panel.args[[1]]$y[c(1:num.bars)]));
-						}
+					# This looks backwards but gets reversed later
+					# Might want to revisit if it makes more sense to sort in correct order here
+					sample.order.decreasing <- sample.order != 'decreasing';
+					ordering <- order(
+						trellis.object$panel.args[[1]]$y[c(1:num.bars)],
+						decreasing = sample.order.decreasing
+						);
 					}
 
 				# if label locations are specified, change them
@@ -700,15 +702,19 @@ create.barplot <- function(
 						}
 					}
 
-				if (length(sample.order) == 1 && sample.order == 'decreasing') {
-					ordering <- order(trellis.object$panel.args[[1]]$x[c(1:num.bars)]);
+				if (length(sample.order) == 1) {
+					if(! sample.order %in% c('decreasing', 'increasing')) {
+						stop('sample.order should be `decreasing` or `increasing`');
+						}
+
+					sample.order.decreasing <- sample.order != 'decreasing';
+					ordering <- order(
+						trellis.object$panel.args[[1]]$x[c(1:num.bars)],
+						decreasing = sample.order.decreasing
+						);
 					}
 
-				if (length(sample.order) == 1 && sample.order == 'increasing') {
-					ordering <- rev(order(trellis.object$panel.args[[1]]$x[c(1:num.bars)]));
-					}
-
-				if (yat != TRUE) {
+				if (!yat) {
 					newyat <- NULL;
 					for (j in rev(ordering)) {
 						if (length(which(yat == j) > 0)) {
@@ -734,9 +740,8 @@ create.barplot <- function(
 					}
 
 				for (j in 0:(length(trellis.object$panel.args[[1]]$y) / num.bars - 1)) {
-					trellis.object$panel.args[[i]]$x[c( (1 + j * num.bars) : (num.bars * (j + 1) ) )] <- rev(
-						trellis.object$panel.args[[i]]$x[ordering + num.bars * j]
-						);
+					trellis.object$panel.args[[i]]$x[c( (1 + j * num.bars) : (num.bars * (j + 1) ) )] <-
+						trellis.object$panel.args[[i]]$x[ordering + num.bars * j];
 
 					trellis.object$panel.args[[i]]$y <- rep(1:length(ordering), length(trellis.object$panel.args[[1]]$y) / num.bars);
 					}
