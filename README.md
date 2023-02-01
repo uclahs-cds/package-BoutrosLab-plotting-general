@@ -43,10 +43,9 @@ Or to install the latest development version from GitHub:
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
 ## Function reference
-For further details on usage, parameters or to see an example, see function links.
+For further details on usage, parameters or to see an example of a specific function, see function links below.
 | **Functions** | **Description** |
 |-----------|---------|
-|[`BoutrosLab.plotting.general-package`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html) [`BoutrosLab.plotting.general`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/BoutrosLab.plotting.general-package.html)|Boutros Lab general plotting functions|
 |[`CNA`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/CNA.html)|Copy number aberration (CNA) data from colon cancer patients|
 |[`SNV`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/SNV.html)|Single nucleotide variant (SNV) data from colon cancer patients|
 |[`auto.axis()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/auto.axis.html)|Create ideal labels and values for a given dataset (detects log scales)|
