@@ -19,6 +19,7 @@ All functions within this package are capable of producing plots that are of the
 P'ng et al.; [BPG: Seamless, automated and interactive visualization of scientific data](doi:10.1186/s12859-019-2610-2); BMC Bioinformatics 2019.
 
 ## Included plots
+
 ![](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs12859-019-2610-2/MediaObjects/12859_2019_2610_Fig1_HTML.png?as=webp)
 
 Available chart-types. The basic chart-types available in BPG: **a** density plot, **b** boxplot, **c** violin plot, **d** segplot, **e** strip plot, **f** barplot, **g** scatterplot, **h** histogram, **i** qqplot fit, **j** qqplot comparison, **k** Manhattan plot, **l** polygon plot, **m** heatmap, **n** dotmap and **o** hexbinplot.
@@ -30,6 +31,7 @@ Multiplot example. BPG's create.multiplot function is able to combine multiple c
 > **Note**: Both `create.multipanelplot` and `create.multiplot` are currently supported, however `create.multipanelplot` is preferable to `create.multiplot`. In the medium-term `create.multiplot` will be deprecated.
 
 ## Installation
+
 To install the latest public release of BoutrosLab.plotting.general from CRAN:
 
 ```
@@ -43,11 +45,11 @@ Or to install the latest development version from GitHub:
 devtools::install_github("uclahs-cds/public-R-BoutrosLab-plotting-general")
 ```
 ## Function reference
+
 For further details on usage, parameters or to see an example of a specific function, see function links below.
+
 | **Functions** | **Description** |
 |-----------|---------|
-|[`CNA`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/CNA.html)|Copy number aberration (CNA) data from colon cancer patients|
-|[`SNV`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/SNV.html)|Single nucleotide variant (SNV) data from colon cancer patients|
 |[`auto.axis()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/auto.axis.html)|Create ideal labels and values for a given dataset (detects log scales)|
 |[`colour.gradient()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/colour.gradient.html)|Creates a colour gradient|
 |[`covariates.grob()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/covariates.grob.html)|Create one or more covariate bars|
@@ -85,9 +87,7 @@ For further details on usage, parameters or to see an example of a specific func
 |[`get.defaults()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.defaults.html)|Get operating system specific default properties|
 |[`get.line.breaks()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/get.line.breaks.html)|Get line breaks|
 |[`legend.grob()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/legend.grob.html)|Generate a legend grob|
-|[`microarray`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/microarray.html)|Microarray dataset of colon cancer patients|
 |[`panel.BL.bwplot`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/panel.BL.bwplot.html)|A lattice::panel.bwplot replacement that fixes colouring issues|
-|[`patient`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/patient.html)|Dataset describing qualities of 58 colon cancer patients|
 |[`pcawg.colours()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/pcawg.colours.html)|Return standard PCAWG colour palettes.|
 |[`scientific.notation()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/scientific.notation.html)|Use scientific notation in plots|
 |[`show.available.palettes()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/show.available.palettes.html)|Display the available colour palettes|
@@ -95,10 +95,21 @@ For further details on usage, parameters or to see an example of a specific func
 |[`write.metadata()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/write.metadata.html)|Writes Metadata|
 |[`write.plot()`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/write.plot.html)|Simplifies plotting by standardizing and centralizing all output-handling|
 
+## Included datasets
+
+| **Dataset** | **Description** |
+|-----------|---------|
+|[`CNA`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/CNA.html)|Copy number aberration (CNA) data from colon cancer patients|
+|[`SNV`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/SNV.html)|Single nucleotide variant (SNV) data from colon cancer patients|
+|[`microarray`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/microarray.html)|Microarray dataset of colon cancer patients|
+|[`patient`](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/reference/patient.html)|Dataset describing qualities of 58 colon cancer patients|
+
 ## Resources
+
 Available resources on BPG usage can be found at the package [CRAN page](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/index.html), [reference manual](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/BoutrosLab.plotting.general.pdf), or [vignette](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/vignettes/PlottingGuide.pdf).
 
 ## Getting help
+
 Looking for guidance or support with Boutros.plotting.general? Check out our [Discussions](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/discussions) page.
 
 Submit bugs, suggest new features or see current works at our [Issues](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/issues) page.
@@ -106,9 +117,11 @@ Submit bugs, suggest new features or see current works at our [Issues](https://g
 [Pull requests](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/pulls) are also open for discussion.
 
 ## Contributors
+
 For lists of contributors please visit [here](https://uclahs-cds.github.io/public-R-BoutrosLab-plotting-general/authors.html) and [here](https://github.com/uclahs-cds/public-R-BoutrosLab-plotting-general/graphs/contributors) at GitHub
 
 ## Citation information
+
 P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interactive visualization of scientific data. *BMC Bioinformatics* **20**, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
 
 ## License
