@@ -20,6 +20,8 @@
 
 -   [ ] I have added the major changes included in this pull request to the `NEWS` under the next release version or unreleased, and updated the date.
 
+-   [ ] I have updated the version number in `DESCRIPTION` according to [semantic versioning](https://semver.org/) rules.
+
 -   [ ] Both `R CMD build` and `R CMD check` run successfully.
 
 ## Testing Results
