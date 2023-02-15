@@ -1,4 +1,4 @@
-BoutrosLab.plotting.general 7.0.6 2023-02-10
+BoutrosLab.plotting.general 7.0.6 2023-02-15
 
 UPDATE
 * Move CICD workflow from Dockerhub to GitHub packages
