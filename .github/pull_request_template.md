@@ -24,7 +24,7 @@
 
 ## Testing Results
 
-<!-- Use the `reprex` package to quickly copy-paste code to demonstrate the new feature or bug fix -->
+<!-- Include a small working example and a screenshot of the results if applicable. You can use the `reprex` package to automatically generate example code -->
 
 ### Case 1
 
