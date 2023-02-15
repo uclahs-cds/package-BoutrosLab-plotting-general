@@ -377,7 +377,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 
     		width.text <- 0;
 
-		if (ylab.label != '') {
+		if (nchar(ylab.label) > 0) {
 			width.text <- convertUnit(
 				grobWidth(y.label),
 				unitTo = 'lines',
@@ -429,7 +429,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	else {
 
     		width.text <- 0;
-		if (ylab.label != '') {
+		if (nchar(ylab.label) > 0) {
 			width.text <- convertUnit(
 				grobWidth(y.label),
 				unitTo = 'lines',
@@ -585,7 +585,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			valueOnly = TRUE
 			);
     		height.text <- 0;
-		if (xlab.label != '') {
+		if (nchar(xlab.label) > 0) {
 			height.text <- convertUnit(
 				grobHeight(x.label),
 				unitTo = 'lines',
@@ -635,7 +635,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	else {
 
     		height.text <- 0;
-		if (xlab.label != '') {
+		if (nchar(xlab.label) > 0) {
 			height.text <- convertUnit(
 				grobHeight(x.label),
 				unitTo = 'lines',
