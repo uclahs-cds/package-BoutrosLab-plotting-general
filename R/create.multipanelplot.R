@@ -61,7 +61,8 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		stop('xlab.axis.padding must be the same size as layout.height');
 		}
 
-
+    if (is.null(ylab.label)) ylab.label <- ''
+    if (is.null(xlab.label)) xlab.label <- ''
 
 	padding.text.to.padding.ratio <- 6.04; # this is used to align plots with diffrent label sizes
   	tick.to.padding.ratio <- 0.9484252; # this is used to evaluate length of ticks (is equivalent to 1mm)
