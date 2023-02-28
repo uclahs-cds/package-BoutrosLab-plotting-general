@@ -18,9 +18,7 @@
 
 -   [ ] The name of the branch is meaningful and well formatted following the [standards](https://confluence.mednet.ucla.edu/display/BOUTROSLAB/Code+Review+Best+Practice+on+GitHub+-+Check+List), using [AD_username (or 5 letters of AD if AD is too long)]-[brief_description_of_branch].
 
--   [ ] I have added the major changes included in this pull request to the `NEWS` under the next release version or unreleased, and updated the date.
-
--   [ ] I have updated the version number in `DESCRIPTION` according to [semantic versioning](https://semver.org/) rules.
+-   [ ] I have added the major changes included in this pull request to the `NEWS` under the next release version or unreleased, and updated the date. I have also updated the version number in `DESCRIPTION` according to [semantic versioning](https://semver.org/) rules.
 
 -   [ ] Both `R CMD build` and `R CMD check` run successfully.
 
