@@ -1,6 +1,7 @@
-BoutrosLab.plotting.general 7.0.6 2023-02-10
+BoutrosLab.plotting.general 7.0.6 2023-03-01
 
 UPDATE
+* Expose panel.text arguments for text.above.bar options in create.barplot
 * Move CICD workflow from Dockerhub to GitHub packages
 
 BUG
