@@ -235,6 +235,16 @@ create.barplot <- function(
 					srt = text.above.bars$rotation
 					);
 
+				# Keep all additional arguments passed to text.above.bars
+				# This is the equivalent of ... to an argument
+				text.above.bars.args <- c(
+					text.above.bars.args,
+					text.above.bars[
+						! names(text.above.bars) %in%
+							c('labels', 'padding', 'bar.locations', 'rotation')
+						]
+					);
+				
 				# change orientation if requested
 				if (plot.horizontal) {
 					text.above.bars.args$x <- x[text.above.bars$bar.locations] + text.above.bars$padding;
