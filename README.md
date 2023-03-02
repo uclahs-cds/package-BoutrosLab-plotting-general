@@ -122,7 +122,25 @@ For lists of contributors please visit [here](https://uclahs-cds.github.io/publi
 
 ## Citation information
 
-P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interactive visualization of scientific data. *BMC Bioinformatics* **20**, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
+To cite package `BoutrosLab.plotting.general` in publications use:
+
+  Paul Boutros (2022). _BoutrosLab.plotting.general: Functions to
+  Create Publication-Quality Plots_. R package version 7.0.3,
+  <https://CRAN.R-project.org/package=BoutrosLab.plotting.general>.
+
+A BibTeX entry for LaTeX users is
+
+```
+  @Manual{,
+    title = {BoutrosLab.plotting.general: Functions to Create Publication-Quality Plots},
+    author = {{Paul Boutros}},
+    year = {2022},
+    note = {R package version 7.0.3},
+    url = {https://CRAN.R-project.org/package=BoutrosLab.plotting.general},
+  }
+```
+
+This information is available via `citation('BoutrosLab.plotting.general')`
 
 ## License
 
