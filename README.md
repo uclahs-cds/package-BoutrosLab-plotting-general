@@ -122,7 +122,27 @@ For lists of contributors please visit [here](https://uclahs-cds.github.io/publi
 
 ## Citation information
 
-P’ng, C., Green, J., Chong, L.C. et al. BPG: Seamless, automated and interactive visualization of scientific data. *BMC Bioinformatics* **20**, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
+To cite package `BoutrosLab.plotting.general` in publications use:
+
+P’ng, C., Green, J., Chong, L.C. et al. _BPG: Seamless, automated and interactive visualization of scientific data_. BMC Bioinformatics 20, 42 (2019). https://doi.org/10.1186/s12859-019-2610-2
+
+A BibTeX entry for LaTeX users is
+
+```BibTeX
+  @Article{,
+    title = {BPG: Seamless, automated and interactive visualization of scientific data},
+    journal = {BMC Bioinformatics},
+    doi = {10.1186/s12859-019-2610-2},
+    url = {https://doi.org/10.1186/s12859-019-2610-2},
+    volume = {20},
+    number = {42},
+    year = {2019},
+    month = {January},
+    day = {21},
+    issn = {1471-2105},
+    author = {Christine P'ng and Jeffrey Green and Lauren C. Chong and Daryl Waggott and Stephenie D. Prokopec and Mehrdad Shamsi and Francis Nguyen and Denise Y. F. Mak and Felix Lam and Marco A. Albuquerque and Ying Wu and Esther H. Jung and Maud H. W. Starmans and Michelle A. Chan-Seng-Yue and Cindy Q. Yao and Bianca Liang and Emilie Lalonde and Syed Haider and Nicole A. Simone and Dorota Sendorek and Kenneth C. Chu and Nathalie C. Moon and Natalie S. Fox and Michal R. Grzadkowski and Nicholas J. Harding and Clement Fung and Amanda R. Murdoch and Kathleen E. Houlahan and Jianxin Wang and David R. Garcia and Richard de Borja and Ren X. Sun and Xihui Lin and Gregory M. Chen and Aileen Lu and Yu-Jia Shiah and Amin Zia and Ryan Kearns and Paul C. Boutros},
+  }
+```
 
 ## License
 
