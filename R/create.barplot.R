@@ -241,7 +241,7 @@ create.barplot <- function(
 					text.above.bars.args,
 					text.above.bars[
 						! names(text.above.bars) %in%
-							c('labels', 'padding', 'bar.locations', 'rotation')
+							c('labels', 'padding', 'bar.locations', 'rotation', 'srt')
 						]
 					);
 				
