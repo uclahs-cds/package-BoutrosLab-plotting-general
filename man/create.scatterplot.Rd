@@ -1013,7 +1013,7 @@ create.scatterplot(
 
 # With line segments
 line.data <- data.frame(
-    group = c('A','B','C'),
+    group = as.factor(c('A','B','C')),
     x = sample(1:10,3),
     y = sample(1:10,3),
     z = sample(1:10,3)

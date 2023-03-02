@@ -61,7 +61,8 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		stop('xlab.axis.padding must be the same size as layout.height');
 		}
 
-
+    if (is.null(ylab.label)) ylab.label <- ''
+    if (is.null(xlab.label)) xlab.label <- ''
 
 	padding.text.to.padding.ratio <- 6.04; # this is used to align plots with diffrent label sizes
   	tick.to.padding.ratio <- 0.9484252; # this is used to evaluate length of ticks (is equivalent to 1mm)
@@ -377,7 +378,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 
     		width.text <- 0;
 
-		if (ylab.label != '') {
+		if (nchar(ylab.label) > 0) {
 			width.text <- convertUnit(
 				grobWidth(y.label),
 				unitTo = 'lines',
@@ -429,7 +430,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	else {
 
     		width.text <- 0;
-		if (ylab.label != '') {
+		if (nchar(ylab.label) > 0) {
 			width.text <- convertUnit(
 				grobWidth(y.label),
 				unitTo = 'lines',
@@ -585,7 +586,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			valueOnly = TRUE
 			);
     		height.text <- 0;
-		if (xlab.label != '') {
+		if (nchar(xlab.label) > 0) {
 			height.text <- convertUnit(
 				grobHeight(x.label),
 				unitTo = 'lines',
@@ -635,7 +636,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	else {
 
     		height.text <- 0;
-		if (xlab.label != '') {
+		if (nchar(xlab.label) > 0) {
 			height.text <- convertUnit(
 				grobHeight(x.label),
 				unitTo = 'lines',
