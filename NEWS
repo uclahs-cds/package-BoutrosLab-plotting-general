@@ -2,6 +2,7 @@ BoutrosLab.plotting.general 7.0.6 2023-02-15
 
 UPDATE
 * Move CICD workflow from Dockerhub to GitHub packages
+* Add github PR template
 
 BUG
 * Fix ylab.axis.padding parameter in create.histogram
