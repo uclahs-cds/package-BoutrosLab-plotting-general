@@ -689,7 +689,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			valueOnly = TRUE
 			);
     		height.text <- 0;
-		if (main != '') {
+		if (nchar(main) > 0) {
 			height.text <- convertUnit(
 				grobHeight(main.label),
 				unitTo = 'lines',
@@ -738,7 +738,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 		}
 	else {
 		height.text <- 0;
-		if (main != '') {
+		if (nchar(main) > 0) {
 			height.text <- convertUnit(
 				grobHeight(main.label),
 				unitTo = 'lines',
