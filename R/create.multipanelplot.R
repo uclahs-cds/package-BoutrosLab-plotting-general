@@ -483,7 +483,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 			);
 
     		width.text <- 0;
-		if (ylab.label.right != '') {
+		if (nchar(ylab.label.right) > 0) {
 			width.text <- convertUnit(
 				grobWidth(y.label.right),
 				unitTo = 'lines',
@@ -533,7 +533,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 	else {
 
     		width.text <- 0;
-		if (ylab.label.right != '') {
+		if (nchar(ylab.label.right) > 0) {
 			width.text <- convertUnit(
 				grobWidth(y.label.right),
 				unitTo = 'lines',
