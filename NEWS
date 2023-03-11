@@ -6,7 +6,7 @@ UPDATE
 
 BUG
 * Fix ylab.axis.padding parameter in create.histogram
-* Fix error when using expressions in multipanelplot labels
+* Fix error when using expressions in multipanelplot labels and main
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.5 2023-01-03
