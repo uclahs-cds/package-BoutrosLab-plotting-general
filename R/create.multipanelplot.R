@@ -12,16 +12,7 @@ print.multipanel <- function(x, ...) {
   	grid.draw(x);
 	}
 
-plot.multipanel <- function(x, ...) {
-	## set class to that of a grid object
-	class(x) <- c('frame', 'gTree', 'grob', 'gDesc');
-	## close previous items if exist
-	if (!is.null(dev.list()) && length(unlist(grid.ls(print = FALSE))) > 0) {
-		grid.remove(grid.ls(print = FALSE)$name[1], redraw = TRUE);
-		}
-	## draw the plot like a grob
-  	grid.draw(x);
-	}
+plot.multipanel <- print.multipanel
 
 create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height = 10, width = 10, resolution = 1000,
 	plot.objects.heights = c(rep(1, layout.height)), plot.objects.widths = c(rep(1, layout.width)), layout.width = 1,
