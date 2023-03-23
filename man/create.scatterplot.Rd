@@ -129,6 +129,7 @@ create.scatterplot(
 	text.col = 'black',
 	text.cex = 1,
 	text.fontface = 'bold',
+    text.srt = 0,
 	text.guess.labels = FALSE,
 	text.guess.skip.labels = TRUE,
 	text.guess.ignore.radius = FALSE,
@@ -284,6 +285,7 @@ create.scatterplot(
     \item{text.col}{The colour of additional text}
     \item{text.cex}{The size of additional text}
     \item{text.fontface}{The fontface for additional text}
+    \item{text.srt}{Counterclockwise rotation of additional text, in degrees, defaults to 0}
     \item{text.guess.labels}{Allows automatic labeling by considering values in text.x and text.y as a data point to be labelled, default is FALSE}
     \item{text.guess.skip.labels}{Provides an option to disregard automatic labelling algorithm if no space is available around a data point, thus forcing labelling if a collision is likely, default is TRUE}
     \item{text.guess.ignore.radius}{Allows the automatic labeling algorithm to ignore the radius space of a data point, useful to label a cluster of data points with a single text box, default is FALSE}

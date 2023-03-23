@@ -190,12 +190,12 @@ create.lollipopplot <- create.scatterplot <- function(
 	col.rectangle = 'transparent', alpha.rectangle = 1, add.points = FALSE, points.x = NULL, points.y = NULL,
 	points.pch = 19, points.col = 'black', points.col.border = 'black', points.cex = 1, add.line.segments = FALSE,
 	line.start = NULL, line.end = NULL, line.col = 'black', line.lwd = 1, add.text = FALSE, text.labels = NULL,
-	text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', text.guess.labels = FALSE,
-	text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE, text.guess.ignore.rectangle = FALSE,
-	text.guess.radius.factor = 1, text.guess.buffer.factor = 1, text.guess.label.position = NULL, height = 6,
-	width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
+	text.x = NULL, text.y = NULL, text.col = 'black', text.cex = 1, text.fontface = 'bold', text.srt = 0,
+	text.guess.labels = FALSE, text.guess.skip.labels = TRUE, text.guess.ignore.radius = FALSE,
+	text.guess.ignore.rectangle = FALSE, text.guess.radius.factor = 1, text.guess.buffer.factor = 1,
+	text.guess.label.position = NULL, height = 6, width = 6, size.units = 'in', resolution = 1600, enable.warnings = FALSE,
 	description = 'Created with BoutrosLab.plotting.general', style = 'BoutrosLab', preload.default = 'custom',
-	group.specific.colouring = TRUE, use.legacy.settings = FALSE, inside.legend.auto = FALSE, 
+	group.specific.colouring = TRUE, use.legacy.settings = FALSE, inside.legend.auto = FALSE,
 	regions.labels = c(), regions.start = c(), regions.stop = c(), regions.color = c('red'), regions.cex = 1,
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
@@ -205,7 +205,7 @@ create.lollipopplot <- create.scatterplot <- function(
 			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
 			if ( !dir.exists(dir.name) ) {
 				dir.create(dir.name);
-				}			
+				}
 			funcname <- 'create.scatterplot';
 			print.to.file(dir.name, funcname, data, filename);
 			},
@@ -236,7 +236,8 @@ create.lollipopplot <- create.scatterplot <- function(
 		y = text.y,
 		col = text.col,
 		cex = text.cex,
-		fontface = text.fontface
+		fontface = text.fontface,
+		srt = text.srt
 		);
 
 	# check class of conditioning variable
