@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 7.0.7 2023-04-21
+
+Bug
+* Fix error with expressions in main for multipanelplots
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 7.0.6 2023-02-15
 
 UPDATE

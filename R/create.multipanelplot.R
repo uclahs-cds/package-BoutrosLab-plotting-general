@@ -315,7 +315,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 
 				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding[ceiling(i / (layout.width * 2))] + to.add;
 
-				if (max.main != 0 && (is.null(plot.objects[[j]]$main$label) || plot.objects[[j]]$main$label == '')) {
+				if (max.main != 0 && (is.null(plot.objects[[j]]$main$label) || nchar(plot.objects[[j]]$main$label) == 0)) {
 					plot.objects[[j]]$main$label <- '\t'; #make sure it thinks a label is there
 					}
 
