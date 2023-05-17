@@ -1,3 +1,9 @@
+BoutrosLab.plotting.general 7.0.7 2023-05-17
+
+REMOVED
+* Removed outdated plotting data storage code
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.6 2023-02-15
 
 UPDATE
