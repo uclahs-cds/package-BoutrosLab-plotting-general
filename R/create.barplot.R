@@ -38,20 +38,6 @@ create.barplot <- function(
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE, disable.factor.sorting = FALSE
 	) {
 
-	### store data on mount
-        tryCatch({
-			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-                        if (!dir.exists(dir.name)) {
-                                dir.create(dir.name);
-                                }
-			funcname <- 'create.barplot';
-                        print.to.file(dir.name, funcname, data, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
-
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
 		xright = xright.rectangle,

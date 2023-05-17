@@ -200,21 +200,6 @@ create.lollipopplot <- create.scatterplot <- function(
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
 
-	### store data on mount
-	tryCatch({
-			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if ( !dir.exists(dir.name) ) {
-				dir.create(dir.name);
-				}			
-			funcname <- 'create.scatterplot';
-			print.to.file(dir.name, funcname, data, filename);
-			},
-		warning = function(w) {
-			},
-		error = function(e) {
-			}
-		);
-
 	function.name <- match.call()[[1]];
 
 	lollipop.plot <- FALSE;

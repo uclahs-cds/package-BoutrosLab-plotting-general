@@ -35,21 +35,6 @@ create.polygonplot <- function(
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
 
-	### store data on mount
-	tryCatch({
-			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if (!dir.exists(dir.name)) {
-				dir.create(dir.name);
-				}
-			funcname <- 'create.polygonplot';
-			print.to.file(dir.name, funcname, data, filename);
-			},
-		warning = function(w) {
-			},
-		error = function(e) {
-			}
-		);
-
 	if (!missing(add.xy.border)) {
 		add.border <- add.xy.border;
 		warning('add.xy.border is deprecated. Use add.border instead');
