@@ -143,16 +143,16 @@ legend.grob <- function(
 
 				colorRamp <- colorRampPalette(legendi[['colours']]);
 				
-				labels.at <- if (is.null(legendi[['labels']])) legendi[['at']] else {
-				    n.labels <- length(legendi[['labels']]);
-				    max.value <- if (!is.null(legendi[['continuous.amount']])) legendi[['continuous.amount']] else 100;
-			        boundaries <- seq(0, max.value, length.out = n.labels + 1);
+                labels.at <- if (is.null(legendi[['labels']])) legendi[['at']] else {
+                    n.labels <- length(legendi[['labels']]);
+                    max.value <- if (!is.null(legendi[['continuous.amount']])) legendi[['continuous.amount']] else 100;
+                    boundaries <- seq(0, max.value, length.out = n.labels + 1);
 
 			        sapply(
-			            1:(length(boundaries) - 1),
-			            FUN = function(i) boundaries[i] + (boundaries[i + 1] - boundaries[i]) / 2
-			            );
-				    }
+                        1:(length(boundaries) - 1),
+                        FUN = function(i) boundaries[i] + (boundaries[i + 1] - boundaries[i]) / 2
+                        );
+                    }
 
 				legend.key <- list(
 					space = if (!is.null(legendi[['angle']]) && legendi[['angle']] != 0) { 'bottom' } else { 'right' },
