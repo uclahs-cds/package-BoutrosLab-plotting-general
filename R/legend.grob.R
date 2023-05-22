@@ -145,6 +145,8 @@ legend.grob <- function(
 				
                 labels.at <- if (is.null(legendi[['labels']])) legendi[['at']] else {
                     n.labels <- length(legendi[['labels']]);
+        
+                    # Uses 0-100% as a default range
                     max.value <- if (!is.null(legendi[['continuous.amount']])) legendi[['continuous.amount']] else 100;
                     boundaries <- seq(0, max.value, length.out = n.labels + 1);
 
