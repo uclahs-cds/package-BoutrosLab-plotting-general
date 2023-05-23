@@ -1,7 +1,10 @@
-BoutrosLab.plotting.general 7.0.7 2023-05-17
+BoutrosLab.plotting.general 7.0.7 2023-05-22
 
 REMOVED
 * Removed outdated plotting data storage code
+
+BUG
+* Add default label locations for continuous legends
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.6 2023-02-15
