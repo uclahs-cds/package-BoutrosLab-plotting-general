@@ -11,6 +11,9 @@ UPDATE
 * Move CICD workflow from Dockerhub to GitHub packages
 * Add github PR template
 
+UPDATE
+* Add text support for create.histogram
+
 BUG
 * Fix ylab.axis.padding parameter in create.histogram
 * Fix error when using expressions in multipanelplot labels and main

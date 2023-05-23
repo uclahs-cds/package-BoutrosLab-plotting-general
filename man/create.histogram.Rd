@@ -65,6 +65,13 @@ create.histogram(
 	abline.lty = 1,
 	key = NULL,
 	legend = NULL,
+	add.text = FALSE,
+	text.labels = NULL,
+	text.x = NULL,
+	text.y = NULL,
+	text.col = 'black',
+	text.cex = 1,
+	text.fontface = 'bold',	
 	add.rectangle = FALSE,
 	xleft.rectangle = NULL,
 	ybottom.rectangle = NULL,
@@ -146,6 +153,13 @@ create.histogram(
     \item{abline.lty}{Specifies horizontal/vertical line style, defaults to 1 (solid)}
     \item{key}{Add a key to the plot. See xyplot.}
     \item{legend}{Add a legend to the plot.  Helpful for adding multiple keys and adding keys to the margins of the plot. See xyplot.}
+    \item{add.text}{Allow additional text to be drawn, default is FALSE}
+    \item{text.labels}{Labels for additional text}
+    \item{text.x}{The x co-ordinates where additional text should be placed}
+    \item{text.y}{The y co-ordinates where additional text should be placed}
+    \item{text.col}{The colour of additional text}
+    \item{text.cex}{The size of additional text}
+    \item{text.fontface}{The fontface for additional text}    
     \item{add.rectangle}{Allow a rectangle to be drawn, default is FALSE}
     \item{xleft.rectangle}{Specifies the left x ooordinate of the rectangle to be drawn}
     \item{ybottom.rectangle}{Specifies the bottom y coordinate of the rectangle to be drawn}
