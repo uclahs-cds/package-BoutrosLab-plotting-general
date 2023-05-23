@@ -229,23 +229,33 @@ create.barplot <- function(
 					stop("Argument 'text.above.bars' does not work with grouped plots.");
 					}
 
+				# Common arguments for both horizontal and vertical orientation
+				text.above.bars.args <- list(
+					labels = text.above.bars$labels,
+					srt = text.above.bars$rotation
+					);
+
+				# Keep all additional arguments passed to text.above.bars
+				# This is the equivalent of ... to an argument
+				text.above.bars.args <- c(
+					text.above.bars.args,
+					text.above.bars[
+						! names(text.above.bars) %in%
+							c('labels', 'padding', 'bar.locations', 'rotation', 'srt')
+						]
+					);
+				
 				# change orientation if requested
 				if (plot.horizontal) {
-					panel.text(
-						x[text.above.bars$bar.locations] + text.above.bars$padding,
-						text.above.bars$bar.locations,
-						text.above.bars$labels,
-						srt = text.above.bars$rotation
-						);
+					text.above.bars.args$x <- x[text.above.bars$bar.locations] + text.above.bars$padding;
+					text.above.bars.args$y <- text.above.bars$bar.locations;
 					}
 				else {
-					panel.text(
-						text.above.bars$bar.locations,
-						y[text.above.bars$bar.locations] + text.above.bars$padding,
-						text.above.bars$labels,
-						srt = text.above.bars$rotation
-						);
+					text.above.bars.args$x <- text.above.bars$bar.locations;
+					text.above.bars.args$y <- y[text.above.bars$bar.locations] + text.above.bars$padding;
 					}
+				
+				do.call(panel.text, text.above.bars.args);
 				}
 
 			# add background shading

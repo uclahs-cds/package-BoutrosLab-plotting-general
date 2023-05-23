@@ -1,6 +1,7 @@
 BoutrosLab.plotting.general 7.0.7 2023-05-22
 
 UPDATE
+* Expose panel.text arguments for text.above.bar options in create.barplot
 * Remove duplicated code in print.multipanel
 
 BUG
