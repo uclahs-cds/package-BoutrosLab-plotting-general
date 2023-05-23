@@ -2,26 +2,17 @@
 ### This is needed because without it, the returned object is a grob which you must call grid.draw(x) on, this way, we can simply print the object.
 
 print.multipanel <- function(x, ...) {
-	## set class to that of a grid object
-	class(x) <- c('frame', 'gTree', 'grob', 'gDesc');
-	## close previous items if exist
-	if (!is.null(dev.list()) && length(unlist(grid.ls(print = FALSE))) > 0) {
-		grid.remove(grid.ls(print = FALSE)$name[1], redraw = TRUE);
-		}
-	## draw the plot like a grob
-  	grid.draw(x);
-	}
+    ## set class to that of a grid object
+    class(x) <- c('frame', 'gTree', 'grob', 'gDesc');
+    ## close previous items if exist
+    if (!is.null(dev.list()) && length(unlist(grid.ls(print = FALSE))) > 0) {
+        grid.remove(grid.ls(print = FALSE)$name[1], redraw = TRUE);
+        }
+    ## draw the plot like a grob
+      grid.draw(x);
+    }
 
-plot.multipanel <- function(x, ...) {
-	## set class to that of a grid object
-	class(x) <- c('frame', 'gTree', 'grob', 'gDesc');
-	## close previous items if exist
-	if (!is.null(dev.list()) && length(unlist(grid.ls(print = FALSE))) > 0) {
-		grid.remove(grid.ls(print = FALSE)$name[1], redraw = TRUE);
-		}
-	## draw the plot like a grob
-  	grid.draw(x);
-	}
+plot.multipanel <- print.multipanel
 
 create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height = 10, width = 10, resolution = 1000,
 	plot.objects.heights = c(rep(1, layout.height)), plot.objects.widths = c(rep(1, layout.width)), layout.width = 1,
@@ -315,7 +306,7 @@ create.multipanelplot <- function(plot.objects = NULL, filename = NULL, height =
 
 				plot.objects[[j]]$par.settings$layout.heights$axis.xlab.padding <- xlab.axis.padding[ceiling(i / (layout.width * 2))] + to.add;
 
-				if (max.main != 0 && (is.null(plot.objects[[j]]$main$label) || plot.objects[[j]]$main$label == '')) {
+				if (max.main != 0 && (is.null(plot.objects[[j]]$main$label) || nchar(plot.objects[[j]]$main$label) == 0)) {
 					plot.objects[[j]]$main$label <- '\t'; #make sure it thinks a label is there
 					}
 
