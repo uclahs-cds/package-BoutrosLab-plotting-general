@@ -142,15 +142,16 @@ legend.grob <- function(
 				legendi[['width']]  <- if (is.null(legendi[['width']])) { 2 } else { legendi[['width']] };
 
 				colorRamp <- colorRampPalette(legendi[['colours']]);
-				
-                labels.at <- if (is.null(legendi[['labels']])) legendi[['at']] else {
+		
+                labels.at <- legendi[['at']];
+                if (!is.null(legendi[['labels']]) && (is.null(labels.at))) {
                     n.labels <- length(legendi[['labels']]);
         
                     # Uses 0-100% as a default range
                     max.value <- if (!is.null(legendi[['continuous.amount']])) legendi[['continuous.amount']] else 100;
                     boundaries <- seq(0, max.value, length.out = n.labels + 1);
 
-                    sapply(
+                    labels.at <- sapply(
                         1:(length(boundaries) - 1),
                         FUN = function(i) boundaries[i] + (boundaries[i + 1] - boundaries[i]) / 2
                         );
