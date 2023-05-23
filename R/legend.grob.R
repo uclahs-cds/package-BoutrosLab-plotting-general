@@ -150,7 +150,7 @@ legend.grob <- function(
                     max.value <- if (!is.null(legendi[['continuous.amount']])) legendi[['continuous.amount']] else 100;
                     boundaries <- seq(0, max.value, length.out = n.labels + 1);
 
-			        sapply(
+                    sapply(
                         1:(length(boundaries) - 1),
                         FUN = function(i) boundaries[i] + (boundaries[i + 1] - boundaries[i]) / 2
                         );
