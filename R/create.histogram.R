@@ -30,27 +30,13 @@ create.histogram <- function(
 	use.legacy.settings = FALSE, inside.legend.auto = FALSE
 	) {
 
-	### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }                        
-			funcname <- 'create.histogram';
-                        print.to.file(dir.name, funcname, x, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
-
-        ### needed to copy in case using variable to define rectangles dimensions
-        rectangle.info <- list(
-        	xright = xright.rectangle,
-                xleft = xleft.rectangle,
-                ytop = ytop.rectangle,
-                ybottom = ybottom.rectangle
-                );
+    ### needed to copy in case using variable to define rectangles dimensions
+    rectangle.info <- list(
+    	xright = xright.rectangle,
+            xleft = xleft.rectangle,
+            ytop = ytop.rectangle,
+            ybottom = ybottom.rectangle
+            );
 
 	# 'data' parameter shoud only be set if x if a formula
 	# otherwise a warning will be thrown (even if data = NULL), although the plot will still be created

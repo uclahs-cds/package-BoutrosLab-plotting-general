@@ -29,20 +29,6 @@ create.dotmap <- function(x, bg.data = NULL, filename = NULL, main = NULL, main.
 	alpha.rectangle = 1, xaxis.fontface = 'bold', yaxis.fontface = 'bold', dot.colour.scheme = NULL,
 	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, remove.symmetric = FALSE, lwd = 2) {
 
-	### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if( !dir.exists(dir.name) ) {
-                                dir.create(dir.name);
-                                }                        
-			funcname <- 'create.dotmap';
-                        print.to.file(dir.name, funcname, x, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
-
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
 		xright = xright.rectangle,

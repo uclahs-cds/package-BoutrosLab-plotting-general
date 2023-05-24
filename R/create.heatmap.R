@@ -40,69 +40,8 @@ create.heatmap <- function(x, filename = NULL, clustering.method = 'diana', clus
 	yaxis.covariates.x = NULL, description = 'Created with BoutrosLab.plotting.general', xaxis.fontface = 'bold',
 	yaxis.fontface = 'bold', symbols = list(borders = NULL, squares = NULL, circles = NULL), same.as.matrix = FALSE,
 	input.colours = FALSE, axis.xlab.padding = 0.1, stratified.clusters.rows = NULL, stratified.clusters.cols = NULL,
-	inside.legend = NULL, style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE) {
-
-	### store data on mount
-	tryCatch({
-		dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-		if (!dir.exists(dir.name)) {
-			dir.create(dir.name);
-			}
-		funcname <- 'create.heatmap';
-		print.to.file(dir.name, funcname, x, filename);
-			
-		## save all the parameters input (minus data) for later use
-		param.data.filename <- paste(dir.name, "data.RData", sep = "/Heatmap-");
-		data.list.heatmap <- list();
-		if (file.exists(param.data.filename)) {
-			load(param.data.filename);
-			}
-		data.list.heatmap[[length(data.list.heatmap) + 1]] <- list(filename = filename, clustering.method = clustering.method,
-			cluster.dimensions = cluster.dimensions, row.dendrogram = row.dendrogram, col.dendrogram = col.dendrogram,
-			plot.dendrograms = plot.dendrograms, force.clustering = force.clustering, criteria.list = criteria.list,
-			covariates = covariates, covariates.grid.row = covariates.grid.row, covariates.grid.col = covariates.grid.col,
-			covariates.grid.border = covariates.grid.border, covariates.row.lines = covariates.row.lines,
-			covariates.col.lines = covariates.col.lines, covariates.reorder.grid.index = covariates.reorder.grid.index,
-			covariates.padding = covariates.padding, covariates.top = covariates.top,
-			covariates.top.grid.row = covariates.top.grid.row, covariates.top.grid.col = covariates.top.grid.col,
-			covariates.top.grid.border = covariates.top.grid.border, covariates.top.row.lines = covariates.top.row.lines,
-			covariates.top.col.lines = covariates.top.col.lines, covariates.top.reorder.grid.index = covariates.top.reorder.grid.index,
-			covariates.top.padding = covariates.top.padding, covariate.legends = covariate.legends, legend.cex = legend.cex,
-			legend.title.cex = legend.title.cex, legend.title.just = legend.title.just, legend.title.fontface = legend.title.fontface,
-			legend.border = legend.border, legend.border.padding = legend.border.padding, legend.layout = legend.layout,
-			legend.between.col = legend.between.col, legend.between.row = legend.between.row, legend.side = legend.side,
-			main = main, main.just = main.just, main.x = main.x, main.y = main.y, main.cex = main.cex,
-			right.size.add = right.size.add, top.size.add = top.size.add, right.dendrogram.size = right.dendrogram.size,
-			top.dendrogram.size = top.dendrogram.size, scale.data = scale.data, yaxis.lab = yaxis.lab,
-			xaxis.lab = xaxis.lab, xaxis.lab.top = xaxis.lab.top, xaxis.cex = xaxis.cex, xaxis.top.cex = xaxis.top.cex,
-			yaxis.cex = yaxis.cex, xlab.cex = xlab.cex, ylab.cex = ylab.cex, xlab.top.label = xlab.top.label,
-			xlab.top.cex = xlab.top.cex, xlab.top.col = xlab.top.col, xlab.top.just = xlab.top.just,
-			xlab.top.x = xlab.top.x, xlab.top.y = xlab.top.y, xat = xat, xat.top = xat.top, yat = yat, xaxis.tck = xaxis.tck,
-			xaxis.top.tck = xaxis.top.tck, yaxis.tck = yaxis.tck, xaxis.col = xaxis.col, yaxis.col = yaxis.col,
-			col.pos = col.pos, row.pos = row.pos, cell.text = cell.text, text.fontface = text.fontface, text.cex = text.cex,
-			text.col = text.col, text.position = text.position, text.offset = text.offset,
-			text.use.grid.coordinates = text.use.grid.coordinates, colourkey.cex = colourkey.cex, xaxis.rot = xaxis.rot,
-			xaxis.rot.top = xaxis.rot.top, yaxis.rot = yaxis.rot, xlab.label = xlab.label, ylab.label = ylab.label,
-			xlab.col = xlab.col, ylab.col = ylab.col, axes.lwd = axes.lwd, gridline.order = gridline.order,
-			grid.row = grid.row, grid.col = grid.col, force.grid.row = force.grid.row, force.grid.col = force.grid.col,
-			grid.limit = grid.limit, row.lines = row.lines, col.lines = col.lines, colour.scheme = colour.scheme,
-			total.colours = total.colours, colour.centering.value = colour.centering.value, colour.alpha = colour.alpha,
-			fill.colour = fill.colour, at = at, print.colour.key = print.colour.key,
-			colourkey.labels.at = colourkey.labels.at, colourkey.labels = colourkey.labels, top.padding = top.padding,
-			bottom.padding = bottom.padding, right.padding = right.padding, left.padding = left.padding,
-			x.alternating = x.alternating, shrink = shrink, row.colour = row.colour, col.colour = col.colour,
-			row.lwd = row.lwd, col.lwd = col.lwd, grid.colour = grid.colour, grid.lwd = grid.lwd, width = width,
-			height = height, size.units = size.units, resolution = resolution, xaxis.covariates = xaxis.covariates,
-			xaxis.covariates.y = xaxis.covariates.y, yaxis.covariates = yaxis.covariates, yaxis.covariates.x = yaxis.covariates.x,
-			xaxis.fontface = xaxis.fontface, yaxis.fontface = yaxis.fontface, symbols = symbols, same.as.matrix = same.as.matrix,
-			input.colours = input.colours, axis.xlab.padding = axis.xlab.padding); 
-			save(data.list.heatmap, file = param.data.filename);
-			},
-		warning = function(w) {
-			},
-		error = function(e) {
-			}
-		);
+	inside.legend = NULL, style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE
+    ) {
 
 	### PARAMETER CHECKING #########################################################################
 	if (preload.default == 'paper') {

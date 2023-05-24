@@ -8,6 +8,9 @@ BUG
 * Add default label locations for continuous legends
 * Fix error with expressions in main for multipanelplots
 
+REMOVED
+* Remove outdated plotting data storage code
+
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.6 2023-02-15
 

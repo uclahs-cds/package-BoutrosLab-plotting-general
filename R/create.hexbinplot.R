@@ -47,20 +47,6 @@ create.hexbinplot <- function(
 	# - if 'maxcnt' is passed, make sure it is not smaller than the actual maximum count (value depends on nbins).
 	# - Otherwise, some data may be lost. If you aren't sure what the actual max count is, run this function without
 	# - specifying the 'maxcnt' parameter using the desired number of bins.
-	### store data on mount
-	tryCatch({
-			dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if ( !dir.exists(dir.name) ) {
-				dir.create(dir.name);
-				}			
-			funcname <- 'create.hexbinplot';
-			print.to.file(dir.name, funcname, data, filename);
-			},
-		warning = function(w) {
-			},
-		error = function(e) {
-			}
-		);
 
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(

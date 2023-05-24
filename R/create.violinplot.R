@@ -26,23 +26,7 @@ create.violinplot <- function(
 	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
 	size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
 	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, disable.factor.sorting = FALSE
-	) {
-
-
-	### store data on mount
-        tryCatch({
-                        dir.name <- '/.mounts/labs/boutroslab/private/BPGRecords/Objects';
-			if (!dir.exists(dir.name)) {
-                                dir.create(dir.name);
-                                }                        
-			funcname <- 'create.violinplot';
-                        print.to.file(dir.name, funcname, data, filename);
-                        },
-                warning = function(w) {
-                        },
-                error = function(e) {
-                	});
-
+    ) {
 
 	### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
