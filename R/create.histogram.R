@@ -21,6 +21,8 @@ create.histogram <- function(
 	x.relation = 'same', y.relation = 'same', strip.col = 'white', strip.cex = 1, top.padding = 0.1,
 	bottom.padding = 0.7, right.padding = 0.1, left.padding = 0.5, ylab.axis.padding = 0, abline.h = NULL,
 	abline.v = NULL, abline.col = 'black', abline.lwd = 1, abline.lty = 1, key = NULL, legend = NULL,
+	add.text = FALSE, text.labels = NULL, text.x = NULL, text.y = NULL, text.col = 'black',
+	text.cex = 1, text.fontface = 'bold',
 	add.rectangle = FALSE, xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL,
 	ytop.rectangle = NULL, col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6,
 	size.units = 'in', resolution = 1600, enable.warnings = FALSE,
@@ -46,6 +48,15 @@ create.histogram <- function(
 		}
 	else if (preload.default == 'web') {
 		}
+
+	text.info <- list(
+		labels = text.labels,
+		x = text.x,
+		y = text.y,
+		col = text.col,
+		cex = text.cex,
+		fontface = text.fontface
+		);
 
 	# Now make the actual plot object
 	trellis.object <- lattice::histogram(
@@ -89,7 +100,19 @@ create.histogram <- function(
 					lwd = abline.lwd,
 					col = abline.col
 					);
-				}
+			}
+			
+			# Add text to plot
+			if (add.text) {
+				panel.text(
+					x        = text.info$x,
+					y        = text.info$y,
+					labels   = text.info$labels,
+					col      = text.info$col,
+					cex      = text.info$cex,
+					fontface = text.info$fontface
+					);
+				}			
 			},
 		type = type,
 		col = col,

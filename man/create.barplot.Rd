@@ -229,7 +229,7 @@ create.barplot(
     \item{line.to}{The ending point of the line on the plot}
     \item{line.col}{Colour of the line on the plot}
     \item{line.infront}{Should the line appear in front of the plot or not}
-    \item{text.above.bars}{Should some form of text appear above the bars; input as a list}
+    \item{text.above.bars}{Should some form of text appear above the bars; input as a list. \code{bar.locations} is the x-axis when vertical and y-axis when horizontal. See \code{\link[lattice:ltext]{lattice::ltext}} arguments for all possible values that can be passed in. (\code{col}, \code{alpha}, \code{cex}, etc, can all be passed in as a single value or vector of same length as \code{text.above.bars$labels})}
     \item{raster}{The image to raster over each bar - see Raster Images in R Graphics by Paul Murrell for full details}
     \item{raster.vert}{A logical indicating whether the raster is applied vertically or horizontally}
     \item{raster.just}{A word giving the justification of the raster, can be set to \dQuote{left}, \dQuote{right}, \dQuote{centre}, \dQuote{center}, \dQuote{bottom}, or \dQuote{top}}

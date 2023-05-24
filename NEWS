@@ -1,10 +1,15 @@
 BoutrosLab.plotting.general 7.0.7 2023-05-22
 
-REMOVED
-* Removed outdated plotting data storage code
+UPDATE
+* Expose panel.text arguments for text.above.bar options in create.barplot
+* Remove duplicated code in print.multipanel
 
 BUG
 * Add default label locations for continuous legends
+* Fix error with expressions in main for multipanelplots
+
+REMOVED
+* Removed outdated plotting data storage code
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.6 2023-02-15
@@ -12,6 +17,12 @@ BoutrosLab.plotting.general 7.0.6 2023-02-15
 UPDATE
 * Move CICD workflow from Dockerhub to GitHub packages
 * Add github PR template
+
+UPDATE
+* Add text support for create.histogram
+
+UPDATE
+* Remove axis labels with axis.lab = NULL in create.boxplot for consistent behavior with other plot types
 
 BUG
 * Fix ylab.axis.padding parameter in create.histogram

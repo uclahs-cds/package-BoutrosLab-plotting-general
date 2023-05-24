@@ -163,8 +163,8 @@ create.boxplot(
     \item{ylimits}{Two-element vector giving the y-axis limits}
     \item{xat}{Vector listing where the x-axis labels should be drawn}
     \item{yat}{Vector listing where the y-axis labels should be drawn}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic (TRUE). Set to NULL to remove x-axis labels.}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic (TRUE). Set to NULL to remove y-axis labels.}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 2}
     \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
@@ -359,6 +359,25 @@ create.boxplot(
     ylab.label = 'Gene',
     xlimits = c(0,13),
     xat = seq(0,12,2),
+    # Colour change
+    col = sex.colour,
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
+    
+# Remove y-axis labels
+create.boxplot(
+    formula = y ~ x,
+    data = reformatted.data,
+    main = 'Remove y-axis labels',
+    xaxis.cex = 1,
+    yaxis.cex = 1,
+    xlab.cex = 1.5,
+    ylab.cex = 1.5,
+    ylab.label = 'Gene',
+    xlimits = c(0,13),
+    xat = seq(0,12,2),
+    yaxis.lab = NULL, # Remove labels with NULL
     # Colour change
     col = sex.colour,
     description = 'Boxplot created by BoutrosLab.plotting.general',
