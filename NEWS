@@ -1,8 +1,9 @@
-BoutrosLab.plotting.general 7.0.7 2023-05-22
+BoutrosLab.plotting.general 7.0.7 2023-05-25
 
 UPDATE
 * Expose panel.text arguments for text.above.bar options in create.barplot
 * Remove duplicated code in print.multipanel
+* Update format of CRAN links
 
 BUG
 * Add default label locations for continuous legends
