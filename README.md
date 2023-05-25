@@ -106,7 +106,7 @@ For further details on usage, parameters or to see an example of a specific func
 
 ## Resources
 
-Available resources on BPG usage can be found at the package [CRAN page](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/index.html), [reference manual](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/BoutrosLab.plotting.general.pdf), or [vignette](https://cloud.r-project.org/web/packages/BoutrosLab.plotting.general/vignettes/PlottingGuide.pdf).
+Available resources on BPG usage can be found at the package [CRAN page](https://cran.r-project.org/package=BoutrosLab.plotting.general/index.html), [reference manual](https://cran.r-project.org/package=BoutrosLab.plotting.general/BoutrosLab.plotting.general.pdf), or [vignette](https://cran.r-project.org/package=BoutrosLab.plotting.general/vignettes/PlottingGuide.pdf).
 
 ## Getting help
 
