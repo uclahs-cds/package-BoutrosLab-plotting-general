@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 7.0.8 2023-05-26
+
+UPDATE
+* Change name of print.to.file() to export.to.file() to avoid naming conflict
+  with S3 method print()
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.7 2023-05-25
 
 UPDATE

@@ -1,4 +1,4 @@
-print.to.file <- function(dirname, funcname, data, filename) {
+export.to.file <- function(dirname, funcname, data, filename) {
 
         user <- system('whoami', intern = T);
         out.filename <- 'data-df.tsv';
