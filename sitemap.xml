@@ -10,6 +10,9 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/pull_request_template.html</loc>
+  </url>
+  <url>
     <loc>/reference/BoutrosLab.plotting.general-package.html</loc>
   </url>
   <url>

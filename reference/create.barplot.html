@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.0.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.0.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -479,7 +479,7 @@
 <dd><p>Should the line appear in front of the plot or not</p></dd>
 
     <dt>text.above.bars</dt>
-<dd><p>Should some form of text appear above the bars; input as a list</p></dd>
+<dd><p>Should some form of text appear above the bars; input as a list. <code>bar.locations</code> is the x-axis when vertical and y-axis when horizontal. See <code><a href="https://rdrr.io/pkg/lattice/man/llines.html" class="external-link">lattice::ltext</a></code> arguments for all possible values that can be passed in. (<code>col</code>, <code>alpha</code>, <code>cex</code>, etc, can all be passed in as a single value or vector of same length as <code>text.above.bars$labels</code>)</p></dd>
 
     <dt>raster</dt>
 <dd><p>The image to raster over each bar - see Raster Images in R Graphics by Paul Murrell for full details</p></dd>
@@ -1053,7 +1053,67 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y,     resolveHJust(x$just, x$hjust), resolveVJust(x$just, x$vjust),     x$rot, 0):</span> polygon edge not found</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-plt img"><img src="create.barplot-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Auto_legend', fileext = '.tiff'),</span></span></span>
@@ -1080,7 +1140,67 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y,     resolveHJust(x$just, x$hjust), resolveVJust(x$just, x$vjust),     x$rot, 0):</span> polygon edge not found</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Unable to calculate text width/height (using zero)</span>
+<span class="r-plt img"><img src="create.barplot-16.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Horizontal orientation</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1099,7 +1219,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-15.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-17.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Change bar thickness and add text labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1120,7 +1240,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-16.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-18.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Error bars</span></span></span>
 <span class="r-in"><span><span class="va">error.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -1151,7 +1271,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-17.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1175,7 +1295,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-18.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grid lines</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1223,7 +1343,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-19.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grid lines 2</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1272,7 +1392,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-20.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-22.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1324,7 +1444,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-21.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-23.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># lines</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1377,7 +1497,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-22.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-24.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Background rectangle</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1430,7 +1550,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-23.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-25.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Raster</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1454,7 +1574,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Description of image here'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-24.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-26.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature format</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1479,7 +1599,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			en-dashes for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.</span>
-<span class="r-plt img"><img src="create.barplot-25.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-27.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Left Justified Example</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -1502,7 +1622,7 @@
 <span class="r-in"><span>    top.padding <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-26.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-28.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
