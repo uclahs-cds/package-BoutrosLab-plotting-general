@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 7.0.9 2023-07-11
+
+BUG
+* Fix inability to use do.call with create.scatterplot
+
+--------------------------------------------------------------------------
+
 BoutrosLab.plotting.general 7.0.8 2023-05-26
 
 UPDATE
