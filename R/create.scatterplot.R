@@ -200,12 +200,8 @@ create.lollipopplot <- create.scatterplot <- function(
 	regions.alpha = 1, lollipop.bar.y = NULL, lollipop.bar.color = 'gray',  ...
 	) {
 
-	function.name <- match.call()[[1]];
-
-	lollipop.plot <- FALSE;
-	if (function.name == 'create.lollipopplot') {
-		lollipop.plot <- TRUE;
-		}
+	function.call <- as.character(sys.calls()[[1]]);
+	lollipop.plot <- 'create.lollipopplot' %in% function.call;
 
 	### needed to copy in case using variable to define rectangles dimensions
 	rectangle.info <- list(
