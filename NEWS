@@ -1,3 +1,10 @@
+BoutrosLab.plotting.general 7.0.9 2023-07-21
+
+UPDATE
+* Validate "lty" values in plotting functions, with warning messages to
+  guide users toward documentation and valid values.
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.8 2023-05-26
 
 UPDATE
