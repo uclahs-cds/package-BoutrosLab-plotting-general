@@ -8,7 +8,7 @@ name: R-CMD-check (r-lib)
     branches:
       - main
   schedule:
-      - cron: '0 0 * * MON'
+    - cron: '0 0 * * MON'
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
