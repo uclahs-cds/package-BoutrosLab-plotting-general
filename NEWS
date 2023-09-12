@@ -1,7 +1,8 @@
-BoutrosLab.plotting.general 7.0.9 2023-07-21
+BoutrosLab.plotting.general 7.0.9 2023-09-12
 
 UPDATE
 * Run R CMD check GitHub action weekly
+* Updated GitHub links to use new "package" prefix
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.8 2023-05-26
