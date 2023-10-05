@@ -6,3 +6,4 @@
 ^docs$
 ^pkgdown$
 ^.*\.{jpeg,png,gif,tiff}$
+.cicd-env
