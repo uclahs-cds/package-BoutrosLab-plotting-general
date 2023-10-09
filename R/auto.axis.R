@@ -130,53 +130,33 @@ generate.at <- function(min.x, max.x, pretty = TRUE, include.origin = TRUE, num.
     out <- c();
 
     if (pretty) {
-
         if (max.x * min.x <= 0 || include.origin == FALSE) {
-
             out <- pretty(c(min.x, max.x), n = num.labels - 1);
-
             }
         else {
-
             if (min.x > 0 && include.origin == TRUE) {
-
                 out <- pretty(c(0, max.x), n = num.labels - 1);
-
                 }
-
             if (max.x < 0 && include.origin == TRUE) {
-
                 out <- pretty(c(min.x, 0), n = num.labels - 1);
-
                 }
             }
         }
-
     else {
-
         if (max.x * min.x <= 0 || include.origin == FALSE) {
-
             out <- seq(min.x, max.x, length.out = num.labels);
-
             }
         else {
-
             if (min.x > 0 && include.origin == TRUE) {
-
                 out <- seq(0, max.x, length.out = num.labels);
-
                 }
-
             if (max.x < 0 && include.origin == TRUE) {
-
                 out <- seq(min.x, 0, length.out = num.labels);
-
                 }
             }
         }
 
     return(out);
-
     }
 
 
@@ -185,32 +165,26 @@ as.power10.expression <- function(x) {
     x <- unlist(x);
 
     out <- sapply(x, function(y) {
+        y <- as.numeric(y);
+        # No need to do anything if x = 0
+        if (0 == y) {
+            return(expression(bold('0')));
+            }
 
-            y <- as.numeric(y);
-            # No need to do anything if x = 0
-            if (0 == y) {
-                return(expression(bold('0')));
-                }
+        # Otherwise, convert x to power of 10 and split by e
+        y <- as.numeric(unlist(strsplit(sprintf('%e', y), split = 'e')));
 
-            # Otherwise, convert x to power of 10 and split by e
-            y <- as.numeric(unlist(strsplit(sprintf('%e', y), split = 'e')));
+        # If x[1] = 1, then a should be omitted.
+        if (1 != y[1]) {
+            y <- substitute(bold(a %*% '10' ^ b), list(a = as.character(y[1]), b = as.character(y[2])));
+            }
+        else {
+            y <- substitute(bold('10' ^ b), list(b = as.character(y[2])));
+            }
 
-            # If x[1] = 1, then a should be omitted.
-            if (1 != y[1]) {
-
-                y <- substitute(bold(a %*% '10' ^ b), list(a = as.character(y[1]), b = as.character(y[2])));
-
-                }
-            else {
-
-                y <- substitute(bold('10' ^ b), list(b = as.character(y[2])));
-
-                }
-
-            # Return as expression otherwise list
-            as.expression(y);
-
-            });
+        # Return as expression otherwise list
+        as.expression(y);
+        });
 
     # Return as expression
     return(out);
