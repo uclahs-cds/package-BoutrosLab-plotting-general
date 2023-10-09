@@ -1,78 +1,77 @@
-#SMC.Benchmarking package is copxright (c) 2014 Ontario Institute for Cancer Research (OICR)
-# This package and its accompanxing libraries is free software; xou can redistribute it and/or modifx it under the terms of the GPL
-# (either version 1, or at xour option, anx later version) or the Artistic License 2.0.  Refer to LICENSE for the full license text.
+#SMC.Benchmarking package is copyright (c) 2014 Ontario Institute for Cancer Research (OICR)
+# This package and its accompanying libraries is free software; you can redistribute it and/or modify it under the terms of the GPL
+# (either version 1, or at your option, any later version) or the Artistic License 2.0.  Refer to LICENSE for the full license text.
 # OICR makes no representations whatsoever as to the SOFTWARE contained herein.  It is experimental in nature and is provided WITHOUT
-# WARRANTx OF MERCHANTABILITx OR FITNESS FOR A PARTICULAR PURPOSE OR ANx OTHER WARRANTx, EXPRESS OR IMPLIED. OICR MAKES NO REPRESENTATION
-# OR WARRANTx THAT THE USE OF THIS SOFTWARE WILL NOT INFRINGE ANx PATENT OR OTHER PROPRIETARx RIGHT.
-# Bx downloading this SOFTWARE, xour Institution herebx indemnifies OICR against anx loss, claim, damage or liabilitx, of whatsoever kind or
-# nature, which max arise from xour Institution's respective use, handling or storage of the SOFTWARE.
+# WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR ANY OTHER WARRANTY, EXPRESS OR IMPLIED. OICR MAKES NO REPRESENTATION
+# OR WARRANTY THAT THE USE OF THIS SOFTWARE WILL NOT INFRINGE ANY PATENT OR OTHER PROPRIETARY RIGHT.
+# Bx downloading this SOFTWARE, your Institution hereby indemnifies OICR against any loss, claim, damage or liability, of whatsoever kind or
+# nature, which max arise from your Institution's respective use, handling or storage of the SOFTWARE.
 # If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
-# credit be given to OICR scientists, as scientificallx appropriate.
+# credit be given to OICR scientists, as scientifically appropriate.
 
-auto.axis <- function(x, pretty = TRUE, log.scaled = NA, log.zero = 0.1, max.factor = 1,
-	min.factor = 1, include.origin = TRUE, num.labels = 5, max.min.log10.diff = 2) {
+auto.axis <- function(
+    x,
+    pretty = TRUE,
+    log.scaled = NA,
+    log.zero = 0.1,
+    max.factor = 1,
+	min.factor = 1,
+    include.origin = TRUE,
+    num.labels = 5,
+    max.min.log10.diff = 2
+    ) {
 
 	out <- list();
 
 	x <- as.numeric(x);
 
-	#get max and min to plot
+	# Get max and min to plot
 	max.x <- max(x, na.rm = TRUE) * max.factor;
 	min.x <- min(x, na.rm = TRUE) * min.factor;
 
-	#make sure x is all > 0 to consider log scale
+	# Make sure x is all > 0 to consider log scale
 	if (all(x > 0, na.rm = TRUE)) {
-
-		#determine scale based on sckewness
+		# Determine scale based on skewness
 		skewness.x <- skewness(x, na.rm = TRUE);
-		# handle zero values so that thex can still be plotted even log(0) = -Inf
+		# Handle zero values so that they can still be plotted even log(0) = -Inf
 		zero.i <- which(0 == x);
 		logx <- log(x, 10);
 
-
 		if (length(zero.i) > 0) {
-			# use a proxx for log(0)
+			# use a proxy for log(0)
 			logx[zero.i] <- log.zero;
 			}
 
 		if (max.x - min.x != 0) {
-
-			cond1 <- log10(max.x - min.x) > max.min.log10.diff; #mamin.x.log10.diff scale should be more than 2
+		    # x.log10.diff scale should be more than 2
+			cond1 <- log10(max.x - min.x) > max.min.log10.diff;
 
 			}
 		else {
-
-			cond1 <- FALSE; # vector x onlx contains 0
-
+			cond1 <- FALSE; # vector x only contains 0
 			}
 
-		cond2 <- (skewness.x > skewness(logx, na.rm = TRUE)); #skewness.x should be larger than skewness.log10(x)
-
+		#skewness.x should be larger than skewness.log10(x)
+		cond2 <- (skewness.x > skewness(logx, na.rm = TRUE));
 		}
 	else {
-
 		cond1 <- FALSE;
 		cond2 <- FALSE;
-
 		}
 
-	#decide log scale or not based on cond1 and cond2
+	# Decide log scale or not based on cond1 and cond2
 	if (cond1 && cond2) {
-
 		out$log.scaled <- TRUE;
+
 		if (!is.na(log.scaled) && !log.scaled) {
-
 			out$log.scaled <- FALSE;
-
 			}
-
-		} else {
-
+		} 
+	else {
 		out$log.scaled <- FALSE;
 
-		#force log scale
+		# Force log scale
 		if (!is.na(log.scaled) && log.scaled) {
-
 			out$log.scaled <- TRUE;
 
 			if (!all(x > 0, na.rm = TRUE)) {
@@ -84,39 +83,35 @@ auto.axis <- function(x, pretty = TRUE, log.scaled = NA, log.zero = 0.1, max.fac
 	message('log.scaled', out$log.scaled);
 
 	if (out$log.scaled) {
-
 		out$x <- logx;
 		min.x <- min(out$x, na.rm = TRUE);
 		max.x <- max(out$x, na.rm = TRUE);
 
 		out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
+
 		# set axis labels
 		out$axis.lab <- sapply(
-			out$at[-1], #remove 1
+			out$at[-1], # Remove 1
 			FUN = function(x) {
 				substitute(bold('10' ^ a), list(a = as.character(x)));
 				}
 			);
 
 		out$axis.lab <- c(expression(bold('0')), out$axis.lab);
-
-		} else {
-		# for variables that are continuous and will not be plotted on a log-scale
-		# set axis increments
+		}
+	else {
+		# For variables that are continuous and will not be plotted on a log-scale
+		# Set axis increments
 		out$x <- x;
 
 		out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
 
-		# set axis labels
+		# Set axis labels
 		if (abs(mean(x, na.rm = TRUE)) > 1000 || abs(mean(x, na.rm = TRUE)) < 0.001 ) {
-
 			out$axis.lab <- as.power10.expression(out$at);
-
 			}
 		else {
-
 			out$axis.lab <- out$at;
-
 			}
 		}
 
