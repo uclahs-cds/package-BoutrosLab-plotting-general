@@ -9,6 +9,13 @@
 # If publications result from research using this SOFTWARE, we ask that the Ontario Institute for Cancer Research be acknowledged and/or
 # credit be given to OICR scientists, as scientifically appropriate.
 
+prep.axis <- function(
+    at,
+    data
+    ) {
+    stop('Not implemented!');
+    }
+
 auto.axis <- function(
     x,
     pretty = TRUE,
