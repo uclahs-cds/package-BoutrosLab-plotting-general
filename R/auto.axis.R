@@ -187,15 +187,15 @@ as.power10.expression <- function(x) {
     out <- sapply(x, function(y) {
 
             y <- as.numeric(y);
-            # no need to do anything if x = 0
+            # No need to do anything if x = 0
             if (0 == y) {
                 return(expression(bold('0')));
                 }
 
-            #otherwiese, convert x to power of 10 and split by e
+            # Otherwise, convert x to power of 10 and split by e
             y <- as.numeric(unlist(strsplit(sprintf('%e', y), split = 'e')));
 
-            #if x[1] = 1, then a should be omitted.
+            # If x[1] = 1, then a should be omitted.
             if (1 != y[1]) {
 
                 y <- substitute(bold(a %*% '10' ^ b), list(a = as.character(y[1]), b = as.character(y[2])));
@@ -207,11 +207,11 @@ as.power10.expression <- function(x) {
 
                 }
 
-            #retrun as expression otherwise list
+            # Return as expression otherwise list
             as.expression(y);
 
             });
 
-    #return as expression
+    # Return as expression
     return(out);
     }
