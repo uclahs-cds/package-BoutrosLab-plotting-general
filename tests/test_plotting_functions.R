@@ -2,6 +2,12 @@
 # Description: This script runs the plotting code in BoutrosLab.plotting.general for testing purposes
 # The plots are stored in variables and plotted together in a single multiple in order to save plot-generation time
 
+warning(paste(
+    'BPG will discontinue this test file in v8.0.0.',
+    'Instead, tests will use the standard testthat format.',
+    'For more information, see https://testthat.r-lib.org/'
+    ));
+
 ### LOAD LIBRARY ###################################################################################
 library(BoutrosLab.plotting.general);
 
