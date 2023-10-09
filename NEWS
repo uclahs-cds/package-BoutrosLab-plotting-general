@@ -1,8 +1,24 @@
-BoutrosLab.plotting.general 7.0.9 2023-09-12
+BoutrosLab.plotting.general 8.0.0 2023-10-09
 
 UPDATE
-* Run R CMD check GitHub action weekly
+* Use testthat format for package tests
+
+--------------------------------------------------------------------------
+BoutrosLab.plotting.general 7.0.10 2023-10-09
+
+UPDATE
+* Add deprecation warning for test file in preparation for using
+  testthat in the v8.0.0 release
+
+--------------------------------------------------------------------------
+BoutrosLab.plotting.general 7.0.9 2023-07-21
+
+UPDATE
+* Run R CMD check GitHub action weekly and with manual dispatch
 * Updated GitHub links to use new "package" prefix
+
+REMOVED
+* Remove unnecessary package manual file
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.8 2023-05-26
