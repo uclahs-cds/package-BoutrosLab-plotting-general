@@ -13,7 +13,40 @@ prep.axis <- function(
     at,
     data
     ) {
-    stop('Not implemented!');
+
+    if (is.null(data)) {
+        return(data);
+        }
+    else if (is.logical(data)) {
+        return(data);
+        }
+    else if (length(data) > 1) {
+        return(data);
+        }
+
+    out <- list();
+    if ('auto' == at) {
+        out <- auto.axis(
+            x = data
+            );
+        }
+    else if ('auto.linear' == at) {
+        out <- auto.axis(
+            x = data,
+            log.scaled = FALSE
+            );
+        }
+    else if ('auto.log' == at) {
+        out <- auto.axis(
+            x = data,
+            log.scaled = TRUE
+            );
+        }
+    else {
+        stop('Invalid input to xat/yat.');
+        }
+    return(out);
+
     }
 
 auto.axis <- function(
