@@ -22,196 +22,196 @@ auto.axis <- function(
     log.scaled = NA,
     log.zero = 0.1,
     max.factor = 1,
-	min.factor = 1,
+    min.factor = 1,
     include.origin = TRUE,
     num.labels = 5,
     max.min.log10.diff = 2
     ) {
 
-	out <- list();
+    out <- list();
 
-	x <- as.numeric(x);
+    x <- as.numeric(x);
 
-	# Get max and min to plot
-	max.x <- max(x, na.rm = TRUE) * max.factor;
-	min.x <- min(x, na.rm = TRUE) * min.factor;
+    # Get max and min to plot
+    max.x <- max(x, na.rm = TRUE) * max.factor;
+    min.x <- min(x, na.rm = TRUE) * min.factor;
 
-	# Make sure x is all > 0 to consider log scale
-	if (all(x > 0, na.rm = TRUE)) {
-		# Determine scale based on skewness
-		skewness.x <- skewness(x, na.rm = TRUE);
-		# Handle zero values so that they can still be plotted even log(0) = -Inf
-		zero.i <- which(0 == x);
-		logx <- log(x, 10);
+    # Make sure x is all > 0 to consider log scale
+    if (all(x > 0, na.rm = TRUE)) {
+        # Determine scale based on skewness
+        skewness.x <- skewness(x, na.rm = TRUE);
+        # Handle zero values so that they can still be plotted even log(0) = -Inf
+        zero.i <- which(0 == x);
+        logx <- log(x, 10);
 
-		if (length(zero.i) > 0) {
-			# use a proxy for log(0)
-			logx[zero.i] <- log.zero;
-			}
+        if (length(zero.i) > 0) {
+            # use a proxy for log(0)
+            logx[zero.i] <- log.zero;
+            }
 
-		if (max.x - min.x != 0) {
-		    # x.log10.diff scale should be more than 2
-			cond1 <- log10(max.x - min.x) > max.min.log10.diff;
+        if (max.x - min.x != 0) {
+            # x.log10.diff scale should be more than 2
+            cond1 <- log10(max.x - min.x) > max.min.log10.diff;
 
-			}
-		else {
-			cond1 <- FALSE; # vector x only contains 0
-			}
+            }
+        else {
+            cond1 <- FALSE; # vector x only contains 0
+            }
 
-		#skewness.x should be larger than skewness.log10(x)
-		cond2 <- (skewness.x > skewness(logx, na.rm = TRUE));
-		}
-	else {
-		cond1 <- FALSE;
-		cond2 <- FALSE;
-		}
+        #skewness.x should be larger than skewness.log10(x)
+        cond2 <- (skewness.x > skewness(logx, na.rm = TRUE));
+        }
+    else {
+        cond1 <- FALSE;
+        cond2 <- FALSE;
+        }
 
-	# Decide log scale or not based on cond1 and cond2
-	if (cond1 && cond2) {
-		out$log.scaled <- TRUE;
+    # Decide log scale or not based on cond1 and cond2
+    if (cond1 && cond2) {
+        out$log.scaled <- TRUE;
 
-		if (!is.na(log.scaled) && !log.scaled) {
-			out$log.scaled <- FALSE;
-			}
-		} 
-	else {
-		out$log.scaled <- FALSE;
+        if (!is.na(log.scaled) && !log.scaled) {
+            out$log.scaled <- FALSE;
+            }
+        }
+    else {
+        out$log.scaled <- FALSE;
 
-		# Force log scale
-		if (!is.na(log.scaled) && log.scaled) {
-			out$log.scaled <- TRUE;
+        # Force log scale
+        if (!is.na(log.scaled) && log.scaled) {
+            out$log.scaled <- TRUE;
 
-			if (!all(x > 0, na.rm = TRUE)) {
-				stop('can not use log-scale as the input vector contains negative values.');
-				}
-			}
-		}
+            if (!all(x > 0, na.rm = TRUE)) {
+                stop('can not use log-scale as the input vector contains negative values.');
+                }
+            }
+        }
 
-	message('log.scaled', out$log.scaled);
+    message('log.scaled', out$log.scaled);
 
-	if (out$log.scaled) {
-		out$x <- logx;
-		min.x <- min(out$x, na.rm = TRUE);
-		max.x <- max(out$x, na.rm = TRUE);
+    if (out$log.scaled) {
+        out$x <- logx;
+        min.x <- min(out$x, na.rm = TRUE);
+        max.x <- max(out$x, na.rm = TRUE);
 
-		out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
+        out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
 
-		# set axis labels
-		out$axis.lab <- sapply(
-			out$at[-1], # Remove 1
-			FUN = function(x) {
-				substitute(bold('10' ^ a), list(a = as.character(x)));
-				}
-			);
+        # set axis labels
+        out$axis.lab <- sapply(
+            out$at[-1], # Remove 1
+            FUN = function(x) {
+                substitute(bold('10' ^ a), list(a = as.character(x)));
+                }
+            );
 
-		out$axis.lab <- c(expression(bold('0')), out$axis.lab);
-		}
-	else {
-		# For variables that are continuous and will not be plotted on a log-scale
-		# Set axis increments
-		out$x <- x;
+        out$axis.lab <- c(expression(bold('0')), out$axis.lab);
+        }
+    else {
+        # For variables that are continuous and will not be plotted on a log-scale
+        # Set axis increments
+        out$x <- x;
 
-		out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
+        out$at <- generate.at(min.x, max.x, pretty, include.origin, num.labels);
 
-		# Set axis labels
-		if (abs(mean(x, na.rm = TRUE)) > 1000 || abs(mean(x, na.rm = TRUE)) < 0.001 ) {
-			out$axis.lab <- as.power10.expression(out$at);
-			}
-		else {
-			out$axis.lab <- out$at;
-			}
-		}
+        # Set axis labels
+        if (abs(mean(x, na.rm = TRUE)) > 1000 || abs(mean(x, na.rm = TRUE)) < 0.001 ) {
+            out$axis.lab <- as.power10.expression(out$at);
+            }
+        else {
+            out$axis.lab <- out$at;
+            }
+        }
 
-	return(out);
-	}
+    return(out);
+    }
 
 generate.at <- function(min.x, max.x, pretty = TRUE, include.origin = TRUE, num.labels = 4) {
 
-	out <- c();
+    out <- c();
 
-	if (pretty) {
+    if (pretty) {
 
-		if (max.x * min.x <= 0 || include.origin == FALSE) {
+        if (max.x * min.x <= 0 || include.origin == FALSE) {
 
-			out <- pretty(c(min.x, max.x), n = num.labels - 1);
+            out <- pretty(c(min.x, max.x), n = num.labels - 1);
 
-			}
-		else {
+            }
+        else {
 
-			if (min.x > 0 && include.origin == TRUE) {
+            if (min.x > 0 && include.origin == TRUE) {
 
-				out <- pretty(c(0, max.x), n = num.labels - 1);
+                out <- pretty(c(0, max.x), n = num.labels - 1);
 
-				}
+                }
 
-			if (max.x < 0 && include.origin == TRUE) {
+            if (max.x < 0 && include.origin == TRUE) {
 
-				out <- pretty(c(min.x, 0), n = num.labels - 1);
+                out <- pretty(c(min.x, 0), n = num.labels - 1);
 
-				}
-			}
-		}
+                }
+            }
+        }
 
-	else {
+    else {
 
-		if (max.x * min.x <= 0 || include.origin == FALSE) {
+        if (max.x * min.x <= 0 || include.origin == FALSE) {
 
-			out <- seq(min.x, max.x, length.out = num.labels);
+            out <- seq(min.x, max.x, length.out = num.labels);
 
-			}
-		else {
+            }
+        else {
 
-			if (min.x > 0 && include.origin == TRUE) {
+            if (min.x > 0 && include.origin == TRUE) {
 
-				out <- seq(0, max.x, length.out = num.labels);
+                out <- seq(0, max.x, length.out = num.labels);
 
-				}
+                }
 
-			if (max.x < 0 && include.origin == TRUE) {
+            if (max.x < 0 && include.origin == TRUE) {
 
-				out <- seq(min.x, 0, length.out = num.labels);
+                out <- seq(min.x, 0, length.out = num.labels);
 
-				}
-			}
-		}
+                }
+            }
+        }
 
-	return(out);
+    return(out);
 
-	}
+    }
 
 
 as.power10.expression <- function(x) {
 
-	x <- unlist(x);
+    x <- unlist(x);
 
-	out <- sapply(x, function(y) {
+    out <- sapply(x, function(y) {
 
-			y <- as.numeric(y);
-			# no need to do anything if x = 0
-			if (0 == y) {
-				return(expression(bold('0')));
-				}
+            y <- as.numeric(y);
+            # no need to do anything if x = 0
+            if (0 == y) {
+                return(expression(bold('0')));
+                }
 
-			#otherwiese, convert x to power of 10 and split by e
-			y <- as.numeric(unlist(strsplit(sprintf('%e', y), split = 'e')));
+            #otherwiese, convert x to power of 10 and split by e
+            y <- as.numeric(unlist(strsplit(sprintf('%e', y), split = 'e')));
 
-			#if x[1] = 1, then a should be omitted.
-			if (1 != y[1]) {
+            #if x[1] = 1, then a should be omitted.
+            if (1 != y[1]) {
 
-				y <- substitute(bold(a %*% '10' ^ b), list(a = as.character(y[1]), b = as.character(y[2])));
+                y <- substitute(bold(a %*% '10' ^ b), list(a = as.character(y[1]), b = as.character(y[2])));
 
-				}
-			else {
+                }
+            else {
 
-				y <- substitute(bold('10' ^ b), list(b = as.character(y[2])));
+                y <- substitute(bold('10' ^ b), list(b = as.character(y[2])));
 
-				}
+                }
 
-			#retrun as expression otherwise list
-			as.expression(y);
+            #retrun as expression otherwise list
+            as.expression(y);
 
-			});
+            });
 
-	#return as expression
-	return(out);
-	}
+    #return as expression
+    return(out);
+    }
