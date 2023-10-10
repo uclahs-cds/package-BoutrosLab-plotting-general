@@ -11,9 +11,43 @@
 
 prep.axis <- function(
     at,
-    data
+    data,
+    which.arg
     ) {
-    stop('Not implemented!');
+
+    if (is.null(at)) {
+        return(at);
+        }
+    else if (is.logical(at)) {
+        return(at);
+        }
+    else if (length(at) > 1) {
+        return(at);
+        }
+
+    out <- list();
+    if ('auto' == at) {
+        out <- auto.axis(
+            x = data
+            );
+        }
+    else if ('auto.linear' == at) {
+        out <- auto.axis(
+            x = data,
+            log.scaled = FALSE
+            );
+        }
+    else if ('auto.log' == at) {
+        out <- auto.axis(
+            x = data,
+            log.scaled = TRUE
+            );
+        }
+    else {
+        stop(paste0('Invalid input to ', which.arg, ': ', at));
+        }
+    return(out);
+
     }
 
 auto.axis <- function(
