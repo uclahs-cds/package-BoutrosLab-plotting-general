@@ -64,11 +64,11 @@ create.boxplot <- function(
 
         out <- prep.axis(
                 at = xat,
-                data = unlist(data[toString(formula[[2]])]),
+                data = unlist(data[toString(formula[[3]])]),
                 which.arg = 'xat'
                 );
         if (is.list(out)) {
-                data[toString(formula[[2]])] <- out$x;
+                data[toString(formula[[3]])] <- out$x;
                 xat <- out$at;
                 xaxis.lab <- out$axis.lab;
                 }
