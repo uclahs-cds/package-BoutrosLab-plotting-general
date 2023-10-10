@@ -43,7 +43,7 @@ prep.axis <- function(
             );
         }
     else {
-        stop('Invalid input to xat/yat.');
+        stop(paste0('Invalid input to xat/yat:', at));
         }
     return(out);
 
