@@ -49,48 +49,28 @@ create.manhattanplot <- function(
                 fontface = text.fontface
                 );
 
-	if (!is.null(yat) && length(yat) == 1) {
-		if (yat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]));
-                	data[toString(formula[[2]])] <- out$x;
-			yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-			}
+        out <- prep.axis(
+                at = xat,
+                data = unlist(data[toString(formula[[3]])]),
+                which.arg = 'xat'
+                );
+        if (is.list(out)) {
+                data[toString(formula[[3]])] <- out$x;
+                xat <- out$at;
+                xaxis.lab <- out$axis.lab;
+                }
 
-        	else if (yat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = FALSE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-			}
+        out <- prep.axis(
+                at = yat,
+                data = unlist(data[toString(formula[[2]])]),
+                which.arg = 'yat'
+                );
+        if (is.list(out)) {
+                data[toString(formula[[2]])] <- out$x;
+                yat <- out$at;
+                yaxis.lab <- out$axis.lab;
+                }
 
-        	else if (yat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[2]])]), log.scaled = TRUE);
-                	data[toString(formula[[2]])] <- out$x;
-                	yat <- out$at;
-                	yaxis.lab <- out$axis.lab;
-        		}
-		}
-	if (!is.null(xat) && length(xat) == 1) {
-        	if (xat == 'auto') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]));
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.linear') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = FALSE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-        	else if (xat == 'auto.log') {
-                	out <- auto.axis(unlist(data[toString(formula[[3]])]), log.scaled = TRUE);
-                	data[toString(formula[[3]])] <- out$x;
-                	xat <- out$at;
-                	xaxis.lab <- out$axis.lab;
-        		}
-		}
 	# add preloaded defaults
 	if (preload.default == 'paper') {
 		}
