@@ -121,7 +121,7 @@ auto.axis <- function(
 			}
 		}
 
-	message('log.scaled', out$log.scaled);
+	# message('log.scaled', out$log.scaled);
 
 	if (out$log.scaled) {
 		out$x <- logx;
