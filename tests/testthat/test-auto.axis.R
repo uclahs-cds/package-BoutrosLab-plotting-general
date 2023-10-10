@@ -157,8 +157,10 @@ test_that(
 test_that(
     'prep.axis throws error on invalid setting', {
         expect_error(
-            { prep.axis('invalid', 1:10); },
-            regexp = "invalid"
+            object = {
+                prep.axis('invalid', 1:10);
+                },
+            regexp = 'invalid'
             );
         }
     );
