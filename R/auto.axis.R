@@ -11,7 +11,8 @@
 
 prep.axis <- function(
     at,
-    data
+    data,
+    which.arg
     ) {
 
     if (is.null(at)) {
@@ -43,7 +44,7 @@ prep.axis <- function(
             );
         }
     else {
-        stop(paste0('Invalid input to xat/yat:', at));
+        stop(paste0('Invalid input to ', which.arg, ': ', at));
         }
     return(out);
 
