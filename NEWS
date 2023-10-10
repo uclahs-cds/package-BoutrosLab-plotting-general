@@ -1,7 +1,7 @@
-BoutrosLab.plotting.general 8.0.0 2023-10-09
+BoutrosLab.plotting.general 7.1.0 2023-10-09
 
-UPDATE
-* Use testthat format for package tests
+ADDED
+* Add testthat framework for package tests
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.10 2023-10-09
