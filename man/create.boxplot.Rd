@@ -110,7 +110,7 @@ create.boxplot(
 	);
 }
 \arguments{
-    \item{formula}{The formula used to extract the x & y components from the data-frame}
+    \item{formula}{The formula used to extract the x & y components from the data-frame. Transforming data within formula is not compatible with automatic scaling with `xat` or `yat`.}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{main}{The main title for the plot (space is reclaimed if NULL)}
@@ -161,10 +161,10 @@ create.boxplot(
     \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xlimits}{Two-element vector giving the x-axis limits}
     \item{ylimits}{Two-element vector giving the y-axis limits}
-    \item{xat}{Vector listing where the x-axis labels should be drawn}
-    \item{yat}{Vector listing where the y-axis labels should be drawn}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic (TRUE). Set to NULL to remove x-axis labels.}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic (TRUE). Set to NULL to remove y-axis labels.}
+    \item{xat}{Accepts a vector listing where x-axis ticks should be drawn or if automatic scaling is desired, one of three strings: ‘auto’, ‘auto.linear’ or ‘auto.log’. Automatic scaling fixes x-axis tick locations, labels, and data values dependent on given data. ‘auto’ will determine whether linear or logarithmic scaling fits the given data best, ‘auto.linear’ or ‘auto.log’ will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.}
+    \item{yat}{Accepts a vector listing where y-axis ticks should be drawn or if automatic scaling is desired, one of three strings: ‘auto’, ‘auto.linear’ or ‘auto.log’. Automatic scaling fixes y-axis tick locations, labels, and data values dependent on given data. ‘auto’ will determine whether linear or logarithmic scaling fits the given data best, ‘auto.linear’ or ‘auto.log’ will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with xat will overwrite user input. Set to NULL to remove x-axis labels.}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with yat will overwrite user input. Set to NULL to remove y-axis labels.}
     \item{xaxis.cex}{Size of x-axis tick labels, defaults to 2}
     \item{yaxis.cex}{Size of y-axis tick labels, defaults to 2}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to \dQuote{black}}
