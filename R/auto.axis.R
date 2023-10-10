@@ -14,14 +14,14 @@ prep.axis <- function(
     data
     ) {
 
-    if (is.null(data)) {
-        return(data);
+    if (is.null(at)) {
+        return(at);
         }
-    else if (is.logical(data)) {
-        return(data);
+    else if (is.logical(at)) {
+        return(at);
         }
-    else if (length(data) > 1) {
-        return(data);
+    else if (length(at) > 1) {
+        return(at);
         }
 
     out <- list();
