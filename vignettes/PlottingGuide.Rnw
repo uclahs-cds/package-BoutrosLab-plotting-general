@@ -2266,6 +2266,55 @@ BPG supports automatic axis scaling  for several plot types with the \verb|auto.
 \end{itemize}
 If nothing is passed, the plot will use lattice's default axis creation method, which is often less "pretty" than BPG's automatic axes.
 
+<<auto-axis-scaling, echo=F, fig=T>>=
+create.auto.axis.examples <- function() {
+    auto.axis.data <- data.frame(x = 1:10, y = (1:10) ** 10);
+
+    create.axis.example <- function(auto.axis.setting = NULL) {
+        if (is.null(auto.axis.setting)) {
+            main <- 'default';
+            auto.axis.setting = FALSE;
+        } else {
+            main <- auto.axis.setting;
+            }
+
+        create.scatterplot(
+            y ~ x,
+            auto.axis.data,
+            yat = auto.axis.setting,
+            main = main,
+            main.cex = 1,
+            main.x = 0.55,
+            main.y = -1.5,
+            yaxis.cex = 0.65,
+            cex = 0.3,
+            xat = c(),
+            xlab.label = '',
+            ylab.label = ''
+            );
+        }
+
+    auto.log.scatter <- create.axis.example('auto.log');
+    auto.linear.scatter <- create.axis.example('auto.linear');
+    auto.scatter <- create.axis.example('auto');
+    default.scatter <- create.axis.example();
+
+    create.multipanelplot(
+        plot.objects = list(
+            auto.log.scatter,
+            auto.linear.scatter,
+            auto.scatter,
+            default.scatter
+            ),
+        layout.width = 2,
+        layout.height = 2,
+        x.spacing = 2,
+        xlab.label = ''
+        );
+    }
+create.auto.axis.examples();
+@
+
 \subsubsection{Manual Axis Scaling}
 It's possible to manually scale the axes for use cases not supported by \verb|auto.axis|. This is a three step process:
 \begin{itemize}
