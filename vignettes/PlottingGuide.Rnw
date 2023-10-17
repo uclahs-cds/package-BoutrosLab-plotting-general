@@ -2254,6 +2254,26 @@ The spiral.sunrise, spiral.dusk, etc colour schemes were created by ``spiralling
 \item \texttt{get.line.breaks} is used in the specific case of placing indices in heatmaps
 \end{itemize}
 
+
+\subsection{Axis Scaling}
+The scale at which data is viewed is extremely impactful to the insight that can be drawn from a visualization. While linear scaling is perfectly fine, some datasets are more easily interpreted after log transforming the data, for example.
+\subsubsection{Automatic Axis Scaling}
+BPG supports automatic axis scaling  for several plot types with the \verb|auto.axis| function. This functionality can be accessed through the \verb|xat| and \verb|yat| parameters when calling a plotting function. There are 3 settings to choose from:
+\begin{itemize}
+\item {\verb|auto.log|: $log_{10}$ scaled, with automatically spaced and formatted tick locations.}
+\item{\verb|auto.linear|: Linear scaled, with automatic tick placement based on analysis of the data.}
+\item{\verb|auto|: Automatically chooses the most appropriate setting (\verb|auto.log| or \verb|auto.linear|).}
+\end{itemize}
+If nothing is passed, the plot will use lattice's default axis creation method, which is often less "pretty" than BPG's automatic axes.
+
+\subsubsection{Manual Axis Scaling}
+It's possible to manually scale the axes for use cases not supported by \verb|auto.axis|. This is a three step process:
+\begin{itemize}
+\item{Transform the data.}
+\item{Transform the axis tick locations in \verb|xat| and \verb|yat| to match the data transformation.}
+\item{Override the axis tick labels in \verb|xaxis.lab| and \verb|yaxis.lab| to correspond to the pre-transformation values from the data.} 
+\end{itemize}
+
 \subsection{Private}
 Other functions are called by plotting functions but are not intended for use by end-users: 
 \begin{verbatim}
