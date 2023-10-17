@@ -2323,6 +2323,33 @@ It's possible to manually scale the axes for use cases not supported by \verb|au
 \item{Override the axis tick labels in \verb|xaxis.lab| and \verb|yaxis.lab| to correspond to the pre-transformation values from the data.} 
 \end{itemize}
 
+<<manual-axis-scaling, fig=T, out.height=3>>=
+# Scaled y-axis data
+manual.axis.scaling.data <- data.frame(x = 1:20, y = (1:20) ** 3);
+manual.axis.scaling.data$log3.y <- log(manual.axis.scaling.data$y, base = 3);
+
+num.y.ticks <- 10;
+
+# Scaled y-axis tick locations
+log3.range <- range(manual.axis.scaling.data$log3.y);
+log3.yat <- seq(log3.range[1], log3.range[2], length.out = num.y.ticks);
+
+# Unscaled y-axis tick labels
+linear.range <- range(manual.axis.scaling.data$y);
+y.tick.labels <- seq(linear.range[1], linear.range[2], length.out = num.y.ticks);
+
+create.scatterplot(
+    log3.y ~ x,
+    manual.axis.scaling.data,
+    yat = log3.yat,
+    yaxis.lab = round(y.tick.labels),
+    xlab.label = '',
+    ylab.label = '',
+    yaxis.cex = 1,
+    xat = c()
+    );
+@
+
 \subsection{Private}
 Other functions are called by plotting functions but are not intended for use by end-users: 
 \begin{verbatim}
