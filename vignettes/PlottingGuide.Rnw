@@ -349,7 +349,7 @@ create.scatterplot(
 
 \subsubsection{Scatterplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<scatter3, include=TRUE, fig.cap='Scatterplot with log-scale axis'>>=
+<<scatter3, include=TRUE, fig.cap='Scatterplot with log base-10 scale axis'>>=
 create.scatterplot(
     formula = sample.two ~ sample.one,
     data = scatter.data,
@@ -363,24 +363,7 @@ create.scatterplot(
     xlab.cex = 1.5,
     ylab.cex = 1.5,
     main.cex = 1.5,
-    
-    # change axes accordingly 
-    xat = 2 ** (0:4),    
-
-    # change axes range accordingly
-    xlimits = c(2 ** 0,16),
-    
-    # format labels
-    xaxis.lab = c(
-        expression('2'^'0'),
-        expression('2'^'1'),
-        expression('2'^'2'),
-        expression('2'^'3'),
-        expression('2'^'4')
-        ),
-        
-    # transform x-axis into log-2 space
-    xaxis.log = 2
+    xat = 'auto.log' # Log-scale x-axis
     );
 @
 
