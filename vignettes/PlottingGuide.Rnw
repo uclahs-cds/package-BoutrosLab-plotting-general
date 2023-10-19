@@ -702,7 +702,7 @@ create.boxplot(
 
 \subsubsection{Boxplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<log-boxplot, include=TRUE, fig.cap='Boxplot with log base-10 scale axis'>>=
+<<log-boxplot, include=TRUE, fig.cap='Manhattan plot with log base-10 scale axis'>>=
 create.boxplot(
     formula = y ~ x, 
     data = boxplot.data,
@@ -1408,6 +1408,14 @@ create.manhattanplot(
     abline.col = "red",
     abline.lwd = 3,
     abline.lty = "solid"
+    );
+@
+
+<<log-manhattan, include=TRUE, fig.cap='Manhattan plot with line'>>=
+create.manhattanplot(
+    formula = -log10(x) ~ y,
+    data = manhattan.data,
+    xat = "auto.log"
     );
 @
 
