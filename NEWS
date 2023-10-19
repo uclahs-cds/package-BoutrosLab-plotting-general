@@ -1,7 +1,12 @@
-BoutrosLab.plotting.general 7.1.0 2023-10-09
+BoutrosLab.plotting.general 7.1.0 2023-10-18
 
 ADDED
 * Add testthat framework for package tests
+* Improve documentation for automatic axis scaling in:
+  - create.scatterplot
+  - create.boxplot
+  - create.manhattanplot
+  - create.hexbinplot
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.0.10 2023-10-09
