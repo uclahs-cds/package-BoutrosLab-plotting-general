@@ -598,8 +598,8 @@ The boxplot is used to display distributions of data. It is also known as the bo
 The boxplot also requires a data frame and a corresponding formula.
 <<boxplot1, include=TRUE, fig.cap='Simple boxplot'>>=
 boxplot.data <- data.frame(
-    x <- as.vector(t(microarray[1:10,1:58])),
-    y <- as.factor(rep(rownames(microarray[1:10,1:58]), each = 58))
+    x = as.vector(t(microarray[1:10,1:58])),
+    y = as.factor(rep(rownames(microarray[1:10,1:58]), each = 58))
     );
     
 create.boxplot(
@@ -697,6 +697,16 @@ create.boxplot(
     # add points
     add.stripplot = TRUE,
     points.pch = 1
+    );
+@
+
+\subsubsection{Boxplot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<log-boxplot, include=TRUE, fig.cap='Boxplot with log base-10 scale axis'>>=
+create.boxplot(
+    formula = y ~ x, 
+    data = boxplot.data,
+    xat = 'auto.log'
     );
 @
 
@@ -2306,7 +2316,7 @@ It's possible to manually scale the axes for use cases not supported by \verb|au
 \item{Override the axis tick labels in \verb|xaxis.lab| and \verb|yaxis.lab| to correspond to the pre-transformation values from the data.} 
 \end{itemize}
 
-<<manual-axis-scaling, fig=T, out.height=3>>=
+<<manual-axis-scaling, fig=T>>=
 # Scaled y-axis data
 manual.axis.scaling.data <- data.frame(x = 1:20, y = (1:20) ** 3);
 manual.axis.scaling.data$log3.y <- log(manual.axis.scaling.data$y, base = 3);
