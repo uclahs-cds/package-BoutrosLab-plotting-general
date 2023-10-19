@@ -386,6 +386,22 @@ create.barplot(
     resolution = 100
     )
 
+# Log-Scaled Axis
+log.data <- data.frame(
+    x = 10 ** sample(1:15, 5),
+    y = LETTERS[1:5]
+    );
+
+create.barplot(
+    x ~ y,
+    log.data,
+    # Log base 10 scale y-axis
+    yat = 'auto.log',
+    main = 'Log Scaled',
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
+
 # Colour changes
 sex.colours <- replace(as.vector(barplot.data$sex), which(barplot.data$sex == 'male'),'dodgerblue');
 sex.colours <- replace(sex.colours, which(barplot.data$sex == 'female'), 'pink');

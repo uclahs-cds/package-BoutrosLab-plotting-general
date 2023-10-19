@@ -303,6 +303,22 @@ create.hexbinplot(
     resolution = 100
     );
 
+# Log Scaled Axis
+log.data <- data.frame(
+    x = microarray[,1],
+    y = 10 ** microarray[,2]
+    );
+
+create.hexbinplot(
+    formula = y ~ x,
+    data = log.data,
+    main = 'Log Scaled',
+    # Log base 10 scale y-axis
+    yat = 'auto.log',
+    description = 'Hexbinplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
+
 \donttest{
 # Aspect Ratio
 create.hexbinplot(

@@ -376,37 +376,19 @@ create.scatterplot(
     resolution = 50
     );
 
-# Plotting space
+# Log-Scaled Axis
+log.data <- data.frame(
+    x = rnorm(800),
+    y = 10 ** rnorm(800, mean = 5, sd = 2)
+    );
+
 create.scatterplot(
-    # filename = tempfile(pattern = 'Scatterplot_Plotting_Space', fileext = '.tiff'),
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = 'Plotting Space',
-    xlab.label = colnames(microarray[1]),
-    ylab.label = colnames(microarray[2]),
-    # change axes accordingly
-    xat = 2 ** (0:4),
-    yat = seq(0, 16, 2),
-    # change axes range accordingly
-    xlimits = c(2 ** 0,16),
-    ylimits = c(0, 15),
-    # format labels
-    xaxis.lab = c(
-        expression('2'^'0'),
-        expression('2'^'1'),
-        expression('2'^'2'),
-        expression('2'^'3'),
-        expression('2'^'4')
-        ),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xaxis.fontface = 1,
-    yaxis.fontface = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    # Transform the x-axis into log-2 space
-    xaxis.log = 2,
-    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    y ~ x,
+    log.data,
+    # Log base 10 scale y-axis
+    yat = 'auto.log',
+    main = 'Log Scaled',
+    description = 'Scatter created by BoutrosLab.plotting.general',
     resolution = 50
     );
 

@@ -384,6 +384,22 @@ create.boxplot(
     resolution = 100
     );
 
+# Log Scaled Axis
+log.data <- data.frame(
+    x = 10 ** rnorm(1000, 5, 2),
+    y = rep('A',1000)
+    );
+
+create.boxplot(
+    x ~ y,
+    log.data,
+    # Log base 10 scale y axis
+    yat = 'auto.log',
+    main = 'Log Scale',
+    description = 'Boxplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
+
 # Legend
 create.boxplot(
     # filename = tempfile(pattern = 'Boxplot_Legend', fileext = '.tiff'),

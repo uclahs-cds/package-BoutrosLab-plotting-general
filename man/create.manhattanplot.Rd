@@ -300,6 +300,22 @@ create.manhattanplot(
     resolution = 100
     );
 
+# Log-Scaled Axis
+log.data <- data.frame(
+    x = 10 ** runif(20000, 1, 5),
+    y = 1:20000
+    );
+
+create.manhattanplot(
+    formula = x ~ y,
+    data = log.data,
+    main = 'Log Scaled',
+    # Log base 10 scale x-axis
+    xat = 'auto.log',
+    description = 'Manhattan plot created using BoutrosLab.plotting.general',
+    resolution = 50
+    );
+
 # Colour scheme
 create.manhattanplot(
     # filename = tempfile(pattern = 'Manhattan_Colour_Scheme', fileext = '.tiff'),
