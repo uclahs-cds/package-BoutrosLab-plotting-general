@@ -349,7 +349,7 @@ create.scatterplot(
 
 \subsubsection{Scatterplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<scatter3, include=TRUE, fig.cap='Scatterplot with log base-10 scale axis'>>=
+<<log-scatter, include=TRUE, fig.cap='Scatterplot with log base-10 scale axis'>>=
 create.scatterplot(
     formula = sample.two ~ sample.one,
     data = scatter.data,
@@ -706,7 +706,7 @@ The plot can be changed to use a log-scale.
 create.boxplot(
     formula = y ~ x, 
     data = boxplot.data,
-    xat = 'auto.log'
+    xat = 'auto.log' # Scale x-axis
     );
 @
 
@@ -1344,6 +1344,16 @@ create.hexbinplot(
     xbins = 15,
     colourcut = seq(0, 1, length = 9),
     maxcnt = 160
+    );
+@
+
+\subsubsection{Hexbin plot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<hexbin-log, include=TRUE, fig.cap='Hexbinplot with log base-10 scale axis'>>=
+create.hexbinplot(
+    data = hexbin.data,
+    formula = x ~ y,
+    xat = 'auto.log' # Scale x-axis
     );
 @
 
