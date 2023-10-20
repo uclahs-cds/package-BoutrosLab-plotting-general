@@ -349,21 +349,20 @@ create.scatterplot(
 
 \subsubsection{Scatterplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<log-scatter, include=TRUE, fig.cap='Scatterplot with log base-10 scale axis'>>=
+<<log-scatter, include=TRUE, fig.cap='Scatterplot with log base 10 scale axis'>>=
+log.scatter.data <- data.frame(
+    x = 1:100,
+    y = 10 ** rnorm(100, 6, 2)
+    );
+
 create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
+    formula = y ~ x,
+    data = log.scatter.data,
     main = "Log-scale Axis",
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-    yat = seq(0, 16, 2),
-    ylimits = c(0, 15),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
     main.cex = 1.5,
-    xat = 'auto.log' # Log-scale x-axis
+    yat = 'auto.log', # Log-scale y-axis,
+    xlab.label = '',
+    ylab.label = ''
     );
 @
 
@@ -702,12 +701,20 @@ create.boxplot(
 
 \subsubsection{Boxplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<log-boxplot, include=TRUE, fig.cap='Manhattan plot with log base-10 scale axis'>>=
+<<log-boxplot, include=TRUE, fig.cap='Boxplot plot with log base 10 scale axis'>>=
+log.boxplot.data <- data.frame(
+    x = 10 ** rnorm(100, 5, 2),
+    y = 1
+    );
+
 create.boxplot(
     formula = y ~ x, 
-    data = boxplot.data,
-    xat = 'auto.log' # Scale x-axis
+    data = log.boxplot.data,
+    xat = 'auto.log', # Scale x-axis,
+    ylab.label = '',
+    xlab.label = ''
     );
+
 @
 
 \subsection{Heatmap}
@@ -1349,11 +1356,16 @@ create.hexbinplot(
 
 \subsubsection{Hexbin plot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<hexbin-log, include=TRUE, fig.cap='Hexbinplot with log base-10 scale axis'>>=
+<<hexbin-log, include=TRUE, fig.cap='Hexbin plot with log base 10 scale axis'>>=
+log.hexbin.data <- hexbin.data;
+log.hexbin.data$x <- 10 ** (log.hexbin.data$x);
+
 create.hexbinplot(
     data = hexbin.data,
     formula = x ~ y,
-    xat = 'auto.log' # Scale x-axis
+    xat = 'auto.log', # Scale x-axis,
+    xlab.label = '',
+    ylab.label = ''
     );
 @
 
@@ -1418,14 +1430,6 @@ create.manhattanplot(
     abline.col = "red",
     abline.lwd = 3,
     abline.lty = "solid"
-    );
-@
-
-<<log-manhattan, include=TRUE, fig.cap='Manhattan plot with line'>>=
-create.manhattanplot(
-    formula = -log10(x) ~ y,
-    data = manhattan.data,
-    xat = "auto.log"
     );
 @
 
