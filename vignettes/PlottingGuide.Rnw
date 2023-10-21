@@ -302,7 +302,7 @@ require("knitr")
 opts_chunk$set(fig.path='Examples/', dev='png', warning=FALSE, dpi=120, fig.height=4, fig.width=4, fig.align='center', resize.width='70mm', resize.height='70mm')
 @
 
-<<scatter1, include=TRUE, fig.cap='Simple scatterplot'>>=
+<<scatter1, include=TRUE, fig.cap='Simple scatterplot'>>= 
 library(BoutrosLab.plotting.general);
 
 scatter.data <- data.frame(
@@ -701,7 +701,7 @@ create.boxplot(
 
 \subsubsection{Boxplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<log-boxplot, include=TRUE, fig.cap='Boxplot plot with log base 10 scale axis'>>=
+<<boxplot-log, include=TRUE, fig.cap='Boxplot plot with log base 10 scale axis'>>=
 log.boxplot.data <- data.frame(
     x = 10 ** rnorm(100, 5, 2),
     y = 1
@@ -1031,6 +1031,25 @@ create.barplot(
     col = colour.scheme
     );
 @
+
+\subsubsection{Barplot plot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<log-barplot, include=TRUE, fig.cap='Barplot with log base 10 scaled axis'>>=
+log.barplot.data <- data.frame(
+    x = 1:10,
+    y = 10 ** rnorm(10, mean = 5, sd = 3)
+    );
+
+create.barplot(
+    y ~ x,
+    log.barplot.data,
+    # Log scale y-axis
+    yat = 'auto.log',
+    ylab.label = '',
+    xlab.label = ''
+    );
+@
+
 
 \subsubsection{Stacked barplot with legend}
 Stacked barplots compare overall quantities across items, and also indicate the contribution of sub-categories to the total count \cite{streit}.
@@ -2281,9 +2300,12 @@ BPG supports automatic axis scaling  for several plot types with the \verb|auto.
 \end{itemize}
 If nothing is passed, the plot will use lattice's default axis creation method, which is often less "pretty" than BPG's automatic axes.
 
-<<auto-axis-scaling, echo=F, fig=T>>=
+<<auto-axis-scaling, echo=F, fig=T, fig.cap='Example 3 multiplot', fig.height = 10, fig.width = 12, resize.height ='100mm', resize.width ='120mm'>>=
 create.auto.axis.examples <- function() {
-    auto.axis.data <- data.frame(x = 1:10, y = (1:10) ** 10);
+    auto.axis.data <- data.frame(
+        x = 1:10,
+        y = 10 ** (1:10 + rnorm(10, sd = 0.4))
+        );
 
     create.axis.example <- function(auto.axis.setting = NULL) {
         if (is.null(auto.axis.setting)) {
@@ -2298,11 +2320,11 @@ create.auto.axis.examples <- function() {
             auto.axis.data,
             yat = auto.axis.setting,
             main = main,
-            main.cex = 1,
+            main.cex = 2,
             main.x = 0.55,
-            main.y = -1.5,
-            yaxis.cex = 0.65,
-            cex = 0.3,
+            main.y = -0.75,
+            yaxis.cex = 1.5,
+            cex = 1,
             xat = c(),
             xlab.label = '',
             ylab.label = ''
