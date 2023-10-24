@@ -77,12 +77,6 @@ test_that(
         	x = data.frame(test.data$z, rnorm(10))
         	);
 
-        # # This is the slowest running function
-        # heatmap <- create.heatmap(
-        # 	x = as.matrix(test.data$z),
-        # 	clustering.method = 'none'
-        # 	);
-
         dotmap <- create.dotmap(
         	x = test.data$z
         	);
@@ -186,9 +180,6 @@ test_that(
             default.colours(5, palette.type = 'chromosomes', is.greyscale = FALSE);
             default.colours(5, palette.type = 'seq');
             default.colours(c(4, 4), palette.type = c('seq', 'div'));
-
-            # display.colours(default.colours(3));
-            # display.colours(grey(0.5));
 
             force.colour.scheme(c('stopgain snv', 'splicing'), 'annovar.annotation');
             });
