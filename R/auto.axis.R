@@ -1,4 +1,4 @@
-#SMC.Benchmarking package is copyright (c) 2014 Ontario Institute for Cancer Research (OICR)
+# The BoutrosLab.plotting.general package is copyright (c) 2014 Ontario Institute for Cancer Research (OICR)
 # This package and its accompanying libraries is free software; you can redistribute it and/or modify it under the terms of the GPL
 # (either version 1, or at your option, any later version) or the Artistic License 2.0.  Refer to LICENSE for the full license text.
 # OICR makes no representations whatsoever as to the SOFTWARE contained herein.  It is experimental in nature and is provided WITHOUT
