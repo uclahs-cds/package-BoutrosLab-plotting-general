@@ -26,7 +26,7 @@ auto.axis(
     \item{num.labels}{number of labels to output}
     \item{max.min.log10.diff}{the max and min diffrence for dataset to be determined logarithmic}
 }
-\author{Takafumi Yamaguchi}
+\author{Takafumi N. Yamaguchi}
 \seealso{\code{\link[lattice]{stripplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
 set.seed(223);
