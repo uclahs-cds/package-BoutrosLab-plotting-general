@@ -383,8 +383,8 @@ log.data <- data.frame(
     );
 
 create.scatterplot(
-    y ~ x,
-    log.data,
+    formula = y ~ x,
+    data = log.data,
     # Log base 10 scale y-axis
     yat = 'auto.log',
     main = 'Log Scaled',
