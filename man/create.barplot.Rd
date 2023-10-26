@@ -128,7 +128,7 @@ create.barplot(
 	);
 }
 \arguments{
-    \item{formula}{The formula used to extract the x & y components from the data-frame}
+    \item{formula}{The formula used to extract the x & y components from the data-frame. Transforming data within formula is not compatible with automatic scaling with `xat` or `yat`}
     \item{data}{The data-frame to plot}
     \item{groups}{Optional grouping variable.  Expression or variable.}
     \item{stack}{Logical, relevant when groups is non-null. If FALSE (the default), bars for different values of the grouping variable are drawn side by side, otherwise they are stacked}
@@ -161,8 +161,8 @@ create.barplot(
     \item{ygrid.at}{Specify where to draw y-axis grid lines (defaults to yat)}
     \item{grid.lwd}{Specify width of grid line (defaults to 5)}
     \item{grid.col}{Specify colour of grid line. Currently only supports one colour. Defaults to NULL, which uses the colour of the reference line.}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with xat will overwrite user input. Set to NULL to remove x-axis labels.}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with yat will overwrite user input. Set to NULL to remove y-axis labels.}
     \item{xaxis.col}{Colour of the x-axis tick labels, defaults to black}
     \item{yaxis.col}{Colour of the y-axis tick labels, defaults to black}
     \item{xaxis.fontface}{Fontface for the x-axis scales}
@@ -175,8 +175,8 @@ create.barplot(
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to 1}
     \item{xlimits}{Two-element vector giving the x-axis limits. Useful when plot.horizontal = TRUE}
     \item{ylimits}{Two-element vector giving the y-axis limits}
-    \item{xat}{Vector listing where the x-axis labels should be drawn. Useful when plot.horizontal = TRUE}
-    \item{yat}{Vector listing where the y-axis labels should be drawn}
+    \item{xat}{Accepts a vector listing where x-axis ticks should be drawn or if automatic scaling is desired, one of three strings: \dQuote{auto}, \dQuote{auto.linear} or \dQuote{auto.log}. Automatic scaling fixes x-axis tick locations, labels, and data values dependent given data. \dQuote{auto} will determine whether linear or logarithmic scaling fits the given data best, \dQuote{auto.linear} or \dQuote{auto.log} will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`. Useful when plot.horizontal = TRUE}
+    \item{yat}{Accepts a vector listing where y-axis ticks should be drawn or if automatic scaling is desired, one of three strings: \dQuote{auto}, \dQuote{auto.linear} or \dQuote{auto.log}. Automatic scaling fixes y-axis tick locations, labels, and data values dependent given data. \dQuote{auto} will determine whether linear or logarithmic scaling fits the given data best, \dQuote{auto.linear} or \dQuote{auto.log} will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.}
     \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1). Default is NULL; see lattice::xyplot for more details}.
     \item{as.table}{Specifies panel drawing order, default is FALSE which draws panels from bottom left corner, moving right then up. Set to TRUE to draw from top left corner, moving right then down}
     \item{x.spacing}{A number specifying the distance between panels along the x-axis, defaults to 0}
@@ -385,6 +385,22 @@ create.barplot(
     plot.horizontal = TRUE,
     resolution = 100
     )
+
+# Log-Scaled Axis
+log.data <- data.frame(
+    x = 10 ** sample(1:15, 5),
+    y = LETTERS[1:5]
+    );
+
+create.barplot(
+    formula = x ~ y,
+    data = log.data,
+    # Log base 10 scale y-axis
+    yat = 'auto.log',
+    main = 'Log Scaled',
+    description = 'Barplot created by BoutrosLab.plotting.general',
+    resolution = 100
+    );
 
 # Colour changes
 sex.colours <- replace(as.vector(barplot.data$sex), which(barplot.data$sex == 'male'),'dodgerblue');

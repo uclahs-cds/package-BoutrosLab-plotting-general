@@ -302,7 +302,7 @@ require("knitr")
 opts_chunk$set(fig.path='Examples/', dev='png', warning=FALSE, dpi=120, fig.height=4, fig.width=4, fig.align='center', resize.width='70mm', resize.height='70mm')
 @
 
-<<scatter1, include=TRUE, fig.cap='Simple scatterplot'>>=
+<<scatter1, include=TRUE, fig.cap='Simple scatterplot'>>= 
 library(BoutrosLab.plotting.general);
 
 scatter.data <- data.frame(
@@ -349,38 +349,20 @@ create.scatterplot(
 
 \subsubsection{Scatterplot with log-scale axes}
 The plot can be changed to use a log-scale. 
-<<scatter3, include=TRUE, fig.cap='Scatterplot with log-scale axis'>>=
-create.scatterplot(
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = "Log-scale Axis",
-    xlab.label = "Sample 1",
-    ylab.label = "Sample 2",
-    yat = seq(0, 16, 2),
-    ylimits = c(0, 15),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    main.cex = 1.5,
-    
-    # change axes accordingly 
-    xat = 2 ** (0:4),    
+<<log-scatter, include=TRUE, fig.cap='Scatterplot with log base 10 scale axis'>>=
+log.scatter.data <- data.frame(
+    x = 1:100,
+    y = 10 ** rnorm(100, 6, 2)
+    );
 
-    # change axes range accordingly
-    xlimits = c(2 ** 0,16),
-    
-    # format labels
-    xaxis.lab = c(
-        expression('2'^'0'),
-        expression('2'^'1'),
-        expression('2'^'2'),
-        expression('2'^'3'),
-        expression('2'^'4')
-        ),
-        
-    # transform x-axis into log-2 space
-    xaxis.log = 2
+create.scatterplot(
+    formula = y ~ x,
+    data = log.scatter.data,
+    main = "Log-scale Axis",
+    main.cex = 1.5,
+    yat = 'auto.log', # Log-scale y-axis,
+    xlab.label = '',
+    ylab.label = ''
     );
 @
 
@@ -615,8 +597,8 @@ The boxplot is used to display distributions of data. It is also known as the bo
 The boxplot also requires a data frame and a corresponding formula.
 <<boxplot1, include=TRUE, fig.cap='Simple boxplot'>>=
 boxplot.data <- data.frame(
-    x <- as.vector(t(microarray[1:10,1:58])),
-    y <- as.factor(rep(rownames(microarray[1:10,1:58]), each = 58))
+    x = as.vector(t(microarray[1:10,1:58])),
+    y = as.factor(rep(rownames(microarray[1:10,1:58]), each = 58))
     );
     
 create.boxplot(
@@ -715,6 +697,24 @@ create.boxplot(
     add.stripplot = TRUE,
     points.pch = 1
     );
+@
+
+\subsubsection{Boxplot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<boxplot-log, include=TRUE, fig.cap='Boxplot plot with log base 10 scale axis'>>=
+log.boxplot.data <- data.frame(
+    x = 10 ** rnorm(100, 5, 2),
+    y = 1
+    );
+
+create.boxplot(
+    formula = y ~ x, 
+    data = log.boxplot.data,
+    xat = 'auto.log', # Scale x-axis,
+    ylab.label = '',
+    xlab.label = ''
+    );
+
 @
 
 \subsection{Heatmap}
@@ -1031,6 +1031,25 @@ create.barplot(
     col = colour.scheme
     );
 @
+
+\subsubsection{Barplot plot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<log-barplot, include=TRUE, fig.cap='Barplot with log base 10 scaled axis'>>=
+log.barplot.data <- data.frame(
+    x = 1:10,
+    y = 10 ** rnorm(10, mean = 5, sd = 3)
+    );
+
+create.barplot(
+    y ~ x,
+    log.barplot.data,
+    # Log scale y-axis
+    yat = 'auto.log',
+    ylab.label = '',
+    xlab.label = ''
+    );
+@
+
 
 \subsubsection{Stacked barplot with legend}
 Stacked barplots compare overall quantities across items, and also indicate the contribution of sub-categories to the total count \cite{streit}.
@@ -1351,6 +1370,21 @@ create.hexbinplot(
     xbins = 15,
     colourcut = seq(0, 1, length = 9),
     maxcnt = 160
+    );
+@
+
+\subsubsection{Hexbin plot with log-scale axes}
+The plot can be changed to use a log-scale. 
+<<hexbin-log, include=TRUE, fig.cap='Hexbin plot with log base 10 scale axis'>>=
+log.hexbin.data <- hexbin.data;
+log.hexbin.data$x <- 10 ** (log.hexbin.data$x);
+
+create.hexbinplot(
+    data = hexbin.data,
+    formula = x ~ y,
+    xat = 'auto.log', # Scale x-axis,
+    xlab.label = '',
+    ylab.label = ''
     );
 @
 
@@ -2253,6 +2287,105 @@ The spiral.sunrise, spiral.dusk, etc colour schemes were created by ``spiralling
 \item \texttt{display.statistical.result} function uses this to display statistical results in plots
 \item \texttt{get.line.breaks} is used in the specific case of placing indices in heatmaps
 \end{itemize}
+
+
+\subsection{Axis Scaling}
+The scale at which data is viewed is extremely impactful to the insight that can be drawn from a visualization. While linear scaling is perfectly fine, some datasets are more easily interpreted after log transforming the data, for example.
+\subsubsection{Automatic Axis Scaling}
+BPG supports automatic axis scaling  for several plot types with the \verb|auto.axis| function. This functionality can be accessed through the \verb|xat| and \verb|yat| parameters when calling a plotting function. There are 3 settings to choose from:
+\begin{itemize}
+\item {\verb|auto.log|: $log_{10}$ scaled, with automatically spaced and formatted tick locations.}
+\item{\verb|auto.linear|: Linear scaled, with automatic tick placement based on analysis of the data.}
+\item{\verb|auto|: Automatically chooses the most appropriate setting (\verb|auto.log| or \verb|auto.linear|).}
+\end{itemize}
+If nothing is passed, the plot will use lattice's default axis creation method, which is often less "pretty" than BPG's automatic axes.
+
+<<auto-axis-scaling, echo=F, fig=T, fig.cap='Example 3 multiplot', fig.height = 10, fig.width = 12, resize.height ='100mm', resize.width ='120mm'>>=
+create.auto.axis.examples <- function() {
+    auto.axis.data <- data.frame(
+        x = 1:10,
+        y = 10 ** (1:10 + rnorm(10, sd = 0.4))
+        );
+
+    create.axis.example <- function(auto.axis.setting = NULL) {
+        if (is.null(auto.axis.setting)) {
+            main <- 'default';
+            auto.axis.setting = FALSE;
+        } else {
+            main <- auto.axis.setting;
+            }
+
+        create.scatterplot(
+            y ~ x,
+            auto.axis.data,
+            yat = auto.axis.setting,
+            main = main,
+            main.cex = 2,
+            main.x = 0.55,
+            main.y = -0.75,
+            yaxis.cex = 1.5,
+            cex = 1,
+            xat = c(),
+            xlab.label = '',
+            ylab.label = ''
+            );
+        }
+
+    auto.log.scatter <- create.axis.example('auto.log');
+    auto.linear.scatter <- create.axis.example('auto.linear');
+    auto.scatter <- create.axis.example('auto');
+    default.scatter <- create.axis.example();
+
+    create.multipanelplot(
+        plot.objects = list(
+            auto.log.scatter,
+            auto.linear.scatter,
+            auto.scatter,
+            default.scatter
+            ),
+        layout.width = 2,
+        layout.height = 2,
+        x.spacing = 2,
+        xlab.label = ''
+        );
+    }
+create.auto.axis.examples();
+@
+
+\subsubsection{Manual Axis Scaling}
+It's possible to manually scale the axes for use cases not supported by \verb|auto.axis|. This is a three step process:
+\begin{itemize}
+\item{Transform the data.}
+\item{Transform the axis tick locations in \verb|xat| and \verb|yat| to match the data transformation.}
+\item{Override the axis tick labels in \verb|xaxis.lab| and \verb|yaxis.lab| to correspond to the pre-transformation values from the data.} 
+\end{itemize}
+
+<<manual-axis-scaling, fig=T>>=
+# Scaled y-axis data
+manual.axis.scaling.data <- data.frame(x = 1:20, y = (1:20) ** 3);
+manual.axis.scaling.data$log3.y <- log(manual.axis.scaling.data$y, base = 3);
+
+num.y.ticks <- 10;
+
+# Scaled y-axis tick locations
+log3.range <- range(manual.axis.scaling.data$log3.y);
+log3.yat <- seq(log3.range[1], log3.range[2], length.out = num.y.ticks);
+
+# Unscaled y-axis tick labels
+linear.range <- range(manual.axis.scaling.data$y);
+y.tick.labels <- seq(linear.range[1], linear.range[2], length.out = num.y.ticks);
+
+create.scatterplot(
+    log3.y ~ x,
+    manual.axis.scaling.data,
+    yat = log3.yat,
+    yaxis.lab = round(y.tick.labels),
+    xlab.label = '',
+    ylab.label = '',
+    yaxis.cex = 1,
+    xat = c()
+    );
+@
 
 \subsection{Private}
 Other functions are called by plotting functions but are not intended for use by end-users: 
