@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.0.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>formula</dt>
-<dd><p>The formula used to extract the x &amp; y components from the data-frame</p></dd>
+<dd><p>The formula used to extract the x &amp; y components from the data-frame. Transforming data within formula is not compatible with automatic scaling with `xat` or `yat`.</p></dd>
 
     <dt>data</dt>
 <dd><p>The data-frame to plot</p></dd>
@@ -222,16 +222,16 @@
 <dd><p>Two-element vector giving the y-axis limits, defaults to automatic</p></dd>
 
     <dt>xat</dt>
-<dd><p>Vector listing where the x-axis labels should be drawn, defaults to automatic</p></dd>
+<dd><p>Accepts a vector listing where x-axis ticks should be drawn or if automatic scaling is desired, one of three strings: “auto”, “auto.linear” or “auto.log”. Automatic scaling fixes x-axis tick locations, labels, and data values dependent given data. “auto” will determine whether linear or logarithmic scaling fits the given data best, “auto.linear” or “auto.log” will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.</p></dd>
 
     <dt>yat</dt>
-<dd><p>Vector listing where the y-axis labels should be drawn, defaults to automatic</p></dd>
+<dd><p>Accepts a vector listing where y-axis ticks should be drawn or if automatic scaling is desired, one of three strings: “auto”, “auto.linear” or “auto.log”. Automatic scaling fixes y-axis tick locations, labels, and data values dependent given data. “auto” will determine whether linear or logarithmic scaling fits the given data best, “auto.linear” or “auto.log” will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.</p></dd>
 
     <dt>xaxis.lab</dt>
-<dd><p>Vector listing x-axis tick labels, defaults to automatic</p></dd>
+<dd><p>Vector listing x-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with xat will overwrite user input. Set to NULL to remove x-axis labels.</p></dd>
 
     <dt>yaxis.lab</dt>
-<dd><p>Vector listing y-axis tick labels, defaults to automatic</p></dd>
+<dd><p>Vector listing y-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with yat will overwrite user input. Set to NULL to remove y-axis labels.</p></dd>
 
     <dt>xaxis.log</dt>
 <dd><p>Logical indicating whether x-variable should be in logarithmic scale (and what base if numeric)</p></dd>
@@ -564,6 +564,23 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-plt img"><img src="create.manhattanplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Log-Scaled Axis</span></span></span>
+<span class="r-in"><span><span class="va">log.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="fl">10</span> <span class="op">**</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">20000</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20000</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">create.manhattanplot</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="va">y</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">log.data</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Log Scaled'</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># Log base 10 scale x-axis</span></span></span>
+<span class="r-in"><span>    xat <span class="op">=</span> <span class="st">'auto.log'</span>,</span></span>
+<span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Manhattan plot created using BoutrosLab.plotting.general'</span>,</span></span>
+<span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">50</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.manhattanplot-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Colour scheme</span></span></span>
 <span class="r-in"><span><span class="fu">create.manhattanplot</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Manhattan_Colour_Scheme', fileext = '.tiff'),</span></span></span>
@@ -589,7 +606,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Manhattan plot created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.manhattanplot-4.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.manhattanplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plotting Character</span></span></span>
 <span class="r-in"><span><span class="fu">create.manhattanplot</span><span class="op">(</span></span></span>
@@ -619,7 +636,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Manhattan plot created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.manhattanplot-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.manhattanplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Line</span></span></span>
@@ -654,7 +671,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Manhattan plot created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.manhattanplot-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.manhattanplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Background shading</span></span></span>
 <span class="r-in"><span><span class="fu">create.manhattanplot</span><span class="op">(</span></span></span>
@@ -697,7 +714,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>longer object length is not a multiple of shorter object length</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>longer object length is not a multiple of shorter object length</span>
-<span class="r-plt img"><img src="create.manhattanplot-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.manhattanplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.manhattanplot</span><span class="op">(</span></span></span>
@@ -751,7 +768,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>longer object length is not a multiple of shorter object length</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>longer object length is not a multiple of shorter object length</span>
-<span class="r-plt img"><img src="create.manhattanplot-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.manhattanplot-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.0.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -207,7 +207,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>formula</dt>
-<dd><p>The formula used to extract the x &amp; y components from the data-frame</p></dd>
+<dd><p>The formula used to extract the x &amp; y components from the data-frame. Transforming data within formula is not compatible with automatic scaling with `xat` or `yat`.</p></dd>
 
     <dt>data</dt>
 <dd><p>The data-frame to plot</p></dd>
@@ -276,16 +276,16 @@
 <dd><p>Two-element vector giving the y-axis limits, defaults to automatic</p></dd>
 
     <dt>xat</dt>
-<dd><p>Vector listing where the x-axis labels should be drawn, defaults to automatic</p></dd>
+<dd><p>Accepts a vector listing where x-axis ticks should be drawn or if automatic scaling is desired, one of three strings: “auto”, “auto.linear” or “auto.log”. Automatic scaling fixes x-axis tick locations, labels, and data values dependent given data. “auto” will determine whether linear or logarithmic scaling fits the given data best, “auto.linear” or “auto.log” will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.</p></dd>
 
     <dt>yat</dt>
-<dd><p>Vector listing where the y-axis labels should be drawn, defaults to automatic</p></dd>
+<dd><p>Accepts a vector listing where y-axis ticks should be drawn or if automatic scaling is desired, one of three strings: “auto”, “auto.linear” or “auto.log”. Automatic scaling fixes y-axis tick locations, labels, and data values dependent given data. “auto” will determine whether linear or logarithmic scaling fits the given data best, “auto.linear” or “auto.log” will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.</p></dd>
 
     <dt>xaxis.lab</dt>
-<dd><p>Vector listing x-axis tick labels, defaults to automatic</p></dd>
+<dd><p>Vector listing x-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with xat will overwrite user input. Set to NULL to remove x-axis labels.</p></dd>
 
     <dt>yaxis.lab</dt>
-<dd><p>Vector listing y-axis tick labels, defaults to automatic</p></dd>
+<dd><p>Vector listing y-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with yat will overwrite user input. Set to NULL to remove y-axis labels.</p></dd>
 
     <dt>xaxis.log</dt>
 <dd><p>Logical indicating whether x-variable should be in logarithmic scale (and what base if numeric)</p></dd>
@@ -742,37 +742,19 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-plt img"><img src="create.scatterplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Plotting space</span></span></span>
+<span class="r-in"><span><span class="co"># Log-Scaled Axis</span></span></span>
+<span class="r-in"><span><span class="va">log.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">800</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="fl">10</span> <span class="op">**</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">800</span>, mean <span class="op">=</span> <span class="fl">5</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.scatterplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Scatterplot_Plotting_Space', fileext = '.tiff'),</span></span></span>
-<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">sample.two</span> <span class="op">~</span> <span class="va">sample.one</span>,</span></span>
-<span class="r-in"><span>    data <span class="op">=</span> <span class="va">scatter.data</span>,</span></span>
-<span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Plotting Space'</span>,</span></span>
-<span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># change axes accordingly</span></span></span>
-<span class="r-in"><span>    xat <span class="op">=</span> <span class="fl">2</span> <span class="op">**</span> <span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    yat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">16</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># change axes range accordingly</span></span></span>
-<span class="r-in"><span>    xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">**</span> <span class="fl">0</span>,<span class="fl">16</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># format labels</span></span></span>
-<span class="r-in"><span>    xaxis.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">'2'</span><span class="op">^</span><span class="st">'0'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">'2'</span><span class="op">^</span><span class="st">'1'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">'2'</span><span class="op">^</span><span class="st">'2'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">'2'</span><span class="op">^</span><span class="st">'3'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">'2'</span><span class="op">^</span><span class="st">'4'</span><span class="op">)</span></span></span>
-<span class="r-in"><span>        <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    xaxis.cex <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    yaxis.cex <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    xaxis.fontface <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    yaxis.fontface <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    xlab.cex <span class="op">=</span> <span class="fl">1.5</span>,</span></span>
-<span class="r-in"><span>    ylab.cex <span class="op">=</span> <span class="fl">1.5</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># Transform the x-axis into log-2 space</span></span></span>
-<span class="r-in"><span>    xaxis.log <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Scatter plot created by BoutrosLab.plotting.general'</span>,</span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">log.data</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># Log base 10 scale y-axis</span></span></span>
+<span class="r-in"><span>    yat <span class="op">=</span> <span class="st">'auto.log'</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Log Scaled'</span>,</span></span>
+<span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Scatter created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">50</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-plt img"><img src="create.scatterplot-4.png" alt="" width="700" height="433"></span>

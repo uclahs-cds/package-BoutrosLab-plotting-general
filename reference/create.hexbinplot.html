@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.0.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,7 +160,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>formula</dt>
-<dd><p>The formula used to extract the x &amp; y components from the data-frame</p></dd>
+<dd><p>The formula used to extract the x &amp; y components from the data-frame. Transforming data within formula is not compatible with automatic scaling with `xat` or `yat`.</p></dd>
 
     <dt>data</dt>
 <dd><p>The data-frame to plot</p></dd>
@@ -256,16 +256,16 @@
 <dd><p>Two-element vector giving the y-axis limits</p></dd>
 
     <dt>xat</dt>
-<dd><p>Vector listing where the x-axis labels should be drawn</p></dd>
+<dd><p>Accepts a vector listing where x-axis ticks should be drawn or if automatic scaling is desired, one of three strings: “auto”, “auto.linear” or “auto.log”. Automatic scaling fixes x-axis tick locations, labels, and data values dependent given data. “auto” will determine whether linear or logarithmic scaling fits the given data best, “auto.linear” or “auto.log” will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.</p></dd>
 
     <dt>yat</dt>
-<dd><p>Vector listing where the y-axis labels should be drawn</p></dd>
+<dd><p>Accepts a vector listing where y-axis ticks should be drawn or if automatic scaling is desired, one of three strings: “auto”, “auto.linear” or “auto.log”. Automatic scaling fixes y-axis tick locations, labels, and data values dependent given data. “auto” will determine whether linear or logarithmic scaling fits the given data best, “auto.linear” or “auto.log” will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.</p></dd>
 
     <dt>xaxis.lab</dt>
-<dd><p>Vector listing x-axis tick labels, defaults to automatic</p></dd>
+<dd><p>Vector listing x-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with xat will overwrite user input. Set to NULL to remove x-axis labels.</p></dd>
 
     <dt>yaxis.lab</dt>
-<dd><p>Vector listing y-axis tick labels, defaults to automatic</p></dd>
+<dd><p>Vector listing y-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with yat will overwrite user input. Set to NULL to remove y-axis labels.</p></dd>
 
     <dt>xaxis.cex</dt>
 <dd><p>Size of x-axis scales, defaults to 2</p></dd>
@@ -585,6 +585,23 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-plt img"><img src="create.hexbinplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Log Scaled Axis</span></span></span>
+<span class="r-in"><span><span class="va">log.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="fl">10</span> <span class="op">**</span> <span class="va">microarray</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">log.data</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Log Scaled'</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># Log base 10 scale y-axis</span></span></span>
+<span class="r-in"><span>    yat <span class="op">=</span> <span class="st">'auto.log'</span>,</span></span>
+<span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
+<span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.hexbinplot-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Aspect Ratio</span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
@@ -611,7 +628,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Colour scheme</span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
@@ -640,7 +657,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Bin sizes</span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
@@ -668,7 +685,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Correlation Key</span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
@@ -712,7 +729,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grid lines and diagonal</span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
@@ -741,7 +758,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-9.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Large range</span></span></span>
 <span class="r-in"><span><span class="co"># Generate some fake data with both very low and very high values</span></span></span>
@@ -779,7 +796,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-10.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Outliers</span></span></span>
 <span class="r-in"><span><span class="co"># Generate data with upper bound outlier</span></span></span>
@@ -818,7 +835,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Hexbinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-11.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
@@ -859,7 +876,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and en-dashes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend</span>
-<span class="r-plt img"><img src="create.hexbinplot-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Multiplot different groups</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">73</span><span class="op">)</span>;</span></span>
@@ -882,7 +899,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>  resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.</span>
-<span class="r-plt img"><img src="create.hexbinplot-13.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.hexbinplot</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">|</span> <span class="va">group.labels</span>,</span></span>
@@ -897,7 +914,7 @@ If 'maxcnt' is passed, make sure it is not smaller than the actual maximum count
 <span class="r-in"><span>  strip.fontface <span class="op">=</span> <span class="st">'bold'</span>,</span></span>
 <span class="r-in"><span>  resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.hexbinplot-14.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.hexbinplot-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
