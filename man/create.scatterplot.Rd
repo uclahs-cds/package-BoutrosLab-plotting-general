@@ -203,7 +203,7 @@ create.scatterplot(
     \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
     \item{grid.colour}{ability to set individual grid line colours}
     \item{horizontal}{xyplot-specific function that allows you to change if type='h' draws lines to the vertical or horizontal axis}
-    \item{type}{Plot type}
+    \item{type}{Accepts character vector of one or more elements defining how x and y are to be plotted. Accepted elements include: "p", "l", "h", "s", "g", "r". For other options see "type" parameter in "xyplot" documentation.}
     \item{cex}{Character expansion for plotting symbol}
     \item{pch}{Plotting character}
     \item{col}{Point/line colour}
