@@ -900,6 +900,7 @@ create.scatterplot(
     yaxis.fontface = 1,
     xlab.cex = 1.5,
     ylab.cex = 1.5,
+    # To plot ROC curve, add "s" or "S" to type vector
     type = 's',
     lwd = 3,
     add.xyline = TRUE,
