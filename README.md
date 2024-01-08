@@ -35,7 +35,7 @@ Multiplot example. BPG's create.multiplot function is able to combine multiple c
 To install the latest public release of BoutrosLab.plotting.general from CRAN:
 
 ```
-install.packages("Boutros.plotting.general")
+install.packages("BoutrosLab.plotting.general")
 ```
 
 Or to install the latest development version from GitHub:
