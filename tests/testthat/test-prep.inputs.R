@@ -29,3 +29,38 @@ test_that(
             );
         }
     );
+
+test_that(
+    'prep.sample.order errors on invalid string input',
+    {
+        sample.order <- 'invalid sample order setting';
+        expect_error(
+            {
+                prep.sample.order(sample.order);
+                },
+            regexp = sample.order
+            );
+        }
+    );
+
+test_that(
+    'prep.sample.order.setting errors with invalid setting',
+    {
+        sample.order <- 'invalid sample order setting';
+        expect_error(
+            {
+                prep.sample.order.setting(sample.order);
+                },
+            regexp = sample.order
+            );
+        }
+    );
+
+test_that(
+    'prep.sample.order.setting returns valid setting',
+    {
+        sample.order <- sample.order.default();
+        result <- prep.sample.order.setting(sample.order);
+        expect_equal(result, sample.order);
+        }
+    );
