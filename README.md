@@ -35,7 +35,7 @@ Multiplot example. BPG's create.multiplot function is able to combine multiple c
 To install the latest public release of BoutrosLab.plotting.general from CRAN:
 
 ```
-install.packages("Boutros.plotting.general")
+install.packages("BoutrosLab.plotting.general")
 ```
 
 Or to install the latest development version from GitHub:
@@ -140,7 +140,7 @@ A BibTeX entry for LaTeX users is
     month = {January},
     day = {21},
     issn = {1471-2105},
-    author = {Christine P'ng and Jeffrey Green and Lauren C. Chong and Daryl Waggott and Stephenie D. Prokopec and Mehrdad Shamsi and Francis Nguyen and Denise Y. F. Mak and Felix Lam and Marco A. Albuquerque and Ying Wu and Esther H. Jung and Maud H. W. Starmans and Michelle A. Chan-Seng-Yue and Cindy Q. Yao and Bianca Liang and Emilie Lalonde and Syed Haider and Nicole A. Simone and Dorota Sendorek and Kenneth C. Chu and Nathalie C. Moon and Natalie S. Fox and Michal R. Grzadkowski and Nicholas J. Harding and Clement Fung and Amanda R. Murdoch and Kathleen E. Houlahan and Jianxin Wang and David R. Garcia and Richard de Borja and Ren X. Sun and Xihui Lin and Gregory M. Chen and Aileen Lu and Yu-Jia Shiah and Amin Zia and Ryan Kearns and Paul C. Boutros},
+    author = {Christine P'ng and Jeffrey Green and Lauren C. Chong and Daryl Waggott and Stephenie D. Prokopec and Mehrdad Shamsi and Francis Nguyen and Denise Y. F. Mak and Felix Lam and Marco A. Albuquerque and Ying Wu and Esther H. Jung and Maud H. W. Starmans and Michelle A. Chan-Seng-Yue and Cindy Q. Yao and Bianca Liang and Emilie Lalonde and Syed Haider and Nicole A. Simone and Dorota Sendorek and Kenneth C. Chu and Nathalie C. Moon and Natalie S. Fox and Michal R. Grzadkowski and Nicholas J. Harding and Clement Fung and Amanda R. Murdoch and Kathleen E. Houlahan and Jianxin Wang and David R. Garcia and Richard de Borja and Ren X. Sun and Xihui Lin and Gregory M. Chen and Aileen Lu and Yu-Jia Shiah and Amin Zia and Ryan Kearns and Paul C. Boutros}
   }
 ```
 

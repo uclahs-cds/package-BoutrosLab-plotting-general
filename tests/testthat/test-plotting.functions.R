@@ -77,17 +77,11 @@ test_that(
         	x = data.frame(test.data$z, rnorm(10))
         	);
 
-        # # This is the slowest running function
-        # heatmap <- create.heatmap(
-        # 	x = as.matrix(test.data$z),
-        # 	clustering.method = 'none'
-        # 	);
-
         dotmap <- create.dotmap(
         	x = test.data$z
         	);
 
-        hexbin <- create.hexbinplot(	
+        hexbin <- create.hexbinplot(
         	formula = z ~ x,
         	data = test.data
         	);
@@ -95,7 +89,7 @@ test_that(
         # Also using generate.at.final()
         density <- create.densityplot(
         	x = list(
-        		a = test.data$x, 
+        		a = test.data$x,
         		b = test.data$z
         		),
         	xat = c(0, 1.1, 1.5, 1, 6, 4),
@@ -109,7 +103,7 @@ test_that(
         	data = test.data
         	);
 
-        polygonplot <- create.polygonplot(	
+        polygonplot <- create.polygonplot(
         	formula = NA ~ x,
         	data = test.data,
         	max = test.data$x,
@@ -171,25 +165,22 @@ test_that(
         expect_no_error({
             ### HELPER FUNCTIONS ###############################################################################
             get.line.breaks(1:10);
-    
+
             scientific.notation(1234, 2, type = 'list');
             scientific.notation(0, 2);
             scientific.notation(c(1234, 1234), 1);
-    
+
             # This returns the same thing as when type = 'expression' - should something be changed?
             scientific.notation(c(1234, 1234), 1, type = 'list');
-    
+
             display.statistical.result(1234);
-    
+
             ### COLOUR FUNCTIONS ###############################################################################
             default.colours(12, is.greyscale = FALSE);
             default.colours(5, palette.type = 'chromosomes', is.greyscale = FALSE);
             default.colours(5, palette.type = 'seq');
             default.colours(c(4, 4), palette.type = c('seq', 'div'));
-    
-            # display.colours(default.colours(3));
-            # display.colours(grey(0.5));
-    
+
             force.colour.scheme(c('stopgain snv', 'splicing'), 'annovar.annotation');
             });
         }

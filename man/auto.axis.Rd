@@ -1,22 +1,22 @@
 \name{auto.axis}
 \alias{auto.axis}
-\title{Create ideal labels and values for a given dataset (detects log scales)}
-\description{Takes a dataset and several parameters and outputs an object with values and labels ideal for that dataset}
+\title{Create ideal labels and values for a given numeric vector (detects log scales)}
+\description{Takes a numeric vector and several parameters and outputs an object with values and labels ideal for given data}
 \usage{
 auto.axis(
-    x, 
-    pretty = TRUE, 
-    log.scaled = NA, 
-    log.zero = 0.1, 
-    max.factor = 1, 
-    min.factor = 1, 
-    include.origin = TRUE, 
-    num.labels = 5, 
+    x,
+    pretty = TRUE,
+    log.scaled = NA,
+    log.zero = 0.1,
+    max.factor = 1,
+    min.factor = 1,
+    include.origin = TRUE,
+    num.labels = 5,
     max.min.log10.diff = 2
 )
 }
-\arguments{    
-    \item{x}{The dataset that is intended to be used for the labels and redisdributed data}
+\arguments{
+    \item{x}{Numeric vector to be scaled}
     \item{pretty}{Parameter flag for if output should be in pretty format}
     \item{log.scaled}{parameter set to determine if scaling is logarithmic or not}
     \item{log.zero}{log 0 starting point}
@@ -26,7 +26,7 @@ auto.axis(
     \item{num.labels}{number of labels to output}
     \item{max.min.log10.diff}{the max and min diffrence for dataset to be determined logarithmic}
 }
-\author{Takafumi Yamaguch}
+\author{Takafumi N. Yamaguchi}
 \seealso{\code{\link[lattice]{stripplot}}, \code{\link[lattice]{lattice}} or the Lattice book for an overview of the package.}
 \examples{
 set.seed(223);

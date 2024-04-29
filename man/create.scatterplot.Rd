@@ -159,7 +159,7 @@ create.scatterplot(
 	);
 }
 \arguments{
-    \item{formula}{The formula used to extract the x & y components from the data-frame}
+    \item{formula}{The formula used to extract the x & y components from the data-frame. Transforming data within formula is not compatible with automatic scaling with `xat` or `yat`.}
     \item{data}{The data-frame to plot}
     \item{filename}{Filename for tiff output, or if NULL returns the trellis object itself}
     \item{groups}{The grouping variable in the data-frame}
@@ -182,10 +182,10 @@ create.scatterplot(
     \item{xlab.top.y}{The y location of the top y-axis label}
     \item{xlimits}{Two-element vector giving the x-axis limits, defaults to automatic}
     \item{ylimits}{Two-element vector giving the y-axis limits, defaults to automatic}
-    \item{xat}{Vector listing where the x-axis labels should be drawn, defaults to automatic}
-    \item{yat}{Vector listing where the y-axis labels should be drawn, defaults to automatic}
-    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic}
-    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic}
+    \item{xat}{Accepts a vector listing where x-axis ticks should be drawn or if automatic scaling is desired, one of three strings: \dQuote{auto}, \dQuote{auto.linear} or \dQuote{auto.log}. Automatic scaling fixes x-axis tick locations, labels, and data values dependent given data. \dQuote{auto} will determine whether linear or logarithmic scaling fits the given data best, \dQuote{auto.linear} or \dQuote{auto.log} will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.}
+    \item{yat}{Accepts a vector listing where y-axis ticks should be drawn or if automatic scaling is desired, one of three strings: \dQuote{auto}, \dQuote{auto.linear} or \dQuote{auto.log}. Automatic scaling fixes y-axis tick locations, labels, and data values dependent given data. \dQuote{auto} will determine whether linear or logarithmic scaling fits the given data best, \dQuote{auto.linear} or \dQuote{auto.log} will force data to be scaled linearly or logarithmically respectively. Defaults to lattice automatic (TRUE). For more details see `auto.axis()`.}
+    \item{xaxis.lab}{Vector listing x-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with xat will overwrite user input. Set to NULL to remove x-axis labels.}
+    \item{yaxis.lab}{Vector listing y-axis tick labels, defaults to automatic (TRUE). Using automatic scaling with yat will overwrite user input. Set to NULL to remove y-axis labels.}
     \item{xaxis.log}{Logical indicating whether x-variable should be in logarithmic scale (and what base if numeric)}
     \item{yaxis.log}{Logical indicating whether y-variable should be in logarithmic scale (and what base if numeric)}
     \item{xaxis.cex}{Size of x-axis scales, defaults to 2}
@@ -203,7 +203,7 @@ create.scatterplot(
     \item{ygrid.at}{Vector listing where the y-axis grid lines should be drawn, defaults to yat}
     \item{grid.colour}{ability to set individual grid line colours}
     \item{horizontal}{xyplot-specific function that allows you to change if type='h' draws lines to the vertical or horizontal axis}
-    \item{type}{Plot type}
+    \item{type}{Accepts character vector of one or more elements defining how x and y are to be plotted. Accepted elements include: "p" to draw points, "l" to connect points with lines, "h" to draw vertical or horizonal line segments from the points to the origin, "s" or "S" to plot as a step curve, "g" to add a grid, and "r" to add a linear regression line. For more options and detail see "type" parameter in "xyplot" documentation.}
     \item{cex}{Character expansion for plotting symbol}
     \item{pch}{Plotting character}
     \item{col}{Point/line colour}
@@ -376,37 +376,19 @@ create.scatterplot(
     resolution = 50
     );
 
-# Plotting space
+# Log-Scaled Axis
+log.data <- data.frame(
+    x = rnorm(800),
+    y = 10 ** rnorm(800, mean = 5, sd = 2)
+    );
+
 create.scatterplot(
-    # filename = tempfile(pattern = 'Scatterplot_Plotting_Space', fileext = '.tiff'),
-    formula = sample.two ~ sample.one,
-    data = scatter.data,
-    main = 'Plotting Space',
-    xlab.label = colnames(microarray[1]),
-    ylab.label = colnames(microarray[2]),
-    # change axes accordingly
-    xat = 2 ** (0:4),
-    yat = seq(0, 16, 2),
-    # change axes range accordingly
-    xlimits = c(2 ** 0,16),
-    ylimits = c(0, 15),
-    # format labels
-    xaxis.lab = c(
-        expression('2'^'0'),
-        expression('2'^'1'),
-        expression('2'^'2'),
-        expression('2'^'3'),
-        expression('2'^'4')
-        ),
-    xaxis.cex = 1,
-    yaxis.cex = 1,
-    xaxis.fontface = 1,
-    yaxis.fontface = 1,
-    xlab.cex = 1.5,
-    ylab.cex = 1.5,
-    # Transform the x-axis into log-2 space
-    xaxis.log = 2,
-    description = 'Scatter plot created by BoutrosLab.plotting.general',
+    formula = y ~ x,
+    data = log.data,
+    # Log base 10 scale y-axis
+    yat = 'auto.log',
+    main = 'Log Scaled',
+    description = 'Scatter created by BoutrosLab.plotting.general',
     resolution = 50
     );
 
@@ -918,6 +900,8 @@ create.scatterplot(
     yaxis.fontface = 1,
     xlab.cex = 1.5,
     ylab.cex = 1.5,
+    # To plot ROC curve, add "s" or "S" to type vector.
+    # "s" connects points with the vertical segment first. "S" connects points with the horizontal segment first.
     type = 's',
     lwd = 3,
     add.xyline = TRUE,

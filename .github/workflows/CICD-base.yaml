@@ -19,6 +19,3 @@ jobs:
       # Run CICD-base
       - name: CICD-base
         uses: docker://ghcr.io/uclahs-cds/cicd-base:latest
-        env:
-          VALIDATE_R: false
-          VALIDATE_CPP: false
