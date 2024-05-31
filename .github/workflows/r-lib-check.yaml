@@ -18,6 +18,7 @@ jobs:
       - name: Install LaTeX packages
         run: |
           tlmgr install \
+          xelatex \
           parskip \
           geometry \
           koma-script \
