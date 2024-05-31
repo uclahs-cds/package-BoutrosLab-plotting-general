@@ -18,7 +18,7 @@ jobs:
       - name: Install LaTeX packages
         run: |
           tlmgr install \
-          xelatex \
+          texlive-xetex \
           parskip \
           geometry \
           koma-script \
