@@ -397,8 +397,9 @@ create.boxplot <- function(
 
 		}
 
+    sample.order <- prep.sample.order.setting(sample.order);
 	# reorder by median
-	if (sample.order == 'increasing' | sample.order == 'decreasing') {
+	if (sample.order %in% sample.order.auto.values()) {
 
 		if (is.numeric(trellis.object$panel.args[[1]]$x)) {
 			num.boxes <- levels(trellis.object$panel.args[[1]]$y);
@@ -423,7 +424,9 @@ create.boxplot <- function(
 			ranks <- rank(values.to.sort.by, ties.method = 'random');
 
 			# swap the rankings if decreasing order is specified
-			if (sample.order == 'decreasing') { ranks <- rank(values.to.sort.by * ( -1 ), ties.method = 'random'); }
+			if (sample.order == sample.order.decreasing()) {
+			    ranks <- rank(values.to.sort.by * ( -1 ), ties.method = 'random');
+			    }
 
 			newlocations <- NULL;
 
@@ -476,7 +479,9 @@ create.boxplot <- function(
 
 			ranks <- rank(values.to.sort.by, ties.method = 'random');
 
-			if (sample.order == 'decreasing') { ranks <- rank(values.to.sort.by * (-1), ties.method = 'random'); }
+			if (sample.order == sample.order.decreasing()) {
+			    ranks <- rank(values.to.sort.by * (-1), ties.method = 'random');
+			    }
 
 			newlocations <- NULL;
 

@@ -617,9 +617,9 @@ create.barplot <- function(
 		}
 
 	# reorder the bars in decreasing or increasing order if specified
-	if (is.null(sample.order) || is.na(sample.order)) { sample.order <- 'none'; }
+	sample.order <- prep.sample.order(sample.order);
 
-	if (sample.order[1] != 'none') {
+	if (length(sample.order) != 1 || sample.order != sample.order.default()) {
 		for (i in 1:length(trellis.object$panel.args)) {
 
 			# will need two separate ways for horizontal and non - horizontal
@@ -636,16 +636,11 @@ create.barplot <- function(
 					}
 
 				if (length(sample.order) == 1) {
-					if(! sample.order %in% c('decreasing', 'increasing')) {
-						stop('sample.order should be `decreasing` or `increasing`');
-						}
-
 					# This looks backwards but gets reversed later
 					# Might want to revisit if it makes more sense to sort in correct order here
-					sample.order.decreasing <- sample.order != 'decreasing';
 					ordering <- order(
 						trellis.object$panel.args[[1]]$y[c(1:num.bars)],
-						decreasing = sample.order.decreasing
+						decreasing = sample.order != sample.order.decreasing()
 						);
 					}
 
@@ -699,14 +694,9 @@ create.barplot <- function(
 					}
 
 				if (length(sample.order) == 1) {
-					if(! sample.order %in% c('decreasing', 'increasing')) {
-						stop('sample.order should be `decreasing` or `increasing`');
-						}
-
-					sample.order.decreasing <- sample.order != 'decreasing';
 					ordering <- order(
 						trellis.object$panel.args[[1]]$x[c(1:num.bars)],
-						decreasing = sample.order.decreasing
+						decreasing = sample.order != sample.order.decreasing()
 						);
 					}
 
