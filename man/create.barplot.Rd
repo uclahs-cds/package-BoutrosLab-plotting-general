@@ -193,7 +193,7 @@ create.barplot(
     \item{col}{Filling colour of bars, defaults to black, does a grey-scale spectrum if !is.null(groups)}
     \item{border.col}{Specify border colour (defaults to black)}
     \item{border.lwd}{Specify border width (defaults to 1)}
-    \item{plot.horizontal}{Plot the bars horizontally}
+    \item{plot.horizontal}{Plot the bars horizontally.  Note if \code{disable.factor.sorting = TRUE}, then the top row of \code{data} is the bottom row of the plot, i.e. bars are filled in from the bottom to the top of the plot.  To make the barplot rows match the input data rows, make sure the y-axis variable is a factor, and do \code{data = data[nrow(data):1,]}}
     \item{background.col}{Plot background colour, defaults to transparent}
     \item{origin}{The origin of the plot, generally 0}
     \item{reference}{Should the reference line be printed at the origin}
