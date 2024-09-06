@@ -1,7 +1,11 @@
-BoutrosLab.plotting.general 7.1.2 2024-04-02
+
+
+
+BoutrosLab.plotting.general 7.1.2 2024-09-06
 
 UPDATE
 * Improved "sample.order" argument checking
+* Cleaned the C++ namespace by using `R_` versions of Free, Calloc, and Realloc
 
 --------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.1.1 2024-01-08
