@@ -26,4 +26,4 @@ jobs:
           natbib \
           lastpage \
           hyperref
-      - uses: uclahs-cds/tool-R-CMD-check-action@check-R-fonts
+      - uses: uclahs-cds/tool-R-CMD-check-action@fonts
