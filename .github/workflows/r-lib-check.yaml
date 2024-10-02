@@ -20,7 +20,8 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v4  # Add this step to checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Checkout the code
 
       - name: Set up TinyTeX
         uses: r-lib/actions/setup-tinytex@v2
@@ -42,12 +43,12 @@ jobs:
         with:
           r-version: 'latest'  # Use the latest stable version of R
 
-      - name: Install dependencies
+      - name: Install R package dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE, upgrade = "never")
         shell: Rscript {0}  # Use Rscript explicitly
 
-      - name: Check
+      - name: Check R package
         run: rcmdcheck::rcmdcheck(args = "--as-cran", error_on = "error")  # Use --as-cran to check the manual as well
         shell: Rscript {0}  # Explicitly set Rscript shell for the check
