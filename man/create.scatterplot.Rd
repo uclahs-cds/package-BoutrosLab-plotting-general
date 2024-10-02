@@ -901,7 +901,8 @@ create.scatterplot(
     xlab.cex = 1.5,
     ylab.cex = 1.5,
     # To plot ROC curve, add "s" or "S" to type vector.
-    # "s" connects points with the vertical segment first. "S" connects points with the horizontal segment first.
+    # "s" connects points with the vertical segment first. 
+    # "S" connects points with the horizontal segment first.
     type = 's',
     lwd = 3,
     add.xyline = TRUE,
