@@ -45,7 +45,7 @@ jobs:
 
       - name: Install R package dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
+          install.packages(c("curl", "remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE, upgrade = "never")
         shell: Rscript {0}  # Use Rscript explicitly
 
