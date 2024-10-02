@@ -1,8 +1,9 @@
-# BoutrosLab.plotting.general 7.1.2 (2024-04-02)
+# BoutrosLab.plotting.general 7.1.2 (2024-10-02)
 
 ## Changed
 
 - Improved "sample.order" argument checking
+- Updated NEWS to Markdown NEWS.md format
 
 # BoutrosLab.plotting.general 7.1.1 (2024-01-08)
 
