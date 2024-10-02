@@ -2003,7 +2003,7 @@ BoutrosLab.plotting.general 5.3.7
 - `create.heatmap`: Use grobPack() fontfamily specification to avoid unknown Arial font specification
 - `create.dotmap`: Changed yaxis label default to not be bold
 - Legend.grob: Added parameters - 'layout', 'between.col', 'between.row' to allow user to specify layout for multiple legends and set empty space between rows/columns
-- Legend.grob: Changed titles in legend to use a text grob instead of draw.key
+- Legend.grob: Changed titles in legend to use a text grob instead of `draw.key`
 - `create.heatmap`: Added 'legend.layout', 'legend.between.col', and 'legend.between.row' parameters
 
 # BoutrosLab.plotting.general 3.5.4 (2012-11-02)
@@ -2067,7 +2067,7 @@ BoutrosLab.plotting.general 5.3.7
 ## Changed
 
 - `create.heatmap`: Added code to close devices opened by the grid::covertUnit function and remove Rplots.pdf files if necessary
-- Legend.grob: Added code to remove Rplots.pdf files created by the lattice::draw.key
+- Legend.grob: Added code to remove Rplots.pdf files created by the lattice::`draw.key`
 
 # BoutrosLab.plotting.general 3.4.0 (2012-09-12)
 
@@ -2088,7 +2088,7 @@ BoutrosLab.plotting.general 5.3.7
 
 ## Changed
 
-- Legend.grob: Added code to close extra device created by the draw.key()
+- Legend.grob: Added code to close extra device created by the `draw.key`()
 
 # BoutrosLab.plotting.general 3.3.5 (2012-08-29)
 
