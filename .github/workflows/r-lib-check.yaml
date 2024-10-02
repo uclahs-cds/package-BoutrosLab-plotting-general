@@ -1,3 +1,4 @@
+---
 name: R-CMD-check
 
 on:
@@ -20,20 +21,27 @@ jobs:
         os: [macos-latest, windows-latest, ubuntu-latest]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-tinytex@v2
+      - name: Install LaTeX packages
       
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: 'latest'  # Use the latest stable version of R
 
-      # Install TinyTeX across all operating systems
-      - name: Install TinyTeX
-        run: |
-          install.packages('tinytex')
-          tinytex::install_tinytex()
-
       - name: Install dependencies
+        run: |
+          tlmgr install \
+          parskip \
+          geometry \
+          koma-script \
+          sectsty \
+          titlesec \
+          natbib \
+          lastpage \
+          hyperref
+
+      - name: Install R package dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE, upgrade = "never")
