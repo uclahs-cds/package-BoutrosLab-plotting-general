@@ -832,7 +832,7 @@ create.heatmap(
 # Method 1 of adding symbols (very similar to how text is added)
 points <- microarray[1:20, 1:20][microarray[1:20, 1:20] > 11];
 size.from <- range(points, na.rm = TRUE);
-size.to <- c(1,3);
+size.to <- c(2,6);
 point.size <- (points - size.from[1])/diff(size.from) * diff(size.to) + size.to[1];
 point.colour <- grey(runif(sum(microarray[1:20, 1:20] > 11), max = 0.5));
 
@@ -854,7 +854,7 @@ create.heatmap(
     # flipping rows and columns because the heatmap function does so
     row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
     col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
-    cell.text = rep(expression("\u25CF"), times = sum(microarray[1:20, 1:20] > 11)),
+    cell.text = rep('.', times = sum(microarray[1:20, 1:20] > 11)),
     text.col = point.colour,
     text.cex = point.size,
     description = 'Heatmap created using BoutrosLab.plotting.general',
