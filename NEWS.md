@@ -10,7 +10,11 @@
 ## Changed
 
 - Improved documentation for type parameter in `create.scatterplot`
+
+
+## Fixed
 - Fix typo in README
+- Update package manual for CRAN standards
 
 # BoutrosLab.plotting.general 7.1.0 (2023-10-26)
 
