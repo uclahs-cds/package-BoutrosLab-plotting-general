@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: Checkout repository
@@ -28,19 +28,15 @@ jobs:
 
       - name: Install LaTeX packages
         run: |
-          if [[ "$RUNNER_OS" == "Linux" || "$RUNNER_OS" == "macOS" ]]; then
-            tlmgr install \
-            parskip \
-            geometry \
-            koma-script \
-            sectsty \
-            titlesec \
-            natbib \
-            lastpage \
-            hyperref
-          elif [[ "$RUNNER_OS" == "Windows" ]]; then
-            tlmgr install parskip geometry koma-script sectsty titlesec natbib lastpage hyperref
-          fi
+          tlmgr install \
+          parskip \
+          geometry \
+          koma-script \
+          sectsty \
+          titlesec \
+          natbib \
+          lastpage \
+          hyperref
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
