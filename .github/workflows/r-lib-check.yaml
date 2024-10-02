@@ -28,15 +28,19 @@ jobs:
 
       - name: Install LaTeX packages
         run: |
-          tlmgr install \
-          parskip \
-          geometry \
-          koma-script \
-          sectsty \
-          titlesec \
-          natbib \
-          lastpage \
-          hyperref
+          if [[ "$RUNNER_OS" == "Linux" || "$RUNNER_OS" == "macOS" ]]; then
+            tlmgr install \
+            parskip \
+            geometry \
+            koma-script \
+            sectsty \
+            titlesec \
+            natbib \
+            lastpage \
+            hyperref
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            tlmgr install parskip geometry koma-script sectsty titlesec natbib lastpage hyperref
+          fi
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
