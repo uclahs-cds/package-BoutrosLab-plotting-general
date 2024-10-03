@@ -4,6 +4,7 @@
 
 - Improved "sample.order" argument checking
 - Updated NEWS to Markdown NEWS.md format
+- Cleaned the C++ namespace by using `R_` versions of Free, Calloc, and Realloc
 
 # BoutrosLab.plotting.general 7.1.1 (2024-01-08)
 
