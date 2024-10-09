@@ -1,6 +1,9 @@
+BoutrosLab.plotting.general 7.1.3 2024-10-09
 
+UPDATE
+* Parameterized `title.y.coord` in `legend.grob` to control y-position of legend title
 
-
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.1.2 2024-09-06
 
 UPDATE

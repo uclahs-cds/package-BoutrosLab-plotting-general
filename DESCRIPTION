@@ -1,8 +1,8 @@
 Package: BoutrosLab.plotting.general
-Version: 7.1.2
+Version: 7.1.3
 Type: Package
 Title: Functions to Create Publication-Quality Plots
-Date: 2024-10-02
+Date: 2024-10-09
 Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "PBoutros@mednet.ucla.edu"),
              person("Christine P'ng", role = "ctb"),
              person("Jeff Green", role = "ctb"),
@@ -17,7 +17,9 @@ Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "PBoutros@me
              person("Stefan Eng", role = "ctb"),
              person("Mohammed Faizal Eeman Mootor", role = "ctb"),
              person("Rachel Dang", role = "ctb"),
-             person("John Sahrmann", role = "ctb"))
+             person("John Sahrmann", role = "ctb"),
+            person("Jaron Arbet", role = "ctb"))
+
 Maintainer: Paul Boutros <PBoutros@mednet.ucla.edu>
 Depends: R (>= 3.5.0), lattice (>= 0.20-35), latticeExtra (>= 0.6-27), cluster (>= 2.0.0), hexbin (>= 1.27.0), grid
 Imports: gridExtra, tools, methods, gtable, e1071, MASS(>= 7.3-29)
