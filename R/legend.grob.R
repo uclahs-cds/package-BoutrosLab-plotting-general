@@ -11,7 +11,7 @@
 
 ### FUNCTION TO CREATE A LEGEND GROB ###############################################################
 legend.grob <- function(
-	legends, label.cex = 1, title.cex = 1, title.just = 'centre', title.fontface = 'bold',
+	legends, label.cex = 1, title.cex = 1, title.just = 'centre', title.fontface = 'bold', title.y.coord = 1,
 	font.family = NULL, size = 3, border = NULL, border.padding = 1, layout = c(1, length(legends)),
 	between.col = 1, between.row = 1, use.legacy.settings = FALSE, x = 0.5, y = 0.5, background.col = 'white', background.alpha = 0
 	) {
@@ -104,7 +104,7 @@ legend.grob <- function(
 					label = legendi[['title']],
 					just = c(title.just, 'top'),
 					x = title.x.coord,
-					y = 1,
+					y = title.y.coord,
 					gp = gpar(
 						cex = title.cex,
 						fontface = title.fontface,
