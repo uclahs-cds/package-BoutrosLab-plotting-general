@@ -399,7 +399,7 @@ force.colour.scheme <- force.color.scheme <- function(
 			),
 		gleason.sum = list(
 			levels = c(5, 6, 7, 8, 9, 10, 'missing', 'NA'),
-			colours = c('#FEEBE2', '#FBB4B9', '#F768A1', '#C51B8A', '#7A0177', '#4d004b','slategrey', 'slategrey', 'slategrey')
+			colours = c('#FEEBE2', '#FBB4B9', '#F768A1', '#C51B8A', '#7A0177', '#4d004b','slategrey', 'slategrey')
 			),
 		tissue.color = list(
 			levels = c('blood', 'frozen', 'ffpe'),
