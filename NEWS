@@ -1,6 +1,11 @@
 
 
+BoutrosLab.plotting.general 7.1.3 2025-03-20
 
+UPDATE
+* Updated gleason sum colour scheme to include a colour for Gleason Sum of 10.
+
+--------------------------------------------------------------------------
 BoutrosLab.plotting.general 7.1.2 2024-09-06
 
 UPDATE
