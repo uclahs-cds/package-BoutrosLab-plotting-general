@@ -291,7 +291,7 @@ force.colour.scheme <- force.color.scheme <- function(
 	mt.annotation.6 <- '#A00000';
 	mt.annotation.7 <- '#FFFF78';
 	mt.annotation.8 <- 'white';
-	
+
 	#ISUP Grade
 	isup.grade.1 <- 'cornsilk';
         isup.grade.2 <- 'yellow';
@@ -398,8 +398,8 @@ force.colour.scheme <- force.color.scheme <- function(
 			colours = c('white', 'yellow', 'orange', 'red', 'brown', 'maroon3', 'magenta4', 'mediumblue', 'black', 'slategrey', 'slategrey')
 			),
 		gleason.sum = list(
-			levels = c(5, 6, 7, 8, 9, 'missing', 'NA'),
-			colours = c('#FEEBE2', '#FBB4B9', '#F768A1', '#C51B8A', '#7A0177', 'slategrey', 'slategrey', 'slategrey')
+			levels = c(5, 6, 7, 8, 9, 10, 'missing', 'NA'),
+			colours = c('#FEEBE2', '#FBB4B9', '#F768A1', '#C51B8A', '#7A0177', '#4d004b','slategrey', 'slategrey')
 			),
 		tissue.color = list(
 			levels = c('blood', 'frozen', 'ffpe'),
