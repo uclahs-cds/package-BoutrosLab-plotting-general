@@ -74,7 +74,11 @@ create.violinplot(
 	style = 'BoutrosLab',
 	preload.default = 'custom',
 	use.legacy.settings = FALSE,
-	disable.factor.sorting = FALSE
+	disable.factor.sorting = FALSE,
+	strip.col = 'white',
+	strip.cex = 1,
+	strip.fontface = 'bold',
+	layout = NULL
 	)
 }
 \arguments{
@@ -149,6 +153,10 @@ create.violinplot(
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{disable.factor.sorting}{Disable barplot auto sorting factors alphabetically/numerically}
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Size of text in Strip titles}
+    \item{strip.fontface}{Strip title fontface, defaults to bold.  1 = plain, 2 = bold, 3 = italics, 4 = bold and italics}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1)).}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
