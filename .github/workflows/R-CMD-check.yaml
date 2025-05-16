@@ -26,4 +26,11 @@ jobs:
           natbib \
           lastpage \
           hyperref
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libjpeg-dev \
+            libpng-dev \
+            libcairo2-dev
       - uses: uclahs-cds/tool-R-CMD-check-action@renv
