@@ -1,3 +1,9 @@
+# BoutrosLab.plotting.general 7.1.3 (2025-06-06)
+
+## Changed
+
+- Update `R CMD check` GitHub action
+
 # BoutrosLab.plotting.general 7.1.2 (2024-10-02)
 
 ## Changed
