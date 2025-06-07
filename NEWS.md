@@ -2,6 +2,7 @@
 
 ## Changed
 
+- Update gleason sum colour scheme to include a colour for Gleason Sum of 10.
 - Update `R CMD check` GitHub action
 
 # BoutrosLab.plotting.general 7.1.2 (2024-10-02)
