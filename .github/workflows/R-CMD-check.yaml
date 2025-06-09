@@ -33,4 +33,6 @@ jobs:
             libjpeg-dev \
             libpng-dev \
             libcairo2-dev
+      - name: Check current locale
+        run: locale
       - uses: uclahs-cds/tool-R-CMD-check-action@renv
