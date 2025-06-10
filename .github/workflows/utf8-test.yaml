@@ -13,7 +13,31 @@ jobs:
         uses: r-lib/actions/setup-r@v2
       - name: Test R Unicode graphics
         run: |
-          Rscript -e 'grid::grid.text("\u25CF")'
+          Rscript -e '
+            cat("Sys locale:\n")
+            print(Sys.getlocale())
+
+            cat("\nLocale env vars:\n")
+            print(Sys.getenv(c("LANG", "LC_ALL", "LC_CTYPE")))
+
+            cat("\nDefault graphics device:\n")
+            print(getOption("device"))
+
+            cat("\nTrying grid.text(\"●\"):\n")
+            try(grid::grid.text("●"))
+
+            cat("\nTrying grid.text(\"\\u25CF\"):\n")
+            try(grid::grid.text("\u25CF"))
+
+            cat("\nTrying with Cairo PDF:\n")
+            try({
+              grDevices::cairo_pdf("unicode-debug.pdf")
+              grid::grid.text("●")
+              dev.off()
+            })
+
+            cat("\nFonts registered:\n")
+            print(grDevices::pdfFonts())'
         env:
           LANG: en_US.UTF-8
           LC_ALL: en_US.UTF-8
