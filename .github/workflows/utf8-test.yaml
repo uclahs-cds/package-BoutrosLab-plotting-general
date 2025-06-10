@@ -14,7 +14,7 @@ jobs:
       - name: Test R Unicode graphics
         run: |
           Rscript -e '
-            optins(bitmapType = "cairo")
+            options(bitmapType = "cairo")
             try(grid::grid.text("\u25CF"))'
         env:
           LANG: en_US.UTF-8
