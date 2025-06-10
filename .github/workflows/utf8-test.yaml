@@ -29,6 +29,9 @@ jobs:
             cat("\nTrying grid.text(\"\\u25CF\"):\n")
             try(grid::grid.text("\u25CF"))
 
+            cat("\nDevice:\n")
+            print(getOption("device"))
+
             cat("\nCairo capabilities:\n")
             print(capabilities("cairo"))
 
