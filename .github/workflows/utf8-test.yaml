@@ -14,29 +14,8 @@ jobs:
       - name: Test R Unicode graphics
         run: |
           Rscript -e '
-            cat("Sys locale:\n")
-            print(Sys.getlocale())
-
-            cat("\nLocale env vars:\n")
-            print(Sys.getenv(c("LANG", "LC_ALL", "LC_CTYPE")))
-
-            cat("\nDefault graphics device:\n")
-            print(getOption("device"))
-
-            cat("\nTrying grid.text(\"●\"):\n")
-            try(grid::grid.text("●"))
-
-            cat("\nTrying grid.text(\"\\u25CF\"):\n")
-            try(grid::grid.text("\u25CF"))
-
-            cat("\nDevice:\n")
-            print(getOption("device"))
-
-            cat("\nCairo capabilities:\n")
-            print(capabilities("cairo"))
-
-            cat("\nFonts registered:\n")
-            print(grDevices::pdfFonts())'
+            optins(bitmapType = "cairo")
+            try(grid::grid.text("\u25CF"))'
         env:
           LANG: en_US.UTF-8
           LC_ALL: en_US.UTF-8
