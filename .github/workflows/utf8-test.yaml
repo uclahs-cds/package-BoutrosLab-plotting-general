@@ -15,7 +15,7 @@ jobs:
 
       - name: Install font packages
         run: |
-          Rscript -e "install.packages(c('extrafont', 'systemfonts')"
+          Rscript -e "install.packages(c('extrafont', 'systemfonts'))"
       - name: Load fonts
         run: |
           Rscript -e "
