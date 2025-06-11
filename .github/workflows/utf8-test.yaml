@@ -32,7 +32,7 @@ jobs:
                 print(font$family)
                 }
             options(bitmapType = 'cairo')
-            grid::grid.text('\u25CF')"
+            grid::grid.text('\u25CF', gp = gpar(fontfamily = 'DejaVu Sans'))"
         env:
           LANG: en_US.UTF-8
           LC_ALL: en_US.UTF-8
