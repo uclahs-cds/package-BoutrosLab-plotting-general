@@ -18,7 +18,7 @@ jobs:
       - name: Install font packages
         run: |
           Rscript -e "install.packages(c('extrafont', 'systemfonts'))"
-      - name: Load fonts
+      - name: Test unicode character
         run: |
           Rscript -e "
             library(extrafont)
@@ -30,12 +30,9 @@ jobs:
             extrafont::loadfonts(quiet = TRUE)
             for (font in pdfFonts()) {
                 print(font$family)
-                }"
-      - name: Test R Unicode graphics
-        run: |
-          Rscript -e '
-            options(bitmapType = "cairo")
-            grid::grid.text("\u25CF")'
+                }
+            options(bitmapType = 'cairo')
+            grid::grid.text('\u25CF')"
         env:
           LANG: en_US.UTF-8
           LC_ALL: en_US.UTF-8
