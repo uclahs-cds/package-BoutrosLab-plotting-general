@@ -28,9 +28,14 @@ jobs:
             font_dirs <- dirname(dejavu_paths)
             extrafont::font_import(paths = font_dirs, prompt = FALSE)
             extrafont::loadfonts(quiet = TRUE)"
+      - name: Check R fonts
+        run: |
+          Rscript -e 'pdfFonts()'
       - name: Test R Unicode graphics
         run: |
-          Rscript -e 'grid::grid.text("\u25CF")'
+          Rscript -e '
+            options(bitmapType = "cairo")
+            grid::grid.text("\u25CF")'
         env:
           LANG: en_US.UTF-8
           LC_ALL: en_US.UTF-8
