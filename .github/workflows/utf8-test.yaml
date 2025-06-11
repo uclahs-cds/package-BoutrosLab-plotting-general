@@ -27,10 +27,10 @@ jobs:
             if (length(dejavu_paths) == 0) stop('DejaVu Sans not found')
             font_dirs <- dirname(dejavu_paths)
             extrafont::font_import(paths = font_dirs, prompt = FALSE)
-            extrafont::loadfonts(quiet = TRUE)"
-      - name: Check R fonts
-        run: |
-          Rscript -e 'pdfFonts()'
+            extrafont::loadfonts(quiet = TRUE)
+            for (font in pdfFonts()) {
+                print(font$family)
+                }"
       - name: Test R Unicode graphics
         run: |
           Rscript -e '
