@@ -21,17 +21,13 @@ jobs:
       - name: Load fonts
         run: |
           Rscript -e "
-            library(systemfonts)
             library(extrafont)
-            dejavu_path <- systemfonts::match_fonts('DejaVu Sans')[1, 'path']
-            if (!is.na(dejavu_path)) {
-              font_dir <- dirname(dejavu_path)
-              extrafont::font_import(paths = font_dir, prompt = FALSE)
-              extrafont::loadfonts(quiet = TRUE)
-            } else {
-              stop('DejaVu Sans not found')
-            }
-          "
+            library(systemfonts)
+            dejavu_paths <- unique(na.omit(systemfonts::match_fonts('DejaVu Sans')\$path))
+            if (length(dejavu_paths) == 0) stop('DejaVu Sans not found')
+            font_dirs <- dirname(dejavu_paths)
+            extrafont::font_import(paths = font_dirs, prompt = FALSE)
+            extrafont::loadfonts(quiet = TRUE)"
       - name: Test R Unicode graphics
         run: |
           Rscript -e 'grid::grid.text("\u25CF")'
