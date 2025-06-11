@@ -33,10 +33,5 @@ jobs:
             libjpeg-dev \
             libpng-dev \
             libcairo2-dev
-      - name: Install fonts
-        run: |
-          sudo apt-get install -y locales fonts-dejavu fonts-liberation
       - uses: uclahs-cds/tool-R-CMD-check-action@renv
-        env:
-          LANG: en_US.UTF-8
-          LC_ALL: en_US.UTF-8
+
