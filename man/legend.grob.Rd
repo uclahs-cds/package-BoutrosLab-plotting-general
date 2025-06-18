@@ -45,7 +45,7 @@ The 'colours' component is a vector of fill colours to be used for the rectangle
 }
 \value{Returns an grob representing the legend(s)}
 \author{Lauren Chong}
-\seealso{\code{\link{create.heatmap}}, \code{\link{draw.key}}, \code{\link{gpar}}}
+\seealso{\code{\link{create.heatmap}}, \code{\link[lattice]{draw.key}}, \code{\link{gpar}}}
 \section{Implementation}{
 This function was initially created to be called from \code{create.heatmap} to draw a covariate legend.\cr
 The decision to use a grob (grid graphical object) to represent the legend was made based on the format of the \code{levelplot} function in the \code{lattice} package.  Since the \code{legend} argument of the function requires grobs, it was easiest to create a grob to represent the legend and then, if necessary, add this to any existing grobs (dendrograms, etc.) in the \code{create.heatmap} function using a grid layout.\cr

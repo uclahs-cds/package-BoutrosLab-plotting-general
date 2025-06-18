@@ -1,5 +1,5 @@
 ---
-name: R-CMD-check (r-lib)
+name: R CMD check
 'on':
   workflow_dispatch:
   pull_request:
@@ -26,4 +26,11 @@ jobs:
           natbib \
           lastpage \
           hyperref
-      - uses: uclahs-cds/tool-R-CMD-check-action@stable
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libjpeg-dev \
+            libpng-dev \
+            libcairo2-dev
+      - uses: uclahs-cds/tool-R-CMD-check-action@v2
