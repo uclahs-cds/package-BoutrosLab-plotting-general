@@ -9,6 +9,7 @@ legend.grob(
 	title.cex = 1,
 	title.just = 'centre',
 	title.fontface = 'bold',
+	title.y.coord = 1,
 	font.family = NULL,
 	size = 3,
 	border = NULL,
