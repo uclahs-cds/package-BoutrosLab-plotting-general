@@ -1,3 +1,8 @@
+# BoutrosLab.plotting.general 7.1.4 (2025-06-13)
+
+## Fixed
+- Updated extra points functionality in violin plot to properly set coordinates based on `plot.horizontal`
+
 # BoutrosLab.plotting.general 7.1.3 (2025-06-13)
 
 ## Changed
