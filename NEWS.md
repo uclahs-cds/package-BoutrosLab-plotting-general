@@ -1,7 +1,10 @@
-# BoutrosLab.plotting.general 7.1.4 (2025-06-13)
+# BoutrosLab.plotting.general 7.1.4 (2025-06-18)
 
 ## Fixed
 - Updated extra points functionality in violin plot to properly set coordinates based on `plot.horizontal`
+
+## Added
+- `create.violinplot` panel arguments
 
 # BoutrosLab.plotting.general 7.1.3 (2025-06-13)
 
@@ -10,6 +13,7 @@
 - Update gleason sum colour scheme to include a colour for Gleason Sum of 10.
 - Update `R CMD check` GitHub action
 - Demonstrate file export in plotting function examples
+
 
 # BoutrosLab.plotting.general 7.1.2 (2024-10-02)
 
