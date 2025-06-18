@@ -33,5 +33,5 @@ jobs:
             libjpeg-dev \
             libpng-dev \
             libcairo2-dev \
-            Install V8 OS dependency in CI/CD workflow
+            libv8-dev
       - uses: uclahs-cds/tool-R-CMD-check-action@v2
