@@ -1,10 +1,14 @@
-# BoutrosLab.plotting.general 7.1.3 (2025-06-13)
+# BoutrosLab.plotting.general 7.1.3 (2025-06-18)
 
 ## Changed
 
 - Update gleason sum colour scheme to include a colour for Gleason Sum of 10.
 - Update `R CMD check` GitHub action
 - Demonstrate file export in plotting function examples
+
+## Added
+
+- `create.violinplot` panel arguments
 
 # BoutrosLab.plotting.general 7.1.2 (2024-10-02)
 
