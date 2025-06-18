@@ -18,6 +18,7 @@ Authors@R: c(person("Paul Boutros", role = c("aut", "cre"), email = "PBoutros@me
              person("Mohammed Faizal Eeman Mootor", role = "ctb"),
              person("Rachel Dang", role = "ctb"),
              person("John Sahrmann", role = "ctb"),
+             person("Jaron Arbet", role = "ctb"),
              person("Yash Patel", role = "ctb"),
              person("Raag Agrawal", role = "ctb"))
 Maintainer: Paul Boutros <PBoutros@mednet.ucla.edu>

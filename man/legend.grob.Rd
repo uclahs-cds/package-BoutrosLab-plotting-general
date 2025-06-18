@@ -9,6 +9,7 @@ legend.grob(
 	title.cex = 1,
 	title.just = 'centre',
 	title.fontface = 'bold',
+	title.y.coord = 1,
 	font.family = NULL,
 	size = 3,
 	border = NULL,
@@ -30,6 +31,7 @@ The 'colours' component is a vector of fill colours to be used for the rectangle
     \item{title.cex}{Size of titles in the legends, defaults to 1.}
     \item{title.just}{Justification of titles in the legends. Defaults to 'centre'.}
     \item{title.fontface}{Font face of titles in the legends ('plain', 'bold', 'italic', etc.)}
+    \item{title.y.coord}{Vertical position of title.  Set to 1 for normal position, increase values >1 to raise the title higher.}
     \item{font.family}{Font to be used for legend text. If NULL, the default font is used.}
     \item{size}{Width of the legend boxes in 'character' units. If a 'size' argument is specified for a legend component, it will override this value.}
     \item{border}{A list of parameters (passed to \code{gpar}) specifying line options for the legend border. If NULL, no border is drawn.}
