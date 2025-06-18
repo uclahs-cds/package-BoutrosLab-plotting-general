@@ -33,4 +33,4 @@ jobs:
             libjpeg-dev \
             libpng-dev \
             libcairo2-dev
-      - uses: uclahs-cds/tool-R-CMD-check-action@renv
+      - uses: uclahs-cds/tool-R-CMD-check-action@v2
