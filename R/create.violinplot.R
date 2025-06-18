@@ -215,9 +215,17 @@ create.violinplot <- function(
 
 					for (j in 1:length(extra.points[[i]])) {
 						if (!is.na(extra.points[[i]][j])) {
+							if (plot.horizontal) {
+								xyplot.x <- extra.points[[i]][j];
+								xyplot.y <- j;
+								}
+							else {
+								xyplot.x <- j;
+								xyplot.y <- extra.points[[i]][j];
+								}
 							panel.xyplot(
-								x = j,
-								y = extra.points[[i]][j],
+								x = xyplot.x,
+								y = xyplot.y,
 								pch = extra.points.pch[i],
 								col = if (extra.points.pch[i] %in% 0:20) { extra.points.col[i]; } else if
 									(extra.points.pch[i] %in% 21:25) { extra.points.border[i]; },
