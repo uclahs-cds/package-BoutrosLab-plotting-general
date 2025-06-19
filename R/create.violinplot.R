@@ -17,10 +17,10 @@ create.violinplot <- function(
 	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
 	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black',
 	yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0,
-	xaxis.tck = c(1, 0), yaxis.tck = c(1, 1), ylimits = NULL, yat = TRUE, col = 'black', lwd = 1,
-	border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1, extra.points = NULL, extra.points.pch = 21,
-	extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1, start = NULL,
-	end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7,
+	xaxis.tck = c(1, 0), yaxis.tck = c(1, 1), xlimits = NULL, xat = TRUE, ylimits = NULL, yat = TRUE,
+    col = 'black', lwd = 1, border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1, 
+    extra.points = NULL, extra.points.pch = 21, extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1,
+    start = NULL, end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7,
 	left.padding = 0.5, right.padding = 0.3, key = NULL, legend = NULL, add.rectangle = FALSE,
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
 	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
@@ -29,189 +29,189 @@ create.violinplot <- function(
 	strip.col = 'white', strip.cex = 1,	strip.fontface = 'bold', layout = NULL
     ) {
 
-	### needed to copy in case using variable to define rectangles dimensions
+    ### needed to copy in case using variable to define rectangles dimensions
         rectangle.info <- list(
-        	xright = xright.rectangle,
+            xright = xright.rectangle,
                 xleft = xleft.rectangle,
                 ytop = ytop.rectangle,
                 ybottom = ybottom.rectangle
                 );
 
-	# add preloaded defaults
-	if (preload.default == 'paper') {
-		}
-	else if (preload.default == 'web') {
-		}
+    # add preloaded defaults
+    if (preload.default == 'paper') {
+        }
+    else if (preload.default == 'web') {
+        }
 
-	# Temp function to allow differential violin colour filling
-	# panel.violin() author has been emailed about issue in the
-	# original function preventing differential colouring.
-	.panel.violin.mod <- function(x, y, box.ratio = 1, box.width = box.ratio / (1 + box.ratio),
-		horizontal = TRUE, alpha = plot.polygon$alpha, border = plot.polygon$border,
-		lty = plot.polygon$lty, lwd = plot.polygon$lwd, col = plot.polygon$col,
-		varwidth = FALSE, bw = bandwidth, adjust = bandwidth.adjust, kernel = NULL,
-		window = NULL, width = NULL, n = 50, from = NULL, to = NULL,
-		cut = NULL, na.rm = TRUE, ..., identifier = 'violin') {
+    # Temp function to allow differential violin colour filling
+    # panel.violin() author has been emailed about issue in the
+    # original function preventing differential colouring.
+    .panel.violin.mod <- function(x, y, box.ratio = 1, box.width = box.ratio / (1 + box.ratio),
+        horizontal = TRUE, alpha = plot.polygon$alpha, border = plot.polygon$border,
+        lty = plot.polygon$lty, lwd = plot.polygon$lwd, col = plot.polygon$col,
+        varwidth = FALSE, bw = bandwidth, adjust = bandwidth.adjust, kernel = NULL,
+        window = NULL, width = NULL, n = 50, from = NULL, to = NULL,
+        cut = NULL, na.rm = TRUE, ..., identifier = 'violin') {
 
-		if (all(is.na(x) | is.na(y))) {	return(); }
+        if (all(is.na(x) | is.na(y))) { return(); }
 
-		x <- as.numeric(x);
-		y <- as.numeric(y);
-		plot.polygon <- trellis.par.get('plot.polygon');
-		darg <- list();
-		darg$bw <- bw;
-		darg$adjust <- adjust;
-		darg$kernel <- kernel;
-		darg$window <- window;
-		darg$width <- width;
-		darg$n <- n;
-		darg$from <- from;
-		darg$to <- to;
-		darg$cut <- cut;
-		darg$na.rm <- na.rm;
+        x <- as.numeric(x);
+        y <- as.numeric(y);
+        plot.polygon <- trellis.par.get('plot.polygon');
+        darg <- list();
+        darg$bw <- bw;
+        darg$adjust <- adjust;
+        darg$kernel <- kernel;
+        darg$window <- window;
+        darg$width <- width;
+        darg$n <- n;
+        darg$from <- from;
+        darg$to <- to;
+        darg$cut <- cut;
+        darg$na.rm <- na.rm;
 
-		my.density <- function(x) {
-			ans <- try(
-				do.call('density', c(list(x = x), darg)),
-				silent = TRUE
-				);
+        my.density <- function(x) {
+            ans <- try(
+                do.call('density', c(list(x = x), darg)),
+                silent = TRUE
+                );
 
-			if (inherits(ans, 'try-error')) {
-				list(x = rep(x[1], 3), y = c(0, 1, 0));
-				}
-			else { ans; }
-			}
+            if (inherits(ans, 'try-error')) {
+                list(x = rep(x[1], 3), y = c(0, 1, 0));
+                }
+            else { ans; }
+            }
 
-		numeric.list <- if (horizontal) { split(x, factor(y)); } else { split(y, factor(x)); }
-		levels.fos <- as.numeric(names(numeric.list));
+        numeric.list <- if (horizontal) { split(x, factor(y)); } else { split(y, factor(x)); }
+        levels.fos <- as.numeric(names(numeric.list));
 
-		# check colours are appropriate length
-		if (length(col) < length(levels.fos)) { col <- rep(col, length(levels.fos)); }
+        # check colours are appropriate length
+        if (length(col) < length(levels.fos)) { col <- rep(col, length(levels.fos)); }
 
-		d.list <- lapply(numeric.list, my.density);
-		dx.list <- lapply(d.list, '[[', 'x');
-		dy.list <- lapply(d.list, '[[', 'y');
-		max.d <- sapply(dy.list, max);
-		if (varwidth) {	max.d[] <- max(max.d); }
-		cur.limits <- current.panel.limits();
-		xscale <- cur.limits$xlim;
-		yscale <- cur.limits$ylim;
-		height <- box.width;
+        d.list <- lapply(numeric.list, my.density);
+        dx.list <- lapply(d.list, '[[', 'x');
+        dy.list <- lapply(d.list, '[[', 'y');
+        max.d <- sapply(dy.list, max);
+        if (varwidth) { max.d[] <- max(max.d); }
+        cur.limits <- current.panel.limits();
+        xscale <- cur.limits$xlim;
+        yscale <- cur.limits$ylim;
+        height <- box.width;
 
-		## Modified from methods::hasArg.
-		hasGroupNumber <- function() {
-			aname <- 'group.number';
-			fnames <- names(formals(sys.function(sys.parent())));
-			if (is.na(match(aname, fnames))) {
-				if (is.na(match('...', fnames))) { FALSE; }
-				else {
-					dots.call <- eval(quote(substitute(list(...))), sys.parent());
-					!is.na(match(aname, names(dots.call)));
-					}
-				}
-			else { FALSE; }
-			}
+        ## Modified from methods::hasArg.
+        hasGroupNumber <- function() {
+            aname <- 'group.number';
+            fnames <- names(formals(sys.function(sys.parent())));
+            if (is.na(match(aname, fnames))) {
+                if (is.na(match('...', fnames))) { FALSE; }
+                else {
+                    dots.call <- eval(quote(substitute(list(...))), sys.parent());
+                    !is.na(match(aname, names(dots.call)));
+                    }
+                }
+            else { FALSE; }
+            }
 
-		if (hasGroupNumber()) {
-			group <- list(...)$group.number;
-			}
-		else { group <- 0; }
+        if (hasGroupNumber()) {
+            group <- list(...)$group.number;
+            }
+        else { group <- 0; }
 
-		if (horizontal) {
-			for (i in seq_along(levels.fos)) {
-				if (is.finite(max.d[i])) {
-					pushViewport(
-						viewport(
-							y = unit(levels.fos[i], 'native'),
-							height = unit(height, 'native'),
-					  		yscale = c(max.d[i] * c(-1, 1)),
-							xscale = xscale
-							)
-						);
+        if (horizontal) {
+            for (i in seq_along(levels.fos)) {
+                if (is.finite(max.d[i])) {
+                    pushViewport(
+                        viewport(
+                            y = unit(levels.fos[i], 'native'),
+                            height = unit(height, 'native'),
+                            yscale = c(max.d[i] * c(-1, 1)),
+                            xscale = xscale
+                            )
+                        );
 
-					grid.polygon(
-						x = c(dx.list[[i]], rev(dx.list[[i]])),
-						y = c(dy.list[[i]], -rev(dy.list[[i]])),
-						default.units = 'native',
-						name = trellis.grobname(
-							identifier,
-							type = 'panel',
-							group = group
-							),
-						gp = gpar(fill = col[i], col = border, lty = lty, lwd = lwd, alpha = alpha)
-						);
+                    grid.polygon(
+                        x = c(dx.list[[i]], rev(dx.list[[i]])),
+                        y = c(dy.list[[i]], -rev(dy.list[[i]])),
+                        default.units = 'native',
+                        name = trellis.grobname(
+                            identifier,
+                            type = 'panel',
+                            group = group
+                            ),
+                        gp = gpar(fill = col[i], col = border, lty = lty, lwd = lwd, alpha = alpha)
+                        );
 
-					popViewport();
-					}
-				}
-			}
-		else {
-			for (i in seq_along(levels.fos)) {
-				if (is.finite(max.d[i])) {
-					pushViewport(
-						viewport(
-							x = unit(levels.fos[i], 'native'),
-							width = unit(height, 'native'),
-							xscale = c(max.d[i] * c(-1, 1)),
-							yscale = yscale
-							)
-						);
+                    popViewport();
+                    }
+                }
+            }
+        else {
+            for (i in seq_along(levels.fos)) {
+                if (is.finite(max.d[i])) {
+                    pushViewport(
+                        viewport(
+                            x = unit(levels.fos[i], 'native'),
+                            width = unit(height, 'native'),
+                            xscale = c(max.d[i] * c(-1, 1)),
+                            yscale = yscale
+                            )
+                        );
 
-					grid.polygon(
-						y = c(dx.list[[i]], rev(dx.list[[i]])),
-					  	x = c(dy.list[[i]], -rev(dy.list[[i]])),
-						default.units = 'native',
-						name = trellis.grobname(
-							identifier,
-							type = 'panel',
-							group = group
-							),
-						gp = gpar(fill = col[i], col = border, lty = lty, lwd = lwd, alpha = alpha)
-						);
+                    grid.polygon(
+                        y = c(dx.list[[i]], rev(dx.list[[i]])),
+                        x = c(dy.list[[i]], -rev(dy.list[[i]])),
+                        default.units = 'native',
+                        name = trellis.grobname(
+                            identifier,
+                            type = 'panel',
+                            group = group
+                            ),
+                        gp = gpar(fill = col[i], col = border, lty = lty, lwd = lwd, alpha = alpha)
+                        );
 
-					popViewport();
-					}
-				}
-			}
+                    popViewport();
+                    }
+                }
+            }
 
-		invisible();
-		}
+        invisible();
+        }
 
-	# Now make the actual plot object
-	trellis.object <- lattice::bwplot(
-		formula,
-		data,
-		panel = function(from = start, to = end, varwidth = scale, ...) {
+    # Now make the actual plot object
+    trellis.object <- lattice::bwplot(
+        formula,
+        data,
+        panel = function(from = start, to = end, varwidth = scale, ...) {
 
-			# add rectangle if requested
-			if (add.rectangle) {
-				panel.rect(
-					xleft = rectangle.info$xleft,
-					ybottom = rectangle.info$ybottom,
-					xright = rectangle.info$xright,
-					ytop = rectangle.info$ytop,
-					col = col.rectangle,
-					alpha = alpha.rectangle,
-					border = NA
-					);
-				}
+            # add rectangle if requested
+            if (add.rectangle) {
+                panel.rect(
+                    xleft = rectangle.info$xleft,
+                    ybottom = rectangle.info$ybottom,
+                    xright = rectangle.info$xright,
+                    ytop = rectangle.info$ytop,
+                    col = col.rectangle,
+                    alpha = alpha.rectangle,
+                    border = NA
+                    );
+                }
 
-			# update the plot parameters
-			if (is.null(from) || is.null(to)) {
-				.panel.violin.mod(varwidth = varwidth, ...);
-				}
-			else {
-				.panel.violin.mod(from = from, to = to, varwidth = varwidth, ...);
-				}
+            # update the plot parameters
+            if (is.null(from) || is.null(to)) {
+                .panel.violin.mod(varwidth = varwidth, ...);
+                }
+            else {
+                .panel.violin.mod(from = from, to = to, varwidth = varwidth, ...);
+                }
 
-			# add extra points if requested
-			if (!is.null(extra.points)) {
-				for (i in 1:length(extra.points)) {
+            # add extra points if requested
+            if (!is.null(extra.points)) {
+                for (i in 1:length(extra.points)) {
 
-					if (is.na(extra.points.pch[i])) { extra.points.pch[i] <- extra.points.pch[1]; }
-					if (is.na(extra.points.col[i])) { extra.points.col[i] <- extra.points.col[1]; }
-					if (is.na(extra.points.cex[i])) { extra.points.cex[i] <- extra.points.cex[1]; }
-					if (is.na(extra.points.border[i])) { extra.points.border[i] <- extra.points.border[1]; }
+                    if (is.na(extra.points.pch[i])) { extra.points.pch[i] <- extra.points.pch[1]; }
+                    if (is.na(extra.points.col[i])) { extra.points.col[i] <- extra.points.col[1]; }
+                    if (is.na(extra.points.cex[i])) { extra.points.cex[i] <- extra.points.cex[1]; }
+                    if (is.na(extra.points.border[i])) { extra.points.border[i] <- extra.points.border[1]; }
 
 					for (j in 1:length(extra.points[[i]])) {
 						if (!is.na(extra.points[[i]][j])) {
@@ -291,6 +291,8 @@ create.violinplot <- function(
 				add.to.list = list(
 					labels = xaxis.lab,
 					cex = xaxis.cex,
+                    limits = xlimits,
+                    at = xat,
 					rot = xaxis.rot,
 					col = xaxis.col,
 					tck = xaxis.tck,
@@ -389,25 +391,25 @@ create.violinplot <- function(
 		legend = legend
 		);
 
-	if (disable.factor.sorting == TRUE) {
-		
-		sorting.param <- '';
+    if (disable.factor.sorting == TRUE) {
 
-		if (plot.horizontal) {
-			sorting.param <- 'y';
-			if (is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
-				default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
-				trellis.object$y.scales$labels <- default.labels;
-				}
-			} 
-		else {
-			sorting.param <- 'x';
-			if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
-                        	default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
-				trellis.object$x.scales$labels <- default.labels;
-				}
-			}
-		
+        sorting.param <- '';
+
+        if (plot.horizontal) {
+            sorting.param <- 'y';
+            if (is.null(trellis.object$y.scales$labels) || (is.logical(trellis.object$y.scales$labels[1]) && trellis.object$y.scales$labels[1]  == TRUE)) {
+                default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
+                trellis.object$y.scales$labels <- default.labels;
+                }
+            }
+        else {
+            sorting.param <- 'x';
+            if (is.null(trellis.object$x.scales$labels) || (is.logical(trellis.object$x.scales$labels[1]) && trellis.object$x.scales$labels[1]  == TRUE)) {
+                            default.labels <- unique(as.character(trellis.object$panel.args[[1]][[sorting.param]]));
+                trellis.object$x.scales$labels <- default.labels;
+                }
+            }
+
                 unique.mapping <- list();
                 count <- 1;
                 for (x in trellis.object$panel.args[[1]][[sorting.param]]) {
@@ -421,58 +423,58 @@ create.violinplot <- function(
                         temp.data[x] <- as.character(unique.mapping[as.character(trellis.object$panel.args[[1]][[sorting.param]][[x]])][[1]]);
                         }
                 trellis.object$panel.args[[1]][[sorting.param]] <- as.numeric(temp.data);
-	
-		}
 
-	# If Nature style requested, change figure accordingly
-	if ('Nature' == style) {
+        }
 
-		# Re-add bottom and left axes
-		trellis.object$axis <- function(side, line.col = 'black', ...) {
-			# Only draw axes on the left and bottom
-			if (side %in% c('bottom', 'left')) {
-				axis.default(side = side, line.col = 'black', ...);
-				lims <- current.panel.limits();
-				panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
-				}
-			}
+    # If Nature style requested, change figure accordingly
+    if ('Nature' == style) {
 
-		# Ensure sufficient resolution for graphs
-		if (resolution < 1200) {
-			resolution <- 1200;
-			warning('Setting resolution to 1200 dpi.');
-			}
+        # Re-add bottom and left axes
+        trellis.object$axis <- function(side, line.col = 'black', ...) {
+            # Only draw axes on the left and bottom
+            if (side %in% c('bottom', 'left')) {
+                axis.default(side = side, line.col = 'black', ...);
+                lims <- current.panel.limits();
+                panel.abline(h = lims$ylim[1], v = lims$xlim[1]);
+                }
+            }
 
-		# Other required changes which are not accomplished here
-		warning('Nature also requires italicized single-letter variables and en-dashes
-			for ranges and negatives. See example in documentation for how to do this.');
+        # Ensure sufficient resolution for graphs
+        if (resolution < 1200) {
+            resolution <- 1200;
+            warning('Setting resolution to 1200 dpi.');
+            }
 
-		warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
-		}
+        # Other required changes which are not accomplished here
+        warning('Nature also requires italicized single-letter variables and en-dashes
+            for ranges and negatives. See example in documentation for how to do this.');
 
-	# Otherwise use the BL style if requested
-	else if ('BoutrosLab' == style) {
-		# Nothing happens
-		}
+        warning('Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.');
+        }
 
-	# if neither of the above is requested, give a warning
-	else {
-		warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
-		}
+    # Otherwise use the BL style if requested
+    else if ('BoutrosLab' == style) {
+        # Nothing happens
+        }
 
-	
+    # if neither of the above is requested, give a warning
+    else {
+        warning("The style parameter only accepts 'Nature' or 'BoutrosLab'.");
+        }
 
-	# output the object
-	return(
-		BoutrosLab.plotting.general::write.plot(
-			trellis.object = trellis.object,
-			filename = filename,
-			height = height,
-			width = width,
-			size.units = size.units,
-			resolution = resolution,
-			enable.warnings = enable.warnings,
-			description = description
-			)
-		);
-	}
+
+
+    # output the object
+    return(
+        BoutrosLab.plotting.general::write.plot(
+            trellis.object = trellis.object,
+            filename = filename,
+            height = height,
+            width = width,
+            size.units = size.units,
+            resolution = resolution,
+            enable.warnings = enable.warnings,
+            description = description
+            )
+        );
+    }

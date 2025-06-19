@@ -36,6 +36,8 @@ create.violinplot(
 	yaxis.rot = 0,
 	xaxis.tck = c(1,0),
 	yaxis.tck = c(1,1),
+	xlimits = NULL,
+	xat = TRUE,
 	ylimits = NULL,
 	yat = TRUE,
 	col = 'black',
@@ -114,6 +116,8 @@ create.violinplot(
     \item{yaxis.rot}{Rotation of y-axis tick labels; defaults to 0}
     \item{xaxis.tck}{Specifies the length of the tick marks for x-axis, defaults to c(1,0)}
     \item{yaxis.tck}{Specifies the length of the tick marks for y-axis, defaults to c(1,1)}
+    \item{xlimits}{Two-element vector giving the x-axis limits, default is automatic}
+    \item{xat}{Vector listing where the x-axis labels should be drawn, default is automatic}
     \item{ylimits}{Two-element vector giving the y-axis limits, default is automatic}
     \item{yat}{Vector listing where the y-axis labels should be drawn, default is automatic}
     \item{col}{Colour to use for filling the interior of the violin plots, defaults to \dQuote{black}}
