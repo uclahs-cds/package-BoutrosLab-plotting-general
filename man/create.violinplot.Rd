@@ -74,7 +74,11 @@ create.violinplot(
 	style = 'BoutrosLab',
 	preload.default = 'custom',
 	use.legacy.settings = FALSE,
-	disable.factor.sorting = FALSE
+	disable.factor.sorting = FALSE,
+	strip.col = 'white',
+	strip.cex = 1,
+	strip.fontface = 'bold',
+	layout = NULL
 	)
 }
 \arguments{
@@ -149,6 +153,10 @@ create.violinplot(
     \item{preload.default}{ability to set multiple sets of diffrent defaults depending on publication needs}
     \item{use.legacy.settings}{boolean to set wheter or not to use legacy mode settings (font)}
     \item{disable.factor.sorting}{Disable barplot auto sorting factors alphabetically/numerically}
+    \item{strip.col}{Strip background colour, defaults to \dQuote{white}}
+    \item{strip.cex}{Size of text in Strip titles}
+    \item{strip.fontface}{Strip title fontface, defaults to bold.  1 = plain, 2 = bold, 3 = italics, 4 = bold and italics}
+    \item{layout}{A vector specifying the number of columns, rows (e.g., c(2,1)).}
 }
 \value{If \code{filename} is \code{NULL} then returns the trellis object, otherwise creates a plot and returns a 0/1 success code.}
 \author{Paul C. Boutros}
@@ -170,7 +178,7 @@ simple.data <- data.frame(
     );
 
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Simple', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Simple', fileext = '.tiff'),
     formula = x ~ y,
     data = simple.data,
     resolution = 100
@@ -185,7 +193,7 @@ violin.data <- data.frame(
 
 # Minimal input 
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Minimal_Input', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Minimal_Input', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Minimal input',
@@ -196,7 +204,7 @@ create.violinplot(
 
 # Axes & Labels
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Axes_Labels', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Axes_Labels', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Axes & labels',
@@ -218,7 +226,7 @@ create.violinplot(
 
 # Range
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Range', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Range', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Range',
@@ -243,7 +251,7 @@ create.violinplot(
 
 # Scaling
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Scale', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Scale', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Scale',
@@ -270,7 +278,7 @@ median.points <- unlist(tapply(violin.data$values, violin.data$genes, median));
 top.points <- unlist(tapply(violin.data$values, violin.data$genes, quantile, 0.90));
 
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Points', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Points', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Extra points',
@@ -296,7 +304,7 @@ create.violinplot(
 
 # Colours
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Colour', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Colour', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Colour',
@@ -323,7 +331,7 @@ create.violinplot(
 
 # Custom labels
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Custom_Labels', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Custom_Labels', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Custom labels',
@@ -358,7 +366,7 @@ create.violinplot(
 
 # Orientation
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Orientation', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Orientation', fileext = '.tiff'),
     # switch formula
     formula = genes ~ values,
     data = violin.data,
@@ -385,7 +393,7 @@ create.violinplot(
 
 # background
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Background', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Background', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Background rectangle',
@@ -419,7 +427,7 @@ create.violinplot(
 
 # Nature style
 create.violinplot(
-    # filename = tempfile(pattern = 'Violinplot_Nature_style', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Violinplot_Nature_style', fileext = '.tiff'),
     formula = values ~ genes,
     data = violin.data,
     main = 'Nature style',

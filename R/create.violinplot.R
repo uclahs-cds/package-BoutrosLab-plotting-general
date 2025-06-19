@@ -11,22 +11,22 @@
 
 ### FUNCTION TO CREATE VIOLIN PLOTS ###############################################################
 create.violinplot <- function(
-    formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
-    main.cex = 3, xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
-    xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
-    xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
-    xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black',
-    yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0,
-    xaxis.tck = c(1, 0), yaxis.tck = c(1, 1), xlimits = NULL, xat = TRUE, # Added xlimits and xat
-    ylimits = NULL, yat = TRUE, col = 'black', lwd = 1,
-    border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1, extra.points = NULL, extra.points.pch = 21,
-    extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1, start = NULL,
-    end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7,
-    left.padding = 0.5, right.padding = 0.3, key = NULL, legend = NULL, add.rectangle = FALSE,
-    xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
-    col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
-    size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
-    style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, disable.factor.sorting = FALSE
+	formula, data, filename = NULL, main = NULL, main.just = 'center', main.x = 0.5, main.y = 0.5,
+	main.cex = 3, xlab.label = tail(sub('~', '', formula[-2]), 1), ylab.label = tail(sub('~', '', formula[-3]), 1),
+	xlab.cex = 2, ylab.cex = 2, xlab.col = 'black', ylab.col = 'black', xlab.top.label = NULL,
+	xlab.top.cex = 2, xlab.top.col = 'black', xlab.top.just = 'center', xlab.top.x = 0.5, xlab.top.y = 0,
+	xaxis.lab = TRUE, yaxis.lab = TRUE, xaxis.cex = 1.5, yaxis.cex = 1.5, xaxis.col = 'black',
+	yaxis.col = 'black', xaxis.fontface = 'bold', yaxis.fontface = 'bold', xaxis.rot = 0, yaxis.rot = 0,
+	xaxis.tck = c(1, 0), yaxis.tck = c(1, 1), xlimits = NULL, xat = TRUE, ylimits = NULL, yat = TRUE,
+    col = 'black', lwd = 1, border.lwd = 1, bandwidth = 'nrd0', bandwidth.adjust = 1, 
+    extra.points = NULL, extra.points.pch = 21, extra.points.col = 'white', extra.points.border = 'black', extra.points.cex = 1,
+    start = NULL, end = NULL, scale = FALSE, plot.horizontal = FALSE, top.padding = 0.1, bottom.padding = 0.7,
+	left.padding = 0.5, right.padding = 0.3, key = NULL, legend = NULL, add.rectangle = FALSE,
+	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
+	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
+	size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, disable.factor.sorting = FALSE,
+	strip.col = 'white', strip.cex = 1,	strip.fontface = 'bold', layout = NULL
     ) {
 
     ### needed to copy in case using variable to define rectangles dimensions
@@ -213,167 +213,183 @@ create.violinplot <- function(
                     if (is.na(extra.points.cex[i])) { extra.points.cex[i] <- extra.points.cex[1]; }
                     if (is.na(extra.points.border[i])) { extra.points.border[i] <- extra.points.border[1]; }
 
-                    for (j in 1:length(extra.points[[i]])) {
-                        if (!is.na(extra.points[[i]][j])) {
-                            panel.xyplot(
-                                x = j,
-                                y = extra.points[[i]][j],
-                                pch = extra.points.pch[i],
-                                col = if (extra.points.pch[i] %in% 0:20) { extra.points.col[i]; } else if
-                                    (extra.points.pch[i] %in% 21:25) { extra.points.border[i]; },
-                                fill = if (extra.points.pch[i] %in% 0:20) { NA; } else if
-                                    (extra.points.pch[i] %in% 21:25) { extra.points.col[i]; },
-                                cex = extra.points.cex[i]
-                                );
-                            }
-                        }
-                    }
-                }
-            },
-        main = BoutrosLab.plotting.general::get.defaults(
-            property = 'fontfamily',
-            use.legacy.settings = use.legacy.settings || ('Nature' == style),
-            add.to.list = list(
-                label = main,
-                fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
-                cex = main.cex,
-                just = main.just,
-                x = main.x,
-                y = main.y
-                )
-            ),
-        xlab = BoutrosLab.plotting.general::get.defaults(
-            property = 'fontfamily',
-            use.legacy.settings = use.legacy.settings || ('Nature' == style),
-            add.to.list = list(
-                label = xlab.label,
-                cex = xlab.cex,
-                col = xlab.col,
-                fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
-                )
-            ),
-        xlab.top = BoutrosLab.plotting.general::get.defaults(
-            property = 'fontfamily',
-            use.legacy.settings = use.legacy.settings || ('Nature' == style),
-            add.to.list = list(
-                label = xlab.top.label,
-                cex = xlab.top.cex,
-                col = xlab.top.col,
-                fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
-                just = xlab.top.just,
-                x = xlab.top.x,
-                y = xlab.top.y
-                )
-            ),
-        ylab = BoutrosLab.plotting.general::get.defaults(
-            property = 'fontfamily',
-            use.legacy.settings = use.legacy.settings || ('Nature' == style),
-            add.to.list = list(
-                label = ylab.label,
-                cex = ylab.cex,
-                col = ylab.col,
-                fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
-                )
-            ),
-        scales = list(
-            lwd = 1,
-            x = BoutrosLab.plotting.general::get.defaults(
-                property = 'fontfamily',
-                use.legacy.settings = use.legacy.settings || ('Nature' == style),
-                add.to.list = list(
-                    labels = xaxis.lab,
-                    cex = xaxis.cex,
-                    limits = xlimits, # Added xlimits
-                    at = xat, # Added xat
-                    rot = xaxis.rot,
-                    col = xaxis.col,
-                    tck = xaxis.tck,
-                    fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface }
-                    )
-                ),
-            y = BoutrosLab.plotting.general::get.defaults(
-                property = 'fontfamily',
-                use.legacy.settings = use.legacy.settings || ('Nature' == style),
-                add.to.list = list(
-                    labels = yaxis.lab,
-                    cex = yaxis.cex,
-                    limits = ylimits,
-                    at = yat,
-                    rot = yaxis.rot,
-                    col = yaxis.col,
-                    tck = yaxis.tck,
-                    fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface }
-                    )
-                )
-            ),
-        par.settings = list(
-            axis.line = list(
-                lwd = lwd,
-                col = if ('Nature' == style) { 'transparent' } else { 'black' }
-                ),
-            layout.heights = list(
-                top.padding = top.padding,
-                main = if (is.null(main)) { 0.3 } else { 1 },
-                main.key.padding = 0.1,
-                key.top = 0.1,
-                key.axis.padding = 0.1,
-                axis.top = 1,
-                axis.bottom = 1,
-                axis.xlab.padding = 1,
-                xlab = 1,
-                xlab.key.padding = 0.5,
-                key.bottom = 0.1,
-                key.sub.padding = 0.1,
-                sub = 0.1,
-                bottom.padding = bottom.padding
-                ),
-            layout.widths = list(
-                left.padding = left.padding,
-                key.left = 0.1,
-                key.ylab.padding = 0.1,
-                ylab = 1,
-                ylab.axis.padding = 1,
-                axis.left = 1,
-                axis.right = 1,
-                axis.panel = 0.3,
-                strip.left = 0.3,
-                panel = 1,
-                between = 1,
-                axis.right = 1,
-                axis.key.padding = 0.1,
-                right.padding = right.padding
-                ),
-            box.dot = list(
-                pch = 19,
-                col = '#000000',
-                lty = 1
-                ),
-            box.rectangle = list(
-                lwd = 3,
-                col = '#000000',
-                lty = 1
-                ),
-            box.umbrella = list(
-                lwd = 2,
-                col = '#000000',
-                lty = 1
-                ),
-            plot.symbol = list(
-                col = '#000000',
-                pch = 19,
-                cex = 0.5
-                ),
-            plot.polygon = list(
-                col = col,
-                lwd = border.lwd
-                )
-            ),
-        pch = '|',
-        pretty = TRUE,
-        horizontal = plot.horizontal,
-        key = key,
-        legend = legend
-        );
+					for (j in 1:length(extra.points[[i]])) {
+						if (!is.na(extra.points[[i]][j])) {
+							if (plot.horizontal) {
+								xyplot.x <- extra.points[[i]][j];
+								xyplot.y <- j;
+								}
+							else {
+								xyplot.x <- j;
+								xyplot.y <- extra.points[[i]][j];
+								}
+							panel.xyplot(
+								x = xyplot.x,
+								y = xyplot.y,
+								pch = extra.points.pch[i],
+								col = if (extra.points.pch[i] %in% 0:20) { extra.points.col[i]; } else if
+									(extra.points.pch[i] %in% 21:25) { extra.points.border[i]; },
+								fill = if (extra.points.pch[i] %in% 0:20) { NA; } else if
+									(extra.points.pch[i] %in% 21:25) { extra.points.col[i]; },
+								cex = extra.points.cex[i]
+								);
+							}
+						}
+					}
+				}
+			},
+		main = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
+			add.to.list = list(
+				label = main,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
+				cex = main.cex,
+				just = main.just,
+				x = main.x,
+				y = main.y
+				)
+			),
+		xlab = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
+			add.to.list = list(
+				label = xlab.label,
+				cex = xlab.cex,
+				col = xlab.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
+				)
+			),
+		xlab.top = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
+			add.to.list = list(
+				label = xlab.top.label,
+				cex = xlab.top.cex,
+				col = xlab.top.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' },
+				just = xlab.top.just,
+				x = xlab.top.x,
+				y = xlab.top.y
+				)
+			),
+		ylab = BoutrosLab.plotting.general::get.defaults(
+			property = 'fontfamily',
+			use.legacy.settings = use.legacy.settings || ('Nature' == style),
+			add.to.list = list(
+				label = ylab.label,
+				cex = ylab.cex,
+				col = ylab.col,
+				fontface = if ('Nature' == style) { 'plain' } else { 'bold' }
+				)
+			),
+		scales = list(
+			lwd = 1,
+			x = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily',
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
+				add.to.list = list(
+					labels = xaxis.lab,
+					cex = xaxis.cex,
+                    limits = xlimits,
+                    at = xat,
+					rot = xaxis.rot,
+					col = xaxis.col,
+					tck = xaxis.tck,
+					fontface = if ('Nature' == style) { 'plain' } else { xaxis.fontface }
+					)
+				),
+			y = BoutrosLab.plotting.general::get.defaults(
+				property = 'fontfamily',
+				use.legacy.settings = use.legacy.settings || ('Nature' == style),
+				add.to.list = list(
+					labels = yaxis.lab,
+					cex = yaxis.cex,
+					limits = ylimits,
+					at = yat,
+					rot = yaxis.rot,
+					col = yaxis.col,
+					tck = yaxis.tck,
+					fontface = if ('Nature' == style) { 'plain' } else { yaxis.fontface }
+					)
+				)
+			),
+		layout = layout,
+		par.settings = list(
+			axis.line = list(
+				lwd = lwd,
+				col = if ('Nature' == style) { 'transparent' } else { 'black' }
+				),
+			layout.heights = list(
+				top.padding = top.padding,
+				main = if (is.null(main)) { 0.3 } else { 1 },
+				main.key.padding = 0.1,
+				key.top = 0.1,
+				key.axis.padding = 0.1,
+				axis.top = 1,
+				axis.bottom = 1,
+				axis.xlab.padding = 1,
+				xlab = 1,
+				xlab.key.padding = 0.5,
+				key.bottom = 0.1,
+				key.sub.padding = 0.1,
+				sub = 0.1,
+				bottom.padding = bottom.padding
+				),
+			layout.widths = list(
+				left.padding = left.padding,
+				key.left = 0.1,
+				key.ylab.padding = 0.1,
+				ylab = 1,
+				ylab.axis.padding = 1,
+				axis.left = 1,
+				axis.right = 1,
+				axis.panel = 0.3,
+				strip.left = 0.3,
+				panel = 1,
+				between = 1,
+				axis.right = 1,
+				axis.key.padding = 0.1,
+				right.padding = right.padding
+				),
+			strip.background = list(
+				col = strip.col
+				),
+			box.dot = list(
+				pch = 19,
+				col = '#000000',
+				lty = 1
+				),
+			box.rectangle = list(
+				lwd = 3,
+				col = '#000000',
+				lty = 1
+				),
+			box.umbrella = list(
+				lwd = 2,
+				col = '#000000',
+				lty = 1
+				),
+			plot.symbol = list(
+				col = '#000000',
+				pch = 19,
+				cex = 0.5
+				),
+			plot.polygon = list(
+				col = col,
+				lwd = border.lwd
+				)
+			),
+		pch = '|',
+		pretty = TRUE,
+		horizontal = plot.horizontal,
+		par.strip.text = list(
+			cex = strip.cex,
+			fontface = strip.fontface
+			),
+		key = key,
+		legend = legend
+		);
 
     if (disable.factor.sorting == TRUE) {
 
