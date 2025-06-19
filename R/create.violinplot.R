@@ -25,7 +25,8 @@ create.violinplot <- function(
 	xleft.rectangle = NULL, ybottom.rectangle = NULL, xright.rectangle = NULL, ytop.rectangle = NULL,
 	col.rectangle = 'transparent', alpha.rectangle = 1, height = 6, width = 6, resolution = 1600,
 	size.units = 'in', enable.warnings = FALSE, description = 'Created with BoutrosLab.plotting.general',
-	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, disable.factor.sorting = FALSE
+	style = 'BoutrosLab', preload.default = 'custom', use.legacy.settings = FALSE, disable.factor.sorting = FALSE,
+	strip.col = 'white', strip.cex = 1,	strip.fontface = 'bold', layout = NULL
     ) {
 
 	### needed to copy in case using variable to define rectangles dimensions
@@ -214,9 +215,17 @@ create.violinplot <- function(
 
 					for (j in 1:length(extra.points[[i]])) {
 						if (!is.na(extra.points[[i]][j])) {
+							if (plot.horizontal) {
+								xyplot.x <- extra.points[[i]][j];
+								xyplot.y <- j;
+								}
+							else {
+								xyplot.x <- j;
+								xyplot.y <- extra.points[[i]][j];
+								}
 							panel.xyplot(
-								x = j,
-								y = extra.points[[i]][j],
+								x = xyplot.x,
+								y = xyplot.y,
 								pch = extra.points.pch[i],
 								col = if (extra.points.pch[i] %in% 0:20) { extra.points.col[i]; } else if
 									(extra.points.pch[i] %in% 21:25) { extra.points.border[i]; },
@@ -303,6 +312,7 @@ create.violinplot <- function(
 					)
 				)
 			),
+		layout = layout,
 		par.settings = list(
 			axis.line = list(
 				lwd = lwd,
@@ -340,6 +350,9 @@ create.violinplot <- function(
 				axis.key.padding = 0.1,
 				right.padding = right.padding
 				),
+			strip.background = list(
+				col = strip.col
+				),
 			box.dot = list(
 				pch = 19,
 				col = '#000000',
@@ -368,6 +381,10 @@ create.violinplot <- function(
 		pch = '|',
 		pretty = TRUE,
 		horizontal = plot.horizontal,
+		par.strip.text = list(
+			cex = strip.cex,
+			fontface = strip.fontface
+			),
 		key = key,
 		legend = legend
 		);
