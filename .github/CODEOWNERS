@@ -1,4 +1,4 @@
 # Test CODEOWNERS
 
 # Default owner(s)
-*	@dan-knight  @uclahs-cds/software-wg
+*	@uclahs-cds/software-wg @jarbet
