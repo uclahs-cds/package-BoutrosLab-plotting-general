@@ -837,7 +837,7 @@ point.size <- (points - size.from[1])/diff(size.from) * diff(size.to) + size.to[
 point.colour <- grey(runif(sum(microarray[1:20, 1:20] > 11), max = 0.5));
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),
+    #filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Symbols',
     xlab.label = 'Genes',
@@ -854,7 +854,7 @@ create.heatmap(
     # flipping rows and columns because the heatmap function does so
     row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
     col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
-    cell.text = rep(expression("\u25CF"), times = sum(microarray[1:20, 1:20] > 11)),
+    cell.text = rep(expression("*"), times = sum(microarray[1:20, 1:20] > 11)),
     text.col = point.colour,
     text.cex = point.size,
     description = 'Heatmap created using BoutrosLab.plotting.general',
