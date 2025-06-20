@@ -1,7 +1,8 @@
-# BoutrosLab.plotting.general 7.1.4 (2025-06-19)
+# BoutrosLab.plotting.general 7.1.4 (2025-06-20)
 
 ## Fixed
 - Updated extra points functionality in violin plot to properly set coordinates based on `plot.horizontal`
+- Fixed unicode error in github action R CMD CHECK
 
 ## Added
 - `create.violinplot` panel and x-axis arguments
