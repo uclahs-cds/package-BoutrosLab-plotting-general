@@ -35,4 +35,6 @@ jobs:
             libcairo2-dev \
             libv8-dev \
             libcurl4-openssl-dev
+      - name: Install V8 R package
+        run: Rscript -e 'install.packages("V8")'
       - uses: uclahs-cds/tool-R-CMD-check-action@v2
