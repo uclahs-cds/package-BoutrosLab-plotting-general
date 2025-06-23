@@ -14,7 +14,6 @@ jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-tinytex@v2
       - name: Install LaTeX packages
         run: |
@@ -36,23 +35,4 @@ jobs:
             libcairo2-dev \
             libv8-dev \
             libcurl4-openssl-dev
-      - uses: r-lib/actions/setup-r@v2
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: |
-            any::rcmdcheck
-            any::devtools
-            any::rmarkdown
-            any::V8
-          needs: check
-      - run: Rscript "${{github.action_path}}/install.github.R" --packages="${{github.event.inputs.github_dependencies}}" --token="${{github.event.inputs.token}}"
-        shell: bash
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          args: 'c("--as-cran")'
-          build_args: 'c("--compact-vignettes=gs+qpdf")'
-      - name: Save built package and check results
-        uses: actions/upload-artifact@v4
-        with:
-          name: results
-          path: check
+      - uses: uclahs-cds/tool-R-CMD-check-action@v2
