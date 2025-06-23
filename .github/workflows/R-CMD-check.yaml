@@ -32,5 +32,7 @@ jobs:
           sudo apt-get install -y \
             libjpeg-dev \
             libpng-dev \
-            libcairo2-dev
+            libcairo2-dev \
+            libv8-dev \
+            libcurl4-openssl-dev
       - uses: uclahs-cds/tool-R-CMD-check-action@v2
