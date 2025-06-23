@@ -224,9 +224,6 @@ write.plot <- function(
 					}
 				}
 			}
-		else {
-			return(trellis.object);
-			}
 		}
 
 	# check if graphics device is postscript
@@ -238,4 +235,6 @@ write.plot <- function(
 	if (enable.warnings && 1 == dev.cur()) {
 		warning('\nIf you wish to print this plot to postscript device, please set family param as: postscript(family=\"sans\").\n');
 		}
-	}
+
+    return(trellis.object);
+    }
