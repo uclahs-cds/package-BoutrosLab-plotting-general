@@ -56,7 +56,7 @@ tmp.data <- data.frame(
 BoutrosLab.plotting.general::create.scatterplot(
     formula = y ~ x,
     data = tmp.data,
-    filename = tempfile(pattern = 'get.corr.key-scatterplot', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'get.corr.key-scatterplot', fileext = '.tiff'),
     xlab.label = 'X Axis Title',
     ylab.label = 'Y Axis Title',
     xlimits = c(0,100),
@@ -80,7 +80,7 @@ tmp.data <- rbind(tmp.data, c(2000,100));
 BoutrosLab.plotting.general::create.scatterplot(
     formula = y ~ x,
     data = tmp.data,
-    filename = tempfile(pattern = 'get.corr.key.robust-scatterplot', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'get.corr.key.robust-scatterplot', fileext = '.tiff'),
     xlab.label = 'X Axis Title',
     ylab.label = 'Y Axis Title',
     xlimits = c(0,100),

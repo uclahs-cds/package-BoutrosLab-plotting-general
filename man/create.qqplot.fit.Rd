@@ -177,7 +177,7 @@ Note that the confidence band only works for a single panel qq plot, not for gro
 \examples{
 set.seed(12345);
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Simple', fileext = '.tiff'),
     x = rnorm(300),
     # choosing to compare against a uniform distribution
     distribution = qunif,
@@ -186,7 +186,7 @@ create.qqplot.fit(
 
 # Minimal Input
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Minimal_Input', fileext = '.tiff'),
     x = microarray[1:500,1],
     # choosing to compare against a uniform distribution
     distribution = qunif,
@@ -197,7 +197,7 @@ create.qqplot.fit(
 
 # Axes and Labels
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Axes_Labels', fileext = '.tiff'),
     x = microarray[1:500,1],
     distribution = qunif,
     main = 'Axes & labels',
@@ -217,7 +217,7 @@ create.qqplot.fit(
 
 # Confidence bands 
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Confidence_Bands', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Confidence_Bands', fileext = '.tiff'),
     x = microarray[1:500,1],
     distribution = qunif,
     main = 'Confidence bands',
@@ -250,7 +250,7 @@ qqplot.data <- data.frame(
     );
 
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Multiple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Multiple', fileext = '.tiff'),
     x = ~ value | chr,
     data = qqplot.data,
     distribution = qunif,
@@ -272,7 +272,7 @@ create.qqplot.fit(
 
 # Grouped qq plot
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Grouped', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Grouped', fileext = '.tiff'),
     x = ~ value,
     data = qqplot.data,
     # Adding groups
@@ -316,7 +316,7 @@ create.qqplot.fit(
 
 # Correlation Key
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Correlation_Key', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Correlation_Key', fileext = '.tiff'),
     x = ~ value,
     data = qqplot.data,
     groups = qqplot.data$chr,
@@ -379,7 +379,7 @@ create.qqplot.fit(
 
 # Nature style
 create.qqplot.fit(
-    filename = tempfile(pattern = 'QQfit_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQfit_Nature_style', fileext = '.tiff'),
     x = microarray[1:500,1],
     distribution = qunif,
     main = 'Nature style',

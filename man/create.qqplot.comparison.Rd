@@ -164,14 +164,14 @@ create.qqplot.comparison(
 set.seed(12345);
 
 create.qqplot.comparison(
-    filename = tempfile(pattern = 'QQcomparison_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQcomparison_Simple', fileext = '.tiff'),
     x = list(rnorm(100), rnorm(100)),
     resolution = 50
     );
 
 # Minimal Input
 create.qqplot.comparison(
-    filename = tempfile(pattern = 'QQcomparison_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQcomparison_Minimal_Input', fileext = '.tiff'),
     x = list(microarray[1:500,2], microarray[1:500,2]),
     main = 'Minimal input',
     description = 'QQplot comparison created by BoutrosLab.plotting.general',
@@ -180,7 +180,7 @@ create.qqplot.comparison(
 
 # Axes & Labels
 create.qqplot.comparison(
-    filename = tempfile(pattern = 'QQcomparison_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQcomparison_Axes_Labels', fileext = '.tiff'),
     x = list(microarray[1:500,2], microarray[1:500,2]),
     main = 'Axes & labels',
     # adding axes and labels
@@ -209,7 +209,7 @@ qqplot.data <- data.frame(
 
 
 create.qqplot.comparison(
-    filename = tempfile(pattern = 'QQcomparison_Formula', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQcomparison_Formula', fileext = '.tiff'),
     # Using a different input method
     x = sample ~ value,
     data = qqplot.data,
@@ -230,7 +230,7 @@ create.qqplot.comparison(
 \donttest{
 # Groups & Legend
 create.qqplot.comparison(
- filename = tempfile(pattern = 'QQcomparison_Groups_Legend', fileext = '.tiff'),
+ # filename = tempfile(pattern = 'QQcomparison_Groups_Legend', fileext = '.tiff'),
     x = sample ~ value,
     data = qqplot.data,
     # Using fake grouping for the sake of illustration
@@ -267,7 +267,7 @@ create.qqplot.comparison(
 
 # Multiple qq plots
 create.qqplot.comparison(
-    filename = tempfile(pattern = 'QQcomparison_Multiple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQcomparison_Multiple', fileext = '.tiff'),
     x = sample ~ value | chr,
     data = qqplot.data,
     main = 'Multiple plots',
@@ -282,7 +282,7 @@ create.qqplot.comparison(
 
 # Nature style
 create.qqplot.comparison(
-    filename = tempfile(pattern = 'QQcomparison_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'QQcomparison_Nature_style', fileext = '.tiff'),
     x = sample ~ value,
     data = qqplot.data,
     main = 'Nature style',
