@@ -837,7 +837,7 @@ point.size <- (points - size.from[1])/diff(size.from) * diff(size.to) + size.to[
 point.colour <- grey(runif(sum(microarray[1:20, 1:20] > 11), max = 0.5));
 
 create.heatmap(
-    #filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),
+    filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Symbols',
     xlab.label = 'Genes',
