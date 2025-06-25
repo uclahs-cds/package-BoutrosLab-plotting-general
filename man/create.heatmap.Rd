@@ -854,7 +854,7 @@ create.heatmap(
     # flipping rows and columns because the heatmap function does so
     row.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,2],
     col.pos = which(microarray[1:20, 1:20] > 11, arr.ind = TRUE)[,1],
-    cell.text = rep(expression("\u25CF"), times = sum(microarray[1:20, 1:20] > 11)),
+    cell.text = rep(expression("\u2022"), times = sum(microarray[1:20, 1:20] > 11)),
     text.col = point.colour,
     text.cex = point.size,
     description = 'Heatmap created using BoutrosLab.plotting.general',
