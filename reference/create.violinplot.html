@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,6 +72,8 @@
 <span>  yaxis.rot <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  xaxis.tck <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,</span>
 <span>  yaxis.tck <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,</span>
+<span>  xlimits <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xat <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ylimits <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  yat <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">'black'</span>,</span>
@@ -110,7 +112,11 @@
 <span>  style <span class="op">=</span> <span class="st">'BoutrosLab'</span>,</span>
 <span>  preload.default <span class="op">=</span> <span class="st">'custom'</span>,</span>
 <span>  use.legacy.settings <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  disable.factor.sorting <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  disable.factor.sorting <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  strip.col <span class="op">=</span> <span class="st">'white'</span>,</span>
+<span>  strip.cex <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  strip.fontface <span class="op">=</span> <span class="st">'bold'</span>,</span>
+<span>  layout <span class="op">=</span> <span class="cn">NULL</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -212,6 +218,12 @@
 
     <dt id="arg-yaxis-tck">yaxis.tck<a class="anchor" aria-label="anchor" href="#arg-yaxis-tck"></a></dt>
 <dd><p>Specifies the length of the tick marks for y-axis, defaults to c(1,1)</p></dd>
+
+    <dt id="arg-xlimits">xlimits<a class="anchor" aria-label="anchor" href="#arg-xlimits"></a></dt>
+<dd><p>Two-element vector giving the x-axis limits, default is automatic</p></dd>
+
+    <dt id="arg-xat">xat<a class="anchor" aria-label="anchor" href="#arg-xat"></a></dt>
+<dd><p>Vector listing where the x-axis labels should be drawn, default is automatic</p></dd>
 
     <dt id="arg-ylimits">ylimits<a class="anchor" aria-label="anchor" href="#arg-ylimits"></a></dt>
 <dd><p>Two-element vector giving the y-axis limits, default is automatic</p></dd>
@@ -330,6 +342,18 @@
     <dt id="arg-disable-factor-sorting">disable.factor.sorting<a class="anchor" aria-label="anchor" href="#arg-disable-factor-sorting"></a></dt>
 <dd><p>Disable barplot auto sorting factors alphabetically/numerically</p></dd>
 
+    <dt id="arg-strip-col">strip.col<a class="anchor" aria-label="anchor" href="#arg-strip-col"></a></dt>
+<dd><p>Strip background colour, defaults to “white”</p></dd>
+
+    <dt id="arg-strip-cex">strip.cex<a class="anchor" aria-label="anchor" href="#arg-strip-cex"></a></dt>
+<dd><p>Size of text in Strip titles</p></dd>
+
+    <dt id="arg-strip-fontface">strip.fontface<a class="anchor" aria-label="anchor" href="#arg-strip-fontface"></a></dt>
+<dd><p>Strip title fontface, defaults to bold.  1 = plain, 2 = bold, 3 = italics, 4 = bold and italics</p></dd>
+
+    <dt id="arg-layout">layout<a class="anchor" aria-label="anchor" href="#arg-layout"></a></dt>
+<dd><p>A vector specifying the number of columns, rows (e.g., c(2,1)).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -363,11 +387,12 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="va">y</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">simple.data</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># load real datasets</span></span></span>
 <span class="r-in"><span><span class="va">violin.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -378,7 +403,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Minimal input </span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Minimal_Input'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Minimal_Input', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Minimal input'</span>,</span></span>
@@ -386,10 +411,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Axes &amp; Labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Axes_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Axes_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Axes &amp; labels'</span>,</span></span>
@@ -408,10 +434,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Range</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Range'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Range', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Range'</span>,</span></span>
@@ -433,10 +460,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Scaling</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Scale'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Scale', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Scale'</span>,</span></span>
@@ -456,6 +484,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Extra points</span></span></span>
@@ -463,7 +492,7 @@
 <span class="r-in"><span><span class="va">top.points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html" class="external-link">tapply</a></span><span class="op">(</span><span class="va">violin.data</span><span class="op">$</span><span class="va">values</span>, <span class="va">violin.data</span><span class="op">$</span><span class="va">genes</span>, <span class="va">quantile</span>, <span class="fl">0.90</span><span class="op">)</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Points'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Points', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Extra points'</span>,</span></span>
@@ -486,10 +515,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Colours</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Colour'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Colour', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Colour'</span>,</span></span>
@@ -513,10 +543,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Custom labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Custom_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Custom_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Custom labels'</span>,</span></span>
@@ -548,10 +579,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Orientation</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Orientation'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Orientation', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># switch formula</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">genes</span> <span class="op">~</span> <span class="va">values</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
@@ -575,10 +607,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># background</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Background'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Background', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Background rectangle'</span>,</span></span>
@@ -609,10 +642,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Violinplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.violinplot-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.violinplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Violinplot_Nature_style'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Violinplot_Nature_style', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">genes</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">violin.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Nature style'</span>,</span></span>
@@ -648,8 +682,9 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Setting resolution to 1200 dpi.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and en-dashes</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 			for ranges and negatives. See example in documentation for how to do this.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>             for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.</span>
+<span class="r-plt img"><img src="create.violinplot-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

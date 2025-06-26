@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -552,12 +552,13 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Simple example</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="va">y</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">simple.data</span>,</span></span>
 <span class="r-in"><span>    yat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">16</span>,<span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">30</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># set up the data</span></span></span>
 <span class="r-in"><span><span class="va">total.counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">SNV</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span>, <span class="fl">2</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span> <span class="va">mutation.count</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">30</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>;</span></span>
@@ -580,7 +581,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Minimal input</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Minimal_Input'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Minimal_Input', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span> ,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Minimal input'</span>,</span></span>
@@ -588,10 +589,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Axes labels &amp; limits</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Custom_Axes'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Custom_Axes', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Axes labels &amp; limits'</span>,</span></span>
@@ -604,10 +606,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Font size and font face</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Font_Changes'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Font_Changes', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Font changes'</span>,</span></span>
@@ -626,11 +629,12 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Sorting data</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Sorted'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Sorted', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Sorted bars'</span>,</span></span>
@@ -649,6 +653,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Sorting data with horizontal barplot</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
@@ -670,7 +675,7 @@
 <span class="r-in"><span>    plot.horizontal <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
-<span class="r-plt img"><img src="create.barplot-1.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Log-Scaled Axis</span></span></span>
 <span class="r-in"><span><span class="va">log.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -687,14 +692,14 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Colour changes</span></span></span>
 <span class="r-in"><span><span class="va">sex.colours</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html" class="external-link">replace</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">sex</span> <span class="op">==</span> <span class="st">'male'</span><span class="op">)</span>,<span class="st">'dodgerblue'</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span><span class="va">sex.colours</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/replace.html" class="external-link">replace</a></span><span class="op">(</span><span class="va">sex.colours</span>, <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">sex</span> <span class="op">==</span> <span class="st">'female'</span><span class="op">)</span>, <span class="st">'pink'</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Colour_Changes'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Colour_Changes', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Colour changes'</span>,</span></span>
@@ -713,10 +718,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Legend</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Legend'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Legend', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Legend'</span>,</span></span>
@@ -758,10 +764,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grouped barplot</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Grouped'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Grouped', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Grouped bar chart'</span>,</span></span>
@@ -803,10 +810,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grouped labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Grouped_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Grouped_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Grouped labels'</span>,</span></span>
@@ -830,10 +838,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Stacked barplot</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Stacked'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Stacked', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Stacked bar chart'</span>,</span></span>
@@ -878,10 +887,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Panel organization</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Panel_Layout_numeric_conditioning'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Panel_Layout_numeric_conditioning', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># Setting the panel layout</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span> <span class="op">|</span> <span class="va">type</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span>,</span></span>
@@ -900,6 +910,7 @@
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Numeric values detected for conditional variable. If text labels are desired, please convert conditional variable to character.</span>
+<span class="r-plt img"><img src="create.barplot-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="co"># Setting the panel layout</span></span></span>
@@ -919,11 +930,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
-<span class="r-plt img"><img src="create.barplot-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="create.barplot-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Panel organization 2</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Panel_Layout_2'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Panel_Layout_2', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span> <span class="op">|</span> <span class="va">mutation</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Panel layout'</span>,</span></span>
@@ -943,6 +954,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Covariates</span></span></span>
 <span class="r-in"><span><span class="co"># Note: Covariates can also be created using the create.multiplot function</span></span></span>
@@ -1018,7 +1030,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Covariates'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Covariates', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Covariates'</span>,</span></span>
@@ -1050,9 +1062,10 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-16.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Auto_legend'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Auto_legend', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Covariates'</span>,</span></span>
@@ -1076,10 +1089,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-17.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Horizontal orientation</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Horizontal'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Horizontal', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># switch formula order</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">samples</span> <span class="op">~</span> <span class="va">values</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
@@ -1094,10 +1108,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-18.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Change bar thickness and add text labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Text_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Text_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># switch formula order</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">samples</span> <span class="op">~</span> <span class="va">values</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
@@ -1114,6 +1129,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Error bars</span></span></span>
 <span class="r-in"><span><span class="va">error.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -1123,7 +1139,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Error_Bars'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Error_Bars', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># needs sequential x-axis</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">error.data</span>,</span></span>
@@ -1144,10 +1160,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Error_Bars_Horizontal'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Error_Bars_Horizontal', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># needs sequential x-axis</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">error.data</span>,</span></span>
@@ -1167,10 +1184,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grid lines</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Gridlines'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Gridlines', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Gridlines'</span>,</span></span>
@@ -1214,10 +1232,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-22.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grid lines 2</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Gridlines_GreyBG'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Gridlines_GreyBG', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Gridlines &amp; grey background'</span>,</span></span>
@@ -1262,10 +1281,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-23.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Labels'</span>,</span></span>
@@ -1313,10 +1333,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-24.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># lines</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Lines'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Lines', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Lines'</span>,</span></span>
@@ -1365,10 +1386,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-25.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Background rectangle</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Bg_Rectangle'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Bg_Rectangle', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Background rectangle'</span>,</span></span>
@@ -1417,10 +1439,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Barplot created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-26.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Raster</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_with_raster'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_with_raster', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">values</span> <span class="op">~</span> <span class="va">samples</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">barplot.data</span><span class="op">[</span><span class="va">barplot.data</span><span class="op">$</span><span class="va">mutation</span> <span class="op">==</span> <span class="st">'nonsynonymous'</span>,<span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Raster fill'</span>,</span></span>
@@ -1440,10 +1463,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Description of image here'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-27.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature format</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_Nature_style'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_Nature_style', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="va">y</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">simple.data</span>,</span></span>
 <span class="r-in"><span>    yat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">16</span>,<span class="fl">2</span><span class="op">)</span>,</span></span>
@@ -1464,10 +1488,11 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			en-dashes for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.</span>
+<span class="r-plt img"><img src="create.barplot-28.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Left Justified Example</span></span></span>
 <span class="r-in"><span><span class="fu">create.barplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Barplot_TwoTopLabelsLeftJustified'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Barplot_TwoTopLabelsLeftJustified', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="va">y</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">simple.data</span>,</span></span>
 <span class="r-in"><span>    yat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">16</span>,<span class="fl">2</span><span class="op">)</span>,</span></span>
@@ -1486,6 +1511,7 @@
 <span class="r-in"><span>    top.padding <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.barplot-29.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

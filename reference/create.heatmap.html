@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -649,7 +649,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_1D_Inside_Legend'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_1D_Inside_Legend', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">simple.1D.data</span>,</span></span>
 <span class="r-in"><span>    clustering.method<span class="op">=</span><span class="st">'none'</span>,</span></span>
 <span class="r-in"><span>    inside.legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">draw.key</span>,</span></span>
@@ -670,14 +670,16 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-plt img"><img src="create.heatmap-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">simple.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Simple'</span>,</span></span>
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">simple.data.col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'blue'</span>,<span class="st">'green'</span>,<span class="st">'red'</span>,<span class="st">'yellow'</span>,<span class="st">'blue'</span>,<span class="st">'red'</span>,<span class="st">'black'</span>,<span class="st">'white'</span>,<span class="st">'purple'</span>,<span class="st">'grey'</span><span class="op">)</span>,</span></span>
@@ -689,34 +691,37 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Input Colours Provided</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Simple_Using_Colours'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Simple_Using_Colours', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">simple.data.col</span>,</span></span>
 <span class="r-in"><span>    clustering.method <span class="op">=</span> <span class="st">'none'</span>,</span></span>
 <span class="r-in"><span>    input.colours <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Single Input Colour Provided</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Simple_Using_Single_Colour'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Simple_Using_Single_Colour', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">simple.data.col</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">simple.data.col</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    clustering.method <span class="op">=</span> <span class="st">'none'</span>,</span></span>
 <span class="r-in"><span>    input.colours <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Minimal Input</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Minimal_Input'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Minimal_Input', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Minimal input'</span>,</span></span>
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Axes and labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Axes_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Axes_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Axes &amp; labels'</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># Changing axes</span></span></span>
@@ -736,11 +741,12 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Custom Axes</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Custom_Axes'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Custom_Axes', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Customized axes'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -759,10 +765,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Two-sided Colour Scheme</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Colour_Scheme_1'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Colour_Scheme_1', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Colour scheme'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -780,11 +787,12 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Three-sided Colour Scheme</span></span></span>
 <span class="r-in"><span><span class="co"># Note: when using a three-sided colour scheme, it is advised to have two-sided data</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Colour_Scheme_2'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Colour_Scheme_2', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Colour scheme'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -803,10 +811,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Colour Alpha</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Colour_Alpha'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Colour_Alpha', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Colours alpha'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -824,10 +833,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Clustering</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_No_Clustering'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_No_Clustering', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'No clustering'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -846,10 +856,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Clustering</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Clustering_Methods'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Clustering_Methods', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Clustering methods'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -871,10 +882,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Stratified Clustering</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Stratified_Clustering'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Stratified_Clustering', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Stratified clustering'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -897,6 +909,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Dendrogram provided</span></span></span>
 <span class="r-in"><span><span class="va">col.dendrogram</span> <span class="op">&lt;-</span> <span class="fu">BoutrosLab.plotting.general</span><span class="fu">::</span><span class="fu"><a href="create.dendrogram.html">create.dendrogram</a></span><span class="op">(</span></span></span>
@@ -910,7 +923,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Dendrogram_Provided'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Dendrogram_Provided', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Dendrogram provided'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -934,6 +947,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Covariates and Legends</span></span></span>
 <span class="r-in"><span><span class="co"># Note: covariates can also be added using the create.multiplot function</span></span></span>
@@ -977,7 +991,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Covariates_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Covariates_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Covariates'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -999,6 +1013,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
+<span class="r-plt img"><img src="create.heatmap-15.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Top covariate and legend customization</span></span></span>
 <span class="r-in"><span><span class="va">chr.cov.colours</span> <span class="op">&lt;-</span> <span class="va">microarray</span><span class="op">$</span><span class="va">Chr</span>;</span></span>
@@ -1035,7 +1050,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Covariate_Legend_Custom'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Covariate_Legend_Custom', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Custom covariates &amp; legend'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1071,11 +1086,12 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
+<span class="r-plt img"><img src="create.heatmap-16.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Custom gridlines</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Gridlines'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Gridlines', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Gridlines'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1099,10 +1115,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-17.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Label cells</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Labelled_Cells'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Labelled_Cells', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Labelled cells'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1131,9 +1148,10 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-18.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Label cells</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Labelled_Cells_NPC'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Labelled_Cells_NPC', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Labelled cells'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1162,6 +1180,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Method 1 of adding symbols (very similar to how text is added)</span></span></span>
 <span class="r-in"><span><span class="va">points</span> <span class="op">&lt;-</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span><span class="op">[</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span><span class="op">]</span>;</span></span>
@@ -1171,7 +1190,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span><span class="va">point.colour</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html" class="external-link">grey</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Symbols_1'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Symbols'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1188,12 +1207,13 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="co"># flipping rows and columns because the heatmap function does so</span></span></span>
 <span class="r-in"><span>    row.pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    col.pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>    cell.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"\u25CF"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    cell.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="st">"\u2022"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    text.col <span class="op">=</span> <span class="va">point.colour</span>,</span></span>
 <span class="r-in"><span>    text.cex <span class="op">=</span> <span class="va">point.size</span>,</span></span>
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-20.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Method 2 of Adding Symbols</span></span></span>
 <span class="r-in"><span><span class="co"># Create matrices to describe the symbols</span></span></span>
@@ -1292,7 +1312,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span><span class="va">symbol.locations</span><span class="op">$</span><span class="va">circles</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">11</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Symbols_2'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Symbols_2', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Symbols'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1310,10 +1330,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-21.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Rotate matrix</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Rotated_Matrix'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Rotated_Matrix', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Rotated matrix'</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># Also flip labels</span></span></span>
@@ -1339,6 +1360,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-22.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example of using discrete data</span></span></span>
 <span class="r-in"><span><span class="va">discrete.data</span> <span class="op">&lt;-</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span>;</span></span>
@@ -1397,7 +1419,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Discrete_Data'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Discrete_Data', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">discrete.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Discrete data'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Samples'</span>,</span></span>
@@ -1435,6 +1457,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
+<span class="r-plt img"><img src="create.heatmap-23.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Correlation matrix</span></span></span>
 <span class="r-in"><span><span class="co"># Example of how to visualize the relationship between (e.x.) different cellularity estimates</span></span></span>
@@ -1457,7 +1480,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">}</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Cellularity_Estimates'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Cellularity_Estimates', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">cor.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Correlation matrix'</span>,</span></span>
 <span class="r-in"><span>    xaxis.lab <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
@@ -1485,10 +1508,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The "ward" method has been renamed to "ward.D"; note new "ward.D2"</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The "ward" method has been renamed to "ward.D"; note new "ward.D2"</span>
+<span class="r-plt img"><img src="create.heatmap-24.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Discrete sequential colours</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Discrete_Colours_Sequential'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Discrete_Colours_Sequential', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Discrete colours'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1508,10 +1532,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-25.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Discrete qualitative colours</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Discrete_Colours_Qualitative'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Discrete_Colours_Qualitative', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Discrete colours'</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Genes'</span>,</span></span>
@@ -1534,10 +1559,11 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Colour scheme may not be greyscale compatible.</span>
+<span class="r-plt img"><img src="create.heatmap-26.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_Nature_style'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_Nature_style', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Nature style'</span>,</span></span>
 <span class="r-in"><span>    xaxis.lab <span class="op">=</span> <span class="cn">NA</span>,</span></span>
@@ -1572,6 +1598,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and en-dashes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend</span>
+<span class="r-plt img"><img src="create.heatmap-27.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># create heatmap with key like legend - used to show range of continuous variables</span></span></span>
 <span class="r-in"><span></span></span>
@@ -1651,7 +1678,7 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-in"><span>   <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_ContinuousVariablesKey'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_ContinuousVariablesKey', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">patient</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="st">'Samples'</span>,</span></span>
 <span class="r-in"><span>    ylab.label <span class="op">=</span> <span class="st">'Scaled Data'</span>,</span></span>
@@ -1674,18 +1701,20 @@ https://r-forge.r-project.org/tracker/index.php?func=detail&amp;aid=1702&amp;gro
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>'x' is NULL so the result will be NULL</span>
+<span class="r-plt img"><img src="create.heatmap-28.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.heatmap</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Heatmap_borderRemoved'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Heatmap_borderRemoved', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">simple.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Simple'</span>,</span></span>
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'Heatmap created using BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    axes.lwd <span class="op">=</span> <span class="fl">0</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.heatmap-29.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

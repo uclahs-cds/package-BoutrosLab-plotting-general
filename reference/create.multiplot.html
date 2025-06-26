@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -433,36 +433,38 @@
 <span class="r-in"><span><span class="co"># Simple example of multiplot</span></span></span>
 <span class="r-in"><span><span class="co"># This example uses the defaults set in simple.heatmap and simple.boxplot </span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Simple"</span>,</span></span>
-<span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># The plotting function throws an error if this is not included</span></span></span>
-<span class="r-in"><span>    ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sugar Level"</span>, <span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># Parameters set in the multiplot will override settings in individual plots</span></span></span>
-<span class="r-in"><span>    xaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
-<span class="r-in"><span>    yaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Simple', fileext = '.tiff'),</span></span></span>
+<span class="r-in"><span>        plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        main <span class="op">=</span> <span class="st">"Simple"</span>,</span></span>
+<span class="r-in"><span>        xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># The plotting function throws an error if this is not included</span></span></span>
+<span class="r-in"><span>        ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sugar Level"</span>, <span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># Parameters set in the multiplot will override settings in individual plots</span></span></span>
+<span class="r-in"><span>        xaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>        yaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
 <span class="r-in"><span>  resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-plt img"><img src="create.multiplot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Simple example of multiplot with adjusted plot sizes</span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Simple_Plot_Sizes'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Simple plot sizes"</span>,</span></span>
-<span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># y-axis labels must be spaced with tabs or spaces to properly align</span></span></span>
-<span class="r-in"><span>    ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Sugar Level"</span>, <span class="st">""</span>, <span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
-<span class="r-in"><span>    xaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
-<span class="r-in"><span>    yaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># Set the relative heights of the plots</span></span></span>
-<span class="r-in"><span>    panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Simple_Plot_Sizes', fileext = '.tiff'),</span></span></span>
+<span class="r-in"><span>        plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        main <span class="op">=</span> <span class="st">"Simple plot sizes"</span>,</span></span>
+<span class="r-in"><span>        xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># y-axis labels must be spaced with tabs or spaces to properly align</span></span></span>
+<span class="r-in"><span>        ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"Sugar Level"</span>, <span class="st">""</span>, <span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
+<span class="r-in"><span>        xaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>        yaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># Set the relative heights of the plots</span></span></span>
+<span class="r-in"><span>        panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-plt img"><img src="create.multiplot-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">simple.violin</span> <span class="op">&lt;-</span> <span class="fu"><a href="create.violinplot.html">create.violinplot</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    formula <span class="op">=</span> <span class="va">x</span> <span class="op">~</span> <span class="va">y</span>,</span></span>
@@ -472,7 +474,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Simple example of multiplot with custom layout</span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Simple_Layout'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Simple_Layout', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span>, <span class="va">simple.violin</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Simple layout"</span>,</span></span>
 <span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
@@ -496,6 +498,7 @@
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
+<span class="r-plt img"><img src="create.multiplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example of how to take parameter values from individual plots</span></span></span>
 <span class="r-in"><span><span class="co"># This programming structure allows for including the individual customization </span></span></span>
@@ -591,7 +594,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Formatting'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Formatting', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Formatting"</span>,</span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">all_plots</span>, <span class="kw">function</span><span class="op">(</span><span class="va">aPlot</span><span class="op">)</span> <span class="va">aPlot</span><span class="op">$</span><span class="va">the_plot</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>,</span></span>
@@ -604,6 +607,7 @@
 <span class="r-in"><span>    yaxis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">all_plots</span>,<span class="kw">function</span><span class="op">(</span><span class="va">aPlot</span><span class="op">)</span> <span class="va">aPlot</span><span class="op">$</span><span class="va">visuals</span><span class="op">$</span><span class="va">yaxis.labels</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data_bars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">35</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span></span>
@@ -703,7 +707,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Assemble plot using multiplot function</span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Barchart'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Barchart', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Multiplot with bar chart'</span>,</span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">cov_3</span>, <span class="va">cov_2</span>, <span class="va">cov_1</span>, <span class="va">bars</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"\t"</span>, <span class="st">"Response to treatment"</span>,<span class="st">"\t"</span><span class="op">)</span>,</span></span>
@@ -723,6 +727,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">"Multiplot example created by BoutrosLab.plotting.general"</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">gene_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -798,7 +803,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># assembling final figure</span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_with_heatmap'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_with_heatmap', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Multiplot with heatmap'</span>,</span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">key</span>, <span class="va">main</span>, <span class="va">side</span>, <span class="va">top</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, <span class="fl">0.05</span><span class="op">)</span>,</span></span>
@@ -831,6 +836,7 @@
 <span class="r-in"><span>    xaxis.fontface <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    yaxis.fontface <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Set up plots for complex example</span></span></span>
 <span class="r-in"><span></span></span>
@@ -966,7 +972,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Multiplot of dotmap and covariates</span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Dotmap_Cov'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Dotmap_Cov', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">covariates</span>, <span class="va">dotmap</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Dotmap &amp; covariates'</span>,</span></span>
 <span class="r-in"><span>    panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.1</span><span class="op">)</span>,</span></span>
@@ -996,6 +1002,7 @@
 <span class="r-in"><span>    <span class="co"># Adding spacing for the legend</span></span></span>
 <span class="r-in"><span>    bottom.padding <span class="op">=</span> <span class="fl">5</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add more plots, using more complex layout</span></span></span>
 <span class="r-in"><span><span class="co"># grouped barplot</span></span></span>
@@ -1098,7 +1105,7 @@
 <span class="r-in"><span><span class="va">plots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">covariates</span>, <span class="va">dotmap</span>, <span class="va">segplot</span>, <span class="va">stacked_barplot</span>, <span class="va">grouped_barplot</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Complex'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Complex', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Complex'</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># These dimensions make the plot look much more proportional</span></span></span>
 <span class="r-in"><span>    width <span class="op">=</span> <span class="fl">12</span>,</span></span>
@@ -1176,10 +1183,11 @@
 <span class="r-in"><span>    print.new.legend <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Nature_style'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Nature_style', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Nature style"</span>,</span></span>
 <span class="r-in"><span>    ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
@@ -1202,6 +1210,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and en-dashes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend</span>
+<span class="r-plt img"><img src="create.multiplot-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a multiplot with a heatmap, key like legend and barplot</span></span></span>
 <span class="r-in"><span></span></span>
@@ -1333,7 +1342,7 @@
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'multiplot with colour key legend'</span>,</span></span>
 <span class="r-in"><span>    main.cex <span class="op">=</span> <span class="fl">1</span>,</span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'MultiPlot_With_ColorKey_Legend'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'MultiPlot_With_ColorKey_Legend', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">covariates</span>, <span class="va">covariates2</span>, <span class="va">simple.heatmap</span>, <span class="va">simple.bar</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.1</span>,<span class="fl">0.35</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    panel.widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.25</span><span class="op">)</span>,</span></span>
@@ -1380,6 +1389,7 @@
 <span class="r-in"><span>    <span class="co"># This parameter must be set for the legend to appear</span></span></span>
 <span class="r-in"><span>    print.new.legend <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">BarPlotDataRetLabels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"test1"</span>,<span class="st">"test2"</span>,<span class="st">"test3"</span>,<span class="st">"test4"</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>           y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">13000</span>,<span class="fl">12000</span>,<span class="fl">6700</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -1399,7 +1409,7 @@
 <span class="r-in"><span>  <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_RetrievePlotLabels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="co"># filename = tempfile(pattern = 'Multiplot_RetrievePlotLabels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>  plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">hmRet</span>,<span class="va">bpRet</span>,<span class="va">bpRet</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>  print.new.legend <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>  xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Samples'</span><span class="op">)</span>,</span></span>
@@ -1408,19 +1418,20 @@
 <span class="r-in"><span>  panel.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>,<span class="fl">1</span>,<span class="fl">0.25</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  plot.labels.to.retrieve <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multiplot_Retrieve_Specefic_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Simple"</span>,</span></span>
-<span class="r-in"><span>    xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    xaxis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># The plotting function throws an error if this is not included</span></span></span>
-<span class="r-in"><span>    ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sugar Level"</span>, <span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
-<span class="r-in"><span>    <span class="co"># Parameters set in the multiplot will override settings in individual plots</span></span></span>
-<span class="r-in"><span>    xaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
-<span class="r-in"><span>    yaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multiplot_Retrieve_Specefic_Labels', fileext = '.tiff'),</span></span></span>
+<span class="r-in"><span>        plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        main <span class="op">=</span> <span class="st">"Simple"</span>,</span></span>
+<span class="r-in"><span>        xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  xaxis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># The plotting function throws an error if this is not included</span></span></span>
+<span class="r-in"><span>        ylab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sugar Level"</span>, <span class="st">"Drug Regimen"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        ylab.padding <span class="op">=</span> <span class="fl">7</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># Parameters set in the multiplot will override settings in individual plots</span></span></span>
+<span class="r-in"><span>        xaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
+<span class="r-in"><span>        yaxis.cex <span class="op">=</span> <span class="fl">0.7</span>,</span></span>
 <span class="r-in"><span>  yaxis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="cn">NA</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  xat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  yat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">TRUE</span>,<span class="cn">TRUE</span><span class="op">)</span>,</span></span>
@@ -1428,6 +1439,7 @@
 <span class="r-in"><span>  xlimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">NULL</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  ylimits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">NULL</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Dendrogram provided</span></span></span>
 <span class="r-in"><span><span class="va">dist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
@@ -1513,7 +1525,7 @@
 <span class="r-in"><span>    title.just <span class="op">=</span> <span class="st">'left'</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span><span class="fu">create.multiplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>        filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'MultiPlot_getDendrograms'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="co"># filename = tempfile(pattern = 'MultiPlot_getDendrograms', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>        plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.boxplot</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        main <span class="op">=</span> <span class="st">"Simple"</span>,</span></span>
 <span class="r-in"><span>        xlab.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient Group"</span><span class="op">)</span>,</span></span>
@@ -1537,6 +1549,7 @@
 <span class="r-in"><span>  dendrogram.right.size <span class="op">=</span> <span class="fl">0.40</span>, dendrogram.right.x <span class="op">=</span> <span class="fl">29</span>, dendrogram.right.y <span class="op">=</span> <span class="fl">67</span>,</span></span>
 <span class="r-in"><span>  dendrogram.top.size <span class="op">=</span> <span class="fl">1</span>, dendrogram.top.x <span class="op">=</span> <span class="fl">110</span>, dendrogram.top.y <span class="op">=</span> <span class="op">-</span><span class="fl">180</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multiplot-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

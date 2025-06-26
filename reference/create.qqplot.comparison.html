@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -362,23 +362,25 @@
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQcomparison_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">50</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.comparison-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Minimal Input</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Minimal_Input'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQcomparison_Minimal_Input', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">2</span><span class="op">]</span>, <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Minimal input'</span>,</span></span>
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot comparison created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">50</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.comparison-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Axes &amp; Labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Axes_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQcomparison_Axes_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">2</span><span class="op">]</span>, <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Axes &amp; labels'</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># adding axes and labels</span></span></span>
@@ -391,6 +393,7 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot comparison created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.comparison-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Formula input</span></span></span>
 <span class="r-in"><span></span></span>
@@ -407,7 +410,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Formula'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQcomparison_Formula', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    <span class="co"># Using a different input method</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">sample</span> <span class="op">~</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
@@ -424,11 +427,12 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot comparison created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.comparison-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Groups &amp; Legend</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span> filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Groups_Legend'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> <span class="co"># filename = tempfile(pattern = 'QQcomparison_Groups_Legend', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">sample</span> <span class="op">~</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># Using fake grouping for the sake of illustration</span></span></span>
@@ -462,10 +466,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot comparison created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.comparison-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Multiple qq plots</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Multiple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQcomparison_Multiple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">sample</span> <span class="op">~</span> <span class="va">value</span> <span class="op">|</span> <span class="va">chr</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Multiple plots'</span>,</span></span>
@@ -477,10 +482,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot comparison created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.comparison-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.comparison</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQcomparison_Nature_style'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQcomparison_Nature_style', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">sample</span> <span class="op">~</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Nature style'</span>,</span></span>
@@ -504,6 +510,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and en-dashes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.</span>
+<span class="r-plt img"><img src="create.qqplot.comparison-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

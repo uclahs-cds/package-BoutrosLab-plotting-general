@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -265,7 +265,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.boxplot</span>,<span class="va">simple.heatmap</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    y.spacing <span class="op">=</span> <span class="fl">1</span>,  </span></span>
 <span class="r-in"><span>    ylab.axis.padding <span class="op">=</span> <span class="fl">2</span>, </span></span>
@@ -273,6 +273,7 @@
 <span class="r-in"><span>    top.padding <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create plot # 2</span></span></span>
 <span class="r-in"><span><span class="va">simple.heatmap.with.legends</span> <span class="op">&lt;-</span> <span class="fu"><a href="create.heatmap.html">create.heatmap</a></span><span class="op">(</span></span></span>
@@ -292,7 +293,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_Simple_Legends'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_Simple_Legends', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.boxplot</span>,<span class="va">simple.heatmap.with.legends</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    y.spacing <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>    ylab.axis.padding <span class="op">=</span> <span class="fl">2</span>,</span></span>
@@ -300,6 +301,7 @@
 <span class="r-in"><span>    top.padding <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">200</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Create plot # 1</span></span></span>
@@ -352,7 +354,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_Simple_Layout'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_Simple_Layout', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.boxplot2</span>, </span></span>
 <span class="r-in"><span>    <span class="va">simple.violin2</span>,<span class="va">simple.heatmap2</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    layout.width <span class="op">=</span> <span class="fl">2</span>, </span></span>
@@ -364,6 +366,7 @@
 <span class="r-in"><span>    x.spacing <span class="op">=</span> <span class="fl">1</span>, </span></span>
 <span class="r-in"><span>    y.spacing <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">all.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span>,</span></span>
@@ -408,13 +411,14 @@
 <span class="r-in"><span>    <span class="op">)</span>; </span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_formatted'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_formatted', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">barplot.formatted</span>, <span class="va">heatmap.formatted</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    plot.objects.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    y.spacing <span class="op">=</span> <span class="op">-</span><span class="fl">3.75</span>, </span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Formatted'</span>, </span></span>
 <span class="r-in"><span>    top.padding <span class="op">=</span> <span class="fl">0</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">data.bars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">35</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span></span>
@@ -523,7 +527,7 @@
 <span class="r-in"><span>      <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_Barchart'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_Barchart', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">bars</span>, <span class="va">cov.3</span>, <span class="va">cov.2</span>, <span class="va">cov.1</span> <span class="op">)</span>,   </span></span>
 <span class="r-in"><span>    plot.objects.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.1</span>,<span class="fl">0.1</span>,<span class="fl">0.1</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>right <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">legendG</span><span class="op">)</span><span class="op">)</span>, </span></span>
@@ -532,6 +536,7 @@
 <span class="r-in"><span>    x.spacing <span class="op">=</span> <span class="fl">0</span>, </span></span>
 <span class="r-in"><span>    y.spacing <span class="op">=</span> <span class="fl">0.1</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Set up plots for complex example</span></span></span>
 <span class="r-in"><span></span></span>
@@ -683,7 +688,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_with_heatmap'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_with_heatmap', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">dotmap</span>,<span class="va">covariates</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    plot.objects.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.2</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>    y.spacing <span class="op">=</span> <span class="op">-</span><span class="fl">0.8</span>, </span></span>
@@ -704,6 +709,7 @@
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">300</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add more plots, using more complex layout</span></span></span>
 <span class="r-in"><span><span class="co"># grouped barplot</span></span></span>
@@ -847,7 +853,7 @@
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="va">plots</span>,</span></span>
 <span class="r-in"><span>    plot.objects.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">1</span>, <span class="fl">0.15</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    plot.objects.widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_Complex'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_Complex', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    layout.height <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>    layout.width <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    x.spacing <span class="op">=</span> <span class="fl">0.2</span>,</span></span>
@@ -873,6 +879,7 @@
 <span class="r-in"><span>    top.padding <span class="op">=</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>number of columns of result is not a multiple of vector length (arg 2)</span>
+<span class="r-plt img"><img src="create.multipanelplot-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Create a multiplot with a heatmap, key like legend and barplot</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># First create a heatmap object</span></span></span>
@@ -1022,7 +1029,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Now bring it was together using multiplot</span></span></span>
 <span class="r-in"><span><span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_continousLegend'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_continousLegend', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">simple.heatmap</span>, <span class="va">simple.bar</span>,<span class="va">covariates2</span>,<span class="va">covariates</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    plot.objects.heights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.1</span>,<span class="fl">0.35</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    plot.objects.widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0.25</span><span class="op">)</span>,</span></span>
@@ -1042,9 +1049,10 @@
 <span class="r-in"><span>    left.padding <span class="op">=</span> <span class="fl">1</span> </span></span>
 <span class="r-in"><span>    <span class="co"># This parameter must be set for the legend to appear</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.multipanelplot-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu">create.multipanelplot</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Multipanelplot_manyPlots'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'Multipanelplot_manyPlots', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Large Scale'</span>,</span></span>
 <span class="r-in"><span>    plot.objects <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">simple.boxplot</span>,</span></span>
@@ -1078,6 +1086,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>number of columns of result is not a multiple of vector length (arg 2)</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>number of columns of result is not a multiple of vector length (arg 2)</span>
+<span class="r-plt img"><img src="create.multipanelplot-9.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BoutrosLab.plotting.general</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">7.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -388,17 +388,18 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>;</span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Simple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Simple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># choosing to compare against a uniform distribution</span></span></span>
 <span class="r-in"><span>    distribution <span class="op">=</span> <span class="va">qunif</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>explicit 'data' specification ignored</span>
+<span class="r-plt img"><img src="create.qqplot.fit-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Minimal Input</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Minimal_Input'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Minimal_Input', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">1</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># choosing to compare against a uniform distribution</span></span></span>
 <span class="r-in"><span>    distribution <span class="op">=</span> <span class="va">qunif</span>,</span></span>
@@ -407,10 +408,11 @@
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>explicit 'data' specification ignored</span>
+<span class="r-plt img"><img src="create.qqplot.fit-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Axes and Labels</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Axes_Labels'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Axes_Labels', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">1</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    distribution <span class="op">=</span> <span class="va">qunif</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Axes &amp; labels'</span>,</span></span>
@@ -428,10 +430,11 @@
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>explicit 'data' specification ignored</span>
+<span class="r-plt img"><img src="create.qqplot.fit-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Confidence bands </span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Confidence_Bands'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Confidence_Bands', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">1</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    distribution <span class="op">=</span> <span class="va">qunif</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Confidence bands'</span>,</span></span>
@@ -451,6 +454,7 @@
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>explicit 'data' specification ignored</span>
+<span class="r-plt img"><img src="create.qqplot.fit-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Multiple qq plot conditioned on a variable</span></span></span>
@@ -465,7 +469,7 @@
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Multiple'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Multiple', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="op">~</span> <span class="va">value</span> <span class="op">|</span> <span class="va">chr</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
 <span class="r-in"><span>    distribution <span class="op">=</span> <span class="va">qunif</span>,</span></span>
@@ -484,10 +488,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot fit created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.fit-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Grouped qq plot</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Grouped'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Grouped', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="op">~</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
 <span class="r-in"><span>    <span class="co"># Adding groups</span></span></span>
@@ -528,10 +533,11 @@
 <span class="r-in"><span>    description <span class="op">=</span> <span class="st">'QQplot fit created by BoutrosLab.plotting.general'</span>,</span></span>
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
+<span class="r-plt img"><img src="create.qqplot.fit-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Correlation Key</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Correlation_Key'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Correlation_Key', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="op">~</span> <span class="va">value</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">qqplot.data</span>,</span></span>
 <span class="r-in"><span>    groups <span class="op">=</span> <span class="va">qqplot.data</span><span class="op">$</span><span class="va">chr</span>,</span></span>
@@ -592,10 +598,11 @@
 <span class="r-in"><span>    resolution <span class="op">=</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>;</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Cannot compute exact p-value with ties</span>
+<span class="r-plt img"><img src="create.qqplot.fit-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Nature style</span></span></span>
 <span class="r-in"><span><span class="fu">create.qqplot.fit</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'QQfit_Nature_style'</span>, fileext <span class="op">=</span> <span class="st">'.tiff'</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># filename = tempfile(pattern = 'QQfit_Nature_style', fileext = '.tiff'),</span></span></span>
 <span class="r-in"><span>    x <span class="op">=</span> <span class="va">microarray</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span>,<span class="fl">1</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>    distribution <span class="op">=</span> <span class="va">qunif</span>,</span></span>
 <span class="r-in"><span>    main <span class="op">=</span> <span class="st">'Nature style'</span>,</span></span>
@@ -625,6 +632,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nature also requires italicized single-letter variables and en-dashes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 			for ranges and negatives. See example in documentation for how to do this.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Avoid red-green colour schemes, create TIFF files, do not outline the figure or legend.</span>
+<span class="r-plt img"><img src="create.qqplot.fit-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
