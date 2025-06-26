@@ -192,7 +192,7 @@ simple.data <- data.frame(
     );
 
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Simple', fileext = '.tiff'),
     x = simple.data,
     main = 'Simple',
     description = 'Barplot created by BoutrosLab.plotting.general'
@@ -204,7 +204,7 @@ format.data <- as.data.frame(t(format.data));
 
 # Minimal Input
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Minimal_Input', fileext = '.tiff'),
     x = format.data,
     main = 'Minimal input',
     description = 'Barplot created by BoutrosLab.plotting.general',
@@ -213,7 +213,7 @@ create.densityplot(
 
 # Line type
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Line_Type', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Line_Type', fileext = '.tiff'),
     x = format.data,
     main = 'Line type',
     # Line type
@@ -224,7 +224,7 @@ create.densityplot(
 
 # Axes & Labels
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Axes_Labels', fileext = '.tiff'),
     x = format.data,
     main = 'Axes & labels',
     lty = c('solid','dashed','dotted'),
@@ -239,7 +239,7 @@ create.densityplot(
 \donttest{
 # Colour change & Legend
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Colour_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Colour_Legend', fileext = '.tiff'),
     x = format.data,
     main = 'Colour & legend',
     lty = c('solid','dashed','dotted'),
@@ -277,7 +277,7 @@ create.densityplot(
 
 # Correlation key
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Correlation_Key', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Correlation_Key', fileext = '.tiff'),
     x = format.data[,1:2],
     main = 'Correlation key',
     lty = c('solid','dotted'),
@@ -329,7 +329,7 @@ create.densityplot(
 
 # Gridlines
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Gridlines_1', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Gridlines_1', fileext = '.tiff'),
     x = format.data,
     main = 'Gridlines',
     lty = c('solid','dashed','dotted'),
@@ -367,7 +367,7 @@ create.densityplot(
 
 # Gridlines
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Gridlines_2', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Gridlines_2', fileext = '.tiff'),
     x = format.data,
     main = 'Gridlines',
     lty = c('solid','dashed','dotted'),
@@ -407,7 +407,7 @@ create.densityplot(
 
 # Nature style
 create.densityplot(
-    filename = tempfile(pattern = 'Densityplot_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Densityplot_Nature_style', fileext = '.tiff'),
     x = format.data,
     main = 'Nature style',
     lty = c('solid','dashed','dotted'),

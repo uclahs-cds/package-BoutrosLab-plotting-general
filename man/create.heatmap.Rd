@@ -319,7 +319,7 @@ simple.1D.data <- data.frame(x = rnorm(n = 15));
 
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_1D_Inside_Legend', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_1D_Inside_Legend', fileext = '.tiff'),
     x = simple.1D.data,
     clustering.method='none',
     inside.legend = list(fun = draw.key,
@@ -342,7 +342,7 @@ create.heatmap(
     )
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Simple', fileext = '.tiff'),
     x = simple.data,
     main = 'Simple',
     description = 'Heatmap created using BoutrosLab.plotting.general',
@@ -359,7 +359,7 @@ simple.data.col <- data.frame(
 
 # Input Colours Provided
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Simple_Using_Colours', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Simple_Using_Colours', fileext = '.tiff'),
     x = simple.data.col,
     clustering.method = 'none',
     input.colours = TRUE,
@@ -368,7 +368,7 @@ create.heatmap(
 
 # Single Input Colour Provided
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Simple_Using_Single_Colour', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Simple_Using_Single_Colour', fileext = '.tiff'),
     x = simple.data.col[, ncol(simple.data.col), drop = FALSE],
     clustering.method = 'none',
     input.colours = TRUE,
@@ -377,7 +377,7 @@ create.heatmap(
 
 # Minimal Input
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Minimal_Input', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Minimal_Input', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Minimal input',
     description = 'Heatmap created using BoutrosLab.plotting.general',
@@ -386,7 +386,7 @@ create.heatmap(
 
 # Axes and labels
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Axes_Labels', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Axes_Labels', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Axes & labels',
     # Changing axes
@@ -410,7 +410,7 @@ create.heatmap(
 \donttest{
 # Custom Axes
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Custom_Axes', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Custom_Axes', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Customized axes',
     xlab.label = 'Genes',
@@ -432,7 +432,7 @@ create.heatmap(
 
 # Two-sided Colour Scheme
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Colour_Scheme_1', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Colour_Scheme_1', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Colour scheme',
     xlab.label = 'Genes',
@@ -454,7 +454,7 @@ create.heatmap(
 # Three-sided Colour Scheme
 # Note: when using a three-sided colour scheme, it is advised to have two-sided data
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Colour_Scheme_2', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Colour_Scheme_2', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Colour scheme',
     xlab.label = 'Genes',
@@ -476,7 +476,7 @@ create.heatmap(
 
 # Colour Alpha
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Colour_Alpha', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Colour_Alpha', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Colours alpha',
     xlab.label = 'Genes',
@@ -497,7 +497,7 @@ create.heatmap(
 
 # Clustering
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_No_Clustering', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_No_Clustering', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'No clustering',
     xlab.label = 'Genes',
@@ -519,7 +519,7 @@ create.heatmap(
 
 # Clustering
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Clustering_Methods', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Clustering_Methods', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Clustering methods',
     xlab.label = 'Genes',
@@ -544,7 +544,7 @@ create.heatmap(
 
 # Stratified Clustering
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Stratified_Clustering', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Stratified_Clustering', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Stratified clustering',
     xlab.label = 'Genes',
@@ -580,7 +580,7 @@ row.dendrogram <- BoutrosLab.plotting.general::create.dendrogram(
     );
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Dendrogram_Provided', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Dendrogram_Provided', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Dendrogram provided',
     xlab.label = 'Genes',
@@ -647,7 +647,7 @@ sample.cov.legend <- list(
     );
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Covariates_Simple', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Covariates_Simple', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Covariates',
     xlab.label = 'Genes',
@@ -703,7 +703,7 @@ combo.cov.legend <- list(
     );
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Covariate_Legend_Custom', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Covariate_Legend_Custom', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Custom covariates & legend',
     xlab.label = 'Genes',
@@ -741,7 +741,7 @@ create.heatmap(
 # Custom gridlines
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Gridlines', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Gridlines', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Gridlines',
     xlab.label = 'Genes',
@@ -768,7 +768,7 @@ create.heatmap(
 
 # Label cells
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Labelled_Cells', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Labelled_Cells', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Labelled cells',
     xlab.label = 'Genes',
@@ -799,7 +799,7 @@ create.heatmap(
     );
 # Label cells
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Labelled_Cells_NPC', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Labelled_Cells_NPC', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Labelled cells',
     xlab.label = 'Genes',
@@ -837,7 +837,7 @@ point.size <- (points - size.from[1])/diff(size.from) * diff(size.to) + size.to[
 point.colour <- grey(runif(sum(microarray[1:20, 1:20] > 11), max = 0.5));
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Symbols_1', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Symbols',
     xlab.label = 'Genes',
@@ -958,7 +958,7 @@ symbol.locations <- list(
 symbol.locations$circles[[1]]$x[which(microarray[1:20,1:20] > 11, arr.ind = TRUE)] <- TRUE;
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Symbols_2', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Symbols_2', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Symbols',
     xlab.label = 'Genes',
@@ -979,7 +979,7 @@ create.heatmap(
 
 # Rotate matrix
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Rotated_Matrix', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Rotated_Matrix', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Rotated matrix',
     # Also flip labels
@@ -1063,7 +1063,7 @@ discrete.covariate.legend <- list(
     );
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Discrete_Data', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Discrete_Data', fileext = '.tiff'),
     x = discrete.data,
     main = 'Discrete data',
     xlab.label = 'Samples',
@@ -1119,7 +1119,7 @@ for (i in 1:(ncol(y)-1)) {
     };
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Cellularity_Estimates', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Cellularity_Estimates', fileext = '.tiff'),
     x = cor.data,
     main = 'Correlation matrix',
     xaxis.lab = NULL,
@@ -1148,7 +1148,7 @@ create.heatmap(
 
 # Discrete sequential colours
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Discrete_Colours_Sequential', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Discrete_Colours_Sequential', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Discrete colours',
     xlab.label = 'Genes',
@@ -1171,7 +1171,7 @@ create.heatmap(
 
 # Discrete qualitative colours
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Discrete_Colours_Qualitative', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Discrete_Colours_Qualitative', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Discrete colours',
     xlab.label = 'Genes',
@@ -1196,7 +1196,7 @@ create.heatmap(
 
 # Nature style
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_Nature_style', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_Nature_style', fileext = '.tiff'),
     x = microarray[1:20, 1:20],
     main = 'Nature style',
     xaxis.lab = NA,
@@ -1305,7 +1305,7 @@ discrete.covariate.legend <- list(
    );
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_ContinuousVariablesKey', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_ContinuousVariablesKey', fileext = '.tiff'),
     x = patient[1:20, 4:6],
     xlab.label = 'Samples',
     ylab.label = 'Scaled Data',
@@ -1329,7 +1329,7 @@ create.heatmap(
 
 
 create.heatmap(
-    filename = tempfile(pattern = 'Heatmap_borderRemoved', fileext = '.tiff'),
+    # filename = tempfile(pattern = 'Heatmap_borderRemoved', fileext = '.tiff'),
     x = simple.data,
     main = 'Simple',
     description = 'Heatmap created using BoutrosLab.plotting.general',
