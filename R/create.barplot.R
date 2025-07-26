@@ -638,10 +638,28 @@ create.barplot <- function(
 				if (length(sample.order) == 1) {
 					# This looks backwards but gets reversed later
 					# Might want to revisit if it makes more sense to sort in correct order here
-					ordering <- order(
-						trellis.object$panel.args[[1]]$y[c(1:num.bars)],
-						decreasing = sample.order != sample.order.decreasing()
-						);
+					if (stack) {
+						# For stacked barplots, calculate total height for each sample (sum across all groups)
+						num.groups <- length(trellis.object$panel.args[[1]]$x) / num.bars;
+						total.heights <- numeric(num.bars);
+						for (k in 1:num.bars) {
+							# Get all group values for this sample (consecutive groups for each sample)
+							start.idx <- (k - 1) * num.groups + 1;
+							end.idx <- k * num.groups;
+							total.heights[k] <- sum(trellis.object$panel.args[[1]]$y[start.idx:end.idx]);
+							}
+						ordering <- order(
+							total.heights,
+							decreasing = sample.order != sample.order.decreasing()
+							);
+						}
+					else {
+						# For grouped barplots, use existing logic (first group only)
+						ordering <- order(
+							trellis.object$panel.args[[1]]$y[c(1:num.bars)],
+							decreasing = sample.order != sample.order.decreasing()
+							);
+						}
 					}
 
 				# if label locations are specified, change them
@@ -659,10 +677,10 @@ create.barplot <- function(
 
 				# if labels were not specified reorder the default ones
 				if (length(xaxis.lab) == 1 && xaxis.lab) {
-					trellis.object$x.scales$labels <- rep(
-						trellis.object$panel.args[[i]]$x[rev(ordering)],
-						length(trellis.object$panel.args[[1]]$x) / num.bars
-						);
+					# Get unique sample names in their original order, then reorder according to 'ordering'
+					unique.samples <- unique(trellis.object$panel.args[[i]]$x);
+					ordered.samples <- unique.samples[rev(ordering)];
+					trellis.object$x.scales$labels <- ordered.samples;
 					}
 
 				# if labels are specified reorder the specified ones
@@ -694,10 +712,28 @@ create.barplot <- function(
 					}
 
 				if (length(sample.order) == 1) {
-					ordering <- order(
-						trellis.object$panel.args[[1]]$x[c(1:num.bars)],
-						decreasing = sample.order != sample.order.decreasing()
-						);
+					if (stack) {
+						# For stacked barplots, calculate total height for each sample (sum across all groups)
+						num.groups <- length(trellis.object$panel.args[[1]]$y) / num.bars;
+						total.heights <- numeric(num.bars);
+						for (k in 1:num.bars) {
+							# Get all group values for this sample (consecutive groups for each sample)
+							start.idx <- (k - 1) * num.groups + 1;
+							end.idx <- k * num.groups;
+							total.heights[k] <- sum(trellis.object$panel.args[[1]]$x[start.idx:end.idx]);
+							}
+						ordering <- order(
+							total.heights,
+							decreasing = sample.order != sample.order.decreasing()
+							);
+						}
+					else {
+						# For grouped barplots, use existing logic (first group only)
+						ordering <- order(
+							trellis.object$panel.args[[1]]$x[c(1:num.bars)],
+							decreasing = sample.order != sample.order.decreasing()
+							);
+						}
 					}
 
 				if (!yat) {
@@ -715,10 +751,10 @@ create.barplot <- function(
 					}
 
 				if (length(yaxis.lab) == 1 && yaxis.lab) {
-					trellis.object$y.scales$labels <- rep(
-						trellis.object$panel.args[[i]]$y[ordering],
-						length(trellis.object$panel.args[[1]]$y) / num.bars
-						);
+					# Get unique sample names in their original order, then reorder according to 'ordering'
+					unique.samples <- unique(trellis.object$panel.args[[i]]$y);
+					ordered.samples <- unique.samples[ordering];
+					trellis.object$y.scales$labels <- ordered.samples;
 					}
 				else {
 					trellis.object$y.scales$labels <- rev(trellis.object$y.scales$labels[ordering]);
