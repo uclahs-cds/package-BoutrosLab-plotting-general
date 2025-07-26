@@ -753,7 +753,7 @@ create.barplot <- function(
 				if (length(yaxis.lab) == 1 && yaxis.lab) {
 					# Get unique sample names in their original order, then reorder according to 'ordering'
 					unique.samples <- unique(trellis.object$panel.args[[i]]$y);
-					ordered.samples <- unique.samples[ordering];
+					ordered.samples <- unique.samples[rev(ordering)];
 					trellis.object$y.scales$labels <- as.character(ordered.samples);
 					}
 				else {
