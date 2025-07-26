@@ -57,4 +57,36 @@ test_that("stacked barplot sample ordering works correctly", {
         # For grouped plots, ordering should work as before
         expect_true(length(result.grouped$x.scales$labels) == 3)
     })
+    
+    # Test horizontal stacked barplot with increasing order
+    expect_no_error({
+        result.horiz.inc <- create.barplot(
+            formula = sample ~ value,
+            data = test.data,
+            groups = test.data$group,
+            stack = TRUE,
+            sample.order = 'increasing',
+            plot.horizontal = TRUE,
+            filename = NULL
+        )
+        
+        # Verify the sample order is correct for horizontal plot (A, C, B)
+        expect_equal(result.horiz.inc$y.scales$labels, c("A", "C", "B"))
+    })
+    
+    # Test horizontal stacked barplot with decreasing order
+    expect_no_error({
+        result.horiz.dec <- create.barplot(
+            formula = sample ~ value,
+            data = test.data,
+            groups = test.data$group,
+            stack = TRUE,
+            sample.order = 'decreasing',
+            plot.horizontal = TRUE,
+            filename = NULL
+        )
+        
+        # Verify the sample order is correct for horizontal plot (B, C, A)
+        expect_equal(result.horiz.dec$y.scales$labels, c("B", "C", "A"))
+    })
 })

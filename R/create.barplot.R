@@ -619,6 +619,36 @@ create.barplot <- function(
 	# reorder the bars in decreasing or increasing order if specified
 	sample.order <- prep.sample.order(sample.order);
 
+	# Helper function to compute sample ordering for stacked barplots
+	compute.stacked.ordering <- function(trellis.obj, num.bars, values, sample.order, stack) {
+		if (stack) {
+			# For stacked barplots, calculate total height for each sample (sum across all groups)
+			num.groups <- length(values) / num.bars;
+			if (num.groups != round(num.groups) || num.groups <= 0) {
+				stop('Invalid data structure: number of values must be divisible by number of bars');
+				}
+			total.heights <- numeric(num.bars);
+			for (k in 1:num.bars) {
+				# Get all group values for this sample (consecutive groups for each sample)
+				start.idx <- (k - 1) * num.groups + 1;
+				end.idx <- k * num.groups;
+				total.heights[k] <- sum(values[start.idx:end.idx]);
+				}
+			ordering <- order(
+				total.heights,
+				decreasing = sample.order != sample.order.decreasing()
+				);
+			}
+		else {
+			# For grouped barplots, use existing logic (first group only)
+			ordering <- order(
+				values[c(1:num.bars)],
+				decreasing = sample.order != sample.order.decreasing()
+				);
+			}
+		return(ordering);
+		};
+
 	if (length(sample.order) != 1 || sample.order != sample.order.default()) {
 		for (i in 1:length(trellis.object$panel.args)) {
 
@@ -638,28 +668,13 @@ create.barplot <- function(
 				if (length(sample.order) == 1) {
 					# This looks backwards but gets reversed later
 					# Might want to revisit if it makes more sense to sort in correct order here
-					if (stack) {
-						# For stacked barplots, calculate total height for each sample (sum across all groups)
-						num.groups <- length(trellis.object$panel.args[[1]]$x) / num.bars;
-						total.heights <- numeric(num.bars);
-						for (k in 1:num.bars) {
-							# Get all group values for this sample (consecutive groups for each sample)
-							start.idx <- (k - 1) * num.groups + 1;
-							end.idx <- k * num.groups;
-							total.heights[k] <- sum(trellis.object$panel.args[[1]]$y[start.idx:end.idx]);
-							}
-						ordering <- order(
-							total.heights,
-							decreasing = sample.order != sample.order.decreasing()
-							);
-						}
-					else {
-						# For grouped barplots, use existing logic (first group only)
-						ordering <- order(
-							trellis.object$panel.args[[1]]$y[c(1:num.bars)],
-							decreasing = sample.order != sample.order.decreasing()
-							);
-						}
+					ordering <- compute.stacked.ordering(
+						trellis.object, 
+						num.bars, 
+						trellis.object$panel.args[[1]]$y, 
+						sample.order, 
+						stack
+						);
 					}
 
 				# if label locations are specified, change them
@@ -712,28 +727,13 @@ create.barplot <- function(
 					}
 
 				if (length(sample.order) == 1) {
-					if (stack) {
-						# For stacked barplots, calculate total height for each sample (sum across all groups)
-						num.groups <- length(trellis.object$panel.args[[1]]$y) / num.bars;
-						total.heights <- numeric(num.bars);
-						for (k in 1:num.bars) {
-							# Get all group values for this sample (consecutive groups for each sample)
-							start.idx <- (k - 1) * num.groups + 1;
-							end.idx <- k * num.groups;
-							total.heights[k] <- sum(trellis.object$panel.args[[1]]$x[start.idx:end.idx]);
-							}
-						ordering <- order(
-							total.heights,
-							decreasing = sample.order != sample.order.decreasing()
-							);
-						}
-					else {
-						# For grouped barplots, use existing logic (first group only)
-						ordering <- order(
-							trellis.object$panel.args[[1]]$x[c(1:num.bars)],
-							decreasing = sample.order != sample.order.decreasing()
-							);
-						}
+					ordering <- compute.stacked.ordering(
+						trellis.object, 
+						num.bars, 
+						trellis.object$panel.args[[1]]$x, 
+						sample.order, 
+						stack
+						);
 					}
 
 				if (!yat) {
