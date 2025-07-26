@@ -628,11 +628,11 @@ create.barplot <- function(
 				stop('Invalid data structure: number of values must be divisible by number of bars');
 				}
 			total.heights <- numeric(num.bars);
-			for (k in 1:num.bars) {
+			for (sample.idx in 1:num.bars) {
 				# Get all group values for this sample (consecutive groups for each sample)
-				start.idx <- (k - 1) * num.groups + 1;
-				end.idx <- k * num.groups;
-				total.heights[k] <- sum(values[start.idx:end.idx]);
+				start.idx <- (sample.idx - 1) * num.groups + 1;
+				end.idx <- sample.idx * num.groups;
+				total.heights[sample.idx] <- sum(values[start.idx:end.idx]);
 				}
 			ordering <- order(
 				total.heights,
@@ -695,7 +695,7 @@ create.barplot <- function(
 					# Get unique sample names in their original order, then reorder according to 'ordering'
 					unique.samples <- unique(trellis.object$panel.args[[i]]$x);
 					ordered.samples <- unique.samples[rev(ordering)];
-					trellis.object$x.scales$labels <- ordered.samples;
+					trellis.object$x.scales$labels <- as.character(ordered.samples);
 					}
 
 				# if labels are specified reorder the specified ones
@@ -754,7 +754,7 @@ create.barplot <- function(
 					# Get unique sample names in their original order, then reorder according to 'ordering'
 					unique.samples <- unique(trellis.object$panel.args[[i]]$y);
 					ordered.samples <- unique.samples[ordering];
-					trellis.object$y.scales$labels <- ordered.samples;
+					trellis.object$y.scales$labels <- as.character(ordered.samples);
 					}
 				else {
 					trellis.object$y.scales$labels <- rev(trellis.object$y.scales$labels[ordering]);
