@@ -638,10 +638,34 @@ create.barplot <- function(
 				if (length(sample.order) == 1) {
 					# This looks backwards but gets reversed later
 					# Might want to revisit if it makes more sense to sort in correct order here
-					ordering <- order(
-						trellis.object$panel.args[[1]]$y[c(1:num.bars)],
-						decreasing = sample.order != sample.order.decreasing()
+					
+					# For stacked plots with groups, compute total height per sample
+					if (stack == TRUE && !is.null(groups.new)) {
+						# Calculate per-sample totals by summing across groups
+						sample.totals <- numeric(num.bars)
+						groups.per.sample <- length(trellis.object$panel.args[[1]]$y) / num.bars
+						
+						for (sample.idx in 1:num.bars) {
+							# Sum values for this sample across all groups
+							start.idx <- (sample.idx - 1) * groups.per.sample + 1
+							end.idx <- sample.idx * groups.per.sample
+							sample.totals[sample.idx] <- sum(
+								trellis.object$panel.args[[1]]$y[start.idx:end.idx], 
+								na.rm = TRUE
+							)
+						}
+						
+						ordering <- order(
+							sample.totals,
+							decreasing = sample.order != sample.order.decreasing()
 						);
+					} else {
+						# Original logic for non-stacked or non-grouped plots
+						ordering <- order(
+							trellis.object$panel.args[[1]]$y[c(1:num.bars)],
+							decreasing = sample.order != sample.order.decreasing()
+						);
+					}
 					}
 
 				# if label locations are specified, change them
@@ -694,10 +718,33 @@ create.barplot <- function(
 					}
 
 				if (length(sample.order) == 1) {
-					ordering <- order(
-						trellis.object$panel.args[[1]]$x[c(1:num.bars)],
-						decreasing = sample.order != sample.order.decreasing()
+					# For stacked plots with groups, compute total width per sample
+					if (stack == TRUE && !is.null(groups.new)) {
+						# Calculate per-sample totals by summing across groups
+						sample.totals <- numeric(num.bars)
+						groups.per.sample <- length(trellis.object$panel.args[[1]]$x) / num.bars
+						
+						for (sample.idx in 1:num.bars) {
+							# Sum values for this sample across all groups
+							start.idx <- (sample.idx - 1) * groups.per.sample + 1
+							end.idx <- sample.idx * groups.per.sample
+							sample.totals[sample.idx] <- sum(
+								trellis.object$panel.args[[1]]$x[start.idx:end.idx], 
+								na.rm = TRUE
+							)
+						}
+						
+						ordering <- order(
+							sample.totals,
+							decreasing = sample.order != sample.order.decreasing()
 						);
+					} else {
+						# Original logic for non-stacked or non-grouped plots
+						ordering <- order(
+							trellis.object$panel.args[[1]]$x[c(1:num.bars)],
+							decreasing = sample.order != sample.order.decreasing()
+						);
+					}
 					}
 
 				if (!yat) {
