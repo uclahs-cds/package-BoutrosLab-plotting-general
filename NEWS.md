@@ -1,6 +1,9 @@
 # BoutrosLab.plotting.general 7.1.4 (2025-06-25)
 
+# BoutrosLab.plotting.general 7.1.4 (2025-06-25)
+
 ## Fixed
+- Fixed `create.barplot` sample ordering for stacked grouped barplots when `sample.order = 'increasing'/'decreasing'`. Previously ordered by first group values only; now correctly orders by total stacked height/width across all groups.
 - Updated extra points functionality in violin plot to properly set coordinates based on `plot.horizontal`
 - Fixed unicode error in github action R CMD CHECK
 - Comment out `filename` in all help page examples.  This ensures plots are rendered on our website.
