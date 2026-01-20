@@ -1,3 +1,8 @@
+# BoutrosLab.plotting.general 7.1.5 (2026-01-20)
+
+## Changed
+- Updated maintainer contact info
+
 # BoutrosLab.plotting.general 7.1.4 (2025-06-25)
 
 ## Fixed
